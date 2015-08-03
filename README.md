@@ -14,6 +14,11 @@ How to install
 5. Find GoogleOauth in the list.
 6. Click Install.
 
+How to use
+1. Go to [Google Developers Console](https://console.developers.google.com/) and create the new project.
+2. Copy client id and secret key to google oauth setting page.
+3. Click the save button.
+
 Licence
 -------
 
