@@ -7,7 +7,7 @@ require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEP
 
 $client = new Google_Client();
 
-$client->setApplicationName("Mantisbs Google authentication module");
+$client->setApplicationName("MantisBT Google authentication module");
 $client->setClientId(config_get(plugin_GoogleOauth_clientId));
 $client->setClientSecret(config_get(plugin_GoogleOauth_clientSecret));
 $client->setRedirectUri(config_get(plugin_GoogleOauth_redirect_uri));
@@ -35,19 +35,19 @@ $user_id = user_get_id_by_email( $userData->email );
 
 # check for disabled account
 if( !user_is_enabled( $user_id ) ) {
-    echo "<p>Your email didn't to registration on this web site. Please register new account first. ";
+    echo "<p>Email address not registered. Please register new account first. ";
     return false;
 }
 
 # max. failed login attempts achieved...
 if( !user_is_login_request_allowed( $user_id ) ) {
-    echo "<p>Your email didn't to registration on this web site. Please register new account first. ";
+    echo "<p>Email address not registered. Please register new account first. ";
     return false;
 }
 
 # check for anonymous login
 if( user_is_anonymous( $user_id ) ) {
-    echo "<p>Your email didn't to registration on this web site. Please register new account first. ";
+    echo "<p>Email address not registered. Please register new account first. ";
     return false;
 }
 
@@ -61,4 +61,4 @@ auth_set_cookies( $user_id, false );
 auth_set_tokens( $user_id );
 
 print_header_redirect( '../../../my_view_page.php' );
-?>
+
