@@ -20,3 +20,10 @@ How to use
 1. Go to [Google Developers Console](https://console.developers.google.com/) and create the new project.
 2. Copy client id and secret key to google oauth setting page.
 3. Click the save button.
+
+Supported Versions
+------------------
+
+- MantisBT 1.2.x - supported
+- MantisBT 1.3.x - **not supported**
+
