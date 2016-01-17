@@ -4,7 +4,7 @@ class GoogleOauthPlugin extends MantisPlugin {
 
   function register() {
     $this->name        = 'Google Authentication Module';
-    $this->description = 'Add Google authentication function into MantisBT.';
+    $this->description = 'Add Google authentication to MantisBT.';
     $this->page        = 'config';
 
     $this->version     = '0.1';

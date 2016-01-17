@@ -10,4 +10,3 @@ plugin_config_set('redirect_uri', config_get('path')."plugins/GoogleOauth/pages/
 
 form_security_purge( 'plugin_GoogleOauth_config_update' );
 print_successful_redirect( plugin_page( 'config', true ) );
-?>
