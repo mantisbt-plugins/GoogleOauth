@@ -1,6 +1,6 @@
 <?php
 
-require_once 'assets/lib/google-api-php-client/autoload.php';
+require_once 'assets/lib/google-api-php-client/vendor/autoload.php';
 require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'core.php';
 require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'core/gpc_api.php';
 require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'plugins/GoogleOauth/GoogleOauth.php';
@@ -15,7 +15,7 @@ $client->setRedirectUri(config_get(plugin_GoogleOauth_redirect_uri));
 $objOAuthService = new Google_Service_Oauth2($client);
 
 if (isset($_GET['code'])) {
-    $client->authenticate($_GET['code']);
+    $client->fetchAccessTokenWithAuthCode($_GET['code']);
     $_SESSION['access_token'] = $client->getAccessToken();
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
@@ -35,19 +35,19 @@ $user_id = user_get_id_by_email( $userData->email );
 
 # check for disabled account
 if( !user_is_enabled( $user_id ) ) {
-    echo "<p>Email address not registered. Please register new account first. ";
+    echo "<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
     return false;
 }
 
 # max. failed login attempts achieved...
 if( !user_is_login_request_allowed( $user_id ) ) {
-    echo "<p>Email address not registered. Please register new account first. ";
+    echo "<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
     return false;
 }
 
 # check for anonymous login
 if( user_is_anonymous( $user_id ) ) {
-    echo "<p>Email address not registered. Please register new account first. ";
+    echo "<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
     return false;
 }
 
