@@ -1,0 +1,8 @@
+<?php
+
+$s_plugin_GoogleOauth_title = 'Paramètres Google Oauth';
+$s_plugin_GoogleOauth_save = 'Enregistrer';
+
+$s_plugin_GoogleOauth_login = 'Se connecter avec Google';
+$s_plugin_AdminSetPassword_password_length = 'Entrez un mot de passe avec au moins 6 caractères.';
+$s_plugin_AdminSetPassword_password_success = 'Le nouveau mot de passe a été défini avec succès.';
