@@ -60,5 +60,5 @@ user_reset_lost_password_in_progress_count_to_zero( $user_id );
 auth_set_cookies( $user_id, false );
 auth_set_tokens( $user_id );
 
-print_header_redirect( '../../../my_view_page.php' );
+print_header_redirect( '../../../index.php' );
 
