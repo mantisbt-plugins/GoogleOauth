@@ -1,12 +1,13 @@
 <?php
 
-require_once 'assets/lib/google-api-php-client/vendor/autoload.php';
-require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'core.php';
-require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'core/gpc_api.php';
-require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'plugins/GoogleOauth/GoogleOauth.php';
+$dn = dirname( dirname( dirname( dirname( __FILE__ ) ) ) );
+require_once $dn . DIRECTORY_SEPARATOR . 'core.php';
+require_once $dn . DIRECTORY_SEPARATOR . 'core/gpc_api.php';
+require_once 'library/google-api-php-client/vendor/autoload.php';
+
+require_once $dn . DIRECTORY_SEPARATOR . 'plugins/GoogleOauth/GoogleOauth.php';
 
 $client = new Google_Client();
-
 $client->setApplicationName("MantisBT Google authentication module");
 $client->setClientId(config_get(plugin_GoogleOauth_clientId));
 $client->setClientSecret(config_get(plugin_GoogleOauth_clientSecret));
@@ -24,8 +25,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     $client->setAccessToken($_SESSION['access_token']);
 }
 
-if ($client->getAccessToken())
-{
+if ($client->getAccessToken()) {
     $userData = $objOAuthService->userinfo->get();
     $data['userData'] = $userData;
     $_SESSION['access_token'] = $client->getAccessToken();
@@ -34,20 +34,22 @@ if ($client->getAccessToken())
 $user_id = user_get_id_by_email( $userData->email );
 
 # check for disabled account
+$user_feedback = plugin_lang_get('register_first');
+
 if( !user_is_enabled( $user_id ) ) {
-    echo "<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
+    echo $user_feedback;
     return false;
 }
 
 # max. failed login attempts achieved...
 if( !user_is_login_request_allowed( $user_id ) ) {
-    echo "<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
+    echo $user_feedback;
     return false;
 }
 
 # check for anonymous login
 if( user_is_anonymous( $user_id ) ) {
-    echo "<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
+    echo $user_feedback;
     return false;
 }
 
@@ -61,4 +63,3 @@ auth_set_cookies( $user_id, false );
 auth_set_tokens( $user_id );
 
 print_header_redirect( '../../../my_view_page.php' );
-

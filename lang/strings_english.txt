@@ -4,5 +4,10 @@ $s_plugin_GoogleOauth_title = 'Google Oauth Setting';
 $s_plugin_GoogleOauth_save = 'SAVE';
 
 $s_plugin_GoogleOauth_login = 'Sign in with Google';
+
 $s_plugin_AdminSetPassword_password_length = 'Enter a password with at least 6 characters.';
+
 $s_plugin_AdminSetPassword_password_success = 'New password has been set successfully.';
+
+$s_plugin_GoogleOauth_register_first=
+"<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";

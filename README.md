@@ -1,3 +1,6 @@
+MantisBT GoogleAuth Plugin
+--------
+
 Features
 --------
 1. Add Google oauth 2.0 support to login to MantisBT.
@@ -25,5 +28,15 @@ Supported Versions
 ------------------
 
 - MantisBT 1.2.x - supported
-- MantisBT 1.3.x - **not supported**
+- MantisBT 2.x - supported (repository master branch)
+
+Plugin Folder Structure
+-----------------------
+Struct has been changed to follow the MantisBT suggested folder structure and naming convention
+
+./GoogleAuth/pages
+./GoogleAuth/files
+./GoogleAuth/library
+
+
 
