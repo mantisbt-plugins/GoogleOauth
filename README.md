@@ -1,5 +1,9 @@
-MantisBT GoogleAuth Plugin
+# MantisBT GoogleAuth Plugin
 --------
+
+
+[TOC]
+
 
 Features
 --------
@@ -38,5 +42,16 @@ Struct has been changed to follow the MantisBT suggested folder structure and na
 ./GoogleAuth/files
 ./GoogleAuth/library
 
+Operations Flow
+-----------------------
+If installation was ok, when you access MantisBT login page you will see a new button
 
+![](.//screens/login_screen_with_sign_in_with_google_button.png)
 
+When you click on button 'Sign in with google' you will see something similar to:  
+
+![](.//screens/google_signin_screen.png)  
+
+Or this  
+
+![](.//screens/google_account_choice.png)  
