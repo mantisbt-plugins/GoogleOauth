@@ -5,9 +5,19 @@ $s_plugin_GoogleOauth_save = 'SAVE';
 
 $s_plugin_GoogleOauth_login = 'Sign in with Google';
 
-$s_plugin_AdminSetPassword_password_length = 'Enter a password with at least 6 characters.';
+$s_plugin_GoogleOauth_user_is_enabled_failure =
+"<p>Email address not registered. Please register new account first. (on your mantis) <br/>";
 
-$s_plugin_AdminSetPassword_password_success = 'New password has been set successfully.';
+$s_plugin_GoogleOauth_user_is_login_request_allowed_failure =
+"<p>Email address not registered. Please register new account first. (on your mantis) <br/>";
 
-$s_plugin_GoogleOauth_register_first=
-"<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
+
+$s_action_common =
+'<a class="btn btn-primary btn-sm bigger-110" href="$$basehref$$/login_page.php">MantisBT Login Page</a>';
+
+$s_plugin_GoogleOauth_user_is_anonymous = $s_action_common;
+
+$s_plugin_GoogleOauth_user_is_enabled_failure_action = $s_action_common;
+
+$s_plugin_GoogleOauth_user_is_login_request_allowed_failure_action =$s_action_common;
+
