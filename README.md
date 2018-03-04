@@ -26,4 +26,4 @@ Supported Versions
 
 - MantisBT 1.2.x - supported
 - MantisBT 1.3.x - **not supported**
-
+- MantisBT 2.6 and higher - supported
