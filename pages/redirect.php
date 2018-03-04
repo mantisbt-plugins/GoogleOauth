@@ -60,5 +60,13 @@ user_reset_lost_password_in_progress_count_to_zero( $user_id );
 auth_set_cookies( $user_id, false );
 auth_set_tokens( $user_id );
 
-print_header_redirect( '../../../my_view_page.php' );
+// Obtain the redicrect url from state param
+// Example: state=view.php?id=2222
+if (isset($_GET['state'])) {
+    $return_path = $_GET['state'];
+    $redirect_url = '../../../' . $return_path;
+} else {
+    $redirect_url = '../../../index.php';
+}
 
+print_header_redirect( $redirect_url );
