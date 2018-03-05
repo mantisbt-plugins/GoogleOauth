@@ -57,6 +57,18 @@ print_manage_menu( 'manage_plugin_page.php' );
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="prefPORT" class="col-sm-3 control-label">
+                            <?php plugin_config_get( 'mailForOauth' ) ?>
+                        </label>
+                        <div class="col-sm-7">
+                            <select>
+                              <option value="MantisBT">MantisBT</option>
+                              <option value="GoogleAouthPlugin">GoogleAouthPlugin</option>
+                            </select>                        
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-sm-offset-6 col-sm-8">
                             <input id="submit" name="submit" type="submit"
                                    value="<?php echo plugin_lang_get( "save" ) ?>"
