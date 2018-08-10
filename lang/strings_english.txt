@@ -21,4 +21,4 @@ $s_plugin_GoogleOauth_user_is_enabled_failure_action = $s_action_common;
 
 $s_plugin_GoogleOauth_user_is_login_request_allowed_failure_action =$s_action_common;
 
-$s_plugin_GoogleOauth_mailForOauth = 'Mail to use for Oauth';
+$s_plugin_GoogleOauth_gmail_address = 'Gmail Address';

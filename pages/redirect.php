@@ -7,9 +7,11 @@
 $plugin_name = 'GoogleOauth';
 
 $dn = dirname( dirname( dirname( dirname( __FILE__ ) ) ) );
-require_once $dn . DIRECTORY_SEPARATOR . 'core.php';
-require_once $dn . DIRECTORY_SEPARATOR . 'core/gpc_api.php';
-require_once $dn . DIRECTORY_SEPARATOR . 
+$dn .= DIRECTORY_SEPARATOR;
+
+require_once $dn . 'core.php';
+require_once $dn . 'core/gpc_api.php';
+require_once $dn .  
   "plugins/{$plugin_name}/library/google-api-php-client/vendor/autoload.php";
 
 $cfg = array('clientId' => null,'clientSecret' => null,'redirect_uri' => null);
@@ -43,6 +45,9 @@ if ($client->getAccessToken()) {
 }
 
 $user_id = user_get_id_by_email( $userData->email );
+if( $user_id === false ) {
+    $user_id = user_get_id_by_gmail_address( $userData->email );
+}
 
 # check for disabled account
 $user_feedback = plugin_lang_get('register_first', $plugin_name);
