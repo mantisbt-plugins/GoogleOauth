@@ -1,7 +1,7 @@
 <?php
 /**
  * plugin: GoogleAouth
- * file  : error.php
+ * file  : config.php
  */
 
 auth_reauthenticate();
@@ -56,6 +56,8 @@ print_manage_menu( 'manage_plugin_page.php' );
                                    value="<?php echo plugin_config_get( 'clientSecret' ); ?>">
                         </div>
                     </div>
+                    
+                    <!--
                     <div class="form-group">
                         <label for="prefPORT" class="col-sm-3 control-label">
                             <?php plugin_config_get( 'mailForOauth' ) ?>
@@ -67,7 +69,7 @@ print_manage_menu( 'manage_plugin_page.php' );
                             </select>                        
                         </div>
                     </div>
-
+                    -->
                     <div class="form-group">
                         <div class="col-sm-offset-6 col-sm-8">
                             <input id="submit" name="submit" type="submit"
