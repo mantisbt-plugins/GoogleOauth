@@ -97,9 +97,9 @@ class GoogleOauthPlugin extends MantisPlugin {
 
             case 'create':
             default:
-                $attr = null;
                 $str_open = '<p><table class="table table-bordered table-condensed table-striped">' . '<fieldset>';
                 $str_close = '</fieldset></table>';
+                $attr['gmail_address'] = null;
             break;
         }
         
