@@ -9,7 +9,7 @@ class GoogleOauthPlugin extends MantisPlugin {
         $this->description = 'Add Google authentication to MantisBT.';
         $this->page        = 'config';
 
-        $this->version  = '2.0.1';
+        $this->version  = '2.0.2';
         $this->requires = array(
             'MantisCore' => '2.0.0',
         );
@@ -165,18 +165,38 @@ class GoogleOauthPlugin extends MantisPlugin {
         $table = plugin_table('user');
 
         db_param_push();
-        $t_query = "SELECT user_id FROM {$table} WHERE user_id=" . db_param();
+        $t_query = "SELECT user_id,gmail_address 
+                    FROM {$table} WHERE user_id=" . db_param();
         $t_result = db_query( $t_query, array( $p_user_id ) );
+        $t_row_count = db_num_rows($t_result);
 
-        $t_sql_param = array($gmail_address,$p_user_id);
-        if( db_result( $t_result ) > 0 ) {
-            $t_query = " UPDATE {$table} SET gmail_address = " . db_param();
+        $t_sql_param = array($gmail_address,$p_user_id);        
+        
+        $t_doDelete = (null == $gmail_address && '' == trim($gmail_address));
+        $t_doInsert = !$t_doDelete;
+
+        if( $t_row_count == 1 ) {
+            // if new gmail_address is empty => delete the record, because
+            // we have a UNIQUE INDEX on gmail_address
+            // $t_row = db_fetch_array( $t_result );
+            if( $t_doDelete ) {
+                $t_query = " DELETE FROM {$table} ";
+                $t_sql_param = array($p_user_id);        
+            } else {
+                $t_query = " UPDATE {$table} SET gmail_address = " . db_param();
+            }
             $t_query .= " WHERE user_id=" . db_param();
+
         } else {
-            $t_query = " INSERT INTO {$table} (gmail_address,user_id) ";
-            $t_query .= " VALUES(" . db_param() . ',' . db_param() . ") ";
+            $t_query = null;
+            if( $t_doInsert ) {
+                $t_query = " INSERT INTO {$table} (gmail_address,user_id) ";
+                $t_query .= " VALUES(" . db_param() . ',' . db_param() . ") ";
+            }
         }
-        db_query( $t_query, $t_sql_param );
+        if( null != $t_query ) {
+            db_query( $t_query, $t_sql_param );
+        }
     }
 
 
@@ -185,7 +205,7 @@ class GoogleOauthPlugin extends MantisPlugin {
      */
     function schema() {
         $t_ddl = " user_id I NOTNULL UNSIGNED PRIMARY," .
-                 " gmail_address C(200) NOTNULL DEFAULT \" '' \" ";
+                 " gmail_address C(200) NULL DEFAULT \" '' \" ";
 
         $t_schema[] = array( 'CreateTableSQL',
                          array( plugin_table( 'user' ), $t_ddl)
