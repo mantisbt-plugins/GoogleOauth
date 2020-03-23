@@ -38,6 +38,7 @@ class GoogleOauthPlugin extends MantisPlugin {
 			'clientId'     => '',
 			'clientSecret' => '',
 			'redirect_uri' => '',
+			'auto_register'=> true
 		);
 	}
 
