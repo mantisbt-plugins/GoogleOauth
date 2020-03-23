@@ -50,7 +50,7 @@ if ($client->getAccessToken())
 }
 $user_id = user_get_id_by_email( $userData->email );
 
-if($user_id == false){
+if($user_id == false && config_get(plugin_GoogleOauth_auto_register) == 1){
     reg_with_google($userData);
     $user_id = user_get_id_by_email( $userData->email );
 }
