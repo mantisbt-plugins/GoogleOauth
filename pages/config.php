@@ -38,6 +38,14 @@ print_manage_menu( 'manage_plugin_page.php' );
                       action="<?php echo plugin_page( 'config_update' ) ?>">
 					<?php echo form_security_field( 'plugin_GoogleOauth_config_update' ) ?>
                     <div class="form-group">
+                        <label for="prefAL" class="col-sm-3 control-label">Auto Register in case there is no account</label>
+                        <div class="col-sm-7">
+                        <input class="form-check-input" type="checkbox" name="prefAutoRegister" 
+                        <?php if (plugin_config_get( 'auto_register' )) echo "checked"; ?>
+                                   >
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="prefIP" class="col-sm-3 control-label">GoogleAPI Client ID</label>
                         <div class="col-sm-7">
                             <input type="text" class="form-control" name="prefClientID" placeholder="Client ID"
