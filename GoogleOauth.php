@@ -49,7 +49,7 @@ class GoogleOauthPlugin extends MantisPlugin {
 		return '
 			<meta name="redirectUri" content="' . plugin_config_get( 'redirect_uri' ) . '" />
 			<meta name="clientId" content="' . plugin_config_get( 'clientId' ) . '" />
-			<script type="text/javascript" src="plugins/GoogleOauth/pages/assets/js/plugin.js"></script>
+			<script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>
 		';
 	}
 }
