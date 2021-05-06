@@ -8,9 +8,9 @@ require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEP
 $client = new Google_Client();
 
 $client->setApplicationName("MantisBT Google authentication module");
-$client->setClientId(config_get(plugin_GoogleOauth_clientId));
-$client->setClientSecret(config_get(plugin_GoogleOauth_clientSecret));
-$client->setRedirectUri(config_get(plugin_GoogleOauth_redirect_uri));
+$client->setClientId(config_get( 'plugin_GoogleOauth_clientId' ));
+$client->setClientSecret(config_get( 'plugin_GoogleOauth_clientSecret' ));
+$client->setRedirectUri(config_get( 'plugin_GoogleOauth_redirect_uri'));
 
 $objOAuthService = new Google_Service_Oauth2($client);
 
