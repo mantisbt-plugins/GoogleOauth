@@ -49,6 +49,31 @@ class GoogleOauthPlugin extends MantisPlugin {
 		return '
 			<meta name="redirectUri" content="' . plugin_config_get( 'redirect_uri' ) . '" />
 			<meta name="clientId" content="' . plugin_config_get( 'clientId' ) . '" />
+			<style>
+			#plugin_googleoauth {
+				margin-top:20px;
+				padding-top:20px;
+				border-top: 1px solid #CCC;
+				text-align:right;
+				}
+				#plugin_googleoauth a {
+						background: url('.plugin_file("google_signin_normal.png").');
+						background-size:contain;
+						background-repeat:no-repeat;
+						text-indent: 100%;
+						white-space: nowrap;
+						overflow: hidden;
+						display: inline-block;
+						height: 46px;
+						width: 191px;
+						margin-right:25px;
+				}
+				#plugin_googleoauth a:hover {
+						background: url('.plugin_file("google_signin_pressed.png").');
+						background-size:contain;
+						background-repeat:no-repeat;
+				}
+			</style>
 			<script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>
 		';
 	}
