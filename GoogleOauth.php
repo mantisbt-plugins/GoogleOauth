@@ -22,7 +22,8 @@ class GoogleOauthPlugin extends MantisPlugin {
 
 	function init() {
 		$this->cmv_pages    = array(
-			'login_page.php'
+			'login_page.php',
+			'login_password_page.php'
 		);
 		$this->current_page = basename( $_SERVER['PHP_SELF'] );
 	}
