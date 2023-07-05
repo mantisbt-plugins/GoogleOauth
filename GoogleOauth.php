@@ -17,7 +17,7 @@ class GoogleOauthPlugin extends MantisPlugin {
 
 		$this->author  = 'Alleen Wang';
 		$this->contact = 'wchwch@gmail.com';
-		$this->url     = 'http://alleen.tw';
+		$this->url     = 'https://github.com/mantisbt-plugins/GoogleOauth';
 	}
 
 	function init() {
