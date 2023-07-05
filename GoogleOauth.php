@@ -75,6 +75,7 @@ class GoogleOauthPlugin extends MantisPlugin {
 				}
 			</style>
 			<script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>
+			<link rel="prefetch" href="'.plugin_file("google_signin_pressed.png").'" />
 		';
 	}
 }
