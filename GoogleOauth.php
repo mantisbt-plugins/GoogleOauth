@@ -58,9 +58,7 @@ class GoogleOauthPlugin extends MantisPlugin {
 				text-align:right;
 				}
 				#plugin_googleoauth a {
-						background: url('.plugin_file("google_signin_normal.png").');
-						background-size:contain;
-						background-repeat:no-repeat;
+						background: url('.plugin_file("google_signin.png").')  -0 -0;;
 						text-indent: 100%;
 						white-space: nowrap;
 						overflow: hidden;
@@ -70,9 +68,9 @@ class GoogleOauthPlugin extends MantisPlugin {
 						margin-right:25px;
 				}
 				#plugin_googleoauth a:hover {
-						background: url('.plugin_file("google_signin_pressed.png").');
-						background-size:contain;
-						background-repeat:no-repeat;
+						background: url('.plugin_file("google_signin.png").') -0 -46px;
+						width: 191px;
+						height: 46px;
 				}
 			</style>
 			<script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>
