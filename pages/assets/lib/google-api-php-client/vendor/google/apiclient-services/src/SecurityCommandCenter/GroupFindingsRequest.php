@@ -1,0 +1,140 @@
+<?php
+/*
+ * Copyright 2014 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+namespace Google\Service\SecurityCommandCenter;
+
+class GroupFindingsRequest extends \Google\Model
+{
+  /**
+   * @deprecated
+   * @var string
+   */
+  public $compareDuration;
+  /**
+   * @var string
+   */
+  public $filter;
+  /**
+   * @var string
+   */
+  public $groupBy;
+  /**
+   * @var int
+   */
+  public $pageSize;
+  /**
+   * @var string
+   */
+  public $pageToken;
+  /**
+   * @deprecated
+   * @var string
+   */
+  public $readTime;
+
+  /**
+   * @deprecated
+   * @param string $compareDuration
+   */
+  public function setCompareDuration($compareDuration)
+  {
+    $this->compareDuration = $compareDuration;
+  }
+  /**
+   * @deprecated
+   * @return string
+   */
+  public function getCompareDuration()
+  {
+    return $this->compareDuration;
+  }
+  /**
+   * @param string $filter
+   */
+  public function setFilter($filter)
+  {
+    $this->filter = $filter;
+  }
+  /**
+   * @return string
+   */
+  public function getFilter()
+  {
+    return $this->filter;
+  }
+  /**
+   * @param string $groupBy
+   */
+  public function setGroupBy($groupBy)
+  {
+    $this->groupBy = $groupBy;
+  }
+  /**
+   * @return string
+   */
+  public function getGroupBy()
+  {
+    return $this->groupBy;
+  }
+  /**
+   * @param int $pageSize
+   */
+  public function setPageSize($pageSize)
+  {
+    $this->pageSize = $pageSize;
+  }
+  /**
+   * @return int
+   */
+  public function getPageSize()
+  {
+    return $this->pageSize;
+  }
+  /**
+   * @param string $pageToken
+   */
+  public function setPageToken($pageToken)
+  {
+    $this->pageToken = $pageToken;
+  }
+  /**
+   * @return string
+   */
+  public function getPageToken()
+  {
+    return $this->pageToken;
+  }
+  /**
+   * @deprecated
+   * @param string $readTime
+   */
+  public function setReadTime($readTime)
+  {
+    $this->readTime = $readTime;
+  }
+  /**
+   * @deprecated
+   * @return string
+   */
+  public function getReadTime()
+  {
+    return $this->readTime;
+  }
+}
+
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(GroupFindingsRequest::class, 'Google_Service_SecurityCommandCenter_GroupFindingsRequest');

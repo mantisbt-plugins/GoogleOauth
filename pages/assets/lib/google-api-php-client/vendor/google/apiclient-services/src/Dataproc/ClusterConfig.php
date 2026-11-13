@@ -1,0 +1,638 @@
+<?php
+/*
+ * Copyright 2014 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+namespace Google\Service\Dataproc;
+
+class ClusterConfig extends \Google\Collection
+{
+  /**
+   * Uses standard tier if unspecified.
+   */
+  public const CLUSTER_TIER_CLUSTER_TIER_UNSPECIFIED = 'CLUSTER_TIER_UNSPECIFIED';
+  /**
+   * Standard cluster tier.
+   */
+  public const CLUSTER_TIER_CLUSTER_TIER_STANDARD = 'CLUSTER_TIER_STANDARD';
+  /**
+   * Premium cluster tier.
+   */
+  public const CLUSTER_TIER_CLUSTER_TIER_PREMIUM = 'CLUSTER_TIER_PREMIUM';
+  /**
+   * Not set.
+   */
+  public const CLUSTER_TYPE_CLUSTER_TYPE_UNSPECIFIED = 'CLUSTER_TYPE_UNSPECIFIED';
+  /**
+   * Standard dataproc cluster with a minimum of two primary workers.
+   */
+  public const CLUSTER_TYPE_STANDARD = 'STANDARD';
+  /**
+   * https://cloud.google.com/dataproc/docs/concepts/configuring-
+   * clusters/single-node-clusters
+   */
+  public const CLUSTER_TYPE_SINGLE_NODE = 'SINGLE_NODE';
+  /**
+   * Clusters that can use only secondary workers and be scaled down to zero
+   * secondary worker nodes.
+   */
+  public const CLUSTER_TYPE_ZERO_SCALE = 'ZERO_SCALE';
+  /**
+   * The engine is not specified. Works the same as ENGINE_DEFAULT.
+   */
+  public const ENGINE_ENGINE_UNSPECIFIED = 'ENGINE_UNSPECIFIED';
+  /**
+   * The cluster is a default engine cluster.
+   */
+  public const ENGINE_DEFAULT = 'DEFAULT';
+  /**
+   * The cluster is a Lightning Engine
+   * (https://cloud.google.com/dataproc/docs/guides/lightning-engine) cluster.
+   */
+  public const ENGINE_LIGHTNING = 'LIGHTNING';
+  protected $collection_key = 'initializationActions';
+  protected $autoscalingConfigType = AutoscalingConfig::class;
+  protected $autoscalingConfigDataType = '';
+  protected $auxiliaryNodeGroupsType = AuxiliaryNodeGroup::class;
+  protected $auxiliaryNodeGroupsDataType = 'array';
+  /**
+   * Optional. The cluster tier.
+   *
+   * @var string
+   */
+  public $clusterTier;
+  /**
+   * Optional. The type of the cluster.
+   *
+   * @var string
+   */
+  public $clusterType;
+  /**
+   * Optional. A Cloud Storage bucket used to stage job dependencies, config
+   * files, and job driver console output. If you do not specify a staging
+   * bucket, the service will determine a Cloud Storage location (US, ASIA, or
+   * EU) for your cluster's staging bucket according to the Compute Engine zone
+   * where your cluster is deployed, and then create and manage this project-
+   * level, per-location bucket (see staging and temp buckets
+   * (https://cloud.google.com/dataproc/docs/concepts/configuring-
+   * clusters/staging-bucket)). This field requires a Cloud Storage bucket name,
+   * not a gs://... URI to a Cloud Storage bucket.
+   *
+   * @var string
+   */
+  public $configBucket;
+  protected $dataprocMetricConfigType = DataprocMetricConfig::class;
+  protected $dataprocMetricConfigDataType = '';
+  /**
+   * Optional. A Cloud Storage bucket used to collect checkpoint diagnostic data
+   * (https://cloud.google.com/dataproc/docs/support/diagnose-
+   * clusters#checkpoint_diagnostic_data). If you do not specify a diagnostic
+   * bucket, The service will use the temp bucket to collect the checkpoint
+   * diagnostic data. This field requires a Cloud Storage bucket name, not a
+   * gs://... URI to a Cloud Storage bucket.
+   *
+   * @var string
+   */
+  public $diagnosticBucket;
+  protected $encryptionConfigType = EncryptionConfig::class;
+  protected $encryptionConfigDataType = '';
+  protected $endpointConfigType = EndpointConfig::class;
+  protected $endpointConfigDataType = '';
+  /**
+   * Optional. The cluster engine.
+   *
+   * @var string
+   */
+  public $engine;
+  protected $gceClusterConfigType = GceClusterConfig::class;
+  protected $gceClusterConfigDataType = '';
+  protected $gkeClusterConfigType = GkeClusterConfig::class;
+  protected $gkeClusterConfigDataType = '';
+  protected $initializationActionsType = NodeInitializationAction::class;
+  protected $initializationActionsDataType = 'array';
+  protected $lifecycleConfigType = LifecycleConfig::class;
+  protected $lifecycleConfigDataType = '';
+  protected $masterConfigType = InstanceGroupConfig::class;
+  protected $masterConfigDataType = '';
+  protected $masterFlexibleConfigType = FlexibleInstanceGroupConfig::class;
+  protected $masterFlexibleConfigDataType = '';
+  protected $metastoreConfigType = MetastoreConfig::class;
+  protected $metastoreConfigDataType = '';
+  protected $schedulingConfigType = SchedulingConfig::class;
+  protected $schedulingConfigDataType = '';
+  protected $secondaryWorkerConfigType = InstanceGroupConfig::class;
+  protected $secondaryWorkerConfigDataType = '';
+  protected $secondaryWorkerFlexibleConfigType = FlexibleInstanceGroupConfig::class;
+  protected $secondaryWorkerFlexibleConfigDataType = '';
+  protected $securityConfigType = SecurityConfig::class;
+  protected $securityConfigDataType = '';
+  protected $softwareConfigType = SoftwareConfig::class;
+  protected $softwareConfigDataType = '';
+  /**
+   * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
+   * data, such as Spark and MapReduce history files. If you do not specify a
+   * temp bucket, the service will determine a Cloud Storage location (US, ASIA,
+   * or EU) for your cluster's temp bucket according to the Compute Engine zone
+   * where your cluster is deployed, and then create and manage this project-
+   * level, per-location bucket. The default bucket has a TTL of 90 days, but
+   * you can use any TTL (or none) if you specify a bucket (see staging and temp
+   * buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-
+   * clusters/staging-bucket)). This field requires a Cloud Storage bucket name,
+   * not a gs://... URI to a Cloud Storage bucket.
+   *
+   * @var string
+   */
+  public $tempBucket;
+  protected $workerConfigType = InstanceGroupConfig::class;
+  protected $workerConfigDataType = '';
+  protected $workerFlexibleConfigType = FlexibleInstanceGroupConfig::class;
+  protected $workerFlexibleConfigDataType = '';
+
+  /**
+   * Optional. Autoscaling config for the policy associated with the cluster.
+   * Cluster does not autoscale if this field is unset.
+   *
+   * @param AutoscalingConfig $autoscalingConfig
+   */
+  public function setAutoscalingConfig(AutoscalingConfig $autoscalingConfig)
+  {
+    $this->autoscalingConfig = $autoscalingConfig;
+  }
+  /**
+   * @return AutoscalingConfig
+   */
+  public function getAutoscalingConfig()
+  {
+    return $this->autoscalingConfig;
+  }
+  /**
+   * Optional. The node group settings.
+   *
+   * @param AuxiliaryNodeGroup[] $auxiliaryNodeGroups
+   */
+  public function setAuxiliaryNodeGroups($auxiliaryNodeGroups)
+  {
+    $this->auxiliaryNodeGroups = $auxiliaryNodeGroups;
+  }
+  /**
+   * @return AuxiliaryNodeGroup[]
+   */
+  public function getAuxiliaryNodeGroups()
+  {
+    return $this->auxiliaryNodeGroups;
+  }
+  /**
+   * Optional. The cluster tier.
+   *
+   * Accepted values: CLUSTER_TIER_UNSPECIFIED, CLUSTER_TIER_STANDARD,
+   * CLUSTER_TIER_PREMIUM
+   *
+   * @param self::CLUSTER_TIER_* $clusterTier
+   */
+  public function setClusterTier($clusterTier)
+  {
+    $this->clusterTier = $clusterTier;
+  }
+  /**
+   * @return self::CLUSTER_TIER_*
+   */
+  public function getClusterTier()
+  {
+    return $this->clusterTier;
+  }
+  /**
+   * Optional. The type of the cluster.
+   *
+   * Accepted values: CLUSTER_TYPE_UNSPECIFIED, STANDARD, SINGLE_NODE,
+   * ZERO_SCALE
+   *
+   * @param self::CLUSTER_TYPE_* $clusterType
+   */
+  public function setClusterType($clusterType)
+  {
+    $this->clusterType = $clusterType;
+  }
+  /**
+   * @return self::CLUSTER_TYPE_*
+   */
+  public function getClusterType()
+  {
+    return $this->clusterType;
+  }
+  /**
+   * Optional. A Cloud Storage bucket used to stage job dependencies, config
+   * files, and job driver console output. If you do not specify a staging
+   * bucket, the service will determine a Cloud Storage location (US, ASIA, or
+   * EU) for your cluster's staging bucket according to the Compute Engine zone
+   * where your cluster is deployed, and then create and manage this project-
+   * level, per-location bucket (see staging and temp buckets
+   * (https://cloud.google.com/dataproc/docs/concepts/configuring-
+   * clusters/staging-bucket)). This field requires a Cloud Storage bucket name,
+   * not a gs://... URI to a Cloud Storage bucket.
+   *
+   * @param string $configBucket
+   */
+  public function setConfigBucket($configBucket)
+  {
+    $this->configBucket = $configBucket;
+  }
+  /**
+   * @return string
+   */
+  public function getConfigBucket()
+  {
+    return $this->configBucket;
+  }
+  /**
+   * Optional. The config for metrics.
+   *
+   * @param DataprocMetricConfig $dataprocMetricConfig
+   */
+  public function setDataprocMetricConfig(DataprocMetricConfig $dataprocMetricConfig)
+  {
+    $this->dataprocMetricConfig = $dataprocMetricConfig;
+  }
+  /**
+   * @return DataprocMetricConfig
+   */
+  public function getDataprocMetricConfig()
+  {
+    return $this->dataprocMetricConfig;
+  }
+  /**
+   * Optional. A Cloud Storage bucket used to collect checkpoint diagnostic data
+   * (https://cloud.google.com/dataproc/docs/support/diagnose-
+   * clusters#checkpoint_diagnostic_data). If you do not specify a diagnostic
+   * bucket, The service will use the temp bucket to collect the checkpoint
+   * diagnostic data. This field requires a Cloud Storage bucket name, not a
+   * gs://... URI to a Cloud Storage bucket.
+   *
+   * @param string $diagnosticBucket
+   */
+  public function setDiagnosticBucket($diagnosticBucket)
+  {
+    $this->diagnosticBucket = $diagnosticBucket;
+  }
+  /**
+   * @return string
+   */
+  public function getDiagnosticBucket()
+  {
+    return $this->diagnosticBucket;
+  }
+  /**
+   * Optional. Encryption settings for the cluster.
+   *
+   * @param EncryptionConfig $encryptionConfig
+   */
+  public function setEncryptionConfig(EncryptionConfig $encryptionConfig)
+  {
+    $this->encryptionConfig = $encryptionConfig;
+  }
+  /**
+   * @return EncryptionConfig
+   */
+  public function getEncryptionConfig()
+  {
+    return $this->encryptionConfig;
+  }
+  /**
+   * Optional. Port/endpoint configuration for this cluster
+   *
+   * @param EndpointConfig $endpointConfig
+   */
+  public function setEndpointConfig(EndpointConfig $endpointConfig)
+  {
+    $this->endpointConfig = $endpointConfig;
+  }
+  /**
+   * @return EndpointConfig
+   */
+  public function getEndpointConfig()
+  {
+    return $this->endpointConfig;
+  }
+  /**
+   * Optional. The cluster engine.
+   *
+   * Accepted values: ENGINE_UNSPECIFIED, DEFAULT, LIGHTNING
+   *
+   * @param self::ENGINE_* $engine
+   */
+  public function setEngine($engine)
+  {
+    $this->engine = $engine;
+  }
+  /**
+   * @return self::ENGINE_*
+   */
+  public function getEngine()
+  {
+    return $this->engine;
+  }
+  /**
+   * Optional. The shared Compute Engine config settings for all instances in a
+   * cluster.
+   *
+   * @param GceClusterConfig $gceClusterConfig
+   */
+  public function setGceClusterConfig(GceClusterConfig $gceClusterConfig)
+  {
+    $this->gceClusterConfig = $gceClusterConfig;
+  }
+  /**
+   * @return GceClusterConfig
+   */
+  public function getGceClusterConfig()
+  {
+    return $this->gceClusterConfig;
+  }
+  /**
+   * Optional. BETA. The Kubernetes Engine config for clusters deployed to
+   * Kubernetes. These config settings are mutually exclusive with Compute
+   * Engine-based options, such as gce_cluster_config, master_config,
+   * worker_config, secondary_worker_config, and autoscaling_config.
+   *
+   * @deprecated
+   * @param GkeClusterConfig $gkeClusterConfig
+   */
+  public function setGkeClusterConfig(GkeClusterConfig $gkeClusterConfig)
+  {
+    $this->gkeClusterConfig = $gkeClusterConfig;
+  }
+  /**
+   * @deprecated
+   * @return GkeClusterConfig
+   */
+  public function getGkeClusterConfig()
+  {
+    return $this->gkeClusterConfig;
+  }
+  /**
+   * Optional. Commands to execute on each node after config is completed. By
+   * default, executables are run on master and all worker nodes. You can test a
+   * node's role metadata to run an executable on a master or worker node, as
+   * shown below using curl (you can also use wget): ROLE=$(curl -H Metadata-
+   * Flavor:Google
+   * http://metadata/computeMetadata/v1/instance/attributes/dataproc-role) if [[
+   * "${ROLE}" == 'Master' ]]; then ... master specific actions ... else ...
+   * worker specific actions ... fi
+   *
+   * @param NodeInitializationAction[] $initializationActions
+   */
+  public function setInitializationActions($initializationActions)
+  {
+    $this->initializationActions = $initializationActions;
+  }
+  /**
+   * @return NodeInitializationAction[]
+   */
+  public function getInitializationActions()
+  {
+    return $this->initializationActions;
+  }
+  /**
+   * Optional. Lifecycle setting for the cluster.
+   *
+   * @param LifecycleConfig $lifecycleConfig
+   */
+  public function setLifecycleConfig(LifecycleConfig $lifecycleConfig)
+  {
+    $this->lifecycleConfig = $lifecycleConfig;
+  }
+  /**
+   * @return LifecycleConfig
+   */
+  public function getLifecycleConfig()
+  {
+    return $this->lifecycleConfig;
+  }
+  /**
+   * Optional. The Compute Engine config settings for the cluster's master
+   * instance.
+   *
+   * @param InstanceGroupConfig $masterConfig
+   */
+  public function setMasterConfig(InstanceGroupConfig $masterConfig)
+  {
+    $this->masterConfig = $masterConfig;
+  }
+  /**
+   * @return InstanceGroupConfig
+   */
+  public function getMasterConfig()
+  {
+    return $this->masterConfig;
+  }
+  /**
+   * Optional. The High Obtainability (HO) config settings for the cluster's
+   * master instances.In High Obtainability (HO) mode, flexible configs are the
+   * single source of truth for desired cluster configuration across node
+   * groups: * For single-node clusters: master_flexible_config must be
+   * specified, and no worker configs should be set. * For multi-node (standard)
+   * clusters: both master_flexible_config and worker_flexible_config must be
+   * specified. Mixing standard and flexible configs across node groups is not
+   * allowed.Only one of master_config or master_flexible_config can be set.
+   *
+   * @param FlexibleInstanceGroupConfig $masterFlexibleConfig
+   */
+  public function setMasterFlexibleConfig(FlexibleInstanceGroupConfig $masterFlexibleConfig)
+  {
+    $this->masterFlexibleConfig = $masterFlexibleConfig;
+  }
+  /**
+   * @return FlexibleInstanceGroupConfig
+   */
+  public function getMasterFlexibleConfig()
+  {
+    return $this->masterFlexibleConfig;
+  }
+  /**
+   * Optional. Metastore configuration.
+   *
+   * @param MetastoreConfig $metastoreConfig
+   */
+  public function setMetastoreConfig(MetastoreConfig $metastoreConfig)
+  {
+    $this->metastoreConfig = $metastoreConfig;
+  }
+  /**
+   * @return MetastoreConfig
+   */
+  public function getMetastoreConfig()
+  {
+    return $this->metastoreConfig;
+  }
+  /**
+   * Optional. Config for scheduling the resources to be allocated when
+   * available.
+   *
+   * @param SchedulingConfig $schedulingConfig
+   */
+  public function setSchedulingConfig(SchedulingConfig $schedulingConfig)
+  {
+    $this->schedulingConfig = $schedulingConfig;
+  }
+  /**
+   * @return SchedulingConfig
+   */
+  public function getSchedulingConfig()
+  {
+    return $this->schedulingConfig;
+  }
+  /**
+   * Optional. The Compute Engine config settings for a cluster's secondary
+   * worker instances
+   *
+   * @param InstanceGroupConfig $secondaryWorkerConfig
+   */
+  public function setSecondaryWorkerConfig(InstanceGroupConfig $secondaryWorkerConfig)
+  {
+    $this->secondaryWorkerConfig = $secondaryWorkerConfig;
+  }
+  /**
+   * @return InstanceGroupConfig
+   */
+  public function getSecondaryWorkerConfig()
+  {
+    return $this->secondaryWorkerConfig;
+  }
+  /**
+   * Optional. The High Obtainability (HO) config settings for a cluster's
+   * secondary worker instances.In High Obtainability (HO) mode, flexible
+   * configs are the single source of truth for desired cluster configuration.
+   * num_instances represents the desired capacity of the secondary worker group
+   * and is mutable via cluster updates and autoscaling.Only one of
+   * secondary_worker_config or secondary_worker_flexible_config can be set.In
+   * High Obtainability (HO) mode, secondary workers are optional. If secondary
+   * workers are used in an HO cluster, they must be configured using
+   * secondary_worker_flexible_config (not secondary_worker_config).
+   *
+   * @param FlexibleInstanceGroupConfig $secondaryWorkerFlexibleConfig
+   */
+  public function setSecondaryWorkerFlexibleConfig(FlexibleInstanceGroupConfig $secondaryWorkerFlexibleConfig)
+  {
+    $this->secondaryWorkerFlexibleConfig = $secondaryWorkerFlexibleConfig;
+  }
+  /**
+   * @return FlexibleInstanceGroupConfig
+   */
+  public function getSecondaryWorkerFlexibleConfig()
+  {
+    return $this->secondaryWorkerFlexibleConfig;
+  }
+  /**
+   * Optional. Security settings for the cluster.
+   *
+   * @param SecurityConfig $securityConfig
+   */
+  public function setSecurityConfig(SecurityConfig $securityConfig)
+  {
+    $this->securityConfig = $securityConfig;
+  }
+  /**
+   * @return SecurityConfig
+   */
+  public function getSecurityConfig()
+  {
+    return $this->securityConfig;
+  }
+  /**
+   * Optional. The config settings for cluster software.
+   *
+   * @param SoftwareConfig $softwareConfig
+   */
+  public function setSoftwareConfig(SoftwareConfig $softwareConfig)
+  {
+    $this->softwareConfig = $softwareConfig;
+  }
+  /**
+   * @return SoftwareConfig
+   */
+  public function getSoftwareConfig()
+  {
+    return $this->softwareConfig;
+  }
+  /**
+   * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
+   * data, such as Spark and MapReduce history files. If you do not specify a
+   * temp bucket, the service will determine a Cloud Storage location (US, ASIA,
+   * or EU) for your cluster's temp bucket according to the Compute Engine zone
+   * where your cluster is deployed, and then create and manage this project-
+   * level, per-location bucket. The default bucket has a TTL of 90 days, but
+   * you can use any TTL (or none) if you specify a bucket (see staging and temp
+   * buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-
+   * clusters/staging-bucket)). This field requires a Cloud Storage bucket name,
+   * not a gs://... URI to a Cloud Storage bucket.
+   *
+   * @param string $tempBucket
+   */
+  public function setTempBucket($tempBucket)
+  {
+    $this->tempBucket = $tempBucket;
+  }
+  /**
+   * @return string
+   */
+  public function getTempBucket()
+  {
+    return $this->tempBucket;
+  }
+  /**
+   * Optional. The Compute Engine config settings for the cluster's worker
+   * instances.
+   *
+   * @param InstanceGroupConfig $workerConfig
+   */
+  public function setWorkerConfig(InstanceGroupConfig $workerConfig)
+  {
+    $this->workerConfig = $workerConfig;
+  }
+  /**
+   * @return InstanceGroupConfig
+   */
+  public function getWorkerConfig()
+  {
+    return $this->workerConfig;
+  }
+  /**
+   * Optional. The High Obtainability (HO) config settings for the cluster's
+   * worker instances.In High Obtainability (HO) mode, flexible configs are the
+   * single source of truth for desired cluster configuration. num_instances
+   * represents the desired capacity of the worker group and is mutable via
+   * cluster updates and autoscaling.Only one of worker_config or
+   * worker_flexible_config can be set.In High Obtainability (HO) mode, for
+   * multi-node (standard) clusters, both master_flexible_config and
+   * worker_flexible_config must be specified. Mixing standard and flexible
+   * configs across node groups is not allowed. Single-node clusters do not
+   * specify worker configs.
+   *
+   * @param FlexibleInstanceGroupConfig $workerFlexibleConfig
+   */
+  public function setWorkerFlexibleConfig(FlexibleInstanceGroupConfig $workerFlexibleConfig)
+  {
+    $this->workerFlexibleConfig = $workerFlexibleConfig;
+  }
+  /**
+   * @return FlexibleInstanceGroupConfig
+   */
+  public function getWorkerFlexibleConfig()
+  {
+    return $this->workerFlexibleConfig;
+  }
+}
+
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(ClusterConfig::class, 'Google_Service_Dataproc_ClusterConfig');

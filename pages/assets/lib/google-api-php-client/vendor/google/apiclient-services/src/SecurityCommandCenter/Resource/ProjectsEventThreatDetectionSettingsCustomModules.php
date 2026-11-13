@@ -1,0 +1,132 @@
+<?php
+/*
+ * Copyright 2014 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+namespace Google\Service\SecurityCommandCenter\Resource;
+
+use Google\Service\SecurityCommandCenter\EventThreatDetectionCustomModule;
+use Google\Service\SecurityCommandCenter\ListDescendantEventThreatDetectionCustomModulesResponse;
+use Google\Service\SecurityCommandCenter\ListEventThreatDetectionCustomModulesResponse;
+use Google\Service\SecurityCommandCenter\SecuritycenterEmpty;
+
+/**
+ * The "customModules" collection of methods.
+ * Typical usage is:
+ *  <code>
+ *   $securitycenterService = new Google\Service\SecurityCommandCenter(...);
+ *   $customModules = $securitycenterService->projects_eventThreatDetectionSettings_customModules;
+ *  </code>
+ */
+class ProjectsEventThreatDetectionSettingsCustomModules extends \Google\Service\Resource
+{
+  /**
+   * (customModules.create)
+   *
+   * @param string $parent
+   * @param EventThreatDetectionCustomModule $postBody
+   * @param array $optParams Optional parameters.
+   * @return EventThreatDetectionCustomModule
+   * @throws \Google\Service\Exception
+   */
+  public function create($parent, EventThreatDetectionCustomModule $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('create', [$params], EventThreatDetectionCustomModule::class);
+  }
+  /**
+   * (customModules.delete)
+   *
+   * @param string $name
+   * @param array $optParams Optional parameters.
+   * @return SecuritycenterEmpty
+   * @throws \Google\Service\Exception
+   */
+  public function delete($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('delete', [$params], SecuritycenterEmpty::class);
+  }
+  /**
+   * (customModules.get)
+   *
+   * @param string $name
+   * @param array $optParams Optional parameters.
+   * @return EventThreatDetectionCustomModule
+   * @throws \Google\Service\Exception
+   */
+  public function get($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('get', [$params], EventThreatDetectionCustomModule::class);
+  }
+  /**
+   * (customModules.listProjectsEventThreatDetectionSettingsCustomModules)
+   *
+   * @param string $parent
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param int pageSize
+   * @opt_param string pageToken
+   * @return ListEventThreatDetectionCustomModulesResponse
+   * @throws \Google\Service\Exception
+   */
+  public function listProjectsEventThreatDetectionSettingsCustomModules($parent, $optParams = [])
+  {
+    $params = ['parent' => $parent];
+    $params = array_merge($params, $optParams);
+    return $this->call('list', [$params], ListEventThreatDetectionCustomModulesResponse::class);
+  }
+  /**
+   * (customModules.listDescendant)
+   *
+   * @param string $parent
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param int pageSize
+   * @opt_param string pageToken
+   * @return ListDescendantEventThreatDetectionCustomModulesResponse
+   * @throws \Google\Service\Exception
+   */
+  public function listDescendant($parent, $optParams = [])
+  {
+    $params = ['parent' => $parent];
+    $params = array_merge($params, $optParams);
+    return $this->call('listDescendant', [$params], ListDescendantEventThreatDetectionCustomModulesResponse::class);
+  }
+  /**
+   * (customModules.patch)
+   *
+   * @param string $name
+   * @param EventThreatDetectionCustomModule $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string updateMask
+   * @return EventThreatDetectionCustomModule
+   * @throws \Google\Service\Exception
+   */
+  public function patch($name, EventThreatDetectionCustomModule $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('patch', [$params], EventThreatDetectionCustomModule::class);
+  }
+}
+
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(ProjectsEventThreatDetectionSettingsCustomModules::class, 'Google_Service_SecurityCommandCenter_Resource_ProjectsEventThreatDetectionSettingsCustomModules');

@@ -1,0 +1,187 @@
+<?php
+/*
+ * Copyright 2014 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+namespace Google\Service\AccessContextManager;
+
+class SessionSettings extends \Google\Model
+{
+  /**
+   * If the method is undefined in the API, `LOGIN` is used by default.
+   */
+  public const SESSION_REAUTH_METHOD_SESSION_REAUTH_METHOD_UNSPECIFIED = 'SESSION_REAUTH_METHOD_UNSPECIFIED';
+  /**
+   * The user will be prompted to perform regular login. Users who are enrolled
+   * for two-step verification and haven't chosen "Remember this computer" will
+   * be prompted for their second factor.
+   */
+  public const SESSION_REAUTH_METHOD_LOGIN = 'LOGIN';
+  /**
+   * The user will be prompted to authenticate using their security key. If no
+   * security key has been configured, then authentication will fall back to
+   * `LOGIN`.
+   */
+  public const SESSION_REAUTH_METHOD_SECURITY_KEY = 'SECURITY_KEY';
+  /**
+   * The user will be prompted for their password.
+   */
+  public const SESSION_REAUTH_METHOD_PASSWORD = 'PASSWORD';
+  /**
+   * Optional. How long a user is allowed to take between actions before a new
+   * access token must be issued. Only set for Google Cloud apps.
+   *
+   * @var string
+   */
+  public $maxInactivity;
+  /**
+   * Optional. The session length. Setting this field to zero allows for
+   * sessions that are active indefinitely. Also, setting
+   * `session_length_enabled` to `false` disregards session limits, which means
+   * that sessions never expire. If `use_oidc_max_age` is `true`, for OIDC apps,
+   * the session length will be the minimum of this field and the OIDC `max_age`
+   * parameter. If this field is set to zero, `session_length_enabled` must be
+   * set to `false` or left unset.
+   *
+   * @var string
+   */
+  public $sessionLength;
+  /**
+   * Optional. This field enables or disables Google Cloud session length. When
+   * `false`, all fields set above are disregarded and the session length is
+   * effectively infinite. If `session_length` is set to zero, this field must
+   * be set to `false`.
+   *
+   * @var bool
+   */
+  public $sessionLengthEnabled;
+  /**
+   * Optional. Session challenge method when a user's Google Cloud session
+   * expires.
+   *
+   * @var string
+   */
+  public $sessionReauthMethod;
+  /**
+   * Optional. Only useful for OIDC apps. When `false`, the OIDC `max_age`
+   * parameter, if passed in the authentication request, is ignored. When
+   * `true`, the re-authentication period is the minimum of the `session_length`
+   * field and the `max_age` OIDC parameter.
+   *
+   * @var bool
+   */
+  public $useOidcMaxAge;
+
+  /**
+   * Optional. How long a user is allowed to take between actions before a new
+   * access token must be issued. Only set for Google Cloud apps.
+   *
+   * @param string $maxInactivity
+   */
+  public function setMaxInactivity($maxInactivity)
+  {
+    $this->maxInactivity = $maxInactivity;
+  }
+  /**
+   * @return string
+   */
+  public function getMaxInactivity()
+  {
+    return $this->maxInactivity;
+  }
+  /**
+   * Optional. The session length. Setting this field to zero allows for
+   * sessions that are active indefinitely. Also, setting
+   * `session_length_enabled` to `false` disregards session limits, which means
+   * that sessions never expire. If `use_oidc_max_age` is `true`, for OIDC apps,
+   * the session length will be the minimum of this field and the OIDC `max_age`
+   * parameter. If this field is set to zero, `session_length_enabled` must be
+   * set to `false` or left unset.
+   *
+   * @param string $sessionLength
+   */
+  public function setSessionLength($sessionLength)
+  {
+    $this->sessionLength = $sessionLength;
+  }
+  /**
+   * @return string
+   */
+  public function getSessionLength()
+  {
+    return $this->sessionLength;
+  }
+  /**
+   * Optional. This field enables or disables Google Cloud session length. When
+   * `false`, all fields set above are disregarded and the session length is
+   * effectively infinite. If `session_length` is set to zero, this field must
+   * be set to `false`.
+   *
+   * @param bool $sessionLengthEnabled
+   */
+  public function setSessionLengthEnabled($sessionLengthEnabled)
+  {
+    $this->sessionLengthEnabled = $sessionLengthEnabled;
+  }
+  /**
+   * @return bool
+   */
+  public function getSessionLengthEnabled()
+  {
+    return $this->sessionLengthEnabled;
+  }
+  /**
+   * Optional. Session challenge method when a user's Google Cloud session
+   * expires.
+   *
+   * Accepted values: SESSION_REAUTH_METHOD_UNSPECIFIED, LOGIN, SECURITY_KEY,
+   * PASSWORD
+   *
+   * @param self::SESSION_REAUTH_METHOD_* $sessionReauthMethod
+   */
+  public function setSessionReauthMethod($sessionReauthMethod)
+  {
+    $this->sessionReauthMethod = $sessionReauthMethod;
+  }
+  /**
+   * @return self::SESSION_REAUTH_METHOD_*
+   */
+  public function getSessionReauthMethod()
+  {
+    return $this->sessionReauthMethod;
+  }
+  /**
+   * Optional. Only useful for OIDC apps. When `false`, the OIDC `max_age`
+   * parameter, if passed in the authentication request, is ignored. When
+   * `true`, the re-authentication period is the minimum of the `session_length`
+   * field and the `max_age` OIDC parameter.
+   *
+   * @param bool $useOidcMaxAge
+   */
+  public function setUseOidcMaxAge($useOidcMaxAge)
+  {
+    $this->useOidcMaxAge = $useOidcMaxAge;
+  }
+  /**
+   * @return bool
+   */
+  public function getUseOidcMaxAge()
+  {
+    return $this->useOidcMaxAge;
+  }
+}
+
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(SessionSettings::class, 'Google_Service_AccessContextManager_SessionSettings');
