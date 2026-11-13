@@ -29,7 +29,7 @@ class GoogleCloudDialogflowCxV3beta1SessionInfo extends \Google\Model
   public $session;
 
   /**
-   * @param array[]
+   * @param array[] $parameters
    */
   public function setParameters($parameters)
   {
@@ -43,7 +43,7 @@ class GoogleCloudDialogflowCxV3beta1SessionInfo extends \Google\Model
     return $this->parameters;
   }
   /**
-   * @param string
+   * @param string $session
    */
   public function setSession($session)
   {

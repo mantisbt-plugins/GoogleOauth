@@ -20,36 +20,55 @@ namespace Google\Service\AnalyticsHub;
 class OperationMetadata extends \Google\Model
 {
   /**
+   * Output only. API version used to start the operation.
+   *
    * @var string
    */
   public $apiVersion;
   /**
-   * @var bool
-   */
-  public $cancelRequested;
-  /**
+   * Output only. The time the operation was created.
+   *
    * @var string
    */
   public $createTime;
   /**
+   * Output only. The time the operation finished running.
+   *
    * @var string
    */
   public $endTime;
   /**
+   * Output only. Identifies whether the user has requested cancellation of the
+   * operation. Operations that have successfully been cancelled have
+   * Operation.error value with a google.rpc.Status.code of 1, corresponding to
+   * `Code.CANCELLED`.
+   *
+   * @var bool
+   */
+  public $requestedCancellation;
+  /**
+   * Output only. Human-readable status of the operation, if any.
+   *
    * @var string
    */
-  public $statusDetail;
+  public $statusMessage;
   /**
+   * Output only. Server-defined resource path for the target of the operation.
+   *
    * @var string
    */
   public $target;
   /**
+   * Output only. Name of the verb executed by the operation.
+   *
    * @var string
    */
   public $verb;
 
   /**
-   * @param string
+   * Output only. API version used to start the operation.
+   *
+   * @param string $apiVersion
    */
   public function setApiVersion($apiVersion)
   {
@@ -63,21 +82,9 @@ class OperationMetadata extends \Google\Model
     return $this->apiVersion;
   }
   /**
-   * @param bool
-   */
-  public function setCancelRequested($cancelRequested)
-  {
-    $this->cancelRequested = $cancelRequested;
-  }
-  /**
-   * @return bool
-   */
-  public function getCancelRequested()
-  {
-    return $this->cancelRequested;
-  }
-  /**
-   * @param string
+   * Output only. The time the operation was created.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -91,7 +98,9 @@ class OperationMetadata extends \Google\Model
     return $this->createTime;
   }
   /**
-   * @param string
+   * Output only. The time the operation finished running.
+   *
+   * @param string $endTime
    */
   public function setEndTime($endTime)
   {
@@ -105,21 +114,44 @@ class OperationMetadata extends \Google\Model
     return $this->endTime;
   }
   /**
-   * @param string
+   * Output only. Identifies whether the user has requested cancellation of the
+   * operation. Operations that have successfully been cancelled have
+   * Operation.error value with a google.rpc.Status.code of 1, corresponding to
+   * `Code.CANCELLED`.
+   *
+   * @param bool $requestedCancellation
    */
-  public function setStatusDetail($statusDetail)
+  public function setRequestedCancellation($requestedCancellation)
   {
-    $this->statusDetail = $statusDetail;
+    $this->requestedCancellation = $requestedCancellation;
+  }
+  /**
+   * @return bool
+   */
+  public function getRequestedCancellation()
+  {
+    return $this->requestedCancellation;
+  }
+  /**
+   * Output only. Human-readable status of the operation, if any.
+   *
+   * @param string $statusMessage
+   */
+  public function setStatusMessage($statusMessage)
+  {
+    $this->statusMessage = $statusMessage;
   }
   /**
    * @return string
    */
-  public function getStatusDetail()
+  public function getStatusMessage()
   {
-    return $this->statusDetail;
+    return $this->statusMessage;
   }
   /**
-   * @param string
+   * Output only. Server-defined resource path for the target of the operation.
+   *
+   * @param string $target
    */
   public function setTarget($target)
   {
@@ -133,7 +165,9 @@ class OperationMetadata extends \Google\Model
     return $this->target;
   }
   /**
-   * @param string
+   * Output only. Name of the verb executed by the operation.
+   *
+   * @param string $verb
    */
   public function setVerb($verb)
   {

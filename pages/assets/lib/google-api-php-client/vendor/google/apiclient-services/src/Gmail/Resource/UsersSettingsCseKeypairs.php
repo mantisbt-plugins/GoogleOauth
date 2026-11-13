@@ -35,13 +35,28 @@ class UsersSettingsCseKeypairs extends \Google\Service\Resource
 {
   /**
    * Creates and uploads a client-side encryption S/MIME public key certificate
-   * chain and private key metadata for the authenticated user. (keypairs.create)
+   * chain and private key metadata for the authenticated user. For administrators
+   * managing identities and keypairs for users in their organization, requests
+   * require authorization with a [service account](https://developers.google.com/
+   * identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation aut
+   * hority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount
+   * #delegatingauthority) to impersonate users with the
+   * `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users
+   * managing their own identities and keypairs, requests require [hardware key
+   * encryption](https://support.google.com/a/answer/14153163) turned on and
+   * configured. (keypairs.create)
    *
    * @param string $userId The requester's primary email address. To indicate the
    * authenticated user, you can use the special value `me`.
    * @param CseKeyPair $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string chainValidation The type of certificate chain validation to
+   * perform at creation. The request will be rejected if the uploaded chain fails
+   * to satisfy the requested validation checks. When unspecified, this parameter
+   * defaults to `all`.
    * @return CseKeyPair
+   * @throws \Google\Service\Exception
    */
   public function create($userId, CseKeyPair $postBody, $optParams = [])
   {
@@ -54,7 +69,16 @@ class UsersSettingsCseKeypairs extends \Google\Service\Resource
    * longer use the key pair to decrypt incoming CSE message texts or sign
    * outgoing CSE mail. To regain access, use the EnableCseKeyPair to turn on the
    * key pair. After 30 days, you can permanently delete the key pair by using the
-   * ObliterateCseKeyPair method. (keypairs.disable)
+   * ObliterateCseKeyPair method. For administrators managing identities and
+   * keypairs for users in their organization, requests require authorization with
+   * a [service account](https://developers.google.com/identity/protocols/OAuth2Se
+   * rviceAccount) that has [domain-wide delegation authority](https://developers.
+   * google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to
+   * impersonate users with the
+   * `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users
+   * managing their own identities and keypairs, requests require [hardware key
+   * encryption](https://support.google.com/a/answer/14153163) turned on and
+   * configured. (keypairs.disable)
    *
    * @param string $userId The requester's primary email address. To indicate the
    * authenticated user, you can use the special value `me`.
@@ -62,6 +86,7 @@ class UsersSettingsCseKeypairs extends \Google\Service\Resource
    * @param DisableCseKeyPairRequest $postBody
    * @param array $optParams Optional parameters.
    * @return CseKeyPair
+   * @throws \Google\Service\Exception
    */
   public function disable($userId, $keyPairId, DisableCseKeyPairRequest $postBody, $optParams = [])
   {
@@ -72,7 +97,15 @@ class UsersSettingsCseKeypairs extends \Google\Service\Resource
   /**
    * Turns on a client-side encryption key pair that was turned off. The key pair
    * becomes active again for any associated client-side encryption identities.
-   * (keypairs.enable)
+   * For administrators managing identities and keypairs for users in their
+   * organization, requests require authorization with a [service account](https:/
+   * /developers.google.com/identity/protocols/OAuth2ServiceAccount) that has
+   * [domain-wide delegation authority](https://developers.google.com/identity/pro
+   * tocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with
+   * the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users
+   * managing their own identities and keypairs, requests require [hardware key
+   * encryption](https://support.google.com/a/answer/14153163) turned on and
+   * configured. (keypairs.enable)
    *
    * @param string $userId The requester's primary email address. To indicate the
    * authenticated user, you can use the special value `me`.
@@ -80,6 +113,7 @@ class UsersSettingsCseKeypairs extends \Google\Service\Resource
    * @param EnableCseKeyPairRequest $postBody
    * @param array $optParams Optional parameters.
    * @return CseKeyPair
+   * @throws \Google\Service\Exception
    */
   public function enable($userId, $keyPairId, EnableCseKeyPairRequest $postBody, $optParams = [])
   {
@@ -88,13 +122,23 @@ class UsersSettingsCseKeypairs extends \Google\Service\Resource
     return $this->call('enable', [$params], CseKeyPair::class);
   }
   /**
-   * Retrieves an existing client-side encryption key pair. (keypairs.get)
+   * Retrieves an existing client-side encryption key pair. For administrators
+   * managing identities and keypairs for users in their organization, requests
+   * require authorization with a [service account](https://developers.google.com/
+   * identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation aut
+   * hority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount
+   * #delegatingauthority) to impersonate users with the
+   * `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users
+   * managing their own identities and keypairs, requests require [hardware key
+   * encryption](https://support.google.com/a/answer/14153163) turned on and
+   * configured. (keypairs.get)
    *
    * @param string $userId The requester's primary email address. To indicate the
    * authenticated user, you can use the special value `me`.
    * @param string $keyPairId The identifier of the key pair to retrieve.
    * @param array $optParams Optional parameters.
    * @return CseKeyPair
+   * @throws \Google\Service\Exception
    */
   public function get($userId, $keyPairId, $optParams = [])
   {
@@ -103,8 +147,16 @@ class UsersSettingsCseKeypairs extends \Google\Service\Resource
     return $this->call('get', [$params], CseKeyPair::class);
   }
   /**
-   * Lists client-side encryption key pairs for an authenticated user.
-   * (keypairs.listUsersSettingsCseKeypairs)
+   * Lists client-side encryption key pairs for an authenticated user. For
+   * administrators managing identities and keypairs for users in their
+   * organization, requests require authorization with a [service account](https:/
+   * /developers.google.com/identity/protocols/OAuth2ServiceAccount) that has
+   * [domain-wide delegation authority](https://developers.google.com/identity/pro
+   * tocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with
+   * the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users
+   * managing their own identities and keypairs, requests require [hardware key
+   * encryption](https://support.google.com/a/answer/14153163) turned on and
+   * configured. (keypairs.listUsersSettingsCseKeypairs)
    *
    * @param string $userId The requester's primary email address. To indicate the
    * authenticated user, you can use the special value `me`.
@@ -116,6 +168,7 @@ class UsersSettingsCseKeypairs extends \Google\Service\Resource
    * pairs to return. If the token is not supplied, then the API will return the
    * first page of results.
    * @return ListCseKeyPairsResponse
+   * @throws \Google\Service\Exception
    */
   public function listUsersSettingsCseKeypairs($userId, $optParams = [])
   {
@@ -129,13 +182,23 @@ class UsersSettingsCseKeypairs extends \Google\Service\Resource
    * 30 days. To turn off a key pair, use the DisableCseKeyPair method. Gmail
    * can't restore or decrypt any messages that were encrypted by an obliterated
    * key. Authenticated users and Google Workspace administrators lose access to
-   * reading the encrypted messages. (keypairs.obliterate)
+   * reading the encrypted messages. For administrators managing identities and
+   * keypairs for users in their organization, requests require authorization with
+   * a [service account](https://developers.google.com/identity/protocols/OAuth2Se
+   * rviceAccount) that has [domain-wide delegation authority](https://developers.
+   * google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to
+   * impersonate users with the
+   * `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users
+   * managing their own identities and keypairs, requests require [hardware key
+   * encryption](https://support.google.com/a/answer/14153163) turned on and
+   * configured. (keypairs.obliterate)
    *
    * @param string $userId The requester's primary email address. To indicate the
    * authenticated user, you can use the special value `me`.
    * @param string $keyPairId The identifier of the key pair to obliterate.
    * @param ObliterateCseKeyPairRequest $postBody
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function obliterate($userId, $keyPairId, ObliterateCseKeyPairRequest $postBody, $optParams = [])
   {

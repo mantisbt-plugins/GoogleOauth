@@ -24,7 +24,7 @@ class GoogleCloudDialogflowCxV3beta1EnvironmentWebhookConfig extends \Google\Col
   protected $webhookOverridesDataType = 'array';
 
   /**
-   * @param GoogleCloudDialogflowCxV3beta1Webhook[]
+   * @param GoogleCloudDialogflowCxV3beta1Webhook[] $webhookOverrides
    */
   public function setWebhookOverrides($webhookOverrides)
   {

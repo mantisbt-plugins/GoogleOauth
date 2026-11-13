@@ -39,7 +39,7 @@ class Cloudchannel extends \Google\Service
   /** Manage users on your domain. */
   const APPS_ORDER =
       "https://www.googleapis.com/auth/apps.order";
-  /** View usage reports for your G Suite domain. */
+  /** View usage reports for your Google Workspace domain. */
   const APPS_REPORTS_USAGE_READONLY =
       "https://www.googleapis.com/auth/apps.reports.usage.readonly";
 
@@ -53,9 +53,13 @@ class Cloudchannel extends \Google\Service
   public $accounts_offers;
   public $accounts_reportJobs;
   public $accounts_reports;
+  public $accounts_skuGroups;
+  public $accounts_skuGroups_billableSkus;
+  public $integrators;
   public $operations;
   public $products;
   public $products_skus;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Cloudchannel service.
@@ -68,6 +72,7 @@ class Cloudchannel extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://cloudchannel.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://cloudchannel.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -97,6 +102,10 @@ class Cloudchannel extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'integrator' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
                 'pageSize' => [
                   'location' => 'query',
@@ -452,11 +461,19 @@ class Cloudchannel extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'changeOfferPurchase.billingAccount' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
                 'changeOfferPurchase.entitlement' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
                 'changeOfferPurchase.newSku' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'createEntitlementPurchase.billingAccount' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -898,6 +915,114 @@ class Cloudchannel extends \Google\Service
           ]
         ]
     );
+    $this->accounts_skuGroups = new Cloudchannel\Resource\AccountsSkuGroups(
+        $this,
+        $this->serviceName,
+        'skuGroups',
+        [
+          'methods' => [
+            'list' => [
+              'path' => 'v1/{+parent}/skuGroups',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->accounts_skuGroups_billableSkus = new Cloudchannel\Resource\AccountsSkuGroupsBillableSkus(
+        $this,
+        $this->serviceName,
+        'billableSkus',
+        [
+          'methods' => [
+            'list' => [
+              'path' => 'v1/{+parent}/billableSkus',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->integrators = new Cloudchannel\Resource\Integrators(
+        $this,
+        $this->serviceName,
+        'integrators',
+        [
+          'methods' => [
+            'listSubscribers' => [
+              'path' => 'v1/{+integrator}:listSubscribers',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'integrator' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'account' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'registerSubscriber' => [
+              'path' => 'v1/{+integrator}:registerSubscriber',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'integrator' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'unregisterSubscriber' => [
+              'path' => 'v1/{+integrator}:unregisterSubscriber',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'integrator' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->operations = new Cloudchannel\Resource\Operations(
         $this,
         $this->serviceName,
@@ -954,6 +1079,10 @@ class Cloudchannel extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],

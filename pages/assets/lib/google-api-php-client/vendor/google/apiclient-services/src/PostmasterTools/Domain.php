@@ -20,20 +20,77 @@ namespace Google\Service\PostmasterTools;
 class Domain extends \Google\Model
 {
   /**
+   * Unspecified permission.
+   */
+  public const PERMISSION_PERMISSION_UNSPECIFIED = 'PERMISSION_UNSPECIFIED';
+  /**
+   * User has read access to the domain.
+   */
+  public const PERMISSION_READER = 'READER';
+  /**
+   * User has admin access to the domain.
+   */
+  public const PERMISSION_ADMIN = 'ADMIN';
+  /**
+   * User has owner access to the domain.
+   */
+  public const PERMISSION_OWNER = 'OWNER';
+  /**
+   * User has no access to the domain.
+   */
+  public const PERMISSION_NONE = 'NONE';
+  /**
+   * Unspecified.
+   */
+  public const VERIFICATION_STATE_VERIFICATION_STATE_UNSPECIFIED = 'VERIFICATION_STATE_UNSPECIFIED';
+  /**
+   * The domain is unverified.
+   */
+  public const VERIFICATION_STATE_UNVERIFIED = 'UNVERIFIED';
+  /**
+   * The domain is verified.
+   */
+  public const VERIFICATION_STATE_VERIFIED = 'VERIFIED';
+  /**
+   * Output only. Immutable. The timestamp at which the domain was added to the
+   * user's account.
+   *
    * @var string
    */
   public $createTime;
   /**
+   * The timestamp at which the domain was last verified by the user.
+   *
+   * @var string
+   */
+  public $lastVerifyTime;
+  /**
+   * Identifier. The resource name of the domain. Format:
+   * `domains/{domain_name}`, where domain_name is the fully qualified domain
+   * name (i.e., mymail.mydomain.com).
+   *
    * @var string
    */
   public $name;
   /**
+   * Output only. User's permission of this domain.
+   *
    * @var string
    */
   public $permission;
+  /**
+   * Output only. Information about a user's verification history and properties
+   * for the domain.
+   *
+   * @var string
+   */
+  public $verificationState;
 
   /**
-   * @param string
+   * Output only. Immutable. The timestamp at which the domain was added to the
+   * user's account.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -47,7 +104,27 @@ class Domain extends \Google\Model
     return $this->createTime;
   }
   /**
-   * @param string
+   * The timestamp at which the domain was last verified by the user.
+   *
+   * @param string $lastVerifyTime
+   */
+  public function setLastVerifyTime($lastVerifyTime)
+  {
+    $this->lastVerifyTime = $lastVerifyTime;
+  }
+  /**
+   * @return string
+   */
+  public function getLastVerifyTime()
+  {
+    return $this->lastVerifyTime;
+  }
+  /**
+   * Identifier. The resource name of the domain. Format:
+   * `domains/{domain_name}`, where domain_name is the fully qualified domain
+   * name (i.e., mymail.mydomain.com).
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -61,18 +138,41 @@ class Domain extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * Output only. User's permission of this domain.
+   *
+   * Accepted values: PERMISSION_UNSPECIFIED, READER, ADMIN, OWNER, NONE
+   *
+   * @param self::PERMISSION_* $permission
    */
   public function setPermission($permission)
   {
     $this->permission = $permission;
   }
   /**
-   * @return string
+   * @return self::PERMISSION_*
    */
   public function getPermission()
   {
     return $this->permission;
+  }
+  /**
+   * Output only. Information about a user's verification history and properties
+   * for the domain.
+   *
+   * Accepted values: VERIFICATION_STATE_UNSPECIFIED, UNVERIFIED, VERIFIED
+   *
+   * @param self::VERIFICATION_STATE_* $verificationState
+   */
+  public function setVerificationState($verificationState)
+  {
+    $this->verificationState = $verificationState;
+  }
+  /**
+   * @return self::VERIFICATION_STATE_*
+   */
+  public function getVerificationState()
+  {
+    return $this->verificationState;
   }
 }
 

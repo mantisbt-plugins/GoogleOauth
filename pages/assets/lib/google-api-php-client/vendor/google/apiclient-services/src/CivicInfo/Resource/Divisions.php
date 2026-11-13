@@ -17,7 +17,8 @@
 
 namespace Google\Service\CivicInfo\Resource;
 
-use Google\Service\CivicInfo\DivisionSearchResponse;
+use Google\Service\CivicInfo\CivicinfoApiprotosV2DivisionByAddressResponse;
+use Google\Service\CivicInfo\CivicinfoApiprotosV2DivisionSearchResponse;
 
 /**
  * The "divisions" collection of methods.
@@ -30,6 +31,22 @@ use Google\Service\CivicInfo\DivisionSearchResponse;
 class Divisions extends \Google\Service\Resource
 {
   /**
+   * Lookup OCDIDs and names for divisions related to an address.
+   * (divisions.queryDivisionByAddress)
+   *
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string address
+   * @return CivicinfoApiprotosV2DivisionByAddressResponse
+   * @throws \Google\Service\Exception
+   */
+  public function queryDivisionByAddress($optParams = [])
+  {
+    $params = [];
+    $params = array_merge($params, $optParams);
+    return $this->call('queryDivisionByAddress', [$params], CivicinfoApiprotosV2DivisionByAddressResponse::class);
+  }
+  /**
    * Searches for political divisions by their natural name or OCD ID.
    * (divisions.search)
    *
@@ -40,13 +57,14 @@ class Divisions extends \Google\Service\Resource
    * treated as required patterns. In addition to that, most query operators of
    * the Apache Lucene library are supported. See
    * http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
-   * @return DivisionSearchResponse
+   * @return CivicinfoApiprotosV2DivisionSearchResponse
+   * @throws \Google\Service\Exception
    */
   public function search($optParams = [])
   {
     $params = [];
     $params = array_merge($params, $optParams);
-    return $this->call('search', [$params], DivisionSearchResponse::class);
+    return $this->call('search', [$params], CivicinfoApiprotosV2DivisionSearchResponse::class);
   }
 }
 

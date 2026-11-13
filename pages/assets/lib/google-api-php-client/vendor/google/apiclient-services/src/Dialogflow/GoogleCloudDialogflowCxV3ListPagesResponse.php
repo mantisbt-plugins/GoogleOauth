@@ -28,7 +28,7 @@ class GoogleCloudDialogflowCxV3ListPagesResponse extends \Google\Collection
   protected $pagesDataType = 'array';
 
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3ListPagesResponse extends \Google\Collection
     return $this->nextPageToken;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3Page[]
+   * @param GoogleCloudDialogflowCxV3Page[] $pages
    */
   public function setPages($pages)
   {

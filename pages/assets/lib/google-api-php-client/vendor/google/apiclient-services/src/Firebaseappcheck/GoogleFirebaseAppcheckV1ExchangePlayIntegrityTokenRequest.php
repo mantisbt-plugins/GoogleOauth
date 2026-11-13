@@ -20,12 +20,48 @@ namespace Google\Service\Firebaseappcheck;
 class GoogleFirebaseAppcheckV1ExchangePlayIntegrityTokenRequest extends \Google\Model
 {
   /**
+   * Specifies whether this attestation is for use in a *limited use* (`true`)
+   * or *session based* (`false`) context. To enable this attestation to be used
+   * with the *replay protection* feature, set this to `true`. The default value
+   * is `false`.
+   *
+   * @var bool
+   */
+  public $limitedUse;
+  /**
+   * Required. The [integrity verdict response token from Play Integrity](https:
+   * //developer.android.com/google/play/integrity/verdict#decrypt-verify)
+   * issued to your app.
+   *
    * @var string
    */
   public $playIntegrityToken;
 
   /**
-   * @param string
+   * Specifies whether this attestation is for use in a *limited use* (`true`)
+   * or *session based* (`false`) context. To enable this attestation to be used
+   * with the *replay protection* feature, set this to `true`. The default value
+   * is `false`.
+   *
+   * @param bool $limitedUse
+   */
+  public function setLimitedUse($limitedUse)
+  {
+    $this->limitedUse = $limitedUse;
+  }
+  /**
+   * @return bool
+   */
+  public function getLimitedUse()
+  {
+    return $this->limitedUse;
+  }
+  /**
+   * Required. The [integrity verdict response token from Play Integrity](https:
+   * //developer.android.com/google/play/integrity/verdict#decrypt-verify)
+   * issued to your app.
+   *
+   * @param string $playIntegrityToken
    */
   public function setPlayIntegrityToken($playIntegrityToken)
   {

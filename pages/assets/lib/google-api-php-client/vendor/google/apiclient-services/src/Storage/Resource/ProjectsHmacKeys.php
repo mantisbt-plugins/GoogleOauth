@@ -40,6 +40,7 @@ class ProjectsHmacKeys extends \Google\Service\Resource
    *
    * @opt_param string userProject The project to be billed for this request.
    * @return HmacKey
+   * @throws \Google\Service\Exception
    */
   public function create($projectId, $serviceAccountEmail, $optParams = [])
   {
@@ -55,6 +56,7 @@ class ProjectsHmacKeys extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string userProject The project to be billed for this request.
+   * @throws \Google\Service\Exception
    */
   public function delete($projectId, $accessId, $optParams = [])
   {
@@ -72,6 +74,7 @@ class ProjectsHmacKeys extends \Google\Service\Resource
    *
    * @opt_param string userProject The project to be billed for this request.
    * @return HmacKeyMetadata
+   * @throws \Google\Service\Exception
    */
   public function get($projectId, $accessId, $optParams = [])
   {
@@ -100,6 +103,7 @@ class ProjectsHmacKeys extends \Google\Service\Resource
    * state.
    * @opt_param string userProject The project to be billed for this request.
    * @return HmacKeysMetadata
+   * @throws \Google\Service\Exception
    */
   public function listProjectsHmacKeys($projectId, $optParams = [])
   {
@@ -108,8 +112,9 @@ class ProjectsHmacKeys extends \Google\Service\Resource
     return $this->call('list', [$params], HmacKeysMetadata::class);
   }
   /**
-   * Updates the state of an HMAC key. See the HMAC Key resource descriptor for
-   * valid states. (hmacKeys.update)
+   * Updates the state of an HMAC key. See the [HMAC Key resource descriptor](http
+   * s://cloud.google.com/storage/docs/json_api/v1/projects/hmacKeys/update#reques
+   * t-body) for valid states. (hmacKeys.update)
    *
    * @param string $projectId Project ID owning the service account of the updated
    * key.
@@ -119,6 +124,7 @@ class ProjectsHmacKeys extends \Google\Service\Resource
    *
    * @opt_param string userProject The project to be billed for this request.
    * @return HmacKeyMetadata
+   * @throws \Google\Service\Exception
    */
   public function update($projectId, $accessId, HmacKeyMetadata $postBody, $optParams = [])
   {

@@ -41,6 +41,7 @@ class OrganizationsLocationsRecommenders extends \Google\Service\Resource
    * LLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
    * @param array $optParams Optional parameters.
    * @return GoogleCloudRecommenderV1RecommenderConfig
+   * @throws \Google\Service\Exception
    */
   public function getConfig($name, $optParams = [])
   {
@@ -52,8 +53,8 @@ class OrganizationsLocationsRecommenders extends \Google\Service\Resource
    * Updates a Recommender Config. This will create a new revision of the config.
    * (recommenders.updateConfig)
    *
-   * @param string $name Name of recommender config. Eg, projects/[PROJECT_NUMBER]
-   * /locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+   * @param string $name Identifier. Name of recommender config. Eg, projects/[PRO
+   * JECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
    * @param GoogleCloudRecommenderV1RecommenderConfig $postBody
    * @param array $optParams Optional parameters.
    *
@@ -61,6 +62,7 @@ class OrganizationsLocationsRecommenders extends \Google\Service\Resource
    * @opt_param bool validateOnly If true, validate the request and preview the
    * change, but do not actually update it.
    * @return GoogleCloudRecommenderV1RecommenderConfig
+   * @throws \Google\Service\Exception
    */
   public function updateConfig($name, GoogleCloudRecommenderV1RecommenderConfig $postBody, $optParams = [])
   {

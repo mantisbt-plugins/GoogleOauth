@@ -19,22 +19,32 @@ namespace Google\Service\DataFusion;
 
 class ListAvailableVersionsResponse extends \Google\Collection
 {
-  protected $collection_key = 'availableVersions';
+  protected $collection_key = 'versions';
   protected $availableVersionsType = Version::class;
   protected $availableVersionsDataType = 'array';
   /**
+   * Token to retrieve the next page of results or empty if there are no more
+   * results in the list.
+   *
    * @var string
    */
   public $nextPageToken;
+  protected $versionsType = Version::class;
+  protected $versionsDataType = 'array';
 
   /**
-   * @param Version[]
+   * Represents a list of versions that are supported. Deprecated: Use versions
+   * field instead.
+   *
+   * @deprecated
+   * @param Version[] $availableVersions
    */
   public function setAvailableVersions($availableVersions)
   {
     $this->availableVersions = $availableVersions;
   }
   /**
+   * @deprecated
    * @return Version[]
    */
   public function getAvailableVersions()
@@ -42,7 +52,10 @@ class ListAvailableVersionsResponse extends \Google\Collection
     return $this->availableVersions;
   }
   /**
-   * @param string
+   * Token to retrieve the next page of results or empty if there are no more
+   * results in the list.
+   *
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -54,6 +67,22 @@ class ListAvailableVersionsResponse extends \Google\Collection
   public function getNextPageToken()
   {
     return $this->nextPageToken;
+  }
+  /**
+   * Represents a list of all versions.
+   *
+   * @param Version[] $versions
+   */
+  public function setVersions($versions)
+  {
+    $this->versions = $versions;
+  }
+  /**
+   * @return Version[]
+   */
+  public function getVersions()
+  {
+    return $this->versions;
   }
 }
 

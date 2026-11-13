@@ -33,7 +33,7 @@ class GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText extends \Google\Mo
   public $text;
 
   /**
-   * @param bool
+   * @param bool $allowPlaybackInterruption
    */
   public function setAllowPlaybackInterruption($allowPlaybackInterruption)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText extends \Google\Mo
     return $this->allowPlaybackInterruption;
   }
   /**
-   * @param string
+   * @param string $ssml
    */
   public function setSsml($ssml)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText extends \Google\Mo
     return $this->ssml;
   }
   /**
-   * @param string
+   * @param string $text
    */
   public function setText($text)
   {

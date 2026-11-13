@@ -27,7 +27,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.chrome.com/versionhistory" target="_blank">Documentation</a>
+ * <a href="https://developer.chrome.com/docs/web-platform/versionhistory/guide" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -40,6 +40,7 @@ class VersionHistory extends \Google\Service
   public $platforms_channels;
   public $platforms_channels_versions;
   public $platforms_channels_versions_releases;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the VersionHistory service.
@@ -52,6 +53,7 @@ class VersionHistory extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://versionhistory.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://versionhistory.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

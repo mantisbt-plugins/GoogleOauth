@@ -20,16 +20,98 @@ namespace Google\Service\AlertCenter;
 class ResourceInfo extends \Google\Model
 {
   /**
+   * Chat attachment ID.
+   *
+   * @var string
+   */
+  public $chatAttachmentId;
+  /**
+   * Chat message ID.
+   *
+   * @var string
+   */
+  public $chatMessageId;
+  /**
+   * Id to identify a device. For example, for Android devices, this is the
+   * "Android Device Id" and for Chrome OS devices, it's the "Device Virtual
+   * Id".
+   *
+   * @var string
+   */
+  public $deviceId;
+  /**
+   * Drive file ID.
+   *
    * @var string
    */
   public $documentId;
   /**
+   * RFC2822 message ID.
+   *
+   * @var string
+   */
+  public $messageId;
+  /**
+   * Title of the resource, for example email subject, or document title.
+   *
    * @var string
    */
   public $resourceTitle;
 
   /**
-   * @param string
+   * Chat attachment ID.
+   *
+   * @param string $chatAttachmentId
+   */
+  public function setChatAttachmentId($chatAttachmentId)
+  {
+    $this->chatAttachmentId = $chatAttachmentId;
+  }
+  /**
+   * @return string
+   */
+  public function getChatAttachmentId()
+  {
+    return $this->chatAttachmentId;
+  }
+  /**
+   * Chat message ID.
+   *
+   * @param string $chatMessageId
+   */
+  public function setChatMessageId($chatMessageId)
+  {
+    $this->chatMessageId = $chatMessageId;
+  }
+  /**
+   * @return string
+   */
+  public function getChatMessageId()
+  {
+    return $this->chatMessageId;
+  }
+  /**
+   * Id to identify a device. For example, for Android devices, this is the
+   * "Android Device Id" and for Chrome OS devices, it's the "Device Virtual
+   * Id".
+   *
+   * @param string $deviceId
+   */
+  public function setDeviceId($deviceId)
+  {
+    $this->deviceId = $deviceId;
+  }
+  /**
+   * @return string
+   */
+  public function getDeviceId()
+  {
+    return $this->deviceId;
+  }
+  /**
+   * Drive file ID.
+   *
+   * @param string $documentId
    */
   public function setDocumentId($documentId)
   {
@@ -43,7 +125,25 @@ class ResourceInfo extends \Google\Model
     return $this->documentId;
   }
   /**
-   * @param string
+   * RFC2822 message ID.
+   *
+   * @param string $messageId
+   */
+  public function setMessageId($messageId)
+  {
+    $this->messageId = $messageId;
+  }
+  /**
+   * @return string
+   */
+  public function getMessageId()
+  {
+    return $this->messageId;
+  }
+  /**
+   * Title of the resource, for example email subject, or document title.
+   *
+   * @param string $resourceTitle
    */
   public function setResourceTitle($resourceTitle)
   {

@@ -34,7 +34,7 @@ class ServicesSkus extends \Google\Service\Resource
    * (skus.listServicesSkus)
    *
    * @param string $parent Required. The name of the service. Example:
-   * "services/DA34-426B-A397"
+   * "services/6F81-5844-456A"
    * @param array $optParams Optional parameters.
    *
    * @opt_param string currencyCode The ISO 4217 currency code for the pricing
@@ -55,6 +55,7 @@ class ServicesSkus extends \Google\Service\Resource
    * America/Los_Angeles timezone. Time range as a whole is optional. If not
    * specified, the latest pricing will be returned (up to 12 hours old at most).
    * @return ListSkusResponse
+   * @throws \Google\Service\Exception
    */
   public function listServicesSkus($parent, $optParams = [])
   {

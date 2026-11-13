@@ -19,14 +19,67 @@ namespace Google\Service\OnDemandScanning;
 
 class PackageData extends \Google\Collection
 {
+  public const PACKAGE_TYPE_PACKAGE_TYPE_UNSPECIFIED = 'PACKAGE_TYPE_UNSPECIFIED';
+  /**
+   * Operating System
+   */
+  public const PACKAGE_TYPE_OS = 'OS';
+  /**
+   * Java packages from Maven.
+   */
+  public const PACKAGE_TYPE_MAVEN = 'MAVEN';
+  /**
+   * Go third-party packages.
+   */
+  public const PACKAGE_TYPE_GO = 'GO';
+  /**
+   * Go toolchain + standard library packages.
+   */
+  public const PACKAGE_TYPE_GO_STDLIB = 'GO_STDLIB';
+  /**
+   * Python packages.
+   */
+  public const PACKAGE_TYPE_PYPI = 'PYPI';
+  /**
+   * NPM packages.
+   */
+  public const PACKAGE_TYPE_NPM = 'NPM';
+  /**
+   * Nuget (C#/.NET) packages.
+   */
+  public const PACKAGE_TYPE_NUGET = 'NUGET';
+  /**
+   * Ruby packges (from RubyGems package manager).
+   */
+  public const PACKAGE_TYPE_RUBYGEMS = 'RUBYGEMS';
+  /**
+   * Rust packages from Cargo (GitHub ecosystem is `RUST`).
+   */
+  public const PACKAGE_TYPE_RUST = 'RUST';
+  /**
+   * PHP packages from Composer package manager.
+   */
+  public const PACKAGE_TYPE_COMPOSER = 'COMPOSER';
+  /**
+   * Swift packages from Swift Package Manager (SwiftPM).
+   */
+  public const PACKAGE_TYPE_SWIFT = 'SWIFT';
   protected $collection_key = 'patchedCve';
   /**
+   * The architecture of the package.
+   *
    * @var string
    */
   public $architecture;
+  protected $binarySourceInfoType = BinarySourceInfo::class;
+  protected $binarySourceInfoDataType = 'array';
   protected $binaryVersionType = PackageVersion::class;
   protected $binaryVersionDataType = '';
   /**
+   * The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which
+   * the vulnerability may manifest. Examples include distro or storage location
+   * for vulnerable jar.
+   *
    * @var string
    */
   public $cpeUri;
@@ -35,28 +88,54 @@ class PackageData extends \Google\Collection
   protected $fileLocationType = FileLocation::class;
   protected $fileLocationDataType = 'array';
   /**
+   * HashDigest stores the SHA512 hash digest of the jar file if the package is
+   * of type Maven. This field will be unset for non Maven packages.
+   *
    * @var string
    */
   public $hashDigest;
+  protected $ingestionSourcesType = IngestionSource::class;
+  protected $ingestionSourcesDataType = 'array';
+  protected $layerDetailsType = LayerDetails::class;
+  protected $layerDetailsDataType = '';
+  /**
+   * Deprecated: Top-level licenses is not persisted in the legacy Packages
+   * table. Licenses are captured in BinarySourceInfo or PackagesV2.
+   *
+   * @deprecated
+   * @var string[]
+   */
+  public $licenses;
   protected $maintainerType = Maintainer::class;
   protected $maintainerDataType = '';
   /**
+   * The OS affected by a vulnerability Used to generate the cpe_uri for OS
+   * packages
+   *
    * @var string
    */
   public $os;
   /**
+   * The version of the OS Used to generate the cpe_uri for OS packages
+   *
    * @var string
    */
   public $osVersion;
   /**
+   * The package being analysed for vulnerabilities
+   *
    * @var string
    */
   public $package;
   /**
+   * The type of package: os, maven, go, etc.
+   *
    * @var string
    */
   public $packageType;
   /**
+   * CVEs that this package is no longer vulnerable to
+   *
    * @var string[]
    */
   public $patchedCve;
@@ -67,12 +146,16 @@ class PackageData extends \Google\Collection
    */
   public $unused;
   /**
+   * The version of the package being analysed
+   *
    * @var string
    */
   public $version;
 
   /**
-   * @param string
+   * The architecture of the package.
+   *
+   * @param string $architecture
    */
   public function setArchitecture($architecture)
   {
@@ -86,7 +169,25 @@ class PackageData extends \Google\Collection
     return $this->architecture;
   }
   /**
-   * @param PackageVersion
+   * A bundle containing the binary and source information.
+   *
+   * @param BinarySourceInfo[] $binarySourceInfo
+   */
+  public function setBinarySourceInfo($binarySourceInfo)
+  {
+    $this->binarySourceInfo = $binarySourceInfo;
+  }
+  /**
+   * @return BinarySourceInfo[]
+   */
+  public function getBinarySourceInfo()
+  {
+    return $this->binarySourceInfo;
+  }
+  /**
+   * DEPRECATED
+   *
+   * @param PackageVersion $binaryVersion
    */
   public function setBinaryVersion(PackageVersion $binaryVersion)
   {
@@ -100,7 +201,11 @@ class PackageData extends \Google\Collection
     return $this->binaryVersion;
   }
   /**
-   * @param string
+   * The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which
+   * the vulnerability may manifest. Examples include distro or storage location
+   * for vulnerable jar.
+   *
+   * @param string $cpeUri
    */
   public function setCpeUri($cpeUri)
   {
@@ -114,7 +219,11 @@ class PackageData extends \Google\Collection
     return $this->cpeUri;
   }
   /**
-   * @param LanguagePackageDependency[]
+   * The dependency chain between this package and the user's artifact. List in
+   * order from the customer's package under review first, to the current
+   * package last. Inclusive of the original package and the current package.
+   *
+   * @param LanguagePackageDependency[] $dependencyChain
    */
   public function setDependencyChain($dependencyChain)
   {
@@ -128,7 +237,9 @@ class PackageData extends \Google\Collection
     return $this->dependencyChain;
   }
   /**
-   * @param FileLocation[]
+   * The path to the jar file / go binary file.
+   *
+   * @param FileLocation[] $fileLocation
    */
   public function setFileLocation($fileLocation)
   {
@@ -142,7 +253,10 @@ class PackageData extends \Google\Collection
     return $this->fileLocation;
   }
   /**
-   * @param string
+   * HashDigest stores the SHA512 hash digest of the jar file if the package is
+   * of type Maven. This field will be unset for non Maven packages.
+   *
+   * @param string $hashDigest
    */
   public function setHashDigest($hashDigest)
   {
@@ -156,7 +270,64 @@ class PackageData extends \Google\Collection
     return $this->hashDigest;
   }
   /**
-   * @param Maintainer
+   * The list of sources that were scanned to find this package. This can be a
+   * Docker image, an SBOM attachment, or both, for example.
+   *
+   * @param IngestionSource[] $ingestionSources
+   */
+  public function setIngestionSources($ingestionSources)
+  {
+    $this->ingestionSources = $ingestionSources;
+  }
+  /**
+   * @return IngestionSource[]
+   */
+  public function getIngestionSources()
+  {
+    return $this->ingestionSources;
+  }
+  /**
+   * Deprecated: Layer details are captured per file location in
+   * FileLocation.layer_details. Top-level layer details is not persisted.
+   *
+   * @deprecated
+   * @param LayerDetails $layerDetails
+   */
+  public function setLayerDetails(LayerDetails $layerDetails)
+  {
+    $this->layerDetails = $layerDetails;
+  }
+  /**
+   * @deprecated
+   * @return LayerDetails
+   */
+  public function getLayerDetails()
+  {
+    return $this->layerDetails;
+  }
+  /**
+   * Deprecated: Top-level licenses is not persisted in the legacy Packages
+   * table. Licenses are captured in BinarySourceInfo or PackagesV2.
+   *
+   * @deprecated
+   * @param string[] $licenses
+   */
+  public function setLicenses($licenses)
+  {
+    $this->licenses = $licenses;
+  }
+  /**
+   * @deprecated
+   * @return string[]
+   */
+  public function getLicenses()
+  {
+    return $this->licenses;
+  }
+  /**
+   * The maintainer of the package.
+   *
+   * @param Maintainer $maintainer
    */
   public function setMaintainer(Maintainer $maintainer)
   {
@@ -170,7 +341,10 @@ class PackageData extends \Google\Collection
     return $this->maintainer;
   }
   /**
-   * @param string
+   * The OS affected by a vulnerability Used to generate the cpe_uri for OS
+   * packages
+   *
+   * @param string $os
    */
   public function setOs($os)
   {
@@ -184,7 +358,9 @@ class PackageData extends \Google\Collection
     return $this->os;
   }
   /**
-   * @param string
+   * The version of the OS Used to generate the cpe_uri for OS packages
+   *
+   * @param string $osVersion
    */
   public function setOsVersion($osVersion)
   {
@@ -198,7 +374,9 @@ class PackageData extends \Google\Collection
     return $this->osVersion;
   }
   /**
-   * @param string
+   * The package being analysed for vulnerabilities
+   *
+   * @param string $package
    */
   public function setPackage($package)
   {
@@ -212,21 +390,28 @@ class PackageData extends \Google\Collection
     return $this->package;
   }
   /**
-   * @param string
+   * The type of package: os, maven, go, etc.
+   *
+   * Accepted values: PACKAGE_TYPE_UNSPECIFIED, OS, MAVEN, GO, GO_STDLIB, PYPI,
+   * NPM, NUGET, RUBYGEMS, RUST, COMPOSER, SWIFT
+   *
+   * @param self::PACKAGE_TYPE_* $packageType
    */
   public function setPackageType($packageType)
   {
     $this->packageType = $packageType;
   }
   /**
-   * @return string
+   * @return self::PACKAGE_TYPE_*
    */
   public function getPackageType()
   {
     return $this->packageType;
   }
   /**
-   * @param string[]
+   * CVEs that this package is no longer vulnerable to
+   *
+   * @param string[] $patchedCve
    */
   public function setPatchedCve($patchedCve)
   {
@@ -240,7 +425,9 @@ class PackageData extends \Google\Collection
     return $this->patchedCve;
   }
   /**
-   * @param PackageVersion
+   * DEPRECATED
+   *
+   * @param PackageVersion $sourceVersion
    */
   public function setSourceVersion(PackageVersion $sourceVersion)
   {
@@ -254,7 +441,7 @@ class PackageData extends \Google\Collection
     return $this->sourceVersion;
   }
   /**
-   * @param string
+   * @param string $unused
    */
   public function setUnused($unused)
   {
@@ -268,7 +455,9 @@ class PackageData extends \Google\Collection
     return $this->unused;
   }
   /**
-   * @param string
+   * The version of the package being analysed
+   *
+   * @param string $version
    */
   public function setVersion($version)
   {

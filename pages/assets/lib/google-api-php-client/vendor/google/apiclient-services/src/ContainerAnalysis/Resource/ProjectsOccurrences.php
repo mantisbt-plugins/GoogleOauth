@@ -48,6 +48,7 @@ class ProjectsOccurrences extends \Google\Service\Resource
    * @param BatchCreateOccurrencesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return BatchCreateOccurrencesResponse
+   * @throws \Google\Service\Exception
    */
   public function batchCreate($parent, BatchCreateOccurrencesRequest $postBody, $optParams = [])
   {
@@ -63,6 +64,7 @@ class ProjectsOccurrences extends \Google\Service\Resource
    * @param Occurrence $postBody
    * @param array $optParams Optional parameters.
    * @return Occurrence
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Occurrence $postBody, $optParams = [])
   {
@@ -79,6 +81,7 @@ class ProjectsOccurrences extends \Google\Service\Resource
    * `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
    * @param array $optParams Optional parameters.
    * @return ContaineranalysisEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -93,6 +96,7 @@ class ProjectsOccurrences extends \Google\Service\Resource
    * `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
    * @param array $optParams Optional parameters.
    * @return Occurrence
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -116,6 +120,7 @@ class ProjectsOccurrences extends \Google\Service\Resource
    * @param GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, GetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -132,6 +137,7 @@ class ProjectsOccurrences extends \Google\Service\Resource
    * `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
    * @param array $optParams Optional parameters.
    * @return Note
+   * @throws \Google\Service\Exception
    */
   public function getNotes($name, $optParams = [])
   {
@@ -148,7 +154,12 @@ class ProjectsOccurrences extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter The filter expression.
+   * @opt_param bool returnPartialSuccess If set, the request will return all
+   * reachable occurrence summaries and report all unreachable regions in the
+   * `unreachable` field in the response. Only applicable for requests in the
+   * global region.
    * @return VulnerabilityOccurrencesSummary
+   * @throws \Google\Service\Exception
    */
   public function getVulnerabilitySummary($parent, $optParams = [])
   {
@@ -170,7 +181,11 @@ class ProjectsOccurrences extends \Google\Service\Resource
    * to 20.
    * @opt_param string pageToken Token to provide to skip to a particular spot in
    * the list.
+   * @opt_param bool returnPartialSuccess If set, the request will return all
+   * reachable Occurrences and report all unreachable regions in the `unreachable`
+   * field in the response. Only applicable for requests in the global region.
    * @return ListOccurrencesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsOccurrences($parent, $optParams = [])
   {
@@ -188,6 +203,7 @@ class ProjectsOccurrences extends \Google\Service\Resource
    *
    * @opt_param string updateMask The fields to update.
    * @return Occurrence
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Occurrence $postBody, $optParams = [])
   {
@@ -211,6 +227,7 @@ class ProjectsOccurrences extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -233,6 +250,7 @@ class ProjectsOccurrences extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

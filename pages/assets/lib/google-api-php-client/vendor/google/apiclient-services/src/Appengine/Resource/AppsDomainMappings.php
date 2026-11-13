@@ -37,8 +37,8 @@ class AppsDomainMappings extends \Google\Service\Resource
    * authorized domains, see AuthorizedDomains.ListAuthorizedDomains.
    * (domainMappings.create)
    *
-   * @param string $appsId Part of `parent`. Name of the parent Application
-   * resource. Example: apps/myapp.
+   * @param string $appsId Part of `parent`. Required. Name of the parent
+   * Application resource. Example: apps/myapp.
    * @param DomainMapping $postBody
    * @param array $optParams Optional parameters.
    *
@@ -46,6 +46,7 @@ class AppsDomainMappings extends \Google\Service\Resource
    * override any existing mappings for this domain. By default, overrides are
    * rejected.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($appsId, DomainMapping $postBody, $optParams = [])
   {
@@ -58,12 +59,13 @@ class AppsDomainMappings extends \Google\Service\Resource
    * the associated domain in order to delete a DomainMapping resource.
    * (domainMappings.delete)
    *
-   * @param string $appsId Part of `name`. Name of the resource to delete.
-   * Example: apps/myapp/domainMappings/example.com.
+   * @param string $appsId Part of `name`. Required. Name of the resource to
+   * delete. Example: apps/myapp/domainMappings/example.com.
    * @param string $domainMappingsId Part of `name`. See documentation of
    * `appsId`.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($appsId, $domainMappingsId, $optParams = [])
   {
@@ -74,12 +76,13 @@ class AppsDomainMappings extends \Google\Service\Resource
   /**
    * Gets the specified domain mapping. (domainMappings.get)
    *
-   * @param string $appsId Part of `name`. Name of the resource requested.
-   * Example: apps/myapp/domainMappings/example.com.
+   * @param string $appsId Part of `name`. Required. Name of the resource
+   * requested. Example: apps/myapp/domainMappings/example.com.
    * @param string $domainMappingsId Part of `name`. See documentation of
    * `appsId`.
    * @param array $optParams Optional parameters.
    * @return DomainMapping
+   * @throws \Google\Service\Exception
    */
   public function get($appsId, $domainMappingsId, $optParams = [])
   {
@@ -91,14 +94,15 @@ class AppsDomainMappings extends \Google\Service\Resource
    * Lists the domain mappings on an application.
    * (domainMappings.listAppsDomainMappings)
    *
-   * @param string $appsId Part of `parent`. Name of the parent Application
-   * resource. Example: apps/myapp.
+   * @param string $appsId Part of `parent`. Required. Name of the parent
+   * Application resource. Example: apps/myapp.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize Maximum results to return per page.
    * @opt_param string pageToken Continuation token for fetching the next page of
    * results.
    * @return ListDomainMappingsResponse
+   * @throws \Google\Service\Exception
    */
   public function listAppsDomainMappings($appsId, $optParams = [])
   {
@@ -112,8 +116,8 @@ class AppsDomainMappings extends \Google\Service\Resource
    * A user must be authorized to administer the associated domain in order to
    * update a DomainMapping resource. (domainMappings.patch)
    *
-   * @param string $appsId Part of `name`. Name of the resource to update.
-   * Example: apps/myapp/domainMappings/example.com.
+   * @param string $appsId Part of `name`. Required. Name of the resource to
+   * update. Example: apps/myapp/domainMappings/example.com.
    * @param string $domainMappingsId Part of `name`. See documentation of
    * `appsId`.
    * @param DomainMapping $postBody
@@ -122,6 +126,7 @@ class AppsDomainMappings extends \Google\Service\Resource
    * @opt_param string updateMask Required. Standard field mask for the set of
    * fields to be updated.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($appsId, $domainMappingsId, DomainMapping $postBody, $optParams = [])
   {

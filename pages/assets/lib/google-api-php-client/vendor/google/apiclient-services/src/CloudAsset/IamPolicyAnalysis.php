@@ -24,9 +24,10 @@ class IamPolicyAnalysis extends \Google\Collection
   protected $analysisQueryDataType = '';
   protected $analysisResultsType = IamPolicyAnalysisResult::class;
   protected $analysisResultsDataType = 'array';
-  protected $deniedAccessesType = DeniedAccess::class;
-  protected $deniedAccessesDataType = 'array';
   /**
+   * Represents whether all entries in the analysis_results have been fully
+   * explored to answer the query.
+   *
    * @var bool
    */
   public $fullyExplored;
@@ -34,7 +35,9 @@ class IamPolicyAnalysis extends \Google\Collection
   protected $nonCriticalErrorsDataType = 'array';
 
   /**
-   * @param IamPolicyAnalysisQuery
+   * The analysis query.
+   *
+   * @param IamPolicyAnalysisQuery $analysisQuery
    */
   public function setAnalysisQuery(IamPolicyAnalysisQuery $analysisQuery)
   {
@@ -48,7 +51,10 @@ class IamPolicyAnalysis extends \Google\Collection
     return $this->analysisQuery;
   }
   /**
-   * @param IamPolicyAnalysisResult[]
+   * A list of IamPolicyAnalysisResult that matches the analysis query, or empty
+   * if no result is found.
+   *
+   * @param IamPolicyAnalysisResult[] $analysisResults
    */
   public function setAnalysisResults($analysisResults)
   {
@@ -62,21 +68,10 @@ class IamPolicyAnalysis extends \Google\Collection
     return $this->analysisResults;
   }
   /**
-   * @param DeniedAccess[]
-   */
-  public function setDeniedAccesses($deniedAccesses)
-  {
-    $this->deniedAccesses = $deniedAccesses;
-  }
-  /**
-   * @return DeniedAccess[]
-   */
-  public function getDeniedAccesses()
-  {
-    return $this->deniedAccesses;
-  }
-  /**
-   * @param bool
+   * Represents whether all entries in the analysis_results have been fully
+   * explored to answer the query.
+   *
+   * @param bool $fullyExplored
    */
   public function setFullyExplored($fullyExplored)
   {
@@ -90,7 +85,9 @@ class IamPolicyAnalysis extends \Google\Collection
     return $this->fullyExplored;
   }
   /**
-   * @param IamPolicyAnalysisState[]
+   * A list of non-critical errors happened during the query handling.
+   *
+   * @param IamPolicyAnalysisState[] $nonCriticalErrors
    */
   public function setNonCriticalErrors($nonCriticalErrors)
   {

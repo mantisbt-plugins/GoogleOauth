@@ -19,40 +19,198 @@ namespace Google\Service\Compute;
 
 class Scheduling extends \Google\Collection
 {
+  /**
+   * Delete the VM.
+   */
+  public const INSTANCE_TERMINATION_ACTION_DELETE = 'DELETE';
+  /**
+   * Default value. This value is unused.
+   */
+  public const INSTANCE_TERMINATION_ACTION_INSTANCE_TERMINATION_ACTION_UNSPECIFIED = 'INSTANCE_TERMINATION_ACTION_UNSPECIFIED';
+  /**
+   * Stop the VM without storing in-memory content. default action.
+   */
+  public const INSTANCE_TERMINATION_ACTION_STOP = 'STOP';
+  /**
+   * *[Default]* Allows Compute Engine to automatically migrate instances out of
+   * the way of maintenance events.
+   */
+  public const ON_HOST_MAINTENANCE_MIGRATE = 'MIGRATE';
+  /**
+   * Tells Compute Engine to terminate and (optionally) restart the instance
+   * away from the maintenance activity. If you would like your instance to be
+   * restarted, set the automaticRestart flag to true. Your instance may be
+   * restarted more than once, and it may be restarted outside the window of
+   * maintenance events.
+   */
+  public const ON_HOST_MAINTENANCE_TERMINATE = 'TERMINATE';
+  /**
+   * CAPACITY_OPTIMIZED capacity leverages redundancies (e.g. power, cooling) at
+   * the data center during normal operating conditions. In the event of
+   * infrastructure failures at data center (e.g. power and/or cooling
+   * failures), this workload may be disrupted. As a consequence, it has a
+   * weaker availability SLO than STANDARD.
+   */
+  public const PROTECTION_TIER_PROTECTION_TIER_CAPACITY_OPTIMIZED = 'PROTECTION_TIER_CAPACITY_OPTIMIZED';
+  /**
+   * STANDARD protection for workload that should be protected by redundancies
+   * (e.g. power, cooling) at the data center level. In the event of
+   * infrastructure failures at data center (e.g. power and/or cooling
+   * failures), this workload is expected to continue as normal using the
+   * redundancies.
+   */
+  public const PROTECTION_TIER_PROTECTION_TIER_STANDARD = 'PROTECTION_TIER_STANDARD';
+  /**
+   * Unspecified protection tier.
+   */
+  public const PROTECTION_TIER_PROTECTION_TIER_UNSPECIFIED = 'PROTECTION_TIER_UNSPECIFIED';
+  /**
+   * Instance is provisioned using the Flex Start provisioning model and has a
+   * limited runtime.
+   */
+  public const PROVISIONING_MODEL_FLEX_START = 'FLEX_START';
+  /**
+   * Bound to the lifecycle of the reservation in which it is provisioned.
+   */
+  public const PROVISIONING_MODEL_RESERVATION_BOUND = 'RESERVATION_BOUND';
+  /**
+   * Heavily discounted, no guaranteed runtime.
+   */
+  public const PROVISIONING_MODEL_SPOT = 'SPOT';
+  /**
+   * Standard provisioning with user controlled runtime, no discounts.
+   */
+  public const PROVISIONING_MODEL_STANDARD = 'STANDARD';
   protected $collection_key = 'nodeAffinities';
   /**
+   * Specifies whether the instance should be automatically restarted if it is
+   * terminated by Compute Engine (not terminated by a user). You can only set
+   * the automatic restart option for standard instances.Preemptible instances
+   * cannot be automatically restarted.
+   *
+   * By default, this is set to true so an instance is automatically restarted
+   * if it is terminated by Compute Engine.
+   *
    * @var bool
    */
   public $automaticRestart;
   /**
+   * Specifies the availability domain to place the instance in. The value must
+   * be a number between 1 and the number of availability domains specified in
+   * the spread placement policy attached to the instance.
+   *
+   * @var int
+   */
+  public $availabilityDomain;
+  /**
+   * This optional flag exposes the hashed physical host ID in the
+   * ResourceStatus resource of the VM.
+   *
+   * @var bool
+   */
+  public $exposeHostTopology;
+  protected $gracefulShutdownType = SchedulingGracefulShutdown::class;
+  protected $gracefulShutdownDataType = '';
+  /**
+   * Specify the time in seconds for host error detection, the value must be
+   * within the range of [90, 330] with the increment of 30, if unset, the
+   * default behavior of host error recovery will be used.
+   *
+   * @var int
+   */
+  public $hostErrorTimeoutSeconds;
+  /**
+   * Specifies the termination action for the instance.
+   *
    * @var string
    */
   public $instanceTerminationAction;
+  protected $localSsdRecoveryTimeoutType = Duration::class;
+  protected $localSsdRecoveryTimeoutDataType = '';
   /**
+   * An opaque location hint used to place the instance close to other
+   * resources. This field is for use by internal tools that use the public API.
+   *
    * @var string
    */
   public $locationHint;
+  protected $maxRunDurationType = Duration::class;
+  protected $maxRunDurationDataType = '';
   /**
+   * The minimum number of virtual CPUs this instance will consume when running
+   * on a sole-tenant node.
+   *
    * @var int
    */
   public $minNodeCpus;
   protected $nodeAffinitiesType = SchedulingNodeAffinity::class;
   protected $nodeAffinitiesDataType = 'array';
   /**
+   * Defines the maintenance behavior for this instance. For standard instances,
+   * the default behavior is MIGRATE. Forpreemptible instances, the default and
+   * only possible behavior is TERMINATE. For more information, see  Set  VM
+   * host maintenance policy.
+   *
    * @var string
    */
   public $onHostMaintenance;
+  protected $onInstanceStopActionType = SchedulingOnInstanceStopAction::class;
+  protected $onInstanceStopActionDataType = '';
   /**
+   * Defines whether the instance is preemptible. This can only be set during
+   * instance creation or while the instance isstopped and therefore, in a
+   * `TERMINATED` state. SeeInstance Life Cycle for more information on the
+   * possible instance states.
+   *
    * @var bool
    */
   public $preemptible;
+  protected $preemptionNoticeDurationType = Duration::class;
+  protected $preemptionNoticeDurationDataType = '';
   /**
+   * Protection tier for the workload which specifies the workload expectations
+   * in the event of infrastructure failures at data center (e.g. power and/or
+   * cooling failures).
+   *
+   * @var string
+   */
+  public $protectionTier;
+  /**
+   * Specifies the provisioning model of the instance.
+   *
    * @var string
    */
   public $provisioningModel;
+  /**
+   * Defines whether GCE ACPI G2 Soft Off signal should be skipped during
+   * shutdown operation of VM.
+   *
+   * Default is false, meaning there will be 120 seconds between GCE ACPI G2
+   * Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for
+   * Spot VMs.
+   *
+   * @var bool
+   */
+  public $skipGuestOsShutdown;
+  /**
+   * Specifies the timestamp, when the instance will be terminated, inRFC3339
+   * text format. If specified, the instance termination action will be
+   * performed at the termination time.
+   *
+   * @var string
+   */
+  public $terminationTime;
 
   /**
-   * @param bool
+   * Specifies whether the instance should be automatically restarted if it is
+   * terminated by Compute Engine (not terminated by a user). You can only set
+   * the automatic restart option for standard instances.Preemptible instances
+   * cannot be automatically restarted.
+   *
+   * By default, this is set to true so an instance is automatically restarted
+   * if it is terminated by Compute Engine.
+   *
+   * @param bool $automaticRestart
    */
   public function setAutomaticRestart($automaticRestart)
   {
@@ -66,21 +224,114 @@ class Scheduling extends \Google\Collection
     return $this->automaticRestart;
   }
   /**
-   * @param string
+   * Specifies the availability domain to place the instance in. The value must
+   * be a number between 1 and the number of availability domains specified in
+   * the spread placement policy attached to the instance.
+   *
+   * @param int $availabilityDomain
+   */
+  public function setAvailabilityDomain($availabilityDomain)
+  {
+    $this->availabilityDomain = $availabilityDomain;
+  }
+  /**
+   * @return int
+   */
+  public function getAvailabilityDomain()
+  {
+    return $this->availabilityDomain;
+  }
+  /**
+   * This optional flag exposes the hashed physical host ID in the
+   * ResourceStatus resource of the VM.
+   *
+   * @param bool $exposeHostTopology
+   */
+  public function setExposeHostTopology($exposeHostTopology)
+  {
+    $this->exposeHostTopology = $exposeHostTopology;
+  }
+  /**
+   * @return bool
+   */
+  public function getExposeHostTopology()
+  {
+    return $this->exposeHostTopology;
+  }
+  /**
+   * @param SchedulingGracefulShutdown $gracefulShutdown
+   */
+  public function setGracefulShutdown(SchedulingGracefulShutdown $gracefulShutdown)
+  {
+    $this->gracefulShutdown = $gracefulShutdown;
+  }
+  /**
+   * @return SchedulingGracefulShutdown
+   */
+  public function getGracefulShutdown()
+  {
+    return $this->gracefulShutdown;
+  }
+  /**
+   * Specify the time in seconds for host error detection, the value must be
+   * within the range of [90, 330] with the increment of 30, if unset, the
+   * default behavior of host error recovery will be used.
+   *
+   * @param int $hostErrorTimeoutSeconds
+   */
+  public function setHostErrorTimeoutSeconds($hostErrorTimeoutSeconds)
+  {
+    $this->hostErrorTimeoutSeconds = $hostErrorTimeoutSeconds;
+  }
+  /**
+   * @return int
+   */
+  public function getHostErrorTimeoutSeconds()
+  {
+    return $this->hostErrorTimeoutSeconds;
+  }
+  /**
+   * Specifies the termination action for the instance.
+   *
+   * Accepted values: DELETE, INSTANCE_TERMINATION_ACTION_UNSPECIFIED, STOP
+   *
+   * @param self::INSTANCE_TERMINATION_ACTION_* $instanceTerminationAction
    */
   public function setInstanceTerminationAction($instanceTerminationAction)
   {
     $this->instanceTerminationAction = $instanceTerminationAction;
   }
   /**
-   * @return string
+   * @return self::INSTANCE_TERMINATION_ACTION_*
    */
   public function getInstanceTerminationAction()
   {
     return $this->instanceTerminationAction;
   }
   /**
-   * @param string
+   * Specifies the maximum amount of time a Local Ssd Vm should wait while
+   * recovery of the Local Ssd state is attempted. Its value should be in
+   * between 0 and 168 hours with hour granularity and the default value being 1
+   * hour.
+   *
+   * @param Duration $localSsdRecoveryTimeout
+   */
+  public function setLocalSsdRecoveryTimeout(Duration $localSsdRecoveryTimeout)
+  {
+    $this->localSsdRecoveryTimeout = $localSsdRecoveryTimeout;
+  }
+  /**
+   * @return Duration
+   */
+  public function getLocalSsdRecoveryTimeout()
+  {
+    return $this->localSsdRecoveryTimeout;
+  }
+  /**
+   * An opaque location hint used to place the instance close to other
+   * resources. This field is for use by internal tools that use the public API.
+   *
+   * @param string $locationHint
    */
   public function setLocationHint($locationHint)
   {
@@ -94,7 +345,28 @@ class Scheduling extends \Google\Collection
     return $this->locationHint;
   }
   /**
-   * @param int
+   * Specifies the max run duration for the given instance. If specified, the
+   * instance termination action will be performed at the end of the run
+   * duration.
+   *
+   * @param Duration $maxRunDuration
+   */
+  public function setMaxRunDuration(Duration $maxRunDuration)
+  {
+    $this->maxRunDuration = $maxRunDuration;
+  }
+  /**
+   * @return Duration
+   */
+  public function getMaxRunDuration()
+  {
+    return $this->maxRunDuration;
+  }
+  /**
+   * The minimum number of virtual CPUs this instance will consume when running
+   * on a sole-tenant node.
+   *
+   * @param int $minNodeCpus
    */
   public function setMinNodeCpus($minNodeCpus)
   {
@@ -108,7 +380,11 @@ class Scheduling extends \Google\Collection
     return $this->minNodeCpus;
   }
   /**
-   * @param SchedulingNodeAffinity[]
+   * A set of node affinity and anti-affinity configurations. Refer
+   * toConfiguring node affinity for more information. Overrides
+   * reservationAffinity.
+   *
+   * @param SchedulingNodeAffinity[] $nodeAffinities
    */
   public function setNodeAffinities($nodeAffinities)
   {
@@ -122,21 +398,47 @@ class Scheduling extends \Google\Collection
     return $this->nodeAffinities;
   }
   /**
-   * @param string
+   * Defines the maintenance behavior for this instance. For standard instances,
+   * the default behavior is MIGRATE. Forpreemptible instances, the default and
+   * only possible behavior is TERMINATE. For more information, see  Set  VM
+   * host maintenance policy.
+   *
+   * Accepted values: MIGRATE, TERMINATE
+   *
+   * @param self::ON_HOST_MAINTENANCE_* $onHostMaintenance
    */
   public function setOnHostMaintenance($onHostMaintenance)
   {
     $this->onHostMaintenance = $onHostMaintenance;
   }
   /**
-   * @return string
+   * @return self::ON_HOST_MAINTENANCE_*
    */
   public function getOnHostMaintenance()
   {
     return $this->onHostMaintenance;
   }
   /**
-   * @param bool
+   * @param SchedulingOnInstanceStopAction $onInstanceStopAction
+   */
+  public function setOnInstanceStopAction(SchedulingOnInstanceStopAction $onInstanceStopAction)
+  {
+    $this->onInstanceStopAction = $onInstanceStopAction;
+  }
+  /**
+   * @return SchedulingOnInstanceStopAction
+   */
+  public function getOnInstanceStopAction()
+  {
+    return $this->onInstanceStopAction;
+  }
+  /**
+   * Defines whether the instance is preemptible. This can only be set during
+   * instance creation or while the instance isstopped and therefore, in a
+   * `TERMINATED` state. SeeInstance Life Cycle for more information on the
+   * possible instance states.
+   *
+   * @param bool $preemptible
    */
   public function setPreemptible($preemptible)
   {
@@ -150,18 +452,100 @@ class Scheduling extends \Google\Collection
     return $this->preemptible;
   }
   /**
-   * @param string
+   * Specifies the Metadata Service preemption notice duration before the GCE
+   * ACPI G2 Soft Off signal is triggered for Spot VMs only. If not specified,
+   * there will be no wait before the G2 Soft Off signal is triggered.
+   *
+   * @param Duration $preemptionNoticeDuration
+   */
+  public function setPreemptionNoticeDuration(Duration $preemptionNoticeDuration)
+  {
+    $this->preemptionNoticeDuration = $preemptionNoticeDuration;
+  }
+  /**
+   * @return Duration
+   */
+  public function getPreemptionNoticeDuration()
+  {
+    return $this->preemptionNoticeDuration;
+  }
+  /**
+   * Protection tier for the workload which specifies the workload expectations
+   * in the event of infrastructure failures at data center (e.g. power and/or
+   * cooling failures).
+   *
+   * Accepted values: PROTECTION_TIER_CAPACITY_OPTIMIZED,
+   * PROTECTION_TIER_STANDARD, PROTECTION_TIER_UNSPECIFIED
+   *
+   * @param self::PROTECTION_TIER_* $protectionTier
+   */
+  public function setProtectionTier($protectionTier)
+  {
+    $this->protectionTier = $protectionTier;
+  }
+  /**
+   * @return self::PROTECTION_TIER_*
+   */
+  public function getProtectionTier()
+  {
+    return $this->protectionTier;
+  }
+  /**
+   * Specifies the provisioning model of the instance.
+   *
+   * Accepted values: FLEX_START, RESERVATION_BOUND, SPOT, STANDARD
+   *
+   * @param self::PROVISIONING_MODEL_* $provisioningModel
    */
   public function setProvisioningModel($provisioningModel)
   {
     $this->provisioningModel = $provisioningModel;
   }
   /**
-   * @return string
+   * @return self::PROVISIONING_MODEL_*
    */
   public function getProvisioningModel()
   {
     return $this->provisioningModel;
+  }
+  /**
+   * Defines whether GCE ACPI G2 Soft Off signal should be skipped during
+   * shutdown operation of VM.
+   *
+   * Default is false, meaning there will be 120 seconds between GCE ACPI G2
+   * Soft Off and ACPI G3 Mechanical Off for Standard VMs and 30 seconds for
+   * Spot VMs.
+   *
+   * @param bool $skipGuestOsShutdown
+   */
+  public function setSkipGuestOsShutdown($skipGuestOsShutdown)
+  {
+    $this->skipGuestOsShutdown = $skipGuestOsShutdown;
+  }
+  /**
+   * @return bool
+   */
+  public function getSkipGuestOsShutdown()
+  {
+    return $this->skipGuestOsShutdown;
+  }
+  /**
+   * Specifies the timestamp, when the instance will be terminated, inRFC3339
+   * text format. If specified, the instance termination action will be
+   * performed at the termination time.
+   *
+   * @param string $terminationTime
+   */
+  public function setTerminationTime($terminationTime)
+  {
+    $this->terminationTime = $terminationTime;
+  }
+  /**
+   * @return string
+   */
+  public function getTerminationTime()
+  {
+    return $this->terminationTime;
   }
 }
 

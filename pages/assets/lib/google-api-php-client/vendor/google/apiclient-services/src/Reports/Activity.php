@@ -19,10 +19,12 @@ namespace Google\Service\Reports;
 
 class Activity extends \Google\Collection
 {
-  protected $collection_key = 'events';
+  protected $collection_key = 'resourceDetails';
   protected $actorType = ActivityActor::class;
   protected $actorDataType = '';
   /**
+   * ETag of the entry.
+   *
    * @var string
    */
   public $etag;
@@ -31,20 +33,46 @@ class Activity extends \Google\Collection
   protected $idType = ActivityId::class;
   protected $idDataType = '';
   /**
+   * IP address of the user doing the action. This is the Internet Protocol (IP)
+   * address of the user when logging into Google Workspace, which may or may
+   * not reflect the user's physical location. For example, the IP address can
+   * be the user's proxy server's address or a virtual private network (VPN)
+   * address. The API supports IPv4 and IPv6.
+   *
    * @var string
    */
   public $ipAddress;
   /**
+   * Whether the activity was performed by an agent.
+   *
+   * @var bool
+   */
+  public $isAgenticAction;
+  /**
+   * The type of API resource. For an activity report, the value is
+   * `audit#activity`.
+   *
    * @var string
    */
   public $kind;
+  protected $networkInfoType = ActivityNetworkInfo::class;
+  protected $networkInfoDataType = '';
   /**
+   * This is the domain that is affected by the report's event. For example
+   * domain of Admin console or the Drive application's document owner.
+   *
    * @var string
    */
   public $ownerDomain;
+  protected $resourceDetailsType = ResourceDetails::class;
+  protected $resourceDetailsDataType = 'array';
+  protected $userDeviceInfoType = ActivityUserDeviceInfo::class;
+  protected $userDeviceInfoDataType = '';
 
   /**
-   * @param ActivityActor
+   * User doing the action.
+   *
+   * @param ActivityActor $actor
    */
   public function setActor(ActivityActor $actor)
   {
@@ -58,7 +86,9 @@ class Activity extends \Google\Collection
     return $this->actor;
   }
   /**
-   * @param string
+   * ETag of the entry.
+   *
+   * @param string $etag
    */
   public function setEtag($etag)
   {
@@ -72,7 +102,9 @@ class Activity extends \Google\Collection
     return $this->etag;
   }
   /**
-   * @param ActivityEvents[]
+   * Activity events in the report.
+   *
+   * @param ActivityEvents[] $events
    */
   public function setEvents($events)
   {
@@ -86,7 +118,9 @@ class Activity extends \Google\Collection
     return $this->events;
   }
   /**
-   * @param ActivityId
+   * Unique identifier for each activity record.
+   *
+   * @param ActivityId $id
    */
   public function setId(ActivityId $id)
   {
@@ -100,7 +134,13 @@ class Activity extends \Google\Collection
     return $this->id;
   }
   /**
-   * @param string
+   * IP address of the user doing the action. This is the Internet Protocol (IP)
+   * address of the user when logging into Google Workspace, which may or may
+   * not reflect the user's physical location. For example, the IP address can
+   * be the user's proxy server's address or a virtual private network (VPN)
+   * address. The API supports IPv4 and IPv6.
+   *
+   * @param string $ipAddress
    */
   public function setIpAddress($ipAddress)
   {
@@ -114,7 +154,26 @@ class Activity extends \Google\Collection
     return $this->ipAddress;
   }
   /**
-   * @param string
+   * Whether the activity was performed by an agent.
+   *
+   * @param bool $isAgenticAction
+   */
+  public function setIsAgenticAction($isAgenticAction)
+  {
+    $this->isAgenticAction = $isAgenticAction;
+  }
+  /**
+   * @return bool
+   */
+  public function getIsAgenticAction()
+  {
+    return $this->isAgenticAction;
+  }
+  /**
+   * The type of API resource. For an activity report, the value is
+   * `audit#activity`.
+   *
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -128,7 +187,26 @@ class Activity extends \Google\Collection
     return $this->kind;
   }
   /**
-   * @param string
+   * Network information of the user doing the action.
+   *
+   * @param ActivityNetworkInfo $networkInfo
+   */
+  public function setNetworkInfo(ActivityNetworkInfo $networkInfo)
+  {
+    $this->networkInfo = $networkInfo;
+  }
+  /**
+   * @return ActivityNetworkInfo
+   */
+  public function getNetworkInfo()
+  {
+    return $this->networkInfo;
+  }
+  /**
+   * This is the domain that is affected by the report's event. For example
+   * domain of Admin console or the Drive application's document owner.
+   *
+   * @param string $ownerDomain
    */
   public function setOwnerDomain($ownerDomain)
   {
@@ -140,6 +218,41 @@ class Activity extends \Google\Collection
   public function getOwnerDomain()
   {
     return $this->ownerDomain;
+  }
+  /**
+   * Details of the resource on which the action was performed.
+   *
+   * @param ResourceDetails[] $resourceDetails
+   */
+  public function setResourceDetails($resourceDetails)
+  {
+    $this->resourceDetails = $resourceDetails;
+  }
+  /**
+   * @return ResourceDetails[]
+   */
+  public function getResourceDetails()
+  {
+    return $this->resourceDetails;
+  }
+  /**
+   * Device details of the user doing the action. This field is only exposed for
+   * the `contacts`, `gemini_in_workspace_apps`, `keep`, `meet_hardware`,
+   * `meet`, `chat`, `chrome`, `directory_sync`, `drive`, `groups`, `rules`,
+   * `data_studio`, `saml` applications.
+   *
+   * @param ActivityUserDeviceInfo $userDeviceInfo
+   */
+  public function setUserDeviceInfo(ActivityUserDeviceInfo $userDeviceInfo)
+  {
+    $this->userDeviceInfo = $userDeviceInfo;
+  }
+  /**
+   * @return ActivityUserDeviceInfo
+   */
+  public function getUserDeviceInfo()
+  {
+    return $this->userDeviceInfo;
   }
 }
 

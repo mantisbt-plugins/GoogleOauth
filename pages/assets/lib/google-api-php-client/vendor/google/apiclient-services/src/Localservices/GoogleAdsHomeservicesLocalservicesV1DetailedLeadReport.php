@@ -20,6 +20,36 @@ namespace Google\Service\Localservices;
 class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Model
 {
   /**
+   * Not specified.
+   */
+  public const CHARGE_STATUS_CHARGE_STATUS_UNSPECIFIED = 'CHARGE_STATUS_UNSPECIFIED';
+  /**
+   * Charged.
+   */
+  public const CHARGE_STATUS_CHARGED = 'CHARGED';
+  /**
+   * Not charged.
+   */
+  public const CHARGE_STATUS_NOT_CHARGED = 'NOT_CHARGED';
+  /**
+   * Not specified.
+   */
+  public const LEAD_TYPE_LEAD_TYPE_UNSPECIFIED = 'LEAD_TYPE_UNSPECIFIED';
+  /**
+   * Message lead.
+   */
+  public const LEAD_TYPE_MESSAGE = 'MESSAGE';
+  /**
+   * Phone call lead.
+   */
+  public const LEAD_TYPE_PHONE_CALL = 'PHONE_CALL';
+  /**
+   * Booking lead.
+   */
+  public const LEAD_TYPE_BOOKING = 'BOOKING';
+  /**
+   * Identifies account that received the lead.
+   *
    * @var string
    */
   public $accountId;
@@ -28,39 +58,69 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
   protected $bookingLeadType = GoogleAdsHomeservicesLocalservicesV1BookingLead::class;
   protected $bookingLeadDataType = '';
   /**
+   * Business name associated to the account.
+   *
    * @var string
    */
   public $businessName;
   /**
+   * Whether the lead has been charged.
+   *
    * @var string
    */
   public $chargeStatus;
   /**
+   * Currency code.
+   *
    * @var string
    */
   public $currencyCode;
   /**
+   * Dispute status related to the lead.
+   *
    * @var string
    */
   public $disputeStatus;
   /**
+   * Location of the associated account's home city.
+   *
    * @var string
    */
   public $geo;
   /**
+   * Unique identifier of a Detailed Lead Report.
+   *
+   * @var string
+   */
+  public $googleAdsLeadId;
+  /**
+   * Lead category (e.g. hvac, plumber)
+   *
    * @var string
    */
   public $leadCategory;
   /**
+   * Timestamp of when the lead was created.
+   *
    * @var string
    */
   public $leadCreationTimestamp;
   /**
+   * Deprecated in favor of google_ads_lead_id. Unique identifier of a Detailed
+   * Lead Report.
+   *
    * @var string
    */
   public $leadId;
+  /**
+   * Price of the lead (available only after it has been charged).
+   *
+   * @var 
+   */
   public $leadPrice;
   /**
+   * Lead type.
+   *
    * @var string
    */
   public $leadType;
@@ -72,7 +132,9 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
   protected $timezoneDataType = '';
 
   /**
-   * @param string
+   * Identifies account that received the lead.
+   *
+   * @param string $accountId
    */
   public function setAccountId($accountId)
   {
@@ -86,7 +148,9 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->accountId;
   }
   /**
-   * @param GoogleAdsHomeservicesLocalservicesV1AggregatorInfo
+   * Aggregator specific information related to the lead.
+   *
+   * @param GoogleAdsHomeservicesLocalservicesV1AggregatorInfo $aggregatorInfo
    */
   public function setAggregatorInfo(GoogleAdsHomeservicesLocalservicesV1AggregatorInfo $aggregatorInfo)
   {
@@ -100,7 +164,9 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->aggregatorInfo;
   }
   /**
-   * @param GoogleAdsHomeservicesLocalservicesV1BookingLead
+   * More information associated to only booking leads.
+   *
+   * @param GoogleAdsHomeservicesLocalservicesV1BookingLead $bookingLead
    */
   public function setBookingLead(GoogleAdsHomeservicesLocalservicesV1BookingLead $bookingLead)
   {
@@ -114,7 +180,9 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->bookingLead;
   }
   /**
-   * @param string
+   * Business name associated to the account.
+   *
+   * @param string $businessName
    */
   public function setBusinessName($businessName)
   {
@@ -128,21 +196,27 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->businessName;
   }
   /**
-   * @param string
+   * Whether the lead has been charged.
+   *
+   * Accepted values: CHARGE_STATUS_UNSPECIFIED, CHARGED, NOT_CHARGED
+   *
+   * @param self::CHARGE_STATUS_* $chargeStatus
    */
   public function setChargeStatus($chargeStatus)
   {
     $this->chargeStatus = $chargeStatus;
   }
   /**
-   * @return string
+   * @return self::CHARGE_STATUS_*
    */
   public function getChargeStatus()
   {
     return $this->chargeStatus;
   }
   /**
-   * @param string
+   * Currency code.
+   *
+   * @param string $currencyCode
    */
   public function setCurrencyCode($currencyCode)
   {
@@ -156,7 +230,9 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->currencyCode;
   }
   /**
-   * @param string
+   * Dispute status related to the lead.
+   *
+   * @param string $disputeStatus
    */
   public function setDisputeStatus($disputeStatus)
   {
@@ -170,7 +246,9 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->disputeStatus;
   }
   /**
-   * @param string
+   * Location of the associated account's home city.
+   *
+   * @param string $geo
    */
   public function setGeo($geo)
   {
@@ -184,7 +262,25 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->geo;
   }
   /**
-   * @param string
+   * Unique identifier of a Detailed Lead Report.
+   *
+   * @param string $googleAdsLeadId
+   */
+  public function setGoogleAdsLeadId($googleAdsLeadId)
+  {
+    $this->googleAdsLeadId = $googleAdsLeadId;
+  }
+  /**
+   * @return string
+   */
+  public function getGoogleAdsLeadId()
+  {
+    return $this->googleAdsLeadId;
+  }
+  /**
+   * Lead category (e.g. hvac, plumber)
+   *
+   * @param string $leadCategory
    */
   public function setLeadCategory($leadCategory)
   {
@@ -198,7 +294,9 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->leadCategory;
   }
   /**
-   * @param string
+   * Timestamp of when the lead was created.
+   *
+   * @param string $leadCreationTimestamp
    */
   public function setLeadCreationTimestamp($leadCreationTimestamp)
   {
@@ -212,7 +310,10 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->leadCreationTimestamp;
   }
   /**
-   * @param string
+   * Deprecated in favor of google_ads_lead_id. Unique identifier of a Detailed
+   * Lead Report.
+   *
+   * @param string $leadId
    */
   public function setLeadId($leadId)
   {
@@ -234,21 +335,27 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->leadPrice;
   }
   /**
-   * @param string
+   * Lead type.
+   *
+   * Accepted values: LEAD_TYPE_UNSPECIFIED, MESSAGE, PHONE_CALL, BOOKING
+   *
+   * @param self::LEAD_TYPE_* $leadType
    */
   public function setLeadType($leadType)
   {
     $this->leadType = $leadType;
   }
   /**
-   * @return string
+   * @return self::LEAD_TYPE_*
    */
   public function getLeadType()
   {
     return $this->leadType;
   }
   /**
-   * @param GoogleAdsHomeservicesLocalservicesV1MessageLead
+   * More information associated to only message leads.
+   *
+   * @param GoogleAdsHomeservicesLocalservicesV1MessageLead $messageLead
    */
   public function setMessageLead(GoogleAdsHomeservicesLocalservicesV1MessageLead $messageLead)
   {
@@ -262,7 +369,9 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->messageLead;
   }
   /**
-   * @param GoogleAdsHomeservicesLocalservicesV1PhoneLead
+   * More information associated to only phone leads.
+   *
+   * @param GoogleAdsHomeservicesLocalservicesV1PhoneLead $phoneLead
    */
   public function setPhoneLead(GoogleAdsHomeservicesLocalservicesV1PhoneLead $phoneLead)
   {
@@ -276,7 +385,9 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport extends \Google\Mod
     return $this->phoneLead;
   }
   /**
-   * @param GoogleTypeTimeZone
+   * Timezone of the particular provider associated to a lead.
+   *
+   * @param GoogleTypeTimeZone $timezone
    */
   public function setTimezone(GoogleTypeTimeZone $timezone)
   {

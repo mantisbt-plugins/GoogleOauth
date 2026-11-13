@@ -34,11 +34,11 @@ class AccountsContainersWorkspacesTriggers extends \Google\Service\Resource
   /**
    * Creates a GTM Trigger. (triggers.create)
    *
-   * @param string $parent GTM Workspace's API relative path. Example:
-   * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+   * @param string $parent GTM Workspace's API relative path.
    * @param Trigger $postBody
    * @param array $optParams Optional parameters.
    * @return Trigger
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Trigger $postBody, $optParams = [])
   {
@@ -49,10 +49,9 @@ class AccountsContainersWorkspacesTriggers extends \Google\Service\Resource
   /**
    * Deletes a GTM Trigger. (triggers.delete)
    *
-   * @param string $path GTM Trigger's API relative path. Example: accounts/{accou
-   * nt_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_
-   * id}
+   * @param string $path GTM Trigger's API relative path.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($path, $optParams = [])
   {
@@ -63,11 +62,10 @@ class AccountsContainersWorkspacesTriggers extends \Google\Service\Resource
   /**
    * Gets a GTM Trigger. (triggers.get)
    *
-   * @param string $path GTM Trigger's API relative path. Example: accounts/{accou
-   * nt_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_
-   * id}
+   * @param string $path GTM Trigger's API relative path.
    * @param array $optParams Optional parameters.
    * @return Trigger
+   * @throws \Google\Service\Exception
    */
   public function get($path, $optParams = [])
   {
@@ -79,13 +77,13 @@ class AccountsContainersWorkspacesTriggers extends \Google\Service\Resource
    * Lists all GTM Triggers of a Container.
    * (triggers.listAccountsContainersWorkspacesTriggers)
    *
-   * @param string $parent GTM Workspace's API relative path. Example:
-   * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+   * @param string $parent GTM Workspace's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string pageToken Continuation token for fetching the next page of
    * results.
    * @return ListTriggersResponse
+   * @throws \Google\Service\Exception
    */
   public function listAccountsContainersWorkspacesTriggers($parent, $optParams = [])
   {
@@ -96,14 +94,13 @@ class AccountsContainersWorkspacesTriggers extends \Google\Service\Resource
   /**
    * Reverts changes to a GTM Trigger in a GTM Workspace. (triggers.revert)
    *
-   * @param string $path GTM Trigger's API relative path. Example: accounts/{accou
-   * nt_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_
-   * id}
+   * @param string $path GTM Trigger's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string fingerprint When provided, this fingerprint must match the
    * fingerprint of the trigger in storage.
    * @return RevertTriggerResponse
+   * @throws \Google\Service\Exception
    */
   public function revert($path, $optParams = [])
   {
@@ -114,15 +111,14 @@ class AccountsContainersWorkspacesTriggers extends \Google\Service\Resource
   /**
    * Updates a GTM Trigger. (triggers.update)
    *
-   * @param string $path GTM Trigger's API relative path. Example: accounts/{accou
-   * nt_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_
-   * id}
+   * @param string $path GTM Trigger's API relative path.
    * @param Trigger $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string fingerprint When provided, this fingerprint must match the
    * fingerprint of the trigger in storage.
    * @return Trigger
+   * @throws \Google\Service\Exception
    */
   public function update($path, Trigger $postBody, $optParams = [])
   {

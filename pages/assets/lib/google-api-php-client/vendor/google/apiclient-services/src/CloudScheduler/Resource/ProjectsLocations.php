@@ -17,8 +17,10 @@
 
 namespace Google\Service\CloudScheduler\Resource;
 
+use Google\Service\CloudScheduler\CmekConfig;
 use Google\Service\CloudScheduler\ListLocationsResponse;
 use Google\Service\CloudScheduler\Location;
+use Google\Service\CloudScheduler\Operation;
 
 /**
  * The "locations" collection of methods.
@@ -36,6 +38,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * @param string $name Resource name for the location.
    * @param array $optParams Optional parameters.
    * @return Location
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -44,13 +47,39 @@ class ProjectsLocations extends \Google\Service\Resource
     return $this->call('get', [$params], Location::class);
   }
   /**
-   * Lists information about the supported locations for this service.
-   * (locations.listProjectsLocations)
+   * Gets the Scheduler config in the project/region. (locations.getCmekConfig)
+   *
+   * @param string $name Required. The config name. For example:
+   * projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig
+   * @param array $optParams Optional parameters.
+   * @return CmekConfig
+   * @throws \Google\Service\Exception
+   */
+  public function getCmekConfig($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('getCmekConfig', [$params], CmekConfig::class);
+  }
+  /**
+   * Lists information about the supported locations for this service. This method
+   * lists locations based on the resource scope provided in the
+   * ListLocationsRequest.name field: * **Global locations**: If `name` is empty,
+   * the method lists the public locations available to all projects. * **Project-
+   * specific locations**: If `name` follows the format `projects/{project}`, the
+   * method lists locations visible to that specific project. This includes
+   * public, private, or other project-specific locations enabled for the project.
+   * For gRPC and client library implementations, the resource name is passed as
+   * the `name` field. For direct service calls, the resource name is incorporated
+   * into the request path based on the specific service implementation and
+   * version. (locations.listProjectsLocations)
    *
    * @param string $name The resource that owns the locations collection, if
    * applicable.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string extraLocationTypes Optional. Do not use this field unless
+   * explicitly documented otherwise. This is primarily for internal usage.
    * @opt_param string filter A filter to narrow down results to a preferred
    * subset. The filtering language accepts strings like `"displayName=tokyo"`,
    * and is documented in more detail in [AIP-160](https://google.aip.dev/160).
@@ -59,12 +88,33 @@ class ProjectsLocations extends \Google\Service\Resource
    * @opt_param string pageToken A page token received from the `next_page_token`
    * field in the response. Send that page token to receive the subsequent page.
    * @return ListLocationsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocations($name, $optParams = [])
   {
     $params = ['name' => $name];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], ListLocationsResponse::class);
+  }
+  /**
+   * Initializes or Updates the a scheduler config. (locations.updateCmekConfig)
+   *
+   * @param string $name Identifier. The config resource name which includes the
+   * project and location and must end in 'cmekConfig', in the format
+   * projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
+   * @param CmekConfig $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string updateMask Optional. List of fields to be updated in this
+   * request.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function updateCmekConfig($name, CmekConfig $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('updateCmekConfig', [$params], Operation::class);
   }
 }
 

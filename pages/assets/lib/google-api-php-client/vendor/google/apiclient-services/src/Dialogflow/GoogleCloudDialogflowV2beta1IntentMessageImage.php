@@ -29,7 +29,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageImage extends \Google\Model
   public $imageUri;
 
   /**
-   * @param string
+   * @param string $accessibilityText
    */
   public function setAccessibilityText($accessibilityText)
   {
@@ -43,7 +43,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageImage extends \Google\Model
     return $this->accessibilityText;
   }
   /**
-   * @param string
+   * @param string $imageUri
    */
   public function setImageUri($imageUri)
   {

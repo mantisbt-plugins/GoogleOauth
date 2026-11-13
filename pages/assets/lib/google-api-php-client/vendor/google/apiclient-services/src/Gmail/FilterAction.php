@@ -21,20 +21,30 @@ class FilterAction extends \Google\Collection
 {
   protected $collection_key = 'removeLabelIds';
   /**
+   * List of labels to add to the message.
+   *
    * @var string[]
    */
   public $addLabelIds;
   /**
+   * Email address that the message should be forwarded to. This effectively
+   * redirects the message to the address specified in this field, maintaining
+   * the original sender in the "From" field.
+   *
    * @var string
    */
   public $forward;
   /**
+   * List of labels to remove from the message.
+   *
    * @var string[]
    */
   public $removeLabelIds;
 
   /**
-   * @param string[]
+   * List of labels to add to the message.
+   *
+   * @param string[] $addLabelIds
    */
   public function setAddLabelIds($addLabelIds)
   {
@@ -48,7 +58,11 @@ class FilterAction extends \Google\Collection
     return $this->addLabelIds;
   }
   /**
-   * @param string
+   * Email address that the message should be forwarded to. This effectively
+   * redirects the message to the address specified in this field, maintaining
+   * the original sender in the "From" field.
+   *
+   * @param string $forward
    */
   public function setForward($forward)
   {
@@ -62,7 +76,9 @@ class FilterAction extends \Google\Collection
     return $this->forward;
   }
   /**
-   * @param string[]
+   * List of labels to remove from the message.
+   *
+   * @param string[] $removeLabelIds
    */
   public function setRemoveLabelIds($removeLabelIds)
   {

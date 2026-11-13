@@ -19,40 +19,79 @@ namespace Google\Service\NetworkServices;
 
 class TlsRoute extends \Google\Collection
 {
-  protected $collection_key = 'rules';
+  protected $collection_key = 'targetProxies';
   /**
+   * Output only. The timestamp when the resource was created.
+   *
    * @var string
    */
   public $createTime;
   /**
+   * Optional. A free-text description of the resource. Max length 1024
+   * characters.
+   *
    * @var string
    */
   public $description;
   /**
+   * Optional. Gateways defines a list of gateways this TlsRoute is attached to,
+   * as one of the routing rules to route the requests served by the gateway.
+   * Each gateway reference should match the pattern:
+   * `projects/locations/gateways/`
+   *
    * @var string[]
    */
   public $gateways;
   /**
+   * Optional. Set of label tags associated with the TlsRoute resource.
+   *
+   * @var string[]
+   */
+  public $labels;
+  /**
+   * Optional. Meshes defines a list of meshes this TlsRoute is attached to, as
+   * one of the routing rules to route the requests served by the mesh. Each
+   * mesh reference should match the pattern: `projects/locations/meshes/` The
+   * attached Mesh should be of a type SIDECAR
+   *
    * @var string[]
    */
   public $meshes;
   /**
+   * Identifier. Name of the TlsRoute resource. It matches pattern
+   * `projects/locations/tlsRoutes/tls_route_name>`.
+   *
    * @var string
    */
   public $name;
   protected $rulesType = TlsRouteRouteRule::class;
   protected $rulesDataType = 'array';
   /**
+   * Output only. Server-defined URL of this resource
+   *
    * @var string
    */
   public $selfLink;
   /**
+   * Optional. TargetProxies defines a list of TargetTcpProxies this TlsRoute is
+   * attached to, as one of the routing rules to route the requests served by
+   * the TargetTcpProxy. Each TargetTcpProxy reference should match the pattern:
+   * `projects/locations/targetTcpProxies/`
+   *
+   * @var string[]
+   */
+  public $targetProxies;
+  /**
+   * Output only. The timestamp when the resource was updated.
+   *
    * @var string
    */
   public $updateTime;
 
   /**
-   * @param string
+   * Output only. The timestamp when the resource was created.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -66,7 +105,10 @@ class TlsRoute extends \Google\Collection
     return $this->createTime;
   }
   /**
-   * @param string
+   * Optional. A free-text description of the resource. Max length 1024
+   * characters.
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -80,7 +122,12 @@ class TlsRoute extends \Google\Collection
     return $this->description;
   }
   /**
-   * @param string[]
+   * Optional. Gateways defines a list of gateways this TlsRoute is attached to,
+   * as one of the routing rules to route the requests served by the gateway.
+   * Each gateway reference should match the pattern:
+   * `projects/locations/gateways/`
+   *
+   * @param string[] $gateways
    */
   public function setGateways($gateways)
   {
@@ -94,7 +141,28 @@ class TlsRoute extends \Google\Collection
     return $this->gateways;
   }
   /**
-   * @param string[]
+   * Optional. Set of label tags associated with the TlsRoute resource.
+   *
+   * @param string[] $labels
+   */
+  public function setLabels($labels)
+  {
+    $this->labels = $labels;
+  }
+  /**
+   * @return string[]
+   */
+  public function getLabels()
+  {
+    return $this->labels;
+  }
+  /**
+   * Optional. Meshes defines a list of meshes this TlsRoute is attached to, as
+   * one of the routing rules to route the requests served by the mesh. Each
+   * mesh reference should match the pattern: `projects/locations/meshes/` The
+   * attached Mesh should be of a type SIDECAR
+   *
+   * @param string[] $meshes
    */
   public function setMeshes($meshes)
   {
@@ -108,7 +176,10 @@ class TlsRoute extends \Google\Collection
     return $this->meshes;
   }
   /**
-   * @param string
+   * Identifier. Name of the TlsRoute resource. It matches pattern
+   * `projects/locations/tlsRoutes/tls_route_name>`.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -122,7 +193,11 @@ class TlsRoute extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param TlsRouteRouteRule[]
+   * Required. Rules that define how traffic is routed and handled. At least one
+   * RouteRule must be supplied. If there are multiple rules then the action
+   * taken will be the first rule to match.
+   *
+   * @param TlsRouteRouteRule[] $rules
    */
   public function setRules($rules)
   {
@@ -136,7 +211,9 @@ class TlsRoute extends \Google\Collection
     return $this->rules;
   }
   /**
-   * @param string
+   * Output only. Server-defined URL of this resource
+   *
+   * @param string $selfLink
    */
   public function setSelfLink($selfLink)
   {
@@ -150,7 +227,28 @@ class TlsRoute extends \Google\Collection
     return $this->selfLink;
   }
   /**
-   * @param string
+   * Optional. TargetProxies defines a list of TargetTcpProxies this TlsRoute is
+   * attached to, as one of the routing rules to route the requests served by
+   * the TargetTcpProxy. Each TargetTcpProxy reference should match the pattern:
+   * `projects/locations/targetTcpProxies/`
+   *
+   * @param string[] $targetProxies
+   */
+  public function setTargetProxies($targetProxies)
+  {
+    $this->targetProxies = $targetProxies;
+  }
+  /**
+   * @return string[]
+   */
+  public function getTargetProxies()
+  {
+    return $this->targetProxies;
+  }
+  /**
+   * Output only. The timestamp when the resource was updated.
+   *
+   * @param string $updateTime
    */
   public function setUpdateTime($updateTime)
   {

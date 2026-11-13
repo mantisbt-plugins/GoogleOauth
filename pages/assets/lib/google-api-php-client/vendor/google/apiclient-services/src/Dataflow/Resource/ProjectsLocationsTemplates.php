@@ -35,7 +35,13 @@ class ProjectsLocationsTemplates extends \Google\Service\Resource
 {
   /**
    * Creates a Cloud Dataflow job from a template. Do not enter confidential
-   * information when you supply string values using the API. (templates.create)
+   * information when you supply string values using the API. To create a job, we
+   * recommend using `projects.locations.templates.create` with a [regional
+   * endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-
+   * endpoints). Using `projects.templates.create` is not recommended, because
+   * your job will always start in `us-central1`. # IAM Permissions Requires the
+   * following IAM permission(s) on the project: - `dataflow.jobs.create` -
+   * `resourcemanager.projects.get` (templates.create)
    *
    * @param string $projectId Required. The ID of the Cloud Platform project that
    * the job belongs to.
@@ -45,6 +51,7 @@ class ProjectsLocationsTemplates extends \Google\Service\Resource
    * @param CreateJobFromTemplateRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function create($projectId, $location, CreateJobFromTemplateRequest $postBody, $optParams = [])
   {
@@ -53,7 +60,12 @@ class ProjectsLocationsTemplates extends \Google\Service\Resource
     return $this->call('create', [$params], Job::class);
   }
   /**
-   * Get the template associated with a template. (templates.get)
+   * Get the template associated with a template. To get the template, we
+   * recommend using `projects.locations.templates.get` with a [regional endpoint]
+   * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+   * `projects.templates.get` is not recommended, because only templates that are
+   * running in `us-central1` are retrieved. # IAM Permissions Requires the
+   * `resourcemanager.projects.get` permission on the project. (templates.get)
    *
    * @param string $projectId Required. The ID of the Cloud Platform project that
    * the job belongs to.
@@ -67,6 +79,7 @@ class ProjectsLocationsTemplates extends \Google\Service\Resource
    * 'gs://'.
    * @opt_param string view The view to retrieve. Defaults to METADATA_ONLY.
    * @return GetTemplateResponse
+   * @throws \Google\Service\Exception
    */
   public function get($projectId, $location, $optParams = [])
   {
@@ -75,7 +88,13 @@ class ProjectsLocationsTemplates extends \Google\Service\Resource
     return $this->call('get', [$params], GetTemplateResponse::class);
   }
   /**
-   * Launch a template. (templates.launch)
+   * Launches a template. To launch a template, we recommend using
+   * `projects.locations.templates.launch` with a [regional endpoint]
+   * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+   * `projects.templates.launch` is not recommended, because jobs launched from
+   * the template will always start in `us-central1`. # IAM Permissions Requires
+   * the following IAM permission(s) on the project: - `dataflow.jobs.create` -
+   * `resourcemanager.projects.get` (templates.launch)
    *
    * @param string $projectId Required. The ID of the Cloud Platform project that
    * the job belongs to.
@@ -85,17 +104,18 @@ class ProjectsLocationsTemplates extends \Google\Service\Resource
    * @param LaunchTemplateParameters $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string dynamicTemplate.gcsPath Path to dynamic template spec file
-   * on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec
-   * object.
+   * @opt_param string dynamicTemplate.gcsPath Path to the dynamic template
+   * specification file on Cloud Storage. The file must be a JSON serialized
+   * `DynamicTemplateFileSpec` object.
    * @opt_param string dynamicTemplate.stagingLocation Cloud Storage path for
    * staging dependencies. Must be a valid Cloud Storage URL, beginning with
    * `gs://`.
-   * @opt_param string gcsPath A Cloud Storage path to the template from which to
-   * create the job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+   * @opt_param string gcsPath A Cloud Storage path to the template to use to
+   * create the job. Must be valid Cloud Storage URL, beginning with `gs://`.
    * @opt_param bool validateOnly If true, the request is validated but not
    * actually executed. Defaults to false.
    * @return LaunchTemplateResponse
+   * @throws \Google\Service\Exception
    */
   public function launch($projectId, $location, LaunchTemplateParameters $postBody, $optParams = [])
   {

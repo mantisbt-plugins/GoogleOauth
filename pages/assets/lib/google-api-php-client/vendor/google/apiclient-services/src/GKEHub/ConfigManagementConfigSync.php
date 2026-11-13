@@ -17,47 +17,98 @@
 
 namespace Google\Service\GKEHub;
 
-class ConfigManagementConfigSync extends \Google\Model
+class ConfigManagementConfigSync extends \Google\Collection
 {
+  protected $collection_key = 'deploymentOverrides';
+  protected $deploymentOverridesType = ConfigManagementDeploymentOverride::class;
+  protected $deploymentOverridesDataType = 'array';
   /**
-   * @var bool
-   */
-  public $allowVerticalScale;
-  /**
+   * Optional. Enables the installation of Config Sync. If set to true, the
+   * Feature will manage Config Sync resources, and apply the other ConfigSync
+   * fields if they exist. If set to false, the Feature will ignore all other
+   * ConfigSync fields and delete the Config Sync resources. If omitted,
+   * ConfigSync is considered enabled if the git or oci field is present.
+   *
    * @var bool
    */
   public $enabled;
   protected $gitType = ConfigManagementGitConfig::class;
   protected $gitDataType = '';
-  protected $managedType = ConfigManagementManaged::class;
-  protected $managedDataType = '';
+  /**
+   * Optional. The Email of the Google Cloud Service Account (GSA) used for
+   * exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when
+   * Workload Identity is enabled. The GSA should have the Monitoring Metric
+   * Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes
+   * ServiceAccount `default` in the namespace `config-management-monitoring`
+   * should be bound to the GSA. Deprecated: If Workload Identity Federation for
+   * GKE is enabled, Google Cloud Service Account is no longer needed for
+   * exporting Config Sync metrics: https://cloud.google.com/kubernetes-
+   * engine/enterprise/config-sync/docs/how-to/monitor-config-sync-cloud-
+   * monitoring#custom-monitoring.
+   *
+   * @deprecated
+   * @var string
+   */
+  public $metricsGcpServiceAccountEmail;
   protected $ociType = ConfigManagementOciConfig::class;
   protected $ociDataType = '';
   /**
+   * Optional. Set to true to enable the Config Sync admission webhook to
+   * prevent drifts. If set to false, disables the Config Sync admission webhook
+   * and does not prevent drifts. Defaults to false. See
+   * https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/how-
+   * to/prevent-config-drift for details.
+   *
    * @var bool
    */
   public $preventDrift;
   /**
+   * Optional. Specifies whether the Config Sync repo is in `hierarchy` or
+   * `unstructured` mode. Defaults to `hierarchy`. See
+   * https://docs.cloud.google.com/kubernetes-engine/config-
+   * sync/docs/concepts/configs#organize-configs for an explanation.
+   *
    * @var string
    */
   public $sourceFormat;
+  /**
+   * Optional. Set to true to stop syncing configs for a single cluster. Default
+   * to false.
+   *
+   * @var bool
+   */
+  public $stopSyncing;
 
   /**
-   * @param bool
+   * Optional. Configuration for deployment overrides. Applies only to Config
+   * Sync deployments with containers that are not a root or namespace
+   * reconciler: `reconciler-manager`, `otel-collector`, `resource-group-
+   * controller-manager`, `admission-webhook`. To override a root or namespace
+   * reconciler, use the rootsync or reposync fields at
+   * https://docs.cloud.google.com/kubernetes-engine/config-
+   * sync/docs/reference/rootsync-reposync-fields#override-resources instead.
+   *
+   * @param ConfigManagementDeploymentOverride[] $deploymentOverrides
    */
-  public function setAllowVerticalScale($allowVerticalScale)
+  public function setDeploymentOverrides($deploymentOverrides)
   {
-    $this->allowVerticalScale = $allowVerticalScale;
+    $this->deploymentOverrides = $deploymentOverrides;
   }
   /**
-   * @return bool
+   * @return ConfigManagementDeploymentOverride[]
    */
-  public function getAllowVerticalScale()
+  public function getDeploymentOverrides()
   {
-    return $this->allowVerticalScale;
+    return $this->deploymentOverrides;
   }
   /**
-   * @param bool
+   * Optional. Enables the installation of Config Sync. If set to true, the
+   * Feature will manage Config Sync resources, and apply the other ConfigSync
+   * fields if they exist. If set to false, the Feature will ignore all other
+   * ConfigSync fields and delete the Config Sync resources. If omitted,
+   * ConfigSync is considered enabled if the git or oci field is present.
+   *
+   * @param bool $enabled
    */
   public function setEnabled($enabled)
   {
@@ -71,7 +122,9 @@ class ConfigManagementConfigSync extends \Google\Model
     return $this->enabled;
   }
   /**
-   * @param ConfigManagementGitConfig
+   * Optional. Git repo configuration for the cluster.
+   *
+   * @param ConfigManagementGitConfig $git
    */
   public function setGit(ConfigManagementGitConfig $git)
   {
@@ -85,21 +138,36 @@ class ConfigManagementConfigSync extends \Google\Model
     return $this->git;
   }
   /**
-   * @param ConfigManagementManaged
+   * Optional. The Email of the Google Cloud Service Account (GSA) used for
+   * exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when
+   * Workload Identity is enabled. The GSA should have the Monitoring Metric
+   * Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes
+   * ServiceAccount `default` in the namespace `config-management-monitoring`
+   * should be bound to the GSA. Deprecated: If Workload Identity Federation for
+   * GKE is enabled, Google Cloud Service Account is no longer needed for
+   * exporting Config Sync metrics: https://cloud.google.com/kubernetes-
+   * engine/enterprise/config-sync/docs/how-to/monitor-config-sync-cloud-
+   * monitoring#custom-monitoring.
+   *
+   * @deprecated
+   * @param string $metricsGcpServiceAccountEmail
    */
-  public function setManaged(ConfigManagementManaged $managed)
+  public function setMetricsGcpServiceAccountEmail($metricsGcpServiceAccountEmail)
   {
-    $this->managed = $managed;
+    $this->metricsGcpServiceAccountEmail = $metricsGcpServiceAccountEmail;
   }
   /**
-   * @return ConfigManagementManaged
+   * @deprecated
+   * @return string
    */
-  public function getManaged()
+  public function getMetricsGcpServiceAccountEmail()
   {
-    return $this->managed;
+    return $this->metricsGcpServiceAccountEmail;
   }
   /**
-   * @param ConfigManagementOciConfig
+   * Optional. OCI repo configuration for the cluster.
+   *
+   * @param ConfigManagementOciConfig $oci
    */
   public function setOci(ConfigManagementOciConfig $oci)
   {
@@ -113,7 +181,13 @@ class ConfigManagementConfigSync extends \Google\Model
     return $this->oci;
   }
   /**
-   * @param bool
+   * Optional. Set to true to enable the Config Sync admission webhook to
+   * prevent drifts. If set to false, disables the Config Sync admission webhook
+   * and does not prevent drifts. Defaults to false. See
+   * https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/how-
+   * to/prevent-config-drift for details.
+   *
+   * @param bool $preventDrift
    */
   public function setPreventDrift($preventDrift)
   {
@@ -127,7 +201,12 @@ class ConfigManagementConfigSync extends \Google\Model
     return $this->preventDrift;
   }
   /**
-   * @param string
+   * Optional. Specifies whether the Config Sync repo is in `hierarchy` or
+   * `unstructured` mode. Defaults to `hierarchy`. See
+   * https://docs.cloud.google.com/kubernetes-engine/config-
+   * sync/docs/concepts/configs#organize-configs for an explanation.
+   *
+   * @param string $sourceFormat
    */
   public function setSourceFormat($sourceFormat)
   {
@@ -139,6 +218,23 @@ class ConfigManagementConfigSync extends \Google\Model
   public function getSourceFormat()
   {
     return $this->sourceFormat;
+  }
+  /**
+   * Optional. Set to true to stop syncing configs for a single cluster. Default
+   * to false.
+   *
+   * @param bool $stopSyncing
+   */
+  public function setStopSyncing($stopSyncing)
+  {
+    $this->stopSyncing = $stopSyncing;
+  }
+  /**
+   * @return bool
+   */
+  public function getStopSyncing()
+  {
+    return $this->stopSyncing;
   }
 }
 

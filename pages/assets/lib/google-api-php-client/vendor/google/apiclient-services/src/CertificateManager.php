@@ -27,7 +27,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://cloud.google.com/certificate-manager" target="_blank">Documentation</a>
+ * <a href="https://docs.cloud.google.com/certificate-manager/docs/overview" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -46,6 +46,7 @@ class CertificateManager extends \Google\Service
   public $projects_locations_dnsAuthorizations;
   public $projects_locations_operations;
   public $projects_locations_trustConfigs;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CertificateManager service.
@@ -58,6 +59,7 @@ class CertificateManager extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://certificatemanager.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://certificatemanager.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -87,6 +89,11 @@ class CertificateManager extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -167,6 +174,20 @@ class CertificateManager extends \Google\Service
                   'type' => 'integer',
                 ],
                 'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -567,6 +588,10 @@ class CertificateManager extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],

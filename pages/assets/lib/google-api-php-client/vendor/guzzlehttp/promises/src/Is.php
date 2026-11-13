@@ -9,6 +9,10 @@ namespace GuzzleHttp\Promise;
  */
 final class Is
 {
+    private function __construct()
+    {
+    }
+
     /**
      * Returns true if a promise is pending.
      *
@@ -19,7 +23,7 @@ final class Is
     {
         \trigger_deprecation(
             'guzzlehttp/promises',
-            '2.6',
+            '3.1',
             '%s() is deprecated and will be removed in 4.0. Use %s::isPending() instead.',
             __METHOD__,
             State::class
@@ -38,7 +42,7 @@ final class Is
     {
         \trigger_deprecation(
             'guzzlehttp/promises',
-            '2.6',
+            '3.1',
             '%s() is deprecated and will be removed in 4.0. Use %s::isSettled() instead.',
             __METHOD__,
             State::class
@@ -57,7 +61,7 @@ final class Is
     {
         \trigger_deprecation(
             'guzzlehttp/promises',
-            '2.6',
+            '3.1',
             '%s() is deprecated and will be removed in 4.0. Use %s::isFulfilled() instead.',
             __METHOD__,
             State::class
@@ -76,7 +80,7 @@ final class Is
     {
         \trigger_deprecation(
             'guzzlehttp/promises',
-            '2.6',
+            '3.1',
             '%s() is deprecated and will be removed in 4.0. Use %s::isRejected() instead.',
             __METHOD__,
             State::class

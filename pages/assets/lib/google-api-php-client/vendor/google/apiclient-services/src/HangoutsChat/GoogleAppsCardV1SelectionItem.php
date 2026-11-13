@@ -20,20 +20,62 @@ namespace Google\Service\HangoutsChat;
 class GoogleAppsCardV1SelectionItem extends \Google\Model
 {
   /**
+   * For multiselect menus, a text description or label that's displayed below
+   * the item's `text` field.
+   *
+   * @var string
+   */
+  public $bottomText;
+  /**
+   * Whether the item is selected by default. If the selection input only
+   * accepts one value (such as for radio buttons or a dropdown menu), only set
+   * this field for one item.
+   *
    * @var bool
    */
   public $selected;
   /**
    * @var string
    */
+  public $startIconUri;
+  /**
+   * The text that identifies or describes the item to users.
+   *
+   * @var string
+   */
   public $text;
   /**
+   * The value associated with this item. The client should use this as a form
+   * input value. For details about working with form inputs, see [Receive form
+   * data](https://developers.google.com/workspace/chat/read-form-data).
+   *
    * @var string
    */
   public $value;
 
   /**
-   * @param bool
+   * For multiselect menus, a text description or label that's displayed below
+   * the item's `text` field.
+   *
+   * @param string $bottomText
+   */
+  public function setBottomText($bottomText)
+  {
+    $this->bottomText = $bottomText;
+  }
+  /**
+   * @return string
+   */
+  public function getBottomText()
+  {
+    return $this->bottomText;
+  }
+  /**
+   * Whether the item is selected by default. If the selection input only
+   * accepts one value (such as for radio buttons or a dropdown menu), only set
+   * this field for one item.
+   *
+   * @param bool $selected
    */
   public function setSelected($selected)
   {
@@ -47,7 +89,23 @@ class GoogleAppsCardV1SelectionItem extends \Google\Model
     return $this->selected;
   }
   /**
-   * @param string
+   * @param string $startIconUri
+   */
+  public function setStartIconUri($startIconUri)
+  {
+    $this->startIconUri = $startIconUri;
+  }
+  /**
+   * @return string
+   */
+  public function getStartIconUri()
+  {
+    return $this->startIconUri;
+  }
+  /**
+   * The text that identifies or describes the item to users.
+   *
+   * @param string $text
    */
   public function setText($text)
   {
@@ -61,7 +119,11 @@ class GoogleAppsCardV1SelectionItem extends \Google\Model
     return $this->text;
   }
   /**
-   * @param string
+   * The value associated with this item. The client should use this as a form
+   * input value. For details about working with form inputs, see [Receive form
+   * data](https://developers.google.com/workspace/chat/read-form-data).
+   *
+   * @param string $value
    */
   public function setValue($value)
   {

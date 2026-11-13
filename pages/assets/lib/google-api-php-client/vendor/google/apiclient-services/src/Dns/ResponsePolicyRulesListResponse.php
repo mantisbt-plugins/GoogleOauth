@@ -20,9 +20,16 @@ namespace Google\Service\Dns;
 class ResponsePolicyRulesListResponse extends \Google\Collection
 {
   protected $collection_key = 'responsePolicyRules';
-  protected $headerType = ResponseHeader::class;
-  protected $headerDataType = '';
   /**
+   * This field indicates that more results are available beyond the last page
+   * displayed. To fetch the results, make another list request and use this
+   * value as your page token. This lets you retrieve the complete contents of a
+   * very large collection one page at a time. However, if the contents of the
+   * collection change between the first and last paginated list request, the
+   * set of all elements returned are an inconsistent view of the collection.
+   * You can't retrieve a consistent snapshot of a collection larger than the
+   * maximum page size.
+   *
    * @var string
    */
   public $nextPageToken;
@@ -30,21 +37,16 @@ class ResponsePolicyRulesListResponse extends \Google\Collection
   protected $responsePolicyRulesDataType = 'array';
 
   /**
-   * @param ResponseHeader
-   */
-  public function setHeader(ResponseHeader $header)
-  {
-    $this->header = $header;
-  }
-  /**
-   * @return ResponseHeader
-   */
-  public function getHeader()
-  {
-    return $this->header;
-  }
-  /**
-   * @param string
+   * This field indicates that more results are available beyond the last page
+   * displayed. To fetch the results, make another list request and use this
+   * value as your page token. This lets you retrieve the complete contents of a
+   * very large collection one page at a time. However, if the contents of the
+   * collection change between the first and last paginated list request, the
+   * set of all elements returned are an inconsistent view of the collection.
+   * You can't retrieve a consistent snapshot of a collection larger than the
+   * maximum page size.
+   *
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -58,7 +60,9 @@ class ResponsePolicyRulesListResponse extends \Google\Collection
     return $this->nextPageToken;
   }
   /**
-   * @param ResponsePolicyRule[]
+   * The Response Policy Rule resources.
+   *
+   * @param ResponsePolicyRule[] $responsePolicyRules
    */
   public function setResponsePolicyRules($responsePolicyRules)
   {

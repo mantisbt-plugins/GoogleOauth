@@ -28,7 +28,7 @@ class GoogleCloudLocationListLocationsResponse extends \Google\Collection
   public $nextPageToken;
 
   /**
-   * @param GoogleCloudLocationLocation[]
+   * @param GoogleCloudLocationLocation[] $locations
    */
   public function setLocations($locations)
   {
@@ -42,7 +42,7 @@ class GoogleCloudLocationListLocationsResponse extends \Google\Collection
     return $this->locations;
   }
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {

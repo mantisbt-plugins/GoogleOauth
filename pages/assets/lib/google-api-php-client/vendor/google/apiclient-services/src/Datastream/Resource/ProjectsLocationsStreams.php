@@ -19,6 +19,7 @@ namespace Google\Service\Datastream\Resource;
 
 use Google\Service\Datastream\ListStreamsResponse;
 use Google\Service\Datastream\Operation;
+use Google\Service\Datastream\RunStreamRequest;
 use Google\Service\Datastream\Stream;
 
 /**
@@ -55,6 +56,7 @@ class ProjectsLocationsStreams extends \Google\Service\Resource
    * @opt_param bool validateOnly Optional. Only validate the stream, but don't
    * create any resources. The default is false.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Stream $postBody, $optParams = [])
   {
@@ -80,6 +82,7 @@ class ProjectsLocationsStreams extends \Google\Service\Resource
    * valid UUID with the exception that zero UUID is not supported
    * (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -93,6 +96,7 @@ class ProjectsLocationsStreams extends \Google\Service\Resource
    * @param string $name Required. The name of the stream resource to get.
    * @param array $optParams Optional parameters.
    * @return Stream
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -108,16 +112,17 @@ class ProjectsLocationsStreams extends \Google\Service\Resource
    * streams.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Filter request.
-   * @opt_param string orderBy Order by fields for the result.
-   * @opt_param int pageSize Maximum number of streams to return. If unspecified,
-   * at most 50 streams will be returned. The maximum value is 1000; values above
-   * 1000 will be coerced to 1000.
-   * @opt_param string pageToken Page token received from a previous `ListStreams`
-   * call. Provide this to retrieve the subsequent page. When paginating, all
-   * other parameters provided to `ListStreams` must match the call that provided
-   * the page token.
+   * @opt_param string filter Optional. Filter request.
+   * @opt_param string orderBy Optional. Order by fields for the result.
+   * @opt_param int pageSize Optional. Maximum number of streams to return. If
+   * unspecified, at most 50 streams will be returned. The maximum value is 1000;
+   * values above 1000 will be coerced to 1000.
+   * @opt_param string pageToken Optional. Page token received from a previous
+   * `ListStreams` call. Provide this to retrieve the subsequent page. When
+   * paginating, all other parameters provided to `ListStreams` must match the
+   * call that provided the page token.
    * @return ListStreamsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsStreams($parent, $optParams = [])
   {
@@ -128,7 +133,7 @@ class ProjectsLocationsStreams extends \Google\Service\Resource
   /**
    * Use this method to update the configuration of a stream. (streams.patch)
    *
-   * @param string $name Output only. The stream's name.
+   * @param string $name Output only. Identifier. The stream's name.
    * @param Stream $postBody
    * @param array $optParams Optional parameters.
    *
@@ -152,12 +157,30 @@ class ProjectsLocationsStreams extends \Google\Service\Resource
    * @opt_param bool validateOnly Optional. Only validate the stream with the
    * changes, without actually updating it. The default is false.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Stream $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], Operation::class);
+  }
+  /**
+   * Use this method to start, resume or recover a stream with a non default CDC
+   * strategy. (streams.run)
+   *
+   * @param string $name Required. Name of the stream resource to start, in the
+   * format: projects/{project_id}/locations/{location}/streams/{stream_name}
+   * @param RunStreamRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function run($name, RunStreamRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('run', [$params], Operation::class);
   }
 }
 

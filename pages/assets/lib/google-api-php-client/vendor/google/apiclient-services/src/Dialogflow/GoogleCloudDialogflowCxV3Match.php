@@ -19,6 +19,15 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3Match extends \Google\Model
 {
+  public const MATCH_TYPE_MATCH_TYPE_UNSPECIFIED = 'MATCH_TYPE_UNSPECIFIED';
+  public const MATCH_TYPE_INTENT = 'INTENT';
+  public const MATCH_TYPE_DIRECT_INTENT = 'DIRECT_INTENT';
+  public const MATCH_TYPE_PARAMETER_FILLING = 'PARAMETER_FILLING';
+  public const MATCH_TYPE_NO_MATCH = 'NO_MATCH';
+  public const MATCH_TYPE_NO_INPUT = 'NO_INPUT';
+  public const MATCH_TYPE_EVENT = 'EVENT';
+  public const MATCH_TYPE_KNOWLEDGE_CONNECTOR = 'KNOWLEDGE_CONNECTOR';
+  public const MATCH_TYPE_PLAYBOOK = 'PLAYBOOK';
   /**
    * @var float
    */
@@ -43,7 +52,7 @@ class GoogleCloudDialogflowCxV3Match extends \Google\Model
   public $resolvedInput;
 
   /**
-   * @param float
+   * @param float $confidence
    */
   public function setConfidence($confidence)
   {
@@ -57,7 +66,7 @@ class GoogleCloudDialogflowCxV3Match extends \Google\Model
     return $this->confidence;
   }
   /**
-   * @param string
+   * @param string $event
    */
   public function setEvent($event)
   {
@@ -71,7 +80,7 @@ class GoogleCloudDialogflowCxV3Match extends \Google\Model
     return $this->event;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3Intent
+   * @param GoogleCloudDialogflowCxV3Intent $intent
    */
   public function setIntent(GoogleCloudDialogflowCxV3Intent $intent)
   {
@@ -85,21 +94,21 @@ class GoogleCloudDialogflowCxV3Match extends \Google\Model
     return $this->intent;
   }
   /**
-   * @param string
+   * @param self::MATCH_TYPE_* $matchType
    */
   public function setMatchType($matchType)
   {
     $this->matchType = $matchType;
   }
   /**
-   * @return string
+   * @return self::MATCH_TYPE_*
    */
   public function getMatchType()
   {
     return $this->matchType;
   }
   /**
-   * @param array[]
+   * @param array[] $parameters
    */
   public function setParameters($parameters)
   {
@@ -113,7 +122,7 @@ class GoogleCloudDialogflowCxV3Match extends \Google\Model
     return $this->parameters;
   }
   /**
-   * @param string
+   * @param string $resolvedInput
    */
   public function setResolvedInput($resolvedInput)
   {

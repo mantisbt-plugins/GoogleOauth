@@ -25,7 +25,7 @@ class GoogleCloudDialogflowV2InputDataset extends \Google\Model
   public $dataset;
 
   /**
-   * @param string
+   * @param string $dataset
    */
   public function setDataset($dataset)
   {

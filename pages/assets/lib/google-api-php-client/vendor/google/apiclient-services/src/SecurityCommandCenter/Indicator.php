@@ -36,7 +36,7 @@ class Indicator extends \Google\Collection
   public $uris;
 
   /**
-   * @param string[]
+   * @param string[] $domains
    */
   public function setDomains($domains)
   {
@@ -50,7 +50,7 @@ class Indicator extends \Google\Collection
     return $this->domains;
   }
   /**
-   * @param string[]
+   * @param string[] $ipAddresses
    */
   public function setIpAddresses($ipAddresses)
   {
@@ -64,7 +64,7 @@ class Indicator extends \Google\Collection
     return $this->ipAddresses;
   }
   /**
-   * @param ProcessSignature[]
+   * @param ProcessSignature[] $signatures
    */
   public function setSignatures($signatures)
   {
@@ -78,7 +78,7 @@ class Indicator extends \Google\Collection
     return $this->signatures;
   }
   /**
-   * @param string[]
+   * @param string[] $uris
    */
   public function setUris($uris)
   {

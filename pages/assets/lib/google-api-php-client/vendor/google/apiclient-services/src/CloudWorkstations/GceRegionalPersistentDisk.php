@@ -20,28 +20,108 @@ namespace Google\Service\CloudWorkstations;
 class GceRegionalPersistentDisk extends \Google\Model
 {
   /**
+   * Do not use.
+   */
+  public const RECLAIM_POLICY_RECLAIM_POLICY_UNSPECIFIED = 'RECLAIM_POLICY_UNSPECIFIED';
+  /**
+   * Delete the persistent disk when deleting the workstation.
+   */
+  public const RECLAIM_POLICY_DELETE = 'DELETE';
+  /**
+   * Keep the persistent disk when deleting the workstation. An administrator
+   * must manually delete the disk.
+   */
+  public const RECLAIM_POLICY_RETAIN = 'RETAIN';
+  /**
+   * Optional. Number of seconds to wait after initially creating or
+   * subsequently shutting down the workstation before converting its disk into
+   * a snapshot. This generally saves costs at the expense of greater startup
+   * time on next workstation start, as the service will need to create a disk
+   * from the archival snapshot. A value of `"0s"` indicates that the disk will
+   * never be archived.
+   *
+   * @var string
+   */
+  public $archiveTimeout;
+  /**
+   * Optional. The [type of the persistent
+   * disk](https://cloud.google.com/compute/docs/disks#disk-types) for the home
+   * directory. Defaults to `"pd-standard"`.
+   *
    * @var string
    */
   public $diskType;
   /**
+   * Optional. Type of file system that the disk should be formatted with. The
+   * workstation image must support this file system type. Must be empty if
+   * source_snapshot is set. Defaults to `"ext4"`.
+   *
    * @var string
    */
   public $fsType;
   /**
+   * Optional. Maximum size in GB to which this persistent directory can be
+   * resized. Defaults to `0`, which indicates no maximum limit is enforced by
+   * this configuration. Resizing is still subject to the quotas and limits of
+   * the underlying disk type.
+   *
+   * @var int
+   */
+  public $maxSizeGb;
+  /**
+   * Optional. Whether the persistent disk should be deleted when the
+   * workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to
+   * `DELETE`.
+   *
    * @var string
    */
   public $reclaimPolicy;
   /**
+   * Optional. The GB capacity of a persistent home directory for each
+   * workstation created with this configuration. Must be empty if
+   * source_snapshot is set. Valid values are `10`, `50`, `100`, `200`, `500`,
+   * or `1000`. Defaults to `200`. If less than `200` GB, the disk_type must be
+   * `"pd-balanced"` or `"pd-ssd"`.
+   *
    * @var int
    */
   public $sizeGb;
   /**
+   * Optional. Name of the snapshot to use as the source for the disk. If set,
+   * size_gb and fs_type must be empty. Must be formatted as ext4 file system
+   * with no partitions.
+   *
    * @var string
    */
   public $sourceSnapshot;
 
   /**
-   * @param string
+   * Optional. Number of seconds to wait after initially creating or
+   * subsequently shutting down the workstation before converting its disk into
+   * a snapshot. This generally saves costs at the expense of greater startup
+   * time on next workstation start, as the service will need to create a disk
+   * from the archival snapshot. A value of `"0s"` indicates that the disk will
+   * never be archived.
+   *
+   * @param string $archiveTimeout
+   */
+  public function setArchiveTimeout($archiveTimeout)
+  {
+    $this->archiveTimeout = $archiveTimeout;
+  }
+  /**
+   * @return string
+   */
+  public function getArchiveTimeout()
+  {
+    return $this->archiveTimeout;
+  }
+  /**
+   * Optional. The [type of the persistent
+   * disk](https://cloud.google.com/compute/docs/disks#disk-types) for the home
+   * directory. Defaults to `"pd-standard"`.
+   *
+   * @param string $diskType
    */
   public function setDiskType($diskType)
   {
@@ -55,7 +135,11 @@ class GceRegionalPersistentDisk extends \Google\Model
     return $this->diskType;
   }
   /**
-   * @param string
+   * Optional. Type of file system that the disk should be formatted with. The
+   * workstation image must support this file system type. Must be empty if
+   * source_snapshot is set. Defaults to `"ext4"`.
+   *
+   * @param string $fsType
    */
   public function setFsType($fsType)
   {
@@ -69,21 +153,52 @@ class GceRegionalPersistentDisk extends \Google\Model
     return $this->fsType;
   }
   /**
-   * @param string
+   * Optional. Maximum size in GB to which this persistent directory can be
+   * resized. Defaults to `0`, which indicates no maximum limit is enforced by
+   * this configuration. Resizing is still subject to the quotas and limits of
+   * the underlying disk type.
+   *
+   * @param int $maxSizeGb
+   */
+  public function setMaxSizeGb($maxSizeGb)
+  {
+    $this->maxSizeGb = $maxSizeGb;
+  }
+  /**
+   * @return int
+   */
+  public function getMaxSizeGb()
+  {
+    return $this->maxSizeGb;
+  }
+  /**
+   * Optional. Whether the persistent disk should be deleted when the
+   * workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to
+   * `DELETE`.
+   *
+   * Accepted values: RECLAIM_POLICY_UNSPECIFIED, DELETE, RETAIN
+   *
+   * @param self::RECLAIM_POLICY_* $reclaimPolicy
    */
   public function setReclaimPolicy($reclaimPolicy)
   {
     $this->reclaimPolicy = $reclaimPolicy;
   }
   /**
-   * @return string
+   * @return self::RECLAIM_POLICY_*
    */
   public function getReclaimPolicy()
   {
     return $this->reclaimPolicy;
   }
   /**
-   * @param int
+   * Optional. The GB capacity of a persistent home directory for each
+   * workstation created with this configuration. Must be empty if
+   * source_snapshot is set. Valid values are `10`, `50`, `100`, `200`, `500`,
+   * or `1000`. Defaults to `200`. If less than `200` GB, the disk_type must be
+   * `"pd-balanced"` or `"pd-ssd"`.
+   *
+   * @param int $sizeGb
    */
   public function setSizeGb($sizeGb)
   {
@@ -97,7 +212,11 @@ class GceRegionalPersistentDisk extends \Google\Model
     return $this->sizeGb;
   }
   /**
-   * @param string
+   * Optional. Name of the snapshot to use as the source for the disk. If set,
+   * size_gb and fs_type must be empty. Must be formatted as ext4 file system
+   * with no partitions.
+   *
+   * @param string $sourceSnapshot
    */
   public function setSourceSnapshot($sourceSnapshot)
   {

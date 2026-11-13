@@ -20,7 +20,10 @@ namespace Google\Service\CloudFilestore\Resource;
 use Google\Service\CloudFilestore\Instance;
 use Google\Service\CloudFilestore\ListInstancesResponse;
 use Google\Service\CloudFilestore\Operation;
+use Google\Service\CloudFilestore\PauseReplicaRequest;
+use Google\Service\CloudFilestore\PromoteReplicaRequest;
 use Google\Service\CloudFilestore\RestoreInstanceRequest;
+use Google\Service\CloudFilestore\ResumeReplicaRequest;
 use Google\Service\CloudFilestore\RevertInstanceRequest;
 
 /**
@@ -48,6 +51,7 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * @opt_param string instanceId Required. The name of the instance to create.
    * The name must be unique for the specified project and location.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Instance $postBody, $optParams = [])
   {
@@ -66,6 +70,7 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * be deleted. (Otherwise, the request will only work if the instance has no
    * snapshots.)
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -80,6 +85,7 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * `projects/{project_id}/locations/{location}/instances/{instance_id}`.
    * @param array $optParams Optional parameters.
    * @return Instance
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -105,6 +111,7 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * @opt_param string pageToken The next_page_token value to use if there are
    * additional results to retrieve for this list request.
    * @return ListInstancesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsInstances($parent, $optParams = [])
   {
@@ -122,14 +129,54 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    *
    * @opt_param string updateMask Mask of fields to update. At least one path must
    * be supplied in this field. The elements of the repeated paths field may only
-   * include these fields: * "description" * "file_shares" * "labels"
+   * include these fields: * "description" * "file_shares" * "labels" *
+   * "performance_config" * "deletion_protection_enabled" *
+   * "deletion_protection_reason"
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Instance $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], Operation::class);
+  }
+  /**
+   * Pause the standby instance (replica). WARNING: This operation makes the
+   * standby instance's NFS filesystem writable. Any data written to the standby
+   * instance while paused will be lost when the replica is resumed or promoted.
+   * (instances.pauseReplica)
+   *
+   * @param string $name Required. The resource name of the instance, in the
+   * format
+   * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
+   * @param PauseReplicaRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function pauseReplica($name, PauseReplicaRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('pauseReplica', [$params], Operation::class);
+  }
+  /**
+   * Promote the standby instance (replica). (instances.promoteReplica)
+   *
+   * @param string $name Required. The resource name of the instance, in the
+   * format
+   * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
+   * @param PromoteReplicaRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function promoteReplica($name, PromoteReplicaRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('promoteReplica', [$params], Operation::class);
   }
   /**
    * Restores an existing instance's file share from a backup. The capacity of the
@@ -143,6 +190,7 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * @param RestoreInstanceRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function restore($name, RestoreInstanceRequest $postBody, $optParams = [])
   {
@@ -151,15 +199,35 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
     return $this->call('restore', [$params], Operation::class);
   }
   /**
+   * Resume the standby instance (replica). WARNING: Any data written to the
+   * standby instance while paused will be lost when the replica is resumed.
+   * (instances.resumeReplica)
+   *
+   * @param string $name Required. The resource name of the instance, in the
+   * format
+   * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
+   * @param ResumeReplicaRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function resumeReplica($name, ResumeReplicaRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('resumeReplica', [$params], Operation::class);
+  }
+  /**
    * Revert an existing instance's file system to a specified snapshot.
    * (instances.revert)
    *
-   * @param string $name Required.
-   * projects/{project_id}/locations/{location_id}/instances/{instance_id}. The
-   * resource name of the instance, in the format
+   * @param string $name Required. The resource name of the instance, in the
+   * format
+   * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
    * @param RevertInstanceRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function revert($name, RevertInstanceRequest $postBody, $optParams = [])
   {

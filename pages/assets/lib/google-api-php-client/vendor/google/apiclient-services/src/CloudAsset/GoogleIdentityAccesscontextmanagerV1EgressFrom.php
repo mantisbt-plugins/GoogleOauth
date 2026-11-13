@@ -19,18 +19,75 @@ namespace Google\Service\CloudAsset;
 
 class GoogleIdentityAccesscontextmanagerV1EgressFrom extends \Google\Collection
 {
-  protected $collection_key = 'identities';
   /**
+   * No blanket identity group specified.
+   */
+  public const IDENTITY_TYPE_IDENTITY_TYPE_UNSPECIFIED = 'IDENTITY_TYPE_UNSPECIFIED';
+  /**
+   * Authorize access from all identities outside the perimeter.
+   */
+  public const IDENTITY_TYPE_ANY_IDENTITY = 'ANY_IDENTITY';
+  /**
+   * Authorize access from all human users outside the perimeter.
+   */
+  public const IDENTITY_TYPE_ANY_USER_ACCOUNT = 'ANY_USER_ACCOUNT';
+  /**
+   * Authorize access from all service accounts outside the perimeter.
+   */
+  public const IDENTITY_TYPE_ANY_SERVICE_ACCOUNT = 'ANY_SERVICE_ACCOUNT';
+  /**
+   * Enforcement preference unspecified, will not enforce traffic restrictions
+   * based on `sources` in EgressFrom.
+   */
+  public const SOURCE_RESTRICTION_SOURCE_RESTRICTION_UNSPECIFIED = 'SOURCE_RESTRICTION_UNSPECIFIED';
+  /**
+   * Enforcement preference enabled, traffic restrictions will be enforced based
+   * on `sources` in EgressFrom.
+   */
+  public const SOURCE_RESTRICTION_SOURCE_RESTRICTION_ENABLED = 'SOURCE_RESTRICTION_ENABLED';
+  /**
+   * Enforcement preference disabled, will not enforce traffic restrictions
+   * based on `sources` in EgressFrom.
+   */
+  public const SOURCE_RESTRICTION_SOURCE_RESTRICTION_DISABLED = 'SOURCE_RESTRICTION_DISABLED';
+  protected $collection_key = 'sources';
+  /**
+   * A list of identities that are allowed access through [EgressPolicy].
+   * Identities can be an individual user, service account, Google group, third-
+   * party identity, or agent identity. For the list of supported identity
+   * types, see https://docs.cloud.google.com/vpc-service-
+   * controls/docs/supported-identities.
+   *
    * @var string[]
    */
   public $identities;
   /**
+   * Specifies the type of identities that are allowed access to outside the
+   * perimeter. If left unspecified, then members of `identities` field will be
+   * allowed access.
+   *
    * @var string
    */
   public $identityType;
+  /**
+   * Whether to enforce traffic restrictions based on `sources` field. If the
+   * `sources` field is not empty, then this field must be set to
+   * `SOURCE_RESTRICTION_ENABLED`.
+   *
+   * @var string
+   */
+  public $sourceRestriction;
+  protected $sourcesType = GoogleIdentityAccesscontextmanagerV1EgressSource::class;
+  protected $sourcesDataType = 'array';
 
   /**
-   * @param string[]
+   * A list of identities that are allowed access through [EgressPolicy].
+   * Identities can be an individual user, service account, Google group, third-
+   * party identity, or agent identity. For the list of supported identity
+   * types, see https://docs.cloud.google.com/vpc-service-
+   * controls/docs/supported-identities.
+   *
+   * @param string[] $identities
    */
   public function setIdentities($identities)
   {
@@ -44,18 +101,64 @@ class GoogleIdentityAccesscontextmanagerV1EgressFrom extends \Google\Collection
     return $this->identities;
   }
   /**
-   * @param string
+   * Specifies the type of identities that are allowed access to outside the
+   * perimeter. If left unspecified, then members of `identities` field will be
+   * allowed access.
+   *
+   * Accepted values: IDENTITY_TYPE_UNSPECIFIED, ANY_IDENTITY, ANY_USER_ACCOUNT,
+   * ANY_SERVICE_ACCOUNT
+   *
+   * @param self::IDENTITY_TYPE_* $identityType
    */
   public function setIdentityType($identityType)
   {
     $this->identityType = $identityType;
   }
   /**
-   * @return string
+   * @return self::IDENTITY_TYPE_*
    */
   public function getIdentityType()
   {
     return $this->identityType;
+  }
+  /**
+   * Whether to enforce traffic restrictions based on `sources` field. If the
+   * `sources` field is not empty, then this field must be set to
+   * `SOURCE_RESTRICTION_ENABLED`.
+   *
+   * Accepted values: SOURCE_RESTRICTION_UNSPECIFIED,
+   * SOURCE_RESTRICTION_ENABLED, SOURCE_RESTRICTION_DISABLED
+   *
+   * @param self::SOURCE_RESTRICTION_* $sourceRestriction
+   */
+  public function setSourceRestriction($sourceRestriction)
+  {
+    $this->sourceRestriction = $sourceRestriction;
+  }
+  /**
+   * @return self::SOURCE_RESTRICTION_*
+   */
+  public function getSourceRestriction()
+  {
+    return $this->sourceRestriction;
+  }
+  /**
+   * Sources that this EgressPolicy authorizes access from. If this field is not
+   * empty, then `source_restriction` must be set to
+   * `SOURCE_RESTRICTION_ENABLED`.
+   *
+   * @param GoogleIdentityAccesscontextmanagerV1EgressSource[] $sources
+   */
+  public function setSources($sources)
+  {
+    $this->sources = $sources;
+  }
+  /**
+   * @return GoogleIdentityAccesscontextmanagerV1EgressSource[]
+   */
+  public function getSources()
+  {
+    return $this->sources;
   }
 }
 

@@ -20,21 +20,60 @@ namespace Google\Service\Gmail;
 class BatchModifyMessagesRequest extends \Google\Collection
 {
   protected $collection_key = 'removeLabelIds';
+  protected $addClassificationLabelsType = ClassificationLabelValue::class;
+  protected $addClassificationLabelsDataType = 'array';
   /**
+   * A list of label IDs to add to messages.
+   *
    * @var string[]
    */
   public $addLabelIds;
   /**
+   * The IDs of the messages to modify. There is a limit of 1000 ids per
+   * request.
+   *
    * @var string[]
    */
   public $ids;
   /**
+   * A list of Classification Label values to remove from messages.
+   *
+   * @var string[]
+   */
+  public $removeClassificationLabelIds;
+  /**
+   * A list of label IDs to remove from messages.
+   *
    * @var string[]
    */
   public $removeLabelIds;
 
   /**
-   * @param string[]
+   * A list of Classification Label values to add. If a Classification Label
+   * with the same label ID is already applied to the message, fields with
+   * existing field IDs will be updated and fields with new field IDs will be
+   * added. There's a limit of 20 Classification Label values per request. If
+   * the message is already classified and the final total number of
+   * Classification Label values exceeds the maximum allowed number of
+   * Classification Label values per message, the modification fails.
+   *
+   * @param ClassificationLabelValue[] $addClassificationLabels
+   */
+  public function setAddClassificationLabels($addClassificationLabels)
+  {
+    $this->addClassificationLabels = $addClassificationLabels;
+  }
+  /**
+   * @return ClassificationLabelValue[]
+   */
+  public function getAddClassificationLabels()
+  {
+    return $this->addClassificationLabels;
+  }
+  /**
+   * A list of label IDs to add to messages.
+   *
+   * @param string[] $addLabelIds
    */
   public function setAddLabelIds($addLabelIds)
   {
@@ -48,7 +87,10 @@ class BatchModifyMessagesRequest extends \Google\Collection
     return $this->addLabelIds;
   }
   /**
-   * @param string[]
+   * The IDs of the messages to modify. There is a limit of 1000 ids per
+   * request.
+   *
+   * @param string[] $ids
    */
   public function setIds($ids)
   {
@@ -62,7 +104,25 @@ class BatchModifyMessagesRequest extends \Google\Collection
     return $this->ids;
   }
   /**
-   * @param string[]
+   * A list of Classification Label values to remove from messages.
+   *
+   * @param string[] $removeClassificationLabelIds
+   */
+  public function setRemoveClassificationLabelIds($removeClassificationLabelIds)
+  {
+    $this->removeClassificationLabelIds = $removeClassificationLabelIds;
+  }
+  /**
+   * @return string[]
+   */
+  public function getRemoveClassificationLabelIds()
+  {
+    return $this->removeClassificationLabelIds;
+  }
+  /**
+   * A list of label IDs to remove from messages.
+   *
+   * @param string[] $removeLabelIds
    */
   public function setRemoveLabelIds($removeLabelIds)
   {

@@ -19,8 +19,54 @@ namespace Google\Service\Integrations;
 
 class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
 {
+  /**
+   * Default value.
+   */
+  public const EXECUTION_METHOD_EXECUTION_METHOD_UNSPECIFIED = 'EXECUTION_METHOD_UNSPECIFIED';
+  /**
+   * Sync post.
+   */
+  public const EXECUTION_METHOD_POST = 'POST';
+  /**
+   * Async post.
+   */
+  public const EXECUTION_METHOD_POST_TO_QUEUE = 'POST_TO_QUEUE';
+  /**
+   * Async post with schedule time.
+   */
+  public const EXECUTION_METHOD_SCHEDULE = 'SCHEDULE';
+  /**
+   * Default.
+   */
+  public const INTEGRATION_VERSION_STATE_INTEGRATION_STATE_UNSPECIFIED = 'INTEGRATION_STATE_UNSPECIFIED';
+  /**
+   * Draft.
+   */
+  public const INTEGRATION_VERSION_STATE_DRAFT = 'DRAFT';
+  /**
+   * Active.
+   */
+  public const INTEGRATION_VERSION_STATE_ACTIVE = 'ACTIVE';
+  /**
+   * Archived.
+   */
+  public const INTEGRATION_VERSION_STATE_ARCHIVED = 'ARCHIVED';
+  /**
+   * Snapshot.
+   */
+  public const INTEGRATION_VERSION_STATE_SNAPSHOT = 'SNAPSHOT';
   protected $collection_key = 'responseParams';
   /**
+   * Optional. Cloud KMS resource name for the CMEK encryption key.
+   *
+   * @var string
+   */
+  public $cloudKmsKey;
+  protected $cloudLoggingDetailsType = GoogleCloudIntegrationsV1alphaCloudLoggingDetails::class;
+  protected $cloudLoggingDetailsDataType = '';
+  /**
+   * Output only. Created time of the execution.
+   *
    * @var string
    */
   public $createTime;
@@ -31,13 +77,25 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
   protected $executionDetailsType = GoogleCloudIntegrationsV1alphaExecutionDetails::class;
   protected $executionDetailsDataType = '';
   /**
+   * The ways user posts this event.
+   *
    * @var string
    */
   public $executionMethod;
   /**
+   * Output only. State of the integration version
+   *
+   * @var string
+   */
+  public $integrationVersionState;
+  /**
+   * Auto-generated primary key.
+   *
    * @var string
    */
   public $name;
+  protected $replayInfoType = GoogleCloudIntegrationsV1alphaExecutionReplayInfo::class;
+  protected $replayInfoDataType = '';
   protected $requestParametersType = GoogleCloudIntegrationsV1alphaValueType::class;
   protected $requestParametersDataType = 'map';
   protected $requestParamsType = EnterpriseCrmFrontendsEventbusProtoParameterEntry::class;
@@ -47,16 +105,64 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
   protected $responseParamsType = EnterpriseCrmFrontendsEventbusProtoParameterEntry::class;
   protected $responseParamsDataType = 'array';
   /**
+   * Output only. An increasing sequence that is set when a new snapshot is
+   * created
+   *
+   * @var string
+   */
+  public $snapshotNumber;
+  /**
+   * The trigger id of the integration trigger config. If both trigger_id and
+   * client_id is present, the integration is executed from the start tasks
+   * provided by the matching trigger config otherwise it is executed from the
+   * default start tasks.
+   *
    * @var string
    */
   public $triggerId;
   /**
+   * Output only. Last modified time of the execution.
+   *
    * @var string
    */
   public $updateTime;
 
   /**
-   * @param string
+   * Optional. Cloud KMS resource name for the CMEK encryption key.
+   *
+   * @param string $cloudKmsKey
+   */
+  public function setCloudKmsKey($cloudKmsKey)
+  {
+    $this->cloudKmsKey = $cloudKmsKey;
+  }
+  /**
+   * @return string
+   */
+  public function getCloudKmsKey()
+  {
+    return $this->cloudKmsKey;
+  }
+  /**
+   * Cloud Logging details for the integration version
+   *
+   * @param GoogleCloudIntegrationsV1alphaCloudLoggingDetails $cloudLoggingDetails
+   */
+  public function setCloudLoggingDetails(GoogleCloudIntegrationsV1alphaCloudLoggingDetails $cloudLoggingDetails)
+  {
+    $this->cloudLoggingDetails = $cloudLoggingDetails;
+  }
+  /**
+   * @return GoogleCloudIntegrationsV1alphaCloudLoggingDetails
+   */
+  public function getCloudLoggingDetails()
+  {
+    return $this->cloudLoggingDetails;
+  }
+  /**
+   * Output only. Created time of the execution.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -70,7 +176,9 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
     return $this->createTime;
   }
   /**
-   * @param GoogleCloudIntegrationsV1alphaExecution[]
+   * Direct sub executions of the following Execution.
+   *
+   * @param GoogleCloudIntegrationsV1alphaExecution[] $directSubExecutions
    */
   public function setDirectSubExecutions($directSubExecutions)
   {
@@ -84,13 +192,17 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
     return $this->directSubExecutions;
   }
   /**
-   * @param EnterpriseCrmEventbusProtoEventExecutionDetails
+   * The execution info about this event.
+   *
+   * @deprecated
+   * @param EnterpriseCrmEventbusProtoEventExecutionDetails $eventExecutionDetails
    */
   public function setEventExecutionDetails(EnterpriseCrmEventbusProtoEventExecutionDetails $eventExecutionDetails)
   {
     $this->eventExecutionDetails = $eventExecutionDetails;
   }
   /**
+   * @deprecated
    * @return EnterpriseCrmEventbusProtoEventExecutionDetails
    */
   public function getEventExecutionDetails()
@@ -98,7 +210,9 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
     return $this->eventExecutionDetails;
   }
   /**
-   * @param GoogleCloudIntegrationsV1alphaExecutionDetails
+   * Detailed info of this execution.
+   *
+   * @param GoogleCloudIntegrationsV1alphaExecutionDetails $executionDetails
    */
   public function setExecutionDetails(GoogleCloudIntegrationsV1alphaExecutionDetails $executionDetails)
   {
@@ -112,21 +226,47 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
     return $this->executionDetails;
   }
   /**
-   * @param string
+   * The ways user posts this event.
+   *
+   * Accepted values: EXECUTION_METHOD_UNSPECIFIED, POST, POST_TO_QUEUE,
+   * SCHEDULE
+   *
+   * @param self::EXECUTION_METHOD_* $executionMethod
    */
   public function setExecutionMethod($executionMethod)
   {
     $this->executionMethod = $executionMethod;
   }
   /**
-   * @return string
+   * @return self::EXECUTION_METHOD_*
    */
   public function getExecutionMethod()
   {
     return $this->executionMethod;
   }
   /**
-   * @param string
+   * Output only. State of the integration version
+   *
+   * Accepted values: INTEGRATION_STATE_UNSPECIFIED, DRAFT, ACTIVE, ARCHIVED,
+   * SNAPSHOT
+   *
+   * @param self::INTEGRATION_VERSION_STATE_* $integrationVersionState
+   */
+  public function setIntegrationVersionState($integrationVersionState)
+  {
+    $this->integrationVersionState = $integrationVersionState;
+  }
+  /**
+   * @return self::INTEGRATION_VERSION_STATE_*
+   */
+  public function getIntegrationVersionState()
+  {
+    return $this->integrationVersionState;
+  }
+  /**
+   * Auto-generated primary key.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -140,7 +280,25 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param GoogleCloudIntegrationsV1alphaValueType[]
+   * Output only. Replay info for the execution
+   *
+   * @param GoogleCloudIntegrationsV1alphaExecutionReplayInfo $replayInfo
+   */
+  public function setReplayInfo(GoogleCloudIntegrationsV1alphaExecutionReplayInfo $replayInfo)
+  {
+    $this->replayInfo = $replayInfo;
+  }
+  /**
+   * @return GoogleCloudIntegrationsV1alphaExecutionReplayInfo
+   */
+  public function getReplayInfo()
+  {
+    return $this->replayInfo;
+  }
+  /**
+   * Event parameters come in as part of the request.
+   *
+   * @param GoogleCloudIntegrationsV1alphaValueType[] $requestParameters
    */
   public function setRequestParameters($requestParameters)
   {
@@ -154,13 +312,17 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
     return $this->requestParameters;
   }
   /**
-   * @param EnterpriseCrmFrontendsEventbusProtoParameterEntry[]
+   * Event parameters come in as part of the request.
+   *
+   * @deprecated
+   * @param EnterpriseCrmFrontendsEventbusProtoParameterEntry[] $requestParams
    */
   public function setRequestParams($requestParams)
   {
     $this->requestParams = $requestParams;
   }
   /**
+   * @deprecated
    * @return EnterpriseCrmFrontendsEventbusProtoParameterEntry[]
    */
   public function getRequestParams()
@@ -168,7 +330,11 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
     return $this->requestParams;
   }
   /**
-   * @param GoogleCloudIntegrationsV1alphaValueType[]
+   * Event parameters returned as part of the response. In the case of error,
+   * the `ErrorInfo` field is returned in the following format: { "ErrorInfo": {
+   * "message": String, "code": Number } }
+   *
+   * @param GoogleCloudIntegrationsV1alphaValueType[] $responseParameters
    */
   public function setResponseParameters($responseParameters)
   {
@@ -182,13 +348,15 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
     return $this->responseParameters;
   }
   /**
-   * @param EnterpriseCrmFrontendsEventbusProtoParameterEntry[]
+   * @deprecated
+   * @param EnterpriseCrmFrontendsEventbusProtoParameterEntry[] $responseParams
    */
   public function setResponseParams($responseParams)
   {
     $this->responseParams = $responseParams;
   }
   /**
+   * @deprecated
    * @return EnterpriseCrmFrontendsEventbusProtoParameterEntry[]
    */
   public function getResponseParams()
@@ -196,7 +364,29 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
     return $this->responseParams;
   }
   /**
-   * @param string
+   * Output only. An increasing sequence that is set when a new snapshot is
+   * created
+   *
+   * @param string $snapshotNumber
+   */
+  public function setSnapshotNumber($snapshotNumber)
+  {
+    $this->snapshotNumber = $snapshotNumber;
+  }
+  /**
+   * @return string
+   */
+  public function getSnapshotNumber()
+  {
+    return $this->snapshotNumber;
+  }
+  /**
+   * The trigger id of the integration trigger config. If both trigger_id and
+   * client_id is present, the integration is executed from the start tasks
+   * provided by the matching trigger config otherwise it is executed from the
+   * default start tasks.
+   *
+   * @param string $triggerId
    */
   public function setTriggerId($triggerId)
   {
@@ -210,7 +400,9 @@ class GoogleCloudIntegrationsV1alphaExecution extends \Google\Collection
     return $this->triggerId;
   }
   /**
-   * @param string
+   * Output only. Last modified time of the execution.
+   *
+   * @param string $updateTime
    */
   public function setUpdateTime($updateTime)
   {

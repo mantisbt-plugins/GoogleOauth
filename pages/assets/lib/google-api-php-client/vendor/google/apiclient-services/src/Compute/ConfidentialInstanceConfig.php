@@ -20,12 +20,87 @@ namespace Google\Service\Compute;
 class ConfidentialInstanceConfig extends \Google\Model
 {
   /**
+   * Bare Metal Secure AI.
+   */
+  public const CONFIDENTIAL_INSTANCE_TYPE_BMSAI = 'BMSAI';
+  /**
+   * Arm Confidential Compute Architecture.
+   */
+  public const CONFIDENTIAL_INSTANCE_TYPE_CCA = 'CCA';
+  /**
+   * No type specified. Do not use this value.
+   */
+  public const CONFIDENTIAL_INSTANCE_TYPE_CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED = 'CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED';
+  /**
+   * AMD Secure Encrypted Virtualization.
+   */
+  public const CONFIDENTIAL_INSTANCE_TYPE_SEV = 'SEV';
+  /**
+   * AMD Secure Encrypted Virtualization - Secure Nested Paging.
+   */
+  public const CONFIDENTIAL_INSTANCE_TYPE_SEV_SNP = 'SEV_SNP';
+  /**
+   * Intel Trust Domain eXtension.
+   */
+  public const CONFIDENTIAL_INSTANCE_TYPE_TDX = 'TDX';
+  /**
+   * Defines the type of technology used by the confidential instance.
+   *
+   * @var string
+   */
+  public $confidentialInstanceType;
+  protected $confidentialParavisorConfigType = ConfidentialParavisorConfig::class;
+  protected $confidentialParavisorConfigDataType = '';
+  /**
+   * Defines whether the instance should have confidential compute enabled. When
+   * enabled, the technology used defaults to  AMD SEV unless
+   * confidentialInstanceType is specified.
+   *
    * @var bool
    */
   public $enableConfidentialCompute;
 
   /**
-   * @param bool
+   * Defines the type of technology used by the confidential instance.
+   *
+   * Accepted values: BMSAI, CCA, CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED, SEV,
+   * SEV_SNP, TDX
+   *
+   * @param self::CONFIDENTIAL_INSTANCE_TYPE_* $confidentialInstanceType
+   */
+  public function setConfidentialInstanceType($confidentialInstanceType)
+  {
+    $this->confidentialInstanceType = $confidentialInstanceType;
+  }
+  /**
+   * @return self::CONFIDENTIAL_INSTANCE_TYPE_*
+   */
+  public function getConfidentialInstanceType()
+  {
+    return $this->confidentialInstanceType;
+  }
+  /**
+   * Defines a set of Confidential Paravisor (SVSM) options.
+   *
+   * @param ConfidentialParavisorConfig $confidentialParavisorConfig
+   */
+  public function setConfidentialParavisorConfig(ConfidentialParavisorConfig $confidentialParavisorConfig)
+  {
+    $this->confidentialParavisorConfig = $confidentialParavisorConfig;
+  }
+  /**
+   * @return ConfidentialParavisorConfig
+   */
+  public function getConfidentialParavisorConfig()
+  {
+    return $this->confidentialParavisorConfig;
+  }
+  /**
+   * Defines whether the instance should have confidential compute enabled. When
+   * enabled, the technology used defaults to  AMD SEV unless
+   * confidentialInstanceType is specified.
+   *
+   * @param bool $enableConfidentialCompute
    */
   public function setEnableConfidentialCompute($enableConfidentialCompute)
   {

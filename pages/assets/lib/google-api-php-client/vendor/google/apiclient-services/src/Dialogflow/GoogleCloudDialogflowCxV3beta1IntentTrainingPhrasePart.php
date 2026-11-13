@@ -29,7 +29,7 @@ class GoogleCloudDialogflowCxV3beta1IntentTrainingPhrasePart extends \Google\Mod
   public $text;
 
   /**
-   * @param string
+   * @param string $parameterId
    */
   public function setParameterId($parameterId)
   {
@@ -43,7 +43,7 @@ class GoogleCloudDialogflowCxV3beta1IntentTrainingPhrasePart extends \Google\Mod
     return $this->parameterId;
   }
   /**
-   * @param string
+   * @param string $text
    */
   public function setText($text)
   {

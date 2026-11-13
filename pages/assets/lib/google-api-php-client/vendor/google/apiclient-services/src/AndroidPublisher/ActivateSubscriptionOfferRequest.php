@@ -19,6 +19,139 @@ namespace Google\Service\AndroidPublisher;
 
 class ActivateSubscriptionOfferRequest extends \Google\Model
 {
+  /**
+   * Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.
+   */
+  public const LATENCY_TOLERANCE_PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED = 'PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED';
+  /**
+   * The update will propagate to clients within several minutes on average and
+   * up to a few hours in rare cases. Throughput is limited to 7,200 updates per
+   * app per hour.
+   */
+  public const LATENCY_TOLERANCE_PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE = 'PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE';
+  /**
+   * The update will propagate to clients within 24 hours. Supports high
+   * throughput of up to 720,000 updates per app per hour using batch
+   * modification methods.
+   */
+  public const LATENCY_TOLERANCE_PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT = 'PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT';
+  /**
+   * Required. The parent base plan (ID) of the offer to activate.
+   *
+   * @var string
+   */
+  public $basePlanId;
+  /**
+   * Optional. The latency tolerance for the propagation of this product update.
+   * Defaults to latency-sensitive.
+   *
+   * @var string
+   */
+  public $latencyTolerance;
+  /**
+   * Required. The unique offer ID of the offer to activate.
+   *
+   * @var string
+   */
+  public $offerId;
+  /**
+   * Required. The parent app (package name) of the offer to activate.
+   *
+   * @var string
+   */
+  public $packageName;
+  /**
+   * Required. The parent subscription (ID) of the offer to activate.
+   *
+   * @var string
+   */
+  public $productId;
+
+  /**
+   * Required. The parent base plan (ID) of the offer to activate.
+   *
+   * @param string $basePlanId
+   */
+  public function setBasePlanId($basePlanId)
+  {
+    $this->basePlanId = $basePlanId;
+  }
+  /**
+   * @return string
+   */
+  public function getBasePlanId()
+  {
+    return $this->basePlanId;
+  }
+  /**
+   * Optional. The latency tolerance for the propagation of this product update.
+   * Defaults to latency-sensitive.
+   *
+   * Accepted values: PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED,
+   * PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE,
+   * PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT
+   *
+   * @param self::LATENCY_TOLERANCE_* $latencyTolerance
+   */
+  public function setLatencyTolerance($latencyTolerance)
+  {
+    $this->latencyTolerance = $latencyTolerance;
+  }
+  /**
+   * @return self::LATENCY_TOLERANCE_*
+   */
+  public function getLatencyTolerance()
+  {
+    return $this->latencyTolerance;
+  }
+  /**
+   * Required. The unique offer ID of the offer to activate.
+   *
+   * @param string $offerId
+   */
+  public function setOfferId($offerId)
+  {
+    $this->offerId = $offerId;
+  }
+  /**
+   * @return string
+   */
+  public function getOfferId()
+  {
+    return $this->offerId;
+  }
+  /**
+   * Required. The parent app (package name) of the offer to activate.
+   *
+   * @param string $packageName
+   */
+  public function setPackageName($packageName)
+  {
+    $this->packageName = $packageName;
+  }
+  /**
+   * @return string
+   */
+  public function getPackageName()
+  {
+    return $this->packageName;
+  }
+  /**
+   * Required. The parent subscription (ID) of the offer to activate.
+   *
+   * @param string $productId
+   */
+  public function setProductId($productId)
+  {
+    $this->productId = $productId;
+  }
+  /**
+   * @return string
+   */
+  public function getProductId()
+  {
+    return $this->productId;
+  }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

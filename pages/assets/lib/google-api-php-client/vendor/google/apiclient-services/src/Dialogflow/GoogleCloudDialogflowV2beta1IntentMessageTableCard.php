@@ -38,7 +38,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageTableCard extends \Google\Collect
   public $title;
 
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessageBasicCardButton[]
+   * @param GoogleCloudDialogflowV2beta1IntentMessageBasicCardButton[] $buttons
    */
   public function setButtons($buttons)
   {
@@ -52,7 +52,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageTableCard extends \Google\Collect
     return $this->buttons;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessageColumnProperties[]
+   * @param GoogleCloudDialogflowV2beta1IntentMessageColumnProperties[] $columnProperties
    */
   public function setColumnProperties($columnProperties)
   {
@@ -66,7 +66,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageTableCard extends \Google\Collect
     return $this->columnProperties;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessageImage
+   * @param GoogleCloudDialogflowV2beta1IntentMessageImage $image
    */
   public function setImage(GoogleCloudDialogflowV2beta1IntentMessageImage $image)
   {
@@ -80,7 +80,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageTableCard extends \Google\Collect
     return $this->image;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessageTableCardRow[]
+   * @param GoogleCloudDialogflowV2beta1IntentMessageTableCardRow[] $rows
    */
   public function setRows($rows)
   {
@@ -94,7 +94,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageTableCard extends \Google\Collect
     return $this->rows;
   }
   /**
-   * @param string
+   * @param string $subtitle
    */
   public function setSubtitle($subtitle)
   {
@@ -108,7 +108,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageTableCard extends \Google\Collect
     return $this->subtitle;
   }
   /**
-   * @param string
+   * @param string $title
    */
   public function setTitle($title)
   {

@@ -19,6 +19,8 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2IntentMessageMediaContent extends \Google\Collection
 {
+  public const MEDIA_TYPE_RESPONSE_MEDIA_TYPE_UNSPECIFIED = 'RESPONSE_MEDIA_TYPE_UNSPECIFIED';
+  public const MEDIA_TYPE_AUDIO = 'AUDIO';
   protected $collection_key = 'mediaObjects';
   protected $mediaObjectsType = GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject::class;
   protected $mediaObjectsDataType = 'array';
@@ -28,7 +30,7 @@ class GoogleCloudDialogflowV2IntentMessageMediaContent extends \Google\Collectio
   public $mediaType;
 
   /**
-   * @param GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject[]
+   * @param GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject[] $mediaObjects
    */
   public function setMediaObjects($mediaObjects)
   {
@@ -42,14 +44,14 @@ class GoogleCloudDialogflowV2IntentMessageMediaContent extends \Google\Collectio
     return $this->mediaObjects;
   }
   /**
-   * @param string
+   * @param self::MEDIA_TYPE_* $mediaType
    */
   public function setMediaType($mediaType)
   {
     $this->mediaType = $mediaType;
   }
   /**
-   * @return string
+   * @return self::MEDIA_TYPE_*
    */
   public function getMediaType()
   {

@@ -39,6 +39,7 @@ class PropertiesDataStreamsMeasurementProtocolSecrets extends \Google\Service\Re
    * @param GoogleAnalyticsAdminV1betaMeasurementProtocolSecret $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaMeasurementProtocolSecret
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleAnalyticsAdminV1betaMeasurementProtocolSecret $postBody, $optParams = [])
   {
@@ -54,6 +55,7 @@ class PropertiesDataStreamsMeasurementProtocolSecrets extends \Google\Service\Re
    * tocolSecrets/{measurementProtocolSecret}
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -62,7 +64,7 @@ class PropertiesDataStreamsMeasurementProtocolSecrets extends \Google\Service\Re
     return $this->call('delete', [$params], GoogleProtobufEmpty::class);
   }
   /**
-   * Lookup for a single "GA4" MeasurementProtocolSecret.
+   * Lookup for a single MeasurementProtocolSecret.
    * (measurementProtocolSecrets.get)
    *
    * @param string $name Required. The name of the measurement protocol secret to
@@ -70,6 +72,7 @@ class PropertiesDataStreamsMeasurementProtocolSecrets extends \Google\Service\Re
    * tocolSecrets/{measurementProtocolSecret}
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaMeasurementProtocolSecret
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -87,15 +90,16 @@ class PropertiesDataStreamsMeasurementProtocolSecrets extends \Google\Service\Re
    * properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of resources to return. If
-   * unspecified, at most 10 resources will be returned. The maximum value is 10.
-   * Higher values will be coerced to the maximum.
-   * @opt_param string pageToken A page token, received from a previous
+   * @opt_param int pageSize Optional. The maximum number of resources to return.
+   * If unspecified, at most 10 resources will be returned. The maximum value is
+   * 10. Higher values will be coerced to the maximum.
+   * @opt_param string pageToken Optional. A page token, received from a previous
    * `ListMeasurementProtocolSecrets` call. Provide this to retrieve the
    * subsequent page. When paginating, all other parameters provided to
    * `ListMeasurementProtocolSecrets` must match the call that provided the page
    * token.
    * @return GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponse
+   * @throws \Google\Service\Exception
    */
   public function listPropertiesDataStreamsMeasurementProtocolSecrets($parent, $optParams = [])
   {
@@ -106,15 +110,16 @@ class PropertiesDataStreamsMeasurementProtocolSecrets extends \Google\Service\Re
   /**
    * Updates a measurement protocol secret. (measurementProtocolSecrets.patch)
    *
-   * @param string $name Output only. Resource name of this secret. This secret
-   * may be a child of any type of stream. Format: properties/{property}/dataStrea
-   * ms/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
+   * @param string $name Identifier. Resource name of this secret. This secret may
+   * be a child of any type of stream. Format: properties/{property}/dataStreams/{
+   * dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
    * @param GoogleAnalyticsAdminV1betaMeasurementProtocolSecret $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string updateMask The list of fields to be updated. Omitted fields
-   * will not be updated.
+   * @opt_param string updateMask Required. The list of fields to be updated.
+   * Omitted fields will not be updated.
    * @return GoogleAnalyticsAdminV1betaMeasurementProtocolSecret
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleAnalyticsAdminV1betaMeasurementProtocolSecret $postBody, $optParams = [])
   {

@@ -20,40 +20,81 @@ namespace Google\Service\HangoutsChat;
 class GoogleAppsCardV1SwitchControl extends \Google\Model
 {
   /**
+   * A toggle-style switch.
+   */
+  public const CONTROL_TYPE_SWITCH = 'SWITCH';
+  /**
+   * Deprecated in favor of `CHECK_BOX`.
+   */
+  public const CONTROL_TYPE_CHECKBOX = 'CHECKBOX';
+  /**
+   * A checkbox.
+   */
+  public const CONTROL_TYPE_CHECK_BOX = 'CHECK_BOX';
+  /**
+   * How the switch appears in the user interface. [Google Workspace add-ons and
+   * Chat apps](https://developers.google.com/workspace/extend):
+   *
    * @var string
    */
   public $controlType;
   /**
+   * The name by which the switch widget is identified in a form input event (as
+   * the key in `CommonEventObject.form_inputs`). For details about working with
+   * form inputs, see [Receive form
+   * data](https://developers.google.com/workspace/chat/read-form-data).
+   *
    * @var string
    */
   public $name;
   protected $onChangeActionType = GoogleAppsCardV1Action::class;
   protected $onChangeActionDataType = '';
   /**
+   * When `true`, the switch is selected, and its `value` is included in
+   * `CommonEventObject.form_inputs[name].string_inputs.value`.
+   *
    * @var bool
    */
   public $selected;
   /**
+   * The value returned in `CommonEventObject.form_inputs[name].string_inputs`
+   * when the switch is selected (`selected` is `true`). If `selected` is `true`
+   * and `value` is unset, an empty string (`""`) is returned in
+   * `string_inputs.value`. When `selected` is `false`, this value is omitted
+   * from `string_inputs.value`. For details about working with form inputs, see
+   * [Receive form data](https://developers.google.com/workspace/chat/read-form-
+   * data).
+   *
    * @var string
    */
   public $value;
 
   /**
-   * @param string
+   * How the switch appears in the user interface. [Google Workspace add-ons and
+   * Chat apps](https://developers.google.com/workspace/extend):
+   *
+   * Accepted values: SWITCH, CHECKBOX, CHECK_BOX
+   *
+   * @param self::CONTROL_TYPE_* $controlType
    */
   public function setControlType($controlType)
   {
     $this->controlType = $controlType;
   }
   /**
-   * @return string
+   * @return self::CONTROL_TYPE_*
    */
   public function getControlType()
   {
     return $this->controlType;
   }
   /**
-   * @param string
+   * The name by which the switch widget is identified in a form input event (as
+   * the key in `CommonEventObject.form_inputs`). For details about working with
+   * form inputs, see [Receive form
+   * data](https://developers.google.com/workspace/chat/read-form-data).
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -67,7 +108,10 @@ class GoogleAppsCardV1SwitchControl extends \Google\Model
     return $this->name;
   }
   /**
-   * @param GoogleAppsCardV1Action
+   * The action to perform when the switch state is changed, such as what
+   * function to run.
+   *
+   * @param GoogleAppsCardV1Action $onChangeAction
    */
   public function setOnChangeAction(GoogleAppsCardV1Action $onChangeAction)
   {
@@ -81,7 +125,10 @@ class GoogleAppsCardV1SwitchControl extends \Google\Model
     return $this->onChangeAction;
   }
   /**
-   * @param bool
+   * When `true`, the switch is selected, and its `value` is included in
+   * `CommonEventObject.form_inputs[name].string_inputs.value`.
+   *
+   * @param bool $selected
    */
   public function setSelected($selected)
   {
@@ -95,7 +142,15 @@ class GoogleAppsCardV1SwitchControl extends \Google\Model
     return $this->selected;
   }
   /**
-   * @param string
+   * The value returned in `CommonEventObject.form_inputs[name].string_inputs`
+   * when the switch is selected (`selected` is `true`). If `selected` is `true`
+   * and `value` is unset, an empty string (`""`) is returned in
+   * `string_inputs.value`. When `selected` is `false`, this value is omitted
+   * from `string_inputs.value`. For details about working with form inputs, see
+   * [Receive form data](https://developers.google.com/workspace/chat/read-form-
+   * data).
+   *
+   * @param string $value
    */
   public function setValue($value)
   {

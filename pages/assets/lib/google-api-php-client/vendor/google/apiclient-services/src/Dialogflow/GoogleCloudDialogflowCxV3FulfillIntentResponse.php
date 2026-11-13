@@ -33,7 +33,7 @@ class GoogleCloudDialogflowCxV3FulfillIntentResponse extends \Google\Model
   public $responseId;
 
   /**
-   * @param string
+   * @param string $outputAudio
    */
   public function setOutputAudio($outputAudio)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowCxV3FulfillIntentResponse extends \Google\Model
     return $this->outputAudio;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3OutputAudioConfig
+   * @param GoogleCloudDialogflowCxV3OutputAudioConfig $outputAudioConfig
    */
   public function setOutputAudioConfig(GoogleCloudDialogflowCxV3OutputAudioConfig $outputAudioConfig)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowCxV3FulfillIntentResponse extends \Google\Model
     return $this->outputAudioConfig;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3QueryResult
+   * @param GoogleCloudDialogflowCxV3QueryResult $queryResult
    */
   public function setQueryResult(GoogleCloudDialogflowCxV3QueryResult $queryResult)
   {
@@ -75,7 +75,7 @@ class GoogleCloudDialogflowCxV3FulfillIntentResponse extends \Google\Model
     return $this->queryResult;
   }
   /**
-   * @param string
+   * @param string $responseId
    */
   public function setResponseId($responseId)
   {

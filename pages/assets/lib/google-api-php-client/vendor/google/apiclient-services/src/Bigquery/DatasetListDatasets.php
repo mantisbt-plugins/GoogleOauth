@@ -19,31 +19,86 @@ namespace Google\Service\Bigquery;
 
 class DatasetListDatasets extends \Google\Model
 {
+  /**
+   * Output only. The origin of the dataset, one of: * (Unset) - Native BigQuery
+   * Dataset. * BIGLAKE - Dataset is backed by a namespace stored natively in
+   * Biglake.
+   *
+   * @var string
+   */
+  public $catalogSource;
   protected $datasetReferenceType = DatasetReference::class;
   protected $datasetReferenceDataType = '';
+  protected $externalDatasetReferenceType = ExternalDatasetReference::class;
+  protected $externalDatasetReferenceDataType = '';
   /**
+   * An alternate name for the dataset. The friendly name is purely decorative
+   * in nature.
+   *
    * @var string
    */
   public $friendlyName;
   /**
+   * The fully-qualified, unique, opaque ID of the dataset.
+   *
    * @var string
    */
   public $id;
   /**
+   * The resource type. This property always returns the value
+   * "bigquery#dataset"
+   *
    * @var string
    */
   public $kind;
   /**
+   * The labels associated with this dataset. You can use these to organize and
+   * group your datasets.
+   *
    * @var string[]
    */
   public $labels;
   /**
+   * The geographic location where the dataset resides.
+   *
    * @var string
    */
   public $location;
+  /**
+   * Output only. Same as `type` in `Dataset`. The type of the dataset, one of:
+   * * DEFAULT - only accessible by owner and authorized accounts, * PUBLIC -
+   * accessible by everyone, * LINKED - linked dataset, * EXTERNAL - dataset
+   * with definition in external metadata catalog, * BIGLAKE_ICEBERG - a Biglake
+   * dataset accessible through the Iceberg API, * BIGLAKE_HIVE - a Biglake
+   * dataset accessible through the Hive API.
+   *
+   * @var string
+   */
+  public $type;
 
   /**
-   * @param DatasetReference
+   * Output only. The origin of the dataset, one of: * (Unset) - Native BigQuery
+   * Dataset. * BIGLAKE - Dataset is backed by a namespace stored natively in
+   * Biglake.
+   *
+   * @param string $catalogSource
+   */
+  public function setCatalogSource($catalogSource)
+  {
+    $this->catalogSource = $catalogSource;
+  }
+  /**
+   * @return string
+   */
+  public function getCatalogSource()
+  {
+    return $this->catalogSource;
+  }
+  /**
+   * The dataset reference. Use this property to access specific parts of the
+   * dataset's ID, such as project ID or dataset ID.
+   *
+   * @param DatasetReference $datasetReference
    */
   public function setDatasetReference(DatasetReference $datasetReference)
   {
@@ -57,7 +112,27 @@ class DatasetListDatasets extends \Google\Model
     return $this->datasetReference;
   }
   /**
-   * @param string
+   * Output only. Reference to a read-only external dataset defined in data
+   * catalogs outside of BigQuery. Filled out when the dataset type is EXTERNAL.
+   *
+   * @param ExternalDatasetReference $externalDatasetReference
+   */
+  public function setExternalDatasetReference(ExternalDatasetReference $externalDatasetReference)
+  {
+    $this->externalDatasetReference = $externalDatasetReference;
+  }
+  /**
+   * @return ExternalDatasetReference
+   */
+  public function getExternalDatasetReference()
+  {
+    return $this->externalDatasetReference;
+  }
+  /**
+   * An alternate name for the dataset. The friendly name is purely decorative
+   * in nature.
+   *
+   * @param string $friendlyName
    */
   public function setFriendlyName($friendlyName)
   {
@@ -71,7 +146,9 @@ class DatasetListDatasets extends \Google\Model
     return $this->friendlyName;
   }
   /**
-   * @param string
+   * The fully-qualified, unique, opaque ID of the dataset.
+   *
+   * @param string $id
    */
   public function setId($id)
   {
@@ -85,7 +162,10 @@ class DatasetListDatasets extends \Google\Model
     return $this->id;
   }
   /**
-   * @param string
+   * The resource type. This property always returns the value
+   * "bigquery#dataset"
+   *
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -99,7 +179,10 @@ class DatasetListDatasets extends \Google\Model
     return $this->kind;
   }
   /**
-   * @param string[]
+   * The labels associated with this dataset. You can use these to organize and
+   * group your datasets.
+   *
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -113,7 +196,9 @@ class DatasetListDatasets extends \Google\Model
     return $this->labels;
   }
   /**
-   * @param string
+   * The geographic location where the dataset resides.
+   *
+   * @param string $location
    */
   public function setLocation($location)
   {
@@ -125,6 +210,27 @@ class DatasetListDatasets extends \Google\Model
   public function getLocation()
   {
     return $this->location;
+  }
+  /**
+   * Output only. Same as `type` in `Dataset`. The type of the dataset, one of:
+   * * DEFAULT - only accessible by owner and authorized accounts, * PUBLIC -
+   * accessible by everyone, * LINKED - linked dataset, * EXTERNAL - dataset
+   * with definition in external metadata catalog, * BIGLAKE_ICEBERG - a Biglake
+   * dataset accessible through the Iceberg API, * BIGLAKE_HIVE - a Biglake
+   * dataset accessible through the Hive API.
+   *
+   * @param string $type
+   */
+  public function setType($type)
+  {
+    $this->type = $type;
+  }
+  /**
+   * @return string
+   */
+  public function getType()
+  {
+    return $this->type;
   }
 }
 

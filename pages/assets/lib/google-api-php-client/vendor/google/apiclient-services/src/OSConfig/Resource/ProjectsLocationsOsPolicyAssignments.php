@@ -52,7 +52,11 @@ class ProjectsLocationsOsPolicyAssignments extends \Google\Service\Resource
    * contain only lowercase letters, numbers, and hyphens. * Must start with a
    * letter. * Must be between 1-63 characters. * Must end with a number or a
    * letter. * Must be unique within the project.
+   * @opt_param string requestId Optional. A unique identifier for this request.
+   * Restricted to 36 ASCII characters. A random UUID is recommended. This request
+   * is only idempotent if a `request_id` is provided.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, OSPolicyAssignment $postBody, $optParams = [])
   {
@@ -73,7 +77,12 @@ class ProjectsLocationsOsPolicyAssignments extends \Google\Service\Resource
    * @param string $name Required. The name of the OS policy assignment to be
    * deleted
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId Optional. A unique identifier for this request.
+   * Restricted to 36 ASCII characters. A random UUID is recommended. This request
+   * is only idempotent if a `request_id` is provided.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -92,6 +101,7 @@ class ProjectsLocationsOsPolicyAssignments extends \Google\Service\Resource
    * cy_assignment}@{revisionId}`
    * @param array $optParams Optional parameters.
    * @return OSPolicyAssignment
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -112,6 +122,7 @@ class ProjectsLocationsOsPolicyAssignments extends \Google\Service\Resource
    * to `ListOSPolicyAssignments` that indicates where this listing should
    * continue from.
    * @return ListOSPolicyAssignmentsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsOsPolicyAssignments($parent, $optParams = [])
   {
@@ -132,6 +143,7 @@ class ProjectsLocationsOsPolicyAssignments extends \Google\Service\Resource
    * to `ListOSPolicyAssignmentRevisions` that indicates where this listing should
    * continue from.
    * @return ListOSPolicyAssignmentRevisionsResponse
+   * @throws \Google\Service\Exception
    */
   public function listRevisions($name, $optParams = [])
   {
@@ -154,9 +166,16 @@ class ProjectsLocationsOsPolicyAssignments extends \Google\Service\Resource
    * @param OSPolicyAssignment $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param bool allowMissing Optional. If set to true, and the OS policy
+   * assignment is not found, a new OS policy assignment will be created. In this
+   * situation, `update_mask` is ignored.
+   * @opt_param string requestId Optional. A unique identifier for this request.
+   * Restricted to 36 ASCII characters. A random UUID is recommended. This request
+   * is only idempotent if a `request_id` is provided.
    * @opt_param string updateMask Optional. Field mask that controls which fields
    * of the assignment should be updated.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, OSPolicyAssignment $postBody, $optParams = [])
   {

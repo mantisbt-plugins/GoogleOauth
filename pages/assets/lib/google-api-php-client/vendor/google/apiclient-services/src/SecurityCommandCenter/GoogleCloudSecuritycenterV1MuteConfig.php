@@ -19,6 +19,9 @@ namespace Google\Service\SecurityCommandCenter;
 
 class GoogleCloudSecuritycenterV1MuteConfig extends \Google\Model
 {
+  public const TYPE_MUTE_CONFIG_TYPE_UNSPECIFIED = 'MUTE_CONFIG_TYPE_UNSPECIFIED';
+  public const TYPE_STATIC = 'STATIC';
+  public const TYPE_DYNAMIC = 'DYNAMIC';
   /**
    * @var string
    */
@@ -28,9 +31,14 @@ class GoogleCloudSecuritycenterV1MuteConfig extends \Google\Model
    */
   public $description;
   /**
+   * @deprecated
    * @var string
    */
   public $displayName;
+  /**
+   * @var string
+   */
+  public $expiryTime;
   /**
    * @var string
    */
@@ -46,10 +54,14 @@ class GoogleCloudSecuritycenterV1MuteConfig extends \Google\Model
   /**
    * @var string
    */
+  public $type;
+  /**
+   * @var string
+   */
   public $updateTime;
 
   /**
-   * @param string
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -63,7 +75,7 @@ class GoogleCloudSecuritycenterV1MuteConfig extends \Google\Model
     return $this->createTime;
   }
   /**
-   * @param string
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -77,13 +89,15 @@ class GoogleCloudSecuritycenterV1MuteConfig extends \Google\Model
     return $this->description;
   }
   /**
-   * @param string
+   * @deprecated
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
     $this->displayName = $displayName;
   }
   /**
+   * @deprecated
    * @return string
    */
   public function getDisplayName()
@@ -91,7 +105,21 @@ class GoogleCloudSecuritycenterV1MuteConfig extends \Google\Model
     return $this->displayName;
   }
   /**
-   * @param string
+   * @param string $expiryTime
+   */
+  public function setExpiryTime($expiryTime)
+  {
+    $this->expiryTime = $expiryTime;
+  }
+  /**
+   * @return string
+   */
+  public function getExpiryTime()
+  {
+    return $this->expiryTime;
+  }
+  /**
+   * @param string $filter
    */
   public function setFilter($filter)
   {
@@ -105,7 +133,7 @@ class GoogleCloudSecuritycenterV1MuteConfig extends \Google\Model
     return $this->filter;
   }
   /**
-   * @param string
+   * @param string $mostRecentEditor
    */
   public function setMostRecentEditor($mostRecentEditor)
   {
@@ -119,7 +147,7 @@ class GoogleCloudSecuritycenterV1MuteConfig extends \Google\Model
     return $this->mostRecentEditor;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -133,7 +161,21 @@ class GoogleCloudSecuritycenterV1MuteConfig extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * @param self::TYPE_* $type
+   */
+  public function setType($type)
+  {
+    $this->type = $type;
+  }
+  /**
+   * @return self::TYPE_*
+   */
+  public function getType()
+  {
+    return $this->type;
+  }
+  /**
+   * @param string $updateTime
    */
   public function setUpdateTime($updateTime)
   {

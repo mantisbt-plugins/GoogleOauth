@@ -25,7 +25,7 @@ class GoogleCloudDialogflowCxV3beta1TextInput extends \Google\Model
   public $text;
 
   /**
-   * @param string
+   * @param string $text
    */
   public function setText($text)
   {

@@ -35,7 +35,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedAction extends \Googl
   public $text;
 
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionDial
+   * @param GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionDial $dial
    */
   public function setDial(GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionDial $dial)
   {
@@ -49,7 +49,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedAction extends \Googl
     return $this->dial;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionOpenUri
+   * @param GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionOpenUri $openUrl
    */
   public function setOpenUrl(GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionOpenUri $openUrl)
   {
@@ -63,7 +63,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedAction extends \Googl
     return $this->openUrl;
   }
   /**
-   * @param string
+   * @param string $postbackData
    */
   public function setPostbackData($postbackData)
   {
@@ -77,7 +77,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedAction extends \Googl
     return $this->postbackData;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionShareLocation
+   * @param GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionShareLocation $shareLocation
    */
   public function setShareLocation(GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionShareLocation $shareLocation)
   {
@@ -91,7 +91,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedAction extends \Googl
     return $this->shareLocation;
   }
   /**
-   * @param string
+   * @param string $text
    */
   public function setText($text)
   {

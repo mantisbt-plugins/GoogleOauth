@@ -19,19 +19,72 @@ namespace Google\Service\Datastream;
 
 class SourceConfig extends \Google\Model
 {
+  protected $dataverseSourceConfigType = DataverseSourceConfig::class;
+  protected $dataverseSourceConfigDataType = '';
+  protected $mongodbSourceConfigType = MongodbSourceConfig::class;
+  protected $mongodbSourceConfigDataType = '';
   protected $mysqlSourceConfigType = MysqlSourceConfig::class;
   protected $mysqlSourceConfigDataType = '';
   protected $oracleSourceConfigType = OracleSourceConfig::class;
   protected $oracleSourceConfigDataType = '';
   protected $postgresqlSourceConfigType = PostgresqlSourceConfig::class;
   protected $postgresqlSourceConfigDataType = '';
+  protected $salesforceMarketingCloudSourceConfigType = SalesforceMarketingCloudSourceConfig::class;
+  protected $salesforceMarketingCloudSourceConfigDataType = '';
+  protected $salesforceSourceConfigType = SalesforceSourceConfig::class;
+  protected $salesforceSourceConfigDataType = '';
+  protected $serviceNowSourceConfigType = ServiceNowSourceConfig::class;
+  protected $serviceNowSourceConfigDataType = '';
   /**
+   * Required. Source connection profile resource. Format:
+   * `projects/{project}/locations/{location}/connectionProfiles/{name}`
+   *
    * @var string
    */
   public $sourceConnectionProfile;
+  protected $spannerSourceConfigType = SpannerSourceConfig::class;
+  protected $spannerSourceConfigDataType = '';
+  protected $sqlServerSourceConfigType = SqlServerSourceConfig::class;
+  protected $sqlServerSourceConfigDataType = '';
+  protected $workdaySourceConfigType = WorkdaySourceConfig::class;
+  protected $workdaySourceConfigDataType = '';
 
   /**
-   * @param MysqlSourceConfig
+   * Dataverse data source configuration.
+   *
+   * @param DataverseSourceConfig $dataverseSourceConfig
+   */
+  public function setDataverseSourceConfig(DataverseSourceConfig $dataverseSourceConfig)
+  {
+    $this->dataverseSourceConfig = $dataverseSourceConfig;
+  }
+  /**
+   * @return DataverseSourceConfig
+   */
+  public function getDataverseSourceConfig()
+  {
+    return $this->dataverseSourceConfig;
+  }
+  /**
+   * MongoDB data source configuration.
+   *
+   * @param MongodbSourceConfig $mongodbSourceConfig
+   */
+  public function setMongodbSourceConfig(MongodbSourceConfig $mongodbSourceConfig)
+  {
+    $this->mongodbSourceConfig = $mongodbSourceConfig;
+  }
+  /**
+   * @return MongodbSourceConfig
+   */
+  public function getMongodbSourceConfig()
+  {
+    return $this->mongodbSourceConfig;
+  }
+  /**
+   * MySQL data source configuration.
+   *
+   * @param MysqlSourceConfig $mysqlSourceConfig
    */
   public function setMysqlSourceConfig(MysqlSourceConfig $mysqlSourceConfig)
   {
@@ -45,7 +98,9 @@ class SourceConfig extends \Google\Model
     return $this->mysqlSourceConfig;
   }
   /**
-   * @param OracleSourceConfig
+   * Oracle data source configuration.
+   *
+   * @param OracleSourceConfig $oracleSourceConfig
    */
   public function setOracleSourceConfig(OracleSourceConfig $oracleSourceConfig)
   {
@@ -59,7 +114,9 @@ class SourceConfig extends \Google\Model
     return $this->oracleSourceConfig;
   }
   /**
-   * @param PostgresqlSourceConfig
+   * PostgreSQL data source configuration.
+   *
+   * @param PostgresqlSourceConfig $postgresqlSourceConfig
    */
   public function setPostgresqlSourceConfig(PostgresqlSourceConfig $postgresqlSourceConfig)
   {
@@ -73,7 +130,58 @@ class SourceConfig extends \Google\Model
     return $this->postgresqlSourceConfig;
   }
   /**
-   * @param string
+   * Salesforce Marketing Cloud data source configuration.
+   *
+   * @param SalesforceMarketingCloudSourceConfig $salesforceMarketingCloudSourceConfig
+   */
+  public function setSalesforceMarketingCloudSourceConfig(SalesforceMarketingCloudSourceConfig $salesforceMarketingCloudSourceConfig)
+  {
+    $this->salesforceMarketingCloudSourceConfig = $salesforceMarketingCloudSourceConfig;
+  }
+  /**
+   * @return SalesforceMarketingCloudSourceConfig
+   */
+  public function getSalesforceMarketingCloudSourceConfig()
+  {
+    return $this->salesforceMarketingCloudSourceConfig;
+  }
+  /**
+   * Salesforce data source configuration.
+   *
+   * @param SalesforceSourceConfig $salesforceSourceConfig
+   */
+  public function setSalesforceSourceConfig(SalesforceSourceConfig $salesforceSourceConfig)
+  {
+    $this->salesforceSourceConfig = $salesforceSourceConfig;
+  }
+  /**
+   * @return SalesforceSourceConfig
+   */
+  public function getSalesforceSourceConfig()
+  {
+    return $this->salesforceSourceConfig;
+  }
+  /**
+   * ServiceNow data source configuration.
+   *
+   * @param ServiceNowSourceConfig $serviceNowSourceConfig
+   */
+  public function setServiceNowSourceConfig(ServiceNowSourceConfig $serviceNowSourceConfig)
+  {
+    $this->serviceNowSourceConfig = $serviceNowSourceConfig;
+  }
+  /**
+   * @return ServiceNowSourceConfig
+   */
+  public function getServiceNowSourceConfig()
+  {
+    return $this->serviceNowSourceConfig;
+  }
+  /**
+   * Required. Source connection profile resource. Format:
+   * `projects/{project}/locations/{location}/connectionProfiles/{name}`
+   *
+   * @param string $sourceConnectionProfile
    */
   public function setSourceConnectionProfile($sourceConnectionProfile)
   {
@@ -85,6 +193,54 @@ class SourceConfig extends \Google\Model
   public function getSourceConnectionProfile()
   {
     return $this->sourceConnectionProfile;
+  }
+  /**
+   * Spanner data source configuration.
+   *
+   * @param SpannerSourceConfig $spannerSourceConfig
+   */
+  public function setSpannerSourceConfig(SpannerSourceConfig $spannerSourceConfig)
+  {
+    $this->spannerSourceConfig = $spannerSourceConfig;
+  }
+  /**
+   * @return SpannerSourceConfig
+   */
+  public function getSpannerSourceConfig()
+  {
+    return $this->spannerSourceConfig;
+  }
+  /**
+   * SQLServer data source configuration.
+   *
+   * @param SqlServerSourceConfig $sqlServerSourceConfig
+   */
+  public function setSqlServerSourceConfig(SqlServerSourceConfig $sqlServerSourceConfig)
+  {
+    $this->sqlServerSourceConfig = $sqlServerSourceConfig;
+  }
+  /**
+   * @return SqlServerSourceConfig
+   */
+  public function getSqlServerSourceConfig()
+  {
+    return $this->sqlServerSourceConfig;
+  }
+  /**
+   * Optional. Workday data source configuration.
+   *
+   * @param WorkdaySourceConfig $workdaySourceConfig
+   */
+  public function setWorkdaySourceConfig(WorkdaySourceConfig $workdaySourceConfig)
+  {
+    $this->workdaySourceConfig = $workdaySourceConfig;
+  }
+  /**
+   * @return WorkdaySourceConfig
+   */
+  public function getWorkdaySourceConfig()
+  {
+    return $this->workdaySourceConfig;
   }
 }
 

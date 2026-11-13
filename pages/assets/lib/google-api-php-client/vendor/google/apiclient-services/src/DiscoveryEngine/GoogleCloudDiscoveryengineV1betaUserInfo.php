@@ -19,17 +19,84 @@ namespace Google\Service\DiscoveryEngine;
 
 class GoogleCloudDiscoveryengineV1betaUserInfo extends \Google\Model
 {
+  protected $preciseLocationType = GoogleCloudDiscoveryengineV1betaUserInfoPreciseLocation::class;
+  protected $preciseLocationDataType = '';
   /**
+   * Optional. IANA time zone, e.g. Europe/Budapest.
+   *
+   * @var string
+   */
+  public $timeZone;
+  /**
+   * User agent as included in the HTTP header. The field must be a UTF-8
+   * encoded string with a length limit of 1,000 characters. Otherwise, an
+   * `INVALID_ARGUMENT` error is returned. This should not be set when using the
+   * client side event reporting with GTM or JavaScript tag in
+   * UserEventService.CollectUserEvent or if UserEvent.direct_user_request is
+   * set.
+   *
    * @var string
    */
   public $userAgent;
   /**
+   * Highly recommended for logged-in users. Unique identifier for logged-in
+   * user, such as a user name. Don't set for anonymous users. Always use a
+   * hashed value for this ID. Don't set the field to the same fixed ID for
+   * different users. This mixes the event history of those users together,
+   * which results in degraded model quality. The field must be a UTF-8 encoded
+   * string with a length limit of 128 characters. Otherwise, an
+   * `INVALID_ARGUMENT` error is returned. Represents an opaque ID to the Search
+   * API. The Search API doesn't interpret the value in any way. This field is
+   * used to associate events with a user across sessions if the events are
+   * being uploaded.
+   *
    * @var string
    */
   public $userId;
 
   /**
-   * @param string
+   * Optional. Input only. Precise location of the user. It is used in Custom
+   * Ranking to calculate the distance between the user and the relevant
+   * documents.
+   *
+   * @param GoogleCloudDiscoveryengineV1betaUserInfoPreciseLocation $preciseLocation
+   */
+  public function setPreciseLocation(GoogleCloudDiscoveryengineV1betaUserInfoPreciseLocation $preciseLocation)
+  {
+    $this->preciseLocation = $preciseLocation;
+  }
+  /**
+   * @return GoogleCloudDiscoveryengineV1betaUserInfoPreciseLocation
+   */
+  public function getPreciseLocation()
+  {
+    return $this->preciseLocation;
+  }
+  /**
+   * Optional. IANA time zone, e.g. Europe/Budapest.
+   *
+   * @param string $timeZone
+   */
+  public function setTimeZone($timeZone)
+  {
+    $this->timeZone = $timeZone;
+  }
+  /**
+   * @return string
+   */
+  public function getTimeZone()
+  {
+    return $this->timeZone;
+  }
+  /**
+   * User agent as included in the HTTP header. The field must be a UTF-8
+   * encoded string with a length limit of 1,000 characters. Otherwise, an
+   * `INVALID_ARGUMENT` error is returned. This should not be set when using the
+   * client side event reporting with GTM or JavaScript tag in
+   * UserEventService.CollectUserEvent or if UserEvent.direct_user_request is
+   * set.
+   *
+   * @param string $userAgent
    */
   public function setUserAgent($userAgent)
   {
@@ -43,7 +110,18 @@ class GoogleCloudDiscoveryengineV1betaUserInfo extends \Google\Model
     return $this->userAgent;
   }
   /**
-   * @param string
+   * Highly recommended for logged-in users. Unique identifier for logged-in
+   * user, such as a user name. Don't set for anonymous users. Always use a
+   * hashed value for this ID. Don't set the field to the same fixed ID for
+   * different users. This mixes the event history of those users together,
+   * which results in degraded model quality. The field must be a UTF-8 encoded
+   * string with a length limit of 128 characters. Otherwise, an
+   * `INVALID_ARGUMENT` error is returned. Represents an opaque ID to the Search
+   * API. The Search API doesn't interpret the value in any way. This field is
+   * used to associate events with a user across sessions if the events are
+   * being uploaded.
+   *
+   * @param string $userId
    */
   public function setUserId($userId)
   {

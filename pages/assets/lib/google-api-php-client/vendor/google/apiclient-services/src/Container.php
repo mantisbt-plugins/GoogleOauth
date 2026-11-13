@@ -28,7 +28,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://cloud.google.com/container-engine/" target="_blank">Documentation</a>
+ * <a href="https://cloud.google.com/kubernetes-engine/docs/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -38,6 +38,12 @@ class Container extends \Google\Service
   /** See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
+  /** See, edit, configure, and delete your Google Kubernetes Engine data and see the email address for your Google Account. */
+  const CONTAINER =
+      "https://www.googleapis.com/auth/container";
+  /** See your Google Kubernetes Engine data and the email address of your Google Account. */
+  const CONTAINER_READ_ONLY =
+      "https://www.googleapis.com/auth/container.read-only";
 
   public $projects_aggregated_usableSubnetworks;
   public $projects_locations;
@@ -49,6 +55,7 @@ class Container extends \Google\Service
   public $projects_zones_clusters;
   public $projects_zones_clusters_nodePools;
   public $projects_zones_operations;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Container service.
@@ -61,6 +68,7 @@ class Container extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://container.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://container.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -132,7 +140,27 @@ class Container extends \Google\Service
         'clusters',
         [
           'methods' => [
-            'completeIpRotation' => [
+            'checkAutopilotCompatibility' => [
+              'path' => 'v1/{+name}:checkAutopilotCompatibility',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'completeControlPlaneUpgrade' => [
+              'path' => 'v1/{+name}:completeControlPlaneUpgrade',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'completeIpRotation' => [
               'path' => 'v1/{+name}:completeIpRotation',
               'httpMethod' => 'POST',
               'parameters' => [
@@ -170,6 +198,20 @@ class Container extends \Google\Service
                   'type' => 'string',
                 ],
                 'zone' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'fetchClusterUpgradeInfo' => [
+              'path' => 'v1/{+name}:fetchClusterUpgradeInfo',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'version' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -396,6 +438,20 @@ class Container extends \Google\Service
                   'type' => 'string',
                 ],
                 'zone' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'fetchNodePoolUpgradeInfo' => [
+              'path' => 'v1/{+name}:fetchNodePoolUpgradeInfo',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'version' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -637,6 +693,16 @@ class Container extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'completeControlPlaneUpgrade' => [
+              'path' => 'v1/{+name}:completeControlPlaneUpgrade',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'completeIpRotation' => [
               'path' => 'v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}:completeIpRotation',
               'httpMethod' => 'POST',
@@ -692,6 +758,20 @@ class Container extends \Google\Service
                   'required' => true,
                 ],
                 'name' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'fetchClusterUpgradeInfo' => [
+              'path' => 'v1/{+name}:fetchClusterUpgradeInfo',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'version' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -1039,6 +1119,20 @@ class Container extends \Google\Service
                   'required' => true,
                 ],
                 'name' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'fetchNodePoolUpgradeInfo' => [
+              'path' => 'v1/{+name}:fetchNodePoolUpgradeInfo',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'version' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],

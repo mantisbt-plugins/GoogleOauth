@@ -17,10 +17,16 @@
 
 namespace Google\Service\CloudDataplex\Resource;
 
+use Google\Service\CloudDataplex\GoogleCloudDataplexV1BatchChangeMetadataRequest;
+use Google\Service\CloudDataplex\GoogleCloudDataplexV1EntryGroup;
+use Google\Service\CloudDataplex\GoogleCloudDataplexV1ListEntryGroupsResponse;
+use Google\Service\CloudDataplex\GoogleCloudDataplexV1RequestBatchMetadataChangeRequest;
+use Google\Service\CloudDataplex\GoogleCloudDataplexV1RequestBatchMetadataChangeResponse;
 use Google\Service\CloudDataplex\GoogleIamV1Policy;
 use Google\Service\CloudDataplex\GoogleIamV1SetIamPolicyRequest;
 use Google\Service\CloudDataplex\GoogleIamV1TestIamPermissionsRequest;
 use Google\Service\CloudDataplex\GoogleIamV1TestIamPermissionsResponse;
+use Google\Service\CloudDataplex\GoogleLongrunningOperation;
 
 /**
  * The "entryGroups" collection of methods.
@@ -32,6 +38,79 @@ use Google\Service\CloudDataplex\GoogleIamV1TestIamPermissionsResponse;
  */
 class ProjectsLocationsEntryGroups extends \Google\Service\Resource
 {
+  /**
+   * Batch changes metadata within an EntryGroup.
+   * (entryGroups.batchChangeMetadata)
+   *
+   * @param string $name Required. The resource name of the EntryGroup on which
+   * the batch change applies. Format: projects/{project_number_or_id}/locations/{
+   * location_id}/entryGroups/{entry_group_id}
+   * @param GoogleCloudDataplexV1BatchChangeMetadataRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
+   */
+  public function batchChangeMetadata($name, GoogleCloudDataplexV1BatchChangeMetadataRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('batchChangeMetadata', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
+   * Creates an EntryGroup. (entryGroups.create)
+   *
+   * @param string $parent Required. The resource name of the entryGroup, of the
+   * form: projects/{project_number}/locations/{location_id} where location_id
+   * refers to a Google Cloud region.
+   * @param GoogleCloudDataplexV1EntryGroup $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string entryGroupId Required. EntryGroup identifier.
+   * @opt_param bool validateOnly Optional. The service validates the request
+   * without performing any mutations. The default is false.
+   * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
+   */
+  public function create($parent, GoogleCloudDataplexV1EntryGroup $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('create', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
+   * Deletes an EntryGroup. (entryGroups.delete)
+   *
+   * @param string $name Required. The resource name of the EntryGroup: projects/{
+   * project_number}/locations/{location_id}/entryGroups/{entry_group_id}.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string etag Optional. If the client provided etag value does not
+   * match the current etag value, the DeleteEntryGroupRequest method returns an
+   * ABORTED error response.
+   * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
+   */
+  public function delete($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('delete', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
+   * Gets an EntryGroup. (entryGroups.get)
+   *
+   * @param string $name Required. The resource name of the EntryGroup: projects/{
+   * project_number}/locations/{location_id}/entryGroups/{entry_group_id}.
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudDataplexV1EntryGroup
+   * @throws \Google\Service\Exception
+   */
+  public function get($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('get', [$params], GoogleCloudDataplexV1EntryGroup::class);
+  }
   /**
    * Gets the access control policy for a resource. Returns an empty policy if the
    * resource exists and does not have a policy set. (entryGroups.getIamPolicy)
@@ -54,12 +133,82 @@ class ProjectsLocationsEntryGroups extends \Google\Service\Resource
    * IAM policies, see the IAM documentation
    * (https://cloud.google.com/iam/help/conditions/resource-policies).
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
     $params = ['resource' => $resource];
     $params = array_merge($params, $optParams);
     return $this->call('getIamPolicy', [$params], GoogleIamV1Policy::class);
+  }
+  /**
+   * Lists EntryGroup resources in a project and location.
+   * (entryGroups.listProjectsLocationsEntryGroups)
+   *
+   * @param string $parent Required. The resource name of the entryGroup location,
+   * of the form: projects/{project_number}/locations/{location_id} where
+   * location_id refers to a Google Cloud region.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string filter Optional. Filter request.
+   * @opt_param string orderBy Optional. Order by fields for the result.
+   * @opt_param int pageSize Optional. Maximum number of EntryGroups to return.
+   * The service may return fewer than this value. If unspecified, the service
+   * returns at most 10 EntryGroups. The maximum value is 1000; values above 1000
+   * will be coerced to 1000.
+   * @opt_param string pageToken Optional. Page token received from a previous
+   * ListEntryGroups call. Provide this to retrieve the subsequent page. When
+   * paginating, all other parameters you provide to ListEntryGroups must match
+   * the call that provided the page token.
+   * @return GoogleCloudDataplexV1ListEntryGroupsResponse
+   * @throws \Google\Service\Exception
+   */
+  public function listProjectsLocationsEntryGroups($parent, $optParams = [])
+  {
+    $params = ['parent' => $parent];
+    $params = array_merge($params, $optParams);
+    return $this->call('list', [$params], GoogleCloudDataplexV1ListEntryGroupsResponse::class);
+  }
+  /**
+   * Updates an EntryGroup. (entryGroups.patch)
+   *
+   * @param string $name Output only. The relative resource name of the
+   * EntryGroup, in the format projects/{project_id_or_number}/locations/{location
+   * _id}/entryGroups/{entry_group_id}.
+   * @param GoogleCloudDataplexV1EntryGroup $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string updateMask Required. Mask of fields to update.
+   * @opt_param bool validateOnly Optional. The service validates the request,
+   * without performing any mutations. The default is false.
+   * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
+   */
+  public function patch($name, GoogleCloudDataplexV1EntryGroup $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('patch', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
+   * Submits a catalog change request for multiple resources within an EntryGroup.
+   * This method creates a ChangeRequest resource that must be reviewed and
+   * approved before the proposed changes are applied.
+   * (entryGroups.requestBatchMetadataChange)
+   *
+   * @param string $name Required. The resource name of the Entry Group on which
+   * the change applies. Format:
+   * projects/{project}/locations/{location}/entryGroups/{entry_group}
+   * @param GoogleCloudDataplexV1RequestBatchMetadataChangeRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudDataplexV1RequestBatchMetadataChangeResponse
+   * @throws \Google\Service\Exception
+   */
+  public function requestBatchMetadataChange($name, GoogleCloudDataplexV1RequestBatchMetadataChangeRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('requestBatchMetadataChange', [$params], GoogleCloudDataplexV1RequestBatchMetadataChangeResponse::class);
   }
   /**
    * Sets the access control policy on the specified resource. Replaces any
@@ -73,6 +222,7 @@ class ProjectsLocationsEntryGroups extends \Google\Service\Resource
    * @param GoogleIamV1SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, GoogleIamV1SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -95,6 +245,7 @@ class ProjectsLocationsEntryGroups extends \Google\Service\Resource
    * @param GoogleIamV1TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
   {

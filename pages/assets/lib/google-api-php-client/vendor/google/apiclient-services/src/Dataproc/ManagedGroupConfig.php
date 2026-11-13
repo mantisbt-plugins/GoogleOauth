@@ -20,16 +20,30 @@ namespace Google\Service\Dataproc;
 class ManagedGroupConfig extends \Google\Model
 {
   /**
+   * Output only. The name of the Instance Group Manager for this group.
+   *
    * @var string
    */
   public $instanceGroupManagerName;
   /**
+   * Output only. The partial URI to the instance group manager for this group.
+   * E.g. projects/my-project/regions/us-central1/instanceGroupManagers/my-igm.
+   *
+   * @var string
+   */
+  public $instanceGroupManagerUri;
+  /**
+   * Output only. The name of the Instance Template used for the Managed
+   * Instance Group.
+   *
    * @var string
    */
   public $instanceTemplateName;
 
   /**
-   * @param string
+   * Output only. The name of the Instance Group Manager for this group.
+   *
+   * @param string $instanceGroupManagerName
    */
   public function setInstanceGroupManagerName($instanceGroupManagerName)
   {
@@ -43,7 +57,27 @@ class ManagedGroupConfig extends \Google\Model
     return $this->instanceGroupManagerName;
   }
   /**
-   * @param string
+   * Output only. The partial URI to the instance group manager for this group.
+   * E.g. projects/my-project/regions/us-central1/instanceGroupManagers/my-igm.
+   *
+   * @param string $instanceGroupManagerUri
+   */
+  public function setInstanceGroupManagerUri($instanceGroupManagerUri)
+  {
+    $this->instanceGroupManagerUri = $instanceGroupManagerUri;
+  }
+  /**
+   * @return string
+   */
+  public function getInstanceGroupManagerUri()
+  {
+    return $this->instanceGroupManagerUri;
+  }
+  /**
+   * Output only. The name of the Instance Template used for the Managed
+   * Instance Group.
+   *
+   * @param string $instanceTemplateName
    */
   public function setInstanceTemplateName($instanceTemplateName)
   {

@@ -17,23 +17,35 @@
 
 namespace Google\Service\CloudIAP;
 
-class AccessSettings extends \Google\Model
+class AccessSettings extends \Google\Collection
 {
+  protected $collection_key = 'identitySources';
   protected $allowedDomainsSettingsType = AllowedDomainsSettings::class;
   protected $allowedDomainsSettingsDataType = '';
   protected $corsSettingsType = CorsSettings::class;
   protected $corsSettingsDataType = '';
   protected $gcipSettingsType = GcipSettings::class;
   protected $gcipSettingsDataType = '';
+  /**
+   * Optional. Identity sources that IAP can use to authenticate the end user.
+   * Only one identity source can be configured.
+   *
+   * @var string[]
+   */
+  public $identitySources;
   protected $oauthSettingsType = OAuthSettings::class;
   protected $oauthSettingsDataType = '';
   protected $policyDelegationSettingsType = PolicyDelegationSettings::class;
   protected $policyDelegationSettingsDataType = '';
   protected $reauthSettingsType = ReauthSettings::class;
   protected $reauthSettingsDataType = '';
+  protected $workforceIdentitySettingsType = WorkforceIdentitySettings::class;
+  protected $workforceIdentitySettingsDataType = '';
 
   /**
-   * @param AllowedDomainsSettings
+   * Optional. Settings to configure and enable allowed domains.
+   *
+   * @param AllowedDomainsSettings $allowedDomainsSettings
    */
   public function setAllowedDomainsSettings(AllowedDomainsSettings $allowedDomainsSettings)
   {
@@ -47,7 +59,9 @@ class AccessSettings extends \Google\Model
     return $this->allowedDomainsSettings;
   }
   /**
-   * @param CorsSettings
+   * Optional. Configuration to allow cross-origin requests via IAP.
+   *
+   * @param CorsSettings $corsSettings
    */
   public function setCorsSettings(CorsSettings $corsSettings)
   {
@@ -61,7 +75,10 @@ class AccessSettings extends \Google\Model
     return $this->corsSettings;
   }
   /**
-   * @param GcipSettings
+   * Optional. GCIP claims and endpoint configurations for 3p identity
+   * providers.
+   *
+   * @param GcipSettings $gcipSettings
    */
   public function setGcipSettings(GcipSettings $gcipSettings)
   {
@@ -75,7 +92,26 @@ class AccessSettings extends \Google\Model
     return $this->gcipSettings;
   }
   /**
-   * @param OAuthSettings
+   * Optional. Identity sources that IAP can use to authenticate the end user.
+   * Only one identity source can be configured.
+   *
+   * @param string[] $identitySources
+   */
+  public function setIdentitySources($identitySources)
+  {
+    $this->identitySources = $identitySources;
+  }
+  /**
+   * @return string[]
+   */
+  public function getIdentitySources()
+  {
+    return $this->identitySources;
+  }
+  /**
+   * Optional. Settings to configure IAP's OAuth behavior.
+   *
+   * @param OAuthSettings $oauthSettings
    */
   public function setOauthSettings(OAuthSettings $oauthSettings)
   {
@@ -89,7 +125,10 @@ class AccessSettings extends \Google\Model
     return $this->oauthSettings;
   }
   /**
-   * @param PolicyDelegationSettings
+   * Optional. Settings to allow google-internal teams to use IAP for apps
+   * hosted in a tenant project.
+   *
+   * @param PolicyDelegationSettings $policyDelegationSettings
    */
   public function setPolicyDelegationSettings(PolicyDelegationSettings $policyDelegationSettings)
   {
@@ -103,7 +142,9 @@ class AccessSettings extends \Google\Model
     return $this->policyDelegationSettings;
   }
   /**
-   * @param ReauthSettings
+   * Optional. Settings to configure reauthentication policies in IAP.
+   *
+   * @param ReauthSettings $reauthSettings
    */
   public function setReauthSettings(ReauthSettings $reauthSettings)
   {
@@ -115,6 +156,23 @@ class AccessSettings extends \Google\Model
   public function getReauthSettings()
   {
     return $this->reauthSettings;
+  }
+  /**
+   * Optional. Settings to configure the workforce identity federation,
+   * including workforce pools and OAuth 2.0 settings.
+   *
+   * @param WorkforceIdentitySettings $workforceIdentitySettings
+   */
+  public function setWorkforceIdentitySettings(WorkforceIdentitySettings $workforceIdentitySettings)
+  {
+    $this->workforceIdentitySettings = $workforceIdentitySettings;
+  }
+  /**
+   * @return WorkforceIdentitySettings
+   */
+  public function getWorkforceIdentitySettings()
+  {
+    return $this->workforceIdentitySettings;
   }
 }
 

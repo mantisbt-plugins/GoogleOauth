@@ -25,7 +25,7 @@ class GoogleCloudDialogflowCxV3TransitionCoverageTransitionNode extends \Google\
   protected $pageDataType = '';
 
   /**
-   * @param GoogleCloudDialogflowCxV3Flow
+   * @param GoogleCloudDialogflowCxV3Flow $flow
    */
   public function setFlow(GoogleCloudDialogflowCxV3Flow $flow)
   {
@@ -39,7 +39,7 @@ class GoogleCloudDialogflowCxV3TransitionCoverageTransitionNode extends \Google\
     return $this->flow;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3Page
+   * @param GoogleCloudDialogflowCxV3Page $page
    */
   public function setPage(GoogleCloudDialogflowCxV3Page $page)
   {

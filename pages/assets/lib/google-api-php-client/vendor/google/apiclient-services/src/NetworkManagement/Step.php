@@ -19,26 +19,268 @@ namespace Google\Service\NetworkManagement;
 
 class Step extends \Google\Model
 {
+  /**
+   * Unspecified state.
+   */
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  /**
+   * Initial state: packet originating from a Compute Engine instance. An
+   * InstanceInfo is populated with starting instance information.
+   */
+  public const STATE_START_FROM_INSTANCE = 'START_FROM_INSTANCE';
+  /**
+   * Initial state: packet originating from the internet. The endpoint
+   * information is populated.
+   */
+  public const STATE_START_FROM_INTERNET = 'START_FROM_INTERNET';
+  /**
+   * Initial state: packet originating from a Google service. The google_service
+   * information is populated.
+   */
+  public const STATE_START_FROM_GOOGLE_SERVICE = 'START_FROM_GOOGLE_SERVICE';
+  /**
+   * Initial state: packet originating from a VPC or on-premises network with
+   * internal source IP. If the source is a VPC network visible to the user, a
+   * NetworkInfo is populated with details of the network.
+   */
+  public const STATE_START_FROM_PRIVATE_NETWORK = 'START_FROM_PRIVATE_NETWORK';
+  /**
+   * Initial state: packet originating from a Google Kubernetes Engine cluster
+   * master. A GKEMasterInfo is populated with starting instance information.
+   */
+  public const STATE_START_FROM_GKE_MASTER = 'START_FROM_GKE_MASTER';
+  /**
+   * Initial state: packet originating from a Cloud SQL instance. A
+   * CloudSQLInstanceInfo is populated with starting instance information.
+   */
+  public const STATE_START_FROM_CLOUD_SQL_INSTANCE = 'START_FROM_CLOUD_SQL_INSTANCE';
+  /**
+   * Initial state: packet originating from a Google Kubernetes Engine Pod. A
+   * GkePodInfo is populated with starting Pod information.
+   */
+  public const STATE_START_FROM_GKE_POD = 'START_FROM_GKE_POD';
+  /**
+   * Initial state: packet originating from a Redis instance. A
+   * RedisInstanceInfo is populated with starting instance information.
+   */
+  public const STATE_START_FROM_REDIS_INSTANCE = 'START_FROM_REDIS_INSTANCE';
+  /**
+   * Initial state: packet originating from a Redis Cluster. A RedisClusterInfo
+   * is populated with starting Cluster information.
+   */
+  public const STATE_START_FROM_REDIS_CLUSTER = 'START_FROM_REDIS_CLUSTER';
+  /**
+   * Initial state: packet originating from a Cloud Function. A
+   * CloudFunctionInfo is populated with starting function information.
+   */
+  public const STATE_START_FROM_CLOUD_FUNCTION = 'START_FROM_CLOUD_FUNCTION';
+  /**
+   * Initial state: packet originating from an App Engine service version. An
+   * AppEngineVersionInfo is populated with starting version information.
+   */
+  public const STATE_START_FROM_APP_ENGINE_VERSION = 'START_FROM_APP_ENGINE_VERSION';
+  /**
+   * Initial state: packet originating from a Cloud Run revision. A
+   * CloudRunRevisionInfo is populated with starting revision information.
+   */
+  public const STATE_START_FROM_CLOUD_RUN_REVISION = 'START_FROM_CLOUD_RUN_REVISION';
+  /**
+   * Initial state: packet originating from a Cloud Run Job. A CloudRunJobInfo
+   * is populated with starting Job information.
+   */
+  public const STATE_START_FROM_CLOUD_RUN_JOB = 'START_FROM_CLOUD_RUN_JOB';
+  /**
+   * Initial state: packet originating from a Storage Bucket. Used only for
+   * return traces. The storage_bucket information is populated.
+   */
+  public const STATE_START_FROM_STORAGE_BUCKET = 'START_FROM_STORAGE_BUCKET';
+  /**
+   * Initial state: packet originating from a published service that uses
+   * Private Service Connect. Used only for return traces.
+   */
+  public const STATE_START_FROM_PSC_PUBLISHED_SERVICE = 'START_FROM_PSC_PUBLISHED_SERVICE';
+  /**
+   * Initial state: packet originating from a serverless network endpoint group
+   * backend. Used only for return traces. The serverless_neg information is
+   * populated.
+   */
+  public const STATE_START_FROM_SERVERLESS_NEG = 'START_FROM_SERVERLESS_NEG';
+  /**
+   * Initial state: packet originating from a DMS Private Connection.
+   */
+  public const STATE_START_FROM_DMS_PRIVATE_CONNECTION = 'START_FROM_DMS_PRIVATE_CONNECTION';
+  /**
+   * Initial state: packet originating from a Datastream Private Connection.
+   */
+  public const STATE_START_FROM_DATASTREAM_PRIVATE_CONNECTION = 'START_FROM_DATASTREAM_PRIVATE_CONNECTION';
+  /**
+   * Config checking state: verify ingress firewall rule.
+   */
+  public const STATE_APPLY_INGRESS_FIREWALL_RULE = 'APPLY_INGRESS_FIREWALL_RULE';
+  /**
+   * Config checking state: verify egress firewall rule.
+   */
+  public const STATE_APPLY_EGRESS_FIREWALL_RULE = 'APPLY_EGRESS_FIREWALL_RULE';
+  /**
+   * Config checking state: verify route.
+   */
+  public const STATE_APPLY_ROUTE = 'APPLY_ROUTE';
+  /**
+   * Config checking state: match forwarding rule.
+   */
+  public const STATE_APPLY_FORWARDING_RULE = 'APPLY_FORWARDING_RULE';
+  /**
+   * Config checking state: verify load balancer backend configuration.
+   */
+  public const STATE_ANALYZE_LOAD_BALANCER_BACKEND = 'ANALYZE_LOAD_BALANCER_BACKEND';
+  /**
+   * Config checking state: packet sent or received under foreign IP address and
+   * allowed.
+   */
+  public const STATE_SPOOFING_APPROVED = 'SPOOFING_APPROVED';
+  /**
+   * Forwarding state: arriving at a Compute Engine instance.
+   */
+  public const STATE_ARRIVE_AT_INSTANCE = 'ARRIVE_AT_INSTANCE';
+  /**
+   * Forwarding state: arriving at a Compute Engine internal load balancer.
+   *
+   * @deprecated
+   */
+  public const STATE_ARRIVE_AT_INTERNAL_LOAD_BALANCER = 'ARRIVE_AT_INTERNAL_LOAD_BALANCER';
+  /**
+   * Forwarding state: arriving at a Compute Engine external load balancer.
+   *
+   * @deprecated
+   */
+  public const STATE_ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 'ARRIVE_AT_EXTERNAL_LOAD_BALANCER';
+  /**
+   * Forwarding state: arriving at a hybrid subnet. Appropriate routing
+   * configuration will be determined here.
+   */
+  public const STATE_ARRIVE_AT_HYBRID_SUBNET = 'ARRIVE_AT_HYBRID_SUBNET';
+  /**
+   * Forwarding state: arriving at a Cloud VPN gateway.
+   */
+  public const STATE_ARRIVE_AT_VPN_GATEWAY = 'ARRIVE_AT_VPN_GATEWAY';
+  /**
+   * Forwarding state: arriving at a Cloud VPN tunnel.
+   */
+  public const STATE_ARRIVE_AT_VPN_TUNNEL = 'ARRIVE_AT_VPN_TUNNEL';
+  /**
+   * Forwarding state: arriving at an interconnect attachment.
+   */
+  public const STATE_ARRIVE_AT_INTERCONNECT_ATTACHMENT = 'ARRIVE_AT_INTERCONNECT_ATTACHMENT';
+  /**
+   * Forwarding state: arriving at a VPC connector.
+   */
+  public const STATE_ARRIVE_AT_VPC_CONNECTOR = 'ARRIVE_AT_VPC_CONNECTOR';
+  /**
+   * Forwarding state: arriving at a GKE Pod.
+   */
+  public const STATE_ARRIVE_AT_GKE_POD = 'ARRIVE_AT_GKE_POD';
+  /**
+   * Forwarding state: for packets originating from a serverless endpoint
+   * forwarded through Direct VPC egress.
+   */
+  public const STATE_DIRECT_VPC_EGRESS_CONNECTION = 'DIRECT_VPC_EGRESS_CONNECTION';
+  /**
+   * Forwarding state: for packets originating from a serverless endpoint
+   * forwarded through public (external) connectivity.
+   */
+  public const STATE_SERVERLESS_EXTERNAL_CONNECTION = 'SERVERLESS_EXTERNAL_CONNECTION';
+  /**
+   * Forwarding state: Layer 7 packet inspection by the firewall endpoint based
+   * on the configured security profile group.
+   */
+  public const STATE_NGFW_PACKET_INSPECTION = 'NGFW_PACKET_INSPECTION';
+  /**
+   * Transition state: packet header translated. The `nat` field is populated
+   * with the translation information.
+   */
+  public const STATE_NAT = 'NAT';
+  /**
+   * Transition state: GKE Pod IP masquerading is skipped. The
+   * `ip_masquerading_skipped` field is populated with the reason.
+   */
+  public const STATE_SKIP_GKE_POD_IP_MASQUERADING = 'SKIP_GKE_POD_IP_MASQUERADING';
+  /**
+   * Transition state: GKE Ingress Network Policy is skipped. The
+   * `gke_network_policy_skipped` field is populated with the reason.
+   */
+  public const STATE_SKIP_GKE_INGRESS_NETWORK_POLICY = 'SKIP_GKE_INGRESS_NETWORK_POLICY';
+  /**
+   * Transition state: GKE Egress Network Policy is skipped. The
+   * `gke_network_policy_skipped` field is populated with the reason.
+   */
+  public const STATE_SKIP_GKE_EGRESS_NETWORK_POLICY = 'SKIP_GKE_EGRESS_NETWORK_POLICY';
+  /**
+   * Config checking state: verify ingress GKE network policy.
+   */
+  public const STATE_APPLY_INGRESS_GKE_NETWORK_POLICY = 'APPLY_INGRESS_GKE_NETWORK_POLICY';
+  /**
+   * Config checking state: verify egress GKE network policy.
+   */
+  public const STATE_APPLY_EGRESS_GKE_NETWORK_POLICY = 'APPLY_EGRESS_GKE_NETWORK_POLICY';
+  /**
+   * Transition state: original connection is terminated and a new proxied
+   * connection is initiated.
+   */
+  public const STATE_PROXY_CONNECTION = 'PROXY_CONNECTION';
+  /**
+   * Final state: packet could be delivered.
+   */
+  public const STATE_DELIVER = 'DELIVER';
+  /**
+   * Final state: packet could be dropped.
+   */
+  public const STATE_DROP = 'DROP';
+  /**
+   * Final state: packet could be forwarded to a network with an unknown
+   * configuration.
+   */
+  public const STATE_FORWARD = 'FORWARD';
+  /**
+   * Final state: analysis is aborted.
+   */
+  public const STATE_ABORT = 'ABORT';
+  /**
+   * Special state: viewer of the test result does not have permission to see
+   * the configuration in this step.
+   */
+  public const STATE_VIEWER_PERMISSION_MISSING = 'VIEWER_PERMISSION_MISSING';
   protected $abortType = AbortInfo::class;
   protected $abortDataType = '';
   protected $appEngineVersionType = AppEngineVersionInfo::class;
   protected $appEngineVersionDataType = '';
   /**
+   * This is a step that leads to the final state Drop.
+   *
    * @var bool
    */
   public $causesDrop;
   protected $cloudFunctionType = CloudFunctionInfo::class;
   protected $cloudFunctionDataType = '';
+  protected $cloudRunJobType = CloudRunJobInfo::class;
+  protected $cloudRunJobDataType = '';
   protected $cloudRunRevisionType = CloudRunRevisionInfo::class;
   protected $cloudRunRevisionDataType = '';
   protected $cloudSqlInstanceType = CloudSQLInstanceInfo::class;
   protected $cloudSqlInstanceDataType = '';
+  protected $datastreamPrivateConnectionType = PrivateConnectionInfo::class;
+  protected $datastreamPrivateConnectionDataType = '';
   protected $deliverType = DeliverInfo::class;
   protected $deliverDataType = '';
   /**
+   * A description of the step. Usually this is a summary of the state.
+   *
    * @var string
    */
   public $description;
+  protected $directVpcEgressConnectionType = DirectVpcEgressConnectionInfo::class;
+  protected $directVpcEgressConnectionDataType = '';
+  protected $dmsPrivateConnectionType = PrivateConnectionInfo::class;
+  protected $dmsPrivateConnectionDataType = '';
   protected $dropType = DropInfo::class;
   protected $dropDataType = '';
   protected $endpointType = EndpointInfo::class;
@@ -51,22 +293,60 @@ class Step extends \Google\Model
   protected $forwardingRuleDataType = '';
   protected $gkeMasterType = GKEMasterInfo::class;
   protected $gkeMasterDataType = '';
+  protected $gkeNetworkPolicyType = GkeNetworkPolicyInfo::class;
+  protected $gkeNetworkPolicyDataType = '';
+  protected $gkeNetworkPolicySkippedType = GkeNetworkPolicySkippedInfo::class;
+  protected $gkeNetworkPolicySkippedDataType = '';
+  protected $gkePodType = GkePodInfo::class;
+  protected $gkePodDataType = '';
+  protected $googleServiceType = GoogleServiceInfo::class;
+  protected $googleServiceDataType = '';
+  protected $hybridSubnetType = HybridSubnetInfo::class;
+  protected $hybridSubnetDataType = '';
   protected $instanceType = InstanceInfo::class;
   protected $instanceDataType = '';
+  protected $interconnectAttachmentType = InterconnectAttachmentInfo::class;
+  protected $interconnectAttachmentDataType = '';
+  protected $ipMasqueradingSkippedType = IpMasqueradingSkippedInfo::class;
+  protected $ipMasqueradingSkippedDataType = '';
   protected $loadBalancerType = LoadBalancerInfo::class;
   protected $loadBalancerDataType = '';
+  protected $loadBalancerBackendInfoType = LoadBalancerBackendInfo::class;
+  protected $loadBalancerBackendInfoDataType = '';
+  protected $natType = NatInfo::class;
+  protected $natDataType = '';
   protected $networkType = NetworkInfo::class;
   protected $networkDataType = '';
+  protected $ngfwPacketInspectionType = NgfwPacketInspectionInfo::class;
+  protected $ngfwPacketInspectionDataType = '';
   /**
+   * Project ID that contains the configuration this step is validating.
+   *
    * @var string
    */
   public $projectId;
+  protected $proxyConnectionType = ProxyConnectionInfo::class;
+  protected $proxyConnectionDataType = '';
+  protected $redisClusterType = RedisClusterInfo::class;
+  protected $redisClusterDataType = '';
+  protected $redisInstanceType = RedisInstanceInfo::class;
+  protected $redisInstanceDataType = '';
   protected $routeType = RouteInfo::class;
   protected $routeDataType = '';
+  protected $serverlessExternalConnectionType = ServerlessExternalConnectionInfo::class;
+  protected $serverlessExternalConnectionDataType = '';
+  protected $serverlessNegType = ServerlessNegInfo::class;
+  protected $serverlessNegDataType = '';
   /**
+   * Each step is in one of the pre-defined states.
+   *
    * @var string
    */
   public $state;
+  protected $storageBucketType = StorageBucketInfo::class;
+  protected $storageBucketDataType = '';
+  protected $viewerPermissionMissingInfoType = ViewerPermissionMissingInfo::class;
+  protected $viewerPermissionMissingInfoDataType = '';
   protected $vpcConnectorType = VpcConnectorInfo::class;
   protected $vpcConnectorDataType = '';
   protected $vpnGatewayType = VpnGatewayInfo::class;
@@ -75,7 +355,9 @@ class Step extends \Google\Model
   protected $vpnTunnelDataType = '';
 
   /**
-   * @param AbortInfo
+   * Display information of the final state "abort" and reason.
+   *
+   * @param AbortInfo $abort
    */
   public function setAbort(AbortInfo $abort)
   {
@@ -89,7 +371,9 @@ class Step extends \Google\Model
     return $this->abort;
   }
   /**
-   * @param AppEngineVersionInfo
+   * Display information of an App Engine service version.
+   *
+   * @param AppEngineVersionInfo $appEngineVersion
    */
   public function setAppEngineVersion(AppEngineVersionInfo $appEngineVersion)
   {
@@ -103,7 +387,9 @@ class Step extends \Google\Model
     return $this->appEngineVersion;
   }
   /**
-   * @param bool
+   * This is a step that leads to the final state Drop.
+   *
+   * @param bool $causesDrop
    */
   public function setCausesDrop($causesDrop)
   {
@@ -117,7 +403,9 @@ class Step extends \Google\Model
     return $this->causesDrop;
   }
   /**
-   * @param CloudFunctionInfo
+   * Display information of a Cloud Function.
+   *
+   * @param CloudFunctionInfo $cloudFunction
    */
   public function setCloudFunction(CloudFunctionInfo $cloudFunction)
   {
@@ -131,7 +419,25 @@ class Step extends \Google\Model
     return $this->cloudFunction;
   }
   /**
-   * @param CloudRunRevisionInfo
+   * Display information of a Cloud Run job.
+   *
+   * @param CloudRunJobInfo $cloudRunJob
+   */
+  public function setCloudRunJob(CloudRunJobInfo $cloudRunJob)
+  {
+    $this->cloudRunJob = $cloudRunJob;
+  }
+  /**
+   * @return CloudRunJobInfo
+   */
+  public function getCloudRunJob()
+  {
+    return $this->cloudRunJob;
+  }
+  /**
+   * Display information of a Cloud Run revision.
+   *
+   * @param CloudRunRevisionInfo $cloudRunRevision
    */
   public function setCloudRunRevision(CloudRunRevisionInfo $cloudRunRevision)
   {
@@ -145,7 +451,9 @@ class Step extends \Google\Model
     return $this->cloudRunRevision;
   }
   /**
-   * @param CloudSQLInstanceInfo
+   * Display information of a Cloud SQL instance.
+   *
+   * @param CloudSQLInstanceInfo $cloudSqlInstance
    */
   public function setCloudSqlInstance(CloudSQLInstanceInfo $cloudSqlInstance)
   {
@@ -159,7 +467,25 @@ class Step extends \Google\Model
     return $this->cloudSqlInstance;
   }
   /**
-   * @param DeliverInfo
+   * Display information of a Datastream Private Connection.
+   *
+   * @param PrivateConnectionInfo $datastreamPrivateConnection
+   */
+  public function setDatastreamPrivateConnection(PrivateConnectionInfo $datastreamPrivateConnection)
+  {
+    $this->datastreamPrivateConnection = $datastreamPrivateConnection;
+  }
+  /**
+   * @return PrivateConnectionInfo
+   */
+  public function getDatastreamPrivateConnection()
+  {
+    return $this->datastreamPrivateConnection;
+  }
+  /**
+   * Display information of the final state "deliver" and reason.
+   *
+   * @param DeliverInfo $deliver
    */
   public function setDeliver(DeliverInfo $deliver)
   {
@@ -173,7 +499,9 @@ class Step extends \Google\Model
     return $this->deliver;
   }
   /**
-   * @param string
+   * A description of the step. Usually this is a summary of the state.
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -187,7 +515,41 @@ class Step extends \Google\Model
     return $this->description;
   }
   /**
-   * @param DropInfo
+   * Display information of a serverless direct VPC egress connection.
+   *
+   * @param DirectVpcEgressConnectionInfo $directVpcEgressConnection
+   */
+  public function setDirectVpcEgressConnection(DirectVpcEgressConnectionInfo $directVpcEgressConnection)
+  {
+    $this->directVpcEgressConnection = $directVpcEgressConnection;
+  }
+  /**
+   * @return DirectVpcEgressConnectionInfo
+   */
+  public function getDirectVpcEgressConnection()
+  {
+    return $this->directVpcEgressConnection;
+  }
+  /**
+   * Display information of a DMS Private Connection.
+   *
+   * @param PrivateConnectionInfo $dmsPrivateConnection
+   */
+  public function setDmsPrivateConnection(PrivateConnectionInfo $dmsPrivateConnection)
+  {
+    $this->dmsPrivateConnection = $dmsPrivateConnection;
+  }
+  /**
+   * @return PrivateConnectionInfo
+   */
+  public function getDmsPrivateConnection()
+  {
+    return $this->dmsPrivateConnection;
+  }
+  /**
+   * Display information of the final state "drop" and reason.
+   *
+   * @param DropInfo $drop
    */
   public function setDrop(DropInfo $drop)
   {
@@ -201,7 +563,11 @@ class Step extends \Google\Model
     return $this->drop;
   }
   /**
-   * @param EndpointInfo
+   * Display information of the source and destination under analysis. The
+   * endpoint information in an intermediate state may differ with the initial
+   * input, as it might be modified by state like NAT, or Connection Proxy.
+   *
+   * @param EndpointInfo $endpoint
    */
   public function setEndpoint(EndpointInfo $endpoint)
   {
@@ -215,7 +581,9 @@ class Step extends \Google\Model
     return $this->endpoint;
   }
   /**
-   * @param FirewallInfo
+   * Display information of a Compute Engine firewall rule.
+   *
+   * @param FirewallInfo $firewall
    */
   public function setFirewall(FirewallInfo $firewall)
   {
@@ -229,7 +597,9 @@ class Step extends \Google\Model
     return $this->firewall;
   }
   /**
-   * @param ForwardInfo
+   * Display information of the final state "forward" and reason.
+   *
+   * @param ForwardInfo $forward
    */
   public function setForward(ForwardInfo $forward)
   {
@@ -243,7 +613,9 @@ class Step extends \Google\Model
     return $this->forward;
   }
   /**
-   * @param ForwardingRuleInfo
+   * Display information of a Compute Engine forwarding rule.
+   *
+   * @param ForwardingRuleInfo $forwardingRule
    */
   public function setForwardingRule(ForwardingRuleInfo $forwardingRule)
   {
@@ -257,7 +629,9 @@ class Step extends \Google\Model
     return $this->forwardingRule;
   }
   /**
-   * @param GKEMasterInfo
+   * Display information of a Google Kubernetes Engine cluster master.
+   *
+   * @param GKEMasterInfo $gkeMaster
    */
   public function setGkeMaster(GKEMasterInfo $gkeMaster)
   {
@@ -271,7 +645,90 @@ class Step extends \Google\Model
     return $this->gkeMaster;
   }
   /**
-   * @param InstanceInfo
+   * Display information of a GKE Network Policy.
+   *
+   * @param GkeNetworkPolicyInfo $gkeNetworkPolicy
+   */
+  public function setGkeNetworkPolicy(GkeNetworkPolicyInfo $gkeNetworkPolicy)
+  {
+    $this->gkeNetworkPolicy = $gkeNetworkPolicy;
+  }
+  /**
+   * @return GkeNetworkPolicyInfo
+   */
+  public function getGkeNetworkPolicy()
+  {
+    return $this->gkeNetworkPolicy;
+  }
+  /**
+   * Display information of the reason why GKE Network Policy evaluation was
+   * skipped.
+   *
+   * @param GkeNetworkPolicySkippedInfo $gkeNetworkPolicySkipped
+   */
+  public function setGkeNetworkPolicySkipped(GkeNetworkPolicySkippedInfo $gkeNetworkPolicySkipped)
+  {
+    $this->gkeNetworkPolicySkipped = $gkeNetworkPolicySkipped;
+  }
+  /**
+   * @return GkeNetworkPolicySkippedInfo
+   */
+  public function getGkeNetworkPolicySkipped()
+  {
+    return $this->gkeNetworkPolicySkipped;
+  }
+  /**
+   * Display information of a Google Kubernetes Engine Pod.
+   *
+   * @param GkePodInfo $gkePod
+   */
+  public function setGkePod(GkePodInfo $gkePod)
+  {
+    $this->gkePod = $gkePod;
+  }
+  /**
+   * @return GkePodInfo
+   */
+  public function getGkePod()
+  {
+    return $this->gkePod;
+  }
+  /**
+   * Display information of a Google service
+   *
+   * @param GoogleServiceInfo $googleService
+   */
+  public function setGoogleService(GoogleServiceInfo $googleService)
+  {
+    $this->googleService = $googleService;
+  }
+  /**
+   * @return GoogleServiceInfo
+   */
+  public function getGoogleService()
+  {
+    return $this->googleService;
+  }
+  /**
+   * Display information of a hybrid subnet.
+   *
+   * @param HybridSubnetInfo $hybridSubnet
+   */
+  public function setHybridSubnet(HybridSubnetInfo $hybridSubnet)
+  {
+    $this->hybridSubnet = $hybridSubnet;
+  }
+  /**
+   * @return HybridSubnetInfo
+   */
+  public function getHybridSubnet()
+  {
+    return $this->hybridSubnet;
+  }
+  /**
+   * Display information of a Compute Engine instance.
+   *
+   * @param InstanceInfo $instance
    */
   public function setInstance(InstanceInfo $instance)
   {
@@ -285,13 +742,50 @@ class Step extends \Google\Model
     return $this->instance;
   }
   /**
-   * @param LoadBalancerInfo
+   * Display information of an interconnect attachment.
+   *
+   * @param InterconnectAttachmentInfo $interconnectAttachment
+   */
+  public function setInterconnectAttachment(InterconnectAttachmentInfo $interconnectAttachment)
+  {
+    $this->interconnectAttachment = $interconnectAttachment;
+  }
+  /**
+   * @return InterconnectAttachmentInfo
+   */
+  public function getInterconnectAttachment()
+  {
+    return $this->interconnectAttachment;
+  }
+  /**
+   * Display information of the reason why GKE Pod IP masquerading was skipped.
+   *
+   * @param IpMasqueradingSkippedInfo $ipMasqueradingSkipped
+   */
+  public function setIpMasqueradingSkipped(IpMasqueradingSkippedInfo $ipMasqueradingSkipped)
+  {
+    $this->ipMasqueradingSkipped = $ipMasqueradingSkipped;
+  }
+  /**
+   * @return IpMasqueradingSkippedInfo
+   */
+  public function getIpMasqueradingSkipped()
+  {
+    return $this->ipMasqueradingSkipped;
+  }
+  /**
+   * Display information of the load balancers. Deprecated in favor of the
+   * `load_balancer_backend_info` field, not used in new tests.
+   *
+   * @deprecated
+   * @param LoadBalancerInfo $loadBalancer
    */
   public function setLoadBalancer(LoadBalancerInfo $loadBalancer)
   {
     $this->loadBalancer = $loadBalancer;
   }
   /**
+   * @deprecated
    * @return LoadBalancerInfo
    */
   public function getLoadBalancer()
@@ -299,7 +793,41 @@ class Step extends \Google\Model
     return $this->loadBalancer;
   }
   /**
-   * @param NetworkInfo
+   * Display information of a specific load balancer backend.
+   *
+   * @param LoadBalancerBackendInfo $loadBalancerBackendInfo
+   */
+  public function setLoadBalancerBackendInfo(LoadBalancerBackendInfo $loadBalancerBackendInfo)
+  {
+    $this->loadBalancerBackendInfo = $loadBalancerBackendInfo;
+  }
+  /**
+   * @return LoadBalancerBackendInfo
+   */
+  public function getLoadBalancerBackendInfo()
+  {
+    return $this->loadBalancerBackendInfo;
+  }
+  /**
+   * Display information of a NAT.
+   *
+   * @param NatInfo $nat
+   */
+  public function setNat(NatInfo $nat)
+  {
+    $this->nat = $nat;
+  }
+  /**
+   * @return NatInfo
+   */
+  public function getNat()
+  {
+    return $this->nat;
+  }
+  /**
+   * Display information of a Google Cloud network.
+   *
+   * @param NetworkInfo $network
    */
   public function setNetwork(NetworkInfo $network)
   {
@@ -313,7 +841,25 @@ class Step extends \Google\Model
     return $this->network;
   }
   /**
-   * @param string
+   * Display information of a layer 7 packet inspection by the firewall.
+   *
+   * @param NgfwPacketInspectionInfo $ngfwPacketInspection
+   */
+  public function setNgfwPacketInspection(NgfwPacketInspectionInfo $ngfwPacketInspection)
+  {
+    $this->ngfwPacketInspection = $ngfwPacketInspection;
+  }
+  /**
+   * @return NgfwPacketInspectionInfo
+   */
+  public function getNgfwPacketInspection()
+  {
+    return $this->ngfwPacketInspection;
+  }
+  /**
+   * Project ID that contains the configuration this step is validating.
+   *
+   * @param string $projectId
    */
   public function setProjectId($projectId)
   {
@@ -327,7 +873,57 @@ class Step extends \Google\Model
     return $this->projectId;
   }
   /**
-   * @param RouteInfo
+   * Display information of a ProxyConnection.
+   *
+   * @param ProxyConnectionInfo $proxyConnection
+   */
+  public function setProxyConnection(ProxyConnectionInfo $proxyConnection)
+  {
+    $this->proxyConnection = $proxyConnection;
+  }
+  /**
+   * @return ProxyConnectionInfo
+   */
+  public function getProxyConnection()
+  {
+    return $this->proxyConnection;
+  }
+  /**
+   * Display information of a Redis Cluster.
+   *
+   * @param RedisClusterInfo $redisCluster
+   */
+  public function setRedisCluster(RedisClusterInfo $redisCluster)
+  {
+    $this->redisCluster = $redisCluster;
+  }
+  /**
+   * @return RedisClusterInfo
+   */
+  public function getRedisCluster()
+  {
+    return $this->redisCluster;
+  }
+  /**
+   * Display information of a Redis Instance.
+   *
+   * @param RedisInstanceInfo $redisInstance
+   */
+  public function setRedisInstance(RedisInstanceInfo $redisInstance)
+  {
+    $this->redisInstance = $redisInstance;
+  }
+  /**
+   * @return RedisInstanceInfo
+   */
+  public function getRedisInstance()
+  {
+    return $this->redisInstance;
+  }
+  /**
+   * Display information of a Compute Engine route.
+   *
+   * @param RouteInfo $route
    */
   public function setRoute(RouteInfo $route)
   {
@@ -341,21 +937,111 @@ class Step extends \Google\Model
     return $this->route;
   }
   /**
-   * @param string
+   * Display information of a serverless public (external) connection.
+   *
+   * @param ServerlessExternalConnectionInfo $serverlessExternalConnection
+   */
+  public function setServerlessExternalConnection(ServerlessExternalConnectionInfo $serverlessExternalConnection)
+  {
+    $this->serverlessExternalConnection = $serverlessExternalConnection;
+  }
+  /**
+   * @return ServerlessExternalConnectionInfo
+   */
+  public function getServerlessExternalConnection()
+  {
+    return $this->serverlessExternalConnection;
+  }
+  /**
+   * Display information of a Serverless network endpoint group backend. Used
+   * only for return traces.
+   *
+   * @param ServerlessNegInfo $serverlessNeg
+   */
+  public function setServerlessNeg(ServerlessNegInfo $serverlessNeg)
+  {
+    $this->serverlessNeg = $serverlessNeg;
+  }
+  /**
+   * @return ServerlessNegInfo
+   */
+  public function getServerlessNeg()
+  {
+    return $this->serverlessNeg;
+  }
+  /**
+   * Each step is in one of the pre-defined states.
+   *
+   * Accepted values: STATE_UNSPECIFIED, START_FROM_INSTANCE,
+   * START_FROM_INTERNET, START_FROM_GOOGLE_SERVICE, START_FROM_PRIVATE_NETWORK,
+   * START_FROM_GKE_MASTER, START_FROM_CLOUD_SQL_INSTANCE, START_FROM_GKE_POD,
+   * START_FROM_REDIS_INSTANCE, START_FROM_REDIS_CLUSTER,
+   * START_FROM_CLOUD_FUNCTION, START_FROM_APP_ENGINE_VERSION,
+   * START_FROM_CLOUD_RUN_REVISION, START_FROM_CLOUD_RUN_JOB,
+   * START_FROM_STORAGE_BUCKET, START_FROM_PSC_PUBLISHED_SERVICE,
+   * START_FROM_SERVERLESS_NEG, START_FROM_DMS_PRIVATE_CONNECTION,
+   * START_FROM_DATASTREAM_PRIVATE_CONNECTION, APPLY_INGRESS_FIREWALL_RULE,
+   * APPLY_EGRESS_FIREWALL_RULE, APPLY_ROUTE, APPLY_FORWARDING_RULE,
+   * ANALYZE_LOAD_BALANCER_BACKEND, SPOOFING_APPROVED, ARRIVE_AT_INSTANCE,
+   * ARRIVE_AT_INTERNAL_LOAD_BALANCER, ARRIVE_AT_EXTERNAL_LOAD_BALANCER,
+   * ARRIVE_AT_HYBRID_SUBNET, ARRIVE_AT_VPN_GATEWAY, ARRIVE_AT_VPN_TUNNEL,
+   * ARRIVE_AT_INTERCONNECT_ATTACHMENT, ARRIVE_AT_VPC_CONNECTOR,
+   * ARRIVE_AT_GKE_POD, DIRECT_VPC_EGRESS_CONNECTION,
+   * SERVERLESS_EXTERNAL_CONNECTION, NGFW_PACKET_INSPECTION, NAT,
+   * SKIP_GKE_POD_IP_MASQUERADING, SKIP_GKE_INGRESS_NETWORK_POLICY,
+   * SKIP_GKE_EGRESS_NETWORK_POLICY, APPLY_INGRESS_GKE_NETWORK_POLICY,
+   * APPLY_EGRESS_GKE_NETWORK_POLICY, PROXY_CONNECTION, DELIVER, DROP, FORWARD,
+   * ABORT, VIEWER_PERMISSION_MISSING
+   *
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {
     return $this->state;
   }
   /**
-   * @param VpcConnectorInfo
+   * Display information of a Storage Bucket. Used only for return traces.
+   *
+   * @param StorageBucketInfo $storageBucket
+   */
+  public function setStorageBucket(StorageBucketInfo $storageBucket)
+  {
+    $this->storageBucket = $storageBucket;
+  }
+  /**
+   * @return StorageBucketInfo
+   */
+  public function getStorageBucket()
+  {
+    return $this->storageBucket;
+  }
+  /**
+   * Display information of a step that is redacted due to missing permissions.
+   *
+   * @param ViewerPermissionMissingInfo $viewerPermissionMissingInfo
+   */
+  public function setViewerPermissionMissingInfo(ViewerPermissionMissingInfo $viewerPermissionMissingInfo)
+  {
+    $this->viewerPermissionMissingInfo = $viewerPermissionMissingInfo;
+  }
+  /**
+   * @return ViewerPermissionMissingInfo
+   */
+  public function getViewerPermissionMissingInfo()
+  {
+    return $this->viewerPermissionMissingInfo;
+  }
+  /**
+   * Display information of a VPC connector.
+   *
+   * @param VpcConnectorInfo $vpcConnector
    */
   public function setVpcConnector(VpcConnectorInfo $vpcConnector)
   {
@@ -369,7 +1055,9 @@ class Step extends \Google\Model
     return $this->vpcConnector;
   }
   /**
-   * @param VpnGatewayInfo
+   * Display information of a Compute Engine VPN gateway.
+   *
+   * @param VpnGatewayInfo $vpnGateway
    */
   public function setVpnGateway(VpnGatewayInfo $vpnGateway)
   {
@@ -383,7 +1071,9 @@ class Step extends \Google\Model
     return $this->vpnGateway;
   }
   /**
-   * @param VpnTunnelInfo
+   * Display information of a Compute Engine VPN tunnel.
+   *
+   * @param VpnTunnelInfo $vpnTunnel
    */
   public function setVpnTunnel(VpnTunnelInfo $vpnTunnel)
   {

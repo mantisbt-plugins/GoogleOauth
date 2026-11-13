@@ -24,7 +24,7 @@ class GoogleCloudDialogflowCxV3beta1ImportTestCasesMetadata extends \Google\Coll
   protected $errorsDataType = 'array';
 
   /**
-   * @param GoogleCloudDialogflowCxV3beta1TestCaseError[]
+   * @param GoogleCloudDialogflowCxV3beta1TestCaseError[] $errors
    */
   public function setErrors($errors)
   {

@@ -19,6 +19,25 @@ namespace Google\Service\OrgPolicyAPI;
 
 class GoogleCloudOrgpolicyV2ConstraintBooleanConstraint extends \Google\Model
 {
+  protected $customConstraintDefinitionType = GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition::class;
+  protected $customConstraintDefinitionDataType = '';
+
+  /**
+   * Custom constraint definition. Defines this as a managed constraint.
+   *
+   * @param GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition $customConstraintDefinition
+   */
+  public function setCustomConstraintDefinition(GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition $customConstraintDefinition)
+  {
+    $this->customConstraintDefinition = $customConstraintDefinition;
+  }
+  /**
+   * @return GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition
+   */
+  public function getCustomConstraintDefinition()
+  {
+    return $this->customConstraintDefinition;
+  }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

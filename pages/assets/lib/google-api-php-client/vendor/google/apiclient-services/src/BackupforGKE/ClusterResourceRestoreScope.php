@@ -20,11 +20,86 @@ namespace Google\Service\BackupforGKE;
 class ClusterResourceRestoreScope extends \Google\Collection
 {
   protected $collection_key = 'selectedGroupKinds';
+  /**
+   * Optional. If True, all valid cluster-scoped resources will be restored.
+   * Mutually exclusive to any other field in the message.
+   *
+   * @var bool
+   */
+  public $allGroupKinds;
+  protected $excludedGroupKindsType = GroupKind::class;
+  protected $excludedGroupKindsDataType = 'array';
+  /**
+   * Optional. If True, no cluster-scoped resources will be restored. This has
+   * the same restore scope as if the message is not defined. Mutually exclusive
+   * to any other field in the message.
+   *
+   * @var bool
+   */
+  public $noGroupKinds;
   protected $selectedGroupKindsType = GroupKind::class;
   protected $selectedGroupKindsDataType = 'array';
 
   /**
-   * @param GroupKind[]
+   * Optional. If True, all valid cluster-scoped resources will be restored.
+   * Mutually exclusive to any other field in the message.
+   *
+   * @param bool $allGroupKinds
+   */
+  public function setAllGroupKinds($allGroupKinds)
+  {
+    $this->allGroupKinds = $allGroupKinds;
+  }
+  /**
+   * @return bool
+   */
+  public function getAllGroupKinds()
+  {
+    return $this->allGroupKinds;
+  }
+  /**
+   * Optional. A list of cluster-scoped resource group kinds to NOT restore from
+   * the backup. If specified, all valid cluster-scoped resources will be
+   * restored except for those specified in the list. Mutually exclusive to any
+   * other field in the message.
+   *
+   * @param GroupKind[] $excludedGroupKinds
+   */
+  public function setExcludedGroupKinds($excludedGroupKinds)
+  {
+    $this->excludedGroupKinds = $excludedGroupKinds;
+  }
+  /**
+   * @return GroupKind[]
+   */
+  public function getExcludedGroupKinds()
+  {
+    return $this->excludedGroupKinds;
+  }
+  /**
+   * Optional. If True, no cluster-scoped resources will be restored. This has
+   * the same restore scope as if the message is not defined. Mutually exclusive
+   * to any other field in the message.
+   *
+   * @param bool $noGroupKinds
+   */
+  public function setNoGroupKinds($noGroupKinds)
+  {
+    $this->noGroupKinds = $noGroupKinds;
+  }
+  /**
+   * @return bool
+   */
+  public function getNoGroupKinds()
+  {
+    return $this->noGroupKinds;
+  }
+  /**
+   * Optional. A list of cluster-scoped resource group kinds to restore from the
+   * backup. If specified, only the selected resources will be restored.
+   * Mutually exclusive to any other field in the message.
+   *
+   * @param GroupKind[] $selectedGroupKinds
    */
   public function setSelectedGroupKinds($selectedGroupKinds)
   {

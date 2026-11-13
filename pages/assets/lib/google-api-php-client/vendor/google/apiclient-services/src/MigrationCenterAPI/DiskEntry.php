@@ -20,40 +20,98 @@ namespace Google\Service\MigrationCenterAPI;
 class DiskEntry extends \Google\Model
 {
   /**
+   * Interface type unknown or unspecified.
+   */
+  public const INTERFACE_TYPE_INTERFACE_TYPE_UNSPECIFIED = 'INTERFACE_TYPE_UNSPECIFIED';
+  /**
+   * IDE interface type.
+   */
+  public const INTERFACE_TYPE_IDE = 'IDE';
+  /**
+   * SATA interface type.
+   */
+  public const INTERFACE_TYPE_SATA = 'SATA';
+  /**
+   * SAS interface type.
+   */
+  public const INTERFACE_TYPE_SAS = 'SAS';
+  /**
+   * SCSI interface type.
+   */
+  public const INTERFACE_TYPE_SCSI = 'SCSI';
+  /**
+   * NVME interface type.
+   */
+  public const INTERFACE_TYPE_NVME = 'NVME';
+  /**
+   * FC interface type.
+   */
+  public const INTERFACE_TYPE_FC = 'FC';
+  /**
+   * iSCSI interface type.
+   */
+  public const INTERFACE_TYPE_ISCSI = 'ISCSI';
+  /**
+   * Disk capacity.
+   *
+   * @var string
+   */
+  public $capacityBytes;
+  /**
+   * Disk label.
+   *
    * @var string
    */
   public $diskLabel;
   /**
+   * Disk label type (e.g. BIOS/GPT)
+   *
    * @var string
    */
   public $diskLabelType;
   /**
+   * Disk free space.
+   *
+   * @var string
+   */
+  public $freeBytes;
+  /**
+   * Disk hardware address (e.g. 0:1 for SCSI).
+   *
    * @var string
    */
   public $hwAddress;
   /**
+   * Disks interface type.
+   *
    * @var string
    */
   public $interfaceType;
   protected $partitionsType = DiskPartitionList::class;
   protected $partitionsDataType = '';
-  /**
-   * @var string
-   */
-  public $status;
-  /**
-   * @var string
-   */
-  public $totalCapacityBytes;
-  /**
-   * @var string
-   */
-  public $totalFreeBytes;
-  protected $vmwareConfigType = VmwareDiskConfig::class;
-  protected $vmwareConfigDataType = '';
+  protected $vmwareType = VmwareDiskConfig::class;
+  protected $vmwareDataType = '';
 
   /**
-   * @param string
+   * Disk capacity.
+   *
+   * @param string $capacityBytes
+   */
+  public function setCapacityBytes($capacityBytes)
+  {
+    $this->capacityBytes = $capacityBytes;
+  }
+  /**
+   * @return string
+   */
+  public function getCapacityBytes()
+  {
+    return $this->capacityBytes;
+  }
+  /**
+   * Disk label.
+   *
+   * @param string $diskLabel
    */
   public function setDiskLabel($diskLabel)
   {
@@ -67,7 +125,9 @@ class DiskEntry extends \Google\Model
     return $this->diskLabel;
   }
   /**
-   * @param string
+   * Disk label type (e.g. BIOS/GPT)
+   *
+   * @param string $diskLabelType
    */
   public function setDiskLabelType($diskLabelType)
   {
@@ -81,7 +141,25 @@ class DiskEntry extends \Google\Model
     return $this->diskLabelType;
   }
   /**
-   * @param string
+   * Disk free space.
+   *
+   * @param string $freeBytes
+   */
+  public function setFreeBytes($freeBytes)
+  {
+    $this->freeBytes = $freeBytes;
+  }
+  /**
+   * @return string
+   */
+  public function getFreeBytes()
+  {
+    return $this->freeBytes;
+  }
+  /**
+   * Disk hardware address (e.g. 0:1 for SCSI).
+   *
+   * @param string $hwAddress
    */
   public function setHwAddress($hwAddress)
   {
@@ -95,21 +173,28 @@ class DiskEntry extends \Google\Model
     return $this->hwAddress;
   }
   /**
-   * @param string
+   * Disks interface type.
+   *
+   * Accepted values: INTERFACE_TYPE_UNSPECIFIED, IDE, SATA, SAS, SCSI, NVME,
+   * FC, ISCSI
+   *
+   * @param self::INTERFACE_TYPE_* $interfaceType
    */
   public function setInterfaceType($interfaceType)
   {
     $this->interfaceType = $interfaceType;
   }
   /**
-   * @return string
+   * @return self::INTERFACE_TYPE_*
    */
   public function getInterfaceType()
   {
     return $this->interfaceType;
   }
   /**
-   * @param DiskPartitionList
+   * Partition layout.
+   *
+   * @param DiskPartitionList $partitions
    */
   public function setPartitions(DiskPartitionList $partitions)
   {
@@ -123,60 +208,20 @@ class DiskEntry extends \Google\Model
     return $this->partitions;
   }
   /**
-   * @param string
+   * VMware disk details.
+   *
+   * @param VmwareDiskConfig $vmware
    */
-  public function setStatus($status)
+  public function setVmware(VmwareDiskConfig $vmware)
   {
-    $this->status = $status;
-  }
-  /**
-   * @return string
-   */
-  public function getStatus()
-  {
-    return $this->status;
-  }
-  /**
-   * @param string
-   */
-  public function setTotalCapacityBytes($totalCapacityBytes)
-  {
-    $this->totalCapacityBytes = $totalCapacityBytes;
-  }
-  /**
-   * @return string
-   */
-  public function getTotalCapacityBytes()
-  {
-    return $this->totalCapacityBytes;
-  }
-  /**
-   * @param string
-   */
-  public function setTotalFreeBytes($totalFreeBytes)
-  {
-    $this->totalFreeBytes = $totalFreeBytes;
-  }
-  /**
-   * @return string
-   */
-  public function getTotalFreeBytes()
-  {
-    return $this->totalFreeBytes;
-  }
-  /**
-   * @param VmwareDiskConfig
-   */
-  public function setVmwareConfig(VmwareDiskConfig $vmwareConfig)
-  {
-    $this->vmwareConfig = $vmwareConfig;
+    $this->vmware = $vmware;
   }
   /**
    * @return VmwareDiskConfig
    */
-  public function getVmwareConfig()
+  public function getVmware()
   {
-    return $this->vmwareConfig;
+    return $this->vmware;
   }
 }
 

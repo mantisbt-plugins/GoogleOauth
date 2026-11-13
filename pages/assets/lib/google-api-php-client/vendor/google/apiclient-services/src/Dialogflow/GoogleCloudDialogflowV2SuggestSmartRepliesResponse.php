@@ -32,7 +32,7 @@ class GoogleCloudDialogflowV2SuggestSmartRepliesResponse extends \Google\Collect
   protected $smartReplyAnswersDataType = 'array';
 
   /**
-   * @param int
+   * @param int $contextSize
    */
   public function setContextSize($contextSize)
   {
@@ -46,7 +46,7 @@ class GoogleCloudDialogflowV2SuggestSmartRepliesResponse extends \Google\Collect
     return $this->contextSize;
   }
   /**
-   * @param string
+   * @param string $latestMessage
    */
   public function setLatestMessage($latestMessage)
   {
@@ -60,7 +60,7 @@ class GoogleCloudDialogflowV2SuggestSmartRepliesResponse extends \Google\Collect
     return $this->latestMessage;
   }
   /**
-   * @param GoogleCloudDialogflowV2SmartReplyAnswer[]
+   * @param GoogleCloudDialogflowV2SmartReplyAnswer[] $smartReplyAnswers
    */
   public function setSmartReplyAnswers($smartReplyAnswers)
   {

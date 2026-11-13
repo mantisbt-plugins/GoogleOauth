@@ -43,7 +43,7 @@ class Accounts extends \Google\Service\Resource
    * does not have a method to restore soft-deleted accounts. However, they can be
    * restored using the Trash Can UI. If the accounts are not restored before the
    * expiration time, the account and all child resources (eg: Properties,
-   * GoogleAdsLinks, Streams, UserLinks) will be permanently purged.
+   * GoogleAdsLinks, Streams, AccessBindings) will be permanently purged.
    * https://support.google.com/analytics/answer/6154772 Returns an error if the
    * target is not found. (accounts.delete)
    *
@@ -51,6 +51,7 @@ class Accounts extends \Google\Service\Resource
    * accounts/{account} Example: "accounts/100"
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -65,6 +66,7 @@ class Accounts extends \Google\Service\Resource
    * accounts/{account} Example: "accounts/100"
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaAccount
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -78,9 +80,10 @@ class Accounts extends \Google\Service\Resource
    *
    * @param string $name Required. The name of the settings to lookup. Format:
    * accounts/{account}/dataSharingSettings Example:
-   * "accounts/1000/dataSharingSettings"
+   * `accounts/1000/dataSharingSettings`
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaDataSharingSettings
+   * @throws \Google\Service\Exception
    */
   public function getDataSharingSettings($name, $optParams = [])
   {
@@ -90,17 +93,18 @@ class Accounts extends \Google\Service\Resource
   }
   /**
    * Returns all accounts accessible by the caller. Note that these accounts might
-   * not currently have GA4 properties. Soft-deleted (ie: "trashed") accounts are
+   * not currently have GA properties. Soft-deleted (ie: "trashed") accounts are
    * excluded by default. Returns an empty list if no relevant accounts are found.
-   * (accounts.listAccounts)
+   * Note: The easiest way to retrieve a list of all properties you have access to
+   * is by using `ListAccountSummaries`. (accounts.listAccounts)
    *
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of resources to return. The
-   * service may return fewer than this value, even if there are additional pages.
-   * If unspecified, at most 50 resources will be returned. The maximum value is
-   * 200; (higher values will be coerced to the maximum)
-   * @opt_param string pageToken A page token, received from a previous
+   * @opt_param int pageSize Optional. The maximum number of resources to return.
+   * The service may return fewer than this value, even if there are additional
+   * pages. If unspecified, at most 50 resources will be returned. The maximum
+   * value is 200; (higher values will be coerced to the maximum)
+   * @opt_param string pageToken Optional. A page token, received from a previous
    * `ListAccounts` call. Provide this to retrieve the subsequent page. When
    * paginating, all other parameters provided to `ListAccounts` must match the
    * call that provided the page token.
@@ -108,6 +112,7 @@ class Accounts extends \Google\Service\Resource
    * Accounts in the results. Accounts can be inspected to determine whether they
    * are deleted or not.
    * @return GoogleAnalyticsAdminV1betaListAccountsResponse
+   * @throws \Google\Service\Exception
    */
   public function listAccounts($optParams = [])
   {
@@ -118,7 +123,7 @@ class Accounts extends \Google\Service\Resource
   /**
    * Updates an account. (accounts.patch)
    *
-   * @param string $name Output only. Resource name of this account. Format:
+   * @param string $name Identifier. Resource name of this account. Format:
    * accounts/{account} Example: "accounts/100"
    * @param GoogleAnalyticsAdminV1betaAccount $postBody
    * @param array $optParams Optional parameters.
@@ -128,6 +133,7 @@ class Accounts extends \Google\Service\Resource
    * fields will not be updated. To replace the entire entity, use one path with
    * the string "*" to match all fields.
    * @return GoogleAnalyticsAdminV1betaAccount
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleAnalyticsAdminV1betaAccount $postBody, $optParams = [])
   {
@@ -141,6 +147,7 @@ class Accounts extends \Google\Service\Resource
    * @param GoogleAnalyticsAdminV1betaProvisionAccountTicketRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaProvisionAccountTicketResponse
+   * @throws \Google\Service\Exception
    */
   public function provisionAccountTicket(GoogleAnalyticsAdminV1betaProvisionAccountTicketRequest $postBody, $optParams = [])
   {
@@ -152,25 +159,31 @@ class Accounts extends \Google\Service\Resource
    * Returns a customized report of data access records. The report provides
    * records of each time a user reads Google Analytics reporting data. Access
    * records are retained for up to 2 years. Data Access Reports can be requested
-   * for a property. The property must be in Google Analytics 360. This method is
-   * only available to Administrators. These data access records include GA4 UI
-   * Reporting, GA4 UI Explorations, GA4 Data API, and other products like
-   * Firebase & Admob that can retrieve data from Google Analytics through a
-   * linkage. These records don't include property configuration changes like
-   * adding a stream or changing a property's time zone. For configuration change
-   * history, see [searchChangeHistoryEvents](https://developers.google.com/analyt
-   * ics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents
-   * ). (accounts.runAccessReport)
+   * for a property. Reports may be requested for any property, but dimensions
+   * that aren't related to quota can only be requested on Google Analytics 360
+   * properties. This method is only available to Administrators. These data
+   * access records include GA UI Reporting, GA UI Explorations, GA Data API, and
+   * other products like Firebase & Admob that can retrieve data from Google
+   * Analytics through a linkage. These records don't include property
+   * configuration changes like adding a stream or changing a property's time
+   * zone. For configuration change history, see [searchChangeHistoryEvents](https
+   * ://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/acc
+   * ounts/searchChangeHistoryEvents). To give your feedback on this API, complete
+   * the [Google Analytics Access Reports feedback](https://docs.google.com/forms/
+   * d/e/1FAIpQLSdmEBUrMzAEdiEKk5TV5dEHvDUZDRlgWYdQdAeSdtR4hVjEhw/viewform) form.
+   * (accounts.runAccessReport)
    *
    * @param string $entity The Data Access Report supports requesting at the
    * property level or account level. If requested at the account level, Data
    * Access Reports include all access for all properties under that account. To
    * request at the property level, entity should be for example 'properties/123'
-   * if "123" is your GA4 property ID. To request at the account level, entity
-   * should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+   * if "123" is your Google Analytics property ID. To request at the account
+   * level, entity should be for example 'accounts/1234' if "1234" is your Google
+   * Analytics Account ID.
    * @param GoogleAnalyticsAdminV1betaRunAccessReportRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaRunAccessReportResponse
+   * @throws \Google\Service\Exception
    */
   public function runAccessReport($entity, GoogleAnalyticsAdminV1betaRunAccessReportRequest $postBody, $optParams = [])
   {
@@ -180,13 +193,16 @@ class Accounts extends \Google\Service\Resource
   }
   /**
    * Searches through all changes to an account or its children given the
-   * specified set of filters. (accounts.searchChangeHistoryEvents)
+   * specified set of filters. Only returns the subset of changes supported by the
+   * API. The UI may return additional changes.
+   * (accounts.searchChangeHistoryEvents)
    *
    * @param string $account Required. The account resource for which to return
-   * change history resources.
+   * change history resources. Format: accounts/{account} Example: `accounts/100`
    * @param GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponse
+   * @throws \Google\Service\Exception
    */
   public function searchChangeHistoryEvents($account, GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest $postBody, $optParams = [])
   {

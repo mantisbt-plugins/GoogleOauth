@@ -45,6 +45,14 @@ class GoogleCloudDialogflowV3alpha1TurnSignals extends \Google\Collection
    */
   public $reachedEndPage;
   /**
+   * @var float
+   */
+  public $sentimentMagnitude;
+  /**
+   * @var float
+   */
+  public $sentimentScore;
+  /**
    * @var bool
    */
   public $triggeredAbandonmentEvent;
@@ -58,7 +66,7 @@ class GoogleCloudDialogflowV3alpha1TurnSignals extends \Google\Collection
   public $webhookStatuses;
 
   /**
-   * @param bool
+   * @param bool $agentEscalated
    */
   public function setAgentEscalated($agentEscalated)
   {
@@ -72,7 +80,7 @@ class GoogleCloudDialogflowV3alpha1TurnSignals extends \Google\Collection
     return $this->agentEscalated;
   }
   /**
-   * @param bool
+   * @param bool $dtmfUsed
    */
   public function setDtmfUsed($dtmfUsed)
   {
@@ -86,7 +94,7 @@ class GoogleCloudDialogflowV3alpha1TurnSignals extends \Google\Collection
     return $this->dtmfUsed;
   }
   /**
-   * @param string[]
+   * @param string[] $failureReasons
    */
   public function setFailureReasons($failureReasons)
   {
@@ -100,7 +108,7 @@ class GoogleCloudDialogflowV3alpha1TurnSignals extends \Google\Collection
     return $this->failureReasons;
   }
   /**
-   * @param bool
+   * @param bool $noMatch
    */
   public function setNoMatch($noMatch)
   {
@@ -114,7 +122,7 @@ class GoogleCloudDialogflowV3alpha1TurnSignals extends \Google\Collection
     return $this->noMatch;
   }
   /**
-   * @param bool
+   * @param bool $noUserInput
    */
   public function setNoUserInput($noUserInput)
   {
@@ -128,7 +136,7 @@ class GoogleCloudDialogflowV3alpha1TurnSignals extends \Google\Collection
     return $this->noUserInput;
   }
   /**
-   * @param bool
+   * @param bool $reachedEndPage
    */
   public function setReachedEndPage($reachedEndPage)
   {
@@ -142,7 +150,35 @@ class GoogleCloudDialogflowV3alpha1TurnSignals extends \Google\Collection
     return $this->reachedEndPage;
   }
   /**
-   * @param bool
+   * @param float $sentimentMagnitude
+   */
+  public function setSentimentMagnitude($sentimentMagnitude)
+  {
+    $this->sentimentMagnitude = $sentimentMagnitude;
+  }
+  /**
+   * @return float
+   */
+  public function getSentimentMagnitude()
+  {
+    return $this->sentimentMagnitude;
+  }
+  /**
+   * @param float $sentimentScore
+   */
+  public function setSentimentScore($sentimentScore)
+  {
+    $this->sentimentScore = $sentimentScore;
+  }
+  /**
+   * @return float
+   */
+  public function getSentimentScore()
+  {
+    return $this->sentimentScore;
+  }
+  /**
+   * @param bool $triggeredAbandonmentEvent
    */
   public function setTriggeredAbandonmentEvent($triggeredAbandonmentEvent)
   {
@@ -156,7 +192,7 @@ class GoogleCloudDialogflowV3alpha1TurnSignals extends \Google\Collection
     return $this->triggeredAbandonmentEvent;
   }
   /**
-   * @param bool
+   * @param bool $userEscalated
    */
   public function setUserEscalated($userEscalated)
   {
@@ -170,7 +206,7 @@ class GoogleCloudDialogflowV3alpha1TurnSignals extends \Google\Collection
     return $this->userEscalated;
   }
   /**
-   * @param string[]
+   * @param string[] $webhookStatuses
    */
   public function setWebhookStatuses($webhookStatuses)
   {

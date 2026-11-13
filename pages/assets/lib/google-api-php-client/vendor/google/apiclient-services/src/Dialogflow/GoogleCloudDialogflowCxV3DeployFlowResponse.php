@@ -27,7 +27,7 @@ class GoogleCloudDialogflowCxV3DeployFlowResponse extends \Google\Model
   protected $environmentDataType = '';
 
   /**
-   * @param string
+   * @param string $deployment
    */
   public function setDeployment($deployment)
   {
@@ -41,7 +41,7 @@ class GoogleCloudDialogflowCxV3DeployFlowResponse extends \Google\Model
     return $this->deployment;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3Environment
+   * @param GoogleCloudDialogflowCxV3Environment $environment
    */
   public function setEnvironment(GoogleCloudDialogflowCxV3Environment $environment)
   {

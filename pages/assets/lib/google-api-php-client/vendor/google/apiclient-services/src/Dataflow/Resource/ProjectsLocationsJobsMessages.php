@@ -34,7 +34,8 @@ class ProjectsLocationsJobsMessages extends \Google\Service\Resource
    * `projects.locations.jobs.messages.list` with a [regional endpoint]
    * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
    * `projects.jobs.messages.list` is not recommended, as you can only request the
-   * status of jobs that are running in `us-central1`.
+   * status of jobs that are running in `us-central1`. # IAM Permissions Requires
+   * the `dataflow.messages.list` permission on the job.
    * (messages.listProjectsLocationsJobsMessages)
    *
    * @param string $projectId A project id.
@@ -58,6 +59,7 @@ class ProjectsLocationsJobsMessages extends \Google\Service\Resource
    * timestamps >= start_time. The default is the job creation time (i.e.
    * beginning of messages).
    * @return ListJobMessagesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsJobsMessages($projectId, $location, $jobId, $optParams = [])
   {

@@ -32,7 +32,7 @@ class GoogleCloudDialogflowV2IntentMessageListSelect extends \Google\Collection
   public $title;
 
   /**
-   * @param GoogleCloudDialogflowV2IntentMessageListSelectItem[]
+   * @param GoogleCloudDialogflowV2IntentMessageListSelectItem[] $items
    */
   public function setItems($items)
   {
@@ -46,7 +46,7 @@ class GoogleCloudDialogflowV2IntentMessageListSelect extends \Google\Collection
     return $this->items;
   }
   /**
-   * @param string
+   * @param string $subtitle
    */
   public function setSubtitle($subtitle)
   {
@@ -60,7 +60,7 @@ class GoogleCloudDialogflowV2IntentMessageListSelect extends \Google\Collection
     return $this->subtitle;
   }
   /**
-   * @param string
+   * @param string $title
    */
   public function setTitle($title)
   {

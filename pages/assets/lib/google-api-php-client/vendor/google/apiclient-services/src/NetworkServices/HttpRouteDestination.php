@@ -19,17 +19,73 @@ namespace Google\Service\NetworkServices;
 
 class HttpRouteDestination extends \Google\Model
 {
+  protected $requestHeaderModifierType = HttpRouteHeaderModifier::class;
+  protected $requestHeaderModifierDataType = '';
+  protected $responseHeaderModifierType = HttpRouteHeaderModifier::class;
+  protected $responseHeaderModifierDataType = '';
   /**
+   * The URL of a BackendService to route traffic to.
+   *
    * @var string
    */
   public $serviceName;
   /**
+   * Specifies the proportion of requests forwarded to the backend referenced by
+   * the serviceName field. This is computed as: - weight/Sum(weights in this
+   * destination list). For non-zero values, there may be some epsilon from the
+   * exact proportion defined here depending on the precision an implementation
+   * supports. If only one serviceName is specified and it has a weight greater
+   * than 0, 100% of the traffic is forwarded to that backend. If weights are
+   * specified for any one service name, they need to be specified for all of
+   * them. If weights are unspecified for all services, then, traffic is
+   * distributed in equal proportions to all of them.
+   *
    * @var int
    */
   public $weight;
 
   /**
-   * @param string
+   * Optional. The specification for modifying the headers of a matching request
+   * prior to delivery of the request to the destination. If HeaderModifiers are
+   * set on both the Destination and the RouteAction, they will be merged.
+   * Conflicts between the two will not be resolved on the configuration.
+   *
+   * @param HttpRouteHeaderModifier $requestHeaderModifier
+   */
+  public function setRequestHeaderModifier(HttpRouteHeaderModifier $requestHeaderModifier)
+  {
+    $this->requestHeaderModifier = $requestHeaderModifier;
+  }
+  /**
+   * @return HttpRouteHeaderModifier
+   */
+  public function getRequestHeaderModifier()
+  {
+    return $this->requestHeaderModifier;
+  }
+  /**
+   * Optional. The specification for modifying the headers of a response prior
+   * to sending the response back to the client. If HeaderModifiers are set on
+   * both the Destination and the RouteAction, they will be merged. Conflicts
+   * between the two will not be resolved on the configuration.
+   *
+   * @param HttpRouteHeaderModifier $responseHeaderModifier
+   */
+  public function setResponseHeaderModifier(HttpRouteHeaderModifier $responseHeaderModifier)
+  {
+    $this->responseHeaderModifier = $responseHeaderModifier;
+  }
+  /**
+   * @return HttpRouteHeaderModifier
+   */
+  public function getResponseHeaderModifier()
+  {
+    return $this->responseHeaderModifier;
+  }
+  /**
+   * The URL of a BackendService to route traffic to.
+   *
+   * @param string $serviceName
    */
   public function setServiceName($serviceName)
   {
@@ -43,7 +99,17 @@ class HttpRouteDestination extends \Google\Model
     return $this->serviceName;
   }
   /**
-   * @param int
+   * Specifies the proportion of requests forwarded to the backend referenced by
+   * the serviceName field. This is computed as: - weight/Sum(weights in this
+   * destination list). For non-zero values, there may be some epsilon from the
+   * exact proportion defined here depending on the precision an implementation
+   * supports. If only one serviceName is specified and it has a weight greater
+   * than 0, 100% of the traffic is forwarded to that backend. If weights are
+   * specified for any one service name, they need to be specified for all of
+   * them. If weights are unspecified for all services, then, traffic is
+   * distributed in equal proportions to all of them.
+   *
+   * @param int $weight
    */
   public function setWeight($weight)
   {

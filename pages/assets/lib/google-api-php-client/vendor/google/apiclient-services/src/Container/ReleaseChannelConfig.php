@@ -19,36 +19,112 @@ namespace Google\Service\Container;
 
 class ReleaseChannelConfig extends \Google\Collection
 {
+  /**
+   * Deprecated: No channel specified. it will be removed in the future, use
+   * RAPID, REGULAR, STABLE or EXTENDED instead.
+   *
+   * @deprecated
+   */
+  public const CHANNEL_UNSPECIFIED = 'UNSPECIFIED';
+  /**
+   * RAPID channel is offered on an early access basis for customers who want to
+   * test new releases. WARNING: Versions available in the RAPID Channel may be
+   * subject to unresolved issues with no known workaround and are not subject
+   * to any SLAs.
+   */
+  public const CHANNEL_RAPID = 'RAPID';
+  /**
+   * Clusters subscribed to REGULAR receive versions that are considered GA
+   * quality. REGULAR is intended for production users who want to take
+   * advantage of new features.
+   */
+  public const CHANNEL_REGULAR = 'REGULAR';
+  /**
+   * Clusters subscribed to STABLE receive versions that are known to be stable
+   * and reliable in production.
+   */
+  public const CHANNEL_STABLE = 'STABLE';
+  /**
+   * Clusters subscribed to EXTENDED receive extended support and availability
+   * for versions which are known to be stable and reliable in production.
+   */
+  public const CHANNEL_EXTENDED = 'EXTENDED';
   protected $collection_key = 'validVersions';
   /**
+   * The release channel this configuration applies to.
+   *
    * @var string
    */
   public $channel;
   /**
+   * Output only. List of custom versions for the channel.
+   *
+   * @var string[]
+   */
+  public $customVersions;
+  /**
+   * The default version for newly created clusters on the channel.
+   *
    * @var string
    */
   public $defaultVersion;
   /**
+   * Output only. List of preview versions for the channel.
+   *
+   * @var string[]
+   */
+  public $previewVersions;
+  /**
+   * The auto upgrade target version for clusters on the channel.
+   *
+   * @var string
+   */
+  public $upgradeTargetVersion;
+  /**
+   * List of valid versions for the channel.
+   *
    * @var string[]
    */
   public $validVersions;
 
   /**
-   * @param string
+   * The release channel this configuration applies to.
+   *
+   * Accepted values: UNSPECIFIED, RAPID, REGULAR, STABLE, EXTENDED
+   *
+   * @param self::CHANNEL_* $channel
    */
   public function setChannel($channel)
   {
     $this->channel = $channel;
   }
   /**
-   * @return string
+   * @return self::CHANNEL_*
    */
   public function getChannel()
   {
     return $this->channel;
   }
   /**
-   * @param string
+   * Output only. List of custom versions for the channel.
+   *
+   * @param string[] $customVersions
+   */
+  public function setCustomVersions($customVersions)
+  {
+    $this->customVersions = $customVersions;
+  }
+  /**
+   * @return string[]
+   */
+  public function getCustomVersions()
+  {
+    return $this->customVersions;
+  }
+  /**
+   * The default version for newly created clusters on the channel.
+   *
+   * @param string $defaultVersion
    */
   public function setDefaultVersion($defaultVersion)
   {
@@ -62,7 +138,41 @@ class ReleaseChannelConfig extends \Google\Collection
     return $this->defaultVersion;
   }
   /**
-   * @param string[]
+   * Output only. List of preview versions for the channel.
+   *
+   * @param string[] $previewVersions
+   */
+  public function setPreviewVersions($previewVersions)
+  {
+    $this->previewVersions = $previewVersions;
+  }
+  /**
+   * @return string[]
+   */
+  public function getPreviewVersions()
+  {
+    return $this->previewVersions;
+  }
+  /**
+   * The auto upgrade target version for clusters on the channel.
+   *
+   * @param string $upgradeTargetVersion
+   */
+  public function setUpgradeTargetVersion($upgradeTargetVersion)
+  {
+    $this->upgradeTargetVersion = $upgradeTargetVersion;
+  }
+  /**
+   * @return string
+   */
+  public function getUpgradeTargetVersion()
+  {
+    return $this->upgradeTargetVersion;
+  }
+  /**
+   * List of valid versions for the channel.
+   *
+   * @param string[] $validVersions
    */
   public function setValidVersions($validVersions)
   {

@@ -23,7 +23,7 @@ use Google\Client;
  * Service definition for Games (v1).
  *
  * <p>
- * The Google Play games service allows developers to enhance games with social
+ * The Google Play Games Service allows developers to enhance games with social
  * leaderboards, achievements, game state, sign-in with Google, and more.</p>
  *
  * <p>
@@ -35,6 +35,9 @@ use Google\Client;
  */
 class Games extends \Google\Service
 {
+  /** View and manage your Google Play Developer account. */
+  const ANDROIDPUBLISHER =
+      "https://www.googleapis.com/auth/androidpublisher";
   /** See, create, and delete its own configuration data in your Google Drive. */
   const DRIVE_APPDATA =
       "https://www.googleapis.com/auth/drive.appdata";
@@ -42,17 +45,21 @@ class Games extends \Google\Service
   const GAMES =
       "https://www.googleapis.com/auth/games";
 
+  public $accesstokens;
   public $achievementDefinitions;
   public $achievements;
   public $applications;
   public $events;
+  public $gameStats;
   public $leaderboards;
   public $metagame;
   public $players;
+  public $recall;
   public $revisions;
   public $scores;
   public $snapshots;
   public $stats;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Games service.
@@ -65,11 +72,52 @@ class Games extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://games.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://games.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'games';
 
+    $this->accesstokens = new Games\Resource\Accesstokens(
+        $this,
+        $this->serviceName,
+        'accesstokens',
+        [
+          'methods' => [
+            'generatePlayGroupingApiToken' => [
+              'path' => 'games/v1/accesstokens/generatePlayGroupingApiToken',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'persona' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'generateRecallPlayGroupingApiToken' => [
+              'path' => 'games/v1/accesstokens/generateRecallPlayGroupingApiToken',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'persona' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'recallSessionId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->achievementDefinitions = new Games\Resource\AchievementDefinitions(
         $this,
         $this->serviceName,
@@ -299,6 +347,26 @@ class Games extends \Google\Service
           ]
         ]
     );
+    $this->gameStats = new Games\Resource\GameStats(
+        $this,
+        $this->serviceName,
+        'gameStats',
+        [
+          'methods' => [
+            'batchRecordEvents' => [
+              'path' => 'games/v1/players/{playerId}/gameStats:batchRecordEvents',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'playerId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->leaderboards = new Games\Resource\Leaderboards(
         $this,
         $this->serviceName,
@@ -441,6 +509,63 @@ class Games extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],
+          ]
+        ]
+    );
+    $this->recall = new Games\Resource\Recall(
+        $this,
+        $this->serviceName,
+        'recall',
+        [
+          'methods' => [
+            'gamesPlayerTokens' => [
+              'path' => 'games/v1/recall/gamesPlayerTokens/{sessionId}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'sessionId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'applicationIds' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
+              ],
+            ],'lastTokenFromAllDeveloperGames' => [
+              'path' => 'games/v1/recall/developerGamesLastPlayerToken/{sessionId}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'sessionId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'linkPersona' => [
+              'path' => 'games/v1/recall:linkPersona',
+              'httpMethod' => 'POST',
+              'parameters' => [],
+            ],'resetPersona' => [
+              'path' => 'games/v1/recall:resetPersona',
+              'httpMethod' => 'POST',
+              'parameters' => [],
+            ],'retrieveTokens' => [
+              'path' => 'games/v1/recall/tokens/{sessionId}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'sessionId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'unlinkPersona' => [
+              'path' => 'games/v1/recall:unlinkPersona',
+              'httpMethod' => 'POST',
+              'parameters' => [],
             ],
           ]
         ]

@@ -27,7 +27,7 @@ class SetIamPolicyRequest extends \Google\Model
   public $updateMask;
 
   /**
-   * @param Policy
+   * @param Policy $policy
    */
   public function setPolicy(Policy $policy)
   {
@@ -41,7 +41,7 @@ class SetIamPolicyRequest extends \Google\Model
     return $this->policy;
   }
   /**
-   * @param string
+   * @param string $updateMask
    */
   public function setUpdateMask($updateMask)
   {

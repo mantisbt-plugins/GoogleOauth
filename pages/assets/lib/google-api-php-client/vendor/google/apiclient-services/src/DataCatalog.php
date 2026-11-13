@@ -40,17 +40,12 @@ class DataCatalog extends \Google\Service
       "https://www.googleapis.com/auth/cloud-platform";
 
   public $catalog;
-  public $entries;
-  public $projects_locations_entryGroups;
-  public $projects_locations_entryGroups_entries;
-  public $projects_locations_entryGroups_entries_tags;
-  public $projects_locations_entryGroups_tags;
+  public $organizations_locations;
+  public $projects_locations;
   public $projects_locations_operations;
-  public $projects_locations_tagTemplates;
-  public $projects_locations_tagTemplates_fields;
-  public $projects_locations_tagTemplates_fields_enumValues;
   public $projects_locations_taxonomies;
   public $projects_locations_taxonomies_policyTags;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the DataCatalog service.
@@ -63,6 +58,7 @@ class DataCatalog extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://datacatalog.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://datacatalog.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -82,179 +78,14 @@ class DataCatalog extends \Google\Service
           ]
         ]
     );
-    $this->entries = new DataCatalog\Resource\Entries(
+    $this->organizations_locations = new DataCatalog\Resource\OrganizationsLocations(
         $this,
         $this->serviceName,
-        'entries',
+        'locations',
         [
           'methods' => [
-            'lookup' => [
-              'path' => 'v1/entries:lookup',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'fullyQualifiedName' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'linkedResource' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'sqlResource' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_entryGroups = new DataCatalog\Resource\ProjectsLocationsEntryGroups(
-        $this,
-        $this->serviceName,
-        'entryGroups',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/entryGroups',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'entryGroupId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'force' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'readMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'getIamPolicy' => [
-              'path' => 'v1/{+resource}:getIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/entryGroups',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'setIamPolicy' => [
-              'path' => 'v1/{+resource}:setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'testIamPermissions' => [
-              'path' => 'v1/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_entryGroups_entries = new DataCatalog\Resource\ProjectsLocationsEntryGroupsEntries(
-        $this,
-        $this->serviceName,
-        'entries',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/entries',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'entryId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/{+name}',
+            'retrieveConfig' => [
+              'path' => 'v1/{+name}:retrieveConfig',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -263,104 +94,18 @@ class DataCatalog extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'getIamPolicy' => [
-              'path' => 'v1/{+resource}:getIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'import' => [
-              'path' => 'v1/{+parent}/entries:import',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/entries',
+            ],'retrieveEffectiveConfig' => [
+              'path' => 'v1/{+name}:retrieveEffectiveConfig',
               'httpMethod' => 'GET',
               'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'readMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'modifyEntryContacts' => [
-              'path' => 'v1/{+name}:modifyEntryContacts',
-              'httpMethod' => 'POST',
-              'parameters' => [
                 'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
                 ],
               ],
-            ],'modifyEntryOverview' => [
-              'path' => 'v1/{+name}:modifyEntryOverview',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'star' => [
-              'path' => 'v1/{+name}:star',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'testIamPermissions' => [
-              'path' => 'v1/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'unstar' => [
-              'path' => 'v1/{+name}:unstar',
+            ],'setConfig' => [
+              'path' => 'v1/{+name}:setConfig',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -373,134 +118,30 @@ class DataCatalog extends \Google\Service
           ]
         ]
     );
-    $this->projects_locations_entryGroups_entries_tags = new DataCatalog\Resource\ProjectsLocationsEntryGroupsEntriesTags(
+    $this->projects_locations = new DataCatalog\Resource\ProjectsLocations(
         $this,
         $this->serviceName,
-        'tags',
+        'locations',
         [
           'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/tags',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/tags',
+            'retrieveEffectiveConfig' => [
+              'path' => 'v1/{+name}:retrieveEffectiveConfig',
               'httpMethod' => 'GET',
               'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
                 'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
                 ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
               ],
-            ],'reconcile' => [
-              'path' => 'v1/{+parent}/tags:reconcile',
+            ],'setConfig' => [
+              'path' => 'v1/{+name}:setConfig',
               'httpMethod' => 'POST',
               'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_entryGroups_tags = new DataCatalog\Resource\ProjectsLocationsEntryGroupsTags(
-        $this,
-        $this->serviceName,
-        'tags',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/tags',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
                 'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/tags',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
                 ],
               ],
             ],
@@ -564,179 +205,9 @@ class DataCatalog extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_tagTemplates = new DataCatalog\Resource\ProjectsLocationsTagTemplates(
-        $this,
-        $this->serviceName,
-        'tagTemplates',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/tagTemplates',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'tagTemplateId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'force' => [
+                'returnPartialSuccess' => [
                   'location' => 'query',
                   'type' => 'boolean',
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'getIamPolicy' => [
-              'path' => 'v1/{+resource}:getIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'setIamPolicy' => [
-              'path' => 'v1/{+resource}:setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'testIamPermissions' => [
-              'path' => 'v1/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_tagTemplates_fields = new DataCatalog\Resource\ProjectsLocationsTagTemplatesFields(
-        $this,
-        $this->serviceName,
-        'fields',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/fields',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'tagTemplateFieldId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'force' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'rename' => [
-              'path' => 'v1/{+name}:rename',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_tagTemplates_fields_enumValues = new DataCatalog\Resource\ProjectsLocationsTagTemplatesFieldsEnumValues(
-        $this,
-        $this->serviceName,
-        'enumValues',
-        [
-          'methods' => [
-            'rename' => [
-              'path' => 'v1/{+name}:rename',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
                 ],
               ],
             ],

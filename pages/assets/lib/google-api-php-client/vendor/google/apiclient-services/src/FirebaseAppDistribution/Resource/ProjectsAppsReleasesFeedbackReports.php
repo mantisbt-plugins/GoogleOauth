@@ -39,6 +39,7 @@ class ProjectsAppsReleasesFeedbackReports extends \Google\Service\Resource
    * ts/{feedback_report}
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -54,6 +55,7 @@ class ProjectsAppsReleasesFeedbackReports extends \Google\Service\Resource
    * ts/{feedback_report}
    * @param array $optParams Optional parameters.
    * @return GoogleFirebaseAppdistroV1FeedbackReport
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -70,15 +72,16 @@ class ProjectsAppsReleasesFeedbackReports extends \Google\Service\Resource
    * `projects/{project_number}/apps/{app}/releases/{release}`
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of feedback reports to return. The
-   * service may return fewer than this value. The valid range is [1-100]; If
-   * unspecified (0), at most 25 feedback reports are returned. Values above 100
-   * are coerced to 100.
-   * @opt_param string pageToken A page token, received from a previous
-   * `ListFeedbackReports` call. Provide this to retrieve the subsequent page.
-   * When paginating, all other parameters provided to `ListFeedbackReports` must
-   * match the call that provided the page token.
+   * @opt_param int pageSize Output only. The maximum number of feedback reports
+   * to return. The service may return fewer than this value. The valid range is
+   * [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values
+   * above 100 are coerced to 100.
+   * @opt_param string pageToken Output only. A page token, received from a
+   * previous `ListFeedbackReports` call. Provide this to retrieve the subsequent
+   * page. When paginating, all other parameters provided to `ListFeedbackReports`
+   * must match the call that provided the page token.
    * @return GoogleFirebaseAppdistroV1ListFeedbackReportsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsAppsReleasesFeedbackReports($parent, $optParams = [])
   {

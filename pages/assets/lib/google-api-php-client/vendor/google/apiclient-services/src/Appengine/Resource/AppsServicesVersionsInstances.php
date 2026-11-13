@@ -40,14 +40,16 @@ class AppsServicesVersionsInstances extends \Google\Service\Resource
    * and determine if another instance should be started.Only applicable for
    * instances in App Engine flexible environment. (instances.debug)
    *
-   * @param string $appsId Part of `name`. Name of the resource requested.
-   * Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+   * @param string $appsId Part of `name`. Required. Name of the resource
+   * requested. Example:
+   * apps/myapp/services/default/versions/v1/instances/instance-1.
    * @param string $servicesId Part of `name`. See documentation of `appsId`.
    * @param string $versionsId Part of `name`. See documentation of `appsId`.
    * @param string $instancesId Part of `name`. See documentation of `appsId`.
    * @param DebugInstanceRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function debug($appsId, $servicesId, $versionsId, $instancesId, DebugInstanceRequest $postBody, $optParams = [])
   {
@@ -69,13 +71,15 @@ class AppsServicesVersionsInstances extends \Google\Service\Resource
    * api/reference/rest/v1/apps.services.versions/patch) method.
    * (instances.delete)
    *
-   * @param string $appsId Part of `name`. Name of the resource requested.
-   * Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+   * @param string $appsId Part of `name`. Required. Name of the resource
+   * requested. Example:
+   * apps/myapp/services/default/versions/v1/instances/instance-1.
    * @param string $servicesId Part of `name`. See documentation of `appsId`.
    * @param string $versionsId Part of `name`. See documentation of `appsId`.
    * @param string $instancesId Part of `name`. See documentation of `appsId`.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($appsId, $servicesId, $versionsId, $instancesId, $optParams = [])
   {
@@ -86,13 +90,15 @@ class AppsServicesVersionsInstances extends \Google\Service\Resource
   /**
    * Gets instance information. (instances.get)
    *
-   * @param string $appsId Part of `name`. Name of the resource requested.
-   * Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+   * @param string $appsId Part of `name`. Required. Name of the resource
+   * requested. Example:
+   * apps/myapp/services/default/versions/v1/instances/instance-1.
    * @param string $servicesId Part of `name`. See documentation of `appsId`.
    * @param string $versionsId Part of `name`. See documentation of `appsId`.
    * @param string $instancesId Part of `name`. See documentation of `appsId`.
    * @param array $optParams Optional parameters.
    * @return Instance
+   * @throws \Google\Service\Exception
    */
   public function get($appsId, $servicesId, $versionsId, $instancesId, $optParams = [])
   {
@@ -106,8 +112,8 @@ class AppsServicesVersionsInstances extends \Google\Service\Resource
    * oring/api/ref_v3/rest/v3/projects.timeSeries/list).
    * (instances.listAppsServicesVersionsInstances)
    *
-   * @param string $appsId Part of `parent`. Name of the parent Version resource.
-   * Example: apps/myapp/services/default/versions/v1.
+   * @param string $appsId Part of `parent`. Required. Name of the parent Version
+   * resource. Example: apps/myapp/services/default/versions/v1.
    * @param string $servicesId Part of `parent`. See documentation of `appsId`.
    * @param string $versionsId Part of `parent`. See documentation of `appsId`.
    * @param array $optParams Optional parameters.
@@ -116,6 +122,7 @@ class AppsServicesVersionsInstances extends \Google\Service\Resource
    * @opt_param string pageToken Continuation token for fetching the next page of
    * results.
    * @return ListInstancesResponse
+   * @throws \Google\Service\Exception
    */
   public function listAppsServicesVersionsInstances($appsId, $servicesId, $versionsId, $optParams = [])
   {

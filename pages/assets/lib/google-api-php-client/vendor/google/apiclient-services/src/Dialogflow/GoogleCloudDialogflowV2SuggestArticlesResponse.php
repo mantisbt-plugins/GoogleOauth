@@ -32,7 +32,7 @@ class GoogleCloudDialogflowV2SuggestArticlesResponse extends \Google\Collection
   public $latestMessage;
 
   /**
-   * @param GoogleCloudDialogflowV2ArticleAnswer[]
+   * @param GoogleCloudDialogflowV2ArticleAnswer[] $articleAnswers
    */
   public function setArticleAnswers($articleAnswers)
   {
@@ -46,7 +46,7 @@ class GoogleCloudDialogflowV2SuggestArticlesResponse extends \Google\Collection
     return $this->articleAnswers;
   }
   /**
-   * @param int
+   * @param int $contextSize
    */
   public function setContextSize($contextSize)
   {
@@ -60,7 +60,7 @@ class GoogleCloudDialogflowV2SuggestArticlesResponse extends \Google\Collection
     return $this->contextSize;
   }
   /**
-   * @param string
+   * @param string $latestMessage
    */
   public function setLatestMessage($latestMessage)
   {

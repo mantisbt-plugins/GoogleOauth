@@ -20,12 +20,44 @@ namespace Google\Service\Dataproc;
 class IdentityConfig extends \Google\Model
 {
   /**
+   * Optional. Whether to enable SSH access for the cluster. The default is true
+   * for image versions prior to 3.1 and false for image versions 3.1 and later.
+   * The default behavior can be changed when creating clusters using image
+   * versions 2.3.30 and later.
+   *
+   * @var bool
+   */
+  public $enableSsh;
+  /**
+   * Required. Map of user to service account.
+   *
    * @var string[]
    */
   public $userServiceAccountMapping;
 
   /**
-   * @param string[]
+   * Optional. Whether to enable SSH access for the cluster. The default is true
+   * for image versions prior to 3.1 and false for image versions 3.1 and later.
+   * The default behavior can be changed when creating clusters using image
+   * versions 2.3.30 and later.
+   *
+   * @param bool $enableSsh
+   */
+  public function setEnableSsh($enableSsh)
+  {
+    $this->enableSsh = $enableSsh;
+  }
+  /**
+   * @return bool
+   */
+  public function getEnableSsh()
+  {
+    return $this->enableSsh;
+  }
+  /**
+   * Required. Map of user to service account.
+   *
+   * @param string[] $userServiceAccountMapping
    */
   public function setUserServiceAccountMapping($userServiceAccountMapping)
   {

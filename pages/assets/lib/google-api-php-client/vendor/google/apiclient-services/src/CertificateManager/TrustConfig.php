@@ -20,35 +20,83 @@ namespace Google\Service\CertificateManager;
 class TrustConfig extends \Google\Collection
 {
   protected $collection_key = 'trustStores';
+  protected $allowlistedCertificatesType = AllowlistedCertificate::class;
+  protected $allowlistedCertificatesDataType = 'array';
   /**
+   * Output only. The creation timestamp of a TrustConfig.
+   *
    * @var string
    */
   public $createTime;
   /**
+   * Optional. One or more paragraphs of text description of a TrustConfig.
+   *
    * @var string
    */
   public $description;
   /**
+   * This checksum is computed by the server based on the value of other fields,
+   * and may be sent on update and delete requests to ensure the client has an
+   * up-to-date value before proceeding.
+   *
    * @var string
    */
   public $etag;
   /**
+   * Optional. Set of labels associated with a TrustConfig.
+   *
    * @var string[]
    */
   public $labels;
   /**
+   * Identifier. A user-defined name of the trust config. TrustConfig names must
+   * be unique globally and match pattern `projects/locations/trustConfigs`.
+   *
    * @var string
    */
   public $name;
+  protected $spiffeTrustStoresType = TrustStore::class;
+  protected $spiffeTrustStoresDataType = 'map';
+  /**
+   * Optional. Input only. Immutable. Tag keys/values directly bound to this
+   * resource. For example: "123/environment": "production", "123/costCenter":
+   * "marketing"
+   *
+   * @var string[]
+   */
+  public $tags;
   protected $trustStoresType = TrustStore::class;
   protected $trustStoresDataType = 'array';
   /**
+   * Output only. The last update timestamp of a TrustConfig.
+   *
    * @var string
    */
   public $updateTime;
 
   /**
-   * @param string
+   * Optional. A certificate matching an allowlisted certificate is always
+   * considered valid as long as the certificate is parseable, proof of private
+   * key possession is established, and constraints on the certificate's SAN
+   * field are met.
+   *
+   * @param AllowlistedCertificate[] $allowlistedCertificates
+   */
+  public function setAllowlistedCertificates($allowlistedCertificates)
+  {
+    $this->allowlistedCertificates = $allowlistedCertificates;
+  }
+  /**
+   * @return AllowlistedCertificate[]
+   */
+  public function getAllowlistedCertificates()
+  {
+    return $this->allowlistedCertificates;
+  }
+  /**
+   * Output only. The creation timestamp of a TrustConfig.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -62,7 +110,9 @@ class TrustConfig extends \Google\Collection
     return $this->createTime;
   }
   /**
-   * @param string
+   * Optional. One or more paragraphs of text description of a TrustConfig.
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -76,7 +126,11 @@ class TrustConfig extends \Google\Collection
     return $this->description;
   }
   /**
-   * @param string
+   * This checksum is computed by the server based on the value of other fields,
+   * and may be sent on update and delete requests to ensure the client has an
+   * up-to-date value before proceeding.
+   *
+   * @param string $etag
    */
   public function setEtag($etag)
   {
@@ -90,7 +144,9 @@ class TrustConfig extends \Google\Collection
     return $this->etag;
   }
   /**
-   * @param string[]
+   * Optional. Set of labels associated with a TrustConfig.
+   *
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -104,7 +160,10 @@ class TrustConfig extends \Google\Collection
     return $this->labels;
   }
   /**
-   * @param string
+   * Identifier. A user-defined name of the trust config. TrustConfig names must
+   * be unique globally and match pattern `projects/locations/trustConfigs`.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -118,7 +177,47 @@ class TrustConfig extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param TrustStore[]
+   * Optional. Defines a mapping from a trust domain to a TrustStore. This is
+   * used for SPIFFE certificate validation.
+   *
+   * @param TrustStore[] $spiffeTrustStores
+   */
+  public function setSpiffeTrustStores($spiffeTrustStores)
+  {
+    $this->spiffeTrustStores = $spiffeTrustStores;
+  }
+  /**
+   * @return TrustStore[]
+   */
+  public function getSpiffeTrustStores()
+  {
+    return $this->spiffeTrustStores;
+  }
+  /**
+   * Optional. Input only. Immutable. Tag keys/values directly bound to this
+   * resource. For example: "123/environment": "production", "123/costCenter":
+   * "marketing"
+   *
+   * @param string[] $tags
+   */
+  public function setTags($tags)
+  {
+    $this->tags = $tags;
+  }
+  /**
+   * @return string[]
+   */
+  public function getTags()
+  {
+    return $this->tags;
+  }
+  /**
+   * Optional. Set of trust stores to perform validation against. This field is
+   * supported when TrustConfig is configured with Load Balancers, currently not
+   * supported for SPIFFE certificate validation. Only one TrustStore specified
+   * is currently allowed.
+   *
+   * @param TrustStore[] $trustStores
    */
   public function setTrustStores($trustStores)
   {
@@ -132,7 +231,9 @@ class TrustConfig extends \Google\Collection
     return $this->trustStores;
   }
   /**
-   * @param string
+   * Output only. The last update timestamp of a TrustConfig.
+   *
+   * @param string $updateTime
    */
   public function setUpdateTime($updateTime)
   {

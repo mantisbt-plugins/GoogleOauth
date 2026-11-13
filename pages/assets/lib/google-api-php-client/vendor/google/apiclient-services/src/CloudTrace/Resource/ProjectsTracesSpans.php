@@ -30,10 +30,11 @@ use Google\Service\CloudTrace\Span;
 class ProjectsTracesSpans extends \Google\Service\Resource
 {
   /**
-   * Creates a new span. (spans.createSpan)
+   * Creates a new span. If a span ID already exists, an additional copy of the
+   * span will be stored. (spans.createSpan)
    *
-   * @param string $name Required. The resource name of the span in the following
-   * format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]`
+   * @param string $name Identifier. The resource name of the span in the
+   * following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]`
    * `[TRACE_ID]` is a unique identifier for a trace within a project; it is a
    * 32-character hexadecimal encoding of a 16-byte array. It should not be zero.
    * `[SPAN_ID]` is a unique identifier for a span within a trace; it is a
@@ -42,6 +43,7 @@ class ProjectsTracesSpans extends \Google\Service\Resource
    * @param Span $postBody
    * @param array $optParams Optional parameters.
    * @return Span
+   * @throws \Google\Service\Exception
    */
   public function createSpan($name, Span $postBody, $optParams = [])
   {

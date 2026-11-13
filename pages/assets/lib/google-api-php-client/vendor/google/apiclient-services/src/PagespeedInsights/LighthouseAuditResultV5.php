@@ -20,53 +20,87 @@ namespace Google\Service\PagespeedInsights;
 class LighthouseAuditResultV5 extends \Google\Model
 {
   /**
+   * The description of the audit.
+   *
    * @var string
    */
   public $description;
   /**
+   * Freeform details section of the audit.
+   *
    * @var array[]
    */
   public $details;
   /**
+   * The value that should be displayed on the UI for this audit.
+   *
    * @var string
    */
   public $displayValue;
   /**
+   * An error message from a thrown error inside the audit.
+   *
    * @var string
    */
   public $errorMessage;
   /**
+   * An explanation of the errors in the audit.
+   *
    * @var string
    */
   public $explanation;
   /**
+   * The audit's id.
+   *
    * @var string
    */
   public $id;
+  protected $metricSavingsType = MetricSavings::class;
+  protected $metricSavingsDataType = '';
   /**
+   * The unit of the numeric_value field. Used to format the numeric value for
+   * display.
+   *
    * @var string
    */
   public $numericUnit;
+  /**
+   * A numeric value that has a meaning specific to the audit, e.g. the number
+   * of nodes in the DOM or the timestamp of a specific load event. More
+   * information can be found in the audit details, if present.
+   *
+   * @var 
+   */
   public $numericValue;
   /**
+   * The score of the audit, can be null.
+   *
    * @var array
    */
   public $score;
   /**
+   * The enumerated score display mode.
+   *
    * @var string
    */
   public $scoreDisplayMode;
   /**
+   * The human readable title.
+   *
    * @var string
    */
   public $title;
   /**
+   * Possible warnings that occurred in the audit, can be null.
+   *
    * @var array
    */
   public $warnings;
 
   /**
-   * @param string
+   * The description of the audit.
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -80,7 +114,9 @@ class LighthouseAuditResultV5 extends \Google\Model
     return $this->description;
   }
   /**
-   * @param array[]
+   * Freeform details section of the audit.
+   *
+   * @param array[] $details
    */
   public function setDetails($details)
   {
@@ -94,7 +130,9 @@ class LighthouseAuditResultV5 extends \Google\Model
     return $this->details;
   }
   /**
-   * @param string
+   * The value that should be displayed on the UI for this audit.
+   *
+   * @param string $displayValue
    */
   public function setDisplayValue($displayValue)
   {
@@ -108,7 +146,9 @@ class LighthouseAuditResultV5 extends \Google\Model
     return $this->displayValue;
   }
   /**
-   * @param string
+   * An error message from a thrown error inside the audit.
+   *
+   * @param string $errorMessage
    */
   public function setErrorMessage($errorMessage)
   {
@@ -122,7 +162,9 @@ class LighthouseAuditResultV5 extends \Google\Model
     return $this->errorMessage;
   }
   /**
-   * @param string
+   * An explanation of the errors in the audit.
+   *
+   * @param string $explanation
    */
   public function setExplanation($explanation)
   {
@@ -136,7 +178,9 @@ class LighthouseAuditResultV5 extends \Google\Model
     return $this->explanation;
   }
   /**
-   * @param string
+   * The audit's id.
+   *
+   * @param string $id
    */
   public function setId($id)
   {
@@ -150,7 +194,26 @@ class LighthouseAuditResultV5 extends \Google\Model
     return $this->id;
   }
   /**
-   * @param string
+   * The metric savings of the audit.
+   *
+   * @param MetricSavings $metricSavings
+   */
+  public function setMetricSavings(MetricSavings $metricSavings)
+  {
+    $this->metricSavings = $metricSavings;
+  }
+  /**
+   * @return MetricSavings
+   */
+  public function getMetricSavings()
+  {
+    return $this->metricSavings;
+  }
+  /**
+   * The unit of the numeric_value field. Used to format the numeric value for
+   * display.
+   *
+   * @param string $numericUnit
    */
   public function setNumericUnit($numericUnit)
   {
@@ -172,7 +235,9 @@ class LighthouseAuditResultV5 extends \Google\Model
     return $this->numericValue;
   }
   /**
-   * @param array
+   * The score of the audit, can be null.
+   *
+   * @param array $score
    */
   public function setScore($score)
   {
@@ -186,7 +251,9 @@ class LighthouseAuditResultV5 extends \Google\Model
     return $this->score;
   }
   /**
-   * @param string
+   * The enumerated score display mode.
+   *
+   * @param string $scoreDisplayMode
    */
   public function setScoreDisplayMode($scoreDisplayMode)
   {
@@ -200,7 +267,9 @@ class LighthouseAuditResultV5 extends \Google\Model
     return $this->scoreDisplayMode;
   }
   /**
-   * @param string
+   * The human readable title.
+   *
+   * @param string $title
    */
   public function setTitle($title)
   {
@@ -214,7 +283,9 @@ class LighthouseAuditResultV5 extends \Google\Model
     return $this->title;
   }
   /**
-   * @param array
+   * Possible warnings that occurred in the audit, can be null.
+   *
+   * @param array $warnings
    */
   public function setWarnings($warnings)
   {

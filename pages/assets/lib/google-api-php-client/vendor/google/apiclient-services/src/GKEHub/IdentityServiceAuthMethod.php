@@ -23,19 +23,29 @@ class IdentityServiceAuthMethod extends \Google\Model
   protected $azureadConfigDataType = '';
   protected $googleConfigType = IdentityServiceGoogleConfig::class;
   protected $googleConfigDataType = '';
+  protected $ldapConfigType = IdentityServiceLdapConfig::class;
+  protected $ldapConfigDataType = '';
   /**
+   * Identifier for auth config.
+   *
    * @var string
    */
   public $name;
   protected $oidcConfigType = IdentityServiceOidcConfig::class;
   protected $oidcConfigDataType = '';
   /**
+   * Proxy server address to use for auth method.
+   *
    * @var string
    */
   public $proxy;
+  protected $samlConfigType = IdentityServiceSamlConfig::class;
+  protected $samlConfigDataType = '';
 
   /**
-   * @param IdentityServiceAzureADConfig
+   * AzureAD specific Configuration.
+   *
+   * @param IdentityServiceAzureADConfig $azureadConfig
    */
   public function setAzureadConfig(IdentityServiceAzureADConfig $azureadConfig)
   {
@@ -49,7 +59,9 @@ class IdentityServiceAuthMethod extends \Google\Model
     return $this->azureadConfig;
   }
   /**
-   * @param IdentityServiceGoogleConfig
+   * GoogleConfig specific configuration
+   *
+   * @param IdentityServiceGoogleConfig $googleConfig
    */
   public function setGoogleConfig(IdentityServiceGoogleConfig $googleConfig)
   {
@@ -63,7 +75,25 @@ class IdentityServiceAuthMethod extends \Google\Model
     return $this->googleConfig;
   }
   /**
-   * @param string
+   * LDAP specific configuration.
+   *
+   * @param IdentityServiceLdapConfig $ldapConfig
+   */
+  public function setLdapConfig(IdentityServiceLdapConfig $ldapConfig)
+  {
+    $this->ldapConfig = $ldapConfig;
+  }
+  /**
+   * @return IdentityServiceLdapConfig
+   */
+  public function getLdapConfig()
+  {
+    return $this->ldapConfig;
+  }
+  /**
+   * Identifier for auth config.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -77,7 +107,9 @@ class IdentityServiceAuthMethod extends \Google\Model
     return $this->name;
   }
   /**
-   * @param IdentityServiceOidcConfig
+   * OIDC specific configuration.
+   *
+   * @param IdentityServiceOidcConfig $oidcConfig
    */
   public function setOidcConfig(IdentityServiceOidcConfig $oidcConfig)
   {
@@ -91,7 +123,9 @@ class IdentityServiceAuthMethod extends \Google\Model
     return $this->oidcConfig;
   }
   /**
-   * @param string
+   * Proxy server address to use for auth method.
+   *
+   * @param string $proxy
    */
   public function setProxy($proxy)
   {
@@ -103,6 +137,22 @@ class IdentityServiceAuthMethod extends \Google\Model
   public function getProxy()
   {
     return $this->proxy;
+  }
+  /**
+   * SAML specific configuration.
+   *
+   * @param IdentityServiceSamlConfig $samlConfig
+   */
+  public function setSamlConfig(IdentityServiceSamlConfig $samlConfig)
+  {
+    $this->samlConfig = $samlConfig;
+  }
+  /**
+   * @return IdentityServiceSamlConfig
+   */
+  public function getSamlConfig()
+  {
+    return $this->samlConfig;
   }
 }
 

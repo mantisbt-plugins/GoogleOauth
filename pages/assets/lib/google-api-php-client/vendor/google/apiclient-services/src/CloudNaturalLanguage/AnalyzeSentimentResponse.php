@@ -23,14 +23,28 @@ class AnalyzeSentimentResponse extends \Google\Collection
   protected $documentSentimentType = Sentiment::class;
   protected $documentSentimentDataType = '';
   /**
+   * The language of the text, which will be the same as the language specified
+   * in the request or, if not specified, the automatically-detected language.
+   * See Document.language_code field for more details.
+   *
    * @var string
    */
-  public $language;
+  public $languageCode;
+  /**
+   * Whether the language is officially supported. The API may still return a
+   * response when the language is not supported, but it is on a best effort
+   * basis.
+   *
+   * @var bool
+   */
+  public $languageSupported;
   protected $sentencesType = Sentence::class;
   protected $sentencesDataType = 'array';
 
   /**
-   * @param Sentiment
+   * The overall sentiment of the input document.
+   *
+   * @param Sentiment $documentSentiment
    */
   public function setDocumentSentiment(Sentiment $documentSentiment)
   {
@@ -44,21 +58,45 @@ class AnalyzeSentimentResponse extends \Google\Collection
     return $this->documentSentiment;
   }
   /**
-   * @param string
+   * The language of the text, which will be the same as the language specified
+   * in the request or, if not specified, the automatically-detected language.
+   * See Document.language_code field for more details.
+   *
+   * @param string $languageCode
    */
-  public function setLanguage($language)
+  public function setLanguageCode($languageCode)
   {
-    $this->language = $language;
+    $this->languageCode = $languageCode;
   }
   /**
    * @return string
    */
-  public function getLanguage()
+  public function getLanguageCode()
   {
-    return $this->language;
+    return $this->languageCode;
   }
   /**
-   * @param Sentence[]
+   * Whether the language is officially supported. The API may still return a
+   * response when the language is not supported, but it is on a best effort
+   * basis.
+   *
+   * @param bool $languageSupported
+   */
+  public function setLanguageSupported($languageSupported)
+  {
+    $this->languageSupported = $languageSupported;
+  }
+  /**
+   * @return bool
+   */
+  public function getLanguageSupported()
+  {
+    return $this->languageSupported;
+  }
+  /**
+   * The sentiment for all the sentences in the document.
+   *
+   * @param Sentence[] $sentences
    */
   public function setSentences($sentences)
   {

@@ -52,9 +52,12 @@ class BigQueryDataTransfer extends \Google\Service
   public $projects_locations_transferConfigs;
   public $projects_locations_transferConfigs_runs;
   public $projects_locations_transferConfigs_runs_transferLogs;
+  public $projects_locations_transferConfigs_transferResources;
   public $projects_transferConfigs;
   public $projects_transferConfigs_runs;
   public $projects_transferConfigs_runs_transferLogs;
+  public $projects_transferConfigs_transferResources;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the BigQueryDataTransfer service.
@@ -67,6 +70,7 @@ class BigQueryDataTransfer extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://bigquerydatatransfer.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://bigquerydatatransfer.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -175,6 +179,11 @@ class BigQueryDataTransfer extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
                 'filter' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -186,6 +195,16 @@ class BigQueryDataTransfer extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],'unenrollDataSources' => [
+              'path' => 'v1/{+name}:unenrollDataSources',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],
@@ -451,6 +470,48 @@ class BigQueryDataTransfer extends \Google\Service
           ]
         ]
     );
+    $this->projects_locations_transferConfigs_transferResources = new BigQueryDataTransfer\Resource\ProjectsLocationsTransferConfigsTransferResources(
+        $this,
+        $this->serviceName,
+        'transferResources',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/transferResources',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->projects_transferConfigs = new BigQueryDataTransfer\Resource\ProjectsTransferConfigs(
         $this,
         $this->serviceName,
@@ -648,6 +709,48 @@ class BigQueryDataTransfer extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_transferConfigs_transferResources = new BigQueryDataTransfer\Resource\ProjectsTransferConfigsTransferResources(
+        $this,
+        $this->serviceName,
+        'transferResources',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/transferResources',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
                 'pageSize' => [
                   'location' => 'query',

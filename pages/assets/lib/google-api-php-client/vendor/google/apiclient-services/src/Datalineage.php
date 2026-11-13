@@ -37,12 +37,22 @@ class Datalineage extends \Google\Service
   /** See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
+  /** See, edit, configure, and delete your Google Cloud Data Lineage data and see the email address for your Google Account. */
+  const DATALINEAGE_READ_WRITE =
+      "https://www.googleapis.com/auth/datalineage.read-write";
+  /** See your Google Cloud Data Lineage data and the email address of your Google Account. */
+  const DATALINEAGE_READONLY =
+      "https://www.googleapis.com/auth/datalineage.readonly";
 
+  public $folders_locations_config;
+  public $organizations_locations_config;
   public $projects_locations;
+  public $projects_locations_config;
   public $projects_locations_operations;
   public $projects_locations_processes;
   public $projects_locations_processes_runs;
   public $projects_locations_processes_runs_lineageEvents;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Datalineage service.
@@ -55,11 +65,72 @@ class Datalineage extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://datalineage.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://datalineage.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'datalineage';
 
+    $this->folders_locations_config = new Datalineage\Resource\FoldersLocationsConfig(
+        $this,
+        $this->serviceName,
+        'config',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->organizations_locations_config = new Datalineage\Resource\OrganizationsLocationsConfig(
+        $this,
+        $this->serviceName,
+        'config',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->projects_locations = new Datalineage\Resource\ProjectsLocations(
         $this,
         $this->serviceName,
@@ -76,11 +147,65 @@ class Datalineage extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'processOpenLineageRunEvent' => [
+              'path' => 'v1/{+parent}:processOpenLineageRunEvent',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'requestId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'searchLineageStreaming' => [
+              'path' => 'v1/{+parent}:searchLineageStreaming',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'searchLinks' => [
               'path' => 'v1/{+parent}:searchLinks',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_config = new Datalineage\Resource\ProjectsLocationsConfig(
+        $this,
+        $this->serviceName,
+        'config',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -146,6 +271,10 @@ class Datalineage extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],
@@ -226,6 +355,10 @@ class Datalineage extends \Google\Service
                 'allowMissing' => [
                   'location' => 'query',
                   'type' => 'boolean',
+                ],
+                'requestId' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
                 'updateMask' => [
                   'location' => 'query',

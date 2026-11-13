@@ -38,6 +38,7 @@ class ProjectsLocationsKeys extends \Google\Service\Resource
    * supported value for location is `global`. (keys.create)
    *
    * @param string $parent Required. The project in which the API key is created.
+   * The parent field must be in format of "projects//locations/global".
    * @param V2Key $postBody
    * @param array $optParams Optional parameters.
    *
@@ -48,6 +49,7 @@ class ProjectsLocationsKeys extends \Google\Service\Resource
    * word, the id must match the regular expression:
    * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`. The id must NOT be a UUID-like string.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, V2Key $postBody, $optParams = [])
   {
@@ -64,9 +66,12 @@ class ProjectsLocationsKeys extends \Google\Service\Resource
    * @param string $name Required. The resource name of the API key to be deleted.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string checkExistingUsage Optional. Defines the behavior for
+   * checking existing usage when deleting a key.
    * @opt_param string etag Optional. The etag known to the client for the
    * expected state of the key. This is to be used for optimistic concurrency.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -82,6 +87,7 @@ class ProjectsLocationsKeys extends \Google\Service\Resource
    * @param string $name Required. The resource name of the API key to get.
    * @param array $optParams Optional parameters.
    * @return V2Key
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -97,6 +103,7 @@ class ProjectsLocationsKeys extends \Google\Service\Resource
    * retrieved.
    * @param array $optParams Optional parameters.
    * @return V2GetKeyStringResponse
+   * @throws \Google\Service\Exception
    */
   public function getKeyString($name, $optParams = [])
   {
@@ -110,7 +117,7 @@ class ProjectsLocationsKeys extends \Google\Service\Resource
    * supported value for location is `global`. (keys.listProjectsLocationsKeys)
    *
    * @param string $parent Required. Lists all API keys associated with this
-   * project.
+   * project. The parent field must be in format of "projects//locations/global".
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize Optional. Specifies the maximum number of results to
@@ -119,6 +126,7 @@ class ProjectsLocationsKeys extends \Google\Service\Resource
    * @opt_param bool showDeleted Optional. Indicate that keys deleted in the past
    * 30 days should also be returned.
    * @return V2ListKeysResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsKeys($parent, $optParams = [])
   {
@@ -131,14 +139,15 @@ class ProjectsLocationsKeys extends \Google\Service\Resource
    * isn't included in the response. NOTE: Key is a global resource; hence the
    * only supported value for location is `global`. (keys.patch)
    *
-   * @param string $name Output only. The resource name of the key. The `name` has
-   * the form: `projects//locations/global/keys/`. For example:
-   * `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-
-   * 3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value
-   * for location is `global`.
+   * @param string $name Identifier. The resource name of the key. The `name` has
+   * the form: `projects//locations/global/keys/`. For example: `projects/12345686
+   * 7718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is
+   * a global resource; hence the only supported value for location is `global`.
    * @param V2Key $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string checkExistingUsage Optional. Defines the behavior for
+   * checking existing usage when updating a key.
    * @opt_param string updateMask The field mask specifies which fields to be
    * updated as part of this request. All other fields are ignored. Mutable fields
    * are: `display_name`, `restrictions`, and `annotations`. If an update mask is
@@ -147,6 +156,7 @@ class ProjectsLocationsKeys extends \Google\Service\Resource
    * value "*", the service treats it equivalent to replace all allowed mutable
    * fields.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, V2Key $postBody, $optParams = [])
   {
@@ -164,6 +174,7 @@ class ProjectsLocationsKeys extends \Google\Service\Resource
    * @param V2UndeleteKeyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function undelete($name, V2UndeleteKeyRequest $postBody, $optParams = [])
   {

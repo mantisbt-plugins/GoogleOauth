@@ -20,16 +20,27 @@ namespace Google\Service\Dataform;
 class DirectoryEntry extends \Google\Model
 {
   /**
+   * A child directory in the directory. The path is returned including the full
+   * folder structure from the root.
+   *
    * @var string
    */
   public $directory;
   /**
+   * A file in the directory. The path is returned including the full folder
+   * structure from the root.
+   *
    * @var string
    */
   public $file;
+  protected $metadataType = FilesystemEntryMetadata::class;
+  protected $metadataDataType = '';
 
   /**
-   * @param string
+   * A child directory in the directory. The path is returned including the full
+   * folder structure from the root.
+   *
+   * @param string $directory
    */
   public function setDirectory($directory)
   {
@@ -43,7 +54,10 @@ class DirectoryEntry extends \Google\Model
     return $this->directory;
   }
   /**
-   * @param string
+   * A file in the directory. The path is returned including the full folder
+   * structure from the root.
+   *
+   * @param string $file
    */
   public function setFile($file)
   {
@@ -55,6 +69,22 @@ class DirectoryEntry extends \Google\Model
   public function getFile()
   {
     return $this->file;
+  }
+  /**
+   * Entry with metadata.
+   *
+   * @param FilesystemEntryMetadata $metadata
+   */
+  public function setMetadata(FilesystemEntryMetadata $metadata)
+  {
+    $this->metadata = $metadata;
+  }
+  /**
+   * @return FilesystemEntryMetadata
+   */
+  public function getMetadata()
+  {
+    return $this->metadata;
   }
 }
 

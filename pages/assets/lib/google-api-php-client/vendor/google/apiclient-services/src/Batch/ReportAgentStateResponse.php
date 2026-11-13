@@ -21,18 +21,32 @@ class ReportAgentStateResponse extends \Google\Collection
 {
   protected $collection_key = 'tasks';
   /**
+   * Default report interval override
+   *
    * @var string
    */
   public $defaultReportInterval;
   /**
+   * Minimum report interval override
+   *
    * @var string
    */
   public $minReportInterval;
   protected $tasksType = AgentTask::class;
   protected $tasksDataType = 'array';
+  /**
+   * If true, the cloud logging for batch agent will use
+   * batch.googleapis.com/Job as monitored resource for Batch job related
+   * logging.
+   *
+   * @var bool
+   */
+  public $useBatchMonitoredResource;
 
   /**
-   * @param string
+   * Default report interval override
+   *
+   * @param string $defaultReportInterval
    */
   public function setDefaultReportInterval($defaultReportInterval)
   {
@@ -46,7 +60,9 @@ class ReportAgentStateResponse extends \Google\Collection
     return $this->defaultReportInterval;
   }
   /**
-   * @param string
+   * Minimum report interval override
+   *
+   * @param string $minReportInterval
    */
   public function setMinReportInterval($minReportInterval)
   {
@@ -60,7 +76,9 @@ class ReportAgentStateResponse extends \Google\Collection
     return $this->minReportInterval;
   }
   /**
-   * @param AgentTask[]
+   * Tasks assigned to the agent
+   *
+   * @param AgentTask[] $tasks
    */
   public function setTasks($tasks)
   {
@@ -72,6 +90,24 @@ class ReportAgentStateResponse extends \Google\Collection
   public function getTasks()
   {
     return $this->tasks;
+  }
+  /**
+   * If true, the cloud logging for batch agent will use
+   * batch.googleapis.com/Job as monitored resource for Batch job related
+   * logging.
+   *
+   * @param bool $useBatchMonitoredResource
+   */
+  public function setUseBatchMonitoredResource($useBatchMonitoredResource)
+  {
+    $this->useBatchMonitoredResource = $useBatchMonitoredResource;
+  }
+  /**
+   * @return bool
+   */
+  public function getUseBatchMonitoredResource()
+  {
+    return $this->useBatchMonitoredResource;
   }
 }
 

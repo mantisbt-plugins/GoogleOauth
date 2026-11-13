@@ -22,30 +22,77 @@ class JobConfiguration extends \Google\Model
   protected $copyType = JobConfigurationTableCopy::class;
   protected $copyDataType = '';
   /**
+   * Optional. If set, don't actually run this job. A valid query will return a
+   * mostly empty response with some processing statistics, while an invalid
+   * query will return the same error it would if it wasn't a dry run. Behavior
+   * of non-query jobs is undefined.
+   *
    * @var bool
    */
   public $dryRun;
   protected $extractType = JobConfigurationExtract::class;
   protected $extractDataType = '';
   /**
+   * Optional. Job timeout in milliseconds relative to the job creation time. If
+   * this time limit is exceeded, BigQuery attempts to stop the job, but might
+   * not always succeed in canceling it before the job completes. For example, a
+   * job that takes more than 60 seconds to complete has a better chance of
+   * being stopped than a job that takes 10 seconds to complete.
+   *
    * @var string
    */
   public $jobTimeoutMs;
   /**
+   * Output only. The type of the job. Can be QUERY, LOAD, EXTRACT, COPY or
+   * UNKNOWN.
+   *
    * @var string
    */
   public $jobType;
   /**
+   * The labels associated with this job. You can use these to organize and
+   * group your jobs. Label keys and values can be no longer than 63 characters,
+   * can only contain lowercase letters, numeric characters, underscores and
+   * dashes. International characters are allowed. Label values are optional.
+   * Label keys must start with a letter and each label in the list must have a
+   * different key.
+   *
    * @var string[]
    */
   public $labels;
   protected $loadType = JobConfigurationLoad::class;
   protected $loadDataType = '';
+  /**
+   * Optional. A target limit on the rate of slot consumption by this job. If
+   * set to a value > 0, BigQuery will attempt to limit the rate of slot
+   * consumption by this job to keep it below the configured limit, even if the
+   * job is eligible for more slots based on fair scheduling. The unused slots
+   * will be available for other jobs and queries to use. Note: This feature is
+   * not yet generally available.
+   *
+   * @var int
+   */
+  public $maxSlots;
   protected $queryType = JobConfigurationQuery::class;
   protected $queryDataType = '';
+  /**
+   * Optional. The reservation that job would use. User can specify a
+   * reservation to execute the job. If reservation is not set, reservation is
+   * determined based on the rules defined by the reservation assignments. The
+   * expected format is
+   * `projects/{project}/locations/{location}/reservations/{reservation}`.
+   * Forces the query to use on-demand billing when set to `none`, which
+   * requires the project or organization to have `reservation_override_mode`
+   * set to `ALLOW_ANY_OVERRIDE`.
+   *
+   * @var string
+   */
+  public $reservation;
 
   /**
-   * @param JobConfigurationTableCopy
+   * [Pick one] Copies a table.
+   *
+   * @param JobConfigurationTableCopy $copy
    */
   public function setCopy(JobConfigurationTableCopy $copy)
   {
@@ -59,7 +106,12 @@ class JobConfiguration extends \Google\Model
     return $this->copy;
   }
   /**
-   * @param bool
+   * Optional. If set, don't actually run this job. A valid query will return a
+   * mostly empty response with some processing statistics, while an invalid
+   * query will return the same error it would if it wasn't a dry run. Behavior
+   * of non-query jobs is undefined.
+   *
+   * @param bool $dryRun
    */
   public function setDryRun($dryRun)
   {
@@ -73,7 +125,9 @@ class JobConfiguration extends \Google\Model
     return $this->dryRun;
   }
   /**
-   * @param JobConfigurationExtract
+   * [Pick one] Configures an extract job.
+   *
+   * @param JobConfigurationExtract $extract
    */
   public function setExtract(JobConfigurationExtract $extract)
   {
@@ -87,7 +141,13 @@ class JobConfiguration extends \Google\Model
     return $this->extract;
   }
   /**
-   * @param string
+   * Optional. Job timeout in milliseconds relative to the job creation time. If
+   * this time limit is exceeded, BigQuery attempts to stop the job, but might
+   * not always succeed in canceling it before the job completes. For example, a
+   * job that takes more than 60 seconds to complete has a better chance of
+   * being stopped than a job that takes 10 seconds to complete.
+   *
+   * @param string $jobTimeoutMs
    */
   public function setJobTimeoutMs($jobTimeoutMs)
   {
@@ -101,7 +161,10 @@ class JobConfiguration extends \Google\Model
     return $this->jobTimeoutMs;
   }
   /**
-   * @param string
+   * Output only. The type of the job. Can be QUERY, LOAD, EXTRACT, COPY or
+   * UNKNOWN.
+   *
+   * @param string $jobType
    */
   public function setJobType($jobType)
   {
@@ -115,7 +178,14 @@ class JobConfiguration extends \Google\Model
     return $this->jobType;
   }
   /**
-   * @param string[]
+   * The labels associated with this job. You can use these to organize and
+   * group your jobs. Label keys and values can be no longer than 63 characters,
+   * can only contain lowercase letters, numeric characters, underscores and
+   * dashes. International characters are allowed. Label values are optional.
+   * Label keys must start with a letter and each label in the list must have a
+   * different key.
+   *
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -129,7 +199,9 @@ class JobConfiguration extends \Google\Model
     return $this->labels;
   }
   /**
-   * @param JobConfigurationLoad
+   * [Pick one] Configures a load job.
+   *
+   * @param JobConfigurationLoad $load
    */
   public function setLoad(JobConfigurationLoad $load)
   {
@@ -143,7 +215,30 @@ class JobConfiguration extends \Google\Model
     return $this->load;
   }
   /**
-   * @param JobConfigurationQuery
+   * Optional. A target limit on the rate of slot consumption by this job. If
+   * set to a value > 0, BigQuery will attempt to limit the rate of slot
+   * consumption by this job to keep it below the configured limit, even if the
+   * job is eligible for more slots based on fair scheduling. The unused slots
+   * will be available for other jobs and queries to use. Note: This feature is
+   * not yet generally available.
+   *
+   * @param int $maxSlots
+   */
+  public function setMaxSlots($maxSlots)
+  {
+    $this->maxSlots = $maxSlots;
+  }
+  /**
+   * @return int
+   */
+  public function getMaxSlots()
+  {
+    return $this->maxSlots;
+  }
+  /**
+   * [Pick one] Configures a query job.
+   *
+   * @param JobConfigurationQuery $query
    */
   public function setQuery(JobConfigurationQuery $query)
   {
@@ -155,6 +250,29 @@ class JobConfiguration extends \Google\Model
   public function getQuery()
   {
     return $this->query;
+  }
+  /**
+   * Optional. The reservation that job would use. User can specify a
+   * reservation to execute the job. If reservation is not set, reservation is
+   * determined based on the rules defined by the reservation assignments. The
+   * expected format is
+   * `projects/{project}/locations/{location}/reservations/{reservation}`.
+   * Forces the query to use on-demand billing when set to `none`, which
+   * requires the project or organization to have `reservation_override_mode`
+   * set to `ALLOW_ANY_OVERRIDE`.
+   *
+   * @param string $reservation
+   */
+  public function setReservation($reservation)
+  {
+    $this->reservation = $reservation;
+  }
+  /**
+   * @return string
+   */
+  public function getReservation()
+  {
+    return $this->reservation;
   }
 }
 

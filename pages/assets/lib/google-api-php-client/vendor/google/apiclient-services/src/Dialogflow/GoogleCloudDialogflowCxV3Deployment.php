@@ -19,6 +19,10 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3Deployment extends \Google\Model
 {
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  public const STATE_RUNNING = 'RUNNING';
+  public const STATE_SUCCEEDED = 'SUCCEEDED';
+  public const STATE_FAILED = 'FAILED';
   /**
    * @var string
    */
@@ -43,7 +47,7 @@ class GoogleCloudDialogflowCxV3Deployment extends \Google\Model
   public $state;
 
   /**
-   * @param string
+   * @param string $endTime
    */
   public function setEndTime($endTime)
   {
@@ -57,7 +61,7 @@ class GoogleCloudDialogflowCxV3Deployment extends \Google\Model
     return $this->endTime;
   }
   /**
-   * @param string
+   * @param string $flowVersion
    */
   public function setFlowVersion($flowVersion)
   {
@@ -71,7 +75,7 @@ class GoogleCloudDialogflowCxV3Deployment extends \Google\Model
     return $this->flowVersion;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -85,7 +89,7 @@ class GoogleCloudDialogflowCxV3Deployment extends \Google\Model
     return $this->name;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3DeploymentResult
+   * @param GoogleCloudDialogflowCxV3DeploymentResult $result
    */
   public function setResult(GoogleCloudDialogflowCxV3DeploymentResult $result)
   {
@@ -99,7 +103,7 @@ class GoogleCloudDialogflowCxV3Deployment extends \Google\Model
     return $this->result;
   }
   /**
-   * @param string
+   * @param string $startTime
    */
   public function setStartTime($startTime)
   {
@@ -113,14 +117,14 @@ class GoogleCloudDialogflowCxV3Deployment extends \Google\Model
     return $this->startTime;
   }
   /**
-   * @param string
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {

@@ -33,15 +33,15 @@ class Organizations extends \Google\Service\Resource
 {
   /**
    * Deletes the settings associated with a project, folder, or organization. This
-   * will have the effect of disabling Access Approval for the project, folder, or
-   * organization, but only if all ancestors also have Access Approval disabled.
-   * If Access Approval is enabled at a higher level of the hierarchy, then Access
-   * Approval will still be enabled at this level as the settings are inherited.
-   * (organizations.deleteAccessApprovalSettings)
+   * will have the effect of disabling Access Approval for the resource. Access
+   * Approval may remain active based on parent resource settings. To confirm the
+   * effective settings, call GetAccessApprovalSettings and verify effective
+   * setting is disabled. (organizations.deleteAccessApprovalSettings)
    *
    * @param string $name Name of the AccessApprovalSettings to delete.
    * @param array $optParams Optional parameters.
    * @return AccessapprovalEmpty
+   * @throws \Google\Service\Exception
    */
   public function deleteAccessApprovalSettings($name, $optParams = [])
   {
@@ -50,13 +50,14 @@ class Organizations extends \Google\Service\Resource
     return $this->call('deleteAccessApprovalSettings', [$params], AccessapprovalEmpty::class);
   }
   /**
-   * Gets the settings associated with a project, folder, or organization.
-   * (organizations.getAccessApprovalSettings)
+   * Gets the Access Approval settings associated with a project, folder, or
+   * organization. (organizations.getAccessApprovalSettings)
    *
    * @param string $name The name of the AccessApprovalSettings to retrieve.
    * Format: "{projects|folders|organizations}/{id}/accessApprovalSettings"
    * @param array $optParams Optional parameters.
    * @return AccessApprovalSettings
+   * @throws \Google\Service\Exception
    */
   public function getAccessApprovalSettings($name, $optParams = [])
   {
@@ -72,6 +73,7 @@ class Organizations extends \Google\Service\Resource
    * @param string $name Name of the AccessApprovalServiceAccount to retrieve.
    * @param array $optParams Optional parameters.
    * @return AccessApprovalServiceAccount
+   * @throws \Google\Service\Exception
    */
   public function getServiceAccount($name, $optParams = [])
   {
@@ -100,6 +102,7 @@ class Organizations extends \Google\Service\Resource
    * buffers/docs/reference/google.protobuf#fieldmask If this field is left unset,
    * only the notification_emails field will be updated.
    * @return AccessApprovalSettings
+   * @throws \Google\Service\Exception
    */
   public function updateAccessApprovalSettings($name, AccessApprovalSettings $postBody, $optParams = [])
   {

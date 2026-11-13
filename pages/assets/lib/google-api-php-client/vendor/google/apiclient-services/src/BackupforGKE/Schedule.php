@@ -20,16 +20,42 @@ namespace Google\Service\BackupforGKE;
 class Schedule extends \Google\Model
 {
   /**
+   * Optional. A standard [cron](https://wikipedia.com/wiki/cron) string that
+   * defines a repeating schedule for creating Backups via this BackupPlan. This
+   * is mutually exclusive with the rpo_config field since at most one schedule
+   * can be defined for a BackupPlan. If this is defined, then
+   * backup_retain_days must also be defined. Default (empty): no automatic
+   * backup creation will occur.
+   *
    * @var string
    */
   public $cronSchedule;
   /**
+   * Output only. Start time of next scheduled backup under this BackupPlan by
+   * either cron_schedule or rpo config.
+   *
+   * @var string
+   */
+  public $nextScheduledBackupTime;
+  /**
+   * Optional. This flag denotes whether automatic Backup creation is paused for
+   * this BackupPlan. Default: False
+   *
    * @var bool
    */
   public $paused;
+  protected $rpoConfigType = RpoConfig::class;
+  protected $rpoConfigDataType = '';
 
   /**
-   * @param string
+   * Optional. A standard [cron](https://wikipedia.com/wiki/cron) string that
+   * defines a repeating schedule for creating Backups via this BackupPlan. This
+   * is mutually exclusive with the rpo_config field since at most one schedule
+   * can be defined for a BackupPlan. If this is defined, then
+   * backup_retain_days must also be defined. Default (empty): no automatic
+   * backup creation will occur.
+   *
+   * @param string $cronSchedule
    */
   public function setCronSchedule($cronSchedule)
   {
@@ -43,7 +69,27 @@ class Schedule extends \Google\Model
     return $this->cronSchedule;
   }
   /**
-   * @param bool
+   * Output only. Start time of next scheduled backup under this BackupPlan by
+   * either cron_schedule or rpo config.
+   *
+   * @param string $nextScheduledBackupTime
+   */
+  public function setNextScheduledBackupTime($nextScheduledBackupTime)
+  {
+    $this->nextScheduledBackupTime = $nextScheduledBackupTime;
+  }
+  /**
+   * @return string
+   */
+  public function getNextScheduledBackupTime()
+  {
+    return $this->nextScheduledBackupTime;
+  }
+  /**
+   * Optional. This flag denotes whether automatic Backup creation is paused for
+   * this BackupPlan. Default: False
+   *
+   * @param bool $paused
    */
   public function setPaused($paused)
   {
@@ -55,6 +101,26 @@ class Schedule extends \Google\Model
   public function getPaused()
   {
     return $this->paused;
+  }
+  /**
+   * Optional. Defines the RPO schedule configuration for this BackupPlan. This
+   * is mutually exclusive with the cron_schedule field since at most one
+   * schedule can be defined for a BackupPLan. If this is defined, then
+   * backup_retain_days must also be defined. Default (empty): no automatic
+   * backup creation will occur.
+   *
+   * @param RpoConfig $rpoConfig
+   */
+  public function setRpoConfig(RpoConfig $rpoConfig)
+  {
+    $this->rpoConfig = $rpoConfig;
+  }
+  /**
+   * @return RpoConfig
+   */
+  public function getRpoConfig()
+  {
+    return $this->rpoConfig;
   }
 }
 

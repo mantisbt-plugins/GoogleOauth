@@ -38,6 +38,7 @@ class OrganizationsKeyvaluemaps extends \Google\Service\Resource
    * @param GoogleCloudApigeeV1KeyValueMap $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1KeyValueMap
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudApigeeV1KeyValueMap $postBody, $optParams = [])
   {
@@ -52,12 +53,62 @@ class OrganizationsKeyvaluemaps extends \Google\Service\Resource
    * structure in your request: `organizations/{org}/keyvaluemaps/{keyvaluemap}`
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1KeyValueMap
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
     $params = ['name' => $name];
     $params = array_merge($params, $optParams);
     return $this->call('delete', [$params], GoogleCloudApigeeV1KeyValueMap::class);
+  }
+  /**
+   * Get the key value map scoped to an organization, environment, or API proxy.
+   * (keyvaluemaps.get)
+   *
+   * @param string $name Required. Scope as indicated by the URI in which to fetch
+   * the key value map. Use **one** of the following structures in your request: *
+   * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `orga
+   * nizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap
+   * }` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the
+   * KeyValueMap is under an API Proxy resource that has the `space` attribute
+   * set, IAM permissions are checked against the Space resource path. To learn
+   * more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudApigeeV1KeyValueMap
+   * @throws \Google\Service\Exception
+   */
+  public function get($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('get', [$params], GoogleCloudApigeeV1KeyValueMap::class);
+  }
+  /**
+   * Update the key value map scoped to an organization, environment, or API
+   * proxy. (keyvaluemaps.update)
+   *
+   * @param string $name Required. Scope as indicated by the URI in which to fetch
+   * the key value map. Use **one** of the following structures in your request: *
+   * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `orga
+   * nizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap
+   * }` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the
+   * KeyValueMap is under an API Proxy resource that has the `space` attribute
+   * set, IAM permissions are checked against the Space resource path. To learn
+   * more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
+   * @param GoogleCloudApigeeV1KeyValueMap $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudApigeeV1KeyValueMap
+   * @throws \Google\Service\Exception
+   */
+  public function update($name, GoogleCloudApigeeV1KeyValueMap $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('update', [$params], GoogleCloudApigeeV1KeyValueMap::class);
   }
 }
 

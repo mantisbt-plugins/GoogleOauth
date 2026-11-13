@@ -45,14 +45,16 @@ class ProjectsLocationsServices extends \Google\Service\Resource
    * @param GoogleCloudRunV2Service $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string serviceId Required. The unique identifier for the Service.
+   * @opt_param string serviceId Optional. The unique identifier for the Service.
    * It must begin with letter, and cannot end with hyphen; must contain fewer
    * than 50 characters. The name of the service becomes
-   * {parent}/services/{service_id}.
+   * {parent}/services/{service_id}. If not provided, the server will generate a
+   * unique `service_id`.
    * @opt_param bool validateOnly Indicates that the request should be validated
    * and default values populated, without persisting the request or creating any
    * resources.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudRunV2Service $postBody, $optParams = [])
   {
@@ -74,6 +76,7 @@ class ProjectsLocationsServices extends \Google\Service\Resource
    * @opt_param bool validateOnly Indicates that the request should be validated
    * without actually deleting any resources.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -89,6 +92,7 @@ class ProjectsLocationsServices extends \Google\Service\Resource
    * can be project id or number.
    * @param array $optParams Optional parameters.
    * @return GoogleCloudRunV2Service
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -120,6 +124,7 @@ class ProjectsLocationsServices extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -128,7 +133,8 @@ class ProjectsLocationsServices extends \Google\Service\Resource
     return $this->call('getIamPolicy', [$params], GoogleIamV1Policy::class);
   }
   /**
-   * Lists Services. (services.listProjectsLocationsServices)
+   * Lists Services. Results are sorted by creation time, descending.
+   * (services.listProjectsLocationsServices)
    *
    * @param string $parent Required. The location and project to list resources
    * on. Location must be a valid Google Cloud region, and cannot be the "-"
@@ -142,6 +148,7 @@ class ProjectsLocationsServices extends \Google\Service\Resource
    * @opt_param bool showDeleted If true, returns deleted (but unexpired)
    * resources along with active ones.
    * @return GoogleCloudRunV2ListServicesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsServices($parent, $optParams = [])
   {
@@ -152,20 +159,30 @@ class ProjectsLocationsServices extends \Google\Service\Resource
   /**
    * Updates a Service. (services.patch)
    *
-   * @param string $name The fully qualified name of this Service. In
+   * @param string $name Identifier. The fully qualified name of this Service. In
    * CreateServiceRequest, this field is ignored, and instead composed from
    * CreateServiceRequest.parent and CreateServiceRequest.service_id. Format:
    * projects/{project}/locations/{location}/services/{service_id}
    * @param GoogleCloudRunV2Service $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param bool allowMissing If set to true, and if the Service does not
-   * exist, it will create a new one. The caller must have 'run.services.create'
-   * permissions if this is set to true and the Service does not exist.
+   * @opt_param bool allowMissing Optional. If set to true, and if the Service
+   * does not exist, it will create a new one. The caller must have
+   * 'run.services.create' permissions if this is set to true and the Service does
+   * not exist.
+   * @opt_param bool forceNewRevision Optional. If set to true, a new revision
+   * will be created from the template even if the system doesn't detect any
+   * changes from the previously deployed revision. This may be useful for cases
+   * where the underlying resources need to be recreated or reinitialized. For
+   * example if the image is specified by label, but the underlying image digest
+   * has changed) or if the container performs deployment initialization work that
+   * needs to be performed again.
+   * @opt_param string updateMask Optional. The list of fields to be updated.
    * @opt_param bool validateOnly Indicates that the request should be validated
    * and default values populated, without persisting the request or updating any
    * resources.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudRunV2Service $postBody, $optParams = [])
   {
@@ -184,6 +201,7 @@ class ProjectsLocationsServices extends \Google\Service\Resource
    * @param GoogleIamV1SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, GoogleIamV1SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -202,6 +220,7 @@ class ProjectsLocationsServices extends \Google\Service\Resource
    * @param GoogleIamV1TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
   {

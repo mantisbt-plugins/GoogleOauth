@@ -17,23 +17,53 @@
 
 namespace Google\Service\DiscoveryEngine;
 
-class GoogleCloudDiscoveryengineV1alphaSchema extends \Google\Model
+class GoogleCloudDiscoveryengineV1alphaSchema extends \Google\Collection
 {
+  protected $collection_key = 'fieldConfigs';
+  protected $fieldConfigsType = GoogleCloudDiscoveryengineV1alphaFieldConfig::class;
+  protected $fieldConfigsDataType = 'array';
   /**
+   * The JSON representation of the schema.
+   *
    * @var string
    */
   public $jsonSchema;
   /**
+   * Immutable. The full resource name of the schema, in the format of `projects
+   * /{project}/locations/{location}/collections/{collection}/dataStores/{data_s
+   * tore}/schemas/{schema}`. This field must be a UTF-8 encoded string with a
+   * length limit of 1024 characters.
+   *
    * @var string
    */
   public $name;
   /**
+   * The structured representation of the schema.
+   *
    * @var array[]
    */
   public $structSchema;
 
   /**
-   * @param string
+   * Output only. Configurations for fields of the schema.
+   *
+   * @param GoogleCloudDiscoveryengineV1alphaFieldConfig[] $fieldConfigs
+   */
+  public function setFieldConfigs($fieldConfigs)
+  {
+    $this->fieldConfigs = $fieldConfigs;
+  }
+  /**
+   * @return GoogleCloudDiscoveryengineV1alphaFieldConfig[]
+   */
+  public function getFieldConfigs()
+  {
+    return $this->fieldConfigs;
+  }
+  /**
+   * The JSON representation of the schema.
+   *
+   * @param string $jsonSchema
    */
   public function setJsonSchema($jsonSchema)
   {
@@ -47,7 +77,12 @@ class GoogleCloudDiscoveryengineV1alphaSchema extends \Google\Model
     return $this->jsonSchema;
   }
   /**
-   * @param string
+   * Immutable. The full resource name of the schema, in the format of `projects
+   * /{project}/locations/{location}/collections/{collection}/dataStores/{data_s
+   * tore}/schemas/{schema}`. This field must be a UTF-8 encoded string with a
+   * length limit of 1024 characters.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -61,7 +96,9 @@ class GoogleCloudDiscoveryengineV1alphaSchema extends \Google\Model
     return $this->name;
   }
   /**
-   * @param array[]
+   * The structured representation of the schema.
+   *
+   * @param array[] $structSchema
    */
   public function setStructSchema($structSchema)
   {

@@ -17,7 +17,10 @@
 
 namespace Google\Service\Container\Resource;
 
+use Google\Service\Container\CheckAutopilotCompatibilityResponse;
 use Google\Service\Container\Cluster;
+use Google\Service\Container\ClusterUpgradeInfo;
+use Google\Service\Container\CompleteControlPlaneUpgradeRequest;
 use Google\Service\Container\CompleteIPRotationRequest;
 use Google\Service\Container\CreateClusterRequest;
 use Google\Service\Container\GetJSONWebKeysResponse;
@@ -47,6 +50,41 @@ use Google\Service\Container\UpdateMasterRequest;
 class ProjectsLocationsClusters extends \Google\Service\Resource
 {
   /**
+   * Checks the cluster compatibility with Autopilot mode, and returns a list of
+   * compatibility issues. (clusters.checkAutopilotCompatibility)
+   *
+   * @param string $name The name (project, location, cluster) of the cluster to
+   * retrieve. Specified in the format `projects/locations/clusters`.
+   * @param array $optParams Optional parameters.
+   * @return CheckAutopilotCompatibilityResponse
+   * @throws \Google\Service\Exception
+   */
+  public function checkAutopilotCompatibility($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('checkAutopilotCompatibility', [$params], CheckAutopilotCompatibilityResponse::class);
+  }
+  /**
+   * CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing
+   * the step two upgrade for a specific cluster.
+   * (clusters.completeControlPlaneUpgrade)
+   *
+   * @param string $name Required. The name (project, location, cluster) of the
+   * cluster to complete upgrade. Specified in the format
+   * `projects/locations/clusters`.
+   * @param CompleteControlPlaneUpgradeRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function completeControlPlaneUpgrade($name, CompleteControlPlaneUpgradeRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('completeControlPlaneUpgrade', [$params], Operation::class);
+  }
+  /**
    * Completes master IP rotation. (clusters.completeIpRotation)
    *
    * @param string $name The name (project, location, cluster name) of the cluster
@@ -55,6 +93,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param CompleteIPRotationRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function completeIpRotation($name, CompleteIPRotationRequest $postBody, $optParams = [])
   {
@@ -67,7 +106,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * Compute Engine instances. By default, the cluster is created in the project's
    * [default network](https://cloud.google.com/compute/docs/networks-and-
    * firewalls#networks). One firewall is added for the cluster. After cluster
-   * creation, the Kubelet creates routes for each node to allow the containers on
+   * creation, the kubelet creates routes for each node to allow the containers on
    * that node to communicate with all other instances in the cluster. Finally, an
    * entry is added to the project's global metadata indicating which CIDR range
    * the cluster is using. (clusters.create)
@@ -77,6 +116,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param CreateClusterRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, CreateClusterRequest $postBody, $optParams = [])
   {
@@ -98,20 +138,40 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @opt_param string clusterId Deprecated. The name of the cluster to delete.
    * This field has been deprecated and replaced by the name field.
    * @opt_param string projectId Deprecated. The Google Developers Console
-   * [project ID or project number](https://cloud.google.com/resource-manager/docs
-   * /creating-managing-projects). This field has been deprecated and replaced by
-   * the name field.
+   * [project ID or project number](https://cloud.google.com/resource-
+   * manager/docs/creating-managing-projects). This field has been deprecated and
+   * replaced by the name field.
    * @opt_param string zone Deprecated. The name of the Google Compute Engine
    * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
    * cluster resides. This field has been deprecated and replaced by the name
    * field.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
     $params = ['name' => $name];
     $params = array_merge($params, $optParams);
     return $this->call('delete', [$params], Operation::class);
+  }
+  /**
+   * Fetch upgrade information of a specific cluster.
+   * (clusters.fetchClusterUpgradeInfo)
+   *
+   * @param string $name Required. The name (project, location, cluster) of the
+   * cluster to get. Specified in the format `projects/locations/clusters` or
+   * `projects/zones/clusters`.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string version API request version that initiates this operation.
+   * @return ClusterUpgradeInfo
+   * @throws \Google\Service\Exception
+   */
+  public function fetchClusterUpgradeInfo($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('fetchClusterUpgradeInfo', [$params], ClusterUpgradeInfo::class);
   }
   /**
    * Gets the details of a specific cluster. (clusters.get)
@@ -123,14 +183,15 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @opt_param string clusterId Deprecated. The name of the cluster to retrieve.
    * This field has been deprecated and replaced by the name field.
    * @opt_param string projectId Deprecated. The Google Developers Console
-   * [project ID or project number](https://cloud.google.com/resource-manager/docs
-   * /creating-managing-projects). This field has been deprecated and replaced by
-   * the name field.
+   * [project ID or project number](https://cloud.google.com/resource-
+   * manager/docs/creating-managing-projects). This field has been deprecated and
+   * replaced by the name field.
    * @opt_param string zone Deprecated. The name of the Google Compute Engine
    * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
    * cluster resides. This field has been deprecated and replaced by the name
    * field.
    * @return Cluster
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -140,13 +201,13 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
   }
   /**
    * Gets the public component of the cluster signing keys in JSON Web Key format.
-   * This API is not yet intended for general use, and is not available for all
-   * clusters. (clusters.getJwks)
+   * (clusters.getJwks)
    *
    * @param string $parent The cluster (project, location, cluster name) to get
    * keys for. Specified in the format `projects/locations/clusters`.
    * @param array $optParams Optional parameters.
    * @return GetJSONWebKeysResponse
+   * @throws \Google\Service\Exception
    */
   public function getJwks($parent, $optParams = [])
   {
@@ -164,14 +225,15 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string projectId Deprecated. The Google Developers Console
-   * [project ID or project number](https://cloud.google.com/resource-manager/docs
-   * /creating-managing-projects). This field has been deprecated and replaced by
-   * the parent field.
+   * [project ID or project number](https://cloud.google.com/resource-
+   * manager/docs/creating-managing-projects). This field has been deprecated and
+   * replaced by the parent field.
    * @opt_param string zone Deprecated. The name of the Google Compute Engine
    * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
    * cluster resides, or "-" for all zones. This field has been deprecated and
    * replaced by the parent field.
    * @return ListClustersResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsClusters($parent, $optParams = [])
   {
@@ -187,6 +249,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param SetAddonsConfigRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setAddons($name, SetAddonsConfigRequest $postBody, $optParams = [])
   {
@@ -203,6 +266,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param SetLegacyAbacRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setLegacyAbac($name, SetLegacyAbacRequest $postBody, $optParams = [])
   {
@@ -221,6 +285,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param SetLocationsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setLocations($name, SetLocationsRequest $postBody, $optParams = [])
   {
@@ -236,6 +301,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param SetLoggingServiceRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setLogging($name, SetLoggingServiceRequest $postBody, $optParams = [])
   {
@@ -252,6 +318,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param SetMaintenancePolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setMaintenancePolicy($name, SetMaintenancePolicyRequest $postBody, $optParams = [])
   {
@@ -269,6 +336,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param SetMasterAuthRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setMasterAuth($name, SetMasterAuthRequest $postBody, $optParams = [])
   {
@@ -284,6 +352,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param SetMonitoringServiceRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setMonitoring($name, SetMonitoringServiceRequest $postBody, $optParams = [])
   {
@@ -300,6 +369,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param SetNetworkPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setNetworkPolicy($name, SetNetworkPolicyRequest $postBody, $optParams = [])
   {
@@ -315,6 +385,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param SetLabelsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setResourceLabels($name, SetLabelsRequest $postBody, $optParams = [])
   {
@@ -330,6 +401,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param StartIPRotationRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function startIpRotation($name, StartIPRotationRequest $postBody, $optParams = [])
   {
@@ -345,6 +417,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param UpdateClusterRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function update($name, UpdateClusterRequest $postBody, $optParams = [])
   {
@@ -360,6 +433,7 @@ class ProjectsLocationsClusters extends \Google\Service\Resource
    * @param UpdateMasterRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function updateMaster($name, UpdateMasterRequest $postBody, $optParams = [])
   {

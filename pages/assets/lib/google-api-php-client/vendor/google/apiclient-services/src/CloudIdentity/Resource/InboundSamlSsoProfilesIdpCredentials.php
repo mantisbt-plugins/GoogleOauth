@@ -33,13 +33,19 @@ use Google\Service\CloudIdentity\Operation;
 class InboundSamlSsoProfilesIdpCredentials extends \Google\Service\Resource
 {
   /**
-   * Adds an IdpCredential. Up to 2 credentials are allowed. (idpCredentials.add)
+   * Adds an IdpCredential. Up to 2 credentials are allowed. When the target
+   * customer has enabled [Multi-party approval for sensitive
+   * actions](https://support.google.com/a/answer/13790448), the `Operation` in
+   * the response will have `"done": false`, it will not have a response, and the
+   * metadata will have `"state": "awaiting-multi-party-approval"`.
+   * (idpCredentials.add)
    *
    * @param string $parent Required. The InboundSamlSsoProfile that owns the
    * IdpCredential. Format: `inboundSamlSsoProfiles/{sso_profile_id}`
    * @param AddIdpCredentialRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function add($parent, AddIdpCredentialRequest $postBody, $optParams = [])
   {
@@ -56,6 +62,7 @@ class InboundSamlSsoProfilesIdpCredentials extends \Google\Service\Resource
    * `inboundSamlSsoProfiles/{sso_profile_id}/idpCredentials/{idp_credential_id}`
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -72,6 +79,7 @@ class InboundSamlSsoProfilesIdpCredentials extends \Google\Service\Resource
    * `inboundSamlSsoProfiles/{sso_profile_id}/idpCredentials/{idp_credential_id}`
    * @param array $optParams Optional parameters.
    * @return IdpCredential
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -94,6 +102,7 @@ class InboundSamlSsoProfilesIdpCredentials extends \Google\Service\Resource
    * paginating, all other parameters provided to `ListIdpCredentials` must match
    * the call that provided the page token.
    * @return ListIdpCredentialsResponse
+   * @throws \Google\Service\Exception
    */
   public function listInboundSamlSsoProfilesIdpCredentials($parent, $optParams = [])
   {

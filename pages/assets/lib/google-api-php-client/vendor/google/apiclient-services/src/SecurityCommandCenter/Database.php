@@ -40,9 +40,13 @@ class Database extends \Google\Collection
    * @var string
    */
   public $userName;
+  /**
+   * @var string
+   */
+  public $version;
 
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -56,7 +60,7 @@ class Database extends \Google\Collection
     return $this->displayName;
   }
   /**
-   * @param string[]
+   * @param string[] $grantees
    */
   public function setGrantees($grantees)
   {
@@ -70,7 +74,7 @@ class Database extends \Google\Collection
     return $this->grantees;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -84,7 +88,7 @@ class Database extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param string
+   * @param string $query
    */
   public function setQuery($query)
   {
@@ -98,7 +102,7 @@ class Database extends \Google\Collection
     return $this->query;
   }
   /**
-   * @param string
+   * @param string $userName
    */
   public function setUserName($userName)
   {
@@ -110,6 +114,20 @@ class Database extends \Google\Collection
   public function getUserName()
   {
     return $this->userName;
+  }
+  /**
+   * @param string $version
+   */
+  public function setVersion($version)
+  {
+    $this->version = $version;
+  }
+  /**
+   * @return string
+   */
+  public function getVersion()
+  {
+    return $this->version;
   }
 }
 

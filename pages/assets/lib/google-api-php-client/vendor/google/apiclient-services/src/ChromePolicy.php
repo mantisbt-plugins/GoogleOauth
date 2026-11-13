@@ -36,10 +36,10 @@ use Google\Client;
  */
 class ChromePolicy extends \Google\Service
 {
-  /** See, edit, create or delete policies applied to Chrome OS and Chrome Browsers managed within your organization. */
+  /** See, edit, create or delete policies applied to ChromeOS and Chrome Browsers managed within your organization. */
   const CHROME_MANAGEMENT_POLICY =
       "https://www.googleapis.com/auth/chrome.management.policy";
-  /** See policies applied to Chrome OS and Chrome Browsers managed within your organization. */
+  /** See policies applied to ChromeOS and Chrome Browsers managed within your organization. */
   const CHROME_MANAGEMENT_POLICY_READONLY =
       "https://www.googleapis.com/auth/chrome.management.policy.readonly";
 
@@ -49,6 +49,7 @@ class ChromePolicy extends \Google\Service
   public $customers_policies_orgunits;
   public $customers_policySchemas;
   public $media;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the ChromePolicy service.
@@ -61,6 +62,7 @@ class ChromePolicy extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://chromepolicy.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://chromepolicy.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

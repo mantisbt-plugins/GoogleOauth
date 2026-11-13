@@ -20,23 +20,37 @@ namespace Google\Service\AIPlatformNotebooks;
 class UpgradeInstanceRequest extends \Google\Model
 {
   /**
+   * Optional. The Compute Engine image family resource name to upgrade to.
+   * Format: `projects/{project_id}/global/images/family/{image_family}` If
+   * specified, the instance will be upgraded to the latest image in the
+   * specified image family, allowing upgrades across image families. If not
+   * specified, the instance will be upgraded to the latest image in its current
+   * image family.
+   *
    * @var string
    */
-  public $type;
+  public $imageFamily;
 
   /**
-   * @param string
+   * Optional. The Compute Engine image family resource name to upgrade to.
+   * Format: `projects/{project_id}/global/images/family/{image_family}` If
+   * specified, the instance will be upgraded to the latest image in the
+   * specified image family, allowing upgrades across image families. If not
+   * specified, the instance will be upgraded to the latest image in its current
+   * image family.
+   *
+   * @param string $imageFamily
    */
-  public function setType($type)
+  public function setImageFamily($imageFamily)
   {
-    $this->type = $type;
+    $this->imageFamily = $imageFamily;
   }
   /**
    * @return string
    */
-  public function getType()
+  public function getImageFamily()
   {
-    return $this->type;
+    return $this->imageFamily;
   }
 }
 

@@ -25,7 +25,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageTelephonyPlayAudio extends \Googl
   public $audioUri;
 
   /**
-   * @param string
+   * @param string $audioUri
    */
   public function setAudioUri($audioUri)
   {

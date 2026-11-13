@@ -19,18 +19,37 @@ namespace Google\Service\DLP;
 
 class GooglePrivacyDlpV2ContentLocation extends \Google\Model
 {
+  protected $batchContentLocationType = GooglePrivacyDlpV2BatchContentLocation::class;
+  protected $batchContentLocationDataType = '';
   /**
+   * Name of the container where the finding is located. The top level name is
+   * the source file name or table name. Names of some common storage containers
+   * are formatted as follows: * BigQuery tables:
+   * `{project_id}:{dataset_id}.{table_id}` * Cloud Storage files:
+   * `gs://{bucket}/{path}` * Datastore namespace: {namespace} Nested names
+   * could be absent if the embedded object has no string identifier (for
+   * example, an image contained within a document).
+   *
    * @var string
    */
   public $containerName;
   /**
+   * Finding container modification timestamp, if applicable. For Cloud Storage,
+   * this field contains the last file modification timestamp. For a BigQuery
+   * table, this field contains the last_modified_time property. For Datastore,
+   * this field isn't populated.
+   *
    * @var string
    */
   public $containerTimestamp;
   /**
+   * Finding container version, if available ("generation" for Cloud Storage).
+   *
    * @var string
    */
   public $containerVersion;
+  protected $conversationLocationType = GooglePrivacyDlpV2ConversationLocation::class;
+  protected $conversationLocationDataType = '';
   protected $documentLocationType = GooglePrivacyDlpV2DocumentLocation::class;
   protected $documentLocationDataType = '';
   protected $imageLocationType = GooglePrivacyDlpV2ImageLocation::class;
@@ -41,7 +60,31 @@ class GooglePrivacyDlpV2ContentLocation extends \Google\Model
   protected $recordLocationDataType = '';
 
   /**
-   * @param string
+   * Location within a batch of content.
+   *
+   * @param GooglePrivacyDlpV2BatchContentLocation $batchContentLocation
+   */
+  public function setBatchContentLocation(GooglePrivacyDlpV2BatchContentLocation $batchContentLocation)
+  {
+    $this->batchContentLocation = $batchContentLocation;
+  }
+  /**
+   * @return GooglePrivacyDlpV2BatchContentLocation
+   */
+  public function getBatchContentLocation()
+  {
+    return $this->batchContentLocation;
+  }
+  /**
+   * Name of the container where the finding is located. The top level name is
+   * the source file name or table name. Names of some common storage containers
+   * are formatted as follows: * BigQuery tables:
+   * `{project_id}:{dataset_id}.{table_id}` * Cloud Storage files:
+   * `gs://{bucket}/{path}` * Datastore namespace: {namespace} Nested names
+   * could be absent if the embedded object has no string identifier (for
+   * example, an image contained within a document).
+   *
+   * @param string $containerName
    */
   public function setContainerName($containerName)
   {
@@ -55,7 +98,12 @@ class GooglePrivacyDlpV2ContentLocation extends \Google\Model
     return $this->containerName;
   }
   /**
-   * @param string
+   * Finding container modification timestamp, if applicable. For Cloud Storage,
+   * this field contains the last file modification timestamp. For a BigQuery
+   * table, this field contains the last_modified_time property. For Datastore,
+   * this field isn't populated.
+   *
+   * @param string $containerTimestamp
    */
   public function setContainerTimestamp($containerTimestamp)
   {
@@ -69,7 +117,9 @@ class GooglePrivacyDlpV2ContentLocation extends \Google\Model
     return $this->containerTimestamp;
   }
   /**
-   * @param string
+   * Finding container version, if available ("generation" for Cloud Storage).
+   *
+   * @param string $containerVersion
    */
   public function setContainerVersion($containerVersion)
   {
@@ -83,7 +133,25 @@ class GooglePrivacyDlpV2ContentLocation extends \Google\Model
     return $this->containerVersion;
   }
   /**
-   * @param GooglePrivacyDlpV2DocumentLocation
+   * Location within a conversation.
+   *
+   * @param GooglePrivacyDlpV2ConversationLocation $conversationLocation
+   */
+  public function setConversationLocation(GooglePrivacyDlpV2ConversationLocation $conversationLocation)
+  {
+    $this->conversationLocation = $conversationLocation;
+  }
+  /**
+   * @return GooglePrivacyDlpV2ConversationLocation
+   */
+  public function getConversationLocation()
+  {
+    return $this->conversationLocation;
+  }
+  /**
+   * Location data for document files.
+   *
+   * @param GooglePrivacyDlpV2DocumentLocation $documentLocation
    */
   public function setDocumentLocation(GooglePrivacyDlpV2DocumentLocation $documentLocation)
   {
@@ -97,7 +165,9 @@ class GooglePrivacyDlpV2ContentLocation extends \Google\Model
     return $this->documentLocation;
   }
   /**
-   * @param GooglePrivacyDlpV2ImageLocation
+   * Location within an image's pixels.
+   *
+   * @param GooglePrivacyDlpV2ImageLocation $imageLocation
    */
   public function setImageLocation(GooglePrivacyDlpV2ImageLocation $imageLocation)
   {
@@ -111,7 +181,9 @@ class GooglePrivacyDlpV2ContentLocation extends \Google\Model
     return $this->imageLocation;
   }
   /**
-   * @param GooglePrivacyDlpV2MetadataLocation
+   * Location within the metadata for inspected content.
+   *
+   * @param GooglePrivacyDlpV2MetadataLocation $metadataLocation
    */
   public function setMetadataLocation(GooglePrivacyDlpV2MetadataLocation $metadataLocation)
   {
@@ -125,7 +197,9 @@ class GooglePrivacyDlpV2ContentLocation extends \Google\Model
     return $this->metadataLocation;
   }
   /**
-   * @param GooglePrivacyDlpV2RecordLocation
+   * Location within a row or record of a database table.
+   *
+   * @param GooglePrivacyDlpV2RecordLocation $recordLocation
    */
   public function setRecordLocation(GooglePrivacyDlpV2RecordLocation $recordLocation)
   {

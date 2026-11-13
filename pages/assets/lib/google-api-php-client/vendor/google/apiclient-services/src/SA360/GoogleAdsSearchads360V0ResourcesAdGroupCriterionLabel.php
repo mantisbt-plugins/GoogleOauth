@@ -20,20 +20,36 @@ namespace Google\Service\SA360;
 class GoogleAdsSearchads360V0ResourcesAdGroupCriterionLabel extends \Google\Model
 {
   /**
+   * Immutable. The ad group criterion to which the label is attached.
+   *
    * @var string
    */
   public $adGroupCriterion;
   /**
+   * Immutable. The label assigned to the ad group criterion.
+   *
    * @var string
    */
   public $label;
   /**
+   * Output only. The ID of the Customer which owns the label.
+   *
+   * @var string
+   */
+  public $ownerCustomerId;
+  /**
+   * Immutable. The resource name of the ad group criterion label. Ad group
+   * criterion label resource names have the form: `customers/{owner_customer_id
+   * }/adGroupCriterionLabels/{ad_group_id}~{criterion_id}~{label_id}`
+   *
    * @var string
    */
   public $resourceName;
 
   /**
-   * @param string
+   * Immutable. The ad group criterion to which the label is attached.
+   *
+   * @param string $adGroupCriterion
    */
   public function setAdGroupCriterion($adGroupCriterion)
   {
@@ -47,7 +63,9 @@ class GoogleAdsSearchads360V0ResourcesAdGroupCriterionLabel extends \Google\Mode
     return $this->adGroupCriterion;
   }
   /**
-   * @param string
+   * Immutable. The label assigned to the ad group criterion.
+   *
+   * @param string $label
    */
   public function setLabel($label)
   {
@@ -61,7 +79,27 @@ class GoogleAdsSearchads360V0ResourcesAdGroupCriterionLabel extends \Google\Mode
     return $this->label;
   }
   /**
-   * @param string
+   * Output only. The ID of the Customer which owns the label.
+   *
+   * @param string $ownerCustomerId
+   */
+  public function setOwnerCustomerId($ownerCustomerId)
+  {
+    $this->ownerCustomerId = $ownerCustomerId;
+  }
+  /**
+   * @return string
+   */
+  public function getOwnerCustomerId()
+  {
+    return $this->ownerCustomerId;
+  }
+  /**
+   * Immutable. The resource name of the ad group criterion label. Ad group
+   * criterion label resource names have the form: `customers/{owner_customer_id
+   * }/adGroupCriterionLabels/{ad_group_id}~{criterion_id}~{label_id}`
+   *
+   * @param string $resourceName
    */
   public function setResourceName($resourceName)
   {

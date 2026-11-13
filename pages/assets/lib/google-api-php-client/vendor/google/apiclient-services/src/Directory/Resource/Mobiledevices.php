@@ -38,12 +38,13 @@ class Mobiledevices extends \Google\Service\Resource
    * @param string $customerId The unique ID for the customer's Google Workspace
    * account. As an account administrator, you can also use the `my_customer`
    * alias to represent your account's `customerId`. The `customerId` is also
-   * returned as part of the [Users resource](/admin-
-   * sdk/directory/v1/reference/users).
+   * returned as part of the [Users resource](https://developers.google.com/worksp
+   * ace/admin/directory/v1/reference/users).
    * @param string $resourceId The unique ID the API service uses to identify the
    * mobile device.
    * @param MobileDeviceAction $postBody
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function action($customerId, $resourceId, MobileDeviceAction $postBody, $optParams = [])
   {
@@ -57,11 +58,12 @@ class Mobiledevices extends \Google\Service\Resource
    * @param string $customerId The unique ID for the customer's Google Workspace
    * account. As an account administrator, you can also use the `my_customer`
    * alias to represent your account's `customerId`. The `customerId` is also
-   * returned as part of the [Users resource](/admin-
-   * sdk/directory/v1/reference/users).
+   * returned as part of the [Users resource](https://developers.google.com/worksp
+   * ace/admin/directory/v1/reference/users).
    * @param string $resourceId The unique ID the API service uses to identify the
    * mobile device.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($customerId, $resourceId, $optParams = [])
   {
@@ -75,8 +77,8 @@ class Mobiledevices extends \Google\Service\Resource
    * @param string $customerId The unique ID for the customer's Google Workspace
    * account. As an account administrator, you can also use the `my_customer`
    * alias to represent your account's `customerId`. The `customerId` is also
-   * returned as part of the [Users resource](/admin-
-   * sdk/directory/v1/reference/users).
+   * returned as part of the [Users resource](https://developers.google.com/worksp
+   * ace/admin/directory/v1/reference/users).
    * @param string $resourceId The unique ID the API service uses to identify the
    * mobile device.
    * @param array $optParams Optional parameters.
@@ -84,6 +86,7 @@ class Mobiledevices extends \Google\Service\Resource
    * @opt_param string projection Restrict information returned to a set of
    * selected fields.
    * @return MobileDevice
+   * @throws \Google\Service\Exception
    */
   public function get($customerId, $resourceId, $optParams = [])
   {
@@ -94,17 +97,17 @@ class Mobiledevices extends \Google\Service\Resource
   /**
    * Retrieves a paginated list of all user-owned mobile devices for an account.
    * To retrieve a list that includes company-owned devices, use the Cloud
-   * Identity [Devices API](https://cloud.google.com/identity/docs/concepts
-   * /overview-devices) instead. This method times out after 60 minutes. For more
-   * information, see [Troubleshoot error codes](https://developers.google.com
-   * /admin-sdk/directory/v1/guides/troubleshoot-error-codes).
-   * (mobiledevices.listMobiledevices)
+   * Identity [Devices
+   * API](https://cloud.google.com/identity/docs/concepts/overview-devices)
+   * instead. This method times out after 60 minutes. For more information, see
+   * [Troubleshoot error codes](https://developers.google.com/workspace/admin/dire
+   * ctory/v1/guides/troubleshoot-error-codes). (mobiledevices.listMobiledevices)
    *
    * @param string $customerId The unique ID for the customer's Google Workspace
    * account. As an account administrator, you can also use the `my_customer`
    * alias to represent your account's `customerId`. The `customerId` is also
-   * returned as part of the [Users resource](/admin-
-   * sdk/directory/v1/reference/users).
+   * returned as part of the [Users resource](https://developers.google.com/worksp
+   * ace/admin/directory/v1/reference/users).
    * @param array $optParams Optional parameters.
    *
    * @opt_param int maxResults Maximum number of results to return. Max allowed
@@ -114,10 +117,11 @@ class Mobiledevices extends \Google\Service\Resource
    * @opt_param string projection Restrict information returned to a set of
    * selected fields.
    * @opt_param string query Search string in the format given at
-   * https://developers.google.com/admin-sdk/directory/v1/search-operators
+   * https://developers.google.com/workspace/admin/directory/v1/search-operators
    * @opt_param string sortOrder Whether to return results in ascending or
    * descending order. Must be used with the `orderBy` parameter.
    * @return MobileDevicesModel
+   * @throws \Google\Service\Exception
    */
   public function listMobiledevices($customerId, $optParams = [])
   {

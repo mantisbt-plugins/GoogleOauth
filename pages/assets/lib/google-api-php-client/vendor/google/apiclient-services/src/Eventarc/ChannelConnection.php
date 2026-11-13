@@ -20,32 +20,60 @@ namespace Google\Service\Eventarc;
 class ChannelConnection extends \Google\Model
 {
   /**
+   * Input only. Activation token for the channel. The token will be used during
+   * the creation of ChannelConnection to bind the channel with the provider
+   * project. This field will not be stored in the provider resource.
+   *
    * @var string
    */
   public $activationToken;
   /**
+   * Required. The name of the connected subscriber Channel. This is a weak
+   * reference to avoid cross project and cross accounts references. This must
+   * be in `projects/{project}/location/{location}/channels/{channel_id}`
+   * format.
+   *
    * @var string
    */
   public $channel;
   /**
+   * Output only. The creation time.
+   *
    * @var string
    */
   public $createTime;
   /**
+   * Optional. Resource labels.
+   *
+   * @var string[]
+   */
+  public $labels;
+  /**
+   * Required. The name of the connection.
+   *
    * @var string
    */
   public $name;
   /**
+   * Output only. Server assigned ID of the resource. The server guarantees
+   * uniqueness and immutability until deleted.
+   *
    * @var string
    */
   public $uid;
   /**
+   * Output only. The last-modified time.
+   *
    * @var string
    */
   public $updateTime;
 
   /**
-   * @param string
+   * Input only. Activation token for the channel. The token will be used during
+   * the creation of ChannelConnection to bind the channel with the provider
+   * project. This field will not be stored in the provider resource.
+   *
+   * @param string $activationToken
    */
   public function setActivationToken($activationToken)
   {
@@ -59,7 +87,12 @@ class ChannelConnection extends \Google\Model
     return $this->activationToken;
   }
   /**
-   * @param string
+   * Required. The name of the connected subscriber Channel. This is a weak
+   * reference to avoid cross project and cross accounts references. This must
+   * be in `projects/{project}/location/{location}/channels/{channel_id}`
+   * format.
+   *
+   * @param string $channel
    */
   public function setChannel($channel)
   {
@@ -73,7 +106,9 @@ class ChannelConnection extends \Google\Model
     return $this->channel;
   }
   /**
-   * @param string
+   * Output only. The creation time.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -87,7 +122,25 @@ class ChannelConnection extends \Google\Model
     return $this->createTime;
   }
   /**
-   * @param string
+   * Optional. Resource labels.
+   *
+   * @param string[] $labels
+   */
+  public function setLabels($labels)
+  {
+    $this->labels = $labels;
+  }
+  /**
+   * @return string[]
+   */
+  public function getLabels()
+  {
+    return $this->labels;
+  }
+  /**
+   * Required. The name of the connection.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -101,7 +154,10 @@ class ChannelConnection extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * Output only. Server assigned ID of the resource. The server guarantees
+   * uniqueness and immutability until deleted.
+   *
+   * @param string $uid
    */
   public function setUid($uid)
   {
@@ -115,7 +171,9 @@ class ChannelConnection extends \Google\Model
     return $this->uid;
   }
   /**
-   * @param string
+   * Output only. The last-modified time.
+   *
+   * @param string $updateTime
    */
   public function setUpdateTime($updateTime)
   {

@@ -41,6 +41,7 @@ class CloudDomains extends \Google\Service
   public $projects_locations;
   public $projects_locations_operations;
   public $projects_locations_registrations;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudDomains service.
@@ -53,6 +54,7 @@ class CloudDomains extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://domains.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://domains.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -82,6 +84,11 @@ class CloudDomains extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -136,6 +143,10 @@ class CloudDomains extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],
@@ -232,6 +243,16 @@ class CloudDomains extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'initiatePushTransfer' => [
+              'path' => 'v1/{+registration}:initiatePushTransfer',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'registration' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'list' => [
               'path' => 'v1/{+parent}/registrations',
               'httpMethod' => 'GET',
@@ -267,12 +288,26 @@ class CloudDomains extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'validateOnly' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
               ],
             ],'register' => [
               'path' => 'v1/{+parent}/registrations:register',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'renewDomain' => [
+              'path' => 'v1/{+registration}:renewDomain',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'registration' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -290,6 +325,34 @@ class CloudDomains extends \Google\Service
               ],
             ],'retrieveAuthorizationCode' => [
               'path' => 'v1/{+registration}:retrieveAuthorizationCode',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'registration' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'retrieveGoogleDomainsDnsRecords' => [
+              'path' => 'v1/{+registration}:retrieveGoogleDomainsDnsRecords',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'registration' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'retrieveGoogleDomainsForwardingConfig' => [
+              'path' => 'v1/{+registration}:retrieveGoogleDomainsForwardingConfig',
               'httpMethod' => 'GET',
               'parameters' => [
                 'registration' => [

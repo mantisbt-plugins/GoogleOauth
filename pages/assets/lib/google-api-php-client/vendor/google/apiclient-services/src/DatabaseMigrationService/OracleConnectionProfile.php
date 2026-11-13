@@ -20,38 +20,61 @@ namespace Google\Service\DatabaseMigrationService;
 class OracleConnectionProfile extends \Google\Model
 {
   /**
+   * Required. Database service for the Oracle connection.
+   *
    * @var string
    */
   public $databaseService;
   protected $forwardSshConnectivityType = ForwardSshTunnelConnectivity::class;
   protected $forwardSshConnectivityDataType = '';
   /**
+   * Required. The IP or hostname of the source Oracle database.
+   *
    * @var string
    */
   public $host;
+  protected $oracleAsmConfigType = OracleAsmConfig::class;
+  protected $oracleAsmConfigDataType = '';
   /**
+   * Required. Input only. The password for the user that Database Migration
+   * Service will be using to connect to the database. This field is not
+   * returned on request, and the value is encrypted when stored in Database
+   * Migration Service.
+   *
    * @var string
    */
   public $password;
   /**
+   * Output only. Indicates whether a new password is included in the request.
+   *
    * @var bool
    */
   public $passwordSet;
   /**
+   * Required. The network port of the source Oracle database.
+   *
    * @var int
    */
   public $port;
   protected $privateConnectivityType = PrivateConnectivity::class;
   protected $privateConnectivityDataType = '';
+  protected $sslType = SslConfig::class;
+  protected $sslDataType = '';
   protected $staticServiceIpConnectivityType = StaticServiceIpConnectivity::class;
   protected $staticServiceIpConnectivityDataType = '';
   /**
+   * Required. The username that Database Migration Service will use to connect
+   * to the database. The value is encrypted when stored in Database Migration
+   * Service.
+   *
    * @var string
    */
   public $username;
 
   /**
-   * @param string
+   * Required. Database service for the Oracle connection.
+   *
+   * @param string $databaseService
    */
   public function setDatabaseService($databaseService)
   {
@@ -65,7 +88,9 @@ class OracleConnectionProfile extends \Google\Model
     return $this->databaseService;
   }
   /**
-   * @param ForwardSshTunnelConnectivity
+   * Forward SSH tunnel connectivity.
+   *
+   * @param ForwardSshTunnelConnectivity $forwardSshConnectivity
    */
   public function setForwardSshConnectivity(ForwardSshTunnelConnectivity $forwardSshConnectivity)
   {
@@ -79,7 +104,9 @@ class OracleConnectionProfile extends \Google\Model
     return $this->forwardSshConnectivity;
   }
   /**
-   * @param string
+   * Required. The IP or hostname of the source Oracle database.
+   *
+   * @param string $host
    */
   public function setHost($host)
   {
@@ -93,7 +120,28 @@ class OracleConnectionProfile extends \Google\Model
     return $this->host;
   }
   /**
-   * @param string
+   * Optional. Configuration for Oracle ASM connection.
+   *
+   * @param OracleAsmConfig $oracleAsmConfig
+   */
+  public function setOracleAsmConfig(OracleAsmConfig $oracleAsmConfig)
+  {
+    $this->oracleAsmConfig = $oracleAsmConfig;
+  }
+  /**
+   * @return OracleAsmConfig
+   */
+  public function getOracleAsmConfig()
+  {
+    return $this->oracleAsmConfig;
+  }
+  /**
+   * Required. Input only. The password for the user that Database Migration
+   * Service will be using to connect to the database. This field is not
+   * returned on request, and the value is encrypted when stored in Database
+   * Migration Service.
+   *
+   * @param string $password
    */
   public function setPassword($password)
   {
@@ -107,7 +155,9 @@ class OracleConnectionProfile extends \Google\Model
     return $this->password;
   }
   /**
-   * @param bool
+   * Output only. Indicates whether a new password is included in the request.
+   *
+   * @param bool $passwordSet
    */
   public function setPasswordSet($passwordSet)
   {
@@ -121,7 +171,9 @@ class OracleConnectionProfile extends \Google\Model
     return $this->passwordSet;
   }
   /**
-   * @param int
+   * Required. The network port of the source Oracle database.
+   *
+   * @param int $port
    */
   public function setPort($port)
   {
@@ -135,7 +187,9 @@ class OracleConnectionProfile extends \Google\Model
     return $this->port;
   }
   /**
-   * @param PrivateConnectivity
+   * Private connectivity.
+   *
+   * @param PrivateConnectivity $privateConnectivity
    */
   public function setPrivateConnectivity(PrivateConnectivity $privateConnectivity)
   {
@@ -149,7 +203,27 @@ class OracleConnectionProfile extends \Google\Model
     return $this->privateConnectivity;
   }
   /**
-   * @param StaticServiceIpConnectivity
+   * SSL configuration for the connection to the source Oracle database. * Only
+   * `SERVER_ONLY` configuration is supported for Oracle SSL. * SSL is supported
+   * for Oracle versions 12 and above.
+   *
+   * @param SslConfig $ssl
+   */
+  public function setSsl(SslConfig $ssl)
+  {
+    $this->ssl = $ssl;
+  }
+  /**
+   * @return SslConfig
+   */
+  public function getSsl()
+  {
+    return $this->ssl;
+  }
+  /**
+   * Static Service IP connectivity.
+   *
+   * @param StaticServiceIpConnectivity $staticServiceIpConnectivity
    */
   public function setStaticServiceIpConnectivity(StaticServiceIpConnectivity $staticServiceIpConnectivity)
   {
@@ -163,7 +237,11 @@ class OracleConnectionProfile extends \Google\Model
     return $this->staticServiceIpConnectivity;
   }
   /**
-   * @param string
+   * Required. The username that Database Migration Service will use to connect
+   * to the database. The value is encrypted when stored in Database Migration
+   * Service.
+   *
+   * @param string $username
    */
   public function setUsername($username)
   {

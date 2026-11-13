@@ -30,7 +30,7 @@ class GoogleCloudDialogflowCxV3TransitionRouteGroupCoverageCoverage extends \Goo
   protected $transitionsDataType = 'array';
 
   /**
-   * @param float
+   * @param float $coverageScore
    */
   public function setCoverageScore($coverageScore)
   {
@@ -44,7 +44,7 @@ class GoogleCloudDialogflowCxV3TransitionRouteGroupCoverageCoverage extends \Goo
     return $this->coverageScore;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3TransitionRouteGroup
+   * @param GoogleCloudDialogflowCxV3TransitionRouteGroup $routeGroup
    */
   public function setRouteGroup(GoogleCloudDialogflowCxV3TransitionRouteGroup $routeGroup)
   {
@@ -58,7 +58,7 @@ class GoogleCloudDialogflowCxV3TransitionRouteGroupCoverageCoverage extends \Goo
     return $this->routeGroup;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3TransitionRouteGroupCoverageCoverageTransition[]
+   * @param GoogleCloudDialogflowCxV3TransitionRouteGroupCoverageCoverageTransition[] $transitions
    */
   public function setTransitions($transitions)
   {

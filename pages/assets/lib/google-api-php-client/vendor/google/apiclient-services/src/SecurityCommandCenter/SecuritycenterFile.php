@@ -17,16 +17,28 @@
 
 namespace Google\Service\SecurityCommandCenter;
 
-class SecuritycenterFile extends \Google\Model
+class SecuritycenterFile extends \Google\Collection
 {
+  public const FILE_LOAD_STATE_FILE_LOAD_STATE_UNSPECIFIED = 'FILE_LOAD_STATE_UNSPECIFIED';
+  public const FILE_LOAD_STATE_LOADED_BY_PROCESS = 'LOADED_BY_PROCESS';
+  public const FILE_LOAD_STATE_NOT_LOADED_BY_PROCESS = 'NOT_LOADED_BY_PROCESS';
+  protected $collection_key = 'operations';
   /**
    * @var string
    */
   public $contents;
+  protected $diskPathType = DiskPath::class;
+  protected $diskPathDataType = '';
+  /**
+   * @var string
+   */
+  public $fileLoadState;
   /**
    * @var string
    */
   public $hashedSize;
+  protected $operationsType = FileOperation::class;
+  protected $operationsDataType = 'array';
   /**
    * @var bool
    */
@@ -45,7 +57,7 @@ class SecuritycenterFile extends \Google\Model
   public $size;
 
   /**
-   * @param string
+   * @param string $contents
    */
   public function setContents($contents)
   {
@@ -59,7 +71,35 @@ class SecuritycenterFile extends \Google\Model
     return $this->contents;
   }
   /**
-   * @param string
+   * @param DiskPath $diskPath
+   */
+  public function setDiskPath(DiskPath $diskPath)
+  {
+    $this->diskPath = $diskPath;
+  }
+  /**
+   * @return DiskPath
+   */
+  public function getDiskPath()
+  {
+    return $this->diskPath;
+  }
+  /**
+   * @param self::FILE_LOAD_STATE_* $fileLoadState
+   */
+  public function setFileLoadState($fileLoadState)
+  {
+    $this->fileLoadState = $fileLoadState;
+  }
+  /**
+   * @return self::FILE_LOAD_STATE_*
+   */
+  public function getFileLoadState()
+  {
+    return $this->fileLoadState;
+  }
+  /**
+   * @param string $hashedSize
    */
   public function setHashedSize($hashedSize)
   {
@@ -73,7 +113,21 @@ class SecuritycenterFile extends \Google\Model
     return $this->hashedSize;
   }
   /**
-   * @param bool
+   * @param FileOperation[] $operations
+   */
+  public function setOperations($operations)
+  {
+    $this->operations = $operations;
+  }
+  /**
+   * @return FileOperation[]
+   */
+  public function getOperations()
+  {
+    return $this->operations;
+  }
+  /**
+   * @param bool $partiallyHashed
    */
   public function setPartiallyHashed($partiallyHashed)
   {
@@ -87,7 +141,7 @@ class SecuritycenterFile extends \Google\Model
     return $this->partiallyHashed;
   }
   /**
-   * @param string
+   * @param string $path
    */
   public function setPath($path)
   {
@@ -101,7 +155,7 @@ class SecuritycenterFile extends \Google\Model
     return $this->path;
   }
   /**
-   * @param string
+   * @param string $sha256
    */
   public function setSha256($sha256)
   {
@@ -115,7 +169,7 @@ class SecuritycenterFile extends \Google\Model
     return $this->sha256;
   }
   /**
-   * @param string
+   * @param string $size
    */
   public function setSize($size)
   {

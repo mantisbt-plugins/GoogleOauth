@@ -22,9 +22,27 @@ class ClassifyTextResponse extends \Google\Collection
   protected $collection_key = 'categories';
   protected $categoriesType = ClassificationCategory::class;
   protected $categoriesDataType = 'array';
+  /**
+   * The language of the text, which will be the same as the language specified
+   * in the request or, if not specified, the automatically-detected language.
+   * See Document.language_code field for more details.
+   *
+   * @var string
+   */
+  public $languageCode;
+  /**
+   * Whether the language is officially supported. The API may still return a
+   * response when the language is not supported, but it is on a best effort
+   * basis.
+   *
+   * @var bool
+   */
+  public $languageSupported;
 
   /**
-   * @param ClassificationCategory[]
+   * Categories representing the input document.
+   *
+   * @param ClassificationCategory[] $categories
    */
   public function setCategories($categories)
   {
@@ -36,6 +54,42 @@ class ClassifyTextResponse extends \Google\Collection
   public function getCategories()
   {
     return $this->categories;
+  }
+  /**
+   * The language of the text, which will be the same as the language specified
+   * in the request or, if not specified, the automatically-detected language.
+   * See Document.language_code field for more details.
+   *
+   * @param string $languageCode
+   */
+  public function setLanguageCode($languageCode)
+  {
+    $this->languageCode = $languageCode;
+  }
+  /**
+   * @return string
+   */
+  public function getLanguageCode()
+  {
+    return $this->languageCode;
+  }
+  /**
+   * Whether the language is officially supported. The API may still return a
+   * response when the language is not supported, but it is on a best effort
+   * basis.
+   *
+   * @param bool $languageSupported
+   */
+  public function setLanguageSupported($languageSupported)
+  {
+    $this->languageSupported = $languageSupported;
+  }
+  /**
+   * @return bool
+   */
+  public function getLanguageSupported()
+  {
+    return $this->languageSupported;
   }
 }
 

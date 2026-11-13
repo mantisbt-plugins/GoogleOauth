@@ -20,17 +20,29 @@ namespace Google\Service\Dataproc;
 class OrderedJob extends \Google\Collection
 {
   protected $collection_key = 'prerequisiteStepIds';
+  protected $flinkJobType = FlinkJob::class;
+  protected $flinkJobDataType = '';
   protected $hadoopJobType = HadoopJob::class;
   protected $hadoopJobDataType = '';
   protected $hiveJobType = HiveJob::class;
   protected $hiveJobDataType = '';
   /**
+   * Optional. The labels to associate with this job.Label keys must be between
+   * 1 and 63 characters long, and must conform to the following regular
+   * expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63
+   * characters long, and must conform to the following regular expression:
+   * \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a
+   * given job.
+   *
    * @var string[]
    */
   public $labels;
   protected $pigJobType = PigJob::class;
   protected $pigJobDataType = '';
   /**
+   * Optional. The optional list of prerequisite job step_ids. If not specified,
+   * the job will start at the beginning of workflow.
+   *
    * @var string[]
    */
   public $prerequisiteStepIds;
@@ -47,6 +59,13 @@ class OrderedJob extends \Google\Collection
   protected $sparkSqlJobType = SparkSqlJob::class;
   protected $sparkSqlJobDataType = '';
   /**
+   * Required. The step id. The id must be unique among all jobs within the
+   * template.The step id is used as prefix for job id, as job goog-dataproc-
+   * workflow-step-id label, and in prerequisiteStepIds field from other
+   * steps.The id must contain only letters (a-z, A-Z), numbers (0-9),
+   * underscores (_), and hyphens (-). Cannot begin or end with underscore or
+   * hyphen. Must consist of between 3 and 50 characters.
+   *
    * @var string
    */
   public $stepId;
@@ -54,7 +73,25 @@ class OrderedJob extends \Google\Collection
   protected $trinoJobDataType = '';
 
   /**
-   * @param HadoopJob
+   * Optional. Job is a Flink job.
+   *
+   * @param FlinkJob $flinkJob
+   */
+  public function setFlinkJob(FlinkJob $flinkJob)
+  {
+    $this->flinkJob = $flinkJob;
+  }
+  /**
+   * @return FlinkJob
+   */
+  public function getFlinkJob()
+  {
+    return $this->flinkJob;
+  }
+  /**
+   * Optional. Job is a Hadoop job.
+   *
+   * @param HadoopJob $hadoopJob
    */
   public function setHadoopJob(HadoopJob $hadoopJob)
   {
@@ -68,7 +105,9 @@ class OrderedJob extends \Google\Collection
     return $this->hadoopJob;
   }
   /**
-   * @param HiveJob
+   * Optional. Job is a Hive job.
+   *
+   * @param HiveJob $hiveJob
    */
   public function setHiveJob(HiveJob $hiveJob)
   {
@@ -82,7 +121,14 @@ class OrderedJob extends \Google\Collection
     return $this->hiveJob;
   }
   /**
-   * @param string[]
+   * Optional. The labels to associate with this job.Label keys must be between
+   * 1 and 63 characters long, and must conform to the following regular
+   * expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63
+   * characters long, and must conform to the following regular expression:
+   * \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a
+   * given job.
+   *
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -96,7 +142,9 @@ class OrderedJob extends \Google\Collection
     return $this->labels;
   }
   /**
-   * @param PigJob
+   * Optional. Job is a Pig job.
+   *
+   * @param PigJob $pigJob
    */
   public function setPigJob(PigJob $pigJob)
   {
@@ -110,7 +158,10 @@ class OrderedJob extends \Google\Collection
     return $this->pigJob;
   }
   /**
-   * @param string[]
+   * Optional. The optional list of prerequisite job step_ids. If not specified,
+   * the job will start at the beginning of workflow.
+   *
+   * @param string[] $prerequisiteStepIds
    */
   public function setPrerequisiteStepIds($prerequisiteStepIds)
   {
@@ -124,7 +175,9 @@ class OrderedJob extends \Google\Collection
     return $this->prerequisiteStepIds;
   }
   /**
-   * @param PrestoJob
+   * Optional. Job is a Presto job.
+   *
+   * @param PrestoJob $prestoJob
    */
   public function setPrestoJob(PrestoJob $prestoJob)
   {
@@ -138,7 +191,9 @@ class OrderedJob extends \Google\Collection
     return $this->prestoJob;
   }
   /**
-   * @param PySparkJob
+   * Optional. Job is a PySpark job.
+   *
+   * @param PySparkJob $pysparkJob
    */
   public function setPysparkJob(PySparkJob $pysparkJob)
   {
@@ -152,7 +207,9 @@ class OrderedJob extends \Google\Collection
     return $this->pysparkJob;
   }
   /**
-   * @param JobScheduling
+   * Optional. Job scheduling configuration.
+   *
+   * @param JobScheduling $scheduling
    */
   public function setScheduling(JobScheduling $scheduling)
   {
@@ -166,7 +223,9 @@ class OrderedJob extends \Google\Collection
     return $this->scheduling;
   }
   /**
-   * @param SparkJob
+   * Optional. Job is a Spark job.
+   *
+   * @param SparkJob $sparkJob
    */
   public function setSparkJob(SparkJob $sparkJob)
   {
@@ -180,7 +239,9 @@ class OrderedJob extends \Google\Collection
     return $this->sparkJob;
   }
   /**
-   * @param SparkRJob
+   * Optional. Job is a SparkR job.
+   *
+   * @param SparkRJob $sparkRJob
    */
   public function setSparkRJob(SparkRJob $sparkRJob)
   {
@@ -194,7 +255,9 @@ class OrderedJob extends \Google\Collection
     return $this->sparkRJob;
   }
   /**
-   * @param SparkSqlJob
+   * Optional. Job is a SparkSql job.
+   *
+   * @param SparkSqlJob $sparkSqlJob
    */
   public function setSparkSqlJob(SparkSqlJob $sparkSqlJob)
   {
@@ -208,7 +271,14 @@ class OrderedJob extends \Google\Collection
     return $this->sparkSqlJob;
   }
   /**
-   * @param string
+   * Required. The step id. The id must be unique among all jobs within the
+   * template.The step id is used as prefix for job id, as job goog-dataproc-
+   * workflow-step-id label, and in prerequisiteStepIds field from other
+   * steps.The id must contain only letters (a-z, A-Z), numbers (0-9),
+   * underscores (_), and hyphens (-). Cannot begin or end with underscore or
+   * hyphen. Must consist of between 3 and 50 characters.
+   *
+   * @param string $stepId
    */
   public function setStepId($stepId)
   {
@@ -222,7 +292,9 @@ class OrderedJob extends \Google\Collection
     return $this->stepId;
   }
   /**
-   * @param TrinoJob
+   * Optional. Job is a Trino job.
+   *
+   * @param TrinoJob $trinoJob
    */
   public function setTrinoJob(TrinoJob $trinoJob)
   {

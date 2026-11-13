@@ -31,7 +31,7 @@ class GoogleCloudDialogflowCxV3TestError extends \Google\Model
   public $testTime;
 
   /**
-   * @param GoogleRpcStatus
+   * @param GoogleRpcStatus $status
    */
   public function setStatus(GoogleRpcStatus $status)
   {
@@ -45,7 +45,7 @@ class GoogleCloudDialogflowCxV3TestError extends \Google\Model
     return $this->status;
   }
   /**
-   * @param string
+   * @param string $testCase
    */
   public function setTestCase($testCase)
   {
@@ -59,7 +59,7 @@ class GoogleCloudDialogflowCxV3TestError extends \Google\Model
     return $this->testCase;
   }
   /**
-   * @param string
+   * @param string $testTime
    */
   public function setTestTime($testTime)
   {

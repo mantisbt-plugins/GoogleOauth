@@ -29,7 +29,7 @@ class ServiceAccountDelegationInfo extends \Google\Model
   public $principalSubject;
 
   /**
-   * @param string
+   * @param string $principalEmail
    */
   public function setPrincipalEmail($principalEmail)
   {
@@ -43,7 +43,7 @@ class ServiceAccountDelegationInfo extends \Google\Model
     return $this->principalEmail;
   }
   /**
-   * @param string
+   * @param string $principalSubject
    */
   public function setPrincipalSubject($principalSubject)
   {

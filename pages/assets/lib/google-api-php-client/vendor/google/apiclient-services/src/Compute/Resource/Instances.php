@@ -29,11 +29,13 @@ use Google\Service\Compute\InstanceListReferrers;
 use Google\Service\Compute\InstancesAddResourcePoliciesRequest;
 use Google\Service\Compute\InstancesGetEffectiveFirewallsResponse;
 use Google\Service\Compute\InstancesRemoveResourcePoliciesRequest;
+use Google\Service\Compute\InstancesReportHostAsFaultyRequest;
 use Google\Service\Compute\InstancesSetLabelsRequest;
 use Google\Service\Compute\InstancesSetMachineResourcesRequest;
 use Google\Service\Compute\InstancesSetMachineTypeRequest;
 use Google\Service\Compute\InstancesSetMinCpuPlatformRequest;
 use Google\Service\Compute\InstancesSetNameRequest;
+use Google\Service\Compute\InstancesSetSecurityPolicyRequest;
 use Google\Service\Compute\InstancesSetServiceAccountRequest;
 use Google\Service\Compute\InstancesStartWithEncryptionKeyRequest;
 use Google\Service\Compute\Metadata;
@@ -61,6 +63,8 @@ use Google\Service\Compute\ZoneSetPolicyRequest;
  */
 class Instances extends \Google\Service\Resource
 {
+  protected $apiVersion = '2026-11-01';
+
   /**
    * Adds an access config to an instance's network interface.
    * (instances.addAccessConfig)
@@ -75,21 +79,56 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function addAccessConfig($project, $zone, $instance, $networkInterface, AccessConfig $postBody, $optParams = [])
   {
     $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'networkInterface' => $networkInterface, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('addAccessConfig', [$params], Operation::class);
+  }
+  /**
+   * Adds one dynamic network interface to an active instance.
+   * (instances.addNetworkInterface)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $zone The name of the zone for this request.
+   * @param string $instance The instance name for this request stored as
+   * resource_id. Name should conform to RFC1035 or be an unsigned long integer.
+   * @param NetworkInterface $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function addNetworkInterface($project, $zone, $instance, NetworkInterface $postBody, $optParams = [])
+  {
+    $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('addNetworkInterface', [$params], Operation::class);
   }
   /**
    * Adds existing resource policies to an instance. You can only add one policy
@@ -104,15 +143,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function addResourcePolicies($project, $zone, $instance, InstancesAddResourcePoliciesRequest $postBody, $optParams = [])
   {
@@ -122,9 +164,13 @@ class Instances extends \Google\Service\Resource
   }
   /**
    * Retrieves an aggregated list of all of the instances in your project across
-   * all regions and zones. The performance of this method degrades when a filter
-   * is specified on a project that has a very large number of instances.
-   * (instances.aggregatedList)
+   * all regions and zones.
+   *
+   * The performance of this method degrades when a filter is specified on a
+   * project that has a very large number of instances.
+   *
+   * To prevent failure, Google recommends that you set the `returnPartialSuccess`
+   * parameter to `true`. (instances.aggregatedList)
    *
    * @param string $project Project ID for this request.
    * @param array $optParams Optional parameters.
@@ -132,34 +178,47 @@ class Instances extends \Google\Service\Resource
    * @opt_param string filter A filter expression that filters resources listed in
    * the response. Most Compute resources support two types of filter expressions:
    * expressions that support regular expressions and expressions that follow API
-   * improvement proposal AIP-160. If you want to use AIP-160, your expression
-   * must specify the field name, an operator, and the value that you want to use
-   * for filtering. The value must be a string, a number, or a boolean. The
-   * operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example,
-   * if you are filtering Compute Engine instances, you can exclude instances
-   * named `example-instance` by specifying `name != example-instance`. The `:`
-   * operator can be used with string fields to match substrings. For non-string
-   * fields it is equivalent to the `=` operator. The `:*` comparison can be used
-   * to test whether a key has been defined. For example, to find all objects with
-   * `owner` label use: ``` labels.owner:* ``` You can also filter nested fields.
-   * For example, you could specify `scheduling.automaticRestart = false` to
-   * include instances only if they are not scheduled for automatic restarts. You
-   * can use filtering on nested fields to filter based on resource labels. To
-   * filter on multiple expressions, provide each separate expression within
+   * improvement proposal AIP-160. These two types of filter expressions cannot be
+   * mixed in one request.
+   *
+   * If you want to use AIP-160, your expression must specify the field name, an
+   * operator, and the value that you want to use for filtering. The value must be
+   * a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`,
+   * `<`, `<=`, `>=` or `:`.
+   *
+   * For example, if you are filtering Compute Engine instances, you can exclude
+   * instances named `example-instance` by specifying `name != example-instance`.
+   *
+   * The `:*` comparison can be used to test whether a key has been defined. For
+   * example, to find all objects with `owner` label use: ``` labels.owner:* ```
+   *
+   * You can also filter nested fields. For example, you could specify
+   * `scheduling.automaticRestart = false` to include instances only if they are
+   * not scheduled for automatic restarts. You can use filtering on nested fields
+   * to filter based onresource labels.
+   *
+   * To filter on multiple expressions, provide each separate expression within
    * parentheses. For example: ``` (scheduling.automaticRestart = true)
    * (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND`
    * expression. However, you can include `AND` and `OR` expressions explicitly.
    * For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-   * Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a
-   * regular expression, use the `eq` (equal) or `ne` (not equal) operator against
-   * a single un-parenthesized expression with or without quotes or against
-   * multiple parenthesized expressions. Examples: `fieldname eq unquoted literal`
-   * `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"`
-   * `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is
-   * interpreted as a regular expression using Google RE2 library syntax. The
-   * literal value must match the entire field. For example, to filter for
-   * instances that do not end with name "instance", you would use `name ne
-   * .*instance`.
+   * Broadwell") AND (scheduling.automaticRestart = true) ```
+   *
+   * If you want to use a regular expression, use the `eq` (equal) or `ne` (not
+   * equal) operator against a single un-parenthesized expression with or without
+   * quotes or against multiple parenthesized expressions. Examples:
+   *
+   * `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'`
+   * `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2
+   * ne "literal")`
+   *
+   * The literal value is interpreted as a regular expression using GoogleRE2
+   * library syntax. The literal value must match the entire field.
+   *
+   * For example, to filter for instances that do not end with name "instance",
+   * you would use `name ne .*instance`.
+   *
+   * You cannot combine constraints on multiple fields using regular expressions.
    * @opt_param bool includeAllScopes Indicates whether every visible scope for
    * each scope type (zone, region, global) should be included in the response.
    * For new resource types added after this field, the flag has no effect as new
@@ -173,20 +232,23 @@ class Instances extends \Google\Service\Resource
    * get the next page of results in subsequent list requests. Acceptable values
    * are `0` to `500`, inclusive. (Default: `500`)
    * @opt_param string orderBy Sorts list results by a certain order. By default,
-   * results are returned in alphanumerical order based on the resource name. You
-   * can also sort results in descending order based on the creation timestamp
+   * results are returned in alphanumerical order based on the resource name.
+   *
+   * You can also sort results in descending order based on the creation timestamp
    * using `orderBy="creationTimestamp desc"`. This sorts results based on the
    * `creationTimestamp` field in reverse chronological order (newest result
    * first). Use this to sort resources like operations so that the newest
-   * operation is returned first. Currently, only sorting by `name` or
-   * `creationTimestamp desc` is supported.
+   * operation is returned first.
+   *
+   * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
    * @opt_param string pageToken Specifies a page token to use. Set `pageToken` to
    * the `nextPageToken` returned by a previous list request to get the next page
    * of results.
-   * @opt_param bool returnPartialSuccess Opt-in for partial success behavior
-   * which provides partial results in case of failure. The default value is
-   * false.
+   * @opt_param string serviceProjectNumber The Shared VPC service project id or
+   * service project number for which aggregated list request is invoked for
+   * subnetworks list-usable api.
    * @return InstanceAggregatedList
+   * @throws \Google\Service\Exception
    */
   public function aggregatedList($project, $optParams = [])
   {
@@ -197,7 +259,7 @@ class Instances extends \Google\Service\Resource
   /**
    * Attaches an existing Disk resource to an instance. You must first create the
    * disk before you can attach it. It is not possible to create and attach a disk
-   * at the same time. For more information, read Adding a persistent disk to your
+   * at the same time. For more information, readAdding a persistent disk to your
    * instance. (instances.attachDisk)
    *
    * @param string $project Project ID for this request.
@@ -211,15 +273,18 @@ class Instances extends \Google\Service\Resource
    * zonal disk to an instance, you will receive an error.
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function attachDisk($project, $zone, $instance, AttachedDisk $postBody, $optParams = [])
   {
@@ -229,7 +294,7 @@ class Instances extends \Google\Service\Resource
   }
   /**
    * Creates multiple instances. Count specifies the number of instances to
-   * create. For more information, see About bulk creation of VMs.
+   * create. For more information, seeAbout bulk creation of VMs.
    * (instances.bulkInsert)
    *
    * @param string $project Project ID for this request.
@@ -239,15 +304,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function bulkInsert($project, $zone, BulkInsertInstanceResource $postBody, $optParams = [])
   {
@@ -256,25 +324,30 @@ class Instances extends \Google\Service\Resource
     return $this->call('bulkInsert', [$params], Operation::class);
   }
   /**
-   * Deletes the specified Instance resource. For more information, see Deleting
-   * an instance. (instances.delete)
+   * Deletes the specified Instance resource. For more information, seeDeleting an
+   * instance. (instances.delete)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.
    * @param string $instance Name of the instance resource to delete.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param bool noGracefulShutdown If set to true, Graceful Shutdown is
+   * skipped.
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($project, $zone, $instance, $optParams = [])
   {
@@ -295,21 +368,60 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function deleteAccessConfig($project, $zone, $instance, $accessConfig, $networkInterface, $optParams = [])
   {
     $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'accessConfig' => $accessConfig, 'networkInterface' => $networkInterface];
     $params = array_merge($params, $optParams);
     return $this->call('deleteAccessConfig', [$params], Operation::class);
+  }
+  /**
+   * Deletes one dynamic network interface from an active instance.
+   * InstancesDeleteNetworkInterfaceRequest indicates: - instance from which to
+   * delete, using project+zone+resource_id fields; - dynamic network interface to
+   * be deleted, using network_interface_name field;
+   * (instances.deleteNetworkInterface)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $zone The name of the zone for this request.
+   * @param string $instance The instance name for this request stored as
+   * resource_id. Name should conform to RFC1035 or be an unsigned long integer.
+   * @param string $networkInterfaceName The name of the dynamic network interface
+   * to be deleted from the instance.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function deleteNetworkInterface($project, $zone, $instance, $networkInterfaceName, $optParams = [])
+  {
+    $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'networkInterfaceName' => $networkInterfaceName];
+    $params = array_merge($params, $optParams);
+    return $this->call('deleteNetworkInterface', [$params], Operation::class);
   }
   /**
    * Detaches a disk from an instance. (instances.detachDisk)
@@ -323,15 +435,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function detachDisk($project, $zone, $instance, $deviceName, $optParams = [])
   {
@@ -347,6 +462,7 @@ class Instances extends \Google\Service\Resource
    * @param string $instance Name of the instance resource to return.
    * @param array $optParams Optional parameters.
    * @return Instance
+   * @throws \Google\Service\Exception
    */
   public function get($project, $zone, $instance, $optParams = [])
   {
@@ -365,6 +481,7 @@ class Instances extends \Google\Service\Resource
    * effective firewalls.
    * @param array $optParams Optional parameters.
    * @return InstancesGetEffectiveFirewallsResponse
+   * @throws \Google\Service\Exception
    */
   public function getEffectiveFirewalls($project, $zone, $instance, $networkInterface, $optParams = [])
   {
@@ -385,6 +502,7 @@ class Instances extends \Google\Service\Resource
    * @opt_param string variableKey Specifies the key for the guest attributes
    * entry.
    * @return GuestAttributes
+   * @throws \Google\Service\Exception
    */
   public function getGuestAttributes($project, $zone, $instance, $optParams = [])
   {
@@ -403,6 +521,7 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param int optionsRequestedPolicyVersion Requested IAM Policy version.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($project, $zone, $resource, $optParams = [])
   {
@@ -418,6 +537,7 @@ class Instances extends \Google\Service\Resource
    * @param string $instance Name of the instance scoping this request.
    * @param array $optParams Optional parameters.
    * @return Screenshot
+   * @throws \Google\Service\Exception
    */
   public function getScreenshot($project, $zone, $instance, $optParams = [])
   {
@@ -437,17 +557,23 @@ class Instances extends \Google\Service\Resource
    * @opt_param int port Specifies which COM or serial port to retrieve data from.
    * @opt_param string start Specifies the starting byte position of the output to
    * return. To start with the first byte of output to the specified port, omit
-   * this field or set it to `0`. If the output for that byte position is
-   * available, this field matches the `start` parameter sent with the request. If
-   * the amount of serial console output exceeds the size of the buffer (1 MB),
-   * the oldest output is discarded and is no longer available. If the requested
-   * start position refers to discarded output, the start position is adjusted to
-   * the oldest output still available, and the adjusted start position is
-   * returned as the `start` property value. You can also provide a negative start
-   * position, which translates to the most recent number of bytes written to the
-   * serial port. For example, -3 is interpreted as the most recent 3 bytes
-   * written to the serial console.
+   * this field or set it to `0`.
+   *
+   * If the output for that byte position is available, this field matches the
+   * `start` parameter sent with the request. If the amount of serial console
+   * output exceeds the size of the buffer (1 MB), the oldest output is discarded
+   * and is no longer available. If the requested start position refers to
+   * discarded output, the start position is adjusted to the oldest output still
+   * available, and the adjusted start position is returned as the `start`
+   * property value.
+   *
+   * You can also provide a negative start position, which translates to the most
+   * recent number of bytes written to the serial port. For example, -3 is
+   * interpreted as the most recent 3 bytes written to the serial console. Note
+   * that the negative start is bounded by the retained buffer size, and the
+   * returned serial console output will not exceed the max buffer size.
    * @return SerialPortOutput
+   * @throws \Google\Service\Exception
    */
   public function getSerialPortOutput($project, $zone, $instance, $optParams = [])
   {
@@ -464,6 +590,7 @@ class Instances extends \Google\Service\Resource
    * @param string $instance Name or id of the instance scoping this request.
    * @param array $optParams Optional parameters.
    * @return ShieldedInstanceIdentity
+   * @throws \Google\Service\Exception
    */
   public function getShieldedInstanceIdentity($project, $zone, $instance, $optParams = [])
   {
@@ -482,29 +609,35 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @opt_param string sourceInstanceTemplate Specifies instance template to
-   * create the instance. This field is optional. It can be a full or partial URL.
-   * For example, the following are all valid URLs to an instance template: -
-   * https://www.googleapis.com/compute/v1/projects/project
-   * /global/instanceTemplates/instanceTemplate -
-   * projects/project/global/instanceTemplates/instanceTemplate -
+   * create the instance.
+   *
+   * This field is optional. It can be a full or partial URL. For example, the
+   * following are all valid URLs to an instance template:               - https:/
+   * /www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/inst
+   * anceTemplate       -
+   * projects/project/global/instanceTemplates/instanceTemplate       -
    * global/instanceTemplates/instanceTemplate
    * @opt_param string sourceMachineImage Specifies the machine image to use to
-   * create the instance. This field is optional. It can be a full or partial URL.
-   * For example, the following are all valid URLs to a machine image: -
-   * https://www.googleapis.com/compute/v1/projects/project/global/global
-   * /machineImages/machineImage -
-   * projects/project/global/global/machineImages/machineImage -
-   * global/machineImages/machineImage
+   * create the instance.
+   *
+   * This field is optional. It can be a full or partial URL. For example, the
+   * following are all valid URLs to a machine image:               - https://www.
+   * googleapis.com/compute/v1/projects/project/global/global/machineImages/machin
+   * eImage       - projects/project/global/global/machineImages/machineImage
+   * - global/machineImages/machineImage
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function insert($project, $zone, Instance $postBody, $optParams = [])
   {
@@ -523,54 +656,67 @@ class Instances extends \Google\Service\Resource
    * @opt_param string filter A filter expression that filters resources listed in
    * the response. Most Compute resources support two types of filter expressions:
    * expressions that support regular expressions and expressions that follow API
-   * improvement proposal AIP-160. If you want to use AIP-160, your expression
-   * must specify the field name, an operator, and the value that you want to use
-   * for filtering. The value must be a string, a number, or a boolean. The
-   * operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example,
-   * if you are filtering Compute Engine instances, you can exclude instances
-   * named `example-instance` by specifying `name != example-instance`. The `:`
-   * operator can be used with string fields to match substrings. For non-string
-   * fields it is equivalent to the `=` operator. The `:*` comparison can be used
-   * to test whether a key has been defined. For example, to find all objects with
-   * `owner` label use: ``` labels.owner:* ``` You can also filter nested fields.
-   * For example, you could specify `scheduling.automaticRestart = false` to
-   * include instances only if they are not scheduled for automatic restarts. You
-   * can use filtering on nested fields to filter based on resource labels. To
-   * filter on multiple expressions, provide each separate expression within
+   * improvement proposal AIP-160. These two types of filter expressions cannot be
+   * mixed in one request.
+   *
+   * If you want to use AIP-160, your expression must specify the field name, an
+   * operator, and the value that you want to use for filtering. The value must be
+   * a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`,
+   * `<`, `<=`, `>=` or `:`.
+   *
+   * For example, if you are filtering Compute Engine instances, you can exclude
+   * instances named `example-instance` by specifying `name != example-instance`.
+   *
+   * The `:*` comparison can be used to test whether a key has been defined. For
+   * example, to find all objects with `owner` label use: ``` labels.owner:* ```
+   *
+   * You can also filter nested fields. For example, you could specify
+   * `scheduling.automaticRestart = false` to include instances only if they are
+   * not scheduled for automatic restarts. You can use filtering on nested fields
+   * to filter based onresource labels.
+   *
+   * To filter on multiple expressions, provide each separate expression within
    * parentheses. For example: ``` (scheduling.automaticRestart = true)
    * (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND`
    * expression. However, you can include `AND` and `OR` expressions explicitly.
    * For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-   * Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a
-   * regular expression, use the `eq` (equal) or `ne` (not equal) operator against
-   * a single un-parenthesized expression with or without quotes or against
-   * multiple parenthesized expressions. Examples: `fieldname eq unquoted literal`
-   * `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"`
-   * `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is
-   * interpreted as a regular expression using Google RE2 library syntax. The
-   * literal value must match the entire field. For example, to filter for
-   * instances that do not end with name "instance", you would use `name ne
-   * .*instance`.
+   * Broadwell") AND (scheduling.automaticRestart = true) ```
+   *
+   * If you want to use a regular expression, use the `eq` (equal) or `ne` (not
+   * equal) operator against a single un-parenthesized expression with or without
+   * quotes or against multiple parenthesized expressions. Examples:
+   *
+   * `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'`
+   * `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2
+   * ne "literal")`
+   *
+   * The literal value is interpreted as a regular expression using GoogleRE2
+   * library syntax. The literal value must match the entire field.
+   *
+   * For example, to filter for instances that do not end with name "instance",
+   * you would use `name ne .*instance`.
+   *
+   * You cannot combine constraints on multiple fields using regular expressions.
    * @opt_param string maxResults The maximum number of results per page that
    * should be returned. If the number of available results is larger than
    * `maxResults`, Compute Engine returns a `nextPageToken` that can be used to
    * get the next page of results in subsequent list requests. Acceptable values
    * are `0` to `500`, inclusive. (Default: `500`)
    * @opt_param string orderBy Sorts list results by a certain order. By default,
-   * results are returned in alphanumerical order based on the resource name. You
-   * can also sort results in descending order based on the creation timestamp
+   * results are returned in alphanumerical order based on the resource name.
+   *
+   * You can also sort results in descending order based on the creation timestamp
    * using `orderBy="creationTimestamp desc"`. This sorts results based on the
    * `creationTimestamp` field in reverse chronological order (newest result
    * first). Use this to sort resources like operations so that the newest
-   * operation is returned first. Currently, only sorting by `name` or
-   * `creationTimestamp desc` is supported.
+   * operation is returned first.
+   *
+   * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
    * @opt_param string pageToken Specifies a page token to use. Set `pageToken` to
    * the `nextPageToken` returned by a previous list request to get the next page
    * of results.
-   * @opt_param bool returnPartialSuccess Opt-in for partial success behavior
-   * which provides partial results in case of failure. The default value is
-   * false.
    * @return InstanceList
+   * @throws \Google\Service\Exception
    */
   public function listInstances($project, $zone, $optParams = [])
   {
@@ -582,8 +728,7 @@ class Instances extends \Google\Service\Resource
    * Retrieves a list of resources that refer to the VM instance specified in the
    * request. For example, if the VM instance is part of a managed or unmanaged
    * instance group, the referrers list includes the instance group. For more
-   * information, read Viewing referrers to VM instances.
-   * (instances.listReferrers)
+   * information, readViewing referrers to VM instances. (instances.listReferrers)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.
@@ -594,60 +739,102 @@ class Instances extends \Google\Service\Resource
    * @opt_param string filter A filter expression that filters resources listed in
    * the response. Most Compute resources support two types of filter expressions:
    * expressions that support regular expressions and expressions that follow API
-   * improvement proposal AIP-160. If you want to use AIP-160, your expression
-   * must specify the field name, an operator, and the value that you want to use
-   * for filtering. The value must be a string, a number, or a boolean. The
-   * operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example,
-   * if you are filtering Compute Engine instances, you can exclude instances
-   * named `example-instance` by specifying `name != example-instance`. The `:`
-   * operator can be used with string fields to match substrings. For non-string
-   * fields it is equivalent to the `=` operator. The `:*` comparison can be used
-   * to test whether a key has been defined. For example, to find all objects with
-   * `owner` label use: ``` labels.owner:* ``` You can also filter nested fields.
-   * For example, you could specify `scheduling.automaticRestart = false` to
-   * include instances only if they are not scheduled for automatic restarts. You
-   * can use filtering on nested fields to filter based on resource labels. To
-   * filter on multiple expressions, provide each separate expression within
+   * improvement proposal AIP-160. These two types of filter expressions cannot be
+   * mixed in one request.
+   *
+   * If you want to use AIP-160, your expression must specify the field name, an
+   * operator, and the value that you want to use for filtering. The value must be
+   * a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`,
+   * `<`, `<=`, `>=` or `:`.
+   *
+   * For example, if you are filtering Compute Engine instances, you can exclude
+   * instances named `example-instance` by specifying `name != example-instance`.
+   *
+   * The `:*` comparison can be used to test whether a key has been defined. For
+   * example, to find all objects with `owner` label use: ``` labels.owner:* ```
+   *
+   * You can also filter nested fields. For example, you could specify
+   * `scheduling.automaticRestart = false` to include instances only if they are
+   * not scheduled for automatic restarts. You can use filtering on nested fields
+   * to filter based onresource labels.
+   *
+   * To filter on multiple expressions, provide each separate expression within
    * parentheses. For example: ``` (scheduling.automaticRestart = true)
    * (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND`
    * expression. However, you can include `AND` and `OR` expressions explicitly.
    * For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
-   * Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a
-   * regular expression, use the `eq` (equal) or `ne` (not equal) operator against
-   * a single un-parenthesized expression with or without quotes or against
-   * multiple parenthesized expressions. Examples: `fieldname eq unquoted literal`
-   * `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"`
-   * `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is
-   * interpreted as a regular expression using Google RE2 library syntax. The
-   * literal value must match the entire field. For example, to filter for
-   * instances that do not end with name "instance", you would use `name ne
-   * .*instance`.
+   * Broadwell") AND (scheduling.automaticRestart = true) ```
+   *
+   * If you want to use a regular expression, use the `eq` (equal) or `ne` (not
+   * equal) operator against a single un-parenthesized expression with or without
+   * quotes or against multiple parenthesized expressions. Examples:
+   *
+   * `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'`
+   * `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2
+   * ne "literal")`
+   *
+   * The literal value is interpreted as a regular expression using GoogleRE2
+   * library syntax. The literal value must match the entire field.
+   *
+   * For example, to filter for instances that do not end with name "instance",
+   * you would use `name ne .*instance`.
+   *
+   * You cannot combine constraints on multiple fields using regular expressions.
    * @opt_param string maxResults The maximum number of results per page that
    * should be returned. If the number of available results is larger than
    * `maxResults`, Compute Engine returns a `nextPageToken` that can be used to
    * get the next page of results in subsequent list requests. Acceptable values
    * are `0` to `500`, inclusive. (Default: `500`)
    * @opt_param string orderBy Sorts list results by a certain order. By default,
-   * results are returned in alphanumerical order based on the resource name. You
-   * can also sort results in descending order based on the creation timestamp
+   * results are returned in alphanumerical order based on the resource name.
+   *
+   * You can also sort results in descending order based on the creation timestamp
    * using `orderBy="creationTimestamp desc"`. This sorts results based on the
    * `creationTimestamp` field in reverse chronological order (newest result
    * first). Use this to sort resources like operations so that the newest
-   * operation is returned first. Currently, only sorting by `name` or
-   * `creationTimestamp desc` is supported.
+   * operation is returned first.
+   *
+   * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
    * @opt_param string pageToken Specifies a page token to use. Set `pageToken` to
    * the `nextPageToken` returned by a previous list request to get the next page
    * of results.
-   * @opt_param bool returnPartialSuccess Opt-in for partial success behavior
-   * which provides partial results in case of failure. The default value is
-   * false.
    * @return InstanceListReferrers
+   * @throws \Google\Service\Exception
    */
   public function listReferrers($project, $zone, $instance, $optParams = [])
   {
     $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance];
     $params = array_merge($params, $optParams);
     return $this->call('listReferrers', [$params], InstanceListReferrers::class);
+  }
+  /**
+   * Perform a manual maintenance on the instance. (instances.performMaintenance)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $zone The name of the zone for this request.
+   * @param string $instance Name of the instance scoping this request.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function performMaintenance($project, $zone, $instance, $optParams = [])
+  {
+    $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance];
+    $params = array_merge($params, $optParams);
+    return $this->call('performMaintenance', [$params], Operation::class);
   }
   /**
    * Removes resource policies from an instance.
@@ -661,15 +848,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function removeResourcePolicies($project, $zone, $instance, InstancesRemoveResourcePoliciesRequest $postBody, $optParams = [])
   {
@@ -678,8 +868,39 @@ class Instances extends \Google\Service\Resource
     return $this->call('removeResourcePolicies', [$params], Operation::class);
   }
   /**
+   * Mark the host as faulty and try to restart the instance on a new host.
+   * (instances.reportHostAsFaulty)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $zone The name of the zone for this request.
+   * @param string $instance Name of the instance scoping this request.
+   * @param InstancesReportHostAsFaultyRequest $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function reportHostAsFaulty($project, $zone, $instance, InstancesReportHostAsFaultyRequest $postBody, $optParams = [])
+  {
+    $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('reportHostAsFaulty', [$params], Operation::class);
+  }
+  /**
    * Performs a reset on the instance. This is a hard reset. The VM does not do a
-   * graceful shutdown. For more information, see Resetting an instance.
+   * graceful shutdown. For more information, seeResetting an instance.
    * (instances.reset)
    *
    * @param string $project Project ID for this request.
@@ -689,15 +910,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function reset($project, $zone, $instance, $optParams = [])
   {
@@ -706,7 +930,7 @@ class Instances extends \Google\Service\Resource
     return $this->call('reset', [$params], Operation::class);
   }
   /**
-   * Resumes an instance that was suspended using the instances().suspend method.
+   * Resumes an instance that was suspended using theinstances().suspend method.
    * (instances.resume)
    *
    * @param string $project Project ID for this request.
@@ -716,15 +940,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function resume($project, $zone, $instance, $optParams = [])
   {
@@ -740,6 +967,7 @@ class Instances extends \Google\Service\Resource
    * @param string $zone The name of the zone for this request.
    * @param string $instance Name of the instance scoping this request.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function sendDiagnosticInterrupt($project, $zone, $instance, $optParams = [])
   {
@@ -759,15 +987,18 @@ class Instances extends \Google\Service\Resource
    * against deletion.
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setDeletionProtection($project, $zone, $resource, $optParams = [])
   {
@@ -790,15 +1021,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setDiskAutoDelete($project, $zone, $instance, $autoDelete, $deviceName, $optParams = [])
   {
@@ -816,6 +1050,7 @@ class Instances extends \Google\Service\Resource
    * @param ZoneSetPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($project, $zone, $resource, ZoneSetPolicyRequest $postBody, $optParams = [])
   {
@@ -824,7 +1059,7 @@ class Instances extends \Google\Service\Resource
     return $this->call('setIamPolicy', [$params], Policy::class);
   }
   /**
-   * Sets labels on an instance. To learn more about labels, read the Labeling
+   * Sets labels on an instance.  To learn more about labels, read theLabeling
    * Resources documentation. (instances.setLabels)
    *
    * @param string $project Project ID for this request.
@@ -835,15 +1070,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setLabels($project, $zone, $instance, InstancesSetLabelsRequest $postBody, $optParams = [])
   {
@@ -863,15 +1101,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setMachineResources($project, $zone, $instance, InstancesSetMachineResourcesRequest $postBody, $optParams = [])
   {
@@ -891,15 +1132,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setMachineType($project, $zone, $instance, InstancesSetMachineTypeRequest $postBody, $optParams = [])
   {
@@ -919,15 +1163,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setMetadata($project, $zone, $instance, Metadata $postBody, $optParams = [])
   {
@@ -937,8 +1184,8 @@ class Instances extends \Google\Service\Resource
   }
   /**
    * Changes the minimum CPU platform that this instance should use. This method
-   * can only be called on a stopped instance. For more information, read
-   * Specifying a Minimum CPU Platform. (instances.setMinCpuPlatform)
+   * can only be called on a stopped instance. For more information,
+   * readSpecifying a Minimum CPU Platform. (instances.setMinCpuPlatform)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.
@@ -948,15 +1195,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setMinCpuPlatform($project, $zone, $instance, InstancesSetMinCpuPlatformRequest $postBody, $optParams = [])
   {
@@ -975,15 +1225,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setName($project, $zone, $instance, InstancesSetNameRequest $postBody, $optParams = [])
   {
@@ -992,11 +1245,11 @@ class Instances extends \Google\Service\Resource
     return $this->call('setName', [$params], Operation::class);
   }
   /**
-   * Sets an instance's scheduling options. You can only call this method on a
-   * stopped instance, that is, a VM instance that is in a `TERMINATED` state. See
-   * Instance Life Cycle for more information on the possible instance states. For
-   * more information about setting scheduling options for a VM, see Set VM host
-   * maintenance policy. (instances.setScheduling)
+   * Sets an instance's scheduling options. You can only call this method on
+   * astopped instance, that is, a VM instance that is in a `TERMINATED` state.
+   * SeeInstance Life Cycle for more information on the possible instance states.
+   * For more information about setting scheduling options for a VM, seeSet VM
+   * host maintenance policy. (instances.setScheduling)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.
@@ -1006,15 +1259,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setScheduling($project, $zone, $instance, Scheduling $postBody, $optParams = [])
   {
@@ -1023,7 +1279,40 @@ class Instances extends \Google\Service\Resource
     return $this->call('setScheduling', [$params], Operation::class);
   }
   /**
-   * Sets the service account on the instance. For more information, read Changing
+   * Sets the Google Cloud Armor security policy for the specified instance. For
+   * more information, seeGoogle Cloud Armor Overview
+   * (instances.setSecurityPolicy)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $zone Name of the zone scoping this request.
+   * @param string $instance Name of the Instance resource to which the security
+   * policy should be set. The name should conform to RFC1035.
+   * @param InstancesSetSecurityPolicyRequest $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function setSecurityPolicy($project, $zone, $instance, InstancesSetSecurityPolicyRequest $postBody, $optParams = [])
+  {
+    $params = ['project' => $project, 'zone' => $zone, 'instance' => $instance, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('setSecurityPolicy', [$params], Operation::class);
+  }
+  /**
+   * Sets the service account on the instance. For more information, readChanging
    * the service account and access scopes for an instance.
    * (instances.setServiceAccount)
    *
@@ -1035,15 +1324,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setServiceAccount($project, $zone, $instance, InstancesSetServiceAccountRequest $postBody, $optParams = [])
   {
@@ -1065,15 +1357,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setShieldedInstanceIntegrityPolicy($project, $zone, $instance, ShieldedInstanceIntegrityPolicy $postBody, $optParams = [])
   {
@@ -1093,15 +1388,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function setTags($project, $zone, $instance, Tags $postBody, $optParams = [])
   {
@@ -1120,15 +1418,20 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
+   * @opt_param bool withExtendedNotifications Determines whether the customers
+   * receive notifications before migration. Only applicable to SF vms.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function simulateMaintenanceEvent($project, $zone, $instance, $optParams = [])
   {
@@ -1137,8 +1440,8 @@ class Instances extends \Google\Service\Resource
     return $this->call('simulateMaintenanceEvent', [$params], Operation::class);
   }
   /**
-   * Starts an instance that was stopped using the instances().stop method. For
-   * more information, see Restart an instance. (instances.start)
+   * Starts an instance that was stopped using theinstances().stop method. For
+   * more information, seeRestart an instance. (instances.start)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.
@@ -1147,15 +1450,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function start($project, $zone, $instance, $optParams = [])
   {
@@ -1164,8 +1470,8 @@ class Instances extends \Google\Service\Resource
     return $this->call('start', [$params], Operation::class);
   }
   /**
-   * Starts an instance that was stopped using the instances().stop method. For
-   * more information, see Restart an instance. (instances.startWithEncryptionKey)
+   * Starts an instance that was stopped using theinstances().stop method. For
+   * more information, seeRestart an instance. (instances.startWithEncryptionKey)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.
@@ -1175,15 +1481,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function startWithEncryptionKey($project, $zone, $instance, InstancesStartWithEncryptionKeyRequest $postBody, $optParams = [])
   {
@@ -1196,7 +1505,7 @@ class Instances extends \Google\Service\Resource
    * the instance at a later time. Stopped instances do not incur VM usage charges
    * while they are stopped. However, resources that the VM is using, such as
    * persistent disks and static IP addresses, will continue to be charged until
-   * they are deleted. For more information, see Stopping an instance.
+   * they are deleted. For more information, seeStopping an instance.
    * (instances.stop)
    *
    * @param string $project Project ID for this request.
@@ -1204,19 +1513,26 @@ class Instances extends \Google\Service\Resource
    * @param string $instance Name of the instance resource to stop.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param bool discardLocalSsd If true, discard the contents of any attached
-   * localSSD partitions. Default value is false.
+   * @opt_param bool discardLocalSsd This property is required if the instance has
+   * any attached Local SSD disks. If false, Local SSD data will be preserved when
+   * the instance is suspended. If true, the contents of any attached Local SSD
+   * disks will be discarded.
+   * @opt_param bool noGracefulShutdown If set to true, Graceful Shutdown is
+   * skipped.
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function stop($project, $zone, $instance, $optParams = [])
   {
@@ -1238,19 +1554,24 @@ class Instances extends \Google\Service\Resource
    * @param string $instance Name of the instance resource to suspend.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param bool discardLocalSsd If true, discard the contents of any attached
-   * localSSD partitions. Default value is false.
+   * @opt_param bool discardLocalSsd This property is required if the instance has
+   * any attached Local SSD disks. If false, Local SSD data will be preserved when
+   * the instance is suspended. If true, the contents of any attached Local SSD
+   * disks will be discarded.
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function suspend($project, $zone, $instance, $optParams = [])
   {
@@ -1268,6 +1589,7 @@ class Instances extends \Google\Service\Resource
    * @param TestPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($project, $zone, $resource, TestPermissionsRequest $postBody, $optParams = [])
   {
@@ -1287,6 +1609,8 @@ class Instances extends \Google\Service\Resource
    * @param Instance $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param bool discardLocalSsd Whether to discard local SSDs from the
+   * instance during restart default value is false.
    * @opt_param string minimalAction Specifies the action to take when updating an
    * instance even if the updated properties do not require it. If not specified,
    * then Compute Engine acts based on the minimum action that the updated
@@ -1298,15 +1622,18 @@ class Instances extends \Google\Service\Resource
    * are NO_EFFECT, REFRESH, and RESTART.
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function update($project, $zone, $instance, Instance $postBody, $optParams = [])
   {
@@ -1316,8 +1643,8 @@ class Instances extends \Google\Service\Resource
   }
   /**
    * Updates the specified access config from an instance's network interface with
-   * the data included in the request. This method supports PATCH semantics and
-   * uses the JSON merge patch format and processing rules.
+   * the data included in the request. This method supportsPATCH semantics and
+   * uses theJSON merge patch format and processing rules.
    * (instances.updateAccessConfig)
    *
    * @param string $project Project ID for this request.
@@ -1330,15 +1657,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function updateAccessConfig($project, $zone, $instance, $networkInterface, AccessConfig $postBody, $optParams = [])
   {
@@ -1348,7 +1678,7 @@ class Instances extends \Google\Service\Resource
   }
   /**
    * Updates the Display config for a VM instance. You can only use this method on
-   * a stopped VM instance. This method supports PATCH semantics and uses the JSON
+   * a stopped VM instance. This method supportsPATCH semantics and uses theJSON
    * merge patch format and processing rules. (instances.updateDisplayDevice)
    *
    * @param string $project Project ID for this request.
@@ -1359,15 +1689,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function updateDisplayDevice($project, $zone, $instance, DisplayDevice $postBody, $optParams = [])
   {
@@ -1392,15 +1725,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function updateNetworkInterface($project, $zone, $instance, $networkInterface, NetworkInterface $postBody, $optParams = [])
   {
@@ -1410,8 +1746,8 @@ class Instances extends \Google\Service\Resource
   }
   /**
    * Updates the Shielded Instance config for an instance. You can only use this
-   * method on a stopped instance. This method supports PATCH semantics and uses
-   * the JSON merge patch format and processing rules.
+   * method on a stopped instance. This method supportsPATCH semantics and uses
+   * theJSON merge patch format and processing rules.
    * (instances.updateShieldedInstanceConfig)
    *
    * @param string $project Project ID for this request.
@@ -1422,15 +1758,18 @@ class Instances extends \Google\Service\Resource
    *
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
-   * server will know to ignore the request if it has already been completed. For
-   * example, consider a situation where you make an initial request and the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
-   * from accidentally creating duplicate commitments. The request ID must be a
-   * valid UUID with the exception that zero UUID is not supported (
-   * 00000000-0000-0000-0000-000000000000).
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function updateShieldedInstanceConfig($project, $zone, $instance, ShieldedInstanceConfig $postBody, $optParams = [])
   {

@@ -21,16 +21,22 @@ class SqlServerUserDetails extends \Google\Collection
 {
   protected $collection_key = 'serverRoles';
   /**
+   * Indicates if the user has been disabled.
+   *
    * @var bool
    */
   public $disabled;
   /**
+   * Indicates the server roles for this user.
+   *
    * @var string[]
    */
   public $serverRoles;
 
   /**
-   * @param bool
+   * Indicates if the user has been disabled.
+   *
+   * @param bool $disabled
    */
   public function setDisabled($disabled)
   {
@@ -44,7 +50,9 @@ class SqlServerUserDetails extends \Google\Collection
     return $this->disabled;
   }
   /**
-   * @param string[]
+   * Indicates the server roles for this user.
+   *
+   * @param string[] $serverRoles
    */
   public function setServerRoles($serverRoles)
   {

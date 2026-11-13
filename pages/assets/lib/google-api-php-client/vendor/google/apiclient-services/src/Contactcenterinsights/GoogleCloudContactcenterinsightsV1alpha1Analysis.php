@@ -24,20 +24,43 @@ class GoogleCloudContactcenterinsightsV1alpha1Analysis extends \Google\Model
   protected $annotatorSelectorType = GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector::class;
   protected $annotatorSelectorDataType = '';
   /**
+   * Output only. The time at which the analysis was created, which occurs when
+   * the long-running operation completes.
+   *
    * @var string
    */
   public $createTime;
   /**
+   * Immutable. The resource name of the analysis. Format: projects/{project}/lo
+   * cations/{location}/conversations/{conversation}/analyses/{analysis}
+   *
    * @var string
    */
   public $name;
   /**
+   * Output only. The time at which the analysis was requested.
+   *
    * @var string
    */
   public $requestTime;
+  /**
+   * Output only. Whether this resource is zone isolated.
+   *
+   * @var bool
+   */
+  public $satisfiesPzi;
+  /**
+   * Output only. Whether this resource is zone separated.
+   *
+   * @var bool
+   */
+  public $satisfiesPzs;
 
   /**
-   * @param GoogleCloudContactcenterinsightsV1alpha1AnalysisResult
+   * Output only. The result of the analysis, which is populated when the
+   * analysis finishes.
+   *
+   * @param GoogleCloudContactcenterinsightsV1alpha1AnalysisResult $analysisResult
    */
   public function setAnalysisResult(GoogleCloudContactcenterinsightsV1alpha1AnalysisResult $analysisResult)
   {
@@ -51,7 +74,10 @@ class GoogleCloudContactcenterinsightsV1alpha1Analysis extends \Google\Model
     return $this->analysisResult;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector
+   * To select the annotators to run and the phrase matchers to use (if any). If
+   * not specified, all annotators will be run.
+   *
+   * @param GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector $annotatorSelector
    */
   public function setAnnotatorSelector(GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector $annotatorSelector)
   {
@@ -65,7 +91,10 @@ class GoogleCloudContactcenterinsightsV1alpha1Analysis extends \Google\Model
     return $this->annotatorSelector;
   }
   /**
-   * @param string
+   * Output only. The time at which the analysis was created, which occurs when
+   * the long-running operation completes.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -79,7 +108,10 @@ class GoogleCloudContactcenterinsightsV1alpha1Analysis extends \Google\Model
     return $this->createTime;
   }
   /**
-   * @param string
+   * Immutable. The resource name of the analysis. Format: projects/{project}/lo
+   * cations/{location}/conversations/{conversation}/analyses/{analysis}
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -93,7 +125,9 @@ class GoogleCloudContactcenterinsightsV1alpha1Analysis extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * Output only. The time at which the analysis was requested.
+   *
+   * @param string $requestTime
    */
   public function setRequestTime($requestTime)
   {
@@ -105,6 +139,38 @@ class GoogleCloudContactcenterinsightsV1alpha1Analysis extends \Google\Model
   public function getRequestTime()
   {
     return $this->requestTime;
+  }
+  /**
+   * Output only. Whether this resource is zone isolated.
+   *
+   * @param bool $satisfiesPzi
+   */
+  public function setSatisfiesPzi($satisfiesPzi)
+  {
+    $this->satisfiesPzi = $satisfiesPzi;
+  }
+  /**
+   * @return bool
+   */
+  public function getSatisfiesPzi()
+  {
+    return $this->satisfiesPzi;
+  }
+  /**
+   * Output only. Whether this resource is zone separated.
+   *
+   * @param bool $satisfiesPzs
+   */
+  public function setSatisfiesPzs($satisfiesPzs)
+  {
+    $this->satisfiesPzs = $satisfiesPzs;
+  }
+  /**
+   * @return bool
+   */
+  public function getSatisfiesPzs()
+  {
+    return $this->satisfiesPzs;
   }
 }
 

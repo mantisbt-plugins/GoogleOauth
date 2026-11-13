@@ -39,7 +39,7 @@ class GoogleLongrunningOperation extends \Google\Model
   public $response;
 
   /**
-   * @param bool
+   * @param bool $done
    */
   public function setDone($done)
   {
@@ -53,7 +53,7 @@ class GoogleLongrunningOperation extends \Google\Model
     return $this->done;
   }
   /**
-   * @param GoogleRpcStatus
+   * @param GoogleRpcStatus $error
    */
   public function setError(GoogleRpcStatus $error)
   {
@@ -67,7 +67,7 @@ class GoogleLongrunningOperation extends \Google\Model
     return $this->error;
   }
   /**
-   * @param array[]
+   * @param array[] $metadata
    */
   public function setMetadata($metadata)
   {
@@ -81,7 +81,7 @@ class GoogleLongrunningOperation extends \Google\Model
     return $this->metadata;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -95,7 +95,7 @@ class GoogleLongrunningOperation extends \Google\Model
     return $this->name;
   }
   /**
-   * @param array[]
+   * @param array[] $response
    */
   public function setResponse($response)
   {

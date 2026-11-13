@@ -19,6 +19,7 @@ namespace Google\Service\CloudKMS\Resource;
 
 use Google\Service\CloudKMS\KeyRing;
 use Google\Service\CloudKMS\ListKeyRingsResponse;
+use Google\Service\CloudKMS\Operation;
 use Google\Service\CloudKMS\Policy;
 use Google\Service\CloudKMS\SetIamPolicyRequest;
 use Google\Service\CloudKMS\TestIamPermissionsRequest;
@@ -45,6 +46,7 @@ class ProjectsLocationsKeyRings extends \Google\Service\Resource
    * @opt_param string keyRingId Required. It must be unique within a location and
    * match the regular expression `[a-zA-Z0-9_-]{1,63}`
    * @return KeyRing
+   * @throws \Google\Service\Exception
    */
   public function create($parent, KeyRing $postBody, $optParams = [])
   {
@@ -53,11 +55,30 @@ class ProjectsLocationsKeyRings extends \Google\Service\Resource
     return $this->call('create', [$params], KeyRing::class);
   }
   /**
+   * Permanently deletes the given KeyRing. All child resources of the KeyRing
+   * must have been previously deleted using their corresponding Delete
+   * operations. The specified key ring will be immediately and permanently
+   * deleted upon calling this method. This action cannot be undone.
+   * (keyRings.delete)
+   *
+   * @param string $name Required. The name of the KeyRing to delete.
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function delete($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('delete', [$params], Operation::class);
+  }
+  /**
    * Returns metadata for a given KeyRing. (keyRings.get)
    *
    * @param string $name Required. The name of the KeyRing to get.
    * @param array $optParams Optional parameters.
    * @return KeyRing
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -88,6 +109,7 @@ class ProjectsLocationsKeyRings extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -116,6 +138,7 @@ class ProjectsLocationsKeyRings extends \Google\Service\Resource
    * @opt_param string pageToken Optional. Optional pagination token, returned
    * earlier via ListKeyRingsResponse.next_page_token.
    * @return ListKeyRingsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsKeyRings($parent, $optParams = [])
   {
@@ -135,6 +158,7 @@ class ProjectsLocationsKeyRings extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -156,6 +180,7 @@ class ProjectsLocationsKeyRings extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

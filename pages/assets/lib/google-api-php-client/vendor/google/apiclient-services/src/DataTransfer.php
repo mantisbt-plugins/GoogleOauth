@@ -29,7 +29,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/admin-sdk/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/admin/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -45,6 +45,7 @@ class DataTransfer extends \Google\Service
 
   public $applications;
   public $transfers;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the DataTransfer service.
@@ -57,6 +58,7 @@ class DataTransfer extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://admin.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://admin.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'datatransfer_v1';

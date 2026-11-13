@@ -28,7 +28,7 @@ class ListSecurityHealthAnalyticsCustomModulesResponse extends \Google\Collectio
   protected $securityHealthAnalyticsCustomModulesDataType = 'array';
 
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -42,7 +42,7 @@ class ListSecurityHealthAnalyticsCustomModulesResponse extends \Google\Collectio
     return $this->nextPageToken;
   }
   /**
-   * @param GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule[]
+   * @param GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule[] $securityHealthAnalyticsCustomModules
    */
   public function setSecurityHealthAnalyticsCustomModules($securityHealthAnalyticsCustomModules)
   {

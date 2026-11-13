@@ -25,7 +25,7 @@ class GoogleCloudDialogflowCxV3ValidateFlowRequest extends \Google\Model
   public $languageCode;
 
   /**
-   * @param string
+   * @param string $languageCode
    */
   public function setLanguageCode($languageCode)
   {

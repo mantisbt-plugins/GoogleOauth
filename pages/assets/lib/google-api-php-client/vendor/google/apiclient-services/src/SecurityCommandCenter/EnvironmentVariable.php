@@ -29,7 +29,7 @@ class EnvironmentVariable extends \Google\Model
   public $val;
 
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -43,7 +43,7 @@ class EnvironmentVariable extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * @param string $val
    */
   public function setVal($val)
   {

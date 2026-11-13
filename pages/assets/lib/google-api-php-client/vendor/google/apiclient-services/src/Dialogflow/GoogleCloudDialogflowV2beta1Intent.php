@@ -19,6 +19,9 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
 {
+  public const WEBHOOK_STATE_WEBHOOK_STATE_UNSPECIFIED = 'WEBHOOK_STATE_UNSPECIFIED';
+  public const WEBHOOK_STATE_WEBHOOK_STATE_ENABLED = 'WEBHOOK_STATE_ENABLED';
+  public const WEBHOOK_STATE_WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING = 'WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING';
   protected $collection_key = 'trainingPhrases';
   /**
    * @var string
@@ -61,6 +64,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
    */
   public $mlDisabled;
   /**
+   * @deprecated
    * @var bool
    */
   public $mlEnabled;
@@ -96,7 +100,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
   public $webhookState;
 
   /**
-   * @param string
+   * @param string $action
    */
   public function setAction($action)
   {
@@ -110,7 +114,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->action;
   }
   /**
-   * @param string[]
+   * @param string[] $defaultResponsePlatforms
    */
   public function setDefaultResponsePlatforms($defaultResponsePlatforms)
   {
@@ -124,7 +128,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->defaultResponsePlatforms;
   }
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -138,7 +142,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->displayName;
   }
   /**
-   * @param bool
+   * @param bool $endInteraction
    */
   public function setEndInteraction($endInteraction)
   {
@@ -152,7 +156,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->endInteraction;
   }
   /**
-   * @param string[]
+   * @param string[] $events
    */
   public function setEvents($events)
   {
@@ -166,7 +170,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->events;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo[]
+   * @param GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo[] $followupIntentInfo
    */
   public function setFollowupIntentInfo($followupIntentInfo)
   {
@@ -180,7 +184,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->followupIntentInfo;
   }
   /**
-   * @param string[]
+   * @param string[] $inputContextNames
    */
   public function setInputContextNames($inputContextNames)
   {
@@ -194,7 +198,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->inputContextNames;
   }
   /**
-   * @param bool
+   * @param bool $isFallback
    */
   public function setIsFallback($isFallback)
   {
@@ -208,7 +212,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->isFallback;
   }
   /**
-   * @param bool
+   * @param bool $liveAgentHandoff
    */
   public function setLiveAgentHandoff($liveAgentHandoff)
   {
@@ -222,7 +226,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->liveAgentHandoff;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessage[]
+   * @param GoogleCloudDialogflowV2beta1IntentMessage[] $messages
    */
   public function setMessages($messages)
   {
@@ -236,7 +240,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->messages;
   }
   /**
-   * @param bool
+   * @param bool $mlDisabled
    */
   public function setMlDisabled($mlDisabled)
   {
@@ -250,13 +254,15 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->mlDisabled;
   }
   /**
-   * @param bool
+   * @deprecated
+   * @param bool $mlEnabled
    */
   public function setMlEnabled($mlEnabled)
   {
     $this->mlEnabled = $mlEnabled;
   }
   /**
+   * @deprecated
    * @return bool
    */
   public function getMlEnabled()
@@ -264,7 +270,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->mlEnabled;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -278,7 +284,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1Context[]
+   * @param GoogleCloudDialogflowV2beta1Context[] $outputContexts
    */
   public function setOutputContexts($outputContexts)
   {
@@ -292,7 +298,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->outputContexts;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentParameter[]
+   * @param GoogleCloudDialogflowV2beta1IntentParameter[] $parameters
    */
   public function setParameters($parameters)
   {
@@ -306,7 +312,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->parameters;
   }
   /**
-   * @param string
+   * @param string $parentFollowupIntentName
    */
   public function setParentFollowupIntentName($parentFollowupIntentName)
   {
@@ -320,7 +326,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->parentFollowupIntentName;
   }
   /**
-   * @param int
+   * @param int $priority
    */
   public function setPriority($priority)
   {
@@ -334,7 +340,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->priority;
   }
   /**
-   * @param bool
+   * @param bool $resetContexts
    */
   public function setResetContexts($resetContexts)
   {
@@ -348,7 +354,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->resetContexts;
   }
   /**
-   * @param string
+   * @param string $rootFollowupIntentName
    */
   public function setRootFollowupIntentName($rootFollowupIntentName)
   {
@@ -362,7 +368,7 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->rootFollowupIntentName;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentTrainingPhrase[]
+   * @param GoogleCloudDialogflowV2beta1IntentTrainingPhrase[] $trainingPhrases
    */
   public function setTrainingPhrases($trainingPhrases)
   {
@@ -376,14 +382,14 @@ class GoogleCloudDialogflowV2beta1Intent extends \Google\Collection
     return $this->trainingPhrases;
   }
   /**
-   * @param string
+   * @param self::WEBHOOK_STATE_* $webhookState
    */
   public function setWebhookState($webhookState)
   {
     $this->webhookState = $webhookState;
   }
   /**
-   * @return string
+   * @return self::WEBHOOK_STATE_*
    */
   public function getWebhookState()
   {

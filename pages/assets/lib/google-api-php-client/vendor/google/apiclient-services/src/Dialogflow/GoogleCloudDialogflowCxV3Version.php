@@ -19,6 +19,10 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3Version extends \Google\Model
 {
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  public const STATE_RUNNING = 'RUNNING';
+  public const STATE_SUCCEEDED = 'SUCCEEDED';
+  public const STATE_FAILED = 'FAILED';
   /**
    * @var string
    */
@@ -43,7 +47,7 @@ class GoogleCloudDialogflowCxV3Version extends \Google\Model
   public $state;
 
   /**
-   * @param string
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -57,7 +61,7 @@ class GoogleCloudDialogflowCxV3Version extends \Google\Model
     return $this->createTime;
   }
   /**
-   * @param string
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -71,7 +75,7 @@ class GoogleCloudDialogflowCxV3Version extends \Google\Model
     return $this->description;
   }
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -85,7 +89,7 @@ class GoogleCloudDialogflowCxV3Version extends \Google\Model
     return $this->displayName;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -99,7 +103,7 @@ class GoogleCloudDialogflowCxV3Version extends \Google\Model
     return $this->name;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3NluSettings
+   * @param GoogleCloudDialogflowCxV3NluSettings $nluSettings
    */
   public function setNluSettings(GoogleCloudDialogflowCxV3NluSettings $nluSettings)
   {
@@ -113,14 +117,14 @@ class GoogleCloudDialogflowCxV3Version extends \Google\Model
     return $this->nluSettings;
   }
   /**
-   * @param string
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {

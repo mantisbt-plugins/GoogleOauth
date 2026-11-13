@@ -19,13 +19,76 @@ namespace Google\Service\CloudDeploy;
 
 class Standard extends \Google\Model
 {
+  protected $analysisType = Analysis::class;
+  protected $analysisDataType = '';
+  protected $postdeployType = Postdeploy::class;
+  protected $postdeployDataType = '';
+  protected $predeployType = Predeploy::class;
+  protected $predeployDataType = '';
   /**
+   * Optional. Whether to verify a deployment via `skaffold verify`.
+   *
    * @var bool
    */
   public $verify;
+  protected $verifyConfigType = Verify::class;
+  protected $verifyConfigDataType = '';
 
   /**
-   * @param bool
+   * Optional. Configuration for the analysis job. If this is not configured,
+   * the analysis job will not be present.
+   *
+   * @param Analysis $analysis
+   */
+  public function setAnalysis(Analysis $analysis)
+  {
+    $this->analysis = $analysis;
+  }
+  /**
+   * @return Analysis
+   */
+  public function getAnalysis()
+  {
+    return $this->analysis;
+  }
+  /**
+   * Optional. Configuration for the postdeploy job. If this is not configured,
+   * the postdeploy job will not be present.
+   *
+   * @param Postdeploy $postdeploy
+   */
+  public function setPostdeploy(Postdeploy $postdeploy)
+  {
+    $this->postdeploy = $postdeploy;
+  }
+  /**
+   * @return Postdeploy
+   */
+  public function getPostdeploy()
+  {
+    return $this->postdeploy;
+  }
+  /**
+   * Optional. Configuration for the predeploy job. If this is not configured,
+   * the predeploy job will not be present.
+   *
+   * @param Predeploy $predeploy
+   */
+  public function setPredeploy(Predeploy $predeploy)
+  {
+    $this->predeploy = $predeploy;
+  }
+  /**
+   * @return Predeploy
+   */
+  public function getPredeploy()
+  {
+    return $this->predeploy;
+  }
+  /**
+   * Optional. Whether to verify a deployment via `skaffold verify`.
+   *
+   * @param bool $verify
    */
   public function setVerify($verify)
   {
@@ -37,6 +100,23 @@ class Standard extends \Google\Model
   public function getVerify()
   {
     return $this->verify;
+  }
+  /**
+   * Optional. Configuration for the verify job. Cannot be set if `verify` is
+   * set to true.
+   *
+   * @param Verify $verifyConfig
+   */
+  public function setVerifyConfig(Verify $verifyConfig)
+  {
+    $this->verifyConfig = $verifyConfig;
+  }
+  /**
+   * @return Verify
+   */
+  public function getVerifyConfig()
+  {
+    return $this->verifyConfig;
   }
 }
 

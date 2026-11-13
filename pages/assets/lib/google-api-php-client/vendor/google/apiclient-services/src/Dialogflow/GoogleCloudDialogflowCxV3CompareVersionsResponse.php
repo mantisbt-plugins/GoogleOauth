@@ -33,7 +33,7 @@ class GoogleCloudDialogflowCxV3CompareVersionsResponse extends \Google\Model
   public $targetVersionContentJson;
 
   /**
-   * @param string
+   * @param string $baseVersionContentJson
    */
   public function setBaseVersionContentJson($baseVersionContentJson)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowCxV3CompareVersionsResponse extends \Google\Model
     return $this->baseVersionContentJson;
   }
   /**
-   * @param string
+   * @param string $compareTime
    */
   public function setCompareTime($compareTime)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowCxV3CompareVersionsResponse extends \Google\Model
     return $this->compareTime;
   }
   /**
-   * @param string
+   * @param string $targetVersionContentJson
    */
   public function setTargetVersionContentJson($targetVersionContentJson)
   {

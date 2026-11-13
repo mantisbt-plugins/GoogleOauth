@@ -33,9 +33,11 @@ class GoogleCloudDialogflowCxV3QueryInput extends \Google\Model
   public $languageCode;
   protected $textType = GoogleCloudDialogflowCxV3TextInput::class;
   protected $textDataType = '';
+  protected $toolCallResultType = GoogleCloudDialogflowCxV3ToolCallResult::class;
+  protected $toolCallResultDataType = '';
 
   /**
-   * @param GoogleCloudDialogflowCxV3AudioInput
+   * @param GoogleCloudDialogflowCxV3AudioInput $audio
    */
   public function setAudio(GoogleCloudDialogflowCxV3AudioInput $audio)
   {
@@ -49,7 +51,7 @@ class GoogleCloudDialogflowCxV3QueryInput extends \Google\Model
     return $this->audio;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3DtmfInput
+   * @param GoogleCloudDialogflowCxV3DtmfInput $dtmf
    */
   public function setDtmf(GoogleCloudDialogflowCxV3DtmfInput $dtmf)
   {
@@ -63,7 +65,7 @@ class GoogleCloudDialogflowCxV3QueryInput extends \Google\Model
     return $this->dtmf;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3EventInput
+   * @param GoogleCloudDialogflowCxV3EventInput $event
    */
   public function setEvent(GoogleCloudDialogflowCxV3EventInput $event)
   {
@@ -77,7 +79,7 @@ class GoogleCloudDialogflowCxV3QueryInput extends \Google\Model
     return $this->event;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3IntentInput
+   * @param GoogleCloudDialogflowCxV3IntentInput $intent
    */
   public function setIntent(GoogleCloudDialogflowCxV3IntentInput $intent)
   {
@@ -91,7 +93,7 @@ class GoogleCloudDialogflowCxV3QueryInput extends \Google\Model
     return $this->intent;
   }
   /**
-   * @param string
+   * @param string $languageCode
    */
   public function setLanguageCode($languageCode)
   {
@@ -105,7 +107,7 @@ class GoogleCloudDialogflowCxV3QueryInput extends \Google\Model
     return $this->languageCode;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3TextInput
+   * @param GoogleCloudDialogflowCxV3TextInput $text
    */
   public function setText(GoogleCloudDialogflowCxV3TextInput $text)
   {
@@ -117,6 +119,20 @@ class GoogleCloudDialogflowCxV3QueryInput extends \Google\Model
   public function getText()
   {
     return $this->text;
+  }
+  /**
+   * @param GoogleCloudDialogflowCxV3ToolCallResult $toolCallResult
+   */
+  public function setToolCallResult(GoogleCloudDialogflowCxV3ToolCallResult $toolCallResult)
+  {
+    $this->toolCallResult = $toolCallResult;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3ToolCallResult
+   */
+  public function getToolCallResult()
+  {
+    return $this->toolCallResult;
   }
 }
 

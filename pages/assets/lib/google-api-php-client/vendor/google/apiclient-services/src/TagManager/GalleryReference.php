@@ -20,32 +20,78 @@ namespace Google\Service\TagManager;
 class GalleryReference extends \Google\Model
 {
   /**
+   * ID for the gallery template that is generated once during first sync and
+   * travels with the template redirects.
+   *
+   * @var string
+   */
+  public $galleryTemplateId;
+  /**
+   * The name of the host for the community gallery template.
+   *
    * @var string
    */
   public $host;
   /**
+   * If a user has manually edited the community gallery template.
+   *
    * @var bool
    */
   public $isModified;
   /**
+   * The name of the owner for the community gallery template.
+   *
    * @var string
    */
   public $owner;
   /**
+   * The name of the repository for the community gallery template.
+   *
    * @var string
    */
   public $repository;
   /**
+   * The signature of the community gallery template as computed at import time.
+   * This value is recomputed whenever the template is updated from the gallery.
+   *
    * @var string
    */
   public $signature;
   /**
+   * The developer id of the community gallery template. This value is set
+   * whenever the template is created from the gallery.
+   *
+   * @var string
+   */
+  public $templateDeveloperId;
+  /**
+   * The version of the community gallery template.
+   *
    * @var string
    */
   public $version;
 
   /**
-   * @param string
+   * ID for the gallery template that is generated once during first sync and
+   * travels with the template redirects.
+   *
+   * @param string $galleryTemplateId
+   */
+  public function setGalleryTemplateId($galleryTemplateId)
+  {
+    $this->galleryTemplateId = $galleryTemplateId;
+  }
+  /**
+   * @return string
+   */
+  public function getGalleryTemplateId()
+  {
+    return $this->galleryTemplateId;
+  }
+  /**
+   * The name of the host for the community gallery template.
+   *
+   * @param string $host
    */
   public function setHost($host)
   {
@@ -59,7 +105,9 @@ class GalleryReference extends \Google\Model
     return $this->host;
   }
   /**
-   * @param bool
+   * If a user has manually edited the community gallery template.
+   *
+   * @param bool $isModified
    */
   public function setIsModified($isModified)
   {
@@ -73,7 +121,9 @@ class GalleryReference extends \Google\Model
     return $this->isModified;
   }
   /**
-   * @param string
+   * The name of the owner for the community gallery template.
+   *
+   * @param string $owner
    */
   public function setOwner($owner)
   {
@@ -87,7 +137,9 @@ class GalleryReference extends \Google\Model
     return $this->owner;
   }
   /**
-   * @param string
+   * The name of the repository for the community gallery template.
+   *
+   * @param string $repository
    */
   public function setRepository($repository)
   {
@@ -101,7 +153,10 @@ class GalleryReference extends \Google\Model
     return $this->repository;
   }
   /**
-   * @param string
+   * The signature of the community gallery template as computed at import time.
+   * This value is recomputed whenever the template is updated from the gallery.
+   *
+   * @param string $signature
    */
   public function setSignature($signature)
   {
@@ -115,7 +170,26 @@ class GalleryReference extends \Google\Model
     return $this->signature;
   }
   /**
-   * @param string
+   * The developer id of the community gallery template. This value is set
+   * whenever the template is created from the gallery.
+   *
+   * @param string $templateDeveloperId
+   */
+  public function setTemplateDeveloperId($templateDeveloperId)
+  {
+    $this->templateDeveloperId = $templateDeveloperId;
+  }
+  /**
+   * @return string
+   */
+  public function getTemplateDeveloperId()
+  {
+    return $this->templateDeveloperId;
+  }
+  /**
+   * The version of the community gallery template.
+   *
+   * @param string $version
    */
   public function setVersion($version)
   {

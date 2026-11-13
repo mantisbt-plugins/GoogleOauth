@@ -54,7 +54,11 @@ class ProjectsLocationsPrivateConnections extends \Google\Service\Resource
    * from accidentally creating duplicate commitments. The request ID must be a
    * valid UUID with the exception that zero UUID is not supported
    * (00000000-0000-0000-0000-000000000000).
+   * @opt_param bool validateOnly Optional. When supplied with PSC Interface
+   * config, will get/create the tenant project required for the customer to allow
+   * list and won't actually create the private connection.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, PrivateConnection $postBody, $optParams = [])
   {
@@ -84,6 +88,7 @@ class ProjectsLocationsPrivateConnections extends \Google\Service\Resource
    * valid UUID with the exception that zero UUID is not supported
    * (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -99,6 +104,7 @@ class ProjectsLocationsPrivateConnections extends \Google\Service\Resource
    * configuration to get.
    * @param array $optParams Optional parameters.
    * @return PrivateConnection
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -114,17 +120,18 @@ class ProjectsLocationsPrivateConnections extends \Google\Service\Resource
    * private connectivity configurations.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Filter request.
-   * @opt_param string orderBy Order by fields for the result.
+   * @opt_param string filter Optional. Filter request.
+   * @opt_param string orderBy Optional. Order by fields for the result.
    * @opt_param int pageSize Maximum number of private connectivity configurations
    * to return. If unspecified, at most 50 private connectivity configurations
    * that will be returned. The maximum value is 1000; values above 1000 will be
    * coerced to 1000.
-   * @opt_param string pageToken Page token received from a previous
+   * @opt_param string pageToken Optional. Page token received from a previous
    * `ListPrivateConnections` call. Provide this to retrieve the subsequent page.
    * When paginating, all other parameters provided to `ListPrivateConnections`
    * must match the call that provided the page token.
    * @return ListPrivateConnectionsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsPrivateConnections($parent, $optParams = [])
   {

@@ -19,6 +19,12 @@ namespace Google\Service\SecurityCommandCenter;
 
 class Connection extends \Google\Model
 {
+  public const PROTOCOL_PROTOCOL_UNSPECIFIED = 'PROTOCOL_UNSPECIFIED';
+  public const PROTOCOL_ICMP = 'ICMP';
+  public const PROTOCOL_TCP = 'TCP';
+  public const PROTOCOL_UDP = 'UDP';
+  public const PROTOCOL_GRE = 'GRE';
+  public const PROTOCOL_ESP = 'ESP';
   /**
    * @var string
    */
@@ -41,7 +47,7 @@ class Connection extends \Google\Model
   public $sourcePort;
 
   /**
-   * @param string
+   * @param string $destinationIp
    */
   public function setDestinationIp($destinationIp)
   {
@@ -55,7 +61,7 @@ class Connection extends \Google\Model
     return $this->destinationIp;
   }
   /**
-   * @param int
+   * @param int $destinationPort
    */
   public function setDestinationPort($destinationPort)
   {
@@ -69,21 +75,21 @@ class Connection extends \Google\Model
     return $this->destinationPort;
   }
   /**
-   * @param string
+   * @param self::PROTOCOL_* $protocol
    */
   public function setProtocol($protocol)
   {
     $this->protocol = $protocol;
   }
   /**
-   * @return string
+   * @return self::PROTOCOL_*
    */
   public function getProtocol()
   {
     return $this->protocol;
   }
   /**
-   * @param string
+   * @param string $sourceIp
    */
   public function setSourceIp($sourceIp)
   {
@@ -97,7 +103,7 @@ class Connection extends \Google\Model
     return $this->sourceIp;
   }
   /**
-   * @param int
+   * @param int $sourcePort
    */
   public function setSourcePort($sourcePort)
   {

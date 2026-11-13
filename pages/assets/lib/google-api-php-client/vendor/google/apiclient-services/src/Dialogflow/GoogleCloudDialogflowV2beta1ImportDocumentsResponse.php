@@ -24,7 +24,7 @@ class GoogleCloudDialogflowV2beta1ImportDocumentsResponse extends \Google\Collec
   protected $warningsDataType = 'array';
 
   /**
-   * @param GoogleRpcStatus[]
+   * @param GoogleRpcStatus[] $warnings
    */
   public function setWarnings($warnings)
   {

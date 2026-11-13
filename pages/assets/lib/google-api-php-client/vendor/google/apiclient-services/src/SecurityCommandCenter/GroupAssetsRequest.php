@@ -45,7 +45,7 @@ class GroupAssetsRequest extends \Google\Model
   public $readTime;
 
   /**
-   * @param string
+   * @param string $compareDuration
    */
   public function setCompareDuration($compareDuration)
   {
@@ -59,7 +59,7 @@ class GroupAssetsRequest extends \Google\Model
     return $this->compareDuration;
   }
   /**
-   * @param string
+   * @param string $filter
    */
   public function setFilter($filter)
   {
@@ -73,7 +73,7 @@ class GroupAssetsRequest extends \Google\Model
     return $this->filter;
   }
   /**
-   * @param string
+   * @param string $groupBy
    */
   public function setGroupBy($groupBy)
   {
@@ -87,7 +87,7 @@ class GroupAssetsRequest extends \Google\Model
     return $this->groupBy;
   }
   /**
-   * @param int
+   * @param int $pageSize
    */
   public function setPageSize($pageSize)
   {
@@ -101,7 +101,7 @@ class GroupAssetsRequest extends \Google\Model
     return $this->pageSize;
   }
   /**
-   * @param string
+   * @param string $pageToken
    */
   public function setPageToken($pageToken)
   {
@@ -115,7 +115,7 @@ class GroupAssetsRequest extends \Google\Model
     return $this->pageToken;
   }
   /**
-   * @param string
+   * @param string $readTime
    */
   public function setReadTime($readTime)
   {

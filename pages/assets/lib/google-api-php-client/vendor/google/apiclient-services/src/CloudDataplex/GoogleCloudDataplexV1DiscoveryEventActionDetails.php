@@ -20,12 +20,38 @@ namespace Google\Service\CloudDataplex;
 class GoogleCloudDataplexV1DiscoveryEventActionDetails extends \Google\Model
 {
   /**
+   * The human readable issue associated with the action.
+   *
+   * @var string
+   */
+  public $issue;
+  /**
+   * The type of action. Eg. IncompatibleDataSchema, InvalidDataFormat
+   *
    * @var string
    */
   public $type;
 
   /**
-   * @param string
+   * The human readable issue associated with the action.
+   *
+   * @param string $issue
+   */
+  public function setIssue($issue)
+  {
+    $this->issue = $issue;
+  }
+  /**
+   * @return string
+   */
+  public function getIssue()
+  {
+    return $this->issue;
+  }
+  /**
+   * The type of action. Eg. IncompatibleDataSchema, InvalidDataFormat
+   *
+   * @param string $type
    */
   public function setType($type)
   {

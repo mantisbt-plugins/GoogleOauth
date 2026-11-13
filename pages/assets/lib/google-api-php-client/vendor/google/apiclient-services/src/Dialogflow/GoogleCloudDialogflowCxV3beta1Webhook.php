@@ -41,7 +41,7 @@ class GoogleCloudDialogflowCxV3beta1Webhook extends \Google\Model
   public $timeout;
 
   /**
-   * @param bool
+   * @param bool $disabled
    */
   public function setDisabled($disabled)
   {
@@ -55,7 +55,7 @@ class GoogleCloudDialogflowCxV3beta1Webhook extends \Google\Model
     return $this->disabled;
   }
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -69,7 +69,7 @@ class GoogleCloudDialogflowCxV3beta1Webhook extends \Google\Model
     return $this->displayName;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1WebhookGenericWebService
+   * @param GoogleCloudDialogflowCxV3beta1WebhookGenericWebService $genericWebService
    */
   public function setGenericWebService(GoogleCloudDialogflowCxV3beta1WebhookGenericWebService $genericWebService)
   {
@@ -83,7 +83,7 @@ class GoogleCloudDialogflowCxV3beta1Webhook extends \Google\Model
     return $this->genericWebService;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -97,7 +97,7 @@ class GoogleCloudDialogflowCxV3beta1Webhook extends \Google\Model
     return $this->name;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig
+   * @param GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig $serviceDirectory
    */
   public function setServiceDirectory(GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig $serviceDirectory)
   {
@@ -111,7 +111,7 @@ class GoogleCloudDialogflowCxV3beta1Webhook extends \Google\Model
     return $this->serviceDirectory;
   }
   /**
-   * @param string
+   * @param string $timeout
    */
   public function setTimeout($timeout)
   {

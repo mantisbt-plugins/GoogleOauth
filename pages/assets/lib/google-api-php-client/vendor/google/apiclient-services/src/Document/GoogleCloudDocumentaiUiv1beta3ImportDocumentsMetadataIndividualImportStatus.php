@@ -20,10 +20,17 @@ namespace Google\Service\Document;
 class GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatus extends \Google\Model
 {
   /**
+   * The source Cloud Storage URI of the document.
+   *
    * @var string
    */
   public $inputGcsSource;
+  protected $outputDocumentIdType = GoogleCloudDocumentaiUiv1beta3DocumentId::class;
+  protected $outputDocumentIdDataType = '';
   /**
+   * The output_gcs_destination of the processed document if it was successful,
+   * otherwise empty.
+   *
    * @var string
    */
   public $outputGcsDestination;
@@ -31,7 +38,9 @@ class GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatu
   protected $statusDataType = '';
 
   /**
-   * @param string
+   * The source Cloud Storage URI of the document.
+   *
+   * @param string $inputGcsSource
    */
   public function setInputGcsSource($inputGcsSource)
   {
@@ -45,7 +54,26 @@ class GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatu
     return $this->inputGcsSource;
   }
   /**
-   * @param string
+   * The document ID of imported document if it was successful, otherwise empty.
+   *
+   * @param GoogleCloudDocumentaiUiv1beta3DocumentId $outputDocumentId
+   */
+  public function setOutputDocumentId(GoogleCloudDocumentaiUiv1beta3DocumentId $outputDocumentId)
+  {
+    $this->outputDocumentId = $outputDocumentId;
+  }
+  /**
+   * @return GoogleCloudDocumentaiUiv1beta3DocumentId
+   */
+  public function getOutputDocumentId()
+  {
+    return $this->outputDocumentId;
+  }
+  /**
+   * The output_gcs_destination of the processed document if it was successful,
+   * otherwise empty.
+   *
+   * @param string $outputGcsDestination
    */
   public function setOutputGcsDestination($outputGcsDestination)
   {
@@ -59,7 +87,9 @@ class GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatu
     return $this->outputGcsDestination;
   }
   /**
-   * @param GoogleRpcStatus
+   * The status of the importing of the document.
+   *
+   * @param GoogleRpcStatus $status
    */
   public function setStatus(GoogleRpcStatus $status)
   {

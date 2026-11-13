@@ -28,7 +28,7 @@ class GoogleCloudDialogflowCxV3ListChangelogsResponse extends \Google\Collection
   public $nextPageToken;
 
   /**
-   * @param GoogleCloudDialogflowCxV3Changelog[]
+   * @param GoogleCloudDialogflowCxV3Changelog[] $changelogs
    */
   public function setChangelogs($changelogs)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3ListChangelogsResponse extends \Google\Collection
     return $this->changelogs;
   }
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {

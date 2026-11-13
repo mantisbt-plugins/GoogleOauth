@@ -25,7 +25,7 @@ class GoogleCloudDialogflowCxV3GcsDestination extends \Google\Model
   public $uri;
 
   /**
-   * @param string
+   * @param string $uri
    */
   public function setUri($uri)
   {

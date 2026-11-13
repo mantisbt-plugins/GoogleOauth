@@ -24,11 +24,23 @@ class AnalyzeEntitiesResponse extends \Google\Collection
   protected $entitiesDataType = 'array';
   protected $entityMentionsType = EntityMention::class;
   protected $entityMentionsDataType = 'array';
+  /**
+   * The FHIR bundle ([`R4`](http://hl7.org/fhir/R4/bundle.html)) that includes
+   * all the entities, the entity mentions, and the relationships in JSON
+   * format.
+   *
+   * @var string
+   */
+  public $fhirBundle;
   protected $relationshipsType = EntityMentionRelationship::class;
   protected $relationshipsDataType = 'array';
 
   /**
-   * @param Entity[]
+   * The union of all the candidate entities that the entity_mentions in this
+   * response could link to. These are UMLS concepts or normalized mention
+   * content.
+   *
+   * @param Entity[] $entities
    */
   public function setEntities($entities)
   {
@@ -42,7 +54,10 @@ class AnalyzeEntitiesResponse extends \Google\Collection
     return $this->entities;
   }
   /**
-   * @param EntityMention[]
+   * The `entity_mentions` field contains all the annotated medical entities
+   * that were mentioned in the provided document.
+   *
+   * @param EntityMention[] $entityMentions
    */
   public function setEntityMentions($entityMentions)
   {
@@ -56,7 +71,28 @@ class AnalyzeEntitiesResponse extends \Google\Collection
     return $this->entityMentions;
   }
   /**
-   * @param EntityMentionRelationship[]
+   * The FHIR bundle ([`R4`](http://hl7.org/fhir/R4/bundle.html)) that includes
+   * all the entities, the entity mentions, and the relationships in JSON
+   * format.
+   *
+   * @param string $fhirBundle
+   */
+  public function setFhirBundle($fhirBundle)
+  {
+    $this->fhirBundle = $fhirBundle;
+  }
+  /**
+   * @return string
+   */
+  public function getFhirBundle()
+  {
+    return $this->fhirBundle;
+  }
+  /**
+   * relationships contains all the binary relationships that were identified
+   * between entity mentions within the provided document.
+   *
+   * @param EntityMentionRelationship[] $relationships
    */
   public function setRelationships($relationships)
   {

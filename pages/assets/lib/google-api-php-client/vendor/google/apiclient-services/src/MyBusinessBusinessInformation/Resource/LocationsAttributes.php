@@ -30,13 +30,16 @@ use Google\Service\MyBusinessBusinessInformation\Attributes as AttributesModel;
 class LocationsAttributes extends \Google\Service\Resource
 {
   /**
-   * Gets the Google-updated version of the specified location.
+   * Retrieves attributes for a location as they appear live on Google Maps and
+   * Search. This consumer-facing view may have been updated by Google or user-
+   * generated content and may differ from the merchant's version.
    * (attributes.getGoogleUpdated)
    *
    * @param string $name Required. Google identifier for this location in the form
    * of `locations/{location_id}/attributes`.
    * @param array $optParams Optional parameters.
-   * @return Attributes
+   * @return AttributesModel
+   * @throws \Google\Service\Exception
    */
   public function getGoogleUpdated($name, $optParams = [])
   {

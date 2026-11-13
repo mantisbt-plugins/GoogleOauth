@@ -17,19 +17,29 @@
 
 namespace Google\Service\Datalineage;
 
-class GoogleCloudDatacatalogLineageV1Link extends \Google\Model
+class GoogleCloudDatacatalogLineageV1Link extends \Google\Collection
 {
+  protected $collection_key = 'dependencyInfo';
+  protected $dependencyInfoType = GoogleCloudDatacatalogLineageV1LinkDependencyInfo::class;
+  protected $dependencyInfoDataType = 'array';
   /**
+   * The end of the last event establishing this link.
+   *
    * @var string
    */
   public $endTime;
   /**
+   * Output only. Immutable. The name of the link. Format:
+   * `projects/{project}/locations/{location}/links/{link}`.
+   *
    * @var string
    */
   public $name;
   protected $sourceType = GoogleCloudDatacatalogLineageV1EntityReference::class;
   protected $sourceDataType = '';
   /**
+   * The start of the first event establishing this link.
+   *
    * @var string
    */
   public $startTime;
@@ -37,7 +47,26 @@ class GoogleCloudDatacatalogLineageV1Link extends \Google\Model
   protected $targetDataType = '';
 
   /**
-   * @param string
+   * Optional. The dependency info of the link (applies only to column level
+   * links).
+   *
+   * @param GoogleCloudDatacatalogLineageV1LinkDependencyInfo[] $dependencyInfo
+   */
+  public function setDependencyInfo($dependencyInfo)
+  {
+    $this->dependencyInfo = $dependencyInfo;
+  }
+  /**
+   * @return GoogleCloudDatacatalogLineageV1LinkDependencyInfo[]
+   */
+  public function getDependencyInfo()
+  {
+    return $this->dependencyInfo;
+  }
+  /**
+   * The end of the last event establishing this link.
+   *
+   * @param string $endTime
    */
   public function setEndTime($endTime)
   {
@@ -51,7 +80,10 @@ class GoogleCloudDatacatalogLineageV1Link extends \Google\Model
     return $this->endTime;
   }
   /**
-   * @param string
+   * Output only. Immutable. The name of the link. Format:
+   * `projects/{project}/locations/{location}/links/{link}`.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -65,7 +97,9 @@ class GoogleCloudDatacatalogLineageV1Link extends \Google\Model
     return $this->name;
   }
   /**
-   * @param GoogleCloudDatacatalogLineageV1EntityReference
+   * The pointer to the entity that is the **source** of this link.
+   *
+   * @param GoogleCloudDatacatalogLineageV1EntityReference $source
    */
   public function setSource(GoogleCloudDatacatalogLineageV1EntityReference $source)
   {
@@ -79,7 +113,9 @@ class GoogleCloudDatacatalogLineageV1Link extends \Google\Model
     return $this->source;
   }
   /**
-   * @param string
+   * The start of the first event establishing this link.
+   *
+   * @param string $startTime
    */
   public function setStartTime($startTime)
   {
@@ -93,7 +129,9 @@ class GoogleCloudDatacatalogLineageV1Link extends \Google\Model
     return $this->startTime;
   }
   /**
-   * @param GoogleCloudDatacatalogLineageV1EntityReference
+   * The pointer to the entity that is the **target** of this link.
+   *
+   * @param GoogleCloudDatacatalogLineageV1EntityReference $target
    */
   public function setTarget(GoogleCloudDatacatalogLineageV1EntityReference $target)
   {

@@ -35,7 +35,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo extends \Google\Mod
   protected $parametersDataType = 'map';
 
   /**
-   * @param float
+   * @param float $confidence
    */
   public function setConfidence($confidence)
   {
@@ -49,7 +49,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo extends \Google\Mod
     return $this->confidence;
   }
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -63,7 +63,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo extends \Google\Mod
     return $this->displayName;
   }
   /**
-   * @param string
+   * @param string $lastMatchedIntent
    */
   public function setLastMatchedIntent($lastMatchedIntent)
   {
@@ -77,7 +77,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo extends \Google\Mod
     return $this->lastMatchedIntent;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfoIntentParameterValue[]
+   * @param GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfoIntentParameterValue[] $parameters
    */
   public function setParameters($parameters)
   {

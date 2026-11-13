@@ -19,9 +19,53 @@ namespace Google\Service\SecurityCommandCenter;
 
 class Finding extends \Google\Collection
 {
+  public const FINDING_CLASS_FINDING_CLASS_UNSPECIFIED = 'FINDING_CLASS_UNSPECIFIED';
+  public const FINDING_CLASS_THREAT = 'THREAT';
+  public const FINDING_CLASS_VULNERABILITY = 'VULNERABILITY';
+  public const FINDING_CLASS_MISCONFIGURATION = 'MISCONFIGURATION';
+  public const FINDING_CLASS_OBSERVATION = 'OBSERVATION';
+  public const FINDING_CLASS_SCC_ERROR = 'SCC_ERROR';
+  public const FINDING_CLASS_POSTURE_VIOLATION = 'POSTURE_VIOLATION';
+  public const FINDING_CLASS_TOXIC_COMBINATION = 'TOXIC_COMBINATION';
+  public const FINDING_CLASS_SENSITIVE_DATA_RISK = 'SENSITIVE_DATA_RISK';
+  public const FINDING_CLASS_CHOKEPOINT = 'CHOKEPOINT';
+  public const FINDING_CLASS_EXTERNAL_EXPOSURE = 'EXTERNAL_EXPOSURE';
+  public const FINDING_CLASS_SECRET = 'SECRET';
+  public const MUTE_MUTE_UNSPECIFIED = 'MUTE_UNSPECIFIED';
+  public const MUTE_MUTED = 'MUTED';
+  public const MUTE_UNMUTED = 'UNMUTED';
+  public const MUTE_UNDEFINED = 'UNDEFINED';
+  public const SEVERITY_SEVERITY_UNSPECIFIED = 'SEVERITY_UNSPECIFIED';
+  public const SEVERITY_CRITICAL = 'CRITICAL';
+  public const SEVERITY_HIGH = 'HIGH';
+  public const SEVERITY_MEDIUM = 'MEDIUM';
+  public const SEVERITY_LOW = 'LOW';
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  public const STATE_ACTIVE = 'ACTIVE';
+  public const STATE_INACTIVE = 'INACTIVE';
   protected $collection_key = 'processes';
   protected $accessType = Access::class;
   protected $accessDataType = '';
+  protected $affectedResourcesType = AffectedResources::class;
+  protected $affectedResourcesDataType = '';
+  protected $agentType = Agent::class;
+  protected $agentDataType = '';
+  protected $agentAnomalyType = AgentAnomaly::class;
+  protected $agentAnomalyDataType = '';
+  protected $agentDataAccessEventsType = AgentDataAccessEvent::class;
+  protected $agentDataAccessEventsDataType = 'array';
+  protected $agentSessionsType = AgentSession::class;
+  protected $agentSessionsDataType = 'array';
+  protected $aiModelType = AiModel::class;
+  protected $aiModelDataType = '';
+  protected $applicationType = Application::class;
+  protected $applicationDataType = '';
+  protected $artifactGuardPoliciesType = ArtifactGuardPolicies::class;
+  protected $artifactGuardPoliciesDataType = '';
+  protected $attackExposureType = AttackExposure::class;
+  protected $attackExposureDataType = '';
+  protected $backupDisasterRecoveryType = BackupDisasterRecovery::class;
+  protected $backupDisasterRecoveryDataType = '';
   /**
    * @var string
    */
@@ -30,10 +74,18 @@ class Finding extends \Google\Collection
    * @var string
    */
   public $category;
+  protected $chokepointType = Chokepoint::class;
+  protected $chokepointDataType = '';
+  protected $cloudArmorType = CloudArmor::class;
+  protected $cloudArmorDataType = '';
   protected $cloudDlpDataProfileType = CloudDlpDataProfile::class;
   protected $cloudDlpDataProfileDataType = '';
   protected $cloudDlpInspectionType = CloudDlpInspection::class;
   protected $cloudDlpInspectionDataType = '';
+  protected $cloudRunType = CloudRun::class;
+  protected $cloudRunDataType = '';
+  protected $complianceDetailsType = ComplianceDetails::class;
+  protected $complianceDetailsDataType = '';
   protected $compliancesType = Compliance::class;
   protected $compliancesDataType = 'array';
   protected $connectionsType = Connection::class;
@@ -46,18 +98,30 @@ class Finding extends \Google\Collection
    * @var string
    */
   public $createTime;
+  protected $dataAccessEventsType = DataAccessEvent::class;
+  protected $dataAccessEventsDataType = 'array';
+  protected $dataFlowEventsType = DataFlowEvent::class;
+  protected $dataFlowEventsDataType = 'array';
+  protected $dataRetentionDeletionEventsType = DataRetentionDeletionEvent::class;
+  protected $dataRetentionDeletionEventsDataType = 'array';
   protected $databaseType = Database::class;
   protected $databaseDataType = '';
   /**
    * @var string
    */
   public $description;
+  protected $discoveredWorkloadType = DiscoveredWorkload::class;
+  protected $discoveredWorkloadDataType = '';
+  protected $diskType = Disk::class;
+  protected $diskDataType = '';
   /**
    * @var string
    */
   public $eventTime;
   protected $exfiltrationType = Exfiltration::class;
   protected $exfiltrationDataType = '';
+  protected $externalExposureType = ExternalExposure::class;
+  protected $externalExposureDataType = '';
   protected $externalSystemsType = GoogleCloudSecuritycenterV1ExternalSystem::class;
   protected $externalSystemsDataType = 'map';
   /**
@@ -70,14 +134,26 @@ class Finding extends \Google\Collection
    * @var string
    */
   public $findingClass;
+  protected $groupMembershipsType = GroupMembership::class;
+  protected $groupMembershipsDataType = 'array';
   protected $iamBindingsType = IamBinding::class;
   protected $iamBindingsDataType = 'array';
+  protected $iamDetailsType = GoogleCloudSecuritycenterV1IamDetails::class;
+  protected $iamDetailsDataType = '';
   protected $indicatorType = Indicator::class;
   protected $indicatorDataType = '';
+  protected $ipRulesType = IpRules::class;
+  protected $ipRulesDataType = '';
+  protected $jobType = Job::class;
+  protected $jobDataType = '';
   protected $kernelRootkitType = KernelRootkit::class;
   protected $kernelRootkitDataType = '';
   protected $kubernetesType = Kubernetes::class;
   protected $kubernetesDataType = '';
+  protected $loadBalancersType = LoadBalancer::class;
+  protected $loadBalancersDataType = 'array';
+  protected $logEntriesType = LogEntry::class;
+  protected $logEntriesDataType = 'array';
   protected $mitreAttackType = MitreAttack::class;
   protected $mitreAttackDataType = '';
   /**
@@ -88,6 +164,8 @@ class Finding extends \Google\Collection
    * @var string
    */
   public $mute;
+  protected $muteInfoType = MuteInfo::class;
+  protected $muteInfoDataType = '';
   /**
    * @var string
    */
@@ -100,10 +178,16 @@ class Finding extends \Google\Collection
    * @var string
    */
   public $name;
+  protected $networksType = Network::class;
+  protected $networksDataType = 'array';
   /**
    * @var string
    */
   public $nextSteps;
+  protected $notebookType = Notebook::class;
+  protected $notebookDataType = '';
+  protected $orgPoliciesType = OrgPolicy::class;
+  protected $orgPoliciesDataType = 'array';
   /**
    * @var string
    */
@@ -112,14 +196,20 @@ class Finding extends \Google\Collection
    * @var string
    */
   public $parentDisplayName;
+  protected $policyViolationSummaryType = PolicyViolationSummary::class;
+  protected $policyViolationSummaryDataType = '';
   protected $processesType = Process::class;
   protected $processesDataType = 'array';
   /**
    * @var string
    */
   public $resourceName;
+  protected $secretType = Secret::class;
+  protected $secretDataType = '';
   protected $securityMarksType = SecurityMarks::class;
   protected $securityMarksDataType = '';
+  protected $securityPostureType = SecurityPosture::class;
+  protected $securityPostureDataType = '';
   /**
    * @var string
    */
@@ -132,11 +222,15 @@ class Finding extends \Google\Collection
    * @var string
    */
   public $state;
+  protected $toxicCombinationType = ToxicCombination::class;
+  protected $toxicCombinationDataType = '';
+  protected $vertexAiType = VertexAi::class;
+  protected $vertexAiDataType = '';
   protected $vulnerabilityType = Vulnerability::class;
   protected $vulnerabilityDataType = '';
 
   /**
-   * @param Access
+   * @param Access $access
    */
   public function setAccess(Access $access)
   {
@@ -150,7 +244,147 @@ class Finding extends \Google\Collection
     return $this->access;
   }
   /**
-   * @param string
+   * @param AffectedResources $affectedResources
+   */
+  public function setAffectedResources(AffectedResources $affectedResources)
+  {
+    $this->affectedResources = $affectedResources;
+  }
+  /**
+   * @return AffectedResources
+   */
+  public function getAffectedResources()
+  {
+    return $this->affectedResources;
+  }
+  /**
+   * @param Agent $agent
+   */
+  public function setAgent(Agent $agent)
+  {
+    $this->agent = $agent;
+  }
+  /**
+   * @return Agent
+   */
+  public function getAgent()
+  {
+    return $this->agent;
+  }
+  /**
+   * @param AgentAnomaly $agentAnomaly
+   */
+  public function setAgentAnomaly(AgentAnomaly $agentAnomaly)
+  {
+    $this->agentAnomaly = $agentAnomaly;
+  }
+  /**
+   * @return AgentAnomaly
+   */
+  public function getAgentAnomaly()
+  {
+    return $this->agentAnomaly;
+  }
+  /**
+   * @param AgentDataAccessEvent[] $agentDataAccessEvents
+   */
+  public function setAgentDataAccessEvents($agentDataAccessEvents)
+  {
+    $this->agentDataAccessEvents = $agentDataAccessEvents;
+  }
+  /**
+   * @return AgentDataAccessEvent[]
+   */
+  public function getAgentDataAccessEvents()
+  {
+    return $this->agentDataAccessEvents;
+  }
+  /**
+   * @param AgentSession[] $agentSessions
+   */
+  public function setAgentSessions($agentSessions)
+  {
+    $this->agentSessions = $agentSessions;
+  }
+  /**
+   * @return AgentSession[]
+   */
+  public function getAgentSessions()
+  {
+    return $this->agentSessions;
+  }
+  /**
+   * @param AiModel $aiModel
+   */
+  public function setAiModel(AiModel $aiModel)
+  {
+    $this->aiModel = $aiModel;
+  }
+  /**
+   * @return AiModel
+   */
+  public function getAiModel()
+  {
+    return $this->aiModel;
+  }
+  /**
+   * @param Application $application
+   */
+  public function setApplication(Application $application)
+  {
+    $this->application = $application;
+  }
+  /**
+   * @return Application
+   */
+  public function getApplication()
+  {
+    return $this->application;
+  }
+  /**
+   * @param ArtifactGuardPolicies $artifactGuardPolicies
+   */
+  public function setArtifactGuardPolicies(ArtifactGuardPolicies $artifactGuardPolicies)
+  {
+    $this->artifactGuardPolicies = $artifactGuardPolicies;
+  }
+  /**
+   * @return ArtifactGuardPolicies
+   */
+  public function getArtifactGuardPolicies()
+  {
+    return $this->artifactGuardPolicies;
+  }
+  /**
+   * @param AttackExposure $attackExposure
+   */
+  public function setAttackExposure(AttackExposure $attackExposure)
+  {
+    $this->attackExposure = $attackExposure;
+  }
+  /**
+   * @return AttackExposure
+   */
+  public function getAttackExposure()
+  {
+    return $this->attackExposure;
+  }
+  /**
+   * @param BackupDisasterRecovery $backupDisasterRecovery
+   */
+  public function setBackupDisasterRecovery(BackupDisasterRecovery $backupDisasterRecovery)
+  {
+    $this->backupDisasterRecovery = $backupDisasterRecovery;
+  }
+  /**
+   * @return BackupDisasterRecovery
+   */
+  public function getBackupDisasterRecovery()
+  {
+    return $this->backupDisasterRecovery;
+  }
+  /**
+   * @param string $canonicalName
    */
   public function setCanonicalName($canonicalName)
   {
@@ -164,7 +398,7 @@ class Finding extends \Google\Collection
     return $this->canonicalName;
   }
   /**
-   * @param string
+   * @param string $category
    */
   public function setCategory($category)
   {
@@ -178,7 +412,35 @@ class Finding extends \Google\Collection
     return $this->category;
   }
   /**
-   * @param CloudDlpDataProfile
+   * @param Chokepoint $chokepoint
+   */
+  public function setChokepoint(Chokepoint $chokepoint)
+  {
+    $this->chokepoint = $chokepoint;
+  }
+  /**
+   * @return Chokepoint
+   */
+  public function getChokepoint()
+  {
+    return $this->chokepoint;
+  }
+  /**
+   * @param CloudArmor $cloudArmor
+   */
+  public function setCloudArmor(CloudArmor $cloudArmor)
+  {
+    $this->cloudArmor = $cloudArmor;
+  }
+  /**
+   * @return CloudArmor
+   */
+  public function getCloudArmor()
+  {
+    return $this->cloudArmor;
+  }
+  /**
+   * @param CloudDlpDataProfile $cloudDlpDataProfile
    */
   public function setCloudDlpDataProfile(CloudDlpDataProfile $cloudDlpDataProfile)
   {
@@ -192,7 +454,7 @@ class Finding extends \Google\Collection
     return $this->cloudDlpDataProfile;
   }
   /**
-   * @param CloudDlpInspection
+   * @param CloudDlpInspection $cloudDlpInspection
    */
   public function setCloudDlpInspection(CloudDlpInspection $cloudDlpInspection)
   {
@@ -206,7 +468,35 @@ class Finding extends \Google\Collection
     return $this->cloudDlpInspection;
   }
   /**
-   * @param Compliance[]
+   * @param CloudRun $cloudRun
+   */
+  public function setCloudRun(CloudRun $cloudRun)
+  {
+    $this->cloudRun = $cloudRun;
+  }
+  /**
+   * @return CloudRun
+   */
+  public function getCloudRun()
+  {
+    return $this->cloudRun;
+  }
+  /**
+   * @param ComplianceDetails $complianceDetails
+   */
+  public function setComplianceDetails(ComplianceDetails $complianceDetails)
+  {
+    $this->complianceDetails = $complianceDetails;
+  }
+  /**
+   * @return ComplianceDetails
+   */
+  public function getComplianceDetails()
+  {
+    return $this->complianceDetails;
+  }
+  /**
+   * @param Compliance[] $compliances
    */
   public function setCompliances($compliances)
   {
@@ -220,7 +510,7 @@ class Finding extends \Google\Collection
     return $this->compliances;
   }
   /**
-   * @param Connection[]
+   * @param Connection[] $connections
    */
   public function setConnections($connections)
   {
@@ -234,7 +524,7 @@ class Finding extends \Google\Collection
     return $this->connections;
   }
   /**
-   * @param ContactDetails[]
+   * @param ContactDetails[] $contacts
    */
   public function setContacts($contacts)
   {
@@ -248,7 +538,7 @@ class Finding extends \Google\Collection
     return $this->contacts;
   }
   /**
-   * @param Container[]
+   * @param Container[] $containers
    */
   public function setContainers($containers)
   {
@@ -262,7 +552,7 @@ class Finding extends \Google\Collection
     return $this->containers;
   }
   /**
-   * @param string
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -276,7 +566,49 @@ class Finding extends \Google\Collection
     return $this->createTime;
   }
   /**
-   * @param Database
+   * @param DataAccessEvent[] $dataAccessEvents
+   */
+  public function setDataAccessEvents($dataAccessEvents)
+  {
+    $this->dataAccessEvents = $dataAccessEvents;
+  }
+  /**
+   * @return DataAccessEvent[]
+   */
+  public function getDataAccessEvents()
+  {
+    return $this->dataAccessEvents;
+  }
+  /**
+   * @param DataFlowEvent[] $dataFlowEvents
+   */
+  public function setDataFlowEvents($dataFlowEvents)
+  {
+    $this->dataFlowEvents = $dataFlowEvents;
+  }
+  /**
+   * @return DataFlowEvent[]
+   */
+  public function getDataFlowEvents()
+  {
+    return $this->dataFlowEvents;
+  }
+  /**
+   * @param DataRetentionDeletionEvent[] $dataRetentionDeletionEvents
+   */
+  public function setDataRetentionDeletionEvents($dataRetentionDeletionEvents)
+  {
+    $this->dataRetentionDeletionEvents = $dataRetentionDeletionEvents;
+  }
+  /**
+   * @return DataRetentionDeletionEvent[]
+   */
+  public function getDataRetentionDeletionEvents()
+  {
+    return $this->dataRetentionDeletionEvents;
+  }
+  /**
+   * @param Database $database
    */
   public function setDatabase(Database $database)
   {
@@ -290,7 +622,7 @@ class Finding extends \Google\Collection
     return $this->database;
   }
   /**
-   * @param string
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -304,7 +636,35 @@ class Finding extends \Google\Collection
     return $this->description;
   }
   /**
-   * @param string
+   * @param DiscoveredWorkload $discoveredWorkload
+   */
+  public function setDiscoveredWorkload(DiscoveredWorkload $discoveredWorkload)
+  {
+    $this->discoveredWorkload = $discoveredWorkload;
+  }
+  /**
+   * @return DiscoveredWorkload
+   */
+  public function getDiscoveredWorkload()
+  {
+    return $this->discoveredWorkload;
+  }
+  /**
+   * @param Disk $disk
+   */
+  public function setDisk(Disk $disk)
+  {
+    $this->disk = $disk;
+  }
+  /**
+   * @return Disk
+   */
+  public function getDisk()
+  {
+    return $this->disk;
+  }
+  /**
+   * @param string $eventTime
    */
   public function setEventTime($eventTime)
   {
@@ -318,7 +678,7 @@ class Finding extends \Google\Collection
     return $this->eventTime;
   }
   /**
-   * @param Exfiltration
+   * @param Exfiltration $exfiltration
    */
   public function setExfiltration(Exfiltration $exfiltration)
   {
@@ -332,7 +692,21 @@ class Finding extends \Google\Collection
     return $this->exfiltration;
   }
   /**
-   * @param GoogleCloudSecuritycenterV1ExternalSystem[]
+   * @param ExternalExposure $externalExposure
+   */
+  public function setExternalExposure(ExternalExposure $externalExposure)
+  {
+    $this->externalExposure = $externalExposure;
+  }
+  /**
+   * @return ExternalExposure
+   */
+  public function getExternalExposure()
+  {
+    return $this->externalExposure;
+  }
+  /**
+   * @param GoogleCloudSecuritycenterV1ExternalSystem[] $externalSystems
    */
   public function setExternalSystems($externalSystems)
   {
@@ -346,7 +720,7 @@ class Finding extends \Google\Collection
     return $this->externalSystems;
   }
   /**
-   * @param string
+   * @param string $externalUri
    */
   public function setExternalUri($externalUri)
   {
@@ -360,7 +734,7 @@ class Finding extends \Google\Collection
     return $this->externalUri;
   }
   /**
-   * @param SecuritycenterFile[]
+   * @param SecuritycenterFile[] $files
    */
   public function setFiles($files)
   {
@@ -374,21 +748,35 @@ class Finding extends \Google\Collection
     return $this->files;
   }
   /**
-   * @param string
+   * @param self::FINDING_CLASS_* $findingClass
    */
   public function setFindingClass($findingClass)
   {
     $this->findingClass = $findingClass;
   }
   /**
-   * @return string
+   * @return self::FINDING_CLASS_*
    */
   public function getFindingClass()
   {
     return $this->findingClass;
   }
   /**
-   * @param IamBinding[]
+   * @param GroupMembership[] $groupMemberships
+   */
+  public function setGroupMemberships($groupMemberships)
+  {
+    $this->groupMemberships = $groupMemberships;
+  }
+  /**
+   * @return GroupMembership[]
+   */
+  public function getGroupMemberships()
+  {
+    return $this->groupMemberships;
+  }
+  /**
+   * @param IamBinding[] $iamBindings
    */
   public function setIamBindings($iamBindings)
   {
@@ -402,7 +790,21 @@ class Finding extends \Google\Collection
     return $this->iamBindings;
   }
   /**
-   * @param Indicator
+   * @param GoogleCloudSecuritycenterV1IamDetails $iamDetails
+   */
+  public function setIamDetails(GoogleCloudSecuritycenterV1IamDetails $iamDetails)
+  {
+    $this->iamDetails = $iamDetails;
+  }
+  /**
+   * @return GoogleCloudSecuritycenterV1IamDetails
+   */
+  public function getIamDetails()
+  {
+    return $this->iamDetails;
+  }
+  /**
+   * @param Indicator $indicator
    */
   public function setIndicator(Indicator $indicator)
   {
@@ -416,7 +818,35 @@ class Finding extends \Google\Collection
     return $this->indicator;
   }
   /**
-   * @param KernelRootkit
+   * @param IpRules $ipRules
+   */
+  public function setIpRules(IpRules $ipRules)
+  {
+    $this->ipRules = $ipRules;
+  }
+  /**
+   * @return IpRules
+   */
+  public function getIpRules()
+  {
+    return $this->ipRules;
+  }
+  /**
+   * @param Job $job
+   */
+  public function setJob(Job $job)
+  {
+    $this->job = $job;
+  }
+  /**
+   * @return Job
+   */
+  public function getJob()
+  {
+    return $this->job;
+  }
+  /**
+   * @param KernelRootkit $kernelRootkit
    */
   public function setKernelRootkit(KernelRootkit $kernelRootkit)
   {
@@ -430,7 +860,7 @@ class Finding extends \Google\Collection
     return $this->kernelRootkit;
   }
   /**
-   * @param Kubernetes
+   * @param Kubernetes $kubernetes
    */
   public function setKubernetes(Kubernetes $kubernetes)
   {
@@ -444,7 +874,35 @@ class Finding extends \Google\Collection
     return $this->kubernetes;
   }
   /**
-   * @param MitreAttack
+   * @param LoadBalancer[] $loadBalancers
+   */
+  public function setLoadBalancers($loadBalancers)
+  {
+    $this->loadBalancers = $loadBalancers;
+  }
+  /**
+   * @return LoadBalancer[]
+   */
+  public function getLoadBalancers()
+  {
+    return $this->loadBalancers;
+  }
+  /**
+   * @param LogEntry[] $logEntries
+   */
+  public function setLogEntries($logEntries)
+  {
+    $this->logEntries = $logEntries;
+  }
+  /**
+   * @return LogEntry[]
+   */
+  public function getLogEntries()
+  {
+    return $this->logEntries;
+  }
+  /**
+   * @param MitreAttack $mitreAttack
    */
   public function setMitreAttack(MitreAttack $mitreAttack)
   {
@@ -458,7 +916,7 @@ class Finding extends \Google\Collection
     return $this->mitreAttack;
   }
   /**
-   * @param string
+   * @param string $moduleName
    */
   public function setModuleName($moduleName)
   {
@@ -472,21 +930,35 @@ class Finding extends \Google\Collection
     return $this->moduleName;
   }
   /**
-   * @param string
+   * @param self::MUTE_* $mute
    */
   public function setMute($mute)
   {
     $this->mute = $mute;
   }
   /**
-   * @return string
+   * @return self::MUTE_*
    */
   public function getMute()
   {
     return $this->mute;
   }
   /**
-   * @param string
+   * @param MuteInfo $muteInfo
+   */
+  public function setMuteInfo(MuteInfo $muteInfo)
+  {
+    $this->muteInfo = $muteInfo;
+  }
+  /**
+   * @return MuteInfo
+   */
+  public function getMuteInfo()
+  {
+    return $this->muteInfo;
+  }
+  /**
+   * @param string $muteInitiator
    */
   public function setMuteInitiator($muteInitiator)
   {
@@ -500,7 +972,7 @@ class Finding extends \Google\Collection
     return $this->muteInitiator;
   }
   /**
-   * @param string
+   * @param string $muteUpdateTime
    */
   public function setMuteUpdateTime($muteUpdateTime)
   {
@@ -514,7 +986,7 @@ class Finding extends \Google\Collection
     return $this->muteUpdateTime;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -528,7 +1000,21 @@ class Finding extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param string
+   * @param Network[] $networks
+   */
+  public function setNetworks($networks)
+  {
+    $this->networks = $networks;
+  }
+  /**
+   * @return Network[]
+   */
+  public function getNetworks()
+  {
+    return $this->networks;
+  }
+  /**
+   * @param string $nextSteps
    */
   public function setNextSteps($nextSteps)
   {
@@ -542,7 +1028,35 @@ class Finding extends \Google\Collection
     return $this->nextSteps;
   }
   /**
-   * @param string
+   * @param Notebook $notebook
+   */
+  public function setNotebook(Notebook $notebook)
+  {
+    $this->notebook = $notebook;
+  }
+  /**
+   * @return Notebook
+   */
+  public function getNotebook()
+  {
+    return $this->notebook;
+  }
+  /**
+   * @param OrgPolicy[] $orgPolicies
+   */
+  public function setOrgPolicies($orgPolicies)
+  {
+    $this->orgPolicies = $orgPolicies;
+  }
+  /**
+   * @return OrgPolicy[]
+   */
+  public function getOrgPolicies()
+  {
+    return $this->orgPolicies;
+  }
+  /**
+   * @param string $parent
    */
   public function setParent($parent)
   {
@@ -556,7 +1070,7 @@ class Finding extends \Google\Collection
     return $this->parent;
   }
   /**
-   * @param string
+   * @param string $parentDisplayName
    */
   public function setParentDisplayName($parentDisplayName)
   {
@@ -570,7 +1084,21 @@ class Finding extends \Google\Collection
     return $this->parentDisplayName;
   }
   /**
-   * @param Process[]
+   * @param PolicyViolationSummary $policyViolationSummary
+   */
+  public function setPolicyViolationSummary(PolicyViolationSummary $policyViolationSummary)
+  {
+    $this->policyViolationSummary = $policyViolationSummary;
+  }
+  /**
+   * @return PolicyViolationSummary
+   */
+  public function getPolicyViolationSummary()
+  {
+    return $this->policyViolationSummary;
+  }
+  /**
+   * @param Process[] $processes
    */
   public function setProcesses($processes)
   {
@@ -584,7 +1112,7 @@ class Finding extends \Google\Collection
     return $this->processes;
   }
   /**
-   * @param string
+   * @param string $resourceName
    */
   public function setResourceName($resourceName)
   {
@@ -598,7 +1126,21 @@ class Finding extends \Google\Collection
     return $this->resourceName;
   }
   /**
-   * @param SecurityMarks
+   * @param Secret $secret
+   */
+  public function setSecret(Secret $secret)
+  {
+    $this->secret = $secret;
+  }
+  /**
+   * @return Secret
+   */
+  public function getSecret()
+  {
+    return $this->secret;
+  }
+  /**
+   * @param SecurityMarks $securityMarks
    */
   public function setSecurityMarks(SecurityMarks $securityMarks)
   {
@@ -612,21 +1154,35 @@ class Finding extends \Google\Collection
     return $this->securityMarks;
   }
   /**
-   * @param string
+   * @param SecurityPosture $securityPosture
+   */
+  public function setSecurityPosture(SecurityPosture $securityPosture)
+  {
+    $this->securityPosture = $securityPosture;
+  }
+  /**
+   * @return SecurityPosture
+   */
+  public function getSecurityPosture()
+  {
+    return $this->securityPosture;
+  }
+  /**
+   * @param self::SEVERITY_* $severity
    */
   public function setSeverity($severity)
   {
     $this->severity = $severity;
   }
   /**
-   * @return string
+   * @return self::SEVERITY_*
    */
   public function getSeverity()
   {
     return $this->severity;
   }
   /**
-   * @param array[]
+   * @param array[] $sourceProperties
    */
   public function setSourceProperties($sourceProperties)
   {
@@ -640,21 +1196,49 @@ class Finding extends \Google\Collection
     return $this->sourceProperties;
   }
   /**
-   * @param string
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {
     return $this->state;
   }
   /**
-   * @param Vulnerability
+   * @param ToxicCombination $toxicCombination
+   */
+  public function setToxicCombination(ToxicCombination $toxicCombination)
+  {
+    $this->toxicCombination = $toxicCombination;
+  }
+  /**
+   * @return ToxicCombination
+   */
+  public function getToxicCombination()
+  {
+    return $this->toxicCombination;
+  }
+  /**
+   * @param VertexAi $vertexAi
+   */
+  public function setVertexAi(VertexAi $vertexAi)
+  {
+    $this->vertexAi = $vertexAi;
+  }
+  /**
+   * @return VertexAi
+   */
+  public function getVertexAi()
+  {
+    return $this->vertexAi;
+  }
+  /**
+   * @param Vulnerability $vulnerability
    */
   public function setVulnerability(Vulnerability $vulnerability)
   {

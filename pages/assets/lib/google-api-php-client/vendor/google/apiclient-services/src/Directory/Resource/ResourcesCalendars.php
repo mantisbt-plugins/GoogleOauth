@@ -39,6 +39,7 @@ class ResourcesCalendars extends \Google\Service\Resource
    * @param string $calendarResourceId The unique ID of the calendar resource to
    * delete.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($customer, $calendarResourceId, $optParams = [])
   {
@@ -56,6 +57,7 @@ class ResourcesCalendars extends \Google\Service\Resource
    * retrieve.
    * @param array $optParams Optional parameters.
    * @return CalendarResource
+   * @throws \Google\Service\Exception
    */
   public function get($customer, $calendarResourceId, $optParams = [])
   {
@@ -72,6 +74,7 @@ class ResourcesCalendars extends \Google\Service\Resource
    * @param CalendarResource $postBody
    * @param array $optParams Optional parameters.
    * @return CalendarResource
+   * @throws \Google\Service\Exception
    */
   public function insert($customer, CalendarResource $postBody, $optParams = [])
   {
@@ -97,17 +100,18 @@ class ResourcesCalendars extends \Google\Service\Resource
    * first by `buildingId` in ascending order then by `capacity` in descending
    * order.
    * @opt_param string pageToken Token to specify the next page in the list.
-   * @opt_param string query String query used to filter results. Should be of the
-   * form "field operator value" where field can be any of supported fields and
-   * operators can be any of supported operations. Operators include '=' for exact
-   * match, '!=' for mismatch and ':' for prefix match or HAS match where
-   * applicable. For prefix match, the value should always be followed by a *.
-   * Logical operators NOT and AND are supported (in this order of precedence).
-   * Supported fields include `generatedResourceName`, `name`, `buildingId`,
-   * `floor_name`, `capacity`, `featureInstances.feature.name`, `resourceEmail`,
-   * `resourceCategory`. For example `buildingId=US-NYC-9TH AND
-   * featureInstances.feature.name:Phone`.
+   * @opt_param string query String query used to filter results. Contains one or
+   * more search clauses, each with a field, operator, and value. A field can be
+   * any of supported fields and operators can be any of supported operations.
+   * Operators include '=' for exact match, '!=' for mismatch and ':' for prefix
+   * match or HAS match where applicable. For prefix match, the value should
+   * always be followed by a *. Logical operators NOT and AND are supported (in
+   * this order of precedence). Supported fields include `generatedResourceName`,
+   * `name`, `buildingId`, `floor_name`, `capacity`,
+   * `featureInstances.feature.name`, `resourceEmail`, `resourceCategory`. For
+   * example `buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone`.
    * @return CalendarResources
+   * @throws \Google\Service\Exception
    */
   public function listResourcesCalendars($customer, $optParams = [])
   {
@@ -126,6 +130,7 @@ class ResourcesCalendars extends \Google\Service\Resource
    * @param CalendarResource $postBody
    * @param array $optParams Optional parameters.
    * @return CalendarResource
+   * @throws \Google\Service\Exception
    */
   public function patch($customer, $calendarResourceId, CalendarResource $postBody, $optParams = [])
   {
@@ -146,6 +151,7 @@ class ResourcesCalendars extends \Google\Service\Resource
    * @param CalendarResource $postBody
    * @param array $optParams Optional parameters.
    * @return CalendarResource
+   * @throws \Google\Service\Exception
    */
   public function update($customer, $calendarResourceId, CalendarResource $postBody, $optParams = [])
   {

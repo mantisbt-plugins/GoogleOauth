@@ -30,14 +30,12 @@ use Google\Service\SecurityCommandCenter\OrganizationSettings;
 class Organizations extends \Google\Service\Resource
 {
   /**
-   * Gets the settings for an organization.
    * (organizations.getOrganizationSettings)
    *
-   * @param string $name Required. Name of the organization to get organization
-   * settings for. Its format is
-   * "organizations/[organization_id]/organizationSettings".
+   * @param string $name
    * @param array $optParams Optional parameters.
    * @return OrganizationSettings
+   * @throws \Google\Service\Exception
    */
   public function getOrganizationSettings($name, $optParams = [])
   {
@@ -46,18 +44,15 @@ class Organizations extends \Google\Service\Resource
     return $this->call('getOrganizationSettings', [$params], OrganizationSettings::class);
   }
   /**
-   * Updates an organization's settings.
    * (organizations.updateOrganizationSettings)
    *
-   * @param string $name The relative resource name of the settings. See:
-   * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-   * Example: "organizations/{organization_id}/organizationSettings".
+   * @param string $name
    * @param OrganizationSettings $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string updateMask The FieldMask to use when updating the settings
-   * resource. If empty all mutable fields will be updated.
+   * @opt_param string updateMask
    * @return OrganizationSettings
+   * @throws \Google\Service\Exception
    */
   public function updateOrganizationSettings($name, OrganizationSettings $postBody, $optParams = [])
   {

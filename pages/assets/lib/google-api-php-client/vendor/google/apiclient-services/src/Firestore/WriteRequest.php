@@ -21,14 +21,30 @@ class WriteRequest extends \Google\Collection
 {
   protected $collection_key = 'writes';
   /**
+   * Labels associated with this write request.
+   *
    * @var string[]
    */
   public $labels;
+  protected $requestOptionsType = RequestOptions::class;
+  protected $requestOptionsDataType = '';
   /**
+   * The ID of the write stream to resume. This may only be set in the first
+   * message. When left empty, a new write stream will be created.
+   *
    * @var string
    */
   public $streamId;
   /**
+   * A stream token that was previously sent by the server. The client should
+   * set this field to the token from the most recent WriteResponse it has
+   * received. This acknowledges that the client has received responses up to
+   * this token. After sending this token, earlier tokens may not be used
+   * anymore. The server may close the stream if there are too many
+   * unacknowledged responses. Leave this field unset when creating a new
+   * stream. To resume a stream at a specific point, set this field and the
+   * `stream_id` field. Leave this field unset when creating a new stream.
+   *
    * @var string
    */
   public $streamToken;
@@ -36,7 +52,9 @@ class WriteRequest extends \Google\Collection
   protected $writesDataType = 'array';
 
   /**
-   * @param string[]
+   * Labels associated with this write request.
+   *
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -50,7 +68,26 @@ class WriteRequest extends \Google\Collection
     return $this->labels;
   }
   /**
-   * @param string
+   * Optional. The request options for the request.
+   *
+   * @param RequestOptions $requestOptions
+   */
+  public function setRequestOptions(RequestOptions $requestOptions)
+  {
+    $this->requestOptions = $requestOptions;
+  }
+  /**
+   * @return RequestOptions
+   */
+  public function getRequestOptions()
+  {
+    return $this->requestOptions;
+  }
+  /**
+   * The ID of the write stream to resume. This may only be set in the first
+   * message. When left empty, a new write stream will be created.
+   *
+   * @param string $streamId
    */
   public function setStreamId($streamId)
   {
@@ -64,7 +101,16 @@ class WriteRequest extends \Google\Collection
     return $this->streamId;
   }
   /**
-   * @param string
+   * A stream token that was previously sent by the server. The client should
+   * set this field to the token from the most recent WriteResponse it has
+   * received. This acknowledges that the client has received responses up to
+   * this token. After sending this token, earlier tokens may not be used
+   * anymore. The server may close the stream if there are too many
+   * unacknowledged responses. Leave this field unset when creating a new
+   * stream. To resume a stream at a specific point, set this field and the
+   * `stream_id` field. Leave this field unset when creating a new stream.
+   *
+   * @param string $streamToken
    */
   public function setStreamToken($streamToken)
   {
@@ -78,7 +124,11 @@ class WriteRequest extends \Google\Collection
     return $this->streamToken;
   }
   /**
-   * @param Write[]
+   * The writes to apply. Always executed atomically and in order. This must be
+   * empty on the first request. This may be empty on the last request. This
+   * must not be empty on all other requests.
+   *
+   * @param Write[] $writes
    */
   public function setWrites($writes)
   {

@@ -40,6 +40,7 @@ class PropertiesCustomDimensions extends \Google\Service\Resource
    * @param GoogleAnalyticsAdminV1betaArchiveCustomDimensionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function archive($name, GoogleAnalyticsAdminV1betaArchiveCustomDimensionRequest $postBody, $optParams = [])
   {
@@ -48,12 +49,16 @@ class PropertiesCustomDimensions extends \Google\Service\Resource
     return $this->call('archive', [$params], GoogleProtobufEmpty::class);
   }
   /**
-   * Creates a CustomDimension. (customDimensions.create)
+   * Creates a CustomDimension. Warning: It's not permissible to use this method
+   * to collect data on individual users. In particular, sending user IDs in
+   * custom dimensions violates the [Google Analytics Terms of
+   * Service](https://www.google.com/analytics/terms/). (customDimensions.create)
    *
    * @param string $parent Required. Example format: properties/1234
    * @param GoogleAnalyticsAdminV1betaCustomDimension $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaCustomDimension
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleAnalyticsAdminV1betaCustomDimension $postBody, $optParams = [])
   {
@@ -68,6 +73,7 @@ class PropertiesCustomDimensions extends \Google\Service\Resource
    * format: properties/1234/customDimensions/5678
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaCustomDimension
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -82,14 +88,15 @@ class PropertiesCustomDimensions extends \Google\Service\Resource
    * @param string $parent Required. Example format: properties/1234
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of resources to return. If
-   * unspecified, at most 50 resources will be returned. The maximum value is 200
-   * (higher values will be coerced to the maximum).
-   * @opt_param string pageToken A page token, received from a previous
+   * @opt_param int pageSize Optional. The maximum number of resources to return.
+   * If unspecified, at most 50 resources will be returned. The maximum value is
+   * 200 (higher values will be coerced to the maximum).
+   * @opt_param string pageToken Optional. A page token, received from a previous
    * `ListCustomDimensions` call. Provide this to retrieve the subsequent page.
    * When paginating, all other parameters provided to `ListCustomDimensions` must
    * match the call that provided the page token.
    * @return GoogleAnalyticsAdminV1betaListCustomDimensionsResponse
+   * @throws \Google\Service\Exception
    */
   public function listPropertiesCustomDimensions($parent, $optParams = [])
   {
@@ -100,7 +107,7 @@ class PropertiesCustomDimensions extends \Google\Service\Resource
   /**
    * Updates a CustomDimension on a property. (customDimensions.patch)
    *
-   * @param string $name Output only. Resource name for this CustomDimension
+   * @param string $name Identifier. Resource name for this CustomDimension
    * resource. Format: properties/{property}/customDimensions/{customDimension}
    * @param GoogleAnalyticsAdminV1betaCustomDimension $postBody
    * @param array $optParams Optional parameters.
@@ -109,6 +116,7 @@ class PropertiesCustomDimensions extends \Google\Service\Resource
    * Omitted fields will not be updated. To replace the entire entity, use one
    * path with the string "*" to match all fields.
    * @return GoogleAnalyticsAdminV1betaCustomDimension
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleAnalyticsAdminV1betaCustomDimension $postBody, $optParams = [])
   {

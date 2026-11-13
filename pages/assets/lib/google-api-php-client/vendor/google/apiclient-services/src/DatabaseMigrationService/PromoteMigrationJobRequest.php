@@ -19,6 +19,51 @@ namespace Google\Service\DatabaseMigrationService;
 
 class PromoteMigrationJobRequest extends \Google\Model
 {
+  /**
+   * Optional. If true, the promote operation will perform a failback promote
+   * from destination back to source (only supported when the migration job is
+   * in FAILBACK phase).
+   *
+   * @var bool
+   */
+  public $failback;
+  protected $objectsFilterType = MigrationJobObjectsConfig::class;
+  protected $objectsFilterDataType = '';
+
+  /**
+   * Optional. If true, the promote operation will perform a failback promote
+   * from destination back to source (only supported when the migration job is
+   * in FAILBACK phase).
+   *
+   * @param bool $failback
+   */
+  public function setFailback($failback)
+  {
+    $this->failback = $failback;
+  }
+  /**
+   * @return bool
+   */
+  public function getFailback()
+  {
+    return $this->failback;
+  }
+  /**
+   * Optional. The object filter to apply to the migration job.
+   *
+   * @param MigrationJobObjectsConfig $objectsFilter
+   */
+  public function setObjectsFilter(MigrationJobObjectsConfig $objectsFilter)
+  {
+    $this->objectsFilter = $objectsFilter;
+  }
+  /**
+   * @return MigrationJobObjectsConfig
+   */
+  public function getObjectsFilter()
+  {
+    return $this->objectsFilter;
+  }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

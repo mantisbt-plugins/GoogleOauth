@@ -36,7 +36,7 @@ class GroupAssetsResponse extends \Google\Collection
   public $totalSize;
 
   /**
-   * @param GroupResult[]
+   * @param GroupResult[] $groupByResults
    */
   public function setGroupByResults($groupByResults)
   {
@@ -50,7 +50,7 @@ class GroupAssetsResponse extends \Google\Collection
     return $this->groupByResults;
   }
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -64,7 +64,7 @@ class GroupAssetsResponse extends \Google\Collection
     return $this->nextPageToken;
   }
   /**
-   * @param string
+   * @param string $readTime
    */
   public function setReadTime($readTime)
   {
@@ -78,7 +78,7 @@ class GroupAssetsResponse extends \Google\Collection
     return $this->readTime;
   }
   /**
-   * @param int
+   * @param int $totalSize
    */
   public function setTotalSize($totalSize)
   {

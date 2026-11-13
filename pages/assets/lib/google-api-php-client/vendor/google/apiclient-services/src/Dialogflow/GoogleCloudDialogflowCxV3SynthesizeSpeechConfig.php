@@ -31,7 +31,7 @@ class GoogleCloudDialogflowCxV3SynthesizeSpeechConfig extends \Google\Collection
   public $volumeGainDb;
 
   /**
-   * @param string[]
+   * @param string[] $effectsProfileId
    */
   public function setEffectsProfileId($effectsProfileId)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowCxV3SynthesizeSpeechConfig extends \Google\Collection
     return $this->speakingRate;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3VoiceSelectionParams
+   * @param GoogleCloudDialogflowCxV3VoiceSelectionParams $voice
    */
   public function setVoice(GoogleCloudDialogflowCxV3VoiceSelectionParams $voice)
   {

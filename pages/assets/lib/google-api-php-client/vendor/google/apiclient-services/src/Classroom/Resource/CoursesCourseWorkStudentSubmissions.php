@@ -48,6 +48,7 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * @param string $id Identifier of the student submission.
    * @param array $optParams Optional parameters.
    * @return StudentSubmission
+   * @throws \Google\Service\Exception
    */
   public function get($courseId, $courseWorkId, $id, $optParams = [])
   {
@@ -57,14 +58,14 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
   }
   /**
    * Returns a list of student submissions that the requester is permitted to
-   * view, factoring in the OAuth scopes of the request. `-` may be specified as
-   * the `course_work_id` to include student submissions for multiple course work
-   * items. Course students may only view their own work. Course teachers and
-   * domain administrators may view all student submissions. This method returns
-   * the following error codes: * `PERMISSION_DENIED` if the requesting user is
-   * not permitted to access the requested course or course work, or for access
-   * errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if
-   * the requested course does not exist.
+   * view, factoring in the OAuth scopes of the request. A hyphen (`-`) may be
+   * specified as the `course_work_id` to include student submissions for multiple
+   * course work items. Course students may only view their own work. Course
+   * teachers and domain administrators may view all student submissions. This
+   * method returns the following error codes: * `PERMISSION_DENIED` if the
+   * requesting user is not permitted to access the requested course or course
+   * work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed.
+   * * `NOT_FOUND` if the requested course does not exist.
    * (studentSubmissions.listCoursesCourseWorkStudentSubmissions)
    *
    * @param string $courseId Identifier of the course. This identifier can be
@@ -92,6 +93,7 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * email address of the user * the string literal `"me"`, indicating the
    * requesting user
    * @return ListStudentSubmissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function listCoursesCourseWorkStudentSubmissions($courseId, $courseWorkId, $optParams = [])
   {
@@ -104,13 +106,14 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * student submissions belonging to course work objects with a `workType` of
    * `ASSIGNMENT`. This request must be made by the Developer Console project of
    * the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used
-   * to create the corresponding course work item. This method returns the
-   * following error codes: * `PERMISSION_DENIED` if the requesting user is not
-   * permitted to access the requested course or course work, if the user is not
-   * permitted to modify attachments on the requested student submission, or for
-   * access errors. * `INVALID_ARGUMENT` if the request is malformed. *
-   * `NOT_FOUND` if the requested course, course work, or student submission does
-   * not exist. (studentSubmissions.modifyAttachments)
+   * to create the corresponding course work item or an add-on attachment on the
+   * corresponding course work item. This method returns the following error
+   * codes: * `PERMISSION_DENIED` if the requesting user is not permitted to
+   * access the requested course or course work, if the user is not permitted to
+   * modify attachments on the requested student submission, or for access errors.
+   * * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the
+   * requested course, course work, or student submission does not exist.
+   * (studentSubmissions.modifyAttachments)
    *
    * @param string $courseId Identifier of the course. This identifier can be
    * either the Classroom-assigned identifier or an alias.
@@ -119,6 +122,7 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * @param ModifyAttachmentsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return StudentSubmission
+   * @throws \Google\Service\Exception
    */
   public function modifyAttachments($courseId, $courseWorkId, $id, ModifyAttachmentsRequest $postBody, $optParams = [])
   {
@@ -132,13 +136,15 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * updated and who may change them. This request must be made by the Developer
    * Console project of the [OAuth client
    * ID](https://support.google.com/cloud/answer/6158849) used to create the
-   * corresponding course work item. This method returns the following error
-   * codes: * `PERMISSION_DENIED` if the requesting developer project did not
-   * create the corresponding course work, if the user is not permitted to make
-   * the requested modification to the student submission, or for access errors. *
-   * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the
-   * requested course, course work, or student submission does not exist.
-   * (studentSubmissions.patch)
+   * corresponding course work item or an add-on attachment with Grade Sync
+   * enabled on the corresponding course work item. This method returns the
+   * following error codes: * `PERMISSION_DENIED` if the requesting developer
+   * project did not create the corresponding course work or an add-on attachment
+   * on the corresponding course work with Grade Sync enabled, if the user is not
+   * permitted to make the requested modification to the student submission, or
+   * for access errors. * `INVALID_ARGUMENT` if the request is malformed. *
+   * `NOT_FOUND` if the requested course, course work, or student submission does
+   * not exist. (studentSubmissions.patch)
    *
    * @param string $courseId Identifier of the course. This identifier can be
    * either the Classroom-assigned identifier or an alias.
@@ -152,6 +158,7 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * fails if invalid fields are specified. The following fields may be specified
    * by teachers: * `draft_grade` * `assigned_grade`
    * @return StudentSubmission
+   * @throws \Google\Service\Exception
    */
   public function patch($courseId, $courseWorkId, $id, StudentSubmission $postBody, $optParams = [])
   {
@@ -167,13 +174,14 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * submission that has been turned in. This request must be made by the
    * Developer Console project of the [OAuth client
    * ID](https://support.google.com/cloud/answer/6158849) used to create the
-   * corresponding course work item. This method returns the following error
-   * codes: * `PERMISSION_DENIED` if the requesting user is not permitted to
-   * access the requested course or course work, unsubmit the requested student
-   * submission, or for access errors. * `FAILED_PRECONDITION` if the student
-   * submission has not been turned in. * `INVALID_ARGUMENT` if the request is
-   * malformed. * `NOT_FOUND` if the requested course, course work, or student
-   * submission does not exist. (studentSubmissions.reclaim)
+   * corresponding course work item or an add-on attachment on the corresponding
+   * course work item. This method returns the following error codes: *
+   * `PERMISSION_DENIED` if the requesting user is not permitted to access the
+   * requested course or course work, unsubmit the requested student submission,
+   * or for access errors. * `FAILED_PRECONDITION` if the student submission has
+   * not been turned in. * `INVALID_ARGUMENT` if the request is malformed. *
+   * `NOT_FOUND` if the requested course, course work, or student submission does
+   * not exist. (studentSubmissions.reclaim)
    *
    * @param string $courseId Identifier of the course. This identifier can be
    * either the Classroom-assigned identifier or an alias.
@@ -182,6 +190,7 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * @param ReclaimStudentSubmissionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return ClassroomEmpty
+   * @throws \Google\Service\Exception
    */
   public function reclaim($courseId, $courseWorkId, $id, ReclaimStudentSubmissionRequest $postBody, $optParams = [])
   {
@@ -197,8 +206,9 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * of the course that contains the requested student submission may call this
    * method. This request must be made by the Developer Console project of the
    * [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to
-   * create the corresponding course work item. This method returns the following
-   * error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to
+   * create the corresponding course work item or an add-on attachment on the
+   * corresponding course work item. This method returns the following error
+   * codes: * `PERMISSION_DENIED` if the requesting user is not permitted to
    * access the requested course or course work, return the requested student
    * submission, or for access errors. * `INVALID_ARGUMENT` if the request is
    * malformed. * `NOT_FOUND` if the requested course, course work, or student
@@ -212,6 +222,7 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * @param ReturnStudentSubmissionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return ClassroomEmpty
+   * @throws \Google\Service\Exception
    */
   public function returnCoursesCourseWorkStudentSubmissions($courseId, $courseWorkId, $id, ReturnStudentSubmissionRequest $postBody, $optParams = [])
   {
@@ -226,12 +237,13 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * specified student submission. This request must be made by the Developer
    * Console project of the [OAuth client
    * ID](https://support.google.com/cloud/answer/6158849) used to create the
-   * corresponding course work item. This method returns the following error
-   * codes: * `PERMISSION_DENIED` if the requesting user is not permitted to
-   * access the requested course or course work, turn in the requested student
-   * submission, or for access errors. * `INVALID_ARGUMENT` if the request is
-   * malformed. * `NOT_FOUND` if the requested course, course work, or student
-   * submission does not exist. (studentSubmissions.turnIn)
+   * corresponding course work item or an add-on attachment on the corresponding
+   * course work item. This method returns the following error codes: *
+   * `PERMISSION_DENIED` if the requesting user is not permitted to access the
+   * requested course or course work, turn in the requested student submission, or
+   * for access errors. * `INVALID_ARGUMENT` if the request is malformed. *
+   * `NOT_FOUND` if the requested course, course work, or student submission does
+   * not exist. (studentSubmissions.turnIn)
    *
    * @param string $courseId Identifier of the course. This identifier can be
    * either the Classroom-assigned identifier or an alias.
@@ -240,6 +252,7 @@ class CoursesCourseWorkStudentSubmissions extends \Google\Service\Resource
    * @param TurnInStudentSubmissionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return ClassroomEmpty
+   * @throws \Google\Service\Exception
    */
   public function turnIn($courseId, $courseWorkId, $id, TurnInStudentSubmissionRequest $postBody, $optParams = [])
   {

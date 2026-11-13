@@ -21,42 +21,87 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
 {
   protected $collection_key = 'phraseMatchers';
   /**
+   * The issue model to run. If not provided, the most recently deployed topic
+   * model will be used. The provided issue model will only be used for
+   * inference if the issue model is deployed and if run_issue_model_annotator
+   * is set to true. If more than one issue model is provided, only the first
+   * provided issue model will be used for inference.
+   *
    * @var string[]
    */
   public $issueModels;
   /**
+   * The list of phrase matchers to run. If not provided, all active phrase
+   * matchers will be used. If inactive phrase matchers are provided, they will
+   * not be used. Phrase matchers will be run only if
+   * run_phrase_matcher_annotator is set to true. Format:
+   * projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
+   *
    * @var string[]
    */
   public $phraseMatchers;
+  protected $qaConfigType = GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorQaConfig::class;
+  protected $qaConfigDataType = '';
   /**
+   * Optional. Whether to run the auto-labeling annotator. If true, the auto-
+   * labeling annotator will be run. This is a non-billable operation designed
+   * for fixing or backfilling custom labels.
+   *
+   * @var bool
+   */
+  public $runAutoLabelingAnnotator;
+  /**
+   * Whether to run the entity annotator.
+   *
    * @var bool
    */
   public $runEntityAnnotator;
   /**
+   * Whether to run the intent annotator.
+   *
    * @var bool
    */
   public $runIntentAnnotator;
   /**
+   * Whether to run the interruption annotator.
+   *
    * @var bool
    */
   public $runInterruptionAnnotator;
   /**
+   * Whether to run the issue model annotator. A model should have already been
+   * deployed for this to take effect.
+   *
    * @var bool
    */
   public $runIssueModelAnnotator;
   /**
+   * Whether to run the active phrase matcher annotator(s).
+   *
    * @var bool
    */
   public $runPhraseMatcherAnnotator;
   /**
+   * Whether to run the QA annotator.
+   *
+   * @var bool
+   */
+  public $runQaAnnotator;
+  /**
+   * Whether to run the sentiment annotator.
+   *
    * @var bool
    */
   public $runSentimentAnnotator;
   /**
+   * Whether to run the silence annotator.
+   *
    * @var bool
    */
   public $runSilenceAnnotator;
   /**
+   * Whether to run the summarization annotator.
+   *
    * @var bool
    */
   public $runSummarizationAnnotator;
@@ -64,7 +109,13 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
   protected $summarizationConfigDataType = '';
 
   /**
-   * @param string[]
+   * The issue model to run. If not provided, the most recently deployed topic
+   * model will be used. The provided issue model will only be used for
+   * inference if the issue model is deployed and if run_issue_model_annotator
+   * is set to true. If more than one issue model is provided, only the first
+   * provided issue model will be used for inference.
+   *
+   * @param string[] $issueModels
    */
   public function setIssueModels($issueModels)
   {
@@ -78,7 +129,13 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
     return $this->issueModels;
   }
   /**
-   * @param string[]
+   * The list of phrase matchers to run. If not provided, all active phrase
+   * matchers will be used. If inactive phrase matchers are provided, they will
+   * not be used. Phrase matchers will be run only if
+   * run_phrase_matcher_annotator is set to true. Format:
+   * projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
+   *
+   * @param string[] $phraseMatchers
    */
   public function setPhraseMatchers($phraseMatchers)
   {
@@ -92,7 +149,43 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
     return $this->phraseMatchers;
   }
   /**
-   * @param bool
+   * Configuration for the QA annotator.
+   *
+   * @param GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorQaConfig $qaConfig
+   */
+  public function setQaConfig(GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorQaConfig $qaConfig)
+  {
+    $this->qaConfig = $qaConfig;
+  }
+  /**
+   * @return GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorQaConfig
+   */
+  public function getQaConfig()
+  {
+    return $this->qaConfig;
+  }
+  /**
+   * Optional. Whether to run the auto-labeling annotator. If true, the auto-
+   * labeling annotator will be run. This is a non-billable operation designed
+   * for fixing or backfilling custom labels.
+   *
+   * @param bool $runAutoLabelingAnnotator
+   */
+  public function setRunAutoLabelingAnnotator($runAutoLabelingAnnotator)
+  {
+    $this->runAutoLabelingAnnotator = $runAutoLabelingAnnotator;
+  }
+  /**
+   * @return bool
+   */
+  public function getRunAutoLabelingAnnotator()
+  {
+    return $this->runAutoLabelingAnnotator;
+  }
+  /**
+   * Whether to run the entity annotator.
+   *
+   * @param bool $runEntityAnnotator
    */
   public function setRunEntityAnnotator($runEntityAnnotator)
   {
@@ -106,7 +199,9 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
     return $this->runEntityAnnotator;
   }
   /**
-   * @param bool
+   * Whether to run the intent annotator.
+   *
+   * @param bool $runIntentAnnotator
    */
   public function setRunIntentAnnotator($runIntentAnnotator)
   {
@@ -120,7 +215,9 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
     return $this->runIntentAnnotator;
   }
   /**
-   * @param bool
+   * Whether to run the interruption annotator.
+   *
+   * @param bool $runInterruptionAnnotator
    */
   public function setRunInterruptionAnnotator($runInterruptionAnnotator)
   {
@@ -134,7 +231,10 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
     return $this->runInterruptionAnnotator;
   }
   /**
-   * @param bool
+   * Whether to run the issue model annotator. A model should have already been
+   * deployed for this to take effect.
+   *
+   * @param bool $runIssueModelAnnotator
    */
   public function setRunIssueModelAnnotator($runIssueModelAnnotator)
   {
@@ -148,7 +248,9 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
     return $this->runIssueModelAnnotator;
   }
   /**
-   * @param bool
+   * Whether to run the active phrase matcher annotator(s).
+   *
+   * @param bool $runPhraseMatcherAnnotator
    */
   public function setRunPhraseMatcherAnnotator($runPhraseMatcherAnnotator)
   {
@@ -162,7 +264,25 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
     return $this->runPhraseMatcherAnnotator;
   }
   /**
-   * @param bool
+   * Whether to run the QA annotator.
+   *
+   * @param bool $runQaAnnotator
+   */
+  public function setRunQaAnnotator($runQaAnnotator)
+  {
+    $this->runQaAnnotator = $runQaAnnotator;
+  }
+  /**
+   * @return bool
+   */
+  public function getRunQaAnnotator()
+  {
+    return $this->runQaAnnotator;
+  }
+  /**
+   * Whether to run the sentiment annotator.
+   *
+   * @param bool $runSentimentAnnotator
    */
   public function setRunSentimentAnnotator($runSentimentAnnotator)
   {
@@ -176,7 +296,9 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
     return $this->runSentimentAnnotator;
   }
   /**
-   * @param bool
+   * Whether to run the silence annotator.
+   *
+   * @param bool $runSilenceAnnotator
    */
   public function setRunSilenceAnnotator($runSilenceAnnotator)
   {
@@ -190,7 +312,9 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
     return $this->runSilenceAnnotator;
   }
   /**
-   * @param bool
+   * Whether to run the summarization annotator.
+   *
+   * @param bool $runSummarizationAnnotator
    */
   public function setRunSummarizationAnnotator($runSummarizationAnnotator)
   {
@@ -204,7 +328,9 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector extends \Google\
     return $this->runSummarizationAnnotator;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfig
+   * Configuration for the summarization annotator.
+   *
+   * @param GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfig $summarizationConfig
    */
   public function setSummarizationConfig(GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfig $summarizationConfig)
   {

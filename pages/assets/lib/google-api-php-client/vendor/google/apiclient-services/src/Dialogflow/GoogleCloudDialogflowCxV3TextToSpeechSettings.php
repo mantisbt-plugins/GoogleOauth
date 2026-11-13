@@ -23,7 +23,7 @@ class GoogleCloudDialogflowCxV3TextToSpeechSettings extends \Google\Model
   protected $synthesizeSpeechConfigsDataType = 'map';
 
   /**
-   * @param GoogleCloudDialogflowCxV3SynthesizeSpeechConfig[]
+   * @param GoogleCloudDialogflowCxV3SynthesizeSpeechConfig[] $synthesizeSpeechConfigs
    */
   public function setSynthesizeSpeechConfigs($synthesizeSpeechConfigs)
   {

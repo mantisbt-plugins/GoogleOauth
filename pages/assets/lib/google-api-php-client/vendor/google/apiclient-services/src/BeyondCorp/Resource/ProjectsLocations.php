@@ -36,6 +36,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * @param string $name Resource name for the location.
    * @param array $optParams Optional parameters.
    * @return GoogleCloudLocationLocation
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -44,13 +45,24 @@ class ProjectsLocations extends \Google\Service\Resource
     return $this->call('get', [$params], GoogleCloudLocationLocation::class);
   }
   /**
-   * Lists information about the supported locations for this service.
-   * (locations.listProjectsLocations)
+   * Lists information about the supported locations for this service. This method
+   * lists locations based on the resource scope provided in the
+   * ListLocationsRequest.name field: * **Global locations**: If `name` is empty,
+   * the method lists the public locations available to all projects. * **Project-
+   * specific locations**: If `name` follows the format `projects/{project}`, the
+   * method lists locations visible to that specific project. This includes
+   * public, private, or other project-specific locations enabled for the project.
+   * For gRPC and client library implementations, the resource name is passed as
+   * the `name` field. For direct service calls, the resource name is incorporated
+   * into the request path based on the specific service implementation and
+   * version. (locations.listProjectsLocations)
    *
    * @param string $name The resource that owns the locations collection, if
    * applicable.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string extraLocationTypes Optional. Do not use this field unless
+   * explicitly documented otherwise. This is primarily for internal usage.
    * @opt_param string filter A filter to narrow down results to a preferred
    * subset. The filtering language accepts strings like `"displayName=tokyo"`,
    * and is documented in more detail in [AIP-160](https://google.aip.dev/160).
@@ -59,6 +71,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * @opt_param string pageToken A page token received from the `next_page_token`
    * field in the response. Send that page token to receive the subsequent page.
    * @return GoogleCloudLocationListLocationsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocations($name, $optParams = [])
   {

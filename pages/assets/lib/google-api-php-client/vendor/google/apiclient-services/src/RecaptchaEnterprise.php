@@ -45,6 +45,7 @@ class RecaptchaEnterprise extends \Google\Service
   public $projects_relatedaccountgroupmemberships;
   public $projects_relatedaccountgroups;
   public $projects_relatedaccountgroups_memberships;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the RecaptchaEnterprise service.
@@ -57,6 +58,7 @@ class RecaptchaEnterprise extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://recaptchaenterprise.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://recaptchaenterprise.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -160,6 +162,16 @@ class RecaptchaEnterprise extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'reorder' => [
+              'path' => 'v1/{+parent}/firewallpolicies:reorder',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],
           ]
         ]
@@ -170,7 +182,17 @@ class RecaptchaEnterprise extends \Google\Service
         'keys',
         [
           'methods' => [
-            'create' => [
+            'addIpOverride' => [
+              'path' => 'v1/{+name}:addIpOverride',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'create' => [
               'path' => 'v1/{+parent}/keys',
               'httpMethod' => 'POST',
               'parameters' => [
@@ -210,8 +232,36 @@ class RecaptchaEnterprise extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'getPolicy' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'list' => [
               'path' => 'v1/{+parent}/keys',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'listIpOverrides' => [
+              'path' => 'v1/{+parent}:listIpOverrides',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -252,6 +302,16 @@ class RecaptchaEnterprise extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'removeIpOverride' => [
+              'path' => 'v1/{+name}:removeIpOverride',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'retrieveLegacySecretKey' => [
               'path' => 'v1/{+key}:retrieveLegacySecretKey',
               'httpMethod' => 'GET',
@@ -260,6 +320,20 @@ class RecaptchaEnterprise extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+              ],
+            ],'updatePolicy' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],

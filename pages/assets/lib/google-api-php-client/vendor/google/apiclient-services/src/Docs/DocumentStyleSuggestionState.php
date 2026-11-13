@@ -22,74 +22,117 @@ class DocumentStyleSuggestionState extends \Google\Model
   protected $backgroundSuggestionStateType = BackgroundSuggestionState::class;
   protected $backgroundSuggestionStateDataType = '';
   /**
+   * Indicates if there was a suggested change to default_footer_id.
+   *
    * @var bool
    */
   public $defaultFooterIdSuggested;
   /**
+   * Indicates if there was a suggested change to default_header_id.
+   *
    * @var bool
    */
   public $defaultHeaderIdSuggested;
   /**
+   * Indicates if there was a suggested change to even_page_footer_id.
+   *
    * @var bool
    */
   public $evenPageFooterIdSuggested;
   /**
+   * Indicates if there was a suggested change to even_page_header_id.
+   *
    * @var bool
    */
   public $evenPageHeaderIdSuggested;
   /**
+   * Indicates if there was a suggested change to first_page_footer_id.
+   *
    * @var bool
    */
   public $firstPageFooterIdSuggested;
   /**
+   * Indicates if there was a suggested change to first_page_header_id.
+   *
    * @var bool
    */
   public $firstPageHeaderIdSuggested;
   /**
+   * Optional. Indicates if there was a suggested change to
+   * flip_page_orientation.
+   *
+   * @var bool
+   */
+  public $flipPageOrientationSuggested;
+  /**
+   * Indicates if there was a suggested change to margin_bottom.
+   *
    * @var bool
    */
   public $marginBottomSuggested;
   /**
+   * Indicates if there was a suggested change to margin_footer.
+   *
    * @var bool
    */
   public $marginFooterSuggested;
   /**
+   * Indicates if there was a suggested change to margin_header.
+   *
    * @var bool
    */
   public $marginHeaderSuggested;
   /**
+   * Indicates if there was a suggested change to margin_left.
+   *
    * @var bool
    */
   public $marginLeftSuggested;
   /**
+   * Indicates if there was a suggested change to margin_right.
+   *
    * @var bool
    */
   public $marginRightSuggested;
   /**
+   * Indicates if there was a suggested change to margin_top.
+   *
    * @var bool
    */
   public $marginTopSuggested;
   /**
+   * Indicates if there was a suggested change to page_number_start.
+   *
    * @var bool
    */
   public $pageNumberStartSuggested;
   protected $pageSizeSuggestionStateType = SizeSuggestionState::class;
   protected $pageSizeSuggestionStateDataType = '';
   /**
+   * Indicates if there was a suggested change to
+   * use_custom_header_footer_margins.
+   *
    * @var bool
    */
   public $useCustomHeaderFooterMarginsSuggested;
   /**
+   * Indicates if there was a suggested change to use_even_page_header_footer.
+   *
    * @var bool
    */
   public $useEvenPageHeaderFooterSuggested;
   /**
+   * Indicates if there was a suggested change to use_first_page_header_footer.
+   *
    * @var bool
    */
   public $useFirstPageHeaderFooterSuggested;
 
   /**
-   * @param BackgroundSuggestionState
+   * A mask that indicates which of the fields in background have been changed
+   * in this suggestion.
+   *
+   * @param BackgroundSuggestionState $backgroundSuggestionState
    */
   public function setBackgroundSuggestionState(BackgroundSuggestionState $backgroundSuggestionState)
   {
@@ -103,7 +146,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->backgroundSuggestionState;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to default_footer_id.
+   *
+   * @param bool $defaultFooterIdSuggested
    */
   public function setDefaultFooterIdSuggested($defaultFooterIdSuggested)
   {
@@ -117,7 +162,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->defaultFooterIdSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to default_header_id.
+   *
+   * @param bool $defaultHeaderIdSuggested
    */
   public function setDefaultHeaderIdSuggested($defaultHeaderIdSuggested)
   {
@@ -131,7 +178,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->defaultHeaderIdSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to even_page_footer_id.
+   *
+   * @param bool $evenPageFooterIdSuggested
    */
   public function setEvenPageFooterIdSuggested($evenPageFooterIdSuggested)
   {
@@ -145,7 +194,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->evenPageFooterIdSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to even_page_header_id.
+   *
+   * @param bool $evenPageHeaderIdSuggested
    */
   public function setEvenPageHeaderIdSuggested($evenPageHeaderIdSuggested)
   {
@@ -159,7 +210,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->evenPageHeaderIdSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to first_page_footer_id.
+   *
+   * @param bool $firstPageFooterIdSuggested
    */
   public function setFirstPageFooterIdSuggested($firstPageFooterIdSuggested)
   {
@@ -173,7 +226,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->firstPageFooterIdSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to first_page_header_id.
+   *
+   * @param bool $firstPageHeaderIdSuggested
    */
   public function setFirstPageHeaderIdSuggested($firstPageHeaderIdSuggested)
   {
@@ -187,7 +242,26 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->firstPageHeaderIdSuggested;
   }
   /**
-   * @param bool
+   * Optional. Indicates if there was a suggested change to
+   * flip_page_orientation.
+   *
+   * @param bool $flipPageOrientationSuggested
+   */
+  public function setFlipPageOrientationSuggested($flipPageOrientationSuggested)
+  {
+    $this->flipPageOrientationSuggested = $flipPageOrientationSuggested;
+  }
+  /**
+   * @return bool
+   */
+  public function getFlipPageOrientationSuggested()
+  {
+    return $this->flipPageOrientationSuggested;
+  }
+  /**
+   * Indicates if there was a suggested change to margin_bottom.
+   *
+   * @param bool $marginBottomSuggested
    */
   public function setMarginBottomSuggested($marginBottomSuggested)
   {
@@ -201,7 +275,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->marginBottomSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to margin_footer.
+   *
+   * @param bool $marginFooterSuggested
    */
   public function setMarginFooterSuggested($marginFooterSuggested)
   {
@@ -215,7 +291,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->marginFooterSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to margin_header.
+   *
+   * @param bool $marginHeaderSuggested
    */
   public function setMarginHeaderSuggested($marginHeaderSuggested)
   {
@@ -229,7 +307,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->marginHeaderSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to margin_left.
+   *
+   * @param bool $marginLeftSuggested
    */
   public function setMarginLeftSuggested($marginLeftSuggested)
   {
@@ -243,7 +323,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->marginLeftSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to margin_right.
+   *
+   * @param bool $marginRightSuggested
    */
   public function setMarginRightSuggested($marginRightSuggested)
   {
@@ -257,7 +339,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->marginRightSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to margin_top.
+   *
+   * @param bool $marginTopSuggested
    */
   public function setMarginTopSuggested($marginTopSuggested)
   {
@@ -271,7 +355,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->marginTopSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to page_number_start.
+   *
+   * @param bool $pageNumberStartSuggested
    */
   public function setPageNumberStartSuggested($pageNumberStartSuggested)
   {
@@ -285,7 +371,10 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->pageNumberStartSuggested;
   }
   /**
-   * @param SizeSuggestionState
+   * A mask that indicates which of the fields in size have been changed in this
+   * suggestion.
+   *
+   * @param SizeSuggestionState $pageSizeSuggestionState
    */
   public function setPageSizeSuggestionState(SizeSuggestionState $pageSizeSuggestionState)
   {
@@ -299,7 +388,10 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->pageSizeSuggestionState;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to
+   * use_custom_header_footer_margins.
+   *
+   * @param bool $useCustomHeaderFooterMarginsSuggested
    */
   public function setUseCustomHeaderFooterMarginsSuggested($useCustomHeaderFooterMarginsSuggested)
   {
@@ -313,7 +405,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->useCustomHeaderFooterMarginsSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to use_even_page_header_footer.
+   *
+   * @param bool $useEvenPageHeaderFooterSuggested
    */
   public function setUseEvenPageHeaderFooterSuggested($useEvenPageHeaderFooterSuggested)
   {
@@ -327,7 +421,9 @@ class DocumentStyleSuggestionState extends \Google\Model
     return $this->useEvenPageHeaderFooterSuggested;
   }
   /**
-   * @param bool
+   * Indicates if there was a suggested change to use_first_page_header_footer.
+   *
+   * @param bool $useFirstPageHeaderFooterSuggested
    */
   public function setUseFirstPageHeaderFooterSuggested($useFirstPageHeaderFooterSuggested)
   {

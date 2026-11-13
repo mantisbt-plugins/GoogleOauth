@@ -41,7 +41,7 @@ class UserUsageReport extends \Google\Service\Resource
    * address. Must not be a deleted user. For a deleted user, call `users.list` in
    * Directory API with `showDeleted=true`, then use the returned `ID` as the
    * `userKey`.
-   * @param string $date Represents the date the usage occurred, based on GMT-7:00
+   * @param string $date Represents the date the usage occurred, based on UTC-8:00
    * (Pacific Standard Time). The timestamp is in the [ISO 8601
    * format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`.
    * @param array $optParams Optional parameters.
@@ -52,18 +52,18 @@ class UserUsageReport extends \Google\Service\Resource
    * list of an application's event parameters where the parameter's value is
    * manipulated by a relational operator. The `filters` query string includes the
    * name of the application whose usage is returned in the report. The
-   * application values for the Users Usage Report include `accounts`, `docs`, and
-   * `gmail`. Filters are in the form `[application name]:parameter name[parameter
-   * value],...`. In this example, the `<>` 'not equal to' operator is URL-encoded
-   * in the request's query string (%3C%3E): GET
+   * application values for the Users Usage Report include `accounts`, `chat`,
+   * `docs`, and `gmail`. Filters are in the form `[application name]:parameter
+   * name[parameter value],...`. In this example, the `<>` 'not equal to' operator
+   * is URL-encoded in the request's query string (%3C%3E): GET
    * https://www.googleapis.com/admin/reports/v1/usage/users/all/dates/2013-03-03
    * ?parameters=accounts:last_login_time
-   * =accounts:last_login_time%3C%3E2010-10-28T10:26:35.000Z The relational
-   * operators include: - `==` - 'equal to'. - `<>` - 'not equal to'. It is URL-
-   * encoded (%3C%3E). - `<` - 'less than'. It is URL-encoded (%3C). - `<=` -
-   * 'less than or equal to'. It is URL-encoded (%3C=). - `>` - 'greater than'. It
-   * is URL-encoded (%3E). - `>=` - 'greater than or equal to'. It is URL-encoded
-   * (%3E=).
+   * &filters=accounts:last_login_time%3C%3E2010-10-28T10:26:35.000Z The
+   * relational operators include: - `==` - 'equal to'. - `<>` - 'not equal to'.
+   * It is URL-encoded (%3C%3E). - `<` - 'less than'. It is URL-encoded (%3C). -
+   * `<=` - 'less than or equal to'. It is URL-encoded (%3C=). - `>` - 'greater
+   * than'. It is URL-encoded (%3E). - `>=` - 'greater than or equal to'. It is
+   * URL-encoded (%3E=).
    * @opt_param string groupIdFilter Comma separated group ids (obfuscated) on
    * which user activities are filtered, i.e. the response will contain activities
    * for only those users that are a part of at least one of the group ids
@@ -85,17 +85,19 @@ class UserUsageReport extends \Google\Service\Resource
    * separated list of event parameters that refine a report's results. The
    * parameter is associated with a specific application. The application values
    * for the Customers Usage report include `accounts`, `app_maker`,
-   * `apps_scripts`, `calendar`, `classroom`, `cros`, `docs`, `gmail`, `gplus`,
-   * `device_management`, `meet`, and `sites`. A `parameters` query string is in
-   * the CSV form of `app_name1:param_name1, app_name2:param_name2`. *Note:* The
-   * API doesn't accept multiple values of a parameter. If a particular parameter
-   * is supplied more than once in the API request, the API only accepts the last
-   * value of that request parameter. In addition, if an invalid request parameter
-   * is supplied in the API request, the API ignores that request parameter and
-   * returns the response corresponding to the remaining valid request parameters.
-   * An example of an invalid request parameter is one that does not belong to the
-   * application. If no parameters are requested, all parameters are returned.
+   * `apps_scripts`, `calendar`, `chat`, `classroom`, `cros`, `docs`, `gmail`,
+   * `gplus`, `device_management`, `meet`, and `sites`. A `parameters` query
+   * string is in the CSV form of `app_name1:param_name1, app_name2:param_name2`.
+   * *Note:* The API doesn't accept multiple values of a parameter. If a
+   * particular parameter is supplied more than once in the API request, the API
+   * only accepts the last value of that request parameter. In addition, if an
+   * invalid request parameter is supplied in the API request, the API ignores
+   * that request parameter and returns the response corresponding to the
+   * remaining valid request parameters. An example of an invalid request
+   * parameter is one that does not belong to the application. If no parameters
+   * are requested, all parameters are returned.
    * @return UsageReports
+   * @throws \Google\Service\Exception
    */
   public function get($userKey, $date, $optParams = [])
   {

@@ -19,6 +19,15 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2ConversationModel extends \Google\Collection
 {
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  public const STATE_CREATING = 'CREATING';
+  public const STATE_UNDEPLOYED = 'UNDEPLOYED';
+  public const STATE_DEPLOYING = 'DEPLOYING';
+  public const STATE_DEPLOYED = 'DEPLOYED';
+  public const STATE_UNDEPLOYING = 'UNDEPLOYING';
+  public const STATE_DELETING = 'DELETING';
+  public const STATE_FAILED = 'FAILED';
+  public const STATE_PENDING = 'PENDING';
   protected $collection_key = 'datasets';
   protected $articleSuggestionModelMetadataType = GoogleCloudDialogflowV2ArticleSuggestionModelMetadata::class;
   protected $articleSuggestionModelMetadataDataType = '';
@@ -40,6 +49,14 @@ class GoogleCloudDialogflowV2ConversationModel extends \Google\Collection
    * @var string
    */
   public $name;
+  /**
+   * @var bool
+   */
+  public $satisfiesPzi;
+  /**
+   * @var bool
+   */
+  public $satisfiesPzs;
   protected $smartReplyModelMetadataType = GoogleCloudDialogflowV2SmartReplyModelMetadata::class;
   protected $smartReplyModelMetadataDataType = '';
   /**
@@ -48,7 +65,7 @@ class GoogleCloudDialogflowV2ConversationModel extends \Google\Collection
   public $state;
 
   /**
-   * @param GoogleCloudDialogflowV2ArticleSuggestionModelMetadata
+   * @param GoogleCloudDialogflowV2ArticleSuggestionModelMetadata $articleSuggestionModelMetadata
    */
   public function setArticleSuggestionModelMetadata(GoogleCloudDialogflowV2ArticleSuggestionModelMetadata $articleSuggestionModelMetadata)
   {
@@ -62,7 +79,7 @@ class GoogleCloudDialogflowV2ConversationModel extends \Google\Collection
     return $this->articleSuggestionModelMetadata;
   }
   /**
-   * @param string
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -76,7 +93,7 @@ class GoogleCloudDialogflowV2ConversationModel extends \Google\Collection
     return $this->createTime;
   }
   /**
-   * @param GoogleCloudDialogflowV2InputDataset[]
+   * @param GoogleCloudDialogflowV2InputDataset[] $datasets
    */
   public function setDatasets($datasets)
   {
@@ -90,7 +107,7 @@ class GoogleCloudDialogflowV2ConversationModel extends \Google\Collection
     return $this->datasets;
   }
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -104,7 +121,7 @@ class GoogleCloudDialogflowV2ConversationModel extends \Google\Collection
     return $this->displayName;
   }
   /**
-   * @param string
+   * @param string $languageCode
    */
   public function setLanguageCode($languageCode)
   {
@@ -118,7 +135,7 @@ class GoogleCloudDialogflowV2ConversationModel extends \Google\Collection
     return $this->languageCode;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -132,7 +149,35 @@ class GoogleCloudDialogflowV2ConversationModel extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param GoogleCloudDialogflowV2SmartReplyModelMetadata
+   * @param bool $satisfiesPzi
+   */
+  public function setSatisfiesPzi($satisfiesPzi)
+  {
+    $this->satisfiesPzi = $satisfiesPzi;
+  }
+  /**
+   * @return bool
+   */
+  public function getSatisfiesPzi()
+  {
+    return $this->satisfiesPzi;
+  }
+  /**
+   * @param bool $satisfiesPzs
+   */
+  public function setSatisfiesPzs($satisfiesPzs)
+  {
+    $this->satisfiesPzs = $satisfiesPzs;
+  }
+  /**
+   * @return bool
+   */
+  public function getSatisfiesPzs()
+  {
+    return $this->satisfiesPzs;
+  }
+  /**
+   * @param GoogleCloudDialogflowV2SmartReplyModelMetadata $smartReplyModelMetadata
    */
   public function setSmartReplyModelMetadata(GoogleCloudDialogflowV2SmartReplyModelMetadata $smartReplyModelMetadata)
   {
@@ -146,14 +191,14 @@ class GoogleCloudDialogflowV2ConversationModel extends \Google\Collection
     return $this->smartReplyModelMetadata;
   }
   /**
-   * @param string
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {

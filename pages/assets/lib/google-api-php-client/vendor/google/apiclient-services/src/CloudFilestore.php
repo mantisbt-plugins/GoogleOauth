@@ -43,6 +43,7 @@ class CloudFilestore extends \Google\Service
   public $projects_locations_instances;
   public $projects_locations_instances_snapshots;
   public $projects_locations_operations;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudFilestore service.
@@ -55,6 +56,7 @@ class CloudFilestore extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://file.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://file.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -85,13 +87,14 @@ class CloudFilestore extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
                 'filter' => [
                   'location' => 'query',
                   'type' => 'string',
-                ],
-                'includeUnrevealedLocations' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ],
                 'pageSize' => [
                   'location' => 'query',
@@ -274,8 +277,38 @@ class CloudFilestore extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'pauseReplica' => [
+              'path' => 'v1/{+name}:pauseReplica',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'promoteReplica' => [
+              'path' => 'v1/{+name}:promoteReplica',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'restore' => [
               'path' => 'v1/{+name}:restore',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'resumeReplica' => [
+              'path' => 'v1/{+name}:resumeReplica',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -363,6 +396,10 @@ class CloudFilestore extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
               ],
             ],'patch' => [
               'path' => 'v1/{+name}',
@@ -438,6 +475,10 @@ class CloudFilestore extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],

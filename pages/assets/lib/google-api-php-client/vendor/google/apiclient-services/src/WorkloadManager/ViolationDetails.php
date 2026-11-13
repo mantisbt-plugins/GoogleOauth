@@ -17,23 +17,34 @@
 
 namespace Google\Service\WorkloadManager;
 
-class ViolationDetails extends \Google\Model
+class ViolationDetails extends \Google\Collection
 {
+  protected $collection_key = 'ruleOutput';
   /**
+   * The name of the asset.
+   *
    * @var string
    */
   public $asset;
   /**
+   * Details of the violation.
+   *
    * @var string[]
    */
   public $observed;
+  protected $ruleOutputType = RuleOutput::class;
+  protected $ruleOutputDataType = 'array';
   /**
+   * The service account associated with the resource.
+   *
    * @var string
    */
   public $serviceAccount;
 
   /**
-   * @param string
+   * The name of the asset.
+   *
+   * @param string $asset
    */
   public function setAsset($asset)
   {
@@ -47,7 +58,9 @@ class ViolationDetails extends \Google\Model
     return $this->asset;
   }
   /**
-   * @param string[]
+   * Details of the violation.
+   *
+   * @param string[] $observed
    */
   public function setObserved($observed)
   {
@@ -61,7 +74,25 @@ class ViolationDetails extends \Google\Model
     return $this->observed;
   }
   /**
-   * @param string
+   * Output only. The rule output of the violation.
+   *
+   * @param RuleOutput[] $ruleOutput
+   */
+  public function setRuleOutput($ruleOutput)
+  {
+    $this->ruleOutput = $ruleOutput;
+  }
+  /**
+   * @return RuleOutput[]
+   */
+  public function getRuleOutput()
+  {
+    return $this->ruleOutput;
+  }
+  /**
+   * The service account associated with the resource.
+   *
+   * @param string $serviceAccount
    */
   public function setServiceAccount($serviceAccount)
   {

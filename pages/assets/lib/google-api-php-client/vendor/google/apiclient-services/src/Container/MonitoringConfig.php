@@ -19,13 +19,33 @@ namespace Google\Service\Container;
 
 class MonitoringConfig extends \Google\Model
 {
+  protected $advancedDatapathObservabilityConfigType = AdvancedDatapathObservabilityConfig::class;
+  protected $advancedDatapathObservabilityConfigDataType = '';
   protected $componentConfigType = MonitoringComponentConfig::class;
   protected $componentConfigDataType = '';
   protected $managedPrometheusConfigType = ManagedPrometheusConfig::class;
   protected $managedPrometheusConfigDataType = '';
 
   /**
-   * @param MonitoringComponentConfig
+   * Configuration of Advanced Datapath Observability features.
+   *
+   * @param AdvancedDatapathObservabilityConfig $advancedDatapathObservabilityConfig
+   */
+  public function setAdvancedDatapathObservabilityConfig(AdvancedDatapathObservabilityConfig $advancedDatapathObservabilityConfig)
+  {
+    $this->advancedDatapathObservabilityConfig = $advancedDatapathObservabilityConfig;
+  }
+  /**
+   * @return AdvancedDatapathObservabilityConfig
+   */
+  public function getAdvancedDatapathObservabilityConfig()
+  {
+    return $this->advancedDatapathObservabilityConfig;
+  }
+  /**
+   * Monitoring components configuration
+   *
+   * @param MonitoringComponentConfig $componentConfig
    */
   public function setComponentConfig(MonitoringComponentConfig $componentConfig)
   {
@@ -39,7 +59,9 @@ class MonitoringConfig extends \Google\Model
     return $this->componentConfig;
   }
   /**
-   * @param ManagedPrometheusConfig
+   * Enable Google Cloud Managed Service for Prometheus in the cluster.
+   *
+   * @param ManagedPrometheusConfig $managedPrometheusConfig
    */
   public function setManagedPrometheusConfig(ManagedPrometheusConfig $managedPrometheusConfig)
   {

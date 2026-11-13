@@ -39,41 +39,44 @@ use Google\Service\FirebaseManagement\SearchFirebaseAppsResponse;
 class Projects extends \Google\Service\Resource
 {
   /**
-   * Adds Firebase resources to the specified existing [Google Cloud Platform
-   * (GCP) `Project`] (https://cloud.google.com/resource-
+   * Adds Firebase resources and enables Firebase services in the specified
+   * existing [Google Cloud `Project`](https://cloud.google.com/resource-
    * manager/reference/rest/v1/projects). Since a FirebaseProject is actually also
-   * a GCP `Project`, a `FirebaseProject` has the same underlying GCP identifiers
-   * (`projectNumber` and `projectId`). This allows for easy interop with Google
-   * APIs. The result of this call is an [`Operation`](../../v1beta1/operations).
-   * Poll the `Operation` to track the provisioning process by calling
-   * GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done)
-   * is `true`. When `done` is `true`, the `Operation` has either succeeded or
-   * failed. If the `Operation` succeeded, its
+   * a Google Cloud `Project`, a `FirebaseProject` has the same underlying Google
+   * Cloud identifiers (`projectNumber` and `projectId`). This allows for easy
+   * interop with Google APIs. The result of this call is an
+   * [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the
+   * provisioning process by calling GetOperation until
+   * [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When
+   * `done` is `true`, the `Operation` has either succeeded or failed. If the
+   * `Operation` succeeded, its
    * [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to a
    * FirebaseProject; if the `Operation` failed, its
    * [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a
    * google.rpc.Status. The `Operation` is automatically deleted after completion,
    * so there is no need to call DeleteOperation. This method does not modify any
-   * billing account information on the underlying GCP `Project`. To call
+   * billing account information on the underlying Google Cloud `Project`. To call
    * `AddFirebase`, a project member or service account must have the following
    * permissions (the IAM roles of Editor and Owner contain these permissions):
    * `firebase.projects.update`, `resourcemanager.projects.get`,
    * `serviceusage.services.enable`, and `serviceusage.services.get`.
    * (projects.addFirebase)
    *
-   * @param string $project The resource name of the GCP `Project` to which
-   * Firebase resources will be added, in the format: projects/PROJECT_IDENTIFIER
-   * Refer to the `FirebaseProject`
+   * @param string $project The resource name of the Google Cloud `Project` in
+   * which Firebase resources will be added and Firebase services enabled, in the
+   * format: projects/ PROJECT_IDENTIFIER Refer to the `FirebaseProject`
    * [`name`](../projects#FirebaseProject.FIELDS.name) field for details about
    * PROJECT_IDENTIFIER values. After calling `AddFirebase`, the unique Project
    * identifiers ( [`projectNumber`](https://cloud.google.com/resource-
    * manager/reference/rest/v1/projects#Project.FIELDS.project_number) and
    * [`projectId`](https://cloud.google.com/resource-
    * manager/reference/rest/v1/projects#Project.FIELDS.project_id)) of the
-   * underlying GCP `Project` are also the identifiers of the FirebaseProject.
+   * underlying Google Cloud `Project` are also the identifiers of the
+   * FirebaseProject.
    * @param AddFirebaseRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function addFirebase($project, AddFirebaseRequest $postBody, $optParams = [])
   {
@@ -127,6 +130,7 @@ class Projects extends \Google\Service\Resource
    * @param AddGoogleAnalyticsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function addGoogleAnalytics($parent, AddGoogleAnalyticsRequest $postBody, $optParams = [])
   {
@@ -143,6 +147,7 @@ class Projects extends \Google\Service\Resource
    * PROJECT_IDENTIFIER values.
    * @param array $optParams Optional parameters.
    * @return FirebaseProject
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -163,6 +168,7 @@ class Projects extends \Google\Service\Resource
    * PROJECT_IDENTIFIER values.
    * @param array $optParams Optional parameters.
    * @return AdminSdkConfig
+   * @throws \Google\Service\Exception
    */
   public function getAdminSdkConfig($name, $optParams = [])
   {
@@ -182,6 +188,7 @@ class Projects extends \Google\Service\Resource
    * PROJECT_IDENTIFIER values.
    * @param array $optParams Optional parameters.
    * @return AnalyticsDetails
+   * @throws \Google\Service\Exception
    */
   public function getAnalyticsDetails($name, $optParams = [])
   {
@@ -212,6 +219,7 @@ class Projects extends \Google\Service\Resource
    * DELETED state should be returned in the response. If not specified, only
    * `ACTIVE` Projects will be returned.
    * @return ListFirebaseProjectsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjects($optParams = [])
   {
@@ -242,6 +250,7 @@ class Projects extends \Google\Service\Resource
    * [`projects.undelete`](https://cloud.google.com/resource-
    * manager/reference/rest/v1/projects/undelete)
    * @return FirebaseProject
+   * @throws \Google\Service\Exception
    */
   public function patch($name, FirebaseProject $postBody, $optParams = [])
   {
@@ -270,6 +279,7 @@ class Projects extends \Google\Service\Resource
    * @param RemoveAnalyticsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return FirebaseEmpty
+   * @throws \Google\Service\Exception
    */
   public function removeAnalytics($parent, RemoveAnalyticsRequest $postBody, $optParams = [])
   {
@@ -318,6 +328,7 @@ class Projects extends \Google\Service\Resource
    * @opt_param bool showDeleted Controls whether Apps in the DELETED state should
    * be returned. If not specified, only `ACTIVE` Apps will be returned.
    * @return SearchFirebaseAppsResponse
+   * @throws \Google\Service\Exception
    */
   public function searchApps($parent, $optParams = [])
   {

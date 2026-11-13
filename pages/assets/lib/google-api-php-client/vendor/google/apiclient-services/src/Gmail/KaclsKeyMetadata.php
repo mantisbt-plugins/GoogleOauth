@@ -20,16 +20,22 @@ namespace Google\Service\Gmail;
 class KaclsKeyMetadata extends \Google\Model
 {
   /**
+   * Opaque data generated and used by the key access control list service.
+   *
    * @var string
    */
   public $kaclsData;
   /**
+   * The URI of the key access control list service that manages the key.
+   *
    * @var string
    */
   public $kaclsUri;
 
   /**
-   * @param string
+   * Opaque data generated and used by the key access control list service.
+   *
+   * @param string $kaclsData
    */
   public function setKaclsData($kaclsData)
   {
@@ -43,7 +49,9 @@ class KaclsKeyMetadata extends \Google\Model
     return $this->kaclsData;
   }
   /**
-   * @param string
+   * The URI of the key access control list service that manages the key.
+   *
+   * @param string $kaclsUri
    */
   public function setKaclsUri($kaclsUri)
   {

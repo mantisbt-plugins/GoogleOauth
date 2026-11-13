@@ -57,7 +57,7 @@ class KernelRootkit extends \Google\Model
   public $unexpectedSystemCallHandler;
 
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -71,7 +71,7 @@ class KernelRootkit extends \Google\Model
     return $this->name;
   }
   /**
-   * @param bool
+   * @param bool $unexpectedCodeModification
    */
   public function setUnexpectedCodeModification($unexpectedCodeModification)
   {
@@ -85,7 +85,7 @@ class KernelRootkit extends \Google\Model
     return $this->unexpectedCodeModification;
   }
   /**
-   * @param bool
+   * @param bool $unexpectedFtraceHandler
    */
   public function setUnexpectedFtraceHandler($unexpectedFtraceHandler)
   {
@@ -99,7 +99,7 @@ class KernelRootkit extends \Google\Model
     return $this->unexpectedFtraceHandler;
   }
   /**
-   * @param bool
+   * @param bool $unexpectedInterruptHandler
    */
   public function setUnexpectedInterruptHandler($unexpectedInterruptHandler)
   {
@@ -113,7 +113,7 @@ class KernelRootkit extends \Google\Model
     return $this->unexpectedInterruptHandler;
   }
   /**
-   * @param bool
+   * @param bool $unexpectedKernelCodePages
    */
   public function setUnexpectedKernelCodePages($unexpectedKernelCodePages)
   {
@@ -127,7 +127,7 @@ class KernelRootkit extends \Google\Model
     return $this->unexpectedKernelCodePages;
   }
   /**
-   * @param bool
+   * @param bool $unexpectedKprobeHandler
    */
   public function setUnexpectedKprobeHandler($unexpectedKprobeHandler)
   {
@@ -141,7 +141,7 @@ class KernelRootkit extends \Google\Model
     return $this->unexpectedKprobeHandler;
   }
   /**
-   * @param bool
+   * @param bool $unexpectedProcessesInRunqueue
    */
   public function setUnexpectedProcessesInRunqueue($unexpectedProcessesInRunqueue)
   {
@@ -155,7 +155,7 @@ class KernelRootkit extends \Google\Model
     return $this->unexpectedProcessesInRunqueue;
   }
   /**
-   * @param bool
+   * @param bool $unexpectedReadOnlyDataModification
    */
   public function setUnexpectedReadOnlyDataModification($unexpectedReadOnlyDataModification)
   {
@@ -169,7 +169,7 @@ class KernelRootkit extends \Google\Model
     return $this->unexpectedReadOnlyDataModification;
   }
   /**
-   * @param bool
+   * @param bool $unexpectedSystemCallHandler
    */
   public function setUnexpectedSystemCallHandler($unexpectedSystemCallHandler)
   {

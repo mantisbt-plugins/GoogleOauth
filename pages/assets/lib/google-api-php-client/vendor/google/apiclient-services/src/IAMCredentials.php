@@ -23,8 +23,9 @@ use Google\Client;
  * Service definition for IAMCredentials (v1).
  *
  * <p>
- * Creates short-lived credentials for impersonating IAM service accounts. To
- * enable this API, you must enable the IAM API (iam.googleapis.com).</p>
+ * Creates short-lived credentials for impersonating IAM service accounts.
+ * Disabling this API also disables the IAM API (iam.googleapis.com). However,
+ * enabling this API doesn't enable the IAM API.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -39,7 +40,10 @@ class IAMCredentials extends \Google\Service
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
 
+  public $locations_workforcePools;
+  public $projects_locations_workloadIdentityPools;
   public $projects_serviceAccounts;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the IAMCredentials service.
@@ -52,11 +56,52 @@ class IAMCredentials extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://iamcredentials.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://iamcredentials.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'iamcredentials';
 
+    $this->locations_workforcePools = new IAMCredentials\Resource\LocationsWorkforcePools(
+        $this,
+        $this->serviceName,
+        'workforcePools',
+        [
+          'methods' => [
+            'getAllowedLocations' => [
+              'path' => 'v1/{+name}/allowedLocations',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_workloadIdentityPools = new IAMCredentials\Resource\ProjectsLocationsWorkloadIdentityPools(
+        $this,
+        $this->serviceName,
+        'workloadIdentityPools',
+        [
+          'methods' => [
+            'getAllowedLocations' => [
+              'path' => 'v1/{+name}/allowedLocations',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->projects_serviceAccounts = new IAMCredentials\Resource\ProjectsServiceAccounts(
         $this,
         $this->serviceName,
@@ -76,6 +121,16 @@ class IAMCredentials extends \Google\Service
             ],'generateIdToken' => [
               'path' => 'v1/{+name}:generateIdToken',
               'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'getAllowedLocations' => [
+              'path' => 'v1/{+name}/allowedLocations',
+              'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
                   'location' => 'path',

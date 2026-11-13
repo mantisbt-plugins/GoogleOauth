@@ -19,18 +19,33 @@ namespace Google\Service\Bigquery;
 
 class JobStatistics4 extends \Google\Collection
 {
-  protected $collection_key = 'destinationUriFileCounts';
+  protected $collection_key = 'timeline';
   /**
+   * Output only. Number of files per destination URI or URI pattern specified
+   * in the extract configuration. These values will be in the same order as the
+   * URIs specified in the 'destinationUris' field.
+   *
    * @var string[]
    */
   public $destinationUriFileCounts;
   /**
+   * Output only. Number of user bytes extracted into the result. This is the
+   * byte count as computed by BigQuery for billing purposes and doesn't have
+   * any relationship with the number of actual result bytes extracted in the
+   * desired format.
+   *
    * @var string
    */
   public $inputBytes;
+  protected $timelineType = QueryTimelineSample::class;
+  protected $timelineDataType = 'array';
 
   /**
-   * @param string[]
+   * Output only. Number of files per destination URI or URI pattern specified
+   * in the extract configuration. These values will be in the same order as the
+   * URIs specified in the 'destinationUris' field.
+   *
+   * @param string[] $destinationUriFileCounts
    */
   public function setDestinationUriFileCounts($destinationUriFileCounts)
   {
@@ -44,7 +59,12 @@ class JobStatistics4 extends \Google\Collection
     return $this->destinationUriFileCounts;
   }
   /**
-   * @param string
+   * Output only. Number of user bytes extracted into the result. This is the
+   * byte count as computed by BigQuery for billing purposes and doesn't have
+   * any relationship with the number of actual result bytes extracted in the
+   * desired format.
+   *
+   * @param string $inputBytes
    */
   public function setInputBytes($inputBytes)
   {
@@ -56,6 +76,22 @@ class JobStatistics4 extends \Google\Collection
   public function getInputBytes()
   {
     return $this->inputBytes;
+  }
+  /**
+   * Output only. Describes a timeline of job execution.
+   *
+   * @param QueryTimelineSample[] $timeline
+   */
+  public function setTimeline($timeline)
+  {
+    $this->timeline = $timeline;
+  }
+  /**
+   * @return QueryTimelineSample[]
+   */
+  public function getTimeline()
+  {
+    return $this->timeline;
   }
 }
 

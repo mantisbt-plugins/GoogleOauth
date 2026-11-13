@@ -20,12 +20,30 @@ namespace Google\Service\CloudDataplex;
 class GoogleCloudDataplexV1DataScanEventDataProfileResult extends \Google\Model
 {
   /**
+   * Dataplex Compute Units (DCUs) used in the data scan job.
+   *
+   * @var 
+   */
+  public $dcuConsumed;
+  /**
+   * The count of rows processed in the data scan job.
+   *
    * @var string
    */
   public $rowCount;
 
+  public function setDcuConsumed($dcuConsumed)
+  {
+    $this->dcuConsumed = $dcuConsumed;
+  }
+  public function getDcuConsumed()
+  {
+    return $this->dcuConsumed;
+  }
   /**
-   * @param string
+   * The count of rows processed in the data scan job.
+   *
+   * @param string $rowCount
    */
   public function setRowCount($rowCount)
   {

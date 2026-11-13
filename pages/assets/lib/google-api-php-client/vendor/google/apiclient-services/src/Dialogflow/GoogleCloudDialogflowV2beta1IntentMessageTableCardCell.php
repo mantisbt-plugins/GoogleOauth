@@ -25,7 +25,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageTableCardCell extends \Google\Mod
   public $text;
 
   /**
-   * @param string
+   * @param string $text
    */
   public function setText($text)
   {

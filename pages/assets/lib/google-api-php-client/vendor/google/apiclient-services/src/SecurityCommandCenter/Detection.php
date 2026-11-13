@@ -26,7 +26,7 @@ class Detection extends \Google\Model
   public $percentPagesMatched;
 
   /**
-   * @param string
+   * @param string $binary
    */
   public function setBinary($binary)
   {

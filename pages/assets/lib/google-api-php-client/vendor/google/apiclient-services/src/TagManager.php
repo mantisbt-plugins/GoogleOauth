@@ -69,10 +69,12 @@ class TagManager extends \Google\Service
   public $accounts_containers_workspaces_gtag_config;
   public $accounts_containers_workspaces_tags;
   public $accounts_containers_workspaces_templates;
+  public $accounts_containers_workspaces_transformations;
   public $accounts_containers_workspaces_triggers;
   public $accounts_containers_workspaces_variables;
   public $accounts_containers_workspaces_zones;
   public $accounts_user_permissions;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the TagManager service.
@@ -85,6 +87,7 @@ class TagManager extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://tagmanager.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://tagmanager.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';
@@ -214,6 +217,10 @@ class TagManager extends \Google\Service
               'httpMethod' => 'GET',
               'parameters' => [
                 'destinationId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'tagId' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -542,7 +549,17 @@ class TagManager extends \Google\Service
         'workspaces',
         [
           'methods' => [
-            'create' => [
+            'bulk_update' => [
+              'path' => 'tagmanager/v2/{+path}/bulk_update',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'path' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'create' => [
               'path' => 'tagmanager/v2/{+parent}/workspaces',
               'httpMethod' => 'POST',
               'parameters' => [
@@ -1115,8 +1132,116 @@ class TagManager extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'import_from_gallery' => [
+              'path' => 'tagmanager/v2/{+parent}/templates:import_from_gallery',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'acknowledgePermissions' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+                'galleryOwner' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'galleryRepository' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'gallerySha' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
             ],'list' => [
               'path' => 'tagmanager/v2/{+parent}/templates',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'revert' => [
+              'path' => 'tagmanager/v2/{+path}:revert',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'path' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'fingerprint' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'update' => [
+              'path' => 'tagmanager/v2/{+path}',
+              'httpMethod' => 'PUT',
+              'parameters' => [
+                'path' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'fingerprint' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->accounts_containers_workspaces_transformations = new TagManager\Resource\AccountsContainersWorkspacesTransformations(
+        $this,
+        $this->serviceName,
+        'transformations',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'tagmanager/v2/{+parent}/transformations',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'tagmanager/v2/{+path}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'path' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'tagmanager/v2/{+path}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'path' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'tagmanager/v2/{+parent}/transformations',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [

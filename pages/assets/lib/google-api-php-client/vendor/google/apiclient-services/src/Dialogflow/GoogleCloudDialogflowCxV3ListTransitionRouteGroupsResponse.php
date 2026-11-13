@@ -28,7 +28,7 @@ class GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponse extends \Google
   protected $transitionRouteGroupsDataType = 'array';
 
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponse extends \Google
     return $this->nextPageToken;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3TransitionRouteGroup[]
+   * @param GoogleCloudDialogflowCxV3TransitionRouteGroup[] $transitionRouteGroups
    */
   public function setTransitionRouteGroups($transitionRouteGroups)
   {

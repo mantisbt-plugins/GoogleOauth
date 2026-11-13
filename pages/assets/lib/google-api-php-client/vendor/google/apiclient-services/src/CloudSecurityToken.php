@@ -37,7 +37,12 @@ class CloudSecurityToken extends \Google\Service
 {
 
 
+  public $organizations_locations_workloadIdentityPools_openid;
+  public $organizations_locations_workloadIdentityPools_well_known;
+  public $projects_locations_workloadIdentityPools_openid;
+  public $projects_locations_workloadIdentityPools_well_known;
   public $v1;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudSecurityToken service.
@@ -50,26 +55,99 @@ class CloudSecurityToken extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://sts.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://sts.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'sts';
 
+    $this->organizations_locations_workloadIdentityPools_openid = new CloudSecurityToken\Resource\OrganizationsLocationsWorkloadIdentityPoolsOpenid(
+        $this,
+        $this->serviceName,
+        'openid',
+        [
+          'methods' => [
+            'getJwks' => [
+              'path' => 'v1/{+name}/openid/jwks',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->organizations_locations_workloadIdentityPools_well_known = new CloudSecurityToken\Resource\OrganizationsLocationsWorkloadIdentityPoolsWellKnown(
+        $this,
+        $this->serviceName,
+        'well_known',
+        [
+          'methods' => [
+            'getOpenid-configuration' => [
+              'path' => 'v1/{+name}/.well-known/openid-configuration',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_workloadIdentityPools_openid = new CloudSecurityToken\Resource\ProjectsLocationsWorkloadIdentityPoolsOpenid(
+        $this,
+        $this->serviceName,
+        'openid',
+        [
+          'methods' => [
+            'getJwks' => [
+              'path' => 'v1/{+name}/openid/jwks',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_workloadIdentityPools_well_known = new CloudSecurityToken\Resource\ProjectsLocationsWorkloadIdentityPoolsWellKnown(
+        $this,
+        $this->serviceName,
+        'well_known',
+        [
+          'methods' => [
+            'getOpenid-configuration' => [
+              'path' => 'v1/{+name}/.well-known/openid-configuration',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->v1 = new CloudSecurityToken\Resource\V1(
         $this,
         $this->serviceName,
         'v1',
         [
           'methods' => [
-            'introspect' => [
-              'path' => 'v1/introspect',
-              'httpMethod' => 'POST',
-              'parameters' => [],
-            ],'oauthtoken' => [
-              'path' => 'v1/oauthtoken',
-              'httpMethod' => 'POST',
-              'parameters' => [],
-            ],'token' => [
+            'token' => [
               'path' => 'v1/token',
               'httpMethod' => 'POST',
               'parameters' => [],

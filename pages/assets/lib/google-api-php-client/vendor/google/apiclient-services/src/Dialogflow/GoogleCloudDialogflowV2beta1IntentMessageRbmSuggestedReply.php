@@ -29,7 +29,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedReply extends \Google
   public $text;
 
   /**
-   * @param string
+   * @param string $postbackData
    */
   public function setPostbackData($postbackData)
   {
@@ -43,7 +43,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedReply extends \Google
     return $this->postbackData;
   }
   /**
-   * @param string
+   * @param string $text
    */
   public function setText($text)
   {

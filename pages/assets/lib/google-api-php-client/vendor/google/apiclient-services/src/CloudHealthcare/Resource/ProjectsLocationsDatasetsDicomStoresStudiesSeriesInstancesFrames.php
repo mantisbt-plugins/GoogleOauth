@@ -31,23 +31,24 @@ class ProjectsLocationsDatasetsDicomStoresStudiesSeriesInstancesFrames extends \
 {
   /**
    * RetrieveFrames returns instances associated with the given study, series, SOP
-   * Instance UID and frame numbers. See [RetrieveTransaction] (http://dicom.nema.
-   * org/medical/dicom/current/output/html/part18.html#sect_10.4}. For details on
+   * Instance UID and frame numbers. See [RetrieveTransaction] (https://dicom.nema
+   * .org/medical/dicom/current/output/html/part18.html#sect_10.4}. For details on
    * the implementation of RetrieveFrames, see [DICOM
    * frames](https://cloud.google.com/healthcare/docs/dicom#dicom_frames) in the
    * Cloud Healthcare API conformance statement. For samples that show how to call
-   * RetrieveFrames, see [Retrieving DICOM
-   * data](https://cloud.google.com/healthcare/docs/how-
-   * tos/dicomweb#retrieving_dicom_data). (frames.retrieveFrames)
+   * RetrieveFrames, see [Retrieve DICOM
+   * data](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-
+   * dicom). (frames.retrieveFrames)
    *
-   * @param string $parent The name of the DICOM store that is being accessed. For
-   * example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}
-   * /dicomStores/{dicom_store_id}`.
-   * @param string $dicomWebPath The path of the RetrieveFrames DICOMweb request.
-   * For example, `studies/{study_uid}/series/{series_uid}/instances/{instance_uid
-   * }/frames/{frame_list}`.
+   * @param string $parent Required. The name of the DICOM store that is being
+   * accessed. For example, `projects/{project_id}/locations/{location_id}/dataset
+   * s/{dataset_id}/dicomStores/{dicom_store_id}`.
+   * @param string $dicomWebPath Required. The path of the RetrieveFrames DICOMweb
+   * request. For example, `studies/{study_uid}/series/{series_uid}/instances/{ins
+   * tance_uid}/frames/{frame_list}`.
    * @param array $optParams Optional parameters.
    * @return HttpBody
+   * @throws \Google\Service\Exception
    */
   public function retrieveFrames($parent, $dicomWebPath, $optParams = [])
   {
@@ -58,23 +59,28 @@ class ProjectsLocationsDatasetsDicomStoresStudiesSeriesInstancesFrames extends \
   /**
    * RetrieveRenderedFrames returns instances associated with the given study,
    * series, SOP Instance UID and frame numbers in an acceptable Rendered Media
-   * Type. See [RetrieveTransaction] (http://dicom.nema.org/medical/dicom/current/
-   * output/html/part18.html#sect_10.4). For details on the implementation of
+   * Type. See [RetrieveTransaction] (https://dicom.nema.org/medical/dicom/current
+   * /output/html/part18.html#sect_10.4). For details on the implementation of
    * RetrieveRenderedFrames, see [Rendered
    * resources](https://cloud.google.com/healthcare/docs/dicom#rendered_resources)
    * in the Cloud Healthcare API conformance statement. For samples that show how
-   * to call RetrieveRenderedFrames, see [Retrieving consumer image
-   * formats](https://cloud.google.com/healthcare/docs/how-
-   * tos/dicomweb#retrieving_consumer_image_formats). (frames.retrieveRendered)
+   * to call RetrieveRenderedFrames, see [Retrieve consumer image
+   * formats](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#retrieve-
+   * consumer). (frames.retrieveRendered)
    *
-   * @param string $parent The name of the DICOM store that is being accessed. For
-   * example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}
-   * /dicomStores/{dicom_store_id}`.
-   * @param string $dicomWebPath The path of the RetrieveRenderedFrames DICOMweb
-   * request. For example, `studies/{study_uid}/series/{series_uid}/instances/{ins
-   * tance_uid}/frames/{frame_list}/rendered`.
+   * @param string $parent Required. The name of the DICOM store that is being
+   * accessed. For example, `projects/{project_id}/locations/{location_id}/dataset
+   * s/{dataset_id}/dicomStores/{dicom_store_id}`.
+   * @param string $dicomWebPath Required. The path of the RetrieveRenderedFrames
+   * DICOMweb request. For example, `studies/{study_uid}/series/{series_uid}/insta
+   * nces/{instance_uid}/frames/{frame_list}/rendered`.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string viewport Optional. The viewport setting to use as specified
+   * in https://dicom.nema.org/medical/dicom/current/output/chtml/part18/sect_8.3.
+   * 5.html#sect_8.3.5.1.3
    * @return HttpBody
+   * @throws \Google\Service\Exception
    */
   public function retrieveRendered($parent, $dicomWebPath, $optParams = [])
   {

@@ -34,13 +34,13 @@ use Google\Service\Dialogflow\GoogleProtobufEmpty;
 class ProjectsLocationsAgentsEnvironmentsExperiments extends \Google\Service\Resource
 {
   /**
-   * Creates an Experiment in the specified Environment. (experiments.create)
+   * (experiments.create)
    *
-   * @param string $parent Required. The Agent to create an Environment for.
-   * Format: `projects//locations//agents//environments/`.
+   * @param string $parent
    * @param GoogleCloudDialogflowCxV3Experiment $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDialogflowCxV3Experiment
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudDialogflowCxV3Experiment $postBody, $optParams = [])
   {
@@ -49,12 +49,12 @@ class ProjectsLocationsAgentsEnvironmentsExperiments extends \Google\Service\Res
     return $this->call('create', [$params], GoogleCloudDialogflowCxV3Experiment::class);
   }
   /**
-   * Deletes the specified Experiment. (experiments.delete)
+   * (experiments.delete)
    *
-   * @param string $name Required. The name of the Environment to delete. Format:
-   * `projects//locations//agents//environments//experiments/`.
+   * @param string $name
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -63,12 +63,12 @@ class ProjectsLocationsAgentsEnvironmentsExperiments extends \Google\Service\Res
     return $this->call('delete', [$params], GoogleProtobufEmpty::class);
   }
   /**
-   * Retrieves the specified Experiment. (experiments.get)
+   * (experiments.get)
    *
-   * @param string $name Required. The name of the Environment. Format:
-   * `projects//locations//agents//environments//experiments/`.
+   * @param string $name
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDialogflowCxV3Experiment
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -77,18 +77,15 @@ class ProjectsLocationsAgentsEnvironmentsExperiments extends \Google\Service\Res
     return $this->call('get', [$params], GoogleCloudDialogflowCxV3Experiment::class);
   }
   /**
-   * Returns the list of all experiments in the specified Environment.
    * (experiments.listProjectsLocationsAgentsEnvironmentsExperiments)
    *
-   * @param string $parent Required. The Environment to list all environments for.
-   * Format: `projects//locations//agents//environments/`.
+   * @param string $parent
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of items to return in a single
-   * page. By default 20 and at most 100.
-   * @opt_param string pageToken The next_page_token value returned from a
-   * previous list request.
+   * @opt_param int pageSize
+   * @opt_param string pageToken
    * @return GoogleCloudDialogflowCxV3ListExperimentsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsAgentsEnvironmentsExperiments($parent, $optParams = [])
   {
@@ -97,16 +94,15 @@ class ProjectsLocationsAgentsEnvironmentsExperiments extends \Google\Service\Res
     return $this->call('list', [$params], GoogleCloudDialogflowCxV3ListExperimentsResponse::class);
   }
   /**
-   * Updates the specified Experiment. (experiments.patch)
+   * (experiments.patch)
    *
-   * @param string $name The name of the experiment. Format:
-   * projects//locations//agents//environments//experiments/..
+   * @param string $name
    * @param GoogleCloudDialogflowCxV3Experiment $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string updateMask Required. The mask to control which fields get
-   * updated.
+   * @opt_param string updateMask
    * @return GoogleCloudDialogflowCxV3Experiment
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudDialogflowCxV3Experiment $postBody, $optParams = [])
   {
@@ -115,14 +111,13 @@ class ProjectsLocationsAgentsEnvironmentsExperiments extends \Google\Service\Res
     return $this->call('patch', [$params], GoogleCloudDialogflowCxV3Experiment::class);
   }
   /**
-   * Starts the specified Experiment. This rpc only changes the state of
-   * experiment from PENDING to RUNNING. (experiments.start)
+   * (experiments.start)
    *
-   * @param string $name Required. Resource name of the experiment to start.
-   * Format: `projects//locations//agents//environments//experiments/`.
+   * @param string $name
    * @param GoogleCloudDialogflowCxV3StartExperimentRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDialogflowCxV3Experiment
+   * @throws \Google\Service\Exception
    */
   public function start($name, GoogleCloudDialogflowCxV3StartExperimentRequest $postBody, $optParams = [])
   {
@@ -131,14 +126,13 @@ class ProjectsLocationsAgentsEnvironmentsExperiments extends \Google\Service\Res
     return $this->call('start', [$params], GoogleCloudDialogflowCxV3Experiment::class);
   }
   /**
-   * Stops the specified Experiment. This rpc only changes the state of experiment
-   * from RUNNING to DONE. (experiments.stop)
+   * (experiments.stop)
    *
-   * @param string $name Required. Resource name of the experiment to stop.
-   * Format: `projects//locations//agents//environments//experiments/`.
+   * @param string $name
    * @param GoogleCloudDialogflowCxV3StopExperimentRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDialogflowCxV3Experiment
+   * @throws \Google\Service\Exception
    */
   public function stop($name, GoogleCloudDialogflowCxV3StopExperimentRequest $postBody, $optParams = [])
   {

@@ -23,11 +23,17 @@ class CertificateConfig extends \Google\Model
   protected $publicKeyDataType = '';
   protected $subjectConfigType = SubjectConfig::class;
   protected $subjectConfigDataType = '';
+  protected $subjectKeyIdType = CertificateConfigKeyId::class;
+  protected $subjectKeyIdDataType = '';
   protected $x509ConfigType = X509Parameters::class;
   protected $x509ConfigDataType = '';
 
   /**
-   * @param PublicKey
+   * Optional. The public key that corresponds to this config. This is, for
+   * example, used when issuing Certificates, but not when creating a self-
+   * signed CertificateAuthority or CertificateAuthority CSR.
+   *
+   * @param PublicKey $publicKey
    */
   public function setPublicKey(PublicKey $publicKey)
   {
@@ -41,7 +47,10 @@ class CertificateConfig extends \Google\Model
     return $this->publicKey;
   }
   /**
-   * @param SubjectConfig
+   * Required. Specifies some of the values in a certificate that are related to
+   * the subject.
+   *
+   * @param SubjectConfig $subjectConfig
    */
   public function setSubjectConfig(SubjectConfig $subjectConfig)
   {
@@ -55,7 +64,29 @@ class CertificateConfig extends \Google\Model
     return $this->subjectConfig;
   }
   /**
-   * @param X509Parameters
+   * Optional. When specified this provides a custom SKI to be used in the
+   * certificate. This should only be used to maintain a SKI of an existing CA
+   * originally created outside CA service, which was not generated using method
+   * (1) described in RFC 5280 section 4.2.1.2.
+   *
+   * @param CertificateConfigKeyId $subjectKeyId
+   */
+  public function setSubjectKeyId(CertificateConfigKeyId $subjectKeyId)
+  {
+    $this->subjectKeyId = $subjectKeyId;
+  }
+  /**
+   * @return CertificateConfigKeyId
+   */
+  public function getSubjectKeyId()
+  {
+    return $this->subjectKeyId;
+  }
+  /**
+   * Required. Describes how some of the technical X.509 fields in a certificate
+   * should be populated.
+   *
+   * @param X509Parameters $x509Config
    */
   public function setX509Config(X509Parameters $x509Config)
   {

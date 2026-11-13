@@ -20,28 +20,52 @@ namespace Google\Service\CloudSupport;
 class ContentTypeInfo extends \Google\Model
 {
   /**
+   * # gdata.* are outside protos with mising documentation
+   *
    * @var string
    */
   public $bestGuess;
   /**
+   * # gdata.* are outside protos with mising documentation
+   *
    * @var string
    */
   public $fromBytes;
   /**
+   * # gdata.* are outside protos with mising documentation
+   *
    * @var string
    */
   public $fromFileName;
   /**
+   * # gdata.* are outside protos with mising documentation
+   *
+   * @var string
+   */
+  public $fromFusionId;
+  /**
+   * # gdata.* are outside protos with mising documentation
+   *
    * @var string
    */
   public $fromHeader;
   /**
+   * # gdata.* are outside protos with mising documentation
+   *
    * @var string
    */
   public $fromUrlPath;
+  /**
+   * # gdata.* are outside protos with mising documentation
+   *
+   * @var string
+   */
+  public $fusionIdDetectionMetadata;
 
   /**
-   * @param string
+   * # gdata.* are outside protos with mising documentation
+   *
+   * @param string $bestGuess
    */
   public function setBestGuess($bestGuess)
   {
@@ -55,7 +79,9 @@ class ContentTypeInfo extends \Google\Model
     return $this->bestGuess;
   }
   /**
-   * @param string
+   * # gdata.* are outside protos with mising documentation
+   *
+   * @param string $fromBytes
    */
   public function setFromBytes($fromBytes)
   {
@@ -69,7 +95,9 @@ class ContentTypeInfo extends \Google\Model
     return $this->fromBytes;
   }
   /**
-   * @param string
+   * # gdata.* are outside protos with mising documentation
+   *
+   * @param string $fromFileName
    */
   public function setFromFileName($fromFileName)
   {
@@ -83,7 +111,25 @@ class ContentTypeInfo extends \Google\Model
     return $this->fromFileName;
   }
   /**
-   * @param string
+   * # gdata.* are outside protos with mising documentation
+   *
+   * @param string $fromFusionId
+   */
+  public function setFromFusionId($fromFusionId)
+  {
+    $this->fromFusionId = $fromFusionId;
+  }
+  /**
+   * @return string
+   */
+  public function getFromFusionId()
+  {
+    return $this->fromFusionId;
+  }
+  /**
+   * # gdata.* are outside protos with mising documentation
+   *
+   * @param string $fromHeader
    */
   public function setFromHeader($fromHeader)
   {
@@ -97,7 +143,9 @@ class ContentTypeInfo extends \Google\Model
     return $this->fromHeader;
   }
   /**
-   * @param string
+   * # gdata.* are outside protos with mising documentation
+   *
+   * @param string $fromUrlPath
    */
   public function setFromUrlPath($fromUrlPath)
   {
@@ -109,6 +157,22 @@ class ContentTypeInfo extends \Google\Model
   public function getFromUrlPath()
   {
     return $this->fromUrlPath;
+  }
+  /**
+   * # gdata.* are outside protos with mising documentation
+   *
+   * @param string $fusionIdDetectionMetadata
+   */
+  public function setFusionIdDetectionMetadata($fusionIdDetectionMetadata)
+  {
+    $this->fusionIdDetectionMetadata = $fusionIdDetectionMetadata;
+  }
+  /**
+   * @return string
+   */
+  public function getFusionIdDetectionMetadata()
+  {
+    return $this->fusionIdDetectionMetadata;
   }
 }
 

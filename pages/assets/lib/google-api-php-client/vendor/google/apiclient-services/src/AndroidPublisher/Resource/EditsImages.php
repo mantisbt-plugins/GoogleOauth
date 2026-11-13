@@ -42,6 +42,7 @@ class EditsImages extends \Google\Service\Resource
    * @param string $imageId Unique identifier an image within the set of images
    * attached to this edit.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($packageName, $editId, $language, $imageType, $imageId, $optParams = [])
   {
@@ -62,6 +63,7 @@ class EditsImages extends \Google\Service\Resource
    * refers to no images is a no-op.
    * @param array $optParams Optional parameters.
    * @return ImagesDeleteAllResponse
+   * @throws \Google\Service\Exception
    */
   public function deleteall($packageName, $editId, $language, $imageType, $optParams = [])
   {
@@ -81,6 +83,7 @@ class EditsImages extends \Google\Service\Resource
    * refers to no images will return an empty response.
    * @param array $optParams Optional parameters.
    * @return ImagesListResponse
+   * @throws \Google\Service\Exception
    */
   public function listEditsImages($packageName, $editId, $language, $imageType, $optParams = [])
   {
@@ -99,7 +102,11 @@ class EditsImages extends \Google\Service\Resource
    * supported by the App is a no-op.
    * @param string $imageType Type of the Image.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string aiGeneratedState Optional. Whether the image was generated
+   * by AI. Attested by the developer.
    * @return ImagesUploadResponse
+   * @throws \Google\Service\Exception
    */
   public function upload($packageName, $editId, $language, $imageType, $optParams = [])
   {

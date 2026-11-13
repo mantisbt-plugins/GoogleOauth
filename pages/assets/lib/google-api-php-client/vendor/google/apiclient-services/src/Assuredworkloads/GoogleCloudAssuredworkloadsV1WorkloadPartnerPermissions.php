@@ -20,20 +20,68 @@ namespace Google\Service\Assuredworkloads;
 class GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions extends \Google\Model
 {
   /**
+   * Optional. Allow partner to view support case details for an AXT log
+   *
+   * @var bool
+   */
+  public $accessTransparencyLogsSupportCaseViewer;
+  /**
+   * Optional. Allow partner to view violation alerts.
+   *
+   * @var bool
+   */
+  public $assuredWorkloadsMonitoring;
+  /**
+   * Optional. Allow the partner to view inspectability logs and monitoring
+   * violations.
+   *
    * @var bool
    */
   public $dataLogsViewer;
   /**
-   * @var bool
-   */
-  public $remediateFolderViolations;
-  /**
+   * Optional. Allow partner to view access approval logs.
+   *
    * @var bool
    */
   public $serviceAccessApprover;
 
   /**
-   * @param bool
+   * Optional. Allow partner to view support case details for an AXT log
+   *
+   * @param bool $accessTransparencyLogsSupportCaseViewer
+   */
+  public function setAccessTransparencyLogsSupportCaseViewer($accessTransparencyLogsSupportCaseViewer)
+  {
+    $this->accessTransparencyLogsSupportCaseViewer = $accessTransparencyLogsSupportCaseViewer;
+  }
+  /**
+   * @return bool
+   */
+  public function getAccessTransparencyLogsSupportCaseViewer()
+  {
+    return $this->accessTransparencyLogsSupportCaseViewer;
+  }
+  /**
+   * Optional. Allow partner to view violation alerts.
+   *
+   * @param bool $assuredWorkloadsMonitoring
+   */
+  public function setAssuredWorkloadsMonitoring($assuredWorkloadsMonitoring)
+  {
+    $this->assuredWorkloadsMonitoring = $assuredWorkloadsMonitoring;
+  }
+  /**
+   * @return bool
+   */
+  public function getAssuredWorkloadsMonitoring()
+  {
+    return $this->assuredWorkloadsMonitoring;
+  }
+  /**
+   * Optional. Allow the partner to view inspectability logs and monitoring
+   * violations.
+   *
+   * @param bool $dataLogsViewer
    */
   public function setDataLogsViewer($dataLogsViewer)
   {
@@ -47,21 +95,9 @@ class GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions extends \Google\Mo
     return $this->dataLogsViewer;
   }
   /**
-   * @param bool
-   */
-  public function setRemediateFolderViolations($remediateFolderViolations)
-  {
-    $this->remediateFolderViolations = $remediateFolderViolations;
-  }
-  /**
-   * @return bool
-   */
-  public function getRemediateFolderViolations()
-  {
-    return $this->remediateFolderViolations;
-  }
-  /**
-   * @param bool
+   * Optional. Allow partner to view access approval logs.
+   *
+   * @param bool $serviceAccessApprover
    */
   public function setServiceAccessApprover($serviceAccessApprover)
   {

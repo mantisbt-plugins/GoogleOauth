@@ -29,7 +29,7 @@ class GoogleCloudDialogflowCxV3ExportFlowRequest extends \Google\Model
   public $includeReferencedFlows;
 
   /**
-   * @param string
+   * @param string $flowUri
    */
   public function setFlowUri($flowUri)
   {
@@ -43,7 +43,7 @@ class GoogleCloudDialogflowCxV3ExportFlowRequest extends \Google\Model
     return $this->flowUri;
   }
   /**
-   * @param bool
+   * @param bool $includeReferencedFlows
    */
   public function setIncludeReferencedFlows($includeReferencedFlows)
   {

@@ -22,18 +22,27 @@ class RunAggregationQueryRequest extends \Google\Model
   protected $aggregationQueryType = AggregationQuery::class;
   protected $aggregationQueryDataType = '';
   /**
+   * The ID of the database against which to make the request. '(default)' is
+   * not allowed; please use empty string '' to refer the default database.
+   *
    * @var string
    */
   public $databaseId;
+  protected $explainOptionsType = ExplainOptions::class;
+  protected $explainOptionsDataType = '';
   protected $gqlQueryType = GqlQuery::class;
   protected $gqlQueryDataType = '';
   protected $partitionIdType = PartitionId::class;
   protected $partitionIdDataType = '';
   protected $readOptionsType = ReadOptions::class;
   protected $readOptionsDataType = '';
+  protected $requestOptionsType = RequestOptions::class;
+  protected $requestOptionsDataType = '';
 
   /**
-   * @param AggregationQuery
+   * The query to run.
+   *
+   * @param AggregationQuery $aggregationQuery
    */
   public function setAggregationQuery(AggregationQuery $aggregationQuery)
   {
@@ -47,7 +56,10 @@ class RunAggregationQueryRequest extends \Google\Model
     return $this->aggregationQuery;
   }
   /**
-   * @param string
+   * The ID of the database against which to make the request. '(default)' is
+   * not allowed; please use empty string '' to refer the default database.
+   *
+   * @param string $databaseId
    */
   public function setDatabaseId($databaseId)
   {
@@ -61,7 +73,26 @@ class RunAggregationQueryRequest extends \Google\Model
     return $this->databaseId;
   }
   /**
-   * @param GqlQuery
+   * Optional. Explain options for the query. If set, additional query
+   * statistics will be returned. If not, only query results will be returned.
+   *
+   * @param ExplainOptions $explainOptions
+   */
+  public function setExplainOptions(ExplainOptions $explainOptions)
+  {
+    $this->explainOptions = $explainOptions;
+  }
+  /**
+   * @return ExplainOptions
+   */
+  public function getExplainOptions()
+  {
+    return $this->explainOptions;
+  }
+  /**
+   * The GQL query to run. This query must be an aggregation query.
+   *
+   * @param GqlQuery $gqlQuery
    */
   public function setGqlQuery(GqlQuery $gqlQuery)
   {
@@ -75,7 +106,11 @@ class RunAggregationQueryRequest extends \Google\Model
     return $this->gqlQuery;
   }
   /**
-   * @param PartitionId
+   * Entities are partitioned into subsets, identified by a partition ID.
+   * Queries are scoped to a single partition. This partition ID is normalized
+   * with the standard default context partition ID.
+   *
+   * @param PartitionId $partitionId
    */
   public function setPartitionId(PartitionId $partitionId)
   {
@@ -89,7 +124,9 @@ class RunAggregationQueryRequest extends \Google\Model
     return $this->partitionId;
   }
   /**
-   * @param ReadOptions
+   * The options for this query.
+   *
+   * @param ReadOptions $readOptions
    */
   public function setReadOptions(ReadOptions $readOptions)
   {
@@ -101,6 +138,22 @@ class RunAggregationQueryRequest extends \Google\Model
   public function getReadOptions()
   {
     return $this->readOptions;
+  }
+  /**
+   * Optional. The options for this request.
+   *
+   * @param RequestOptions $requestOptions
+   */
+  public function setRequestOptions(RequestOptions $requestOptions)
+  {
+    $this->requestOptions = $requestOptions;
+  }
+  /**
+   * @return RequestOptions
+   */
+  public function getRequestOptions()
+  {
+    return $this->requestOptions;
   }
 }
 

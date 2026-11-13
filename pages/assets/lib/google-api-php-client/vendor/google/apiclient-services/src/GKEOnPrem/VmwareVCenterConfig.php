@@ -20,36 +20,58 @@ namespace Google\Service\GKEOnPrem;
 class VmwareVCenterConfig extends \Google\Model
 {
   /**
+   * Output only. The vCenter IP address.
+   *
    * @var string
    */
   public $address;
   /**
+   * Contains the vCenter CA certificate public key for SSL verification.
+   *
    * @var string
    */
   public $caCertData;
   /**
+   * The name of the vCenter cluster for the user cluster.
+   *
    * @var string
    */
   public $cluster;
   /**
+   * The name of the vCenter datacenter for the user cluster.
+   *
    * @var string
    */
   public $datacenter;
   /**
+   * The name of the vCenter datastore for the user cluster.
+   *
    * @var string
    */
   public $datastore;
   /**
+   * The name of the vCenter folder for the user cluster.
+   *
    * @var string
    */
   public $folder;
   /**
+   * The name of the vCenter resource pool for the user cluster.
+   *
    * @var string
    */
   public $resourcePool;
+  /**
+   * The name of the vCenter storage policy for the user cluster.
+   *
+   * @var string
+   */
+  public $storagePolicyName;
 
   /**
-   * @param string
+   * Output only. The vCenter IP address.
+   *
+   * @param string $address
    */
   public function setAddress($address)
   {
@@ -63,7 +85,9 @@ class VmwareVCenterConfig extends \Google\Model
     return $this->address;
   }
   /**
-   * @param string
+   * Contains the vCenter CA certificate public key for SSL verification.
+   *
+   * @param string $caCertData
    */
   public function setCaCertData($caCertData)
   {
@@ -77,7 +101,9 @@ class VmwareVCenterConfig extends \Google\Model
     return $this->caCertData;
   }
   /**
-   * @param string
+   * The name of the vCenter cluster for the user cluster.
+   *
+   * @param string $cluster
    */
   public function setCluster($cluster)
   {
@@ -91,7 +117,9 @@ class VmwareVCenterConfig extends \Google\Model
     return $this->cluster;
   }
   /**
-   * @param string
+   * The name of the vCenter datacenter for the user cluster.
+   *
+   * @param string $datacenter
    */
   public function setDatacenter($datacenter)
   {
@@ -105,7 +133,9 @@ class VmwareVCenterConfig extends \Google\Model
     return $this->datacenter;
   }
   /**
-   * @param string
+   * The name of the vCenter datastore for the user cluster.
+   *
+   * @param string $datastore
    */
   public function setDatastore($datastore)
   {
@@ -119,7 +149,9 @@ class VmwareVCenterConfig extends \Google\Model
     return $this->datastore;
   }
   /**
-   * @param string
+   * The name of the vCenter folder for the user cluster.
+   *
+   * @param string $folder
    */
   public function setFolder($folder)
   {
@@ -133,7 +165,9 @@ class VmwareVCenterConfig extends \Google\Model
     return $this->folder;
   }
   /**
-   * @param string
+   * The name of the vCenter resource pool for the user cluster.
+   *
+   * @param string $resourcePool
    */
   public function setResourcePool($resourcePool)
   {
@@ -145,6 +179,22 @@ class VmwareVCenterConfig extends \Google\Model
   public function getResourcePool()
   {
     return $this->resourcePool;
+  }
+  /**
+   * The name of the vCenter storage policy for the user cluster.
+   *
+   * @param string $storagePolicyName
+   */
+  public function setStoragePolicyName($storagePolicyName)
+  {
+    $this->storagePolicyName = $storagePolicyName;
+  }
+  /**
+   * @return string
+   */
+  public function getStoragePolicyName()
+  {
+    return $this->storagePolicyName;
   }
 }
 

@@ -20,13 +20,35 @@ namespace Google\Service\RecaptchaEnterprise;
 class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment extends \Google\Collection
 {
   protected $collection_key = 'labels';
+  protected $accountTakeoverVerdictType = GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict::class;
+  protected $accountTakeoverVerdictDataType = '';
   /**
+   * Output only. Labels for this request.
+   *
    * @var string[]
    */
   public $labels;
 
   /**
-   * @param string[]
+   * Output only. Account takeover risk assessment for this request.
+   *
+   * @param GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict $accountTakeoverVerdict
+   */
+  public function setAccountTakeoverVerdict(GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict $accountTakeoverVerdict)
+  {
+    $this->accountTakeoverVerdict = $accountTakeoverVerdict;
+  }
+  /**
+   * @return GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict
+   */
+  public function getAccountTakeoverVerdict()
+  {
+    return $this->accountTakeoverVerdict;
+  }
+  /**
+   * Output only. Labels for this request.
+   *
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {

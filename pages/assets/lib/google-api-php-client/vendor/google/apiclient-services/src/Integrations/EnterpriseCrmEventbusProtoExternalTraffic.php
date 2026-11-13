@@ -19,25 +19,73 @@ namespace Google\Service\Integrations;
 
 class EnterpriseCrmEventbusProtoExternalTraffic extends \Google\Model
 {
+  public const SOURCE_SOURCE_UNSPECIFIED = 'SOURCE_UNSPECIFIED';
   /**
+   * WARNING: not the Apigee product. Marks external CUSTOMER traffic, including
+   * live Standalone IP clients, so deleting an `== APIGEE` branch breaks every
+   * external customer. SECURITY is the other external source (see
+   * ExternalTrafficUtils.EXTERNAL_SOURCES). Real Apigee test:
+   * !is_branded_as_standalone.
+   */
+  public const SOURCE_APIGEE = 'APIGEE';
+  public const SOURCE_SECURITY = 'SECURITY';
+  /**
+   * Indicates the client enables internal IP feature, this is applicable for
+   * internal clients only.
+   *
+   * @var bool
+   */
+  public $enableInternalIp;
+  /**
+   * User’s GCP project id the traffic is referring to.
+   *
    * @var string
    */
   public $gcpProjectId;
   /**
+   * User’s GCP project number the traffic is referring to.
+   *
    * @var string
    */
   public $gcpProjectNumber;
   /**
+   * Location for the user's request.
+   *
    * @var string
    */
   public $location;
+  /**
+   * Enqueue the execution request due to quota issue
+   *
+   * @var bool
+   */
+  public $retryRequestForQuota;
   /**
    * @var string
    */
   public $source;
 
   /**
-   * @param string
+   * Indicates the client enables internal IP feature, this is applicable for
+   * internal clients only.
+   *
+   * @param bool $enableInternalIp
+   */
+  public function setEnableInternalIp($enableInternalIp)
+  {
+    $this->enableInternalIp = $enableInternalIp;
+  }
+  /**
+   * @return bool
+   */
+  public function getEnableInternalIp()
+  {
+    return $this->enableInternalIp;
+  }
+  /**
+   * User’s GCP project id the traffic is referring to.
+   *
+   * @param string $gcpProjectId
    */
   public function setGcpProjectId($gcpProjectId)
   {
@@ -51,7 +99,9 @@ class EnterpriseCrmEventbusProtoExternalTraffic extends \Google\Model
     return $this->gcpProjectId;
   }
   /**
-   * @param string
+   * User’s GCP project number the traffic is referring to.
+   *
+   * @param string $gcpProjectNumber
    */
   public function setGcpProjectNumber($gcpProjectNumber)
   {
@@ -65,7 +115,9 @@ class EnterpriseCrmEventbusProtoExternalTraffic extends \Google\Model
     return $this->gcpProjectNumber;
   }
   /**
-   * @param string
+   * Location for the user's request.
+   *
+   * @param string $location
    */
   public function setLocation($location)
   {
@@ -79,14 +131,30 @@ class EnterpriseCrmEventbusProtoExternalTraffic extends \Google\Model
     return $this->location;
   }
   /**
-   * @param string
+   * Enqueue the execution request due to quota issue
+   *
+   * @param bool $retryRequestForQuota
+   */
+  public function setRetryRequestForQuota($retryRequestForQuota)
+  {
+    $this->retryRequestForQuota = $retryRequestForQuota;
+  }
+  /**
+   * @return bool
+   */
+  public function getRetryRequestForQuota()
+  {
+    return $this->retryRequestForQuota;
+  }
+  /**
+   * @param self::SOURCE_* $source
    */
   public function setSource($source)
   {
     $this->source = $source;
   }
   /**
-   * @return string
+   * @return self::SOURCE_*
    */
   public function getSource()
   {

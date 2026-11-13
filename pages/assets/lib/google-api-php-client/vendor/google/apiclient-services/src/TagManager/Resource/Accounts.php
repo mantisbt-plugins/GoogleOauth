@@ -33,10 +33,10 @@ class Accounts extends \Google\Service\Resource
   /**
    * Gets a GTM Account. (accounts.get)
    *
-   * @param string $path GTM Account's API relative path. Example:
-   * accounts/{account_id}
+   * @param string $path GTM Account's API relative path.
    * @param array $optParams Optional parameters.
    * @return Account
+   * @throws \Google\Service\Exception
    */
   public function get($path, $optParams = [])
   {
@@ -54,6 +54,7 @@ class Accounts extends \Google\Service\Resource
    * @opt_param string pageToken Continuation token for fetching the next page of
    * results.
    * @return ListAccountsResponse
+   * @throws \Google\Service\Exception
    */
   public function listAccounts($optParams = [])
   {
@@ -64,14 +65,14 @@ class Accounts extends \Google\Service\Resource
   /**
    * Updates a GTM Account. (accounts.update)
    *
-   * @param string $path GTM Account's API relative path. Example:
-   * accounts/{account_id}
+   * @param string $path GTM Account's API relative path.
    * @param Account $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string fingerprint When provided, this fingerprint must match the
    * fingerprint of the account in storage.
    * @return Account
+   * @throws \Google\Service\Exception
    */
   public function update($path, Account $postBody, $optParams = [])
   {

@@ -20,36 +20,86 @@ namespace Google\Service\MigrationCenterAPI;
 class RunningService extends \Google\Model
 {
   /**
+   * Start mode unspecified.
+   */
+  public const START_MODE_START_MODE_UNSPECIFIED = 'START_MODE_UNSPECIFIED';
+  /**
+   * The service is a device driver started by the system loader.
+   */
+  public const START_MODE_BOOT = 'BOOT';
+  /**
+   * The service is a device driver started by the IOInitSystem function.
+   */
+  public const START_MODE_SYSTEM = 'SYSTEM';
+  /**
+   * The service is started by the operating system, at system start-up
+   */
+  public const START_MODE_AUTO = 'AUTO';
+  /**
+   * The service is started only manually, by a user.
+   */
+  public const START_MODE_MANUAL = 'MANUAL';
+  /**
+   * The service is disabled.
+   */
+  public const START_MODE_DISABLED = 'DISABLED';
+  /**
+   * Service state unspecified.
+   */
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  /**
+   * Service is active.
+   */
+  public const STATE_ACTIVE = 'ACTIVE';
+  /**
+   * Service is paused.
+   */
+  public const STATE_PAUSED = 'PAUSED';
+  /**
+   * Service is stopped.
+   */
+  public const STATE_STOPPED = 'STOPPED';
+  /**
+   * Service command line.
+   *
    * @var string
    */
   public $cmdline;
   /**
+   * Service binary path.
+   *
    * @var string
    */
   public $exePath;
   /**
-   * @var string
-   */
-  public $name;
-  /**
+   * Service pid.
+   *
    * @var string
    */
   public $pid;
   /**
+   * Service name.
+   *
+   * @var string
+   */
+  public $serviceName;
+  /**
+   * Service start mode (OS-agnostic).
+   *
    * @var string
    */
   public $startMode;
   /**
+   * Service state (OS-agnostic).
+   *
    * @var string
    */
   public $state;
-  /**
-   * @var string
-   */
-  public $status;
 
   /**
-   * @param string
+   * Service command line.
+   *
+   * @param string $cmdline
    */
   public function setCmdline($cmdline)
   {
@@ -63,7 +113,9 @@ class RunningService extends \Google\Model
     return $this->cmdline;
   }
   /**
-   * @param string
+   * Service binary path.
+   *
+   * @param string $exePath
    */
   public function setExePath($exePath)
   {
@@ -77,21 +129,9 @@ class RunningService extends \Google\Model
     return $this->exePath;
   }
   /**
-   * @param string
-   */
-  public function setName($name)
-  {
-    $this->name = $name;
-  }
-  /**
-   * @return string
-   */
-  public function getName()
-  {
-    return $this->name;
-  }
-  /**
-   * @param string
+   * Service pid.
+   *
+   * @param string $pid
    */
   public function setPid($pid)
   {
@@ -105,46 +145,57 @@ class RunningService extends \Google\Model
     return $this->pid;
   }
   /**
-   * @param string
+   * Service name.
+   *
+   * @param string $serviceName
+   */
+  public function setServiceName($serviceName)
+  {
+    $this->serviceName = $serviceName;
+  }
+  /**
+   * @return string
+   */
+  public function getServiceName()
+  {
+    return $this->serviceName;
+  }
+  /**
+   * Service start mode (OS-agnostic).
+   *
+   * Accepted values: START_MODE_UNSPECIFIED, BOOT, SYSTEM, AUTO, MANUAL,
+   * DISABLED
+   *
+   * @param self::START_MODE_* $startMode
    */
   public function setStartMode($startMode)
   {
     $this->startMode = $startMode;
   }
   /**
-   * @return string
+   * @return self::START_MODE_*
    */
   public function getStartMode()
   {
     return $this->startMode;
   }
   /**
-   * @param string
+   * Service state (OS-agnostic).
+   *
+   * Accepted values: STATE_UNSPECIFIED, ACTIVE, PAUSED, STOPPED
+   *
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {
     return $this->state;
-  }
-  /**
-   * @param string
-   */
-  public function setStatus($status)
-  {
-    $this->status = $status;
-  }
-  /**
-   * @return string
-   */
-  public function getStatus()
-  {
-    return $this->status;
   }
 }
 

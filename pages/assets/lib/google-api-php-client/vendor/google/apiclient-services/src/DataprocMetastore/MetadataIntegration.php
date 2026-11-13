@@ -21,11 +21,11 @@ class MetadataIntegration extends \Google\Model
 {
   protected $dataCatalogConfigType = DataCatalogConfig::class;
   protected $dataCatalogConfigDataType = '';
-  protected $dataplexConfigType = DataplexConfig::class;
-  protected $dataplexConfigDataType = '';
 
   /**
-   * @param DataCatalogConfig
+   * Optional. The integration config for the Data Catalog service.
+   *
+   * @param DataCatalogConfig $dataCatalogConfig
    */
   public function setDataCatalogConfig(DataCatalogConfig $dataCatalogConfig)
   {
@@ -37,20 +37,6 @@ class MetadataIntegration extends \Google\Model
   public function getDataCatalogConfig()
   {
     return $this->dataCatalogConfig;
-  }
-  /**
-   * @param DataplexConfig
-   */
-  public function setDataplexConfig(DataplexConfig $dataplexConfig)
-  {
-    $this->dataplexConfig = $dataplexConfig;
-  }
-  /**
-   * @return DataplexConfig
-   */
-  public function getDataplexConfig()
-  {
-    return $this->dataplexConfig;
   }
 }
 

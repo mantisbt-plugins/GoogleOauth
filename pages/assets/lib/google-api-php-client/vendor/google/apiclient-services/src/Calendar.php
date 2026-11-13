@@ -27,7 +27,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/google-apps/calendar/firstapp" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/calendar/firstapp" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -37,15 +37,54 @@ class Calendar extends \Google\Service
   /** See, edit, share, and permanently delete all the calendars you can access using Google Calendar. */
   const CALENDAR =
       "https://www.googleapis.com/auth/calendar";
+  /** See and change the sharing permissions of Google calendars you own. */
+  const CALENDAR_ACLS =
+      "https://www.googleapis.com/auth/calendar.acls";
+  /** See the sharing permissions of Google calendars you own. */
+  const CALENDAR_ACLS_READONLY =
+      "https://www.googleapis.com/auth/calendar.acls.readonly";
+  /** Make secondary Google calendars, and see, create, change, and delete events on them. */
+  const CALENDAR_APP_CREATED =
+      "https://www.googleapis.com/auth/calendar.app.created";
+  /** See, add, and remove Google calendars you’re subscribed to. */
+  const CALENDAR_CALENDARLIST =
+      "https://www.googleapis.com/auth/calendar.calendarlist";
+  /** See the list of Google calendars you’re subscribed to. */
+  const CALENDAR_CALENDARLIST_READONLY =
+      "https://www.googleapis.com/auth/calendar.calendarlist.readonly";
+  /** See and change the properties of Google calendars you have access to, and create secondary calendars. */
+  const CALENDAR_CALENDARS =
+      "https://www.googleapis.com/auth/calendar.calendars";
+  /** See the title, description, default time zone, and other properties of Google calendars you have access to. */
+  const CALENDAR_CALENDARS_READONLY =
+      "https://www.googleapis.com/auth/calendar.calendars.readonly";
   /** View and edit events on all your calendars. */
   const CALENDAR_EVENTS =
       "https://www.googleapis.com/auth/calendar.events";
+  /** See the availability on Google calendars you have access to. */
+  const CALENDAR_EVENTS_FREEBUSY =
+      "https://www.googleapis.com/auth/calendar.events.freebusy";
+  /** See, create, change, and delete events on Google calendars you own. */
+  const CALENDAR_EVENTS_OWNED =
+      "https://www.googleapis.com/auth/calendar.events.owned";
+  /** See the events on Google calendars you own. */
+  const CALENDAR_EVENTS_OWNED_READONLY =
+      "https://www.googleapis.com/auth/calendar.events.owned.readonly";
+  /** See the events on public calendars. */
+  const CALENDAR_EVENTS_PUBLIC_READONLY =
+      "https://www.googleapis.com/auth/calendar.events.public.readonly";
   /** View events on all your calendars. */
   const CALENDAR_EVENTS_READONLY =
       "https://www.googleapis.com/auth/calendar.events.readonly";
+  /** View your availability in your calendars. */
+  const CALENDAR_FREEBUSY =
+      "https://www.googleapis.com/auth/calendar.freebusy";
   /** See and download any calendar you can access using your Google Calendar. */
   const CALENDAR_READONLY =
       "https://www.googleapis.com/auth/calendar.readonly";
+  /** View and edit your Calendar settings. */
+  const CALENDAR_SETTINGS =
+      "https://www.googleapis.com/auth/calendar.settings";
   /** View your Calendar settings. */
   const CALENDAR_SETTINGS_READONLY =
       "https://www.googleapis.com/auth/calendar.settings.readonly";
@@ -58,6 +97,7 @@ class Calendar extends \Google\Service
   public $events;
   public $freebusy;
   public $settings;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Calendar service.
@@ -70,6 +110,7 @@ class Calendar extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://www.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://www.UNIVERSE_DOMAIN/';
     $this->servicePath = 'calendar/v3/';
     $this->batchPath = 'batch/calendar/v3';
     $this->version = 'v3';
@@ -278,6 +319,10 @@ class Calendar extends \Google\Service
                   'location' => 'query',
                   'type' => 'boolean',
                 ],
+                'showOwnOrganizationOnly' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'syncToken' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -332,6 +377,10 @@ class Calendar extends \Google\Service
                   'type' => 'boolean',
                 ],
                 'showHidden' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+                'showOwnOrganizationOnly' => [
                   'location' => 'query',
                   'type' => 'boolean',
                 ],
@@ -391,6 +440,26 @@ class Calendar extends \Google\Service
                 'calendarId' => [
                   'location' => 'path',
                   'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'transferOwnership' => [
+              'path' => 'calendars/{calendarId}/transferOwnership',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'calendarId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'newDataOwner' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'useAdminAccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                   'required' => true,
                 ],
               ],
@@ -505,6 +574,10 @@ class Calendar extends \Google\Service
                   'location' => 'query',
                   'type' => 'integer',
                 ],
+                'eventLabelVersion' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
                 'supportsAttachments' => [
                   'location' => 'query',
                   'type' => 'boolean',
@@ -520,6 +593,10 @@ class Calendar extends \Google\Service
                   'required' => true,
                 ],
                 'conferenceDataVersion' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'eventLabelVersion' => [
                   'location' => 'query',
                   'type' => 'integer',
                 ],
@@ -726,6 +803,10 @@ class Calendar extends \Google\Service
                   'location' => 'query',
                   'type' => 'integer',
                 ],
+                'eventLabelVersion' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
                 'maxAttendees' => [
                   'location' => 'query',
                   'type' => 'integer',
@@ -785,6 +866,10 @@ class Calendar extends \Google\Service
                   'type' => 'boolean',
                 ],
                 'conferenceDataVersion' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'eventLabelVersion' => [
                   'location' => 'query',
                   'type' => 'integer',
                 ],

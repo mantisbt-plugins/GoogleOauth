@@ -20,12 +20,16 @@ namespace Google\Service\AndroidPublisher;
 class TrackTargetedCountry extends \Google\Model
 {
   /**
+   * The country that can be targeted, as a two-letter CLDR code.
+   *
    * @var string
    */
   public $countryCode;
 
   /**
-   * @param string
+   * The country that can be targeted, as a two-letter CLDR code.
+   *
+   * @param string $countryCode
    */
   public function setCountryCode($countryCode)
   {

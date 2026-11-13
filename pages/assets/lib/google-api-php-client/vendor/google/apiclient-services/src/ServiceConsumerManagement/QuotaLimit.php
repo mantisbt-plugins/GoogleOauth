@@ -20,48 +20,128 @@ namespace Google\Service\ServiceConsumerManagement;
 class QuotaLimit extends \Google\Model
 {
   /**
+   * This quota limit applies to all traffic. This is the default value.
+   */
+  public const TRAFFIC_SOURCE_TRAFFIC_SOURCE_UNSPECIFIED = 'TRAFFIC_SOURCE_UNSPECIFIED';
+  /**
+   * This quota limit applies to traffic not recognized as agentic.
+   */
+  public const TRAFFIC_SOURCE_TRAFFIC_SOURCE_NONAGENTIC = 'TRAFFIC_SOURCE_NONAGENTIC';
+  /**
+   * This quota limit applies to only agentic traffic.
+   */
+  public const TRAFFIC_SOURCE_TRAFFIC_SOURCE_AGENTIC = 'TRAFFIC_SOURCE_AGENTIC';
+  /**
+   * Default number of tokens that can be consumed during the specified
+   * duration. This is the number of tokens assigned when a client application
+   * developer activates the service for his/her project. Specifying a value of
+   * 0 will block all requests. This can be used if you are provisioning quota
+   * to selected consumers and blocking others. Similarly, a value of -1 will
+   * indicate an unlimited quota. No other negative values are allowed. Used by
+   * group-based quotas only.
+   *
    * @var string
    */
   public $defaultLimit;
   /**
+   * Optional. User-visible, extended description for this quota limit. Should
+   * be used only when more context is needed to understand this limit than
+   * provided by the limit's display name (see: `display_name`).
+   *
    * @var string
    */
   public $description;
   /**
+   * User-visible display name for this limit. Optional. If not set, the UI will
+   * provide a default display name based on the quota configuration. This field
+   * can be used to override the default display name generated from the
+   * configuration.
+   *
    * @var string
    */
   public $displayName;
   /**
+   * Duration of this limit in textual notation. Must be "100s" or "1d". Used by
+   * group-based quotas only.
+   *
    * @var string
    */
   public $duration;
   /**
+   * Free tier value displayed in the Developers Console for this limit. The
+   * free tier is the number of tokens that will be subtracted from the billed
+   * amount when billing is enabled. This field can only be set on a limit with
+   * duration "1d", in a billable group; it is invalid on any other limit. If
+   * this field is not set, it defaults to 0, indicating that there is no free
+   * tier for this service. Used by group-based quotas only.
+   *
    * @var string
    */
   public $freeTier;
   /**
+   * Maximum number of tokens that can be consumed during the specified
+   * duration. Client application developers can override the default limit up
+   * to this maximum. If specified, this value cannot be set to a value less
+   * than the default limit. If not specified, it is set to the default limit.
+   * To allow clients to apply overrides with no upper bound, set this to -1,
+   * indicating unlimited maximum quota. Used by group-based quotas only.
+   *
    * @var string
    */
   public $maxLimit;
   /**
+   * The name of the metric this quota limit applies to. The quota limits with
+   * the same metric will be checked together during runtime. The metric must be
+   * defined within the service config.
+   *
    * @var string
    */
   public $metric;
   /**
+   * Name of the quota limit. The name must be provided, and it must be unique
+   * within the service. The name can only include alphanumeric characters as
+   * well as '-'. The maximum length of the limit name is 64 characters.
+   *
    * @var string
    */
   public $name;
   /**
+   * Optional. This is only informational, the logic to allocate the quota to
+   * the correct metric (such as in `metric_rules`) should identify which quota
+   * metrics to allocate to.
+   *
+   * @var string
+   */
+  public $trafficSource;
+  /**
+   * Specify the unit of the quota limit. It uses the same syntax as
+   * MetricDescriptor.unit. The supported unit kinds are determined by the quota
+   * backend system. Here are some examples: * "1/min/{project}" for quota per
+   * minute per project. Note: the order of unit components is insignificant.
+   * The "1" at the beginning is required to follow the metric unit syntax.
+   *
    * @var string
    */
   public $unit;
   /**
+   * Tiered limit values. You must specify this as a key:value pair, with an
+   * integer value that is the maximum number of requests allowed for the
+   * specified unit. Currently only STANDARD is supported.
+   *
    * @var string[]
    */
   public $values;
 
   /**
-   * @param string
+   * Default number of tokens that can be consumed during the specified
+   * duration. This is the number of tokens assigned when a client application
+   * developer activates the service for his/her project. Specifying a value of
+   * 0 will block all requests. This can be used if you are provisioning quota
+   * to selected consumers and blocking others. Similarly, a value of -1 will
+   * indicate an unlimited quota. No other negative values are allowed. Used by
+   * group-based quotas only.
+   *
+   * @param string $defaultLimit
    */
   public function setDefaultLimit($defaultLimit)
   {
@@ -75,7 +155,11 @@ class QuotaLimit extends \Google\Model
     return $this->defaultLimit;
   }
   /**
-   * @param string
+   * Optional. User-visible, extended description for this quota limit. Should
+   * be used only when more context is needed to understand this limit than
+   * provided by the limit's display name (see: `display_name`).
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -89,7 +173,12 @@ class QuotaLimit extends \Google\Model
     return $this->description;
   }
   /**
-   * @param string
+   * User-visible display name for this limit. Optional. If not set, the UI will
+   * provide a default display name based on the quota configuration. This field
+   * can be used to override the default display name generated from the
+   * configuration.
+   *
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -103,7 +192,10 @@ class QuotaLimit extends \Google\Model
     return $this->displayName;
   }
   /**
-   * @param string
+   * Duration of this limit in textual notation. Must be "100s" or "1d". Used by
+   * group-based quotas only.
+   *
+   * @param string $duration
    */
   public function setDuration($duration)
   {
@@ -117,7 +209,14 @@ class QuotaLimit extends \Google\Model
     return $this->duration;
   }
   /**
-   * @param string
+   * Free tier value displayed in the Developers Console for this limit. The
+   * free tier is the number of tokens that will be subtracted from the billed
+   * amount when billing is enabled. This field can only be set on a limit with
+   * duration "1d", in a billable group; it is invalid on any other limit. If
+   * this field is not set, it defaults to 0, indicating that there is no free
+   * tier for this service. Used by group-based quotas only.
+   *
+   * @param string $freeTier
    */
   public function setFreeTier($freeTier)
   {
@@ -131,7 +230,14 @@ class QuotaLimit extends \Google\Model
     return $this->freeTier;
   }
   /**
-   * @param string
+   * Maximum number of tokens that can be consumed during the specified
+   * duration. Client application developers can override the default limit up
+   * to this maximum. If specified, this value cannot be set to a value less
+   * than the default limit. If not specified, it is set to the default limit.
+   * To allow clients to apply overrides with no upper bound, set this to -1,
+   * indicating unlimited maximum quota. Used by group-based quotas only.
+   *
+   * @param string $maxLimit
    */
   public function setMaxLimit($maxLimit)
   {
@@ -145,7 +251,11 @@ class QuotaLimit extends \Google\Model
     return $this->maxLimit;
   }
   /**
-   * @param string
+   * The name of the metric this quota limit applies to. The quota limits with
+   * the same metric will be checked together during runtime. The metric must be
+   * defined within the service config.
+   *
+   * @param string $metric
    */
   public function setMetric($metric)
   {
@@ -159,7 +269,11 @@ class QuotaLimit extends \Google\Model
     return $this->metric;
   }
   /**
-   * @param string
+   * Name of the quota limit. The name must be provided, and it must be unique
+   * within the service. The name can only include alphanumeric characters as
+   * well as '-'. The maximum length of the limit name is 64 characters.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -173,7 +287,34 @@ class QuotaLimit extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * Optional. This is only informational, the logic to allocate the quota to
+   * the correct metric (such as in `metric_rules`) should identify which quota
+   * metrics to allocate to.
+   *
+   * Accepted values: TRAFFIC_SOURCE_UNSPECIFIED, TRAFFIC_SOURCE_NONAGENTIC,
+   * TRAFFIC_SOURCE_AGENTIC
+   *
+   * @param self::TRAFFIC_SOURCE_* $trafficSource
+   */
+  public function setTrafficSource($trafficSource)
+  {
+    $this->trafficSource = $trafficSource;
+  }
+  /**
+   * @return self::TRAFFIC_SOURCE_*
+   */
+  public function getTrafficSource()
+  {
+    return $this->trafficSource;
+  }
+  /**
+   * Specify the unit of the quota limit. It uses the same syntax as
+   * MetricDescriptor.unit. The supported unit kinds are determined by the quota
+   * backend system. Here are some examples: * "1/min/{project}" for quota per
+   * minute per project. Note: the order of unit components is insignificant.
+   * The "1" at the beginning is required to follow the metric unit syntax.
+   *
+   * @param string $unit
    */
   public function setUnit($unit)
   {
@@ -187,7 +328,11 @@ class QuotaLimit extends \Google\Model
     return $this->unit;
   }
   /**
-   * @param string[]
+   * Tiered limit values. You must specify this as a key:value pair, with an
+   * integer value that is the maximum number of requests allowed for the
+   * specified unit. Currently only STANDARD is supported.
+   *
+   * @param string[] $values
    */
   public function setValues($values)
   {

@@ -20,23 +20,43 @@ namespace Google\Service\GKEHub;
 class PolicyControllerTemplateLibraryConfig extends \Google\Model
 {
   /**
-   * @var bool
+   * No installation strategy has been specified.
    */
-  public $included;
+  public const INSTALLATION_INSTALLATION_UNSPECIFIED = 'INSTALLATION_UNSPECIFIED';
+  /**
+   * Do not install the template library.
+   */
+  public const INSTALLATION_NOT_INSTALLED = 'NOT_INSTALLED';
+  /**
+   * Install the entire template library.
+   */
+  public const INSTALLATION_ALL = 'ALL';
+  /**
+   * Configures the manner in which the template library is installed on the
+   * cluster.
+   *
+   * @var string
+   */
+  public $installation;
 
   /**
-   * @param bool
+   * Configures the manner in which the template library is installed on the
+   * cluster.
+   *
+   * Accepted values: INSTALLATION_UNSPECIFIED, NOT_INSTALLED, ALL
+   *
+   * @param self::INSTALLATION_* $installation
    */
-  public function setIncluded($included)
+  public function setInstallation($installation)
   {
-    $this->included = $included;
+    $this->installation = $installation;
   }
   /**
-   * @return bool
+   * @return self::INSTALLATION_*
    */
-  public function getIncluded()
+  public function getInstallation()
   {
-    return $this->included;
+    return $this->installation;
   }
 }
 

@@ -41,6 +41,7 @@ class ProjectsLocationsRepositoriesPackagesTags extends \Google\Service\Resource
    *
    * @opt_param string tagId The tag id to use for this repository.
    * @return Tag
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Tag $postBody, $optParams = [])
   {
@@ -54,6 +55,7 @@ class ProjectsLocationsRepositoriesPackagesTags extends \Google\Service\Resource
    * @param string $name The name of the tag to delete.
    * @param array $optParams Optional parameters.
    * @return ArtifactregistryEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -67,6 +69,7 @@ class ProjectsLocationsRepositoriesPackagesTags extends \Google\Service\Resource
    * @param string $name The name of the tag to retrieve.
    * @param array $optParams Optional parameters.
    * @return Tag
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -77,21 +80,35 @@ class ProjectsLocationsRepositoriesPackagesTags extends \Google\Service\Resource
   /**
    * Lists tags. (tags.listProjectsLocationsRepositoriesPackagesTags)
    *
-   * @param string $parent The name of the parent resource whose tags will be
-   * listed.
+   * @param string $parent The name of the parent package whose tags will be
+   * listed. For example: `projects/p1/locations/us-
+   * central1/repositories/repo1/packages/pkg1`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter An expression for filtering the results of the
    * request. Filter rules are case insensitive. The fields eligible for filtering
-   * are: * `version` An example of using a filter: *
-   * `version="projects/p1/locations/us-
-   * central1/repositories/repo1/packages/pkg1/versions/1.0"` --> Tags that are
-   * applied to the version `1.0` in package `pkg1`.
+   * are: * `name` * `version` Examples of using a filter: To filter the results
+   * of your request to tags with the name `my-tag` in package `my-package` in
+   * repository `my-repo` in project "`y-project` in the us-central region, append
+   * the following filter expression to your request: * `name="projects/my-
+   * project/locations/us-central1/repositories/my-repo/packages/my-
+   * package/tags/my-tag"` You can also use wildcards to match any number of
+   * characters before or after the value: * `name="projects/my-
+   * project/locations/us-central1/repositories/my-repo/packages/my-
+   * package/tags/my*"` * `name="projects/my-project/locations/us-
+   * central1/repositories/my-repo/packages/my-package/tagstag"` *
+   * `name="projects/my-project/locations/us-central1/repositories/my-
+   * repo/packages/my-package/tagstag*"` To filter the results of your request to
+   * tags applied to the version `1.0` in package `my-package`, append the
+   * following filter expression to your request: * `version="projects/my-
+   * project/locations/us-central1/repositories/my-repo/packages/my-
+   * package/versions/1.0"`
    * @opt_param int pageSize The maximum number of tags to return. Maximum page
-   * size is 10,000.
+   * size is 1,000.
    * @opt_param string pageToken The next_page_token value returned from a
    * previous list request, if any.
    * @return ListTagsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsRepositoriesPackagesTags($parent, $optParams = [])
   {
@@ -102,8 +119,9 @@ class ProjectsLocationsRepositoriesPackagesTags extends \Google\Service\Resource
   /**
    * Updates a tag. (tags.patch)
    *
-   * @param string $name The name of the tag, for example: "projects/p1/locations
-   * /us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part
+   * @param string $name The name of the tag, for example:
+   * "projects/p1/locations/us-
+   * central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part
    * contains slashes, the slashes are escaped. The tag part can only have
    * characters in [a-zA-Z0-9\-._~:@], anything else must be URL encoded.
    * @param Tag $postBody
@@ -113,6 +131,7 @@ class ProjectsLocationsRepositoriesPackagesTags extends \Google\Service\Resource
    * `FieldMask` definition, see https://developers.google.com/protocol-
    * buffers/docs/reference/google.protobuf#fieldmask
    * @return Tag
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Tag $postBody, $optParams = [])
   {

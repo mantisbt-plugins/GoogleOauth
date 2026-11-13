@@ -21,9 +21,19 @@ class HttpRouteRequestMirrorPolicy extends \Google\Model
 {
   protected $destinationType = HttpRouteDestination::class;
   protected $destinationDataType = '';
+  /**
+   * Optional. The percentage of requests to get mirrored to the desired
+   * destination.
+   *
+   * @var float
+   */
+  public $mirrorPercent;
 
   /**
-   * @param HttpRouteDestination
+   * The destination the requests will be mirrored to. The weight of the
+   * destination will be ignored.
+   *
+   * @param HttpRouteDestination $destination
    */
   public function setDestination(HttpRouteDestination $destination)
   {
@@ -35,6 +45,23 @@ class HttpRouteRequestMirrorPolicy extends \Google\Model
   public function getDestination()
   {
     return $this->destination;
+  }
+  /**
+   * Optional. The percentage of requests to get mirrored to the desired
+   * destination.
+   *
+   * @param float $mirrorPercent
+   */
+  public function setMirrorPercent($mirrorPercent)
+  {
+    $this->mirrorPercent = $mirrorPercent;
+  }
+  /**
+   * @return float
+   */
+  public function getMirrorPercent()
+  {
+    return $this->mirrorPercent;
   }
 }
 

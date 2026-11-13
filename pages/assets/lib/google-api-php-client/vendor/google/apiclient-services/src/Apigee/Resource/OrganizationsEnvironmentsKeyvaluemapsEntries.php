@@ -40,10 +40,16 @@ class OrganizationsEnvironmentsKeyvaluemapsEntries extends \Google\Service\Resou
    * your request: *
    * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `orga
    * nizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap
-   * }` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.
+   * }` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the
+   * KeyValueMap is under an API Proxy resource that has the `space` attribute
+   * set, IAM permissions are checked against the Space resource path. To learn
+   * more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
    * @param GoogleCloudApigeeV1KeyValueEntry $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1KeyValueEntry
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudApigeeV1KeyValueEntry $postBody, $optParams = [])
   {
@@ -63,9 +69,15 @@ class OrganizationsEnvironmentsKeyvaluemapsEntries extends \Google\Service\Resou
    * your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyval
    * uemap}/entries/{entry}`. * `organizations/{organization}/environments/{enviro
    * nment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` *
-   * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.
+   * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. If
+   * the KeyValueMap is under an API Proxy resource that has the `space` attribute
+   * set, IAM permissions are checked against the Space resource path. To learn
+   * more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1KeyValueEntry
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -83,9 +95,15 @@ class OrganizationsEnvironmentsKeyvaluemapsEntries extends \Google\Service\Resou
    * your request: * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyval
    * uemap}/entries/{entry}`. * `organizations/{organization}/environments/{enviro
    * nment}/keyvaluemaps/{keyvaluemap}/entries/{entry}` *
-   * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`.
+   * `organizations/{organization}/keyvaluemaps/{keyvaluemap}/entries/{entry}`. If
+   * the KeyValueMap is under an API Proxy resource that has the `space` attribute
+   * set, IAM permissions are checked against the Space resource path. To learn
+   * more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1KeyValueEntry
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -102,7 +120,12 @@ class OrganizationsEnvironmentsKeyvaluemapsEntries extends \Google\Service\Resou
    * list key value maps. Use **one** of the following structures in your request:
    * * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `or
    * ganizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluem
-   * ap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.
+   * ap}` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the
+   * KeyValueMap is under an API Proxy resource that has the `space` attribute
+   * set, IAM permissions are checked against the Space resource path. To learn
+   * more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize Optional. Maximum number of key value entries to
@@ -111,12 +134,39 @@ class OrganizationsEnvironmentsKeyvaluemapsEntries extends \Google\Service\Resou
    * valid key value entry returned from a previous call that can be used to
    * retrieve the next page.
    * @return GoogleCloudApigeeV1ListKeyValueEntriesResponse
+   * @throws \Google\Service\Exception
    */
   public function listOrganizationsEnvironmentsKeyvaluemapsEntries($parent, $optParams = [])
   {
     $params = ['parent' => $parent];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], GoogleCloudApigeeV1ListKeyValueEntriesResponse::class);
+  }
+  /**
+   * Update key value entry scoped to an organization, environment, or API proxy
+   * for an existing key. (entries.update)
+   *
+   * @param string $name Required. Scope as indicated by the URI in which to
+   * create the key value map entry. Use **one** of the following structures in
+   * your request: *
+   * `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`. * `orga
+   * nizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap
+   * }` * `organizations/{organization}/keyvaluemaps/{keyvaluemap}`. If the
+   * KeyValueMap is under an API Proxy resource that has the `space` attribute
+   * set, IAM permissions are checked against the Space resource path. To learn
+   * more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
+   * @param GoogleCloudApigeeV1KeyValueEntry $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudApigeeV1KeyValueEntry
+   * @throws \Google\Service\Exception
+   */
+  public function update($name, GoogleCloudApigeeV1KeyValueEntry $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('update', [$params], GoogleCloudApigeeV1KeyValueEntry::class);
   }
 }
 

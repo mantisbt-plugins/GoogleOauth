@@ -18,8 +18,11 @@
 namespace Google\Service\Storage\Resource;
 
 use Google\Service\Storage\Bucket;
+use Google\Service\Storage\BucketStorageLayout;
 use Google\Service\Storage\Buckets as BucketsModel;
+use Google\Service\Storage\GoogleLongrunningOperation;
 use Google\Service\Storage\Policy;
+use Google\Service\Storage\RelocateBucketRequest;
 use Google\Service\Storage\TestIamPermissionsResponse;
 
 /**
@@ -33,7 +36,8 @@ use Google\Service\Storage\TestIamPermissionsResponse;
 class Buckets extends \Google\Service\Resource
 {
   /**
-   * Permanently deletes an empty bucket. (buckets.delete)
+   * Deletes an empty bucket. Deletions are permanent unless soft delete is
+   * enabled on the bucket. (buckets.delete)
    *
    * @param string $bucket Name of a bucket.
    * @param array $optParams Optional parameters.
@@ -44,6 +48,7 @@ class Buckets extends \Google\Service\Resource
    * its metageneration does not match this value.
    * @opt_param string userProject The project to be billed for this request.
    * Required for Requester Pays buckets.
+   * @throws \Google\Service\Exception
    */
   public function delete($bucket, $optParams = [])
   {
@@ -57,6 +62,8 @@ class Buckets extends \Google\Service\Resource
    * @param string $bucket Name of a bucket.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string generation If present, specifies the generation of the
+   * bucket. This is required if softDeleted is true.
    * @opt_param string ifMetagenerationMatch Makes the return of the bucket
    * metadata conditional on whether the bucket's current metageneration matches
    * the given value.
@@ -64,9 +71,13 @@ class Buckets extends \Google\Service\Resource
    * metadata conditional on whether the bucket's current metageneration does not
    * match the given value.
    * @opt_param string projection Set of properties to return. Defaults to noAcl.
+   * @opt_param bool softDeleted If true, return the soft-deleted version of this
+   * bucket. The default is false. For more information, see [Soft
+   * Delete](https://cloud.google.com/storage/docs/soft-delete).
    * @opt_param string userProject The project to be billed for this request.
    * Required for Requester Pays buckets.
    * @return Bucket
+   * @throws \Google\Service\Exception
    */
   public function get($bucket, $optParams = [])
   {
@@ -86,6 +97,7 @@ class Buckets extends \Google\Service\Resource
    * @opt_param string userProject The project to be billed for this request.
    * Required for Requester Pays buckets.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($bucket, $optParams = [])
   {
@@ -94,12 +106,34 @@ class Buckets extends \Google\Service\Resource
     return $this->call('getIamPolicy', [$params], Policy::class);
   }
   /**
+   * Returns the storage layout configuration for the specified bucket. Note that
+   * this operation requires storage.objects.list permission.
+   * (buckets.getStorageLayout)
+   *
+   * @param string $bucket Name of a bucket.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string prefix An optional prefix used for permission check. It is
+   * useful when the caller only has storage.objects.list permission under a
+   * specific prefix.
+   * @return BucketStorageLayout
+   * @throws \Google\Service\Exception
+   */
+  public function getStorageLayout($bucket, $optParams = [])
+  {
+    $params = ['bucket' => $bucket];
+    $params = array_merge($params, $optParams);
+    return $this->call('getStorageLayout', [$params], BucketStorageLayout::class);
+  }
+  /**
    * Creates a new bucket. (buckets.insert)
    *
    * @param string $project A valid API project identifier.
    * @param Bucket $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param bool enableObjectRetention When set to true, object retention is
+   * enabled for this bucket.
    * @opt_param string predefinedAcl Apply a predefined set of access controls to
    * this bucket.
    * @opt_param string predefinedDefaultObjectAcl Apply a predefined set of
@@ -109,6 +143,7 @@ class Buckets extends \Google\Service\Resource
    * it defaults to full.
    * @opt_param string userProject The project to be billed for this request.
    * @return Bucket
+   * @throws \Google\Service\Exception
    */
   public function insert($project, Bucket $postBody, $optParams = [])
   {
@@ -130,8 +165,14 @@ class Buckets extends \Google\Service\Resource
    * @opt_param string prefix Filter results to buckets whose names begin with
    * this prefix.
    * @opt_param string projection Set of properties to return. Defaults to noAcl.
+   * @opt_param bool returnPartialSuccess If true, return a list of bucket
+   * resource names for buckets that are in unreachable locations.
+   * @opt_param bool softDeleted If true, only soft-deleted bucket versions will
+   * be returned. The default is false. For more information, see [Soft
+   * Delete](https://cloud.google.com/storage/docs/soft-delete).
    * @opt_param string userProject The project to be billed for this request.
    * @return BucketsModel
+   * @throws \Google\Service\Exception
    */
   public function listBuckets($project, $optParams = [])
   {
@@ -150,6 +191,7 @@ class Buckets extends \Google\Service\Resource
    * @opt_param string userProject The project to be billed for this request.
    * Required for Requester Pays buckets.
    * @return Bucket
+   * @throws \Google\Service\Exception
    */
   public function lockRetentionPolicy($bucket, $ifMetagenerationMatch, $optParams = [])
   {
@@ -180,12 +222,48 @@ class Buckets extends \Google\Service\Resource
    * @opt_param string userProject The project to be billed for this request.
    * Required for Requester Pays buckets.
    * @return Bucket
+   * @throws \Google\Service\Exception
    */
   public function patch($bucket, Bucket $postBody, $optParams = [])
   {
     $params = ['bucket' => $bucket, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], Bucket::class);
+  }
+  /**
+   * Initiates a long-running Relocate Bucket operation on the specified bucket.
+   * (buckets.relocate)
+   *
+   * @param string $bucket Name of the bucket to be moved.
+   * @param RelocateBucketRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
+   */
+  public function relocate($bucket, RelocateBucketRequest $postBody, $optParams = [])
+  {
+    $params = ['bucket' => $bucket, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('relocate', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
+   * Restores a soft-deleted bucket. (buckets.restore)
+   *
+   * @param string $bucket Name of a bucket.
+   * @param string $generation Generation of a bucket.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string projection Set of properties to return. Defaults to full.
+   * @opt_param string userProject The project to be billed for this request.
+   * Required for Requester Pays buckets.
+   * @return Bucket
+   * @throws \Google\Service\Exception
+   */
+  public function restore($bucket, $generation, $optParams = [])
+  {
+    $params = ['bucket' => $bucket, 'generation' => $generation];
+    $params = array_merge($params, $optParams);
+    return $this->call('restore', [$params], Bucket::class);
   }
   /**
    * Updates an IAM policy for the specified bucket. (buckets.setIamPolicy)
@@ -197,6 +275,7 @@ class Buckets extends \Google\Service\Resource
    * @opt_param string userProject The project to be billed for this request.
    * Required for Requester Pays buckets.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($bucket, Policy $postBody, $optParams = [])
   {
@@ -215,6 +294,7 @@ class Buckets extends \Google\Service\Resource
    * @opt_param string userProject The project to be billed for this request.
    * Required for Requester Pays buckets.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($bucket, $permissions, $optParams = [])
   {
@@ -245,6 +325,7 @@ class Buckets extends \Google\Service\Resource
    * @opt_param string userProject The project to be billed for this request.
    * Required for Requester Pays buckets.
    * @return Bucket
+   * @throws \Google\Service\Exception
    */
   public function update($bucket, Bucket $postBody, $optParams = [])
   {

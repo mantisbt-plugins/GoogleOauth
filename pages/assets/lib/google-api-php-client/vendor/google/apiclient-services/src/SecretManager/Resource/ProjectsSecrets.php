@@ -18,8 +18,10 @@
 namespace Google\Service\SecretManager\Resource;
 
 use Google\Service\SecretManager\AddSecretVersionRequest;
+use Google\Service\SecretManager\EnableManagedRotationRequest;
 use Google\Service\SecretManager\ListSecretsResponse;
 use Google\Service\SecretManager\Policy;
+use Google\Service\SecretManager\RotateSecretRequest;
 use Google\Service\SecretManager\Secret;
 use Google\Service\SecretManager\SecretVersion;
 use Google\Service\SecretManager\SecretmanagerEmpty;
@@ -42,10 +44,12 @@ class ProjectsSecrets extends \Google\Service\Resource
    * existing Secret. (secrets.addVersion)
    *
    * @param string $parent Required. The resource name of the Secret to associate
-   * with the SecretVersion in the format `projects/secrets`.
+   * with the SecretVersion in the format `projects/secrets` or
+   * `projects/locations/secrets`.
    * @param AddSecretVersionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return SecretVersion
+   * @throws \Google\Service\Exception
    */
   public function addVersion($parent, AddSecretVersionRequest $postBody, $optParams = [])
   {
@@ -57,7 +61,7 @@ class ProjectsSecrets extends \Google\Service\Resource
    * Creates a new Secret containing no SecretVersions. (secrets.create)
    *
    * @param string $parent Required. The resource name of the project to associate
-   * with the Secret, in the format `projects`.
+   * with the Secret, in the format `projects` or `projects/locations`.
    * @param Secret $postBody
    * @param array $optParams Optional parameters.
    *
@@ -66,6 +70,7 @@ class ProjectsSecrets extends \Google\Service\Resource
    * contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
    * underscore (`_`) characters.
    * @return Secret
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Secret $postBody, $optParams = [])
   {
@@ -84,6 +89,7 @@ class ProjectsSecrets extends \Google\Service\Resource
    * it matches the etag of the currently stored secret object. If the etag is
    * omitted, the request succeeds.
    * @return SecretmanagerEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -92,12 +98,33 @@ class ProjectsSecrets extends \Google\Service\Resource
     return $this->call('delete', [$params], SecretmanagerEmpty::class);
   }
   /**
+   * Enables the managed rotation feature for a Secret. This method can only be
+   * triggered once for a secret. In order to do further rotations, RotateSecret
+   * should be used. This method will add a secret version and update the password
+   * in Cloud SQL. (secrets.enableManagedRotation)
+   *
+   * @param string $parent Required. The resource name of the Secret to associate
+   * with the SecretVersion in the format `projects/secrets` or
+   * `projects/locations/secrets`.
+   * @param EnableManagedRotationRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return SecretVersion
+   * @throws \Google\Service\Exception
+   */
+  public function enableManagedRotation($parent, EnableManagedRotationRequest $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('enableManagedRotation', [$params], SecretVersion::class);
+  }
+  /**
    * Gets metadata for a given Secret. (secrets.get)
    *
    * @param string $name Required. The resource name of the Secret, in the format
-   * `projects/secrets`.
+   * `projects/secrets` or `projects/locations/secrets`.
    * @param array $optParams Optional parameters.
    * @return Secret
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -128,6 +155,7 @@ class ProjectsSecrets extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -139,7 +167,7 @@ class ProjectsSecrets extends \Google\Service\Resource
    * Lists Secrets. (secrets.listProjectsSecrets)
    *
    * @param string $parent Required. The resource name of the project associated
-   * with the Secrets, in the format `projects`.
+   * with the Secrets, in the format `projects` or `projects/locations`
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter Optional. Filter string, adhering to the rules in
@@ -153,6 +181,7 @@ class ProjectsSecrets extends \Google\Service\Resource
    * @opt_param string pageToken Optional. Pagination token, returned earlier via
    * ListSecretsResponse.next_page_token.
    * @return ListSecretsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsSecrets($parent, $optParams = [])
   {
@@ -170,12 +199,32 @@ class ProjectsSecrets extends \Google\Service\Resource
    *
    * @opt_param string updateMask Required. Specifies the fields to be updated.
    * @return Secret
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Secret $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], Secret::class);
+  }
+  /**
+   * Do a managed rotation for a Secret. This can only be triggered after Managed
+   * rotation has been enabled. This method will add a secret version and update
+   * the password in Cloud SQL. (secrets.rotateSecret)
+   *
+   * @param string $parent Required. The resource name of the Secret to associate
+   * with the SecretVersion in the format `projects/secrets` or
+   * `projects/locations/secrets`.
+   * @param RotateSecretRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return SecretVersion
+   * @throws \Google\Service\Exception
+   */
+  public function rotateSecret($parent, RotateSecretRequest $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('rotateSecret', [$params], SecretVersion::class);
   }
   /**
    * Sets the access control policy on the specified secret. Replaces any existing
@@ -189,6 +238,7 @@ class ProjectsSecrets extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -210,6 +260,7 @@ class ProjectsSecrets extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

@@ -19,21 +19,45 @@ namespace Google\Service\MigrationCenterAPI;
 
 class GuestConfigDetails extends \Google\Model
 {
+  /**
+   * SELinux mode unknown or unspecified.
+   */
+  public const SELINUX_MODE_SE_LINUX_MODE_UNSPECIFIED = 'SE_LINUX_MODE_UNSPECIFIED';
+  /**
+   * SELinux is disabled.
+   */
+  public const SELINUX_MODE_SE_LINUX_MODE_DISABLED = 'SE_LINUX_MODE_DISABLED';
+  /**
+   * SELinux permissive mode.
+   */
+  public const SELINUX_MODE_SE_LINUX_MODE_PERMISSIVE = 'SE_LINUX_MODE_PERMISSIVE';
+  /**
+   * SELinux enforcing mode.
+   */
+  public const SELINUX_MODE_SE_LINUX_MODE_ENFORCING = 'SE_LINUX_MODE_ENFORCING';
   protected $fstabType = FstabEntryList::class;
   protected $fstabDataType = '';
   protected $hostsType = HostsEntryList::class;
   protected $hostsDataType = '';
   /**
+   * OS issue (typically /etc/issue in Linux).
+   *
    * @var string
    */
   public $issue;
   protected $nfsExportsType = NfsExportList::class;
   protected $nfsExportsDataType = '';
-  protected $selinuxType = Selinux::class;
-  protected $selinuxDataType = '';
+  /**
+   * Security-Enhanced Linux (SELinux) mode.
+   *
+   * @var string
+   */
+  public $selinuxMode;
 
   /**
-   * @param FstabEntryList
+   * Mount list (Linux fstab).
+   *
+   * @param FstabEntryList $fstab
    */
   public function setFstab(FstabEntryList $fstab)
   {
@@ -47,7 +71,9 @@ class GuestConfigDetails extends \Google\Model
     return $this->fstab;
   }
   /**
-   * @param HostsEntryList
+   * Hosts file (/etc/hosts).
+   *
+   * @param HostsEntryList $hosts
    */
   public function setHosts(HostsEntryList $hosts)
   {
@@ -61,7 +87,9 @@ class GuestConfigDetails extends \Google\Model
     return $this->hosts;
   }
   /**
-   * @param string
+   * OS issue (typically /etc/issue in Linux).
+   *
+   * @param string $issue
    */
   public function setIssue($issue)
   {
@@ -75,7 +103,9 @@ class GuestConfigDetails extends \Google\Model
     return $this->issue;
   }
   /**
-   * @param NfsExportList
+   * NFS exports.
+   *
+   * @param NfsExportList $nfsExports
    */
   public function setNfsExports(NfsExportList $nfsExports)
   {
@@ -89,18 +119,23 @@ class GuestConfigDetails extends \Google\Model
     return $this->nfsExports;
   }
   /**
-   * @param Selinux
+   * Security-Enhanced Linux (SELinux) mode.
+   *
+   * Accepted values: SE_LINUX_MODE_UNSPECIFIED, SE_LINUX_MODE_DISABLED,
+   * SE_LINUX_MODE_PERMISSIVE, SE_LINUX_MODE_ENFORCING
+   *
+   * @param self::SELINUX_MODE_* $selinuxMode
    */
-  public function setSelinux(Selinux $selinux)
+  public function setSelinuxMode($selinuxMode)
   {
-    $this->selinux = $selinux;
+    $this->selinuxMode = $selinuxMode;
   }
   /**
-   * @return Selinux
+   * @return self::SELINUX_MODE_*
    */
-  public function getSelinux()
+  public function getSelinuxMode()
   {
-    return $this->selinux;
+    return $this->selinuxMode;
   }
 }
 

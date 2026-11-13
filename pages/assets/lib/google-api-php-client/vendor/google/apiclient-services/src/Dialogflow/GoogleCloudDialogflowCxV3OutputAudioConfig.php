@@ -19,6 +19,16 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3OutputAudioConfig extends \Google\Model
 {
+  public const AUDIO_ENCODING_OUTPUT_AUDIO_ENCODING_UNSPECIFIED = 'OUTPUT_AUDIO_ENCODING_UNSPECIFIED';
+  public const AUDIO_ENCODING_OUTPUT_AUDIO_ENCODING_LINEAR_16 = 'OUTPUT_AUDIO_ENCODING_LINEAR_16';
+  /**
+   * @deprecated
+   */
+  public const AUDIO_ENCODING_OUTPUT_AUDIO_ENCODING_MP3 = 'OUTPUT_AUDIO_ENCODING_MP3';
+  public const AUDIO_ENCODING_OUTPUT_AUDIO_ENCODING_MP3_64_KBPS = 'OUTPUT_AUDIO_ENCODING_MP3_64_KBPS';
+  public const AUDIO_ENCODING_OUTPUT_AUDIO_ENCODING_OGG_OPUS = 'OUTPUT_AUDIO_ENCODING_OGG_OPUS';
+  public const AUDIO_ENCODING_OUTPUT_AUDIO_ENCODING_MULAW = 'OUTPUT_AUDIO_ENCODING_MULAW';
+  public const AUDIO_ENCODING_OUTPUT_AUDIO_ENCODING_ALAW = 'OUTPUT_AUDIO_ENCODING_ALAW';
   /**
    * @var string
    */
@@ -31,21 +41,21 @@ class GoogleCloudDialogflowCxV3OutputAudioConfig extends \Google\Model
   protected $synthesizeSpeechConfigDataType = '';
 
   /**
-   * @param string
+   * @param self::AUDIO_ENCODING_* $audioEncoding
    */
   public function setAudioEncoding($audioEncoding)
   {
     $this->audioEncoding = $audioEncoding;
   }
   /**
-   * @return string
+   * @return self::AUDIO_ENCODING_*
    */
   public function getAudioEncoding()
   {
     return $this->audioEncoding;
   }
   /**
-   * @param int
+   * @param int $sampleRateHertz
    */
   public function setSampleRateHertz($sampleRateHertz)
   {
@@ -59,7 +69,7 @@ class GoogleCloudDialogflowCxV3OutputAudioConfig extends \Google\Model
     return $this->sampleRateHertz;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3SynthesizeSpeechConfig
+   * @param GoogleCloudDialogflowCxV3SynthesizeSpeechConfig $synthesizeSpeechConfig
    */
   public function setSynthesizeSpeechConfig(GoogleCloudDialogflowCxV3SynthesizeSpeechConfig $synthesizeSpeechConfig)
   {

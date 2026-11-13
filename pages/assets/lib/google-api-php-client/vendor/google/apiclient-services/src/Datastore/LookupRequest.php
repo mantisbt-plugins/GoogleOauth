@@ -21,16 +21,26 @@ class LookupRequest extends \Google\Collection
 {
   protected $collection_key = 'keys';
   /**
+   * The ID of the database against which to make the request. '(default)' is
+   * not allowed; please use empty string '' to refer the default database.
+   *
    * @var string
    */
   public $databaseId;
   protected $keysType = Key::class;
   protected $keysDataType = 'array';
+  protected $propertyMaskType = PropertyMask::class;
+  protected $propertyMaskDataType = '';
   protected $readOptionsType = ReadOptions::class;
   protected $readOptionsDataType = '';
+  protected $requestOptionsType = RequestOptions::class;
+  protected $requestOptionsDataType = '';
 
   /**
-   * @param string
+   * The ID of the database against which to make the request. '(default)' is
+   * not allowed; please use empty string '' to refer the default database.
+   *
+   * @param string $databaseId
    */
   public function setDatabaseId($databaseId)
   {
@@ -44,7 +54,9 @@ class LookupRequest extends \Google\Collection
     return $this->databaseId;
   }
   /**
-   * @param Key[]
+   * Required. Keys of entities to look up.
+   *
+   * @param Key[] $keys
    */
   public function setKeys($keys)
   {
@@ -58,7 +70,28 @@ class LookupRequest extends \Google\Collection
     return $this->keys;
   }
   /**
-   * @param ReadOptions
+   * The properties to return. Defaults to returning all properties. If this
+   * field is set and an entity has a property not referenced in the mask, it
+   * will be absent from LookupResponse.found.entity.properties. The entity's
+   * key is always returned.
+   *
+   * @param PropertyMask $propertyMask
+   */
+  public function setPropertyMask(PropertyMask $propertyMask)
+  {
+    $this->propertyMask = $propertyMask;
+  }
+  /**
+   * @return PropertyMask
+   */
+  public function getPropertyMask()
+  {
+    return $this->propertyMask;
+  }
+  /**
+   * The options for this lookup request.
+   *
+   * @param ReadOptions $readOptions
    */
   public function setReadOptions(ReadOptions $readOptions)
   {
@@ -70,6 +103,22 @@ class LookupRequest extends \Google\Collection
   public function getReadOptions()
   {
     return $this->readOptions;
+  }
+  /**
+   * Optional. The options for this request.
+   *
+   * @param RequestOptions $requestOptions
+   */
+  public function setRequestOptions(RequestOptions $requestOptions)
+  {
+    $this->requestOptions = $requestOptions;
+  }
+  /**
+   * @return RequestOptions
+   */
+  public function getRequestOptions()
+  {
+    return $this->requestOptions;
   }
 }
 

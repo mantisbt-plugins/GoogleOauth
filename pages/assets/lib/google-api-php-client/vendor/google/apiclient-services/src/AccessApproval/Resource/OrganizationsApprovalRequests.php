@@ -42,6 +42,7 @@ class OrganizationsApprovalRequests extends \Google\Service\Resource
    * @param ApproveApprovalRequestMessage $postBody
    * @param array $optParams Optional parameters.
    * @return ApprovalRequest
+   * @throws \Google\Service\Exception
    */
   public function approve($name, ApproveApprovalRequestMessage $postBody, $optParams = [])
   {
@@ -50,9 +51,9 @@ class OrganizationsApprovalRequests extends \Google\Service\Resource
     return $this->call('approve', [$params], ApprovalRequest::class);
   }
   /**
-   * Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not
-   * deny access to the resource if another request has been made and approved. It
-   * is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND
+   * Dismisses a request. Returns the updated ApprovalRequest. NOTE: When a
+   * request is dismissed, it is considered ignored. Dismissing a request does not
+   * prevent access granted by other Access Approval requests. Returns NOT_FOUND
    * if the request does not exist. Returns FAILED_PRECONDITION if the request
    * exists but is not in a pending state. (approvalRequests.dismiss)
    *
@@ -60,6 +61,7 @@ class OrganizationsApprovalRequests extends \Google\Service\Resource
    * @param DismissApprovalRequestMessage $postBody
    * @param array $optParams Optional parameters.
    * @return ApprovalRequest
+   * @throws \Google\Service\Exception
    */
   public function dismiss($name, DismissApprovalRequestMessage $postBody, $optParams = [])
   {
@@ -75,6 +77,7 @@ class OrganizationsApprovalRequests extends \Google\Service\Resource
    * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}"
    * @param array $optParams Optional parameters.
    * @return ApprovalRequest
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -84,8 +87,8 @@ class OrganizationsApprovalRequests extends \Google\Service\Resource
   }
   /**
    * Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest.
-   * NOTE: This does not deny access to the resource if another request has been
-   * made and approved. It only invalidates a single approval. Returns
+   * NOTE: This action revokes Google access based on this approval request. If
+   * the resource has other active approvals, access will remain granted. Returns
    * FAILED_PRECONDITION if the request exists but is not in an approved state.
    * (approvalRequests.invalidate)
    *
@@ -93,6 +96,7 @@ class OrganizationsApprovalRequests extends \Google\Service\Resource
    * @param InvalidateApprovalRequestMessage $postBody
    * @param array $optParams Optional parameters.
    * @return ApprovalRequest
+   * @throws \Google\Service\Exception
    */
   public function invalidate($name, InvalidateApprovalRequestMessage $postBody, $optParams = [])
   {
@@ -122,6 +126,7 @@ class OrganizationsApprovalRequests extends \Google\Service\Resource
    * @opt_param string pageToken A token identifying the page of results to
    * return.
    * @return ListApprovalRequestsResponse
+   * @throws \Google\Service\Exception
    */
   public function listOrganizationsApprovalRequests($parent, $optParams = [])
   {

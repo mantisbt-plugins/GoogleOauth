@@ -20,6 +20,8 @@ namespace Google\Service\Dialogflow;
 class GoogleCloudDialogflowCxV3Flow extends \Google\Collection
 {
   protected $collection_key = 'transitionRoutes';
+  protected $advancedSettingsType = GoogleCloudDialogflowCxV3AdvancedSettings::class;
+  protected $advancedSettingsDataType = '';
   /**
    * @var string
    */
@@ -30,12 +32,24 @@ class GoogleCloudDialogflowCxV3Flow extends \Google\Collection
   public $displayName;
   protected $eventHandlersType = GoogleCloudDialogflowCxV3EventHandler::class;
   protected $eventHandlersDataType = 'array';
+  protected $inputParameterDefinitionsType = GoogleCloudDialogflowCxV3ParameterDefinition::class;
+  protected $inputParameterDefinitionsDataType = 'array';
+  protected $knowledgeConnectorSettingsType = GoogleCloudDialogflowCxV3KnowledgeConnectorSettings::class;
+  protected $knowledgeConnectorSettingsDataType = '';
+  /**
+   * @var bool
+   */
+  public $locked;
+  protected $multiLanguageSettingsType = GoogleCloudDialogflowCxV3FlowMultiLanguageSettings::class;
+  protected $multiLanguageSettingsDataType = '';
   /**
    * @var string
    */
   public $name;
   protected $nluSettingsType = GoogleCloudDialogflowCxV3NluSettings::class;
   protected $nluSettingsDataType = '';
+  protected $outputParameterDefinitionsType = GoogleCloudDialogflowCxV3ParameterDefinition::class;
+  protected $outputParameterDefinitionsDataType = 'array';
   /**
    * @var string[]
    */
@@ -44,7 +58,21 @@ class GoogleCloudDialogflowCxV3Flow extends \Google\Collection
   protected $transitionRoutesDataType = 'array';
 
   /**
-   * @param string
+   * @param GoogleCloudDialogflowCxV3AdvancedSettings $advancedSettings
+   */
+  public function setAdvancedSettings(GoogleCloudDialogflowCxV3AdvancedSettings $advancedSettings)
+  {
+    $this->advancedSettings = $advancedSettings;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3AdvancedSettings
+   */
+  public function getAdvancedSettings()
+  {
+    return $this->advancedSettings;
+  }
+  /**
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -58,7 +86,7 @@ class GoogleCloudDialogflowCxV3Flow extends \Google\Collection
     return $this->description;
   }
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -72,7 +100,7 @@ class GoogleCloudDialogflowCxV3Flow extends \Google\Collection
     return $this->displayName;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3EventHandler[]
+   * @param GoogleCloudDialogflowCxV3EventHandler[] $eventHandlers
    */
   public function setEventHandlers($eventHandlers)
   {
@@ -86,7 +114,63 @@ class GoogleCloudDialogflowCxV3Flow extends \Google\Collection
     return $this->eventHandlers;
   }
   /**
-   * @param string
+   * @param GoogleCloudDialogflowCxV3ParameterDefinition[] $inputParameterDefinitions
+   */
+  public function setInputParameterDefinitions($inputParameterDefinitions)
+  {
+    $this->inputParameterDefinitions = $inputParameterDefinitions;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3ParameterDefinition[]
+   */
+  public function getInputParameterDefinitions()
+  {
+    return $this->inputParameterDefinitions;
+  }
+  /**
+   * @param GoogleCloudDialogflowCxV3KnowledgeConnectorSettings $knowledgeConnectorSettings
+   */
+  public function setKnowledgeConnectorSettings(GoogleCloudDialogflowCxV3KnowledgeConnectorSettings $knowledgeConnectorSettings)
+  {
+    $this->knowledgeConnectorSettings = $knowledgeConnectorSettings;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3KnowledgeConnectorSettings
+   */
+  public function getKnowledgeConnectorSettings()
+  {
+    return $this->knowledgeConnectorSettings;
+  }
+  /**
+   * @param bool $locked
+   */
+  public function setLocked($locked)
+  {
+    $this->locked = $locked;
+  }
+  /**
+   * @return bool
+   */
+  public function getLocked()
+  {
+    return $this->locked;
+  }
+  /**
+   * @param GoogleCloudDialogflowCxV3FlowMultiLanguageSettings $multiLanguageSettings
+   */
+  public function setMultiLanguageSettings(GoogleCloudDialogflowCxV3FlowMultiLanguageSettings $multiLanguageSettings)
+  {
+    $this->multiLanguageSettings = $multiLanguageSettings;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3FlowMultiLanguageSettings
+   */
+  public function getMultiLanguageSettings()
+  {
+    return $this->multiLanguageSettings;
+  }
+  /**
+   * @param string $name
    */
   public function setName($name)
   {
@@ -100,7 +184,7 @@ class GoogleCloudDialogflowCxV3Flow extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3NluSettings
+   * @param GoogleCloudDialogflowCxV3NluSettings $nluSettings
    */
   public function setNluSettings(GoogleCloudDialogflowCxV3NluSettings $nluSettings)
   {
@@ -114,7 +198,21 @@ class GoogleCloudDialogflowCxV3Flow extends \Google\Collection
     return $this->nluSettings;
   }
   /**
-   * @param string[]
+   * @param GoogleCloudDialogflowCxV3ParameterDefinition[] $outputParameterDefinitions
+   */
+  public function setOutputParameterDefinitions($outputParameterDefinitions)
+  {
+    $this->outputParameterDefinitions = $outputParameterDefinitions;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3ParameterDefinition[]
+   */
+  public function getOutputParameterDefinitions()
+  {
+    return $this->outputParameterDefinitions;
+  }
+  /**
+   * @param string[] $transitionRouteGroups
    */
   public function setTransitionRouteGroups($transitionRouteGroups)
   {
@@ -128,7 +226,7 @@ class GoogleCloudDialogflowCxV3Flow extends \Google\Collection
     return $this->transitionRouteGroups;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3TransitionRoute[]
+   * @param GoogleCloudDialogflowCxV3TransitionRoute[] $transitionRoutes
    */
   public function setTransitionRoutes($transitionRoutes)
   {

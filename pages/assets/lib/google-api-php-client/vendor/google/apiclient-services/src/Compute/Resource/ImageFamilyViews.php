@@ -29,6 +29,8 @@ use Google\Service\Compute\ImageFamilyView;
  */
 class ImageFamilyViews extends \Google\Service\Resource
 {
+  protected $apiVersion = '2026-11-01';
+
   /**
    * Returns the latest image that is part of an image family, is not deprecated
    * and is rolled out in the specified zone. (imageFamilyViews.get)
@@ -38,6 +40,7 @@ class ImageFamilyViews extends \Google\Service\Resource
    * @param string $family Name of the image family to search for.
    * @param array $optParams Optional parameters.
    * @return ImageFamilyView
+   * @throws \Google\Service\Exception
    */
   public function get($project, $zone, $family, $optParams = [])
   {

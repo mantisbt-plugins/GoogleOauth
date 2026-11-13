@@ -28,7 +28,7 @@ class GoogleCloudDialogflowCxV3AgentValidationResult extends \Google\Collection
   public $name;
 
   /**
-   * @param GoogleCloudDialogflowCxV3FlowValidationResult[]
+   * @param GoogleCloudDialogflowCxV3FlowValidationResult[] $flowValidationResults
    */
   public function setFlowValidationResults($flowValidationResults)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3AgentValidationResult extends \Google\Collection
     return $this->flowValidationResults;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {

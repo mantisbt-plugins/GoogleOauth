@@ -27,7 +27,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/slides/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/slides/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -58,6 +58,7 @@ class Slides extends \Google\Service
 
   public $presentations;
   public $presentations_pages;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Slides service.
@@ -70,6 +71,7 @@ class Slides extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://slides.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://slides.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -104,6 +106,10 @@ class Slides extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'commentsViewMode' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
               ],
             ],
           ]
@@ -128,6 +134,10 @@ class Slides extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'commentsViewMode' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],'getThumbnail' => [

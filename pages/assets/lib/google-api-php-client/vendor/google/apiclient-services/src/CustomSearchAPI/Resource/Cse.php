@@ -58,6 +58,8 @@ class Cse extends \Google\Service\Resource
    * number of past weeks. * `m[number]`: requests results from the specified
    * number of past months. * `y[number]`: requests results from the specified
    * number of past years.
+   * @opt_param bool enableAlternateSearchHandler Optional. Enables routing of
+   * Programmable Search Engine requests to an alternate search handler.
    * @opt_param string exactTerms Identifies a phrase that all documents in the
    * search results must contain.
    * @opt_param string excludeTerms Identifies a word or phrase that should not
@@ -90,8 +92,9 @@ class Cse extends \Google\Service\Resource
    * `lowRange...highRange` to the query.
    * @opt_param string hl Sets the user interface language. * Explicitly setting
    * this parameter improves the performance and the quality of your search
-   * results. * See the [Interface Languages](https://developers.google.com
-   * /custom-search/docs/json_api_reference#wsInterfaceLanguages) section of
+   * results. * See the [Interface
+   * Languages](https://developers.google.com/custom-
+   * search/docs/json_api_reference#wsInterfaceLanguages) section of
    * [Internationalizing Queries and Results
    * Presentation](https://developers.google.com/custom-
    * search/docs/json_api_reference#wsInternationalizing) for more information,
@@ -137,8 +140,7 @@ class Cse extends \Google\Service\Resource
    * document, where each document in the search results must contain at least one
    * of the additional search terms.
    * @opt_param string q Query
-   * @opt_param string relatedSite Specifies that all search results should be
-   * pages that are related to the specified URL.
+   * @opt_param string relatedSite Deprecated.
    * @opt_param string rights Filters based on licensing. Supported values
    * include: `cc_publicdomain`, `cc_attribute`, `cc_sharealike`,
    * `cc_noncommercial`, `cc_nonderived` and combinations of these. See [typical
@@ -154,18 +156,23 @@ class Cse extends \Google\Service\Resource
    * @opt_param string siteSearchFilter Controls whether to include or exclude
    * results from the site named in the `siteSearch` parameter. Acceptable values
    * are: * `"e"`: exclude * `"i"`: include
+   * @opt_param int snippetLength Optional. Maximum length of snippet text, in
+   * characters, to be returned with results. Note: this feature is limited to
+   * specific engines. * Valid values are integers between 161 and 1000,
+   * inclusive.
    * @opt_param string sort The sort expression to apply to the results. The sort
    * parameter specifies that the results be sorted according to the specified
    * expression i.e. sort by date. [Example:
-   * sort=date](https://developers.google.com/custom-search/docs/structured_search
-   * #sort-by-attribute).
+   * sort=date](https://developers.google.com/custom-
+   * search/docs/structured_search#sort-by-attribute).
    * @opt_param string start The index of the first result to return. The default
-   * number of results per page is 10, so `=11` would start at the top of the
-   * second page of results. **Note**: The JSON API will never return more than
-   * 100 results, even if more than 100 documents match the query, so setting the
-   * sum of `start + num` to a number greater than 100 will produce an error. Also
-   * note that the maximum value for `num` is 10.
+   * number of results per page is 10, so `&start=11` would start at the top of
+   * the second page of results. **Note**: The JSON API will never return more
+   * than 100 results, even if more than 100 documents match the query, so setting
+   * the sum of `start + num` to a number greater than 100 will produce an error.
+   * Also note that the maximum value for `num` is 10.
    * @return Search
+   * @throws \Google\Service\Exception
    */
   public function listCse($optParams = [])
   {

@@ -38,6 +38,7 @@ class CalendarList extends \Google\Service\Resource
    * the calendarList.list method. If you want to access the primary calendar of
    * the currently logged in user, use the "primary" keyword.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($calendarId, $optParams = [])
   {
@@ -53,6 +54,7 @@ class CalendarList extends \Google\Service\Resource
    * the currently logged in user, use the "primary" keyword.
    * @param array $optParams Optional parameters.
    * @return CalendarListEntry
+   * @throws \Google\Service\Exception
    */
   public function get($calendarId, $optParams = [])
   {
@@ -72,6 +74,7 @@ class CalendarList extends \Google\Service\Resource
    * used, the index-based colorId field will be set to the best matching option
    * automatically. Optional. The default is False.
    * @return CalendarListEntry
+   * @throws \Google\Service\Exception
    */
   public function insert(CalendarListEntry $postBody, $optParams = [])
   {
@@ -96,6 +99,9 @@ class CalendarList extends \Google\Service\Resource
    * in the result. Optional. The default is False.
    * @opt_param bool showHidden Whether to show hidden entries. Optional. The
    * default is False.
+   * @opt_param bool showOwnOrganizationOnly Whether to show only entries for
+   * calendars from the organization. This parameter is only applicable to Google
+   * Workspace users. Optional. The default is False.
    * @opt_param string syncToken Token obtained from the nextSyncToken field
    * returned on the last page of results from the previous list request. It makes
    * the result of this list request contain only entries that have changed since
@@ -103,12 +109,14 @@ class CalendarList extends \Google\Service\Resource
    * changed, the entry won't be returned. All entries deleted and hidden since
    * the previous list request will always be in the result set and it is not
    * allowed to set showDeleted neither showHidden to False. To ensure client
-   * state consistency minAccessRole query parameter cannot be specified together
-   * with nextSyncToken. If the syncToken expires, the server will respond with a
-   * 410 GONE response code and the client should clear its storage and perform a
-   * full synchronization without any syncToken. Learn more about incremental
-   * synchronization. Optional. The default is to return all entries.
+   * state consistency minAccessRole and showOwnOrganizationOnly query parameters
+   * cannot be specified together with nextSyncToken. If the syncToken expires,
+   * the server will respond with a 410 GONE response code and the client should
+   * clear its storage and perform a full synchronization without any syncToken.
+   * Learn more about incremental synchronization. Optional. The default is to
+   * return all entries.
    * @return CalendarListModel
+   * @throws \Google\Service\Exception
    */
   public function listCalendarList($optParams = [])
   {
@@ -131,6 +139,7 @@ class CalendarList extends \Google\Service\Resource
    * used, the index-based colorId field will be set to the best matching option
    * automatically. Optional. The default is False.
    * @return CalendarListEntry
+   * @throws \Google\Service\Exception
    */
   public function patch($calendarId, CalendarListEntry $postBody, $optParams = [])
   {
@@ -153,6 +162,7 @@ class CalendarList extends \Google\Service\Resource
    * used, the index-based colorId field will be set to the best matching option
    * automatically. Optional. The default is False.
    * @return CalendarListEntry
+   * @throws \Google\Service\Exception
    */
   public function update($calendarId, CalendarListEntry $postBody, $optParams = [])
   {
@@ -177,6 +187,9 @@ class CalendarList extends \Google\Service\Resource
    * in the result. Optional. The default is False.
    * @opt_param bool showHidden Whether to show hidden entries. Optional. The
    * default is False.
+   * @opt_param bool showOwnOrganizationOnly Whether to show only entries for
+   * calendars from the organization. This parameter is only applicable to Google
+   * Workspace users. Optional. The default is False.
    * @opt_param string syncToken Token obtained from the nextSyncToken field
    * returned on the last page of results from the previous list request. It makes
    * the result of this list request contain only entries that have changed since
@@ -184,12 +197,14 @@ class CalendarList extends \Google\Service\Resource
    * changed, the entry won't be returned. All entries deleted and hidden since
    * the previous list request will always be in the result set and it is not
    * allowed to set showDeleted neither showHidden to False. To ensure client
-   * state consistency minAccessRole query parameter cannot be specified together
-   * with nextSyncToken. If the syncToken expires, the server will respond with a
-   * 410 GONE response code and the client should clear its storage and perform a
-   * full synchronization without any syncToken. Learn more about incremental
-   * synchronization. Optional. The default is to return all entries.
+   * state consistency minAccessRole and showOwnOrganizationOnly query parameters
+   * cannot be specified together with nextSyncToken. If the syncToken expires,
+   * the server will respond with a 410 GONE response code and the client should
+   * clear its storage and perform a full synchronization without any syncToken.
+   * Learn more about incremental synchronization. Optional. The default is to
+   * return all entries.
    * @return Channel
+   * @throws \Google\Service\Exception
    */
   public function watch(Channel $postBody, $optParams = [])
   {

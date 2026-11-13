@@ -17,22 +17,66 @@
 
 namespace Google\Service\CloudHealthcare;
 
-class ImageConfig extends \Google\Model
+class ImageConfig extends \Google\Collection
 {
   /**
+   * No text redaction specified. Same as REDACT_NO_TEXT.
+   */
+  public const TEXT_REDACTION_MODE_TEXT_REDACTION_MODE_UNSPECIFIED = 'TEXT_REDACTION_MODE_UNSPECIFIED';
+  /**
+   * Redact all text.
+   */
+  public const TEXT_REDACTION_MODE_REDACT_ALL_TEXT = 'REDACT_ALL_TEXT';
+  /**
+   * Redact sensitive text. Uses the set of [Default DICOM
+   * InfoTypes](https://cloud.google.com/healthcare-api/docs/how-tos/dicom-
+   * deidentify#default_dicom_infotypes).
+   */
+  public const TEXT_REDACTION_MODE_REDACT_SENSITIVE_TEXT = 'REDACT_SENSITIVE_TEXT';
+  /**
+   * Do not redact text.
+   */
+  public const TEXT_REDACTION_MODE_REDACT_NO_TEXT = 'REDACT_NO_TEXT';
+  protected $collection_key = 'customRegexes';
+  protected $customRegexesType = CustomRegex::class;
+  protected $customRegexesDataType = 'array';
+  /**
+   * Optional. Determines how to redact text from image.
+   *
    * @var string
    */
   public $textRedactionMode;
 
   /**
-   * @param string
+   * Optional. Custom regex patterns to redact from the image.
+   *
+   * @param CustomRegex[] $customRegexes
+   */
+  public function setCustomRegexes($customRegexes)
+  {
+    $this->customRegexes = $customRegexes;
+  }
+  /**
+   * @return CustomRegex[]
+   */
+  public function getCustomRegexes()
+  {
+    return $this->customRegexes;
+  }
+  /**
+   * Optional. Determines how to redact text from image.
+   *
+   * Accepted values: TEXT_REDACTION_MODE_UNSPECIFIED, REDACT_ALL_TEXT,
+   * REDACT_SENSITIVE_TEXT, REDACT_NO_TEXT
+   *
+   * @param self::TEXT_REDACTION_MODE_* $textRedactionMode
    */
   public function setTextRedactionMode($textRedactionMode)
   {
     $this->textRedactionMode = $textRedactionMode;
   }
   /**
-   * @return string
+   * @return self::TEXT_REDACTION_MODE_*
    */
   public function getTextRedactionMode()
   {

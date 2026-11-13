@@ -21,18 +21,31 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
 {
   protected $collection_key = 'taskExecutionDetails';
   /**
+   * Indicates "right after which checkpoint task's execution" this snapshot is
+   * taken.
+   *
    * @var string
    */
   public $checkpointTaskNumber;
+  /**
+   * Client that the execution snapshot is associated to.
+   *
+   * @var string
+   */
+  public $clientId;
   protected $conditionResultsType = EnterpriseCrmEventbusProtoConditionResult::class;
   protected $conditionResultsDataType = 'array';
   protected $diffParamsType = EnterpriseCrmEventbusProtoEventParameters::class;
   protected $diffParamsDataType = '';
   /**
+   * Points to the event execution info this snapshot belongs to.
+   *
    * @var string
    */
   public $eventExecutionInfoId;
   /**
+   * Auto-generated. Used as primary key for EventExecutionSnapshots table.
+   *
    * @var string
    */
   public $eventExecutionSnapshotId;
@@ -41,22 +54,38 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
   protected $eventParamsType = EnterpriseCrmEventbusProtoEventParameters::class;
   protected $eventParamsDataType = '';
   /**
+   * indicate whether snapshot exceeded maximum size before clean up
+   *
    * @var bool
    */
   public $exceedMaxSize;
   /**
+   * Indicates when this snapshot is taken.
+   *
    * @var string
    */
   public $snapshotTime;
   protected $taskExecutionDetailsType = EnterpriseCrmEventbusProtoTaskExecutionDetails::class;
   protected $taskExecutionDetailsDataType = 'array';
   /**
+   * The task name associated with this snapshot. Could be empty.
+   *
+   * @deprecated
    * @var string
    */
   public $taskName;
+  /**
+   * Name of the workflow this event execution snapshot belongs to.
+   *
+   * @var string
+   */
+  public $workflowName;
 
   /**
-   * @param string
+   * Indicates "right after which checkpoint task's execution" this snapshot is
+   * taken.
+   *
+   * @param string $checkpointTaskNumber
    */
   public function setCheckpointTaskNumber($checkpointTaskNumber)
   {
@@ -70,7 +99,25 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
     return $this->checkpointTaskNumber;
   }
   /**
-   * @param EnterpriseCrmEventbusProtoConditionResult[]
+   * Client that the execution snapshot is associated to.
+   *
+   * @param string $clientId
+   */
+  public function setClientId($clientId)
+  {
+    $this->clientId = $clientId;
+  }
+  /**
+   * @return string
+   */
+  public function getClientId()
+  {
+    return $this->clientId;
+  }
+  /**
+   * All of the computed conditions that been calculated.
+   *
+   * @param EnterpriseCrmEventbusProtoConditionResult[] $conditionResults
    */
   public function setConditionResults($conditionResults)
   {
@@ -84,7 +131,9 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
     return $this->conditionResults;
   }
   /**
-   * @param EnterpriseCrmEventbusProtoEventParameters
+   * The parameters in Event object that differs from last snapshot.
+   *
+   * @param EnterpriseCrmEventbusProtoEventParameters $diffParams
    */
   public function setDiffParams(EnterpriseCrmEventbusProtoEventParameters $diffParams)
   {
@@ -98,7 +147,9 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
     return $this->diffParams;
   }
   /**
-   * @param string
+   * Points to the event execution info this snapshot belongs to.
+   *
+   * @param string $eventExecutionInfoId
    */
   public function setEventExecutionInfoId($eventExecutionInfoId)
   {
@@ -112,7 +163,9 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
     return $this->eventExecutionInfoId;
   }
   /**
-   * @param string
+   * Auto-generated. Used as primary key for EventExecutionSnapshots table.
+   *
+   * @param string $eventExecutionSnapshotId
    */
   public function setEventExecutionSnapshotId($eventExecutionSnapshotId)
   {
@@ -126,7 +179,7 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
     return $this->eventExecutionSnapshotId;
   }
   /**
-   * @param EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata
+   * @param EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata $eventExecutionSnapshotMetadata
    */
   public function setEventExecutionSnapshotMetadata(EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata $eventExecutionSnapshotMetadata)
   {
@@ -140,7 +193,9 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
     return $this->eventExecutionSnapshotMetadata;
   }
   /**
-   * @param EnterpriseCrmEventbusProtoEventParameters
+   * The parameters in Event object.
+   *
+   * @param EnterpriseCrmEventbusProtoEventParameters $eventParams
    */
   public function setEventParams(EnterpriseCrmEventbusProtoEventParameters $eventParams)
   {
@@ -154,7 +209,9 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
     return $this->eventParams;
   }
   /**
-   * @param bool
+   * indicate whether snapshot exceeded maximum size before clean up
+   *
+   * @param bool $exceedMaxSize
    */
   public function setExceedMaxSize($exceedMaxSize)
   {
@@ -168,7 +225,9 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
     return $this->exceedMaxSize;
   }
   /**
-   * @param string
+   * Indicates when this snapshot is taken.
+   *
+   * @param string $snapshotTime
    */
   public function setSnapshotTime($snapshotTime)
   {
@@ -182,7 +241,9 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
     return $this->snapshotTime;
   }
   /**
-   * @param EnterpriseCrmEventbusProtoTaskExecutionDetails[]
+   * All of the task execution details at the given point of time.
+   *
+   * @param EnterpriseCrmEventbusProtoTaskExecutionDetails[] $taskExecutionDetails
    */
   public function setTaskExecutionDetails($taskExecutionDetails)
   {
@@ -196,18 +257,38 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot extends \Google\Collectio
     return $this->taskExecutionDetails;
   }
   /**
-   * @param string
+   * The task name associated with this snapshot. Could be empty.
+   *
+   * @deprecated
+   * @param string $taskName
    */
   public function setTaskName($taskName)
   {
     $this->taskName = $taskName;
   }
   /**
+   * @deprecated
    * @return string
    */
   public function getTaskName()
   {
     return $this->taskName;
+  }
+  /**
+   * Name of the workflow this event execution snapshot belongs to.
+   *
+   * @param string $workflowName
+   */
+  public function setWorkflowName($workflowName)
+  {
+    $this->workflowName = $workflowName;
+  }
+  /**
+   * @return string
+   */
+  public function getWorkflowName()
+  {
+    return $this->workflowName;
   }
 }
 

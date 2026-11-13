@@ -25,7 +25,7 @@ class GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo extends \Google\Mod
   public $tag;
 
   /**
-   * @param string
+   * @param string $tag
    */
   public function setTag($tag)
   {

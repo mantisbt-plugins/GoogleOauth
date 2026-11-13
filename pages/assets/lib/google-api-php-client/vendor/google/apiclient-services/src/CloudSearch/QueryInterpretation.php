@@ -20,34 +20,87 @@ namespace Google\Service\CloudSearch;
 class QueryInterpretation extends \Google\Model
 {
   /**
+   * Neither the natural language interpretation, nor a broader version of the
+   * query is used to fetch the search results.
+   */
+  public const INTERPRETATION_TYPE_NONE = 'NONE';
+  /**
+   * The results from original query are blended with other results. The reason
+   * for blending these other results with the results from original query is
+   * populated in the 'Reason' field below.
+   */
+  public const INTERPRETATION_TYPE_BLEND = 'BLEND';
+  /**
+   * The results from original query are replaced. The reason for replacing the
+   * results from original query is populated in the 'Reason' field below.
+   */
+  public const INTERPRETATION_TYPE_REPLACE = 'REPLACE';
+  public const REASON_UNSPECIFIED = 'UNSPECIFIED';
+  /**
+   * Natural language interpretation of the query is used to fetch the search
+   * results.
+   */
+  public const REASON_QUERY_HAS_NATURAL_LANGUAGE_INTENT = 'QUERY_HAS_NATURAL_LANGUAGE_INTENT';
+  /**
+   * Query and document terms similarity is used to selectively broaden the
+   * query to retrieve additional search results since enough results were not
+   * found for the user query. Interpreted query will be empty for this case.
+   */
+  public const REASON_NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY = 'NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY';
+  /**
    * @var string
    */
   public $interpretationType;
   /**
+   * The interpretation of the query used in search. For example, queries with
+   * natural language intent like "email from john" will be interpreted as
+   * "from:john source:mail". This field will not be filled when the reason is
+   * NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY.
+   *
    * @var string
    */
   public $interpretedQuery;
   /**
+   * The actual number of results returned by the interpreted query.
+   *
+   * @var int
+   */
+  public $interpretedQueryActualResultCount;
+  /**
+   * The estimated number of results returned by the interpreted query.
+   *
+   * @var string
+   */
+  public $interpretedQueryEstimatedResultCount;
+  /**
+   * The reason for interpretation of the query. This field will not be
+   * UNSPECIFIED if the interpretation type is not NONE.
+   *
    * @var string
    */
   public $reason;
 
   /**
-   * @param string
+   * @param self::INTERPRETATION_TYPE_* $interpretationType
    */
   public function setInterpretationType($interpretationType)
   {
     $this->interpretationType = $interpretationType;
   }
   /**
-   * @return string
+   * @return self::INTERPRETATION_TYPE_*
    */
   public function getInterpretationType()
   {
     return $this->interpretationType;
   }
   /**
-   * @param string
+   * The interpretation of the query used in search. For example, queries with
+   * natural language intent like "email from john" will be interpreted as
+   * "from:john source:mail". This field will not be filled when the reason is
+   * NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY.
+   *
+   * @param string $interpretedQuery
    */
   public function setInterpretedQuery($interpretedQuery)
   {
@@ -61,14 +114,52 @@ class QueryInterpretation extends \Google\Model
     return $this->interpretedQuery;
   }
   /**
-   * @param string
+   * The actual number of results returned by the interpreted query.
+   *
+   * @param int $interpretedQueryActualResultCount
+   */
+  public function setInterpretedQueryActualResultCount($interpretedQueryActualResultCount)
+  {
+    $this->interpretedQueryActualResultCount = $interpretedQueryActualResultCount;
+  }
+  /**
+   * @return int
+   */
+  public function getInterpretedQueryActualResultCount()
+  {
+    return $this->interpretedQueryActualResultCount;
+  }
+  /**
+   * The estimated number of results returned by the interpreted query.
+   *
+   * @param string $interpretedQueryEstimatedResultCount
+   */
+  public function setInterpretedQueryEstimatedResultCount($interpretedQueryEstimatedResultCount)
+  {
+    $this->interpretedQueryEstimatedResultCount = $interpretedQueryEstimatedResultCount;
+  }
+  /**
+   * @return string
+   */
+  public function getInterpretedQueryEstimatedResultCount()
+  {
+    return $this->interpretedQueryEstimatedResultCount;
+  }
+  /**
+   * The reason for interpretation of the query. This field will not be
+   * UNSPECIFIED if the interpretation type is not NONE.
+   *
+   * Accepted values: UNSPECIFIED, QUERY_HAS_NATURAL_LANGUAGE_INTENT,
+   * NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY
+   *
+   * @param self::REASON_* $reason
    */
   public function setReason($reason)
   {
     $this->reason = $reason;
   }
   /**
-   * @return string
+   * @return self::REASON_*
    */
   public function getReason()
   {

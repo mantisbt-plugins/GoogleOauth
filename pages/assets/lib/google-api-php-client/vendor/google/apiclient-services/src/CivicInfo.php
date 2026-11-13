@@ -39,7 +39,7 @@ class CivicInfo extends \Google\Service
 
   public $divisions;
   public $elections;
-  public $representatives;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CivicInfo service.
@@ -52,6 +52,7 @@ class CivicInfo extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://civicinfo.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://civicinfo.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';
@@ -63,7 +64,16 @@ class CivicInfo extends \Google\Service
         'divisions',
         [
           'methods' => [
-            'search' => [
+            'queryDivisionByAddress' => [
+              'path' => 'civicinfo/v2/divisionsByAddress',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'address' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'search' => [
               'path' => 'civicinfo/v2/divisions',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -85,7 +95,12 @@ class CivicInfo extends \Google\Service
             'electionQuery' => [
               'path' => 'civicinfo/v2/elections',
               'httpMethod' => 'GET',
-              'parameters' => [],
+              'parameters' => [
+                'productionDataOnly' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
             ],'voterInfoQuery' => [
               'path' => 'civicinfo/v2/voterinfo',
               'httpMethod' => 'GET',
@@ -93,7 +108,6 @@ class CivicInfo extends \Google\Service
                 'address' => [
                   'location' => 'query',
                   'type' => 'string',
-                  'required' => true,
                 ],
                 'electionId' => [
                   'location' => 'query',
@@ -103,66 +117,13 @@ class CivicInfo extends \Google\Service
                   'location' => 'query',
                   'type' => 'boolean',
                 ],
+                'productionDataOnly' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'returnAllAvailableData' => [
                   'location' => 'query',
                   'type' => 'boolean',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->representatives = new CivicInfo\Resource\Representatives(
-        $this,
-        $this->serviceName,
-        'representatives',
-        [
-          'methods' => [
-            'representativeInfoByAddress' => [
-              'path' => 'civicinfo/v2/representatives',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'address' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'includeOffices' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
-                'levels' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ],
-                'roles' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ],
-              ],
-            ],'representativeInfoByDivision' => [
-              'path' => 'civicinfo/v2/representatives/{ocdId}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'ocdId' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'levels' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ],
-                'recursive' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
-                'roles' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
                 ],
               ],
             ],

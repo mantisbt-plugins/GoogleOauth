@@ -34,7 +34,7 @@ class GoogleCloudDialogflowCxV3beta1TestConfig extends \Google\Collection
   public $trackingParameters;
 
   /**
-   * @param string
+   * @param string $flow
    */
   public function setFlow($flow)
   {
@@ -48,7 +48,7 @@ class GoogleCloudDialogflowCxV3beta1TestConfig extends \Google\Collection
     return $this->flow;
   }
   /**
-   * @param string
+   * @param string $page
    */
   public function setPage($page)
   {
@@ -62,7 +62,7 @@ class GoogleCloudDialogflowCxV3beta1TestConfig extends \Google\Collection
     return $this->page;
   }
   /**
-   * @param string[]
+   * @param string[] $trackingParameters
    */
   public function setTrackingParameters($trackingParameters)
   {

@@ -35,14 +35,22 @@ class ProjectsEvents extends \Google\Service\Resource
    * Lists the specified events. (events.listProjectsEvents)
    *
    * @param string $projectName Required. The resource name of the Google Cloud
-   * Platform project. Written as `projects/{projectID}`, where `{projectID}` is
-   * the [Google Cloud Platform project
-   * ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-
-   * project-123`.
+   * Platform project. Written as `projects/{projectID}` or
+   * `projects/{projectID}/locations/{location}`, where `{projectID}` is the
+   * [Google Cloud Platform project
+   * ID](https://support.google.com/cloud/answer/6158840) and `{location}` is a
+   * Cloud region. Examples: `projects/my-project-123`, `projects/my-
+   * project-123/locations/global`. For a list of supported locations, see
+   * [Supported Regions](https://cloud.google.com/logging/docs/region-support).
+   * `global` is the default when unspecified.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string groupId Required. The group for which events shall be
-   * returned.
+   * returned. The `group_id` is a unique identifier for a particular error group.
+   * The identifier is derived from key parts of the error-log content and is
+   * treated as Service Data. For information about how Service Data is handled,
+   * see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-
+   * privacy-notice).
    * @opt_param int pageSize Optional. The maximum number of results to return per
    * response.
    * @opt_param string pageToken Optional. A `next_page_token` provided by a
@@ -59,6 +67,7 @@ class ProjectsEvents extends \Google\Service\Resource
    * @opt_param string timeRange.period Restricts the query to the specified time
    * range.
    * @return ListEventsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsEvents($projectName, $optParams = [])
   {
@@ -73,18 +82,23 @@ class ProjectsEvents extends \Google\Service\Resource
    * use an API key, append it to the URL as the value of a `key` parameter. For
    * example: `POST https://clouderrorreporting.googleapis.com/v1beta1/{projectNam
    * e}/events:report?key=123ABC456` **Note:** [Error Reporting]
-   * (https://cloud.google.com/error-reporting) is a global service built on Cloud
-   * Logging and doesn't analyze logs stored in regional log buckets or logs
-   * routed to other Google Cloud projects. (events.report)
+   * (https://cloud.google.com/error-reporting) is a service built on Cloud
+   * Logging and can analyze log entries when all of the following are true: *
+   * Customer-managed encryption keys (CMEK) are disabled on the log bucket. * The
+   * log bucket satisfies one of the following: * The log bucket is stored in the
+   * same project where the logs originated. * The logs were routed to a project,
+   * and then that project stored those logs in a log bucket that it owns.
+   * (events.report)
    *
    * @param string $projectName Required. The resource name of the Google Cloud
    * Platform project. Written as `projects/{projectId}`, where `{projectId}` is
    * the [Google Cloud Platform project
-   * ID](https://support.google.com/cloud/answer/6158840). Example: // `projects
-   * /my-project-123`.
+   * ID](https://support.google.com/cloud/answer/6158840). Example: //
+   * `projects/my-project-123`.
    * @param ReportedErrorEvent $postBody
    * @param array $optParams Optional parameters.
    * @return ReportErrorEventResponse
+   * @throws \Google\Service\Exception
    */
   public function report($projectName, ReportedErrorEvent $postBody, $optParams = [])
   {

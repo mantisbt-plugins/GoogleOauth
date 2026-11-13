@@ -20,20 +20,36 @@ namespace Google\Service\TrafficDirectorService;
 class UpdateFailureState extends \Google\Model
 {
   /**
+   * Details about the last failed update attempt.
+   *
    * @var string
    */
   public $details;
   /**
+   * What the component configuration would have been if the update had
+   * succeeded. This field may not be populated by xDS clients due to storage
+   * overhead.
+   *
    * @var array[]
    */
   public $failedConfiguration;
   /**
+   * Time of the latest failed update attempt.
+   *
    * @var string
    */
   public $lastUpdateAttempt;
+  /**
+   * This is the version of the rejected resource. [#not-implemented-hide:]
+   *
+   * @var string
+   */
+  public $versionInfo;
 
   /**
-   * @param string
+   * Details about the last failed update attempt.
+   *
+   * @param string $details
    */
   public function setDetails($details)
   {
@@ -47,7 +63,11 @@ class UpdateFailureState extends \Google\Model
     return $this->details;
   }
   /**
-   * @param array[]
+   * What the component configuration would have been if the update had
+   * succeeded. This field may not be populated by xDS clients due to storage
+   * overhead.
+   *
+   * @param array[] $failedConfiguration
    */
   public function setFailedConfiguration($failedConfiguration)
   {
@@ -61,7 +81,9 @@ class UpdateFailureState extends \Google\Model
     return $this->failedConfiguration;
   }
   /**
-   * @param string
+   * Time of the latest failed update attempt.
+   *
+   * @param string $lastUpdateAttempt
    */
   public function setLastUpdateAttempt($lastUpdateAttempt)
   {
@@ -73,6 +95,22 @@ class UpdateFailureState extends \Google\Model
   public function getLastUpdateAttempt()
   {
     return $this->lastUpdateAttempt;
+  }
+  /**
+   * This is the version of the rejected resource. [#not-implemented-hide:]
+   *
+   * @param string $versionInfo
+   */
+  public function setVersionInfo($versionInfo)
+  {
+    $this->versionInfo = $versionInfo;
+  }
+  /**
+   * @return string
+   */
+  public function getVersionInfo()
+  {
+    return $this->versionInfo;
   }
 }
 

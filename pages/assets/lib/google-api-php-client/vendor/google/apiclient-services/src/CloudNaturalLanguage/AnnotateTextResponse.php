@@ -19,7 +19,7 @@ namespace Google\Service\CloudNaturalLanguage;
 
 class AnnotateTextResponse extends \Google\Collection
 {
-  protected $collection_key = 'tokens';
+  protected $collection_key = 'sentences';
   protected $categoriesType = ClassificationCategory::class;
   protected $categoriesDataType = 'array';
   protected $documentSentimentType = Sentiment::class;
@@ -27,16 +27,30 @@ class AnnotateTextResponse extends \Google\Collection
   protected $entitiesType = Entity::class;
   protected $entitiesDataType = 'array';
   /**
+   * The language of the text, which will be the same as the language specified
+   * in the request or, if not specified, the automatically-detected language.
+   * See Document.language_code field for more details.
+   *
    * @var string
    */
-  public $language;
+  public $languageCode;
+  /**
+   * Whether the language is officially supported by all requested features. The
+   * API may still return a response when the language is not supported, but it
+   * is on a best effort basis.
+   *
+   * @var bool
+   */
+  public $languageSupported;
+  protected $moderationCategoriesType = ClassificationCategory::class;
+  protected $moderationCategoriesDataType = 'array';
   protected $sentencesType = Sentence::class;
   protected $sentencesDataType = 'array';
-  protected $tokensType = Token::class;
-  protected $tokensDataType = 'array';
 
   /**
-   * @param ClassificationCategory[]
+   * Categories identified in the input document.
+   *
+   * @param ClassificationCategory[] $categories
    */
   public function setCategories($categories)
   {
@@ -50,7 +64,10 @@ class AnnotateTextResponse extends \Google\Collection
     return $this->categories;
   }
   /**
-   * @param Sentiment
+   * The overall sentiment for the document. Populated if the user enables
+   * AnnotateTextRequest.Features.extract_document_sentiment.
+   *
+   * @param Sentiment $documentSentiment
    */
   public function setDocumentSentiment(Sentiment $documentSentiment)
   {
@@ -64,7 +81,11 @@ class AnnotateTextResponse extends \Google\Collection
     return $this->documentSentiment;
   }
   /**
-   * @param Entity[]
+   * Entities, along with their semantic information, in the input document.
+   * Populated if the user enables AnnotateTextRequest.Features.extract_entities
+   * .
+   *
+   * @param Entity[] $entities
    */
   public function setEntities($entities)
   {
@@ -78,21 +99,62 @@ class AnnotateTextResponse extends \Google\Collection
     return $this->entities;
   }
   /**
-   * @param string
+   * The language of the text, which will be the same as the language specified
+   * in the request or, if not specified, the automatically-detected language.
+   * See Document.language_code field for more details.
+   *
+   * @param string $languageCode
    */
-  public function setLanguage($language)
+  public function setLanguageCode($languageCode)
   {
-    $this->language = $language;
+    $this->languageCode = $languageCode;
   }
   /**
    * @return string
    */
-  public function getLanguage()
+  public function getLanguageCode()
   {
-    return $this->language;
+    return $this->languageCode;
   }
   /**
-   * @param Sentence[]
+   * Whether the language is officially supported by all requested features. The
+   * API may still return a response when the language is not supported, but it
+   * is on a best effort basis.
+   *
+   * @param bool $languageSupported
+   */
+  public function setLanguageSupported($languageSupported)
+  {
+    $this->languageSupported = $languageSupported;
+  }
+  /**
+   * @return bool
+   */
+  public function getLanguageSupported()
+  {
+    return $this->languageSupported;
+  }
+  /**
+   * Harmful and sensitive categories identified in the input document.
+   *
+   * @param ClassificationCategory[] $moderationCategories
+   */
+  public function setModerationCategories($moderationCategories)
+  {
+    $this->moderationCategories = $moderationCategories;
+  }
+  /**
+   * @return ClassificationCategory[]
+   */
+  public function getModerationCategories()
+  {
+    return $this->moderationCategories;
+  }
+  /**
+   * Sentences in the input document. Populated if the user enables
+   * AnnotateTextRequest.Features.extract_document_sentiment.
+   *
+   * @param Sentence[] $sentences
    */
   public function setSentences($sentences)
   {
@@ -104,20 +166,6 @@ class AnnotateTextResponse extends \Google\Collection
   public function getSentences()
   {
     return $this->sentences;
-  }
-  /**
-   * @param Token[]
-   */
-  public function setTokens($tokens)
-  {
-    $this->tokens = $tokens;
-  }
-  /**
-   * @return Token[]
-   */
-  public function getTokens()
-  {
-    return $this->tokens;
   }
 }
 

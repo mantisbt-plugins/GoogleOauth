@@ -1,7 +1,6 @@
 <?php
 
-// google/apiclient is provided by MantisBT's vendor (installed via composer).
-// Google_Client and Google_Service_Oauth2 are available via google/apiclient's aliases.php.
+require_once 'assets/lib/google-api-php-client/vendor/autoload.php';
 require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . DIRECTORY_SEPARATOR . 'core.php';
 require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'core/gpc_api.php';
 require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'plugins/GoogleOauth/GoogleOauth.php';

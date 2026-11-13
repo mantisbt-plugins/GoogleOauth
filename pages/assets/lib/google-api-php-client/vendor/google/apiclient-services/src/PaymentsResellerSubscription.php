@@ -34,11 +34,16 @@ use Google\Client;
  */
 class PaymentsResellerSubscription extends \Google\Service
 {
-
+  /** See and/or control the devices that you selected. */
+  const SDM_SERVICE =
+      "https://www.googleapis.com/auth/sdm.service";
 
   public $partners_products;
   public $partners_promotions;
   public $partners_subscriptions;
+  public $partners_subscriptions_lineItems;
+  public $partners_userSessions;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the PaymentsResellerSubscription
@@ -52,6 +57,7 @@ class PaymentsResellerSubscription extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://paymentsresellersubscription.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://paymentsresellersubscription.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -200,9 +206,37 @@ class PaymentsResellerSubscription extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'cycleOptions.initialCycleDuration.count' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'cycleOptions.initialCycleDuration.unit' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
                 'subscriptionId' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],'resume' => [
+              'path' => 'v1/{+name}:resume',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'suspend' => [
+              'path' => 'v1/{+name}:suspend',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],'undoCancel' => [
@@ -210,6 +244,54 @@ class PaymentsResellerSubscription extends \Google\Service
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->partners_subscriptions_lineItems = new PaymentsResellerSubscription\Resource\PartnersSubscriptionsLineItems(
+        $this,
+        $this->serviceName,
+        'lineItems',
+        [
+          'methods' => [
+            'patch' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'requestId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->partners_userSessions = new PaymentsResellerSubscription\Resource\PartnersUserSessions(
+        $this,
+        $this->serviceName,
+        'userSessions',
+        [
+          'methods' => [
+            'generate' => [
+              'path' => 'v1/{+parent}/userSessions:generate',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,

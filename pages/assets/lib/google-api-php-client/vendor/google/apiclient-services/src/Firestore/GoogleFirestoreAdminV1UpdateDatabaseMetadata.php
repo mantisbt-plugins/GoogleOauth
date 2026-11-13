@@ -19,6 +19,112 @@ namespace Google\Service\Firestore;
 
 class GoogleFirestoreAdminV1UpdateDatabaseMetadata extends \Google\Model
 {
+  /**
+   * Unspecified.
+   */
+  public const STATE_OPERATION_STATE_UNSPECIFIED = 'OPERATION_STATE_UNSPECIFIED';
+  /**
+   * Request is being prepared for processing.
+   */
+  public const STATE_INITIALIZING = 'INITIALIZING';
+  /**
+   * Request is actively being processed.
+   */
+  public const STATE_PROCESSING = 'PROCESSING';
+  /**
+   * Request is in the process of being cancelled after user called
+   * google.longrunning.Operations.CancelOperation on the operation.
+   */
+  public const STATE_CANCELLING = 'CANCELLING';
+  /**
+   * Request has been processed and is in its finalization stage.
+   */
+  public const STATE_FINALIZING = 'FINALIZING';
+  /**
+   * Request has completed successfully.
+   */
+  public const STATE_SUCCESSFUL = 'SUCCESSFUL';
+  /**
+   * Request has finished being processed, but encountered an error.
+   */
+  public const STATE_FAILED = 'FAILED';
+  /**
+   * Request has finished being cancelled after user called
+   * google.longrunning.Operations.CancelOperation.
+   */
+  public const STATE_CANCELLED = 'CANCELLED';
+  /**
+   * The time this operation completed. Will be unset if operation still in
+   * progress.
+   *
+   * @var string
+   */
+  public $endTime;
+  /**
+   * The time this operation started.
+   *
+   * @var string
+   */
+  public $startTime;
+  /**
+   * The state of the operation.
+   *
+   * @var string
+   */
+  public $state;
+
+  /**
+   * The time this operation completed. Will be unset if operation still in
+   * progress.
+   *
+   * @param string $endTime
+   */
+  public function setEndTime($endTime)
+  {
+    $this->endTime = $endTime;
+  }
+  /**
+   * @return string
+   */
+  public function getEndTime()
+  {
+    return $this->endTime;
+  }
+  /**
+   * The time this operation started.
+   *
+   * @param string $startTime
+   */
+  public function setStartTime($startTime)
+  {
+    $this->startTime = $startTime;
+  }
+  /**
+   * @return string
+   */
+  public function getStartTime()
+  {
+    return $this->startTime;
+  }
+  /**
+   * The state of the operation.
+   *
+   * Accepted values: OPERATION_STATE_UNSPECIFIED, INITIALIZING, PROCESSING,
+   * CANCELLING, FINALIZING, SUCCESSFUL, FAILED, CANCELLED
+   *
+   * @param self::STATE_* $state
+   */
+  public function setState($state)
+  {
+    $this->state = $state;
+  }
+  /**
+   * @return self::STATE_*
+   */
+  public function getState()
+  {
+    return $this->state;
+  }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

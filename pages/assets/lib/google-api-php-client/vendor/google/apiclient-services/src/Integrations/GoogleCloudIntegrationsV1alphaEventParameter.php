@@ -20,14 +20,28 @@ namespace Google\Service\Integrations;
 class GoogleCloudIntegrationsV1alphaEventParameter extends \Google\Model
 {
   /**
+   * Key is used to retrieve the corresponding parameter value. This should be
+   * unique for a given fired event. These parameters must be predefined in the
+   * integration definition.
+   *
    * @var string
    */
   public $key;
+  /**
+   * True if this parameter should be masked in the logs
+   *
+   * @var bool
+   */
+  public $masked;
   protected $valueType = GoogleCloudIntegrationsV1alphaValueType::class;
   protected $valueDataType = '';
 
   /**
-   * @param string
+   * Key is used to retrieve the corresponding parameter value. This should be
+   * unique for a given fired event. These parameters must be predefined in the
+   * integration definition.
+   *
+   * @param string $key
    */
   public function setKey($key)
   {
@@ -41,7 +55,26 @@ class GoogleCloudIntegrationsV1alphaEventParameter extends \Google\Model
     return $this->key;
   }
   /**
-   * @param GoogleCloudIntegrationsV1alphaValueType
+   * True if this parameter should be masked in the logs
+   *
+   * @param bool $masked
+   */
+  public function setMasked($masked)
+  {
+    $this->masked = $masked;
+  }
+  /**
+   * @return bool
+   */
+  public function getMasked()
+  {
+    return $this->masked;
+  }
+  /**
+   * Values for the defined keys. Each value can either be string, int, double
+   * or any proto message.
+   *
+   * @param GoogleCloudIntegrationsV1alphaValueType $value
    */
   public function setValue(GoogleCloudIntegrationsV1alphaValueType $value)
   {

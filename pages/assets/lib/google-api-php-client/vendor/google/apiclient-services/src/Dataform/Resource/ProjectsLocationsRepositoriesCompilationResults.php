@@ -19,6 +19,7 @@ namespace Google\Service\Dataform\Resource;
 
 use Google\Service\Dataform\CompilationResult;
 use Google\Service\Dataform\ListCompilationResultsResponse;
+use Google\Service\Dataform\Operation;
 use Google\Service\Dataform\QueryCompilationResultActionsResponse;
 
 /**
@@ -40,6 +41,7 @@ class ProjectsLocationsRepositoriesCompilationResults extends \Google\Service\Re
    * @param CompilationResult $postBody
    * @param array $optParams Optional parameters.
    * @return CompilationResult
+   * @throws \Google\Service\Exception
    */
   public function create($parent, CompilationResult $postBody, $optParams = [])
   {
@@ -48,11 +50,29 @@ class ProjectsLocationsRepositoriesCompilationResults extends \Google\Service\Re
     return $this->call('create', [$params], CompilationResult::class);
   }
   /**
+   * Creates a new CompilationResult in a given project and location
+   * asynchronously. (compilationResults.createLongRunning)
+   *
+   * @param string $parent Required. The repository in which to create the
+   * compilation result. Must be in the format `projects/locations/repositories`.
+   * @param CompilationResult $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function createLongRunning($parent, CompilationResult $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('createLongRunning', [$params], Operation::class);
+  }
+  /**
    * Fetches a single CompilationResult. (compilationResults.get)
    *
    * @param string $name Required. The compilation result's name.
    * @param array $optParams Optional parameters.
    * @return CompilationResult
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -68,14 +88,20 @@ class ProjectsLocationsRepositoriesCompilationResults extends \Google\Service\Re
    * results. Must be in the format `projects/locations/repositories`.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string filter Optional. Filter for the returned list.
+   * @opt_param string orderBy Optional. This field only supports ordering by
+   * `name` and `create_time`. If unspecified, the server will choose the
+   * ordering. If specified, the default order is ascending for the `name` field.
    * @opt_param int pageSize Optional. Maximum number of compilation results to
    * return. The server may return fewer items than requested. If unspecified, the
    * server will pick an appropriate default.
    * @opt_param string pageToken Optional. Page token received from a previous
    * `ListCompilationResults` call. Provide this to retrieve the subsequent page.
-   * When paginating, all other parameters provided to `ListCompilationResults`
-   * must match the call that provided the page token.
+   * When paginating, all other parameters provided to `ListCompilationResults`,
+   * with the exception of `page_size`, must match the call that provided the page
+   * token.
    * @return ListCompilationResultsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsRepositoriesCompilationResults($parent, $optParams = [])
   {
@@ -98,9 +124,10 @@ class ProjectsLocationsRepositoriesCompilationResults extends \Google\Service\Re
    * @opt_param string pageToken Optional. Page token received from a previous
    * `QueryCompilationResultActions` call. Provide this to retrieve the subsequent
    * page. When paginating, all other parameters provided to
-   * `QueryCompilationResultActions` must match the call that provided the page
-   * token.
+   * `QueryCompilationResultActions`, with the exception of `page_size`, must
+   * match the call that provided the page token.
    * @return QueryCompilationResultActionsResponse
+   * @throws \Google\Service\Exception
    */
   public function query($name, $optParams = [])
   {

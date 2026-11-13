@@ -20,19 +20,50 @@ namespace Google\Service\CloudDeploy;
 class Stage extends \Google\Collection
 {
   protected $collection_key = 'profiles';
+  protected $deployParametersType = DeployParameters::class;
+  protected $deployParametersDataType = 'array';
   /**
+   * Optional. Skaffold profiles to use when rendering the manifest for this
+   * stage's `Target`.
+   *
    * @var string[]
    */
   public $profiles;
   protected $strategyType = Strategy::class;
   protected $strategyDataType = '';
   /**
+   * Optional. The target_id to which this stage points. This field refers
+   * exclusively to the last segment of a target name. For example, this field
+   * would just be `my-target` (rather than
+   * `projects/project/locations/location/targets/my-target`). The location of
+   * the `Target` is inferred to be the same as the location of the
+   * `DeliveryPipeline` that contains this `Stage`.
+   *
    * @var string
    */
   public $targetId;
 
   /**
-   * @param string[]
+   * Optional. The deploy parameters to use for the target in this stage.
+   *
+   * @param DeployParameters[] $deployParameters
+   */
+  public function setDeployParameters($deployParameters)
+  {
+    $this->deployParameters = $deployParameters;
+  }
+  /**
+   * @return DeployParameters[]
+   */
+  public function getDeployParameters()
+  {
+    return $this->deployParameters;
+  }
+  /**
+   * Optional. Skaffold profiles to use when rendering the manifest for this
+   * stage's `Target`.
+   *
+   * @param string[] $profiles
    */
   public function setProfiles($profiles)
   {
@@ -46,7 +77,9 @@ class Stage extends \Google\Collection
     return $this->profiles;
   }
   /**
-   * @param Strategy
+   * Optional. The strategy to use for a `Rollout` to this stage.
+   *
+   * @param Strategy $strategy
    */
   public function setStrategy(Strategy $strategy)
   {
@@ -60,7 +93,14 @@ class Stage extends \Google\Collection
     return $this->strategy;
   }
   /**
-   * @param string
+   * Optional. The target_id to which this stage points. This field refers
+   * exclusively to the last segment of a target name. For example, this field
+   * would just be `my-target` (rather than
+   * `projects/project/locations/location/targets/my-target`). The location of
+   * the `Target` is inferred to be the same as the location of the
+   * `DeliveryPipeline` that contains this `Stage`.
+   *
+   * @param string $targetId
    */
   public function setTargetId($targetId)
   {

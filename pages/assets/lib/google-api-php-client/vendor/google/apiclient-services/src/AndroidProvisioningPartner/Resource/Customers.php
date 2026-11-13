@@ -34,11 +34,12 @@ class Customers extends \Google\Service\Resource
    *
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of customers to show in a page of
-   * results. A number between 1 and 100 (inclusive).
+   * @opt_param int pageSize Required. The maximum number of customers to show in
+   * a page of results. A number between 1 and 100 (inclusive).
    * @opt_param string pageToken A token specifying which result page to return.
    * This field has custom validations in ListCustomersRequestValidator
    * @return CustomerListCustomersResponse
+   * @throws \Google\Service\Exception
    */
   public function listCustomers($optParams = [])
   {

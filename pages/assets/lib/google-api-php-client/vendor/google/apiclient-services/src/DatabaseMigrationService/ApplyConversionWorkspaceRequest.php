@@ -20,16 +20,55 @@ namespace Google\Service\DatabaseMigrationService;
 class ApplyConversionWorkspaceRequest extends \Google\Model
 {
   /**
+   * Optional. Specifies whether the conversion workspace is to be committed
+   * automatically after the apply.
+   *
+   * @var bool
+   */
+  public $autoCommit;
+  /**
+   * Optional. Fully qualified (Uri) name of the destination connection profile.
+   *
    * @var string
    */
   public $connectionProfile;
   /**
+   * Optional. Only validates the apply process, but doesn't change the
+   * destination database. Only works for PostgreSQL destination connection
+   * profile.
+   *
+   * @var bool
+   */
+  public $dryRun;
+  /**
+   * Optional. Filter which entities to apply. Leaving this field empty will
+   * apply all of the entities. Supports Google AIP 160 based filtering.
+   *
    * @var string
    */
   public $filter;
 
   /**
-   * @param string
+   * Optional. Specifies whether the conversion workspace is to be committed
+   * automatically after the apply.
+   *
+   * @param bool $autoCommit
+   */
+  public function setAutoCommit($autoCommit)
+  {
+    $this->autoCommit = $autoCommit;
+  }
+  /**
+   * @return bool
+   */
+  public function getAutoCommit()
+  {
+    return $this->autoCommit;
+  }
+  /**
+   * Optional. Fully qualified (Uri) name of the destination connection profile.
+   *
+   * @param string $connectionProfile
    */
   public function setConnectionProfile($connectionProfile)
   {
@@ -43,7 +82,28 @@ class ApplyConversionWorkspaceRequest extends \Google\Model
     return $this->connectionProfile;
   }
   /**
-   * @param string
+   * Optional. Only validates the apply process, but doesn't change the
+   * destination database. Only works for PostgreSQL destination connection
+   * profile.
+   *
+   * @param bool $dryRun
+   */
+  public function setDryRun($dryRun)
+  {
+    $this->dryRun = $dryRun;
+  }
+  /**
+   * @return bool
+   */
+  public function getDryRun()
+  {
+    return $this->dryRun;
+  }
+  /**
+   * Optional. Filter which entities to apply. Leaving this field empty will
+   * apply all of the entities. Supports Google AIP 160 based filtering.
+   *
+   * @param string $filter
    */
   public function setFilter($filter)
   {

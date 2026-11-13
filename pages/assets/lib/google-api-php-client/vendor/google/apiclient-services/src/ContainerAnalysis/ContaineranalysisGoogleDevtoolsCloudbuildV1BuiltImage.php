@@ -20,18 +20,68 @@ namespace Google\Service\ContainerAnalysis;
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage extends \Google\Model
 {
   /**
+   * Default value.
+   */
+  public const OCI_MEDIA_TYPE_OCI_MEDIA_TYPE_UNSPECIFIED = 'OCI_MEDIA_TYPE_UNSPECIFIED';
+  /**
+   * The artifact is an image manifest, which represents a single image with all
+   * its layers.
+   */
+  public const OCI_MEDIA_TYPE_IMAGE_MANIFEST = 'IMAGE_MANIFEST';
+  /**
+   * The artifact is an image index, which can contain a list of image
+   * manifests.
+   */
+  public const OCI_MEDIA_TYPE_IMAGE_INDEX = 'IMAGE_INDEX';
+  /**
+   * Output only. Path to the artifact in Artifact Registry.
+   *
+   * @var string
+   */
+  public $artifactRegistryPackage;
+  /**
+   * Docker Registry 2.0 digest.
+   *
    * @var string
    */
   public $digest;
   /**
+   * Name used to push the container image to Google Container Registry, as
+   * presented to `docker push`.
+   *
    * @var string
    */
   public $name;
+  /**
+   * Output only. The OCI media type of the artifact. Non-OCI images, such as
+   * Docker images, will have an unspecified value.
+   *
+   * @var string
+   */
+  public $ociMediaType;
   protected $pushTimingType = ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan::class;
   protected $pushTimingDataType = '';
 
   /**
-   * @param string
+   * Output only. Path to the artifact in Artifact Registry.
+   *
+   * @param string $artifactRegistryPackage
+   */
+  public function setArtifactRegistryPackage($artifactRegistryPackage)
+  {
+    $this->artifactRegistryPackage = $artifactRegistryPackage;
+  }
+  /**
+   * @return string
+   */
+  public function getArtifactRegistryPackage()
+  {
+    return $this->artifactRegistryPackage;
+  }
+  /**
+   * Docker Registry 2.0 digest.
+   *
+   * @param string $digest
    */
   public function setDigest($digest)
   {
@@ -45,7 +95,10 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage extends \Google\Mode
     return $this->digest;
   }
   /**
-   * @param string
+   * Name used to push the container image to Google Container Registry, as
+   * presented to `docker push`.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -59,7 +112,28 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage extends \Google\Mode
     return $this->name;
   }
   /**
-   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+   * Output only. The OCI media type of the artifact. Non-OCI images, such as
+   * Docker images, will have an unspecified value.
+   *
+   * Accepted values: OCI_MEDIA_TYPE_UNSPECIFIED, IMAGE_MANIFEST, IMAGE_INDEX
+   *
+   * @param self::OCI_MEDIA_TYPE_* $ociMediaType
+   */
+  public function setOciMediaType($ociMediaType)
+  {
+    $this->ociMediaType = $ociMediaType;
+  }
+  /**
+   * @return self::OCI_MEDIA_TYPE_*
+   */
+  public function getOciMediaType()
+  {
+    return $this->ociMediaType;
+  }
+  /**
+   * Output only. Stores timing information for pushing the specified image.
+   *
+   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan $pushTiming
    */
   public function setPushTiming(ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan $pushTiming)
   {

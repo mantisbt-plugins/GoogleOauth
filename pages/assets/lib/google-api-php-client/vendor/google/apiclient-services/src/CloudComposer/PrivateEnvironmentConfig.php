@@ -20,44 +20,118 @@ namespace Google\Service\CloudComposer;
 class PrivateEnvironmentConfig extends \Google\Model
 {
   /**
+   * Default networking type.
+   */
+  public const NETWORKING_TYPE_NETWORKING_TYPE_UNSPECIFIED = 'NETWORKING_TYPE_UNSPECIFIED';
+  /**
+   * Private IP Cloud Composer environment with no access to the internet.
+   */
+  public const NETWORKING_TYPE_PRIVATE = 'PRIVATE';
+  /**
+   * Cloud Composer environment with access to the internet.
+   */
+  public const NETWORKING_TYPE_PUBLIC = 'PUBLIC';
+  /**
+   * Optional. When specified, the environment will use Private Service Connect
+   * instead of VPC peerings to connect to Cloud SQL in the Tenant Project, and
+   * the PSC endpoint in the Customer Project will use an IP address from this
+   * subnetwork.
+   *
    * @var string
    */
   public $cloudComposerConnectionSubnetwork;
   /**
+   * Optional. The CIDR block from which IP range for Cloud Composer Network in
+   * tenant project will be reserved. Needs to be disjoint from
+   * private_cluster_config.master_ipv4_cidr_block and
+   * cloud_sql_ipv4_cidr_block. This field is supported for Cloud Composer
+   * environments in versions composer-2.*.*-airflow-*.*.* and newer.
+   *
    * @var string
    */
   public $cloudComposerNetworkIpv4CidrBlock;
   /**
+   * Output only. The IP range reserved for the tenant project's Cloud Composer
+   * network. This field is supported for Cloud Composer environments in
+   * versions composer-2.*.*-airflow-*.*.* and newer.
+   *
    * @var string
    */
   public $cloudComposerNetworkIpv4ReservedRange;
   /**
+   * Optional. The CIDR block from which IP range in tenant project will be
+   * reserved for Cloud SQL. Needs to be disjoint from
+   * `web_server_ipv4_cidr_block`.
+   *
    * @var string
    */
   public $cloudSqlIpv4CidrBlock;
   /**
+   * Optional. If `true`, builds performed during operations that install Python
+   * packages have only private connectivity to Google services (including
+   * Artifact Registry) and VPC network (if either `NodeConfig.network` and
+   * `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment`
+   * field are specified). If `false`, the builds also have access to the
+   * internet. This field is supported for Cloud Composer environments in
+   * versions composer-3-airflow-*.*.*-build.* and newer.
+   *
+   * @var bool
+   */
+  public $enablePrivateBuildsOnly;
+  /**
+   * Optional. If `true`, a Private IP Cloud Composer environment is created. If
+   * this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set
+   * to true for Cloud Composer environments in versions
+   * composer-1.*.*-airflow-*.*.*. This field is going to be deprecated. Use
+   * `networking_type` instead.
+   *
    * @var bool
    */
   public $enablePrivateEnvironment;
   /**
+   * Optional. When enabled, IPs from public (non-RFC1918) ranges can be used
+   * for `IPAllocationPolicy.cluster_ipv4_cidr_block` and
+   * `IPAllocationPolicy.service_ipv4_cidr_block`.
+   *
    * @var bool
    */
   public $enablePrivatelyUsedPublicIps;
   protected $networkingConfigType = NetworkingConfig::class;
   protected $networkingConfigDataType = '';
+  /**
+   * Optional. Networking type for the environment, either private or public.
+   *
+   * @var string
+   */
+  public $networkingType;
   protected $privateClusterConfigType = PrivateClusterConfig::class;
   protected $privateClusterConfigDataType = '';
   /**
+   * Optional. The CIDR block from which IP range for web server will be
+   * reserved. Needs to be disjoint from
+   * `private_cluster_config.master_ipv4_cidr_block` and
+   * `cloud_sql_ipv4_cidr_block`. This field is supported for Cloud Composer
+   * environments in versions composer-1.*.*-airflow-*.*.*.
+   *
    * @var string
    */
   public $webServerIpv4CidrBlock;
   /**
+   * Output only. The IP range reserved for the tenant project's App Engine VMs.
+   * This field is supported for Cloud Composer environments in versions
+   * composer-1.*.*-airflow-*.*.*.
+   *
    * @var string
    */
   public $webServerIpv4ReservedRange;
 
   /**
-   * @param string
+   * Optional. When specified, the environment will use Private Service Connect
+   * instead of VPC peerings to connect to Cloud SQL in the Tenant Project, and
+   * the PSC endpoint in the Customer Project will use an IP address from this
+   * subnetwork.
+   *
+   * @param string $cloudComposerConnectionSubnetwork
    */
   public function setCloudComposerConnectionSubnetwork($cloudComposerConnectionSubnetwork)
   {
@@ -71,7 +145,13 @@ class PrivateEnvironmentConfig extends \Google\Model
     return $this->cloudComposerConnectionSubnetwork;
   }
   /**
-   * @param string
+   * Optional. The CIDR block from which IP range for Cloud Composer Network in
+   * tenant project will be reserved. Needs to be disjoint from
+   * private_cluster_config.master_ipv4_cidr_block and
+   * cloud_sql_ipv4_cidr_block. This field is supported for Cloud Composer
+   * environments in versions composer-2.*.*-airflow-*.*.* and newer.
+   *
+   * @param string $cloudComposerNetworkIpv4CidrBlock
    */
   public function setCloudComposerNetworkIpv4CidrBlock($cloudComposerNetworkIpv4CidrBlock)
   {
@@ -85,7 +165,11 @@ class PrivateEnvironmentConfig extends \Google\Model
     return $this->cloudComposerNetworkIpv4CidrBlock;
   }
   /**
-   * @param string
+   * Output only. The IP range reserved for the tenant project's Cloud Composer
+   * network. This field is supported for Cloud Composer environments in
+   * versions composer-2.*.*-airflow-*.*.* and newer.
+   *
+   * @param string $cloudComposerNetworkIpv4ReservedRange
    */
   public function setCloudComposerNetworkIpv4ReservedRange($cloudComposerNetworkIpv4ReservedRange)
   {
@@ -99,7 +183,11 @@ class PrivateEnvironmentConfig extends \Google\Model
     return $this->cloudComposerNetworkIpv4ReservedRange;
   }
   /**
-   * @param string
+   * Optional. The CIDR block from which IP range in tenant project will be
+   * reserved for Cloud SQL. Needs to be disjoint from
+   * `web_server_ipv4_cidr_block`.
+   *
+   * @param string $cloudSqlIpv4CidrBlock
    */
   public function setCloudSqlIpv4CidrBlock($cloudSqlIpv4CidrBlock)
   {
@@ -113,7 +201,35 @@ class PrivateEnvironmentConfig extends \Google\Model
     return $this->cloudSqlIpv4CidrBlock;
   }
   /**
-   * @param bool
+   * Optional. If `true`, builds performed during operations that install Python
+   * packages have only private connectivity to Google services (including
+   * Artifact Registry) and VPC network (if either `NodeConfig.network` and
+   * `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment`
+   * field are specified). If `false`, the builds also have access to the
+   * internet. This field is supported for Cloud Composer environments in
+   * versions composer-3-airflow-*.*.*-build.* and newer.
+   *
+   * @param bool $enablePrivateBuildsOnly
+   */
+  public function setEnablePrivateBuildsOnly($enablePrivateBuildsOnly)
+  {
+    $this->enablePrivateBuildsOnly = $enablePrivateBuildsOnly;
+  }
+  /**
+   * @return bool
+   */
+  public function getEnablePrivateBuildsOnly()
+  {
+    return $this->enablePrivateBuildsOnly;
+  }
+  /**
+   * Optional. If `true`, a Private IP Cloud Composer environment is created. If
+   * this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set
+   * to true for Cloud Composer environments in versions
+   * composer-1.*.*-airflow-*.*.*. This field is going to be deprecated. Use
+   * `networking_type` instead.
+   *
+   * @param bool $enablePrivateEnvironment
    */
   public function setEnablePrivateEnvironment($enablePrivateEnvironment)
   {
@@ -127,7 +243,11 @@ class PrivateEnvironmentConfig extends \Google\Model
     return $this->enablePrivateEnvironment;
   }
   /**
-   * @param bool
+   * Optional. When enabled, IPs from public (non-RFC1918) ranges can be used
+   * for `IPAllocationPolicy.cluster_ipv4_cidr_block` and
+   * `IPAllocationPolicy.service_ipv4_cidr_block`.
+   *
+   * @param bool $enablePrivatelyUsedPublicIps
    */
   public function setEnablePrivatelyUsedPublicIps($enablePrivatelyUsedPublicIps)
   {
@@ -141,7 +261,10 @@ class PrivateEnvironmentConfig extends \Google\Model
     return $this->enablePrivatelyUsedPublicIps;
   }
   /**
-   * @param NetworkingConfig
+   * Optional. Configuration for the network connections configuration in the
+   * environment.
+   *
+   * @param NetworkingConfig $networkingConfig
    */
   public function setNetworkingConfig(NetworkingConfig $networkingConfig)
   {
@@ -155,7 +278,28 @@ class PrivateEnvironmentConfig extends \Google\Model
     return $this->networkingConfig;
   }
   /**
-   * @param PrivateClusterConfig
+   * Optional. Networking type for the environment, either private or public.
+   *
+   * Accepted values: NETWORKING_TYPE_UNSPECIFIED, PRIVATE, PUBLIC
+   *
+   * @param self::NETWORKING_TYPE_* $networkingType
+   */
+  public function setNetworkingType($networkingType)
+  {
+    $this->networkingType = $networkingType;
+  }
+  /**
+   * @return self::NETWORKING_TYPE_*
+   */
+  public function getNetworkingType()
+  {
+    return $this->networkingType;
+  }
+  /**
+   * Optional. Configuration for the private GKE cluster for a Private IP Cloud
+   * Composer environment.
+   *
+   * @param PrivateClusterConfig $privateClusterConfig
    */
   public function setPrivateClusterConfig(PrivateClusterConfig $privateClusterConfig)
   {
@@ -169,7 +313,13 @@ class PrivateEnvironmentConfig extends \Google\Model
     return $this->privateClusterConfig;
   }
   /**
-   * @param string
+   * Optional. The CIDR block from which IP range for web server will be
+   * reserved. Needs to be disjoint from
+   * `private_cluster_config.master_ipv4_cidr_block` and
+   * `cloud_sql_ipv4_cidr_block`. This field is supported for Cloud Composer
+   * environments in versions composer-1.*.*-airflow-*.*.*.
+   *
+   * @param string $webServerIpv4CidrBlock
    */
   public function setWebServerIpv4CidrBlock($webServerIpv4CidrBlock)
   {
@@ -183,7 +333,11 @@ class PrivateEnvironmentConfig extends \Google\Model
     return $this->webServerIpv4CidrBlock;
   }
   /**
-   * @param string
+   * Output only. The IP range reserved for the tenant project's App Engine VMs.
+   * This field is supported for Cloud Composer environments in versions
+   * composer-1.*.*-airflow-*.*.*.
+   *
+   * @param string $webServerIpv4ReservedRange
    */
   public function setWebServerIpv4ReservedRange($webServerIpv4ReservedRange)
   {

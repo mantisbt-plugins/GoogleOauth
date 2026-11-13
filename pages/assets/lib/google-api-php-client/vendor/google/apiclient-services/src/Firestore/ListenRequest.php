@@ -22,16 +22,24 @@ class ListenRequest extends \Google\Model
   protected $addTargetType = Target::class;
   protected $addTargetDataType = '';
   /**
+   * Labels associated with this target change.
+   *
    * @var string[]
    */
   public $labels;
   /**
+   * The ID of a target to remove from this stream.
+   *
    * @var int
    */
   public $removeTarget;
+  protected $requestOptionsType = RequestOptions::class;
+  protected $requestOptionsDataType = '';
 
   /**
-   * @param Target
+   * A target to add to this stream.
+   *
+   * @param Target $addTarget
    */
   public function setAddTarget(Target $addTarget)
   {
@@ -45,7 +53,9 @@ class ListenRequest extends \Google\Model
     return $this->addTarget;
   }
   /**
-   * @param string[]
+   * Labels associated with this target change.
+   *
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -59,7 +69,9 @@ class ListenRequest extends \Google\Model
     return $this->labels;
   }
   /**
-   * @param int
+   * The ID of a target to remove from this stream.
+   *
+   * @param int $removeTarget
    */
   public function setRemoveTarget($removeTarget)
   {
@@ -71,6 +83,22 @@ class ListenRequest extends \Google\Model
   public function getRemoveTarget()
   {
     return $this->removeTarget;
+  }
+  /**
+   * Optional. The request options for the request.
+   *
+   * @param RequestOptions $requestOptions
+   */
+  public function setRequestOptions(RequestOptions $requestOptions)
+  {
+    $this->requestOptions = $requestOptions;
+  }
+  /**
+   * @return RequestOptions
+   */
+  public function getRequestOptions()
+  {
+    return $this->requestOptions;
   }
 }
 

@@ -19,26 +19,49 @@ namespace Google\Service\ChromeUXReport;
 
 class Bin extends \Google\Model
 {
+  /**
+   * The proportion of users that experienced this bin's value for the given
+   * metric.
+   *
+   * @var array
+   */
   public $density;
   /**
+   * End is the end of the data bin. If end is not populated, then the bin has
+   * no end and is valid from start to +inf.
+   *
    * @var array
    */
   public $end;
   /**
+   * Start is the beginning of the data bin.
+   *
    * @var array
    */
   public $start;
 
+  /**
+   * The proportion of users that experienced this bin's value for the given
+   * metric.
+   *
+   * @param array $density
+   */
   public function setDensity($density)
   {
     $this->density = $density;
   }
+  /**
+   * @return array
+   */
   public function getDensity()
   {
     return $this->density;
   }
   /**
-   * @param array
+   * End is the end of the data bin. If end is not populated, then the bin has
+   * no end and is valid from start to +inf.
+   *
+   * @param array $end
    */
   public function setEnd($end)
   {
@@ -52,7 +75,9 @@ class Bin extends \Google\Model
     return $this->end;
   }
   /**
-   * @param array
+   * Start is the beginning of the data bin.
+   *
+   * @param array $start
    */
   public function setStart($start)
   {

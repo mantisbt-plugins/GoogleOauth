@@ -49,6 +49,7 @@ class DataFusion extends \Google\Service
   public $projects_locations_instances_dnsPeerings;
   public $projects_locations_operations;
   public $projects_locations_versions;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the DataFusion service.
@@ -61,6 +62,7 @@ class DataFusion extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://datafusion.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://datafusion.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -91,13 +93,14 @@ class DataFusion extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
                 'filter' => [
                   'location' => 'query',
                   'type' => 'string',
-                ],
-                'includeUnrevealedLocations' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ],
                 'pageSize' => [
                   'location' => 'query',
@@ -140,6 +143,10 @@ class DataFusion extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'force' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],'get' => [
@@ -348,6 +355,10 @@ class DataFusion extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],

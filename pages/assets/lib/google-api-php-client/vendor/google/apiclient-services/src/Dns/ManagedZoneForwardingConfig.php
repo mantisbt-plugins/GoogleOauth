@@ -24,11 +24,13 @@ class ManagedZoneForwardingConfig extends \Google\Collection
    * @var string
    */
   public $kind;
+  protected $outboundEndpointsType = ManagedZoneForwardingConfigOutboundEndpoint::class;
+  protected $outboundEndpointsDataType = 'array';
   protected $targetNameServersType = ManagedZoneForwardingConfigNameServerTarget::class;
   protected $targetNameServersDataType = 'array';
 
   /**
-   * @param string
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -42,7 +44,26 @@ class ManagedZoneForwardingConfig extends \Google\Collection
     return $this->kind;
   }
   /**
-   * @param ManagedZoneForwardingConfigNameServerTarget[]
+   * The list of outbound endpoints to use for queries.
+   *
+   * @param ManagedZoneForwardingConfigOutboundEndpoint[] $outboundEndpoints
+   */
+  public function setOutboundEndpoints($outboundEndpoints)
+  {
+    $this->outboundEndpoints = $outboundEndpoints;
+  }
+  /**
+   * @return ManagedZoneForwardingConfigOutboundEndpoint[]
+   */
+  public function getOutboundEndpoints()
+  {
+    return $this->outboundEndpoints;
+  }
+  /**
+   * List of target name servers to forward to. Cloud DNS selects the best
+   * available name server if more than one target is given.
+   *
+   * @param ManagedZoneForwardingConfigNameServerTarget[] $targetNameServers
    */
   public function setTargetNameServers($targetNameServers)
   {

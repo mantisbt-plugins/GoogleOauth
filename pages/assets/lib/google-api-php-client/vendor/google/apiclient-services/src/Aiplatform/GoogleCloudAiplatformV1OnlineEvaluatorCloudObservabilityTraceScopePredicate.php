@@ -1,0 +1,82 @@
+<?php
+/*
+ * Copyright 2014 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+namespace Google\Service\Aiplatform;
+
+class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScopePredicate extends \Google\Model
+{
+  protected $durationType = GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate::class;
+  protected $durationDataType = '';
+  protected $serviceVersionType = GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityStringPredicate::class;
+  protected $serviceVersionDataType = '';
+  protected $totalTokenUsageType = GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate::class;
+  protected $totalTokenUsageDataType = '';
+
+  /**
+   * Filter on the duration of a trace (in seconds).
+   *
+   * @param GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate $duration
+   */
+  public function setDuration(GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate $duration)
+  {
+    $this->duration = $duration;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+   */
+  public function getDuration()
+  {
+    return $this->duration;
+  }
+  /**
+   * Filter on the version that served a trace (`service.version` OTel resource
+   * attribute). At most one is allowed. On Vertex AI Agent Engine, this is the
+   * runtime revision id, currently set only for agents created via v1beta1.
+   *
+   * @param GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityStringPredicate $serviceVersion
+   */
+  public function setServiceVersion(GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityStringPredicate $serviceVersion)
+  {
+    $this->serviceVersion = $serviceVersion;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityStringPredicate
+   */
+  public function getServiceVersion()
+  {
+    return $this->serviceVersion;
+  }
+  /**
+   * Filter on the total token usage within a trace.
+   *
+   * @param GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate $totalTokenUsage
+   */
+  public function setTotalTokenUsage(GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate $totalTokenUsage)
+  {
+    $this->totalTokenUsage = $totalTokenUsage;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+   */
+  public function getTotalTokenUsage()
+  {
+    return $this->totalTokenUsage;
+  }
+}
+
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScopePredicate::class, 'Google_Service_Aiplatform_GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScopePredicate');

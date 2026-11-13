@@ -22,12 +22,19 @@ class CardWithId extends \Google\Model
   protected $cardType = GoogleAppsCardV1Card::class;
   protected $cardDataType = '';
   /**
+   * Required if the message contains multiple cards. A unique identifier for a
+   * card in a message.
+   *
    * @var string
    */
   public $cardId;
+  protected $ownerUserType = User::class;
+  protected $ownerUserDataType = '';
 
   /**
-   * @param GoogleAppsCardV1Card
+   * A card. Maximum size is 32 KB.
+   *
+   * @param GoogleAppsCardV1Card $card
    */
   public function setCard(GoogleAppsCardV1Card $card)
   {
@@ -41,7 +48,10 @@ class CardWithId extends \Google\Model
     return $this->card;
   }
   /**
-   * @param string
+   * Required if the message contains multiple cards. A unique identifier for a
+   * card in a message.
+   *
+   * @param string $cardId
    */
   public function setCardId($cardId)
   {
@@ -53,6 +63,22 @@ class CardWithId extends \Google\Model
   public function getCardId()
   {
     return $this->cardId;
+  }
+  /**
+   * Output only. The app that owns the card.
+   *
+   * @param User $ownerUser
+   */
+  public function setOwnerUser(User $ownerUser)
+  {
+    $this->ownerUser = $ownerUser;
+  }
+  /**
+   * @return User
+   */
+  public function getOwnerUser()
+  {
+    return $this->ownerUser;
   }
 }
 

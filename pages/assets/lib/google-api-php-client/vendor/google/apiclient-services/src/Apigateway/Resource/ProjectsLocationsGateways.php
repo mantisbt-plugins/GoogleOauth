@@ -46,6 +46,7 @@ class ProjectsLocationsGateways extends \Google\Service\Resource
    * @opt_param string gatewayId Required. Identifier to assign to the Gateway.
    * Must be unique within scope of the parent resource.
    * @return ApigatewayOperation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, ApigatewayGateway $postBody, $optParams = [])
   {
@@ -60,6 +61,7 @@ class ProjectsLocationsGateways extends \Google\Service\Resource
    * `projects/locations/gateways`
    * @param array $optParams Optional parameters.
    * @return ApigatewayOperation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -74,6 +76,7 @@ class ProjectsLocationsGateways extends \Google\Service\Resource
    * `projects/locations/gateways`
    * @param array $optParams Optional parameters.
    * @return ApigatewayGateway
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -104,6 +107,7 @@ class ProjectsLocationsGateways extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return ApigatewayPolicy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -119,11 +123,12 @@ class ProjectsLocationsGateways extends \Google\Service\Resource
    * `projects/locations`
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Filter.
-   * @opt_param string orderBy Order by parameters.
-   * @opt_param int pageSize Page size.
-   * @opt_param string pageToken Page token.
+   * @opt_param string filter Optional. Filter.
+   * @opt_param string orderBy Optional. Order by parameters.
+   * @opt_param int pageSize Optional. Page size.
+   * @opt_param string pageToken Optional. Page token.
    * @return ApigatewayListGatewaysResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsGateways($parent, $optParams = [])
   {
@@ -134,17 +139,18 @@ class ProjectsLocationsGateways extends \Google\Service\Resource
   /**
    * Updates the parameters of a single Gateway. (gateways.patch)
    *
-   * @param string $name Output only. Resource name of the Gateway. Format:
+   * @param string $name Identifier. Resource name of the Gateway. Format:
    * projects/{project}/locations/{location}/gateways/{gateway}
    * @param ApigatewayGateway $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string updateMask Field mask is used to specify the fields to be
-   * overwritten in the Gateway resource by the update. The fields specified in
-   * the update_mask are relative to the resource, not the full request. A field
-   * will be overwritten if it is in the mask. If the user does not provide a mask
-   * then all fields will be overwritten.
+   * @opt_param string updateMask Optional. Field mask is used to specify the
+   * fields to be overwritten in the Gateway resource by the update. The fields
+   * specified in the update_mask are relative to the resource, not the full
+   * request. A field will be overwritten if it is in the mask. The request fails
+   * if `update_mask` is missing or empty.
    * @return ApigatewayOperation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, ApigatewayGateway $postBody, $optParams = [])
   {
@@ -164,6 +170,7 @@ class ProjectsLocationsGateways extends \Google\Service\Resource
    * @param ApigatewaySetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return ApigatewayPolicy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, ApigatewaySetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -185,6 +192,7 @@ class ProjectsLocationsGateways extends \Google\Service\Resource
    * @param ApigatewayTestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return ApigatewayTestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, ApigatewayTestIamPermissionsRequest $postBody, $optParams = [])
   {

@@ -36,8 +36,14 @@ class ProjectsGroupStats extends \Google\Service\Resource
    * Platform project. Written as `projects/{projectID}` or
    * `projects/{projectNumber}`, where `{projectID}` and `{projectNumber}` can be
    * found in the [Google Cloud
-   * console](https://support.google.com/cloud/answer/6158840). Examples:
-   * `projects/my-project-123`, `projects/5551234`.
+   * console](https://support.google.com/cloud/answer/6158840). It may also
+   * include a location, such as `projects/{projectID}/locations/{location}` where
+   * `{location}` is a cloud region. Examples: `projects/my-project-123`,
+   * `projects/5551234`, `projects/my-project-123/locations/us-central1`,
+   * `projects/5551234/locations/us-central1`. For a list of supported locations,
+   * see [Supported Regions](https://cloud.google.com/logging/docs/region-
+   * support). `global` is the default when unspecified. Use `-` as a wildcard to
+   * request group stats from all regions.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string alignment Optional. The alignment of the timed counts to be
@@ -45,6 +51,11 @@ class ProjectsGroupStats extends \Google\Service\Resource
    * @opt_param string alignmentTime Optional. Time where the timed counts shall
    * be aligned if rounded alignment is chosen. Default is 00:00 UTC.
    * @opt_param string groupId Optional. List all ErrorGroupStats with these IDs.
+   * The `group_id` is a unique identifier for a particular error group. The
+   * identifier is derived from key parts of the error-log content and is treated
+   * as Service Data. For information about how Service Data is handled, see
+   * [Google Cloud Privacy Notice] (https://cloud.google.com/terms/cloud-privacy-
+   * notice).
    * @opt_param string order Optional. The sort order in which the results are
    * returned. Default is `COUNT_DESC`.
    * @opt_param int pageSize Optional. The maximum number of results to return per
@@ -66,6 +77,7 @@ class ProjectsGroupStats extends \Google\Service\Resource
    * @opt_param string timedCountDuration Optional. The preferred duration for a
    * single returned TimedCount. If not set, no timed counts are returned.
    * @return ListGroupStatsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsGroupStats($projectName, $optParams = [])
   {

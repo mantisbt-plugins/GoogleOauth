@@ -31,7 +31,10 @@ use Google\Service\Dns\ChangesListResponse;
 class Changes extends \Google\Service\Resource
 {
   /**
-   * Atomically updates the ResourceRecordSet collection. (changes.create)
+   * Atomically updates the ResourceRecordSet collection. Note: While
+   * `dns.changes.create` is the baseline permission required to invoke this
+   * method, additional permissions are checked depending on the specific
+   * additions or deletions contained in the payload. (changes.create)
    *
    * @param string $project Identifies the project addressed by this request.
    * @param string $managedZone Identifies the managed zone addressed by this
@@ -43,6 +46,7 @@ class Changes extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return Change
+   * @throws \Google\Service\Exception
    */
   public function create($project, $managedZone, Change $postBody, $optParams = [])
   {
@@ -64,6 +68,7 @@ class Changes extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return Change
+   * @throws \Google\Service\Exception
    */
   public function get($project, $managedZone, $changeId, $optParams = [])
   {
@@ -89,6 +94,7 @@ class Changes extends \Google\Service\Resource
    * @opt_param string sortOrder Sorting order direction: 'ascending' or
    * 'descending'.
    * @return ChangesListResponse
+   * @throws \Google\Service\Exception
    */
   public function listChanges($project, $managedZone, $optParams = [])
   {

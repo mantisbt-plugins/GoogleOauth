@@ -28,7 +28,7 @@ class GoogleCloudDialogflowCxV3ListWebhooksResponse extends \Google\Collection
   protected $webhooksDataType = 'array';
 
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3ListWebhooksResponse extends \Google\Collection
     return $this->nextPageToken;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3Webhook[]
+   * @param GoogleCloudDialogflowCxV3Webhook[] $webhooks
    */
   public function setWebhooks($webhooks)
   {

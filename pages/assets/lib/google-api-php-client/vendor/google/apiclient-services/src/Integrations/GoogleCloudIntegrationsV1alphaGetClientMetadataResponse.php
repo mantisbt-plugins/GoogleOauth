@@ -21,10 +21,11 @@ class GoogleCloudIntegrationsV1alphaGetClientMetadataResponse extends \Google\Mo
 {
   protected $propertiesType = GoogleCloudIntegrationsV1alphaProjectProperties::class;
   protected $propertiesDataType = '';
-  public $properties;
 
   /**
-   * @param GoogleCloudIntegrationsV1alphaProjectProperties
+   * Required. Required: The client configuration that was requested
+   *
+   * @param GoogleCloudIntegrationsV1alphaProjectProperties $properties
    */
   public function setProperties(GoogleCloudIntegrationsV1alphaProjectProperties $properties)
   {

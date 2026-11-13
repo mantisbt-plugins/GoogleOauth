@@ -43,6 +43,7 @@ class ProjectsAppsDebugTokens extends \Google\Service\Resource
    * @param GoogleFirebaseAppcheckV1DebugToken $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleFirebaseAppcheckV1DebugToken
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleFirebaseAppcheckV1DebugToken $postBody, $optParams = [])
   {
@@ -60,7 +61,16 @@ class ProjectsAppsDebugTokens extends \Google\Service\Resource
    * delete, in the format: ```
    * projects/{project_number}/apps/{app_id}/debugTokens/{debug_token_id} ```
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string etag Optional. The checksum to be validated against the
+   * current DebugToken, to ensure the client has an up-to-date value before
+   * proceeding. This checksum is computed by the server based on the values of
+   * fields in the DebugToken object, and can be obtained from the DebugToken
+   * object received from the last CreateDebugToken, GetDebugToken,
+   * ListDebugTokens, or UpdateDebugToken call. This etag is strongly validated as
+   * defined by RFC 7232.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -77,6 +87,7 @@ class ProjectsAppsDebugTokens extends \Google\Service\Resource
    * projects/{project_number}/apps/{app_id}/debugTokens/{debug_token_id} ```
    * @param array $optParams Optional parameters.
    * @return GoogleFirebaseAppcheckV1DebugToken
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -104,6 +115,7 @@ class ProjectsAppsDebugTokens extends \Google\Service\Resource
    * parameters provided to ListDebugTokens must match the call that provided the
    * page token; if they do not match, the result is undefined.
    * @return GoogleFirebaseAppcheckV1ListDebugTokensResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsAppsDebugTokens($parent, $optParams = [])
   {
@@ -125,6 +137,7 @@ class ProjectsAppsDebugTokens extends \Google\Service\Resource
    * @opt_param string updateMask Required. A comma-separated list of names of
    * fields in the DebugToken to update. Example: `display_name`.
    * @return GoogleFirebaseAppcheckV1DebugToken
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleFirebaseAppcheckV1DebugToken $postBody, $optParams = [])
   {

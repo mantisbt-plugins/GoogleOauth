@@ -19,25 +19,43 @@ namespace Google\Service\Directory;
 
 class UserEmail extends \Google\Model
 {
+  protected $internal_gapi_mappings = [
+        "publicKeyEncryptionCertificates" => "public_key_encryption_certificates",
+  ];
   /**
+   * Email id of the user.
+   *
    * @var string
    */
   public $address;
   /**
+   * Custom Type.
+   *
    * @var string
    */
   public $customType;
   /**
+   * If this is user's primary email. Only one entry could be marked as primary.
+   *
    * @var bool
    */
   public $primary;
+  protected $publicKeyEncryptionCertificatesType = UserEmailPublicKeyEncryptionCertificates::class;
+  protected $publicKeyEncryptionCertificatesDataType = '';
   /**
+   * Each entry can have a type which indicates standard types of that entry.
+   * For example email could be of home, work etc. In addition to the standard
+   * type, an entry can have a custom type and can take any value Such types
+   * should have the CUSTOM value as type and also have a customType value.
+   *
    * @var string
    */
   public $type;
 
   /**
-   * @param string
+   * Email id of the user.
+   *
+   * @param string $address
    */
   public function setAddress($address)
   {
@@ -51,7 +69,9 @@ class UserEmail extends \Google\Model
     return $this->address;
   }
   /**
-   * @param string
+   * Custom Type.
+   *
+   * @param string $customType
    */
   public function setCustomType($customType)
   {
@@ -65,7 +85,9 @@ class UserEmail extends \Google\Model
     return $this->customType;
   }
   /**
-   * @param bool
+   * If this is user's primary email. Only one entry could be marked as primary.
+   *
+   * @param bool $primary
    */
   public function setPrimary($primary)
   {
@@ -79,7 +101,29 @@ class UserEmail extends \Google\Model
     return $this->primary;
   }
   /**
-   * @param string
+   * Public Key Encryption Certificates. Current limit: 1 per email address, and
+   * 5 per user.
+   *
+   * @param UserEmailPublicKeyEncryptionCertificates $publicKeyEncryptionCertificates
+   */
+  public function setPublicKeyEncryptionCertificates(UserEmailPublicKeyEncryptionCertificates $publicKeyEncryptionCertificates)
+  {
+    $this->publicKeyEncryptionCertificates = $publicKeyEncryptionCertificates;
+  }
+  /**
+   * @return UserEmailPublicKeyEncryptionCertificates
+   */
+  public function getPublicKeyEncryptionCertificates()
+  {
+    return $this->publicKeyEncryptionCertificates;
+  }
+  /**
+   * Each entry can have a type which indicates standard types of that entry.
+   * For example email could be of home, work etc. In addition to the standard
+   * type, an entry can have a custom type and can take any value Such types
+   * should have the CUSTOM value as type and also have a customType value.
+   *
+   * @param string $type
    */
   public function setType($type)
   {

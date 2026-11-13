@@ -41,6 +41,7 @@ class ServerlessVPCAccess extends \Google\Service
   public $projects_locations;
   public $projects_locations_connectors;
   public $projects_locations_operations;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the ServerlessVPCAccess service.
@@ -53,6 +54,7 @@ class ServerlessVPCAccess extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://vpcaccess.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://vpcaccess.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -72,6 +74,11 @@ class ServerlessVPCAccess extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -202,6 +209,10 @@ class ServerlessVPCAccess extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],

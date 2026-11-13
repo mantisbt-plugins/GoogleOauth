@@ -20,16 +20,27 @@ namespace Google\Service\CloudRun;
 class GoogleCloudRunV2RunJobRequest extends \Google\Model
 {
   /**
+   * A system-generated fingerprint for this version of the resource. May be
+   * used to detect modification conflict during updates.
+   *
    * @var string
    */
   public $etag;
+  protected $overridesType = GoogleCloudRunV2Overrides::class;
+  protected $overridesDataType = '';
   /**
+   * Indicates that the request should be validated without actually deleting
+   * any resources.
+   *
    * @var bool
    */
   public $validateOnly;
 
   /**
-   * @param string
+   * A system-generated fingerprint for this version of the resource. May be
+   * used to detect modification conflict during updates.
+   *
+   * @param string $etag
    */
   public function setEtag($etag)
   {
@@ -43,7 +54,27 @@ class GoogleCloudRunV2RunJobRequest extends \Google\Model
     return $this->etag;
   }
   /**
-   * @param bool
+   * Overrides specification for a given execution of a job. If provided,
+   * overrides will be applied to update the execution or task spec.
+   *
+   * @param GoogleCloudRunV2Overrides $overrides
+   */
+  public function setOverrides(GoogleCloudRunV2Overrides $overrides)
+  {
+    $this->overrides = $overrides;
+  }
+  /**
+   * @return GoogleCloudRunV2Overrides
+   */
+  public function getOverrides()
+  {
+    return $this->overrides;
+  }
+  /**
+   * Indicates that the request should be validated without actually deleting
+   * any resources.
+   *
+   * @param bool $validateOnly
    */
   public function setValidateOnly($validateOnly)
   {

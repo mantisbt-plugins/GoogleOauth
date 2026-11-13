@@ -33,7 +33,7 @@ class GoogleCloudDialogflowCxV3VersionVariantsVariant extends \Google\Model
   public $version;
 
   /**
-   * @param bool
+   * @param bool $isControlGroup
    */
   public function setIsControlGroup($isControlGroup)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowCxV3VersionVariantsVariant extends \Google\Model
     return $this->isControlGroup;
   }
   /**
-   * @param float
+   * @param float $trafficAllocation
    */
   public function setTrafficAllocation($trafficAllocation)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowCxV3VersionVariantsVariant extends \Google\Model
     return $this->trafficAllocation;
   }
   /**
-   * @param string
+   * @param string $version
    */
   public function setVersion($version)
   {

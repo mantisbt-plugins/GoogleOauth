@@ -31,19 +31,20 @@ class OrganizationsLocationsDlpJobs extends \Google\Service\Resource
 {
   /**
    * Lists DlpJobs that match the specified filter in the request. See
-   * https://cloud.google.com/dlp/docs/inspecting-storage and
-   * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+   * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-
+   * storage and https://docs.cloud.google.com/sensitive-data-
+   * protection/docs/compute-risk-analysis to learn more.
    * (dlpJobs.listOrganizationsLocationsDlpJobs)
    *
    * @param string $parent Required. Parent resource name. The format of this
    * value varies depending on whether you have [specified a processing
-   * location](https://cloud.google.com/dlp/docs/specifying-location): + Projects
-   * scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID +
-   * Projects scope, no location specified (defaults to global):
-   * `projects/`PROJECT_ID The following example `parent` string specifies a
-   * parent project with the identifier `example-project`, and specifies the
-   * `europe-west3` location for processing data: parent=projects/example-
-   * project/locations/europe-west3
+   * location](https://docs.cloud.google.com/sensitive-data-
+   * protection/docs/specifying-location): + Projects scope, location specified:
+   * `projects/{project_id}/locations/{location_id}` + Projects scope, no location
+   * specified (defaults to global): `projects/{project_id}` The following example
+   * `parent` string specifies a parent project with the identifier `example-
+   * project`, and specifies the `europe-west3` location for processing data:
+   * parent=projects/example-project/locations/europe-west3
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter Allows filtering. Supported syntax: * Filter
@@ -58,23 +59,25 @@ class OrganizationsLocationsDlpJobs extends \Google\Service\Resource
    * Supported fields for risk analysis jobs: - `state` -
    * RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to the time the
    * job finished. - 'start_time` - Corresponds to the time the job finished. *
-   * The operator must be `=` or `!=`. Examples: * inspected_storage =
-   * cloud_storage AND state = done * inspected_storage = cloud_storage OR
-   * inspected_storage = bigquery * inspected_storage = cloud_storage AND (state =
-   * done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\" The
-   * length of this field should be no more than 500 characters.
+   * The operator must be `=` or `!=`. The syntax is based on
+   * https://google.aip.dev/160. Examples: * inspected_storage = cloud_storage AND
+   * state = done * inspected_storage = cloud_storage OR inspected_storage =
+   * bigquery * inspected_storage = cloud_storage AND (state = done OR state =
+   * canceled) * end_time > \"2017-12-12T00:00:00+00:00\" The length of this field
+   * should be no more than 500 characters.
    * @opt_param string locationId Deprecated. This field has no effect.
-   * @opt_param string orderBy Comma separated list of fields to order by,
-   * followed by `asc` or `desc` postfix. This list is case-insensitive, default
-   * sorting order is ascending, redundant space characters are insignificant.
-   * Example: `name asc, end_time asc, create_time desc` Supported fields are: -
-   * `create_time`: corresponds to the time the job was created. - `end_time`:
-   * corresponds to the time the job ended. - `name`: corresponds to the job's
-   * name. - `state`: corresponds to `state`
+   * @opt_param string orderBy Comma-separated list of fields to order by,
+   * followed by `asc` or `desc` postfix. This list is case insensitive. The
+   * default sorting order is ascending. Redundant space characters are
+   * insignificant. Example: `name asc, end_time asc, create_time desc` Supported
+   * fields are: - `create_time`: corresponds to the time the job was created. -
+   * `end_time`: corresponds to the time the job ended. - `name`: corresponds to
+   * the job's name. - `state`: corresponds to `state`
    * @opt_param int pageSize The standard list page size.
    * @opt_param string pageToken The standard list page token.
    * @opt_param string type The type of job. Defaults to `DlpJobType.INSPECT`
    * @return GooglePrivacyDlpV2ListDlpJobsResponse
+   * @throws \Google\Service\Exception
    */
   public function listOrganizationsLocationsDlpJobs($parent, $optParams = [])
   {

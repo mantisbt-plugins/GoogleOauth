@@ -17,15 +17,26 @@
 
 namespace Google\Service\ServiceUsage;
 
-class Control extends \Google\Model
+class Control extends \Google\Collection
 {
+  protected $collection_key = 'methodPolicies';
   /**
+   * The service controller environment to use. If empty, no control plane
+   * features (like quota and billing) will be enabled. The recommended value
+   * for most services is servicecontrol.googleapis.com.
+   *
    * @var string
    */
   public $environment;
+  protected $methodPoliciesType = MethodPolicy::class;
+  protected $methodPoliciesDataType = 'array';
 
   /**
-   * @param string
+   * The service controller environment to use. If empty, no control plane
+   * features (like quota and billing) will be enabled. The recommended value
+   * for most services is servicecontrol.googleapis.com.
+   *
+   * @param string $environment
    */
   public function setEnvironment($environment)
   {
@@ -37,6 +48,22 @@ class Control extends \Google\Model
   public function getEnvironment()
   {
     return $this->environment;
+  }
+  /**
+   * Defines policies applying to the API methods of the service.
+   *
+   * @param MethodPolicy[] $methodPolicies
+   */
+  public function setMethodPolicies($methodPolicies)
+  {
+    $this->methodPolicies = $methodPolicies;
+  }
+  /**
+   * @return MethodPolicy[]
+   */
+  public function getMethodPolicies()
+  {
+    return $this->methodPolicies;
   }
 }
 

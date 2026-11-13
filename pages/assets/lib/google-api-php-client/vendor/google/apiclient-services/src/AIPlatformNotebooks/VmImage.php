@@ -20,48 +20,118 @@ namespace Google\Service\AIPlatformNotebooks;
 class VmImage extends \Google\Model
 {
   /**
+   * Optional. Use this VM image family to find the image; the newest image in
+   * this family will be used.
+   *
    * @var string
    */
-  public $imageFamily;
+  public $family;
   /**
+   * Output only. A human-readable description of the image running on the
+   * instance (for example, "Debian 11, Python 3.10"), derived at read time from
+   * the image release configuration (the source of truth). Set to "Custom" for
+   * unrecognized boot-disk images.
+   *
    * @var string
    */
-  public $imageName;
+  public $imageDescription;
   /**
+   * Output only. The ID of the specific Compute Engine VM image the instance is
+   * currently running (for example, "workbench-
+   * instances-2603-20260918-2130-rc0").
+   *
+   * @var string
+   */
+  public $imageId;
+  /**
+   * Optional. Use VM image name to find the image.
+   *
+   * @var string
+   */
+  public $name;
+  /**
+   * Required. The name of the Google Cloud project that this VM image belongs
+   * to. Format: `{project_id}`
+   *
    * @var string
    */
   public $project;
 
   /**
-   * @param string
+   * Optional. Use this VM image family to find the image; the newest image in
+   * this family will be used.
+   *
+   * @param string $family
    */
-  public function setImageFamily($imageFamily)
+  public function setFamily($family)
   {
-    $this->imageFamily = $imageFamily;
+    $this->family = $family;
   }
   /**
    * @return string
    */
-  public function getImageFamily()
+  public function getFamily()
   {
-    return $this->imageFamily;
+    return $this->family;
   }
   /**
-   * @param string
+   * Output only. A human-readable description of the image running on the
+   * instance (for example, "Debian 11, Python 3.10"), derived at read time from
+   * the image release configuration (the source of truth). Set to "Custom" for
+   * unrecognized boot-disk images.
+   *
+   * @param string $imageDescription
    */
-  public function setImageName($imageName)
+  public function setImageDescription($imageDescription)
   {
-    $this->imageName = $imageName;
+    $this->imageDescription = $imageDescription;
   }
   /**
    * @return string
    */
-  public function getImageName()
+  public function getImageDescription()
   {
-    return $this->imageName;
+    return $this->imageDescription;
   }
   /**
-   * @param string
+   * Output only. The ID of the specific Compute Engine VM image the instance is
+   * currently running (for example, "workbench-
+   * instances-2603-20260918-2130-rc0").
+   *
+   * @param string $imageId
+   */
+  public function setImageId($imageId)
+  {
+    $this->imageId = $imageId;
+  }
+  /**
+   * @return string
+   */
+  public function getImageId()
+  {
+    return $this->imageId;
+  }
+  /**
+   * Optional. Use VM image name to find the image.
+   *
+   * @param string $name
+   */
+  public function setName($name)
+  {
+    $this->name = $name;
+  }
+  /**
+   * @return string
+   */
+  public function getName()
+  {
+    return $this->name;
+  }
+  /**
+   * Required. The name of the Google Cloud project that this VM image belongs
+   * to. Format: `{project_id}`
+   *
+   * @param string $project
    */
   public function setProject($project)
   {

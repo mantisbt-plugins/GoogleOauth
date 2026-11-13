@@ -27,14 +27,25 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/drive/labels" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/drive/labels" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
  */
 class DriveLabels extends \Google\Service
 {
-
+  /** See, edit, create, and delete all Google Drive labels in your organization, and see your organization's label-related admin policies. */
+  const DRIVE_ADMIN_LABELS =
+      "https://www.googleapis.com/auth/drive.admin.labels";
+  /** See all Google Drive labels and label-related admin policies in your organization. */
+  const DRIVE_ADMIN_LABELS_READONLY =
+      "https://www.googleapis.com/auth/drive.admin.labels.readonly";
+  /** See, edit, create, and delete your Google Drive labels. */
+  const DRIVE_LABELS =
+      "https://www.googleapis.com/auth/drive.labels";
+  /** See your Google Drive labels. */
+  const DRIVE_LABELS_READONLY =
+      "https://www.googleapis.com/auth/drive.labels.readonly";
 
   public $labels;
   public $labels_locks;
@@ -44,6 +55,7 @@ class DriveLabels extends \Google\Service
   public $labels_revisions_permissions;
   public $limits;
   public $users;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the DriveLabels service.
@@ -56,6 +68,7 @@ class DriveLabels extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://drivelabels.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://drivelabels.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';
@@ -199,6 +212,16 @@ class DriveLabels extends \Google\Service
               ],
             ],'updateLabelCopyMode' => [
               'path' => 'v2/{+name}:updateLabelCopyMode',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'updateLabelEnabledAppSettings' => [
+              'path' => 'v2/{+name}:updateLabelEnabledAppSettings',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [

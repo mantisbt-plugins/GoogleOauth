@@ -19,6 +19,12 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata extends \Google\Model
 {
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  public const STATE_INITIALIZING = 'INITIALIZING';
+  public const STATE_RUNNING = 'RUNNING';
+  public const STATE_CANCELLED = 'CANCELLED';
+  public const STATE_SUCCEEDED = 'SUCCEEDED';
+  public const STATE_FAILED = 'FAILED';
   /**
    * @var string
    */
@@ -37,7 +43,7 @@ class GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata 
   public $state;
 
   /**
-   * @param string
+   * @param string $conversationModel
    */
   public function setConversationModel($conversationModel)
   {
@@ -51,7 +57,7 @@ class GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata 
     return $this->conversationModel;
   }
   /**
-   * @param string
+   * @param string $conversationModelEvaluation
    */
   public function setConversationModelEvaluation($conversationModelEvaluation)
   {
@@ -65,7 +71,7 @@ class GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata 
     return $this->conversationModelEvaluation;
   }
   /**
-   * @param string
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -79,14 +85,14 @@ class GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata 
     return $this->createTime;
   }
   /**
-   * @param string
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {

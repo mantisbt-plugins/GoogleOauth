@@ -33,7 +33,7 @@ class GoogleCloudDialogflowV2EventInput extends \Google\Model
   public $parameters;
 
   /**
-   * @param string
+   * @param string $languageCode
    */
   public function setLanguageCode($languageCode)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowV2EventInput extends \Google\Model
     return $this->languageCode;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowV2EventInput extends \Google\Model
     return $this->name;
   }
   /**
-   * @param array[]
+   * @param array[] $parameters
    */
   public function setParameters($parameters)
   {

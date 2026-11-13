@@ -19,21 +19,53 @@ namespace Google\Service\Firestore;
 
 class RunAggregationQueryRequest extends \Google\Model
 {
+  protected $explainOptionsType = ExplainOptions::class;
+  protected $explainOptionsDataType = '';
   protected $newTransactionType = TransactionOptions::class;
   protected $newTransactionDataType = '';
   /**
+   * Executes the query at the given timestamp. This must be a microsecond
+   * precision timestamp within the past one hour, or if Point-in-Time Recovery
+   * is enabled, can additionally be a whole minute timestamp within the past 7
+   * days.
+   *
    * @var string
    */
   public $readTime;
+  protected $requestOptionsType = RequestOptions::class;
+  protected $requestOptionsDataType = '';
   protected $structuredAggregationQueryType = StructuredAggregationQuery::class;
   protected $structuredAggregationQueryDataType = '';
   /**
+   * Run the aggregation within an already active transaction. The value here is
+   * the opaque transaction ID to execute the query in.
+   *
    * @var string
    */
   public $transaction;
 
   /**
-   * @param TransactionOptions
+   * Optional. Explain options for the query. If set, additional query
+   * statistics will be returned. If not, only query results will be returned.
+   *
+   * @param ExplainOptions $explainOptions
+   */
+  public function setExplainOptions(ExplainOptions $explainOptions)
+  {
+    $this->explainOptions = $explainOptions;
+  }
+  /**
+   * @return ExplainOptions
+   */
+  public function getExplainOptions()
+  {
+    return $this->explainOptions;
+  }
+  /**
+   * Starts a new transaction as part of the query, defaulting to read-only. The
+   * new transaction ID will be returned as the first response in the stream.
+   *
+   * @param TransactionOptions $newTransaction
    */
   public function setNewTransaction(TransactionOptions $newTransaction)
   {
@@ -47,7 +79,12 @@ class RunAggregationQueryRequest extends \Google\Model
     return $this->newTransaction;
   }
   /**
-   * @param string
+   * Executes the query at the given timestamp. This must be a microsecond
+   * precision timestamp within the past one hour, or if Point-in-Time Recovery
+   * is enabled, can additionally be a whole minute timestamp within the past 7
+   * days.
+   *
+   * @param string $readTime
    */
   public function setReadTime($readTime)
   {
@@ -61,7 +98,25 @@ class RunAggregationQueryRequest extends \Google\Model
     return $this->readTime;
   }
   /**
-   * @param StructuredAggregationQuery
+   * Optional. The request options for the request.
+   *
+   * @param RequestOptions $requestOptions
+   */
+  public function setRequestOptions(RequestOptions $requestOptions)
+  {
+    $this->requestOptions = $requestOptions;
+  }
+  /**
+   * @return RequestOptions
+   */
+  public function getRequestOptions()
+  {
+    return $this->requestOptions;
+  }
+  /**
+   * An aggregation query.
+   *
+   * @param StructuredAggregationQuery $structuredAggregationQuery
    */
   public function setStructuredAggregationQuery(StructuredAggregationQuery $structuredAggregationQuery)
   {
@@ -75,7 +130,10 @@ class RunAggregationQueryRequest extends \Google\Model
     return $this->structuredAggregationQuery;
   }
   /**
-   * @param string
+   * Run the aggregation within an already active transaction. The value here is
+   * the opaque transaction ID to execute the query in.
+   *
+   * @param string $transaction
    */
   public function setTransaction($transaction)
   {

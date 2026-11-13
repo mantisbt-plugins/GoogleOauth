@@ -31,7 +31,7 @@ class OrganizationSettings extends \Google\Model
   public $name;
 
   /**
-   * @param AssetDiscoveryConfig
+   * @param AssetDiscoveryConfig $assetDiscoveryConfig
    */
   public function setAssetDiscoveryConfig(AssetDiscoveryConfig $assetDiscoveryConfig)
   {
@@ -45,7 +45,7 @@ class OrganizationSettings extends \Google\Model
     return $this->assetDiscoveryConfig;
   }
   /**
-   * @param bool
+   * @param bool $enableAssetDiscovery
    */
   public function setEnableAssetDiscovery($enableAssetDiscovery)
   {
@@ -59,7 +59,7 @@ class OrganizationSettings extends \Google\Model
     return $this->enableAssetDiscovery;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {

@@ -33,7 +33,7 @@ use Google\Service\Dns\Policy;
 class Policies extends \Google\Service\Resource
 {
   /**
-   * Creates a new Policy. (policies.create)
+   * Creates a new policy. (policies.create)
    *
    * @param string $project Identifies the project addressed by this request.
    * @param Policy $postBody
@@ -43,6 +43,7 @@ class Policies extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function create($project, Policy $postBody, $optParams = [])
   {
@@ -51,7 +52,7 @@ class Policies extends \Google\Service\Resource
     return $this->call('create', [$params], Policy::class);
   }
   /**
-   * Deletes a previously created Policy. Fails if the policy is still being
+   * Deletes a previously created policy. Fails if the policy is still being
    * referenced by a network. (policies.delete)
    *
    * @param string $project Identifies the project addressed by this request.
@@ -62,6 +63,7 @@ class Policies extends \Google\Service\Resource
    * @opt_param string clientOperationId For mutating operation requests only. An
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
+   * @throws \Google\Service\Exception
    */
   public function delete($project, $policy, $optParams = [])
   {
@@ -70,7 +72,7 @@ class Policies extends \Google\Service\Resource
     return $this->call('delete', [$params]);
   }
   /**
-   * Fetches the representation of an existing Policy. (policies.get)
+   * Fetches the representation of an existing policy. (policies.get)
    *
    * @param string $project Identifies the project addressed by this request.
    * @param string $policy User given friendly name of the policy addressed by
@@ -81,6 +83,7 @@ class Policies extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function get($project, $policy, $optParams = [])
   {
@@ -89,7 +92,7 @@ class Policies extends \Google\Service\Resource
     return $this->call('get', [$params], Policy::class);
   }
   /**
-   * Enumerates all Policies associated with a project. (policies.listPolicies)
+   * Enumerates all policies associated with a project. (policies.listPolicies)
    *
    * @param string $project Identifies the project addressed by this request.
    * @param array $optParams Optional parameters.
@@ -100,6 +103,7 @@ class Policies extends \Google\Service\Resource
    * request that was truncated. Use this parameter to continue a previous list
    * request.
    * @return PoliciesListResponse
+   * @throws \Google\Service\Exception
    */
   public function listPolicies($project, $optParams = [])
   {
@@ -108,7 +112,7 @@ class Policies extends \Google\Service\Resource
     return $this->call('list', [$params], PoliciesListResponse::class);
   }
   /**
-   * Applies a partial update to an existing Policy. (policies.patch)
+   * Applies a partial update to an existing policy. (policies.patch)
    *
    * @param string $project Identifies the project addressed by this request.
    * @param string $policy User given friendly name of the policy addressed by
@@ -120,6 +124,7 @@ class Policies extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return PoliciesPatchResponse
+   * @throws \Google\Service\Exception
    */
   public function patch($project, $policy, Policy $postBody, $optParams = [])
   {
@@ -128,7 +133,7 @@ class Policies extends \Google\Service\Resource
     return $this->call('patch', [$params], PoliciesPatchResponse::class);
   }
   /**
-   * Updates an existing Policy. (policies.update)
+   * Updates an existing policy. (policies.update)
    *
    * @param string $project Identifies the project addressed by this request.
    * @param string $policy User given friendly name of the policy addressed by
@@ -140,6 +145,7 @@ class Policies extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return PoliciesUpdateResponse
+   * @throws \Google\Service\Exception
    */
   public function update($project, $policy, Policy $postBody, $optParams = [])
   {

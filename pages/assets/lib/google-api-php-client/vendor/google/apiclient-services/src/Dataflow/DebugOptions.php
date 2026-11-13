@@ -19,13 +19,37 @@ namespace Google\Service\Dataflow;
 
 class DebugOptions extends \Google\Model
 {
+  protected $dataSamplingType = DataSamplingConfig::class;
+  protected $dataSamplingDataType = '';
   /**
+   * Optional. When true, enables the logging of the literal hot key to the
+   * user's Cloud Logging.
+   *
    * @var bool
    */
   public $enableHotKeyLogging;
 
   /**
-   * @param bool
+   * Configuration options for sampling elements from a running pipeline.
+   *
+   * @param DataSamplingConfig $dataSampling
+   */
+  public function setDataSampling(DataSamplingConfig $dataSampling)
+  {
+    $this->dataSampling = $dataSampling;
+  }
+  /**
+   * @return DataSamplingConfig
+   */
+  public function getDataSampling()
+  {
+    return $this->dataSampling;
+  }
+  /**
+   * Optional. When true, enables the logging of the literal hot key to the
+   * user's Cloud Logging.
+   *
+   * @param bool $enableHotKeyLogging
    */
   public function setEnableHotKeyLogging($enableHotKeyLogging)
   {

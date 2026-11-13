@@ -20,12 +20,76 @@ namespace Google\Service\CloudDeploy;
 class CloudRunRenderMetadata extends \Google\Model
 {
   /**
+   * Output only. The name of the Cloud Run Job in the rendered manifest. Format
+   * is `projects/{project}/locations/{location}/jobs/{job}`.
+   *
+   * @var string
+   */
+  public $job;
+  /**
+   * Output only. The name of the Cloud Run Revision in the rendered manifest.
+   * Format is `projects/{project}/locations/{location}/services/{service}/revis
+   * ions/{revision}`.
+   *
+   * @var string
+   */
+  public $revision;
+  /**
+   * Output only. The name of the Cloud Run Service in the rendered manifest.
+   * Format is `projects/{project}/locations/{location}/services/{service}`.
+   *
    * @var string
    */
   public $service;
+  /**
+   * Output only. The name of the Cloud Run Worker Pool in the rendered
+   * manifest. Format is
+   * `projects/{project}/locations/{location}/workerPools/{worker_pool}`.
+   *
+   * @var string
+   */
+  public $workerPool;
 
   /**
-   * @param string
+   * Output only. The name of the Cloud Run Job in the rendered manifest. Format
+   * is `projects/{project}/locations/{location}/jobs/{job}`.
+   *
+   * @param string $job
+   */
+  public function setJob($job)
+  {
+    $this->job = $job;
+  }
+  /**
+   * @return string
+   */
+  public function getJob()
+  {
+    return $this->job;
+  }
+  /**
+   * Output only. The name of the Cloud Run Revision in the rendered manifest.
+   * Format is `projects/{project}/locations/{location}/services/{service}/revis
+   * ions/{revision}`.
+   *
+   * @param string $revision
+   */
+  public function setRevision($revision)
+  {
+    $this->revision = $revision;
+  }
+  /**
+   * @return string
+   */
+  public function getRevision()
+  {
+    return $this->revision;
+  }
+  /**
+   * Output only. The name of the Cloud Run Service in the rendered manifest.
+   * Format is `projects/{project}/locations/{location}/services/{service}`.
+   *
+   * @param string $service
    */
   public function setService($service)
   {
@@ -37,6 +101,24 @@ class CloudRunRenderMetadata extends \Google\Model
   public function getService()
   {
     return $this->service;
+  }
+  /**
+   * Output only. The name of the Cloud Run Worker Pool in the rendered
+   * manifest. Format is
+   * `projects/{project}/locations/{location}/workerPools/{worker_pool}`.
+   *
+   * @param string $workerPool
+   */
+  public function setWorkerPool($workerPool)
+  {
+    $this->workerPool = $workerPool;
+  }
+  /**
+   * @return string
+   */
+  public function getWorkerPool()
+  {
+    return $this->workerPool;
   }
 }
 

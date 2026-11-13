@@ -20,33 +20,114 @@ namespace Google\Service\Integrations;
 class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest extends \Google\Model
 {
   /**
+   * Optional. Runs the test asynchronously, by enqueueing it through the real
+   * execution queue under `trigger_id` instead of running the task graph
+   * inline. Default `false`, which preserves the existing synchronous behavior.
+   * The enqueued request carries no caller identity, so it is drained under the
+   * integration's run-as service account, exactly as a real Cloud Scheduler,
+   * cron, Pub/Sub, Salesforce or connector fire would be. That is the only way
+   * to verify the credential path an asynchronous trigger actually takes; a
+   * synchronous test always carries the caller's own credential and so
+   * exercises the opposite branch. When `true`: * Only the **published**
+   * (`ACTIVE`) version runs. The asynchronous path resolves the integration
+   * from storage by `trigger_id`, so a draft cannot be tested this way.
+   * `integration_version` must therefore carry only `name`; supplying any other
+   * field is rejected, rather than silently running something other than what
+   * was passed. * The response carries `execution_id` only. `execution_failed`,
+   * `event_parameters`, `parameters` and `parameter_entries` describe a
+   * finished run and are left unset, because nothing has run yet. In
+   * particular, do not read `execution_failed` as a pass signal. * The run is
+   * real, with real side effects, quota and concurrency. No actual Pub/Sub push
+   * or Cloud Scheduler tick occurs; only the enqueue is simulated, which does
+   * not change the credential path.
+   *
+   * @var bool
+   */
+  public $asyncExecution;
+  /**
+   * Required. This is used to identify the client on whose behalf the event
+   * will be executed.
+   *
    * @var string
    */
   public $clientId;
   /**
+   * Optional. Config parameters used during integration execution.
+   *
+   * @var array[]
+   */
+  public $configParameters;
+  /**
+   * Optional. custom deadline of the rpc
+   *
    * @var string
    */
   public $deadlineSecondsTime;
   protected $inputParametersType = GoogleCloudIntegrationsV1alphaValueType::class;
   protected $inputParametersDataType = 'map';
-  public $inputParameters;
   protected $integrationVersionType = GoogleCloudIntegrationsV1alphaIntegrationVersion::class;
   protected $integrationVersionDataType = '';
-  public $integrationVersion;
   protected $parametersType = EnterpriseCrmFrontendsEventbusProtoEventParameters::class;
   protected $parametersDataType = '';
-  public $parameters;
   /**
+   * Optional. Can be specified in the event request, otherwise false (default).
+   * If true, enables tasks with condition "test_mode = true". If false,
+   * disables tasks with condition "test_mode = true" if global test mode (set
+   * by platform) is also false {@link EventBusConfig}.
+   *
    * @var bool
    */
   public $testMode;
   /**
+   * Required. The trigger id of the integration trigger config. If both
+   * trigger_id and client_id is present, the integration is executed from the
+   * start tasks provided by the matching trigger config otherwise it is
+   * executed from the default start tasks.
+   *
    * @var string
    */
   public $triggerId;
 
   /**
-   * @param string
+   * Optional. Runs the test asynchronously, by enqueueing it through the real
+   * execution queue under `trigger_id` instead of running the task graph
+   * inline. Default `false`, which preserves the existing synchronous behavior.
+   * The enqueued request carries no caller identity, so it is drained under the
+   * integration's run-as service account, exactly as a real Cloud Scheduler,
+   * cron, Pub/Sub, Salesforce or connector fire would be. That is the only way
+   * to verify the credential path an asynchronous trigger actually takes; a
+   * synchronous test always carries the caller's own credential and so
+   * exercises the opposite branch. When `true`: * Only the **published**
+   * (`ACTIVE`) version runs. The asynchronous path resolves the integration
+   * from storage by `trigger_id`, so a draft cannot be tested this way.
+   * `integration_version` must therefore carry only `name`; supplying any other
+   * field is rejected, rather than silently running something other than what
+   * was passed. * The response carries `execution_id` only. `execution_failed`,
+   * `event_parameters`, `parameters` and `parameter_entries` describe a
+   * finished run and are left unset, because nothing has run yet. In
+   * particular, do not read `execution_failed` as a pass signal. * The run is
+   * real, with real side effects, quota and concurrency. No actual Pub/Sub push
+   * or Cloud Scheduler tick occurs; only the enqueue is simulated, which does
+   * not change the credential path.
+   *
+   * @param bool $asyncExecution
+   */
+  public function setAsyncExecution($asyncExecution)
+  {
+    $this->asyncExecution = $asyncExecution;
+  }
+  /**
+   * @return bool
+   */
+  public function getAsyncExecution()
+  {
+    return $this->asyncExecution;
+  }
+  /**
+   * Required. This is used to identify the client on whose behalf the event
+   * will be executed.
+   *
+   * @param string $clientId
    */
   public function setClientId($clientId)
   {
@@ -60,7 +141,25 @@ class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest extends \Google\Mode
     return $this->clientId;
   }
   /**
-   * @param string
+   * Optional. Config parameters used during integration execution.
+   *
+   * @param array[] $configParameters
+   */
+  public function setConfigParameters($configParameters)
+  {
+    $this->configParameters = $configParameters;
+  }
+  /**
+   * @return array[]
+   */
+  public function getConfigParameters()
+  {
+    return $this->configParameters;
+  }
+  /**
+   * Optional. custom deadline of the rpc
+   *
+   * @param string $deadlineSecondsTime
    */
   public function setDeadlineSecondsTime($deadlineSecondsTime)
   {
@@ -74,7 +173,9 @@ class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest extends \Google\Mode
     return $this->deadlineSecondsTime;
   }
   /**
-   * @param GoogleCloudIntegrationsV1alphaValueType[]
+   * Optional. Input parameters used during integration execution.
+   *
+   * @param GoogleCloudIntegrationsV1alphaValueType[] $inputParameters
    */
   public function setInputParameters($inputParameters)
   {
@@ -88,7 +189,9 @@ class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest extends \Google\Mode
     return $this->inputParameters;
   }
   /**
-   * @param GoogleCloudIntegrationsV1alphaIntegrationVersion
+   * Required. integration config to execute the workflow
+   *
+   * @param GoogleCloudIntegrationsV1alphaIntegrationVersion $integrationVersion
    */
   public function setIntegrationVersion(GoogleCloudIntegrationsV1alphaIntegrationVersion $integrationVersion)
   {
@@ -102,13 +205,17 @@ class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest extends \Google\Mode
     return $this->integrationVersion;
   }
   /**
-   * @param EnterpriseCrmFrontendsEventbusProtoEventParameters
+   * Optional. Passed in as parameters to each integration execution.
+   *
+   * @deprecated
+   * @param EnterpriseCrmFrontendsEventbusProtoEventParameters $parameters
    */
   public function setParameters(EnterpriseCrmFrontendsEventbusProtoEventParameters $parameters)
   {
     $this->parameters = $parameters;
   }
   /**
+   * @deprecated
    * @return EnterpriseCrmFrontendsEventbusProtoEventParameters
    */
   public function getParameters()
@@ -116,7 +223,12 @@ class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest extends \Google\Mode
     return $this->parameters;
   }
   /**
-   * @param bool
+   * Optional. Can be specified in the event request, otherwise false (default).
+   * If true, enables tasks with condition "test_mode = true". If false,
+   * disables tasks with condition "test_mode = true" if global test mode (set
+   * by platform) is also false {@link EventBusConfig}.
+   *
+   * @param bool $testMode
    */
   public function setTestMode($testMode)
   {
@@ -130,7 +242,12 @@ class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest extends \Google\Mode
     return $this->testMode;
   }
   /**
-   * @param string
+   * Required. The trigger id of the integration trigger config. If both
+   * trigger_id and client_id is present, the integration is executed from the
+   * start tasks provided by the matching trigger config otherwise it is
+   * executed from the default start tasks.
+   *
+   * @param string $triggerId
    */
   public function setTriggerId($triggerId)
   {

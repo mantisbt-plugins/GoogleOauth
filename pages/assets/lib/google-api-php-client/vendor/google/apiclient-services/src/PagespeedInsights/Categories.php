@@ -20,10 +20,13 @@ namespace Google\Service\PagespeedInsights;
 class Categories extends \Google\Model
 {
   protected $internal_gapi_mappings = [
+        "agenticBrowsing" => "agentic-browsing",
         "bestPractices" => "best-practices",
   ];
   protected $accessibilityType = LighthouseCategoryV5::class;
   protected $accessibilityDataType = '';
+  protected $agenticBrowsingType = LighthouseCategoryV5::class;
+  protected $agenticBrowsingDataType = '';
   protected $bestPracticesType = LighthouseCategoryV5::class;
   protected $bestPracticesDataType = '';
   protected $performanceType = LighthouseCategoryV5::class;
@@ -34,7 +37,9 @@ class Categories extends \Google\Model
   protected $seoDataType = '';
 
   /**
-   * @param LighthouseCategoryV5
+   * The accessibility category, containing all accessibility related audits.
+   *
+   * @param LighthouseCategoryV5 $accessibility
    */
   public function setAccessibility(LighthouseCategoryV5 $accessibility)
   {
@@ -48,7 +53,26 @@ class Categories extends \Google\Model
     return $this->accessibility;
   }
   /**
-   * @param LighthouseCategoryV5
+   * The agentic browsing category, containing all agentic browsing related
+   * audits.
+   *
+   * @param LighthouseCategoryV5 $agenticBrowsing
+   */
+  public function setAgenticBrowsing(LighthouseCategoryV5 $agenticBrowsing)
+  {
+    $this->agenticBrowsing = $agenticBrowsing;
+  }
+  /**
+   * @return LighthouseCategoryV5
+   */
+  public function getAgenticBrowsing()
+  {
+    return $this->agenticBrowsing;
+  }
+  /**
+   * The best practices category, containing all best practices related audits.
+   *
+   * @param LighthouseCategoryV5 $bestPractices
    */
   public function setBestPractices(LighthouseCategoryV5 $bestPractices)
   {
@@ -62,7 +86,9 @@ class Categories extends \Google\Model
     return $this->bestPractices;
   }
   /**
-   * @param LighthouseCategoryV5
+   * The performance category, containing all performance related audits.
+   *
+   * @param LighthouseCategoryV5 $performance
    */
   public function setPerformance(LighthouseCategoryV5 $performance)
   {
@@ -76,13 +102,18 @@ class Categories extends \Google\Model
     return $this->performance;
   }
   /**
-   * @param LighthouseCategoryV5
+   * The Progressive-Web-App (PWA) category, containing all pwa related audits.
+   * This is deprecated in Lighthouse's 12.0 release.
+   *
+   * @deprecated
+   * @param LighthouseCategoryV5 $pwa
    */
   public function setPwa(LighthouseCategoryV5 $pwa)
   {
     $this->pwa = $pwa;
   }
   /**
+   * @deprecated
    * @return LighthouseCategoryV5
    */
   public function getPwa()
@@ -90,7 +121,10 @@ class Categories extends \Google\Model
     return $this->pwa;
   }
   /**
-   * @param LighthouseCategoryV5
+   * The Search-Engine-Optimization (SEO) category, containing all seo related
+   * audits.
+   *
+   * @param LighthouseCategoryV5 $seo
    */
   public function setSeo(LighthouseCategoryV5 $seo)
   {

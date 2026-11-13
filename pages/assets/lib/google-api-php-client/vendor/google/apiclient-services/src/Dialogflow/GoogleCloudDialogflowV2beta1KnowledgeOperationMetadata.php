@@ -19,6 +19,14 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata extends \Google\Model
 {
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  public const STATE_PENDING = 'PENDING';
+  public const STATE_RUNNING = 'RUNNING';
+  public const STATE_DONE = 'DONE';
+  /**
+   * @var string
+   */
+  public $doneTime;
   protected $exportOperationMetadataType = GoogleCloudDialogflowV2beta1ExportOperationMetadata::class;
   protected $exportOperationMetadataDataType = '';
   /**
@@ -31,7 +39,21 @@ class GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata extends \Google\Mod
   public $state;
 
   /**
-   * @param GoogleCloudDialogflowV2beta1ExportOperationMetadata
+   * @param string $doneTime
+   */
+  public function setDoneTime($doneTime)
+  {
+    $this->doneTime = $doneTime;
+  }
+  /**
+   * @return string
+   */
+  public function getDoneTime()
+  {
+    return $this->doneTime;
+  }
+  /**
+   * @param GoogleCloudDialogflowV2beta1ExportOperationMetadata $exportOperationMetadata
    */
   public function setExportOperationMetadata(GoogleCloudDialogflowV2beta1ExportOperationMetadata $exportOperationMetadata)
   {
@@ -45,7 +67,7 @@ class GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata extends \Google\Mod
     return $this->exportOperationMetadata;
   }
   /**
-   * @param string
+   * @param string $knowledgeBase
    */
   public function setKnowledgeBase($knowledgeBase)
   {
@@ -59,14 +81,14 @@ class GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata extends \Google\Mod
     return $this->knowledgeBase;
   }
   /**
-   * @param string
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {

@@ -20,6 +20,10 @@ namespace Google\Service\Contactcenterinsights;
 class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
 {
   /**
+   * The unique identifier of the annotation. Format: projects/{project}/locatio
+   * ns/{location}/conversationDatasets/{dataset}/conversationDataItems/{data_it
+   * em}/conversationAnnotations/{annotation}
+   *
    * @var string
    */
   public $annotationId;
@@ -27,9 +31,15 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
   protected $answerFeedbackDataType = '';
   protected $articleSuggestionType = GoogleCloudContactcenterinsightsV1ArticleSuggestionData::class;
   protected $articleSuggestionDataType = '';
+  protected $cesEndSessionAnnotationType = GoogleCloudContactcenterinsightsV1CesEndSessionAnnotation::class;
+  protected $cesEndSessionAnnotationDataType = '';
+  protected $cesTurnAnnotationType = GoogleCloudContactcenterinsightsV1CesTurnAnnotation::class;
+  protected $cesTurnAnnotationDataType = '';
   protected $conversationSummarizationSuggestionType = GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData::class;
   protected $conversationSummarizationSuggestionDataType = '';
   /**
+   * The time at which this annotation was created.
+   *
    * @var string
    */
   public $createTime;
@@ -45,9 +55,15 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
   protected $smartReplyDataType = '';
   protected $startBoundaryType = GoogleCloudContactcenterinsightsV1AnnotationBoundary::class;
   protected $startBoundaryDataType = '';
+  protected $userInputType = GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput::class;
+  protected $userInputDataType = '';
 
   /**
-   * @param string
+   * The unique identifier of the annotation. Format: projects/{project}/locatio
+   * ns/{location}/conversationDatasets/{dataset}/conversationDataItems/{data_it
+   * em}/conversationAnnotations/{annotation}
+   *
+   * @param string $annotationId
    */
   public function setAnnotationId($annotationId)
   {
@@ -61,7 +77,9 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
     return $this->annotationId;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1AnswerFeedback
+   * The feedback that the customer has about the answer in `data`.
+   *
+   * @param GoogleCloudContactcenterinsightsV1AnswerFeedback $answerFeedback
    */
   public function setAnswerFeedback(GoogleCloudContactcenterinsightsV1AnswerFeedback $answerFeedback)
   {
@@ -75,7 +93,9 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
     return $this->answerFeedback;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1ArticleSuggestionData
+   * Agent Assist Article Suggestion data.
+   *
+   * @param GoogleCloudContactcenterinsightsV1ArticleSuggestionData $articleSuggestion
    */
   public function setArticleSuggestion(GoogleCloudContactcenterinsightsV1ArticleSuggestionData $articleSuggestion)
   {
@@ -89,7 +109,41 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
     return $this->articleSuggestion;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData
+   * The CES end session annotation.
+   *
+   * @param GoogleCloudContactcenterinsightsV1CesEndSessionAnnotation $cesEndSessionAnnotation
+   */
+  public function setCesEndSessionAnnotation(GoogleCloudContactcenterinsightsV1CesEndSessionAnnotation $cesEndSessionAnnotation)
+  {
+    $this->cesEndSessionAnnotation = $cesEndSessionAnnotation;
+  }
+  /**
+   * @return GoogleCloudContactcenterinsightsV1CesEndSessionAnnotation
+   */
+  public function getCesEndSessionAnnotation()
+  {
+    return $this->cesEndSessionAnnotation;
+  }
+  /**
+   * The CES turn annotation.
+   *
+   * @param GoogleCloudContactcenterinsightsV1CesTurnAnnotation $cesTurnAnnotation
+   */
+  public function setCesTurnAnnotation(GoogleCloudContactcenterinsightsV1CesTurnAnnotation $cesTurnAnnotation)
+  {
+    $this->cesTurnAnnotation = $cesTurnAnnotation;
+  }
+  /**
+   * @return GoogleCloudContactcenterinsightsV1CesTurnAnnotation
+   */
+  public function getCesTurnAnnotation()
+  {
+    return $this->cesTurnAnnotation;
+  }
+  /**
+   * Conversation summarization suggestion data.
+   *
+   * @param GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData $conversationSummarizationSuggestion
    */
   public function setConversationSummarizationSuggestion(GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData $conversationSummarizationSuggestion)
   {
@@ -103,7 +157,9 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
     return $this->conversationSummarizationSuggestion;
   }
   /**
-   * @param string
+   * The time at which this annotation was created.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -117,7 +173,9 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
     return $this->createTime;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1DialogflowInteractionData
+   * Dialogflow interaction data.
+   *
+   * @param GoogleCloudContactcenterinsightsV1DialogflowInteractionData $dialogflowInteraction
    */
   public function setDialogflowInteraction(GoogleCloudContactcenterinsightsV1DialogflowInteractionData $dialogflowInteraction)
   {
@@ -131,7 +189,9 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
     return $this->dialogflowInteraction;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1AnnotationBoundary
+   * The boundary in the conversation where the annotation ends, inclusive.
+   *
+   * @param GoogleCloudContactcenterinsightsV1AnnotationBoundary $endBoundary
    */
   public function setEndBoundary(GoogleCloudContactcenterinsightsV1AnnotationBoundary $endBoundary)
   {
@@ -145,7 +205,9 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
     return $this->endBoundary;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1FaqAnswerData
+   * Agent Assist FAQ answer data.
+   *
+   * @param GoogleCloudContactcenterinsightsV1FaqAnswerData $faqAnswer
    */
   public function setFaqAnswer(GoogleCloudContactcenterinsightsV1FaqAnswerData $faqAnswer)
   {
@@ -159,7 +221,9 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
     return $this->faqAnswer;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1SmartComposeSuggestionData
+   * Agent Assist Smart Compose suggestion data.
+   *
+   * @param GoogleCloudContactcenterinsightsV1SmartComposeSuggestionData $smartComposeSuggestion
    */
   public function setSmartComposeSuggestion(GoogleCloudContactcenterinsightsV1SmartComposeSuggestionData $smartComposeSuggestion)
   {
@@ -173,7 +237,9 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
     return $this->smartComposeSuggestion;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1SmartReplyData
+   * Agent Assist Smart Reply data.
+   *
+   * @param GoogleCloudContactcenterinsightsV1SmartReplyData $smartReply
    */
   public function setSmartReply(GoogleCloudContactcenterinsightsV1SmartReplyData $smartReply)
   {
@@ -187,7 +253,9 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
     return $this->smartReply;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1AnnotationBoundary
+   * The boundary in the conversation where the annotation starts, inclusive.
+   *
+   * @param GoogleCloudContactcenterinsightsV1AnnotationBoundary $startBoundary
    */
   public function setStartBoundary(GoogleCloudContactcenterinsightsV1AnnotationBoundary $startBoundary)
   {
@@ -199,6 +267,22 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation extends \Google\Model
   public function getStartBoundary()
   {
     return $this->startBoundary;
+  }
+  /**
+   * Explicit input used for generating the answer
+   *
+   * @param GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput $userInput
+   */
+  public function setUserInput(GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput $userInput)
+  {
+    $this->userInput = $userInput;
+  }
+  /**
+   * @return GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput
+   */
+  public function getUserInput()
+  {
+    return $this->userInput;
   }
 }
 

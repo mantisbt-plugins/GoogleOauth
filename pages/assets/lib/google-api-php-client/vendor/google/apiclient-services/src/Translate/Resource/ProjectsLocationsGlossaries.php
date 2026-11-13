@@ -39,6 +39,7 @@ class ProjectsLocationsGlossaries extends \Google\Service\Resource
    * @param Glossary $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Glossary $postBody, $optParams = [])
   {
@@ -54,6 +55,7 @@ class ProjectsLocationsGlossaries extends \Google\Service\Resource
    * @param string $name Required. The name of the glossary to delete.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -68,6 +70,7 @@ class ProjectsLocationsGlossaries extends \Google\Service\Resource
    * @param string $name Required. The name of the glossary to retrieve.
    * @param array $optParams Optional parameters.
    * @return Glossary
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -92,8 +95,8 @@ class ProjectsLocationsGlossaries extends \Google\Service\Resource
    * the language code you used when you create the glossary. For the
    * unidirectional glossaries, the "src" and "tgt" add restrictions on the source
    * and target language code separately. For the equivalent term set glossaries,
-   * the "src" and/or "tgt" add restrictions on the term set. For example: "src
-   * =en-US AND tgt=zh-CN" will only pick the unidirectional glossaries which
+   * the "src" and/or "tgt" add restrictions on the term set. For example:
+   * "src=en-US AND tgt=zh-CN" will only pick the unidirectional glossaries which
    * exactly match the source language code as "en-US" and the target language
    * code "zh-CN", but all equivalent term set glossaries which contain "en-US"
    * and "zh-CN" in their language set will be picked. If missing, no filtering is
@@ -107,6 +110,7 @@ class ProjectsLocationsGlossaries extends \Google\Service\Resource
    * `ListGlossaries` method. The first page is returned if `page_token`is empty
    * or missing.
    * @return ListGlossariesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsGlossaries($parent, $optParams = [])
   {
@@ -118,15 +122,16 @@ class ProjectsLocationsGlossaries extends \Google\Service\Resource
    * Updates a glossary. A LRO is used since the update can be async if the
    * glossary's entry file is updated. (glossaries.patch)
    *
-   * @param string $name Required. The resource name of the glossary. Glossary
+   * @param string $name Identifier. The resource name of the glossary. Glossary
    * names have the form `projects/{project-number-or-id}/locations/{location-
    * id}/glossaries/{glossary-id}`.
    * @param Glossary $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string updateMask The list of fields to be updated. Currently only
-   * `display_name` and 'input_config'
+   * @opt_param string updateMask The list of fields to be updated. Currently,
+   * only `display_name` and `input_config` are supported.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Glossary $postBody, $optParams = [])
   {

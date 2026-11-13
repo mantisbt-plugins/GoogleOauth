@@ -36,6 +36,8 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
    * @var string
    */
   public $languageCode;
+  protected $languageInfoType = GoogleCloudDialogflowCxV3beta1LanguageInfo::class;
+  protected $languageInfoDataType = '';
   protected $messagesType = GoogleCloudDialogflowCxV3beta1ResponseMessage::class;
   protected $messagesDataType = 'array';
   protected $pageInfoType = GoogleCloudDialogflowCxV3beta1PageInfo::class;
@@ -66,7 +68,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
   public $triggerIntent;
 
   /**
-   * @param string
+   * @param string $detectIntentResponseId
    */
   public function setDetectIntentResponseId($detectIntentResponseId)
   {
@@ -80,7 +82,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->detectIntentResponseId;
   }
   /**
-   * @param string
+   * @param string $dtmfDigits
    */
   public function setDtmfDigits($dtmfDigits)
   {
@@ -94,7 +96,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->dtmfDigits;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo
+   * @param GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo $fulfillmentInfo
    */
   public function setFulfillmentInfo(GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo $fulfillmentInfo)
   {
@@ -108,7 +110,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->fulfillmentInfo;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo
+   * @param GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo $intentInfo
    */
   public function setIntentInfo(GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo $intentInfo)
   {
@@ -122,7 +124,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->intentInfo;
   }
   /**
-   * @param string
+   * @param string $languageCode
    */
   public function setLanguageCode($languageCode)
   {
@@ -136,7 +138,21 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->languageCode;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1ResponseMessage[]
+   * @param GoogleCloudDialogflowCxV3beta1LanguageInfo $languageInfo
+   */
+  public function setLanguageInfo(GoogleCloudDialogflowCxV3beta1LanguageInfo $languageInfo)
+  {
+    $this->languageInfo = $languageInfo;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3beta1LanguageInfo
+   */
+  public function getLanguageInfo()
+  {
+    return $this->languageInfo;
+  }
+  /**
+   * @param GoogleCloudDialogflowCxV3beta1ResponseMessage[] $messages
    */
   public function setMessages($messages)
   {
@@ -150,7 +166,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->messages;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1PageInfo
+   * @param GoogleCloudDialogflowCxV3beta1PageInfo $pageInfo
    */
   public function setPageInfo(GoogleCloudDialogflowCxV3beta1PageInfo $pageInfo)
   {
@@ -164,7 +180,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->pageInfo;
   }
   /**
-   * @param array[]
+   * @param array[] $payload
    */
   public function setPayload($payload)
   {
@@ -178,7 +194,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->payload;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult
+   * @param GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult $sentimentAnalysisResult
    */
   public function setSentimentAnalysisResult(GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult $sentimentAnalysisResult)
   {
@@ -192,7 +208,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->sentimentAnalysisResult;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1SessionInfo
+   * @param GoogleCloudDialogflowCxV3beta1SessionInfo $sessionInfo
    */
   public function setSessionInfo(GoogleCloudDialogflowCxV3beta1SessionInfo $sessionInfo)
   {
@@ -206,7 +222,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->sessionInfo;
   }
   /**
-   * @param string
+   * @param string $text
    */
   public function setText($text)
   {
@@ -220,7 +236,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->text;
   }
   /**
-   * @param string
+   * @param string $transcript
    */
   public function setTranscript($transcript)
   {
@@ -234,7 +250,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->transcript;
   }
   /**
-   * @param string
+   * @param string $triggerEvent
    */
   public function setTriggerEvent($triggerEvent)
   {
@@ -248,7 +264,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest extends \Google\Collection
     return $this->triggerEvent;
   }
   /**
-   * @param string
+   * @param string $triggerIntent
    */
   public function setTriggerIntent($triggerIntent)
   {

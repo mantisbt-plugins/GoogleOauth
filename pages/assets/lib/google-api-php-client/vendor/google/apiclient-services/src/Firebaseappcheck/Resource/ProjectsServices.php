@@ -43,6 +43,7 @@ class ProjectsServices extends \Google\Service\Resource
    * @param GoogleFirebaseAppcheckV1BatchUpdateServicesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleFirebaseAppcheckV1BatchUpdateServicesResponse
+   * @throws \Google\Service\Exception
    */
   public function batchUpdate($parent, GoogleFirebaseAppcheckV1BatchUpdateServicesRequest $postBody, $optParams = [])
   {
@@ -56,12 +57,10 @@ class ProjectsServices extends \Google\Service\Resource
    * @param string $name Required. The relative resource name of the Service to
    * retrieve, in the format: ``` projects/{project_number}/services/{service_id}
    * ``` Note that the `service_id` element must be a supported service ID.
-   * Currently, the following service IDs are supported: *
-   * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) *
-   * `firebasedatabase.googleapis.com` (Firebase Realtime Database) *
-   * `firestore.googleapis.com` (Cloud Firestore)
+   * Consult the Service.name field for a list of supported service IDs.
    * @param array $optParams Optional parameters.
    * @return GoogleFirebaseAppcheckV1Service
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -89,6 +88,7 @@ class ProjectsServices extends \Google\Service\Resource
    * parameters provided to ListServices must match the call that provided the
    * page token; if they do not match, the result is undefined.
    * @return GoogleFirebaseAppcheckV1ListServicesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsServices($parent, $optParams = [])
   {
@@ -103,15 +103,29 @@ class ProjectsServices extends \Google\Service\Resource
    * configuration object, in the format: ```
    * projects/{project_number}/services/{service_id} ``` Note that the
    * `service_id` element must be a supported service ID. Currently, the following
-   * service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage
-   * for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime
-   * Database) * `firestore.googleapis.com` (Cloud Firestore)
+   * service IDs are supported. Firebase and Google Cloud services: *
+   * `identitytoolkit.googleapis.com` (Firebase Authentication) *
+   * `firebasedataconnect.googleapis.com` (Firebase SQL Connect) *
+   * `firestore.googleapis.com` (Cloud Firestore) *
+   * `firebasedatabase.googleapis.com` (Firebase Realtime Database) *
+   * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) *
+   * `firebaseml.googleapis.com` (Firebase AI Logic) Google Maps Platform
+   * services: * `maps-backend.googleapis.com` (Maps JavaScript API) *
+   * `places.googleapis.com` (Places API (New)) Other supported Google services: *
+   * `oauth2.googleapis.com` (Google Identity for iOS) Note: While all the
+   * supported `service_id`s may appear to be subdomains of `googleapis.com`, the
+   * `service_id` has no semantic meaning beyond identifying the service to App
+   * Check. It is not intended to represent the actual domain to which your apps
+   * send traffic, nor is it necessarily the API that should be enabled to use the
+   * service. For information on using these Google services, consult their
+   * documentation.
    * @param GoogleFirebaseAppcheckV1Service $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string updateMask Required. A comma-separated list of names of
    * fields in the Service to update. Example: `enforcement_mode`.
    * @return GoogleFirebaseAppcheckV1Service
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleFirebaseAppcheckV1Service $postBody, $optParams = [])
   {

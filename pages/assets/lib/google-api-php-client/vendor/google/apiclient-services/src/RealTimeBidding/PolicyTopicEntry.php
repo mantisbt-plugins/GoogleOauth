@@ -23,20 +23,32 @@ class PolicyTopicEntry extends \Google\Collection
   protected $evidencesType = PolicyTopicEvidence::class;
   protected $evidencesDataType = 'array';
   /**
+   * URL of the help center article describing this policy topic.
+   *
    * @var string
    */
   public $helpCenterUrl;
   /**
+   * Whether or not the policy topic is missing a certificate.
+   *
+   * @deprecated
    * @var bool
    */
   public $missingCertificate;
   /**
+   * Policy topic this entry refers to. For example, "ALCOHOL",
+   * "TRADEMARKS_IN_AD_TEXT", or "DESTINATION_NOT_WORKING". The set of possible
+   * policy topics is not fixed for a particular API version and may change at
+   * any time. Can be used to filter the response of the creatives.list method
+   *
    * @var string
    */
   public $policyTopic;
 
   /**
-   * @param PolicyTopicEvidence[]
+   * Pieces of evidence associated with this policy topic entry.
+   *
+   * @param PolicyTopicEvidence[] $evidences
    */
   public function setEvidences($evidences)
   {
@@ -50,7 +62,9 @@ class PolicyTopicEntry extends \Google\Collection
     return $this->evidences;
   }
   /**
-   * @param string
+   * URL of the help center article describing this policy topic.
+   *
+   * @param string $helpCenterUrl
    */
   public function setHelpCenterUrl($helpCenterUrl)
   {
@@ -64,13 +78,17 @@ class PolicyTopicEntry extends \Google\Collection
     return $this->helpCenterUrl;
   }
   /**
-   * @param bool
+   * Whether or not the policy topic is missing a certificate.
+   *
+   * @deprecated
+   * @param bool $missingCertificate
    */
   public function setMissingCertificate($missingCertificate)
   {
     $this->missingCertificate = $missingCertificate;
   }
   /**
+   * @deprecated
    * @return bool
    */
   public function getMissingCertificate()
@@ -78,7 +96,12 @@ class PolicyTopicEntry extends \Google\Collection
     return $this->missingCertificate;
   }
   /**
-   * @param string
+   * Policy topic this entry refers to. For example, "ALCOHOL",
+   * "TRADEMARKS_IN_AD_TEXT", or "DESTINATION_NOT_WORKING". The set of possible
+   * policy topics is not fixed for a particular API version and may change at
+   * any time. Can be used to filter the response of the creatives.list method
+   *
+   * @param string $policyTopic
    */
   public function setPolicyTopic($policyTopic)
   {

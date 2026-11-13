@@ -22,14 +22,36 @@ class Maintainer extends \Google\Model
   /**
    * @var string
    */
+  public $email;
+  /**
+   * @var string
+   */
   public $kind;
   /**
    * @var string
    */
   public $name;
+  /**
+   * @var string
+   */
+  public $url;
 
   /**
-   * @param string
+   * @param string $email
+   */
+  public function setEmail($email)
+  {
+    $this->email = $email;
+  }
+  /**
+   * @return string
+   */
+  public function getEmail()
+  {
+    return $this->email;
+  }
+  /**
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -43,7 +65,7 @@ class Maintainer extends \Google\Model
     return $this->kind;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -55,6 +77,20 @@ class Maintainer extends \Google\Model
   public function getName()
   {
     return $this->name;
+  }
+  /**
+   * @param string $url
+   */
+  public function setUrl($url)
+  {
+    $this->url = $url;
+  }
+  /**
+   * @return string
+   */
+  public function getUrl()
+  {
+    return $this->url;
   }
 }
 

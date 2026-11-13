@@ -34,7 +34,7 @@ class Compliance extends \Google\Collection
   public $version;
 
   /**
-   * @param string[]
+   * @param string[] $ids
    */
   public function setIds($ids)
   {
@@ -48,7 +48,7 @@ class Compliance extends \Google\Collection
     return $this->ids;
   }
   /**
-   * @param string
+   * @param string $standard
    */
   public function setStandard($standard)
   {
@@ -62,7 +62,7 @@ class Compliance extends \Google\Collection
     return $this->standard;
   }
   /**
-   * @param string
+   * @param string $version
    */
   public function setVersion($version)
   {

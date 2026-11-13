@@ -21,6 +21,7 @@ use Google\Service\Spanner\CreateInstanceRequest;
 use Google\Service\Spanner\GetIamPolicyRequest;
 use Google\Service\Spanner\Instance;
 use Google\Service\Spanner\ListInstancesResponse;
+use Google\Service\Spanner\MoveInstanceRequest;
 use Google\Service\Spanner\Operation;
 use Google\Service\Spanner\Policy;
 use Google\Service\Spanner\SetIamPolicyRequest;
@@ -63,6 +64,7 @@ class ProjectsInstances extends \Google\Service\Resource
    * @param CreateInstanceRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, CreateInstanceRequest $postBody, $optParams = [])
   {
@@ -81,6 +83,7 @@ class ProjectsInstances extends \Google\Service\Resource
    * are of the form `projects//instances/`
    * @param array $optParams Optional parameters.
    * @return SpannerEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -99,6 +102,7 @@ class ProjectsInstances extends \Google\Service\Resource
    * Instance fields that should be returned. If absent, all Instance fields are
    * returned.
    * @return Instance
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -118,6 +122,7 @@ class ProjectsInstances extends \Google\Service\Resource
    * @param GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, GetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -150,12 +155,58 @@ class ProjectsInstances extends \Google\Service\Resource
    * @opt_param string pageToken If non-empty, `page_token` should contain a
    * next_page_token from a previous ListInstancesResponse.
    * @return ListInstancesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsInstances($parent, $optParams = [])
   {
     $params = ['parent' => $parent];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], ListInstancesResponse::class);
+  }
+  /**
+   * Moves an instance to the target instance configuration. You can use the
+   * returned long-running operation to track the progress of moving the instance.
+   * `MoveInstance` returns `FAILED_PRECONDITION` if the instance meets any of the
+   * following criteria: * Is undergoing a move to a different instance
+   * configuration * Has backups * Has an ongoing update * Contains any CMEK-
+   * enabled databases * Is a free trial instance While the operation is pending:
+   * * All other attempts to modify the instance, including changes to its compute
+   * capacity, are rejected. * The following database and backup admin operations
+   * are rejected: * `DatabaseAdmin.CreateDatabase` *
+   * `DatabaseAdmin.UpdateDatabaseDdl` (disabled if default_leader is specified in
+   * the request.) * `DatabaseAdmin.RestoreDatabase` *
+   * `DatabaseAdmin.CreateBackup` * `DatabaseAdmin.CopyBackup` * Both the source
+   * and target instance configurations are subject to hourly compute and storage
+   * charges. * The instance might experience higher read-write latencies and a
+   * higher transaction abort rate. However, moving an instance doesn't cause any
+   * downtime. The returned long-running operation has a name of the format
+   * `/operations/` and can be used to track the move instance operation. The
+   * metadata field type is MoveInstanceMetadata. The response field type is
+   * Instance, if successful. Cancelling the operation sets its metadata's
+   * cancel_time. Cancellation is not immediate because it involves moving any
+   * data previously moved to the target instance configuration back to the
+   * original instance configuration. You can use this operation to track the
+   * progress of the cancellation. Upon successful completion of the cancellation,
+   * the operation terminates with `CANCELLED` status. If not cancelled, upon
+   * completion of the returned operation: * The instance successfully moves to
+   * the target instance configuration. * You are billed for compute and storage
+   * in target instance configuration. Authorization requires the
+   * `spanner.instances.update` permission on the resource instance. For more
+   * details, see [Move an instance](https://cloud.google.com/spanner/docs/move-
+   * instance). (instances.move)
+   *
+   * @param string $name Required. The instance to move. Values are of the form
+   * `projects//instances/`.
+   * @param MoveInstanceRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function move($name, MoveInstanceRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('move', [$params], Operation::class);
   }
   /**
    * Updates an instance, and begins allocating or releasing resources as
@@ -187,6 +238,7 @@ class ProjectsInstances extends \Google\Service\Resource
    * @param UpdateInstanceRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, UpdateInstanceRequest $postBody, $optParams = [])
   {
@@ -205,6 +257,7 @@ class ProjectsInstances extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -226,6 +279,7 @@ class ProjectsInstances extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

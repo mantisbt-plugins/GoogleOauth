@@ -20,11 +20,36 @@ namespace Google\Service\DisplayVideo;
 class ContactInfoList extends \Google\Collection
 {
   protected $collection_key = 'contactInfos';
+  protected $consentType = Consent::class;
+  protected $consentDataType = '';
   protected $contactInfosType = ContactInfo::class;
   protected $contactInfosDataType = 'array';
 
   /**
-   * @param ContactInfo[]
+   * Input only. The consent setting for the users in contact_infos. Leaving
+   * this field unset indicates that consent is not specified. If ad_user_data
+   * or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the
+   * request will return an error.
+   *
+   * @param Consent $consent
+   */
+  public function setConsent(Consent $consent)
+  {
+    $this->consent = $consent;
+  }
+  /**
+   * @return Consent
+   */
+  public function getConsent()
+  {
+    return $this->consent;
+  }
+  /**
+   * Optional. A list of ContactInfo objects defining Customer Match audience
+   * members. The size of members after splitting the contact_infos mustn't be
+   * greater than 500,000.
+   *
+   * @param ContactInfo[] $contactInfos
    */
   public function setContactInfos($contactInfos)
   {

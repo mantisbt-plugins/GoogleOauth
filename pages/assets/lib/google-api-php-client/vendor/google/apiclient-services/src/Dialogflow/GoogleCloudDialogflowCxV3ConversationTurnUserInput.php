@@ -35,7 +35,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnUserInput extends \Google\Model
   public $isWebhookEnabled;
 
   /**
-   * @param bool
+   * @param bool $enableSentimentAnalysis
    */
   public function setEnableSentimentAnalysis($enableSentimentAnalysis)
   {
@@ -49,7 +49,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnUserInput extends \Google\Model
     return $this->enableSentimentAnalysis;
   }
   /**
-   * @param array[]
+   * @param array[] $injectedParameters
    */
   public function setInjectedParameters($injectedParameters)
   {
@@ -63,7 +63,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnUserInput extends \Google\Model
     return $this->injectedParameters;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3QueryInput
+   * @param GoogleCloudDialogflowCxV3QueryInput $input
    */
   public function setInput(GoogleCloudDialogflowCxV3QueryInput $input)
   {
@@ -77,7 +77,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnUserInput extends \Google\Model
     return $this->input;
   }
   /**
-   * @param bool
+   * @param bool $isWebhookEnabled
    */
   public function setIsWebhookEnabled($isWebhookEnabled)
   {

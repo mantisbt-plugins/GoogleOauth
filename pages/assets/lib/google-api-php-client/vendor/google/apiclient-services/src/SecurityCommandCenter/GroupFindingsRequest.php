@@ -20,6 +20,7 @@ namespace Google\Service\SecurityCommandCenter;
 class GroupFindingsRequest extends \Google\Model
 {
   /**
+   * @deprecated
    * @var string
    */
   public $compareDuration;
@@ -40,18 +41,21 @@ class GroupFindingsRequest extends \Google\Model
    */
   public $pageToken;
   /**
+   * @deprecated
    * @var string
    */
   public $readTime;
 
   /**
-   * @param string
+   * @deprecated
+   * @param string $compareDuration
    */
   public function setCompareDuration($compareDuration)
   {
     $this->compareDuration = $compareDuration;
   }
   /**
+   * @deprecated
    * @return string
    */
   public function getCompareDuration()
@@ -59,7 +63,7 @@ class GroupFindingsRequest extends \Google\Model
     return $this->compareDuration;
   }
   /**
-   * @param string
+   * @param string $filter
    */
   public function setFilter($filter)
   {
@@ -73,7 +77,7 @@ class GroupFindingsRequest extends \Google\Model
     return $this->filter;
   }
   /**
-   * @param string
+   * @param string $groupBy
    */
   public function setGroupBy($groupBy)
   {
@@ -87,7 +91,7 @@ class GroupFindingsRequest extends \Google\Model
     return $this->groupBy;
   }
   /**
-   * @param int
+   * @param int $pageSize
    */
   public function setPageSize($pageSize)
   {
@@ -101,7 +105,7 @@ class GroupFindingsRequest extends \Google\Model
     return $this->pageSize;
   }
   /**
-   * @param string
+   * @param string $pageToken
    */
   public function setPageToken($pageToken)
   {
@@ -115,13 +119,15 @@ class GroupFindingsRequest extends \Google\Model
     return $this->pageToken;
   }
   /**
-   * @param string
+   * @deprecated
+   * @param string $readTime
    */
   public function setReadTime($readTime)
   {
     $this->readTime = $readTime;
   }
   /**
+   * @deprecated
    * @return string
    */
   public function getReadTime()

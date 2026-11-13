@@ -23,7 +23,7 @@ use Google\Client;
  * Service definition for BigQueryReservation (v1).
  *
  * <p>
- * A service to modify your BigQuery flat-rate reservations.</p>
+ * A service to modify your BigQuery reservations.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -43,8 +43,10 @@ class BigQueryReservation extends \Google\Service
 
   public $projects_locations;
   public $projects_locations_capacityCommitments;
+  public $projects_locations_reservationGroups;
   public $projects_locations_reservations;
   public $projects_locations_reservations_assignments;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the BigQueryReservation service.
@@ -57,6 +59,7 @@ class BigQueryReservation extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://bigqueryreservation.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://bigqueryreservation.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -134,6 +137,16 @@ class BigQueryReservation extends \Google\Service
                 'updateMask' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],'upgradeEdition' => [
+              'path' => 'v1/{+parent}:upgradeEdition',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],
@@ -244,14 +257,14 @@ class BigQueryReservation extends \Google\Service
           ]
         ]
     );
-    $this->projects_locations_reservations = new BigQueryReservation\Resource\ProjectsLocationsReservations(
+    $this->projects_locations_reservationGroups = new BigQueryReservation\Resource\ProjectsLocationsReservationGroups(
         $this,
         $this->serviceName,
-        'reservations',
+        'reservationGroups',
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/{+parent}/reservations',
+              'path' => 'v1/{+parent}/reservationGroups',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -259,7 +272,7 @@ class BigQueryReservation extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'reservationId' => [
+                'reservationGroupId' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -285,7 +298,7 @@ class BigQueryReservation extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/reservations',
+              'path' => 'v1/{+parent}/reservationGroups',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -320,6 +333,126 @@ class BigQueryReservation extends \Google\Service
           ]
         ]
     );
+    $this->projects_locations_reservations = new BigQueryReservation\Resource\ProjectsLocationsReservations(
+        $this,
+        $this->serviceName,
+        'reservations',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v1/{+parent}/reservations',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'reservationId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'failoverReservation' => [
+              'path' => 'v1/{+name}:failoverReservation',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'getIamPolicy' => [
+              'path' => 'v1/{+resource}:getIamPolicy',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'options.requestedPolicyVersion' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/reservations',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'setIamPolicy' => [
+              'path' => 'v1/{+resource}:setIamPolicy',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'testIamPermissions' => [
+              'path' => 'v1/{+resource}:testIamPermissions',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->projects_locations_reservations_assignments = new BigQueryReservation\Resource\ProjectsLocationsReservationsAssignments(
         $this,
         $this->serviceName,
@@ -348,6 +481,20 @@ class BigQueryReservation extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+              ],
+            ],'getIamPolicy' => [
+              'path' => 'v1/{+resource}:getIamPolicy',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'options.requestedPolicyVersion' => [
+                  'location' => 'query',
+                  'type' => 'integer',
                 ],
               ],
             ],'list' => [
@@ -390,6 +537,26 @@ class BigQueryReservation extends \Google\Service
                 'updateMask' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],'setIamPolicy' => [
+              'path' => 'v1/{+resource}:setIamPolicy',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'testIamPermissions' => [
+              'path' => 'v1/{+resource}:testIamPermissions',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],

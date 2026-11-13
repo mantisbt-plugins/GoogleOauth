@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3MatchIntentResponse extends \Google\Collection
   public $triggerIntent;
 
   /**
-   * @param GoogleCloudDialogflowCxV3Page
+   * @param GoogleCloudDialogflowCxV3Page $currentPage
    */
   public function setCurrentPage(GoogleCloudDialogflowCxV3Page $currentPage)
   {
@@ -56,7 +56,7 @@ class GoogleCloudDialogflowCxV3MatchIntentResponse extends \Google\Collection
     return $this->currentPage;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3Match[]
+   * @param GoogleCloudDialogflowCxV3Match[] $matches
    */
   public function setMatches($matches)
   {
@@ -70,7 +70,7 @@ class GoogleCloudDialogflowCxV3MatchIntentResponse extends \Google\Collection
     return $this->matches;
   }
   /**
-   * @param string
+   * @param string $text
    */
   public function setText($text)
   {
@@ -84,7 +84,7 @@ class GoogleCloudDialogflowCxV3MatchIntentResponse extends \Google\Collection
     return $this->text;
   }
   /**
-   * @param string
+   * @param string $transcript
    */
   public function setTranscript($transcript)
   {
@@ -98,7 +98,7 @@ class GoogleCloudDialogflowCxV3MatchIntentResponse extends \Google\Collection
     return $this->transcript;
   }
   /**
-   * @param string
+   * @param string $triggerEvent
    */
   public function setTriggerEvent($triggerEvent)
   {
@@ -112,7 +112,7 @@ class GoogleCloudDialogflowCxV3MatchIntentResponse extends \Google\Collection
     return $this->triggerEvent;
   }
   /**
-   * @param string
+   * @param string $triggerIntent
    */
   public function setTriggerIntent($triggerIntent)
   {

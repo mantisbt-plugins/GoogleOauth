@@ -20,10 +20,6 @@ namespace Google\Service\NetworkServices\Resource;
 use Google\Service\NetworkServices\EndpointPolicy;
 use Google\Service\NetworkServices\ListEndpointPoliciesResponse;
 use Google\Service\NetworkServices\Operation;
-use Google\Service\NetworkServices\Policy;
-use Google\Service\NetworkServices\SetIamPolicyRequest;
-use Google\Service\NetworkServices\TestIamPermissionsRequest;
-use Google\Service\NetworkServices\TestIamPermissionsResponse;
 
 /**
  * The "endpointPolicies" collection of methods.
@@ -40,13 +36,14 @@ class ProjectsLocationsEndpointPolicies extends \Google\Service\Resource
    * (endpointPolicies.create)
    *
    * @param string $parent Required. The parent resource of the EndpointPolicy.
-   * Must be in the format `projects/locations/global`.
+   * Must be in the format `projects/locations`.
    * @param EndpointPolicy $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string endpointPolicyId Required. Short name of the EndpointPolicy
    * resource to be created. E.g. "CustomECS".
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, EndpointPolicy $postBody, $optParams = [])
   {
@@ -58,9 +55,10 @@ class ProjectsLocationsEndpointPolicies extends \Google\Service\Resource
    * Deletes a single EndpointPolicy. (endpointPolicies.delete)
    *
    * @param string $name Required. A name of the EndpointPolicy to delete. Must be
-   * in the format `projects/locations/global/endpointPolicies`.
+   * in the format `projects/locations/endpointPolicies`.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -72,9 +70,10 @@ class ProjectsLocationsEndpointPolicies extends \Google\Service\Resource
    * Gets details of a single EndpointPolicy. (endpointPolicies.get)
    *
    * @param string $name Required. A name of the EndpointPolicy to get. Must be in
-   * the format `projects/locations/global/endpointPolicies`.
+   * the format `projects/locations/endpointPolicies`.
    * @param array $optParams Optional parameters.
    * @return EndpointPolicy
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -83,43 +82,12 @@ class ProjectsLocationsEndpointPolicies extends \Google\Service\Resource
     return $this->call('get', [$params], EndpointPolicy::class);
   }
   /**
-   * Gets the access control policy for a resource. Returns an empty policy if the
-   * resource exists and does not have a policy set.
-   * (endpointPolicies.getIamPolicy)
-   *
-   * @param string $resource REQUIRED: The resource for which the policy is being
-   * requested. See [Resource
-   * names](https://cloud.google.com/apis/design/resource_names) for the
-   * appropriate value for this field.
-   * @param array $optParams Optional parameters.
-   *
-   * @opt_param int options.requestedPolicyVersion Optional. The maximum policy
-   * version that will be used to format the policy. Valid values are 0, 1, and 3.
-   * Requests specifying an invalid value will be rejected. Requests for policies
-   * with any conditional role bindings must specify version 3. Policies with no
-   * conditional role bindings may specify any valid value or leave the field
-   * unset. The policy in the response might use the policy version that you
-   * specified, or it might use a lower policy version. For example, if you
-   * specify version 3, but the policy has no conditional role bindings, the
-   * response uses version 1. To learn which resources support conditions in their
-   * IAM policies, see the [IAM
-   * documentation](https://cloud.google.com/iam/help/conditions/resource-
-   * policies).
-   * @return Policy
-   */
-  public function getIamPolicy($resource, $optParams = [])
-  {
-    $params = ['resource' => $resource];
-    $params = array_merge($params, $optParams);
-    return $this->call('getIamPolicy', [$params], Policy::class);
-  }
-  /**
    * Lists EndpointPolicies in a given project and location.
    * (endpointPolicies.listProjectsLocationsEndpointPolicies)
    *
    * @param string $parent Required. The project and location from which the
    * EndpointPolicies should be listed, specified in the format
-   * `projects/locations/global`.
+   * `projects/locations`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize Maximum number of EndpointPolicies to return per
@@ -128,7 +96,11 @@ class ProjectsLocationsEndpointPolicies extends \Google\Service\Resource
    * `ListEndpointPoliciesResponse` Indicates that this is a continuation of a
    * prior `ListEndpointPolicies` call, and that the system should return the next
    * page of data.
+   * @opt_param bool returnPartialSuccess Optional. If true, allow partial
+   * responses for multi-regional Aggregated List requests. Otherwise if one of
+   * the locations is down or unreachable, the Aggregated List request will fail.
    * @return ListEndpointPoliciesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsEndpointPolicies($parent, $optParams = [])
   {
@@ -139,9 +111,9 @@ class ProjectsLocationsEndpointPolicies extends \Google\Service\Resource
   /**
    * Updates the parameters of a single EndpointPolicy. (endpointPolicies.patch)
    *
-   * @param string $name Required. Name of the EndpointPolicy resource. It matches
-   * pattern
-   * `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
+   * @param string $name Identifier. Name of the EndpointPolicy resource. It
+   * matches pattern
+   * `projects/{project}/locations/endpointPolicies/{endpoint_policy}`.
    * @param EndpointPolicy $postBody
    * @param array $optParams Optional parameters.
    *
@@ -151,53 +123,13 @@ class ProjectsLocationsEndpointPolicies extends \Google\Service\Resource
    * full request. A field will be overwritten if it is in the mask. If the user
    * does not provide a mask then all fields will be overwritten.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, EndpointPolicy $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], Operation::class);
-  }
-  /**
-   * Sets the access control policy on the specified resource. Replaces any
-   * existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and
-   * `PERMISSION_DENIED` errors. (endpointPolicies.setIamPolicy)
-   *
-   * @param string $resource REQUIRED: The resource for which the policy is being
-   * specified. See [Resource
-   * names](https://cloud.google.com/apis/design/resource_names) for the
-   * appropriate value for this field.
-   * @param SetIamPolicyRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return Policy
-   */
-  public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
-  {
-    $params = ['resource' => $resource, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('setIamPolicy', [$params], Policy::class);
-  }
-  /**
-   * Returns permissions that a caller has on the specified resource. If the
-   * resource does not exist, this will return an empty set of permissions, not a
-   * `NOT_FOUND` error. Note: This operation is designed to be used for building
-   * permission-aware UIs and command-line tools, not for authorization checking.
-   * This operation may "fail open" without warning.
-   * (endpointPolicies.testIamPermissions)
-   *
-   * @param string $resource REQUIRED: The resource for which the policy detail is
-   * being requested. See [Resource
-   * names](https://cloud.google.com/apis/design/resource_names) for the
-   * appropriate value for this field.
-   * @param TestIamPermissionsRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return TestIamPermissionsResponse
-   */
-  public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
-  {
-    $params = ['resource' => $resource, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('testIamPermissions', [$params], TestIamPermissionsResponse::class);
   }
 }
 

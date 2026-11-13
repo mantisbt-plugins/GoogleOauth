@@ -55,6 +55,7 @@ class ProjectsLocationsServicesMetadataImports extends \Google\Service\Resource
    * (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero
    * UUID (00000000-0000-0000-0000-000000000000) is not supported.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, MetadataImport $postBody, $optParams = [])
   {
@@ -70,6 +71,7 @@ class ProjectsLocationsServicesMetadataImports extends \Google\Service\Resource
    * /{location_id}/services/{service_id}/metadataImports/{import_id}.
    * @param array $optParams Optional parameters.
    * @return MetadataImport
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -101,6 +103,7 @@ class ProjectsLocationsServicesMetadataImports extends \Google\Service\Resource
    * paginating, other parameters provided to DataprocMetastore.ListServices must
    * match the call that provided the page token.
    * @return ListMetadataImportsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsServicesMetadataImports($parent, $optParams = [])
   {
@@ -112,9 +115,9 @@ class ProjectsLocationsServicesMetadataImports extends \Google\Service\Resource
    * Updates a single import. Only the description field of MetadataImport is
    * supported to be updated. (metadataImports.patch)
    *
-   * @param string $name Immutable. The relative resource name of the metadata
-   * import, of the form:projects/{project_number}/locations/{location_id}/service
-   * s/{service_id}/metadataImports/{metadata_import_id}.
+   * @param string $name Immutable. Identifier. The relative resource name of the
+   * metadata import, of the form:projects/{project_number}/locations/{location_id
+   * }/services/{service_id}/metadataImports/{metadata_import_id}.
    * @param MetadataImport $postBody
    * @param array $optParams Optional parameters.
    *
@@ -132,6 +135,7 @@ class ProjectsLocationsServicesMetadataImports extends \Google\Service\Resource
    * Fields specified in the update_mask are relative to the resource (not to the
    * full request). A field is overwritten if it is in the mask.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, MetadataImport $postBody, $optParams = [])
   {

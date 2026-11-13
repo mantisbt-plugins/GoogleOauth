@@ -20,41 +20,53 @@ namespace Google\Service\Apigee;
 class GoogleCloudApigeeV1ListApiCategoriesResponse extends \Google\Collection
 {
   protected $collection_key = 'data';
-  protected $dataType = GoogleCloudApigeeV1ApiCategoryData::class;
+  protected $dataType = GoogleCloudApigeeV1ApiCategory::class;
   protected $dataDataType = 'array';
   /**
+   * Unique error code for the request, if any.
+   *
    * @var string
    */
   public $errorCode;
   /**
+   * Description of the operation.
+   *
    * @var string
    */
   public $message;
   /**
+   * Unique ID of the request.
+   *
    * @var string
    */
   public $requestId;
   /**
+   * Status of the operation.
+   *
    * @var string
    */
   public $status;
 
   /**
-   * @param GoogleCloudApigeeV1ApiCategoryData[]
+   * The API category resources.
+   *
+   * @param GoogleCloudApigeeV1ApiCategory[] $data
    */
   public function setData($data)
   {
     $this->data = $data;
   }
   /**
-   * @return GoogleCloudApigeeV1ApiCategoryData[]
+   * @return GoogleCloudApigeeV1ApiCategory[]
    */
   public function getData()
   {
     return $this->data;
   }
   /**
-   * @param string
+   * Unique error code for the request, if any.
+   *
+   * @param string $errorCode
    */
   public function setErrorCode($errorCode)
   {
@@ -68,7 +80,9 @@ class GoogleCloudApigeeV1ListApiCategoriesResponse extends \Google\Collection
     return $this->errorCode;
   }
   /**
-   * @param string
+   * Description of the operation.
+   *
+   * @param string $message
    */
   public function setMessage($message)
   {
@@ -82,7 +96,9 @@ class GoogleCloudApigeeV1ListApiCategoriesResponse extends \Google\Collection
     return $this->message;
   }
   /**
-   * @param string
+   * Unique ID of the request.
+   *
+   * @param string $requestId
    */
   public function setRequestId($requestId)
   {
@@ -96,7 +112,9 @@ class GoogleCloudApigeeV1ListApiCategoriesResponse extends \Google\Collection
     return $this->requestId;
   }
   /**
-   * @param string
+   * Status of the operation.
+   *
+   * @param string $status
    */
   public function setStatus($status)
   {

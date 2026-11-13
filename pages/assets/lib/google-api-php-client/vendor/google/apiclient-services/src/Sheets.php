@@ -27,7 +27,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/sheets/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/sheets/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -54,6 +54,7 @@ class Sheets extends \Google\Service
   public $spreadsheets_developerMetadata;
   public $spreadsheets_sheets;
   public $spreadsheets_values;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Sheets service.
@@ -66,6 +67,7 @@ class Sheets extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://sheets.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://sheets.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v4';
@@ -99,6 +101,14 @@ class Sheets extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'commentsViewMode' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'excludeTablesInBandedRanges' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'includeGridData' => [
                   'location' => 'query',

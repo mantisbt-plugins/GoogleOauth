@@ -40,7 +40,7 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput extends \
   protected $triggeredIntentDataType = '';
 
   /**
-   * @param GoogleCloudDialogflowCxV3beta1Page
+   * @param GoogleCloudDialogflowCxV3beta1Page $currentPage
    */
   public function setCurrentPage(GoogleCloudDialogflowCxV3beta1Page $currentPage)
   {
@@ -54,7 +54,7 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput extends \
     return $this->currentPage;
   }
   /**
-   * @param array[]
+   * @param array[] $diagnosticInfo
    */
   public function setDiagnosticInfo($diagnosticInfo)
   {
@@ -68,7 +68,7 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput extends \
     return $this->diagnosticInfo;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1TestRunDifference[]
+   * @param GoogleCloudDialogflowCxV3beta1TestRunDifference[] $differences
    */
   public function setDifferences($differences)
   {
@@ -82,7 +82,7 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput extends \
     return $this->differences;
   }
   /**
-   * @param array[]
+   * @param array[] $sessionParameters
    */
   public function setSessionParameters($sessionParameters)
   {
@@ -96,7 +96,7 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput extends \
     return $this->sessionParameters;
   }
   /**
-   * @param GoogleRpcStatus
+   * @param GoogleRpcStatus $status
    */
   public function setStatus(GoogleRpcStatus $status)
   {
@@ -110,7 +110,7 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput extends \
     return $this->status;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1ResponseMessageText[]
+   * @param GoogleCloudDialogflowCxV3beta1ResponseMessageText[] $textResponses
    */
   public function setTextResponses($textResponses)
   {
@@ -124,7 +124,7 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput extends \
     return $this->textResponses;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1Intent
+   * @param GoogleCloudDialogflowCxV3beta1Intent $triggeredIntent
    */
   public function setTriggeredIntent(GoogleCloudDialogflowCxV3beta1Intent $triggeredIntent)
   {

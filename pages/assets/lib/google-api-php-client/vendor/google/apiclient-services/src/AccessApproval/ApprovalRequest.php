@@ -24,14 +24,30 @@ class ApprovalRequest extends \Google\Model
   protected $dismissType = DismissDecision::class;
   protected $dismissDataType = '';
   /**
+   * The resource name of the request. Format is "{projects|folders|organization
+   * s}/{id}/approvalRequests/{approval_request}".
+   *
    * @var string
    */
   public $name;
   /**
+   * The time at which approval was requested.
+   *
    * @var string
    */
   public $requestTime;
+  protected $requestedAugmentedInfoType = AugmentedInfo::class;
+  protected $requestedAugmentedInfoDataType = '';
   /**
+   * The requested access duration.
+   *
+   * @var string
+   */
+  public $requestedDuration;
+  /**
+   * The original requested expiration for the approval. Calculated by adding
+   * the requested_duration to the request_time.
+   *
    * @var string
    */
   public $requestedExpiration;
@@ -40,6 +56,14 @@ class ApprovalRequest extends \Google\Model
   protected $requestedReasonType = AccessReason::class;
   protected $requestedReasonDataType = '';
   /**
+   * The resource for which approval is being requested. The format of the
+   * resource name is defined at
+   * https://cloud.google.com/apis/design/resource_names. The resource name here
+   * may either be a "full" resource name (e.g.
+   * "//library.googleapis.com/shelves/shelf1/books/book2") or a "relative"
+   * resource name (e.g. "shelves/shelf1/books/book2") as described in the
+   * resource name specification.
+   *
    * @var string
    */
   public $requestedResourceName;
@@ -47,7 +71,9 @@ class ApprovalRequest extends \Google\Model
   protected $requestedResourcePropertiesDataType = '';
 
   /**
-   * @param ApproveDecision
+   * Access was approved.
+   *
+   * @param ApproveDecision $approve
    */
   public function setApprove(ApproveDecision $approve)
   {
@@ -61,7 +87,9 @@ class ApprovalRequest extends \Google\Model
     return $this->approve;
   }
   /**
-   * @param DismissDecision
+   * The request was dismissed.
+   *
+   * @param DismissDecision $dismiss
    */
   public function setDismiss(DismissDecision $dismiss)
   {
@@ -75,7 +103,10 @@ class ApprovalRequest extends \Google\Model
     return $this->dismiss;
   }
   /**
-   * @param string
+   * The resource name of the request. Format is "{projects|folders|organization
+   * s}/{id}/approvalRequests/{approval_request}".
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -89,7 +120,9 @@ class ApprovalRequest extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * The time at which approval was requested.
+   *
+   * @param string $requestTime
    */
   public function setRequestTime($requestTime)
   {
@@ -103,7 +136,42 @@ class ApprovalRequest extends \Google\Model
     return $this->requestTime;
   }
   /**
-   * @param string
+   * This field contains the augmented information of the request.
+   *
+   * @param AugmentedInfo $requestedAugmentedInfo
+   */
+  public function setRequestedAugmentedInfo(AugmentedInfo $requestedAugmentedInfo)
+  {
+    $this->requestedAugmentedInfo = $requestedAugmentedInfo;
+  }
+  /**
+   * @return AugmentedInfo
+   */
+  public function getRequestedAugmentedInfo()
+  {
+    return $this->requestedAugmentedInfo;
+  }
+  /**
+   * The requested access duration.
+   *
+   * @param string $requestedDuration
+   */
+  public function setRequestedDuration($requestedDuration)
+  {
+    $this->requestedDuration = $requestedDuration;
+  }
+  /**
+   * @return string
+   */
+  public function getRequestedDuration()
+  {
+    return $this->requestedDuration;
+  }
+  /**
+   * The original requested expiration for the approval. Calculated by adding
+   * the requested_duration to the request_time.
+   *
+   * @param string $requestedExpiration
    */
   public function setRequestedExpiration($requestedExpiration)
   {
@@ -117,7 +185,9 @@ class ApprovalRequest extends \Google\Model
     return $this->requestedExpiration;
   }
   /**
-   * @param AccessLocations
+   * The locations for which approval is being requested.
+   *
+   * @param AccessLocations $requestedLocations
    */
   public function setRequestedLocations(AccessLocations $requestedLocations)
   {
@@ -131,7 +201,9 @@ class ApprovalRequest extends \Google\Model
     return $this->requestedLocations;
   }
   /**
-   * @param AccessReason
+   * The access reason for which approval is being requested.
+   *
+   * @param AccessReason $requestedReason
    */
   public function setRequestedReason(AccessReason $requestedReason)
   {
@@ -145,7 +217,15 @@ class ApprovalRequest extends \Google\Model
     return $this->requestedReason;
   }
   /**
-   * @param string
+   * The resource for which approval is being requested. The format of the
+   * resource name is defined at
+   * https://cloud.google.com/apis/design/resource_names. The resource name here
+   * may either be a "full" resource name (e.g.
+   * "//library.googleapis.com/shelves/shelf1/books/book2") or a "relative"
+   * resource name (e.g. "shelves/shelf1/books/book2") as described in the
+   * resource name specification.
+   *
+   * @param string $requestedResourceName
    */
   public function setRequestedResourceName($requestedResourceName)
   {
@@ -159,7 +239,9 @@ class ApprovalRequest extends \Google\Model
     return $this->requestedResourceName;
   }
   /**
-   * @param ResourceProperties
+   * Properties related to the resource represented by requested_resource_name.
+   *
+   * @param ResourceProperties $requestedResourceProperties
    */
   public function setRequestedResourceProperties(ResourceProperties $requestedResourceProperties)
   {

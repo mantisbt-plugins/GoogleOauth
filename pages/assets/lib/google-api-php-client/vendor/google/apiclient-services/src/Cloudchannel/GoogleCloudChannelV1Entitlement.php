@@ -19,52 +19,98 @@ namespace Google\Service\Cloudchannel;
 
 class GoogleCloudChannelV1Entitlement extends \Google\Collection
 {
+  /**
+   * Not used.
+   */
+  public const PROVISIONING_STATE_PROVISIONING_STATE_UNSPECIFIED = 'PROVISIONING_STATE_UNSPECIFIED';
+  /**
+   * The entitlement is currently active.
+   */
+  public const PROVISIONING_STATE_ACTIVE = 'ACTIVE';
+  /**
+   * The entitlement is currently suspended.
+   */
+  public const PROVISIONING_STATE_SUSPENDED = 'SUSPENDED';
   protected $collection_key = 'suspensionReasons';
   protected $associationInfoType = GoogleCloudChannelV1AssociationInfo::class;
   protected $associationInfoDataType = '';
   /**
+   * Optional. The billing account resource name that is used to pay for this
+   * entitlement.
+   *
    * @var string
    */
   public $billingAccount;
   protected $commitmentSettingsType = GoogleCloudChannelV1CommitmentSettings::class;
   protected $commitmentSettingsDataType = '';
   /**
+   * Output only. The time at which the entitlement is created.
+   *
    * @var string
    */
   public $createTime;
   /**
+   * Output only. Resource name of an entitlement in the form: accounts/{account
+   * _id}/customers/{customer_id}/entitlements/{entitlement_id}.
+   *
    * @var string
    */
   public $name;
   /**
+   * Required. The offer resource name for which the entitlement is to be
+   * created. Takes the form: accounts/{account_id}/offers/{offer_id}.
+   *
    * @var string
    */
   public $offer;
   protected $parametersType = GoogleCloudChannelV1Parameter::class;
   protected $parametersDataType = 'array';
+  /**
+   * Optional. Price reference ID for the offer. Only for offers that require
+   * additional price information. Used to guarantee that the pricing is
+   * consistent between quoting the offer and placing the order.
+   *
+   * @var string
+   */
+  public $priceReferenceId;
   protected $provisionedServiceType = GoogleCloudChannelV1ProvisionedService::class;
   protected $provisionedServiceDataType = '';
   /**
+   * Output only. Current provisioning state of the entitlement.
+   *
    * @var string
    */
   public $provisioningState;
   /**
+   * Optional. This purchase order (PO) information is for resellers to use for
+   * their company tracking usage. If a purchaseOrderId value is given, it
+   * appears in the API responses and shows up in the invoice. The property
+   * accepts up to 80 plain text characters. This is only supported for Google
+   * Workspace entitlements.
+   *
    * @var string
    */
   public $purchaseOrderId;
   /**
+   * Output only. Enumerable of all current suspension reasons for an
+   * entitlement.
+   *
    * @var string[]
    */
   public $suspensionReasons;
   protected $trialSettingsType = GoogleCloudChannelV1TrialSettings::class;
   protected $trialSettingsDataType = '';
   /**
+   * Output only. The time at which the entitlement is updated.
+   *
    * @var string
    */
   public $updateTime;
 
   /**
-   * @param GoogleCloudChannelV1AssociationInfo
+   * Association information to other entitlements.
+   *
+   * @param GoogleCloudChannelV1AssociationInfo $associationInfo
    */
   public function setAssociationInfo(GoogleCloudChannelV1AssociationInfo $associationInfo)
   {
@@ -78,7 +124,10 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->associationInfo;
   }
   /**
-   * @param string
+   * Optional. The billing account resource name that is used to pay for this
+   * entitlement.
+   *
+   * @param string $billingAccount
    */
   public function setBillingAccount($billingAccount)
   {
@@ -92,7 +141,10 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->billingAccount;
   }
   /**
-   * @param GoogleCloudChannelV1CommitmentSettings
+   * Commitment settings for a commitment-based Offer. Required for commitment
+   * based offers.
+   *
+   * @param GoogleCloudChannelV1CommitmentSettings $commitmentSettings
    */
   public function setCommitmentSettings(GoogleCloudChannelV1CommitmentSettings $commitmentSettings)
   {
@@ -106,7 +158,9 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->commitmentSettings;
   }
   /**
-   * @param string
+   * Output only. The time at which the entitlement is created.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -120,7 +174,10 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->createTime;
   }
   /**
-   * @param string
+   * Output only. Resource name of an entitlement in the form: accounts/{account
+   * _id}/customers/{customer_id}/entitlements/{entitlement_id}.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -134,7 +191,10 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param string
+   * Required. The offer resource name for which the entitlement is to be
+   * created. Takes the form: accounts/{account_id}/offers/{offer_id}.
+   *
+   * @param string $offer
    */
   public function setOffer($offer)
   {
@@ -148,7 +208,17 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->offer;
   }
   /**
-   * @param GoogleCloudChannelV1Parameter[]
+   * Extended entitlement parameters. When creating an entitlement, valid
+   * parameter names and values are defined in the Offer.parameter_definitions.
+   * For Google Workspace, the following Parameters may be accepted as input: -
+   * max_units: The maximum assignable units for a flexible offer OR -
+   * num_units: The total commitment for commitment-based offers The response
+   * may additionally include the following output-only Parameters: -
+   * assigned_units: The number of licenses assigned to users. For Google Cloud
+   * billing subaccounts, the following Parameter may be accepted as input: -
+   * display_name: The display name of the billing subaccount.
+   *
+   * @param GoogleCloudChannelV1Parameter[] $parameters
    */
   public function setParameters($parameters)
   {
@@ -162,7 +232,27 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->parameters;
   }
   /**
-   * @param GoogleCloudChannelV1ProvisionedService
+   * Optional. Price reference ID for the offer. Only for offers that require
+   * additional price information. Used to guarantee that the pricing is
+   * consistent between quoting the offer and placing the order.
+   *
+   * @param string $priceReferenceId
+   */
+  public function setPriceReferenceId($priceReferenceId)
+  {
+    $this->priceReferenceId = $priceReferenceId;
+  }
+  /**
+   * @return string
+   */
+  public function getPriceReferenceId()
+  {
+    return $this->priceReferenceId;
+  }
+  /**
+   * Output only. Service provisioning details for the entitlement.
+   *
+   * @param GoogleCloudChannelV1ProvisionedService $provisionedService
    */
   public function setProvisionedService(GoogleCloudChannelV1ProvisionedService $provisionedService)
   {
@@ -176,21 +266,31 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->provisionedService;
   }
   /**
-   * @param string
+   * Output only. Current provisioning state of the entitlement.
+   *
+   * Accepted values: PROVISIONING_STATE_UNSPECIFIED, ACTIVE, SUSPENDED
+   *
+   * @param self::PROVISIONING_STATE_* $provisioningState
    */
   public function setProvisioningState($provisioningState)
   {
     $this->provisioningState = $provisioningState;
   }
   /**
-   * @return string
+   * @return self::PROVISIONING_STATE_*
    */
   public function getProvisioningState()
   {
     return $this->provisioningState;
   }
   /**
-   * @param string
+   * Optional. This purchase order (PO) information is for resellers to use for
+   * their company tracking usage. If a purchaseOrderId value is given, it
+   * appears in the API responses and shows up in the invoice. The property
+   * accepts up to 80 plain text characters. This is only supported for Google
+   * Workspace entitlements.
+   *
+   * @param string $purchaseOrderId
    */
   public function setPurchaseOrderId($purchaseOrderId)
   {
@@ -204,7 +304,10 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->purchaseOrderId;
   }
   /**
-   * @param string[]
+   * Output only. Enumerable of all current suspension reasons for an
+   * entitlement.
+   *
+   * @param string[] $suspensionReasons
    */
   public function setSuspensionReasons($suspensionReasons)
   {
@@ -218,7 +321,9 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->suspensionReasons;
   }
   /**
-   * @param GoogleCloudChannelV1TrialSettings
+   * Output only. Settings for trial offers.
+   *
+   * @param GoogleCloudChannelV1TrialSettings $trialSettings
    */
   public function setTrialSettings(GoogleCloudChannelV1TrialSettings $trialSettings)
   {
@@ -232,7 +337,9 @@ class GoogleCloudChannelV1Entitlement extends \Google\Collection
     return $this->trialSettings;
   }
   /**
-   * @param string
+   * Output only. The time at which the entitlement is updated.
+   *
+   * @param string $updateTime
    */
   public function setUpdateTime($updateTime)
   {

@@ -17,6 +17,7 @@
 
 namespace Google\Service\VMMigrationService\Resource;
 
+use Google\Service\VMMigrationService\ExtendMigrationRequest;
 use Google\Service\VMMigrationService\FinalizeMigrationRequest;
 use Google\Service\VMMigrationService\ListMigratingVmsResponse;
 use Google\Service\VMMigrationService\MigratingVm;
@@ -55,6 +56,7 @@ class ProjectsLocationsSourcesMigratingVms extends \Google\Service\Resource
    * exception that zero UUID is not supported
    * (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, MigratingVm $postBody, $optParams = [])
   {
@@ -68,12 +70,28 @@ class ProjectsLocationsSourcesMigratingVms extends \Google\Service\Resource
    * @param string $name Required. The name of the MigratingVm.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
     $params = ['name' => $name];
     $params = array_merge($params, $optParams);
     return $this->call('delete', [$params], Operation::class);
+  }
+  /**
+   * Extend the migrating VM time to live. (migratingVms.extendMigration)
+   *
+   * @param string $migratingVm Required. The name of the MigratingVm.
+   * @param ExtendMigrationRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function extendMigration($migratingVm, ExtendMigrationRequest $postBody, $optParams = [])
+  {
+    $params = ['migratingVm' => $migratingVm, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('extendMigration', [$params], Operation::class);
   }
   /**
    * Marks a migration as completed, deleting migration resources that are no
@@ -84,6 +102,7 @@ class ProjectsLocationsSourcesMigratingVms extends \Google\Service\Resource
    * @param FinalizeMigrationRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function finalizeMigration($migratingVm, FinalizeMigrationRequest $postBody, $optParams = [])
   {
@@ -99,6 +118,7 @@ class ProjectsLocationsSourcesMigratingVms extends \Google\Service\Resource
    *
    * @opt_param string view Optional. The level of details of the migrating VM.
    * @return MigratingVm
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -126,6 +146,7 @@ class ProjectsLocationsSourcesMigratingVms extends \Google\Service\Resource
    * the call that provided the page token.
    * @opt_param string view Optional. The level of details of each migrating VM.
    * @return ListMigratingVmsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsSourcesMigratingVms($parent, $optParams = [])
   {
@@ -157,6 +178,7 @@ class ProjectsLocationsSourcesMigratingVms extends \Google\Service\Resource
    * field will be overwritten if it is in the mask. If the user does not provide
    * a mask then all fields will be overwritten.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, MigratingVm $postBody, $optParams = [])
   {
@@ -173,6 +195,7 @@ class ProjectsLocationsSourcesMigratingVms extends \Google\Service\Resource
    * @param PauseMigrationRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function pauseMigration($migratingVm, PauseMigrationRequest $postBody, $optParams = [])
   {
@@ -191,6 +214,7 @@ class ProjectsLocationsSourcesMigratingVms extends \Google\Service\Resource
    * @param ResumeMigrationRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function resumeMigration($migratingVm, ResumeMigrationRequest $postBody, $optParams = [])
   {
@@ -207,6 +231,7 @@ class ProjectsLocationsSourcesMigratingVms extends \Google\Service\Resource
    * @param StartMigrationRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function startMigration($migratingVm, StartMigrationRequest $postBody, $optParams = [])
   {

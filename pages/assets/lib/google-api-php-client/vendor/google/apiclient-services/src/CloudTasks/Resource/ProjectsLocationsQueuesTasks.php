@@ -17,9 +17,14 @@
 
 namespace Google\Service\CloudTasks\Resource;
 
+use Google\Service\CloudTasks\BatchCreateTasksRequest;
+use Google\Service\CloudTasks\BatchDeleteTasksRequest;
+use Google\Service\CloudTasks\BufferTaskRequest;
+use Google\Service\CloudTasks\BufferTaskResponse;
 use Google\Service\CloudTasks\CloudtasksEmpty;
 use Google\Service\CloudTasks\CreateTaskRequest;
 use Google\Service\CloudTasks\ListTasksResponse;
+use Google\Service\CloudTasks\Operation;
 use Google\Service\CloudTasks\RunTaskRequest;
 use Google\Service\CloudTasks\Task;
 
@@ -34,6 +39,69 @@ use Google\Service\CloudTasks\Task;
 class ProjectsLocationsQueuesTasks extends \Google\Service\Resource
 {
   /**
+   * Creates a batch of tasks and adds them to a queue. All tasks must be for the
+   * same queue. A maximum of 100 tasks can be created in a single batch.
+   * (tasks.batchCreate)
+   *
+   * @param string $parent Required. The queue name. For example:
+   * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must
+   * already exist.
+   * @param BatchCreateTasksRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function batchCreate($parent, BatchCreateTasksRequest $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('batchCreate', [$params], Operation::class);
+  }
+  /**
+   * Deletes a batch of tasks. This is a non-atomic operation: if deletion fails
+   * for some tasks, it can still succeed for others. The metadata field of
+   * google.longrunning.Operation contains details of failed deletions. A maximum
+   * of 1000 tasks can be deleted in a batch. (tasks.batchDelete)
+   *
+   * @param string $parent Required. The queue name. For example: Format:
+   * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+   * @param BatchDeleteTasksRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function batchDelete($parent, BatchDeleteTasksRequest $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('batchDelete', [$params], Operation::class);
+  }
+  /**
+   * Creates and buffers a new task without the need to explicitly define a Task
+   * message. The queue must have HTTP target. To create the task with a custom
+   * ID, use the following format and set TASK_ID to your desired ID: projects/PRO
+   * JECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID:buffer To create
+   * the task with an automatically generated ID, use the following format:
+   * projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks:buffer.
+   * (tasks.buffer)
+   *
+   * @param string $queue Required. The parent queue name. For example:
+   * projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must
+   * already exist.
+   * @param string $taskId Optional. Task ID for the task being created. If not
+   * provided, Cloud Tasks generates an ID for the task.
+   * @param BufferTaskRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return BufferTaskResponse
+   * @throws \Google\Service\Exception
+   */
+  public function buffer($queue, $taskId, BufferTaskRequest $postBody, $optParams = [])
+  {
+    $params = ['queue' => $queue, 'taskId' => $taskId, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('buffer', [$params], BufferTaskResponse::class);
+  }
+  /**
    * Creates a task and adds it to a queue. Tasks cannot be updated after
    * creation; there is no UpdateTask command. * The maximum task size is 100KB.
    * (tasks.create)
@@ -44,6 +112,7 @@ class ProjectsLocationsQueuesTasks extends \Google\Service\Resource
    * @param CreateTaskRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Task
+   * @throws \Google\Service\Exception
    */
   public function create($parent, CreateTaskRequest $postBody, $optParams = [])
   {
@@ -60,6 +129,7 @@ class ProjectsLocationsQueuesTasks extends \Google\Service\Resource
    * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
    * @param array $optParams Optional parameters.
    * @return CloudtasksEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -68,7 +138,9 @@ class ProjectsLocationsQueuesTasks extends \Google\Service\Resource
     return $this->call('delete', [$params], CloudtasksEmpty::class);
   }
   /**
-   * Gets a task. (tasks.get)
+   * Gets a task. After a task is successfully executed or has exhausted its retry
+   * attempts, the task is deleted. A `GetTask` request for a deleted task returns
+   * a `NOT_FOUND` error. (tasks.get)
    *
    * @param string $name Required. The task name. For example:
    * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
@@ -82,6 +154,7 @@ class ProjectsLocationsQueuesTasks extends \Google\Service\Resource
    * requires `cloudtasks.tasks.fullView` [Google
    * IAM](https://cloud.google.com/iam/) permission on the Task resource.
    * @return Task
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -116,6 +189,7 @@ class ProjectsLocationsQueuesTasks extends \Google\Service\Resource
    * requires `cloudtasks.tasks.fullView` [Google
    * IAM](https://cloud.google.com/iam/) permission on the Task resource.
    * @return ListTasksResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsQueuesTasks($parent, $optParams = [])
   {
@@ -128,20 +202,19 @@ class ProjectsLocationsQueuesTasks extends \Google\Service\Resource
    * dispatch the task, even if the task is already running, the queue has reached
    * its RateLimits or is PAUSED. This command is meant to be used for manual
    * debugging. For example, RunTask can be used to retry a failed task after a
-   * fix has been made or to manually force a task to be dispatched now. The
-   * dispatched task is returned. That is, the task that is returned contains the
-   * status after the task is dispatched but before the task is received by its
-   * target. If Cloud Tasks receives a successful response from the task's target,
-   * then the task will be deleted; otherwise the task's schedule_time will be
-   * reset to the time that RunTask was called plus the retry delay specified in
-   * the queue's RetryConfig. RunTask returns NOT_FOUND when it is called on a
-   * task that has already succeeded or permanently failed. (tasks.run)
+   * fix has been made or to manually force a task to be dispatched now. If Cloud
+   * Tasks receives a successful response from the task's target, then the task
+   * will be deleted; otherwise the task's schedule_time will be reset to the time
+   * that RunTask was called plus the retry delay specified in the queue's
+   * RetryConfig. RunTask returns NOT_FOUND when it is called on a task that has
+   * already succeeded or permanently failed. (tasks.run)
    *
    * @param string $name Required. The task name. For example:
    * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
    * @param RunTaskRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Task
+   * @throws \Google\Service\Exception
    */
   public function run($name, RunTaskRequest $postBody, $optParams = [])
   {

@@ -30,7 +30,7 @@ class GoogleCloudDialogflowCxV3DeploymentResult extends \Google\Collection
   public $experiment;
 
   /**
-   * @param string[]
+   * @param string[] $deploymentTestResults
    */
   public function setDeploymentTestResults($deploymentTestResults)
   {
@@ -44,7 +44,7 @@ class GoogleCloudDialogflowCxV3DeploymentResult extends \Google\Collection
     return $this->deploymentTestResults;
   }
   /**
-   * @param string
+   * @param string $experiment
    */
   public function setExperiment($experiment)
   {

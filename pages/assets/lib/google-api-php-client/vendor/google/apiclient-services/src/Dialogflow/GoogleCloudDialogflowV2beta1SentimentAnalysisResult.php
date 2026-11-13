@@ -21,9 +21,11 @@ class GoogleCloudDialogflowV2beta1SentimentAnalysisResult extends \Google\Model
 {
   protected $queryTextSentimentType = GoogleCloudDialogflowV2beta1Sentiment::class;
   protected $queryTextSentimentDataType = '';
+  protected $statusType = GoogleRpcStatus::class;
+  protected $statusDataType = '';
 
   /**
-   * @param GoogleCloudDialogflowV2beta1Sentiment
+   * @param GoogleCloudDialogflowV2beta1Sentiment $queryTextSentiment
    */
   public function setQueryTextSentiment(GoogleCloudDialogflowV2beta1Sentiment $queryTextSentiment)
   {
@@ -35,6 +37,20 @@ class GoogleCloudDialogflowV2beta1SentimentAnalysisResult extends \Google\Model
   public function getQueryTextSentiment()
   {
     return $this->queryTextSentiment;
+  }
+  /**
+   * @param GoogleRpcStatus $status
+   */
+  public function setStatus(GoogleRpcStatus $status)
+  {
+    $this->status = $status;
+  }
+  /**
+   * @return GoogleRpcStatus
+   */
+  public function getStatus()
+  {
+    return $this->status;
   }
 }
 

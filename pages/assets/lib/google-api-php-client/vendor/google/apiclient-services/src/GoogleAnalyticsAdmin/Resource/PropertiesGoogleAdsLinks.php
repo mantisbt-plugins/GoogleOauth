@@ -38,6 +38,7 @@ class PropertiesGoogleAdsLinks extends \Google\Service\Resource
    * @param GoogleAnalyticsAdminV1betaGoogleAdsLink $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaGoogleAdsLink
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleAnalyticsAdminV1betaGoogleAdsLink $postBody, $optParams = [])
   {
@@ -52,6 +53,7 @@ class PropertiesGoogleAdsLinks extends \Google\Service\Resource
    * properties/1234/googleAdsLinks/5678
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -66,14 +68,15 @@ class PropertiesGoogleAdsLinks extends \Google\Service\Resource
    * @param string $parent Required. Example format: properties/1234
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of resources to return. If
-   * unspecified, at most 50 resources will be returned. The maximum value is 200
-   * (higher values will be coerced to the maximum).
-   * @opt_param string pageToken A page token, received from a previous
+   * @opt_param int pageSize Optional. The maximum number of resources to return.
+   * If unspecified, at most 50 resources will be returned. The maximum value is
+   * 200 (higher values will be coerced to the maximum).
+   * @opt_param string pageToken Optional. A page token, received from a previous
    * `ListGoogleAdsLinks` call. Provide this to retrieve the subsequent page. When
    * paginating, all other parameters provided to `ListGoogleAdsLinks` must match
    * the call that provided the page token.
    * @return GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponse
+   * @throws \Google\Service\Exception
    */
   public function listPropertiesGoogleAdsLinks($parent, $optParams = [])
   {
@@ -84,7 +87,7 @@ class PropertiesGoogleAdsLinks extends \Google\Service\Resource
   /**
    * Updates a GoogleAdsLink on a property (googleAdsLinks.patch)
    *
-   * @param string $name Output only. Format:
+   * @param string $name Identifier. Format:
    * properties/{propertyId}/googleAdsLinks/{googleAdsLinkId} Note:
    * googleAdsLinkId is not the Google Ads customer ID.
    * @param GoogleAnalyticsAdminV1betaGoogleAdsLink $postBody
@@ -95,6 +98,7 @@ class PropertiesGoogleAdsLinks extends \Google\Service\Resource
    * will not be updated. To replace the entire entity, use one path with the
    * string "*" to match all fields.
    * @return GoogleAnalyticsAdminV1betaGoogleAdsLink
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleAnalyticsAdminV1betaGoogleAdsLink $postBody, $optParams = [])
   {

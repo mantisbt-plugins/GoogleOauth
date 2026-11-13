@@ -26,7 +26,7 @@ class GoogleCloudDialogflowCxV3BatchDeleteTestCasesRequest extends \Google\Colle
   public $names;
 
   /**
-   * @param string[]
+   * @param string[] $names
    */
   public function setNames($names)
   {

@@ -31,7 +31,9 @@ use Google\Service\Gmail\SmimeInfo;
 class UsersSettingsSendAsSmimeInfo extends \Google\Service\Resource
 {
   /**
-   * Deletes the specified S/MIME config for the specified send-as alias.
+   * Deletes the specified S/MIME config for the specified send-as alias. For more
+   * information, see [Manage S/MIME certificates with the Gmail
+   * API](https://developers.google.com/workspace/gmail/api/guides/smime_certs).
    * (smimeInfo.delete)
    *
    * @param string $userId The user's email address. The special value `me` can be
@@ -40,6 +42,7 @@ class UsersSettingsSendAsSmimeInfo extends \Google\Service\Resource
    * header for mail sent using this alias.
    * @param string $id The immutable ID for the SmimeInfo.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($userId, $sendAsEmail, $id, $optParams = [])
   {
@@ -48,7 +51,9 @@ class UsersSettingsSendAsSmimeInfo extends \Google\Service\Resource
     return $this->call('delete', [$params]);
   }
   /**
-   * Gets the specified S/MIME config for the specified send-as alias.
+   * Gets the specified S/MIME config for the specified send-as alias. For more
+   * information, see [Manage S/MIME certificates with the Gmail
+   * API](https://developers.google.com/workspace/gmail/api/guides/smime_certs).
    * (smimeInfo.get)
    *
    * @param string $userId The user's email address. The special value `me` can be
@@ -58,6 +63,7 @@ class UsersSettingsSendAsSmimeInfo extends \Google\Service\Resource
    * @param string $id The immutable ID for the SmimeInfo.
    * @param array $optParams Optional parameters.
    * @return SmimeInfo
+   * @throws \Google\Service\Exception
    */
   public function get($userId, $sendAsEmail, $id, $optParams = [])
   {
@@ -67,7 +73,10 @@ class UsersSettingsSendAsSmimeInfo extends \Google\Service\Resource
   }
   /**
    * Insert (upload) the given S/MIME config for the specified send-as alias. Note
-   * that pkcs12 format is required for the key. (smimeInfo.insert)
+   * that `pkcs12` format is required for the key. For more information, see
+   * [Manage S/MIME certificates with the Gmail
+   * API](https://developers.google.com/workspace/gmail/api/guides/smime_certs).
+   * (smimeInfo.insert)
    *
    * @param string $userId The user's email address. The special value `me` can be
    * used to indicate the authenticated user.
@@ -76,6 +85,7 @@ class UsersSettingsSendAsSmimeInfo extends \Google\Service\Resource
    * @param SmimeInfo $postBody
    * @param array $optParams Optional parameters.
    * @return SmimeInfo
+   * @throws \Google\Service\Exception
    */
   public function insert($userId, $sendAsEmail, SmimeInfo $postBody, $optParams = [])
   {
@@ -84,7 +94,9 @@ class UsersSettingsSendAsSmimeInfo extends \Google\Service\Resource
     return $this->call('insert', [$params], SmimeInfo::class);
   }
   /**
-   * Lists S/MIME configs for the specified send-as alias.
+   * Lists S/MIME configs for the specified send-as alias. For more information,
+   * see [Manage S/MIME certificates with the Gmail
+   * API](https://developers.google.com/workspace/gmail/api/guides/smime_certs).
    * (smimeInfo.listUsersSettingsSendAsSmimeInfo)
    *
    * @param string $userId The user's email address. The special value `me` can be
@@ -93,6 +105,7 @@ class UsersSettingsSendAsSmimeInfo extends \Google\Service\Resource
    * header for mail sent using this alias.
    * @param array $optParams Optional parameters.
    * @return ListSmimeInfoResponse
+   * @throws \Google\Service\Exception
    */
   public function listUsersSettingsSendAsSmimeInfo($userId, $sendAsEmail, $optParams = [])
   {
@@ -101,7 +114,9 @@ class UsersSettingsSendAsSmimeInfo extends \Google\Service\Resource
     return $this->call('list', [$params], ListSmimeInfoResponse::class);
   }
   /**
-   * Sets the default S/MIME config for the specified send-as alias.
+   * Sets the default S/MIME config for the specified send-as alias. For more
+   * information, see [Manage S/MIME certificates with the Gmail
+   * API](https://developers.google.com/workspace/gmail/api/guides/smime_certs).
    * (smimeInfo.setDefault)
    *
    * @param string $userId The user's email address. The special value `me` can be
@@ -110,6 +125,7 @@ class UsersSettingsSendAsSmimeInfo extends \Google\Service\Resource
    * header for mail sent using this alias.
    * @param string $id The immutable ID for the SmimeInfo.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function setDefault($userId, $sendAsEmail, $id, $optParams = [])
   {

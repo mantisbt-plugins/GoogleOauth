@@ -19,16 +19,46 @@ namespace Google\Service\ServiceUsage;
 
 class AddEnableRulesResponse extends \Google\Collection
 {
-  protected $collection_key = 'values';
+  protected $collection_key = 'addedValues';
   /**
+   * The values added to the parent consumer policy.
+   *
+   * @var string[]
+   */
+  public $addedValues;
+  /**
+   * The parent consumer policy. It can be
+   * `projects/12345/consumerPolicies/default`, or
+   * `folders/12345/consumerPolicies/default`, or
+   * `organizations/12345/consumerPolicies/default`.
+   *
    * @var string
    */
   public $parent;
-  protected $valuesType = ValueInfo::class;
-  protected $valuesDataType = 'array';
 
   /**
-   * @param string
+   * The values added to the parent consumer policy.
+   *
+   * @param string[] $addedValues
+   */
+  public function setAddedValues($addedValues)
+  {
+    $this->addedValues = $addedValues;
+  }
+  /**
+   * @return string[]
+   */
+  public function getAddedValues()
+  {
+    return $this->addedValues;
+  }
+  /**
+   * The parent consumer policy. It can be
+   * `projects/12345/consumerPolicies/default`, or
+   * `folders/12345/consumerPolicies/default`, or
+   * `organizations/12345/consumerPolicies/default`.
+   *
+   * @param string $parent
    */
   public function setParent($parent)
   {
@@ -40,20 +70,6 @@ class AddEnableRulesResponse extends \Google\Collection
   public function getParent()
   {
     return $this->parent;
-  }
-  /**
-   * @param ValueInfo[]
-   */
-  public function setValues($values)
-  {
-    $this->values = $values;
-  }
-  /**
-   * @return ValueInfo[]
-   */
-  public function getValues()
-  {
-    return $this->values;
   }
 }
 

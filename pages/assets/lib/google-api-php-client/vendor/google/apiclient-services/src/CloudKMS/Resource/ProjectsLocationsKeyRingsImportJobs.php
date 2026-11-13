@@ -46,6 +46,7 @@ class ProjectsLocationsKeyRingsImportJobs extends \Google\Service\Resource
    * @opt_param string importJobId Required. It must be unique within a KeyRing
    * and match the regular expression `[a-zA-Z0-9_-]{1,63}`
    * @return ImportJob
+   * @throws \Google\Service\Exception
    */
   public function create($parent, ImportJob $postBody, $optParams = [])
   {
@@ -58,7 +59,16 @@ class ProjectsLocationsKeyRingsImportJobs extends \Google\Service\Resource
    *
    * @param string $name Required. The name of the ImportJob to get.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string publicKeyFormat Optional. Specifies the WrappingPublicKey
+   * format. If not specified: * For RSA-based import methods, the wrapping key
+   * will be returned in PEM format * For pure ML-KEM-based import methods, the
+   * wrapping key will be returned in the raw bytes format specified in FIPS-203 *
+   * For X-Wing-based import methods, the wrapping key will be returned in the raw
+   * bytes format specified in https://datatracker.ietf.org/doc/draft-connolly-
+   * cfrg-xwing-kem.
    * @return ImportJob
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -89,6 +99,7 @@ class ProjectsLocationsKeyRingsImportJobs extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -117,6 +128,7 @@ class ProjectsLocationsKeyRingsImportJobs extends \Google\Service\Resource
    * @opt_param string pageToken Optional. Optional pagination token, returned
    * earlier via ListImportJobsResponse.next_page_token.
    * @return ListImportJobsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsKeyRingsImportJobs($parent, $optParams = [])
   {
@@ -136,6 +148,7 @@ class ProjectsLocationsKeyRingsImportJobs extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -158,6 +171,7 @@ class ProjectsLocationsKeyRingsImportJobs extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

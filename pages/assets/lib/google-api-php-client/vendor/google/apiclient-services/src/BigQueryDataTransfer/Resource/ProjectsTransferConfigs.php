@@ -46,17 +46,19 @@ class ProjectsTransferConfigs extends \Google\Service\Resource
    * @param TransferConfig $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string authorizationCode Optional OAuth2 authorization code to use
-   * with this transfer configuration. This is required only if
-   * `transferConfig.dataSourceId` is 'youtube_channel' and new credentials are
-   * needed, as indicated by `CheckValidCreds`. In order to obtain
-   * authorization_code, make a request to the following URL: https://www.gstatic.
-   * com/bigquerydatatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob_t
-   * ype=authorization_code_id=client_id=data_source_scopes * The client_id is the
-   * OAuth client_id of the a data source as returned by ListDataSources method. *
-   * data_source_scopes are the scopes returned by ListDataSources method. Note
-   * that this should not be set when `service_account_name` is used to create the
-   * transfer config.
+   * @opt_param string authorizationCode Deprecated: Authorization code was
+   * required when `transferConfig.dataSourceId` is 'youtube_channel' but it is no
+   * longer used in any data sources. Use `version_info` instead. Optional OAuth2
+   * authorization code to use with this transfer configuration. This is required
+   * only if `transferConfig.dataSourceId` is 'youtube_channel' and new
+   * credentials are needed, as indicated by `CheckValidCreds`. In order to obtain
+   * authorization_code, make a request to the following URL: https://bigquery.clo
+   * ud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob
+   * &response_type=authorization_code&client_id=client_id&scope=data_source_scope
+   * s * The client_id is the OAuth client_id of the data source as returned by
+   * ListDataSources method. * data_source_scopes are the scopes returned by
+   * ListDataSources method. Note that this should not be set when
+   * `service_account_name` is used to create the transfer config.
    * @opt_param string serviceAccountName Optional service account email. If this
    * field is set, the transfer config will be created with this service account's
    * credentials. It requires that the requesting user calling this API has
@@ -65,16 +67,19 @@ class ProjectsTransferConfigs extends \Google\Service\Resource
    * latest list of data sources, read about [using service
    * accounts](https://cloud.google.com/bigquery-transfer/docs/use-service-
    * accounts).
-   * @opt_param string versionInfo Optional version info. This is required only if
-   * `transferConfig.dataSourceId` is not 'youtube_channel' and new credentials
-   * are needed, as indicated by `CheckValidCreds`. In order to obtain version
-   * info, make a request to the following URL: https://www.gstatic.com/bigqueryda
-   * tatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob_type=version_in
-   * fo_id=client_id=data_source_scopes * The client_id is the OAuth client_id of
-   * the a data source as returned by ListDataSources method. * data_source_scopes
-   * are the scopes returned by ListDataSources method. Note that this should not
-   * be set when `service_account_name` is used to create the transfer config.
+   * @opt_param string versionInfo Optional version info. This parameter replaces
+   * `authorization_code` which is no longer used in any data sources. This is
+   * required only if `transferConfig.dataSourceId` is 'youtube_channel' *or* new
+   * credentials are needed, as indicated by `CheckValidCreds`. In order to obtain
+   * version info, make a request to the following URL: https://bigquery.cloud.goo
+   * gle.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&respo
+   * nse_type=version_info&client_id=client_id&scope=data_source_scopes * The
+   * client_id is the OAuth client_id of the data source as returned by
+   * ListDataSources method. * data_source_scopes are the scopes returned by
+   * ListDataSources method. Note that this should not be set when
+   * `service_account_name` is used to create the transfer config.
    * @return TransferConfig
+   * @throws \Google\Service\Exception
    */
   public function create($parent, TransferConfig $postBody, $optParams = [])
   {
@@ -86,12 +91,15 @@ class ProjectsTransferConfigs extends \Google\Service\Resource
    * Deletes a data transfer configuration, including any associated transfer runs
    * and logs. (transferConfigs.delete)
    *
-   * @param string $name Required. The field will contain name of the resource
-   * requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
-   * or
+   * @param string $name Required. The name of the resource to delete. If you are
+   * using the regionless method, the location must be `US` and the name should be
+   * in the following form: * `projects/{project_id}/transferConfigs/{config_id}`
+   * If you are using the regionalized method, the name should be in the following
+   * form: *
    * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
    * @param array $optParams Optional parameters.
    * @return BigquerydatatransferEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -102,12 +110,15 @@ class ProjectsTransferConfigs extends \Google\Service\Resource
   /**
    * Returns information about a data transfer config. (transferConfigs.get)
    *
-   * @param string $name Required. The field will contain name of the resource
-   * requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
-   * or
+   * @param string $name Required. The name of the resource requested. If you are
+   * using the regionless method, the location must be `US` and the name should be
+   * in the following form: * `projects/{project_id}/transferConfigs/{config_id}`
+   * If you are using the regionalized method, the name should be in the following
+   * form: *
    * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
    * @param array $optParams Optional parameters.
    * @return TransferConfig
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -120,7 +131,10 @@ class ProjectsTransferConfigs extends \Google\Service\Resource
    * specified location. (transferConfigs.listProjectsTransferConfigs)
    *
    * @param string $parent Required. The BigQuery project id for which transfer
-   * configs should be returned: `projects/{project_id}` or
+   * configs should be returned. If you are using the regionless method, the
+   * location must be `US` and `parent` should be in the following form: *
+   * `projects/{project_id} If you are using the regionalized method, `parent`
+   * should be in the following form: *
    * `projects/{project_id}/locations/{location_id}`
    * @param array $optParams Optional parameters.
    *
@@ -133,6 +147,7 @@ class ProjectsTransferConfigs extends \Google\Service\Resource
    * results, `ListTransfersResponse` outputs a `next_page` token, which can be
    * used as the `page_token` value to request the next page of list results.
    * @return ListTransferConfigsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsTransferConfigs($parent, $optParams = [])
   {
@@ -144,25 +159,28 @@ class ProjectsTransferConfigs extends \Google\Service\Resource
    * Updates a data transfer configuration. All fields must be set, even if they
    * are not updated. (transferConfigs.patch)
    *
-   * @param string $name The resource name of the transfer config. Transfer config
-   * names have the form
-   * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. Where
-   * `config_id` is usually a uuid, even though it is not guaranteed or required.
-   * The name is ignored when creating a transfer config.
+   * @param string $name Identifier. The resource name of the transfer config.
+   * Transfer config names have the form either
+   * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}` or
+   * `projects/{project_id}/transferConfigs/{config_id}`, where `config_id` is
+   * usually a UUID, even though it is not guaranteed or required. The name is
+   * ignored when creating a transfer config.
    * @param TransferConfig $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string authorizationCode Optional OAuth2 authorization code to use
-   * with this transfer configuration. This is required only if
-   * `transferConfig.dataSourceId` is 'youtube_channel' and new credentials are
-   * needed, as indicated by `CheckValidCreds`. In order to obtain
-   * authorization_code, make a request to the following URL: https://www.gstatic.
-   * com/bigquerydatatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob_t
-   * ype=authorization_code_id=client_id=data_source_scopes * The client_id is the
-   * OAuth client_id of the a data source as returned by ListDataSources method. *
-   * data_source_scopes are the scopes returned by ListDataSources method. Note
-   * that this should not be set when `service_account_name` is used to update the
-   * transfer config.
+   * @opt_param string authorizationCode Deprecated: Authorization code was
+   * required when `transferConfig.dataSourceId` is 'youtube_channel' but it is no
+   * longer used in any data sources. Use `version_info` instead. Optional OAuth2
+   * authorization code to use with this transfer configuration. This is required
+   * only if `transferConfig.dataSourceId` is 'youtube_channel' and new
+   * credentials are needed, as indicated by `CheckValidCreds`. In order to obtain
+   * authorization_code, make a request to the following URL: https://bigquery.clo
+   * ud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob
+   * &response_type=authorization_code&client_id=client_id&scope=data_source_scope
+   * s * The client_id is the OAuth client_id of the data source as returned by
+   * ListDataSources method. * data_source_scopes are the scopes returned by
+   * ListDataSources method. Note that this should not be set when
+   * `service_account_name` is used to update the transfer config.
    * @opt_param string serviceAccountName Optional service account email. If this
    * field is set, the transfer config will be created with this service account's
    * credentials. It requires that the requesting user calling this API has
@@ -173,16 +191,19 @@ class ProjectsTransferConfigs extends \Google\Service\Resource
    * accounts).
    * @opt_param string updateMask Required. Required list of fields to be updated
    * in this request.
-   * @opt_param string versionInfo Optional version info. This is required only if
-   * `transferConfig.dataSourceId` is not 'youtube_channel' and new credentials
-   * are needed, as indicated by `CheckValidCreds`. In order to obtain version
-   * info, make a request to the following URL: https://www.gstatic.com/bigqueryda
-   * tatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob_type=version_in
-   * fo_id=client_id=data_source_scopes * The client_id is the OAuth client_id of
-   * the a data source as returned by ListDataSources method. * data_source_scopes
-   * are the scopes returned by ListDataSources method. Note that this should not
-   * be set when `service_account_name` is used to update the transfer config.
+   * @opt_param string versionInfo Optional version info. This parameter replaces
+   * `authorization_code` which is no longer used in any data sources. This is
+   * required only if `transferConfig.dataSourceId` is 'youtube_channel' *or* new
+   * credentials are needed, as indicated by `CheckValidCreds`. In order to obtain
+   * version info, make a request to the following URL: https://bigquery.cloud.goo
+   * gle.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&respo
+   * nse_type=version_info&client_id=client_id&scope=data_source_scopes * The
+   * client_id is the OAuth client_id of the data source as returned by
+   * ListDataSources method. * data_source_scopes are the scopes returned by
+   * ListDataSources method. Note that this should not be set when
+   * `service_account_name` is used to update the transfer config.
    * @return TransferConfig
+   * @throws \Google\Service\Exception
    */
   public function patch($name, TransferConfig $postBody, $optParams = [])
   {
@@ -197,12 +218,16 @@ class ProjectsTransferConfigs extends \Google\Service\Resource
    * range. DEPRECATED: use StartManualTransferRuns instead.
    * (transferConfigs.scheduleRuns)
    *
-   * @param string $parent Required. Transfer configuration name in the form:
-   * `projects/{project_id}/transferConfigs/{config_id}` or
-   * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+   * @param string $parent Required. Transfer configuration name. If you are using
+   * the regionless method, the location must be `US` and the name should be in
+   * the following form: * `projects/{project_id}/transferConfigs/{config_id}` If
+   * you are using the regionalized method, the name should be in the following
+   * form: *
+   * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
    * @param ScheduleTransferRunsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return ScheduleTransferRunsResponse
+   * @throws \Google\Service\Exception
    */
   public function scheduleRuns($parent, ScheduleTransferRunsRequest $postBody, $optParams = [])
   {
@@ -211,17 +236,24 @@ class ProjectsTransferConfigs extends \Google\Service\Resource
     return $this->call('scheduleRuns', [$params], ScheduleTransferRunsResponse::class);
   }
   /**
-   * Start manual transfer runs to be executed now with schedule_time equal to
-   * current time. The transfer runs can be created for a time range where the
-   * run_time is between start_time (inclusive) and end_time (exclusive), or for a
-   * specific run_time. (transferConfigs.startManualRuns)
+   * Manually initiates transfer runs. You can schedule these runs in two ways: 1.
+   * For a specific point in time using the 'requested_run_time' parameter. 2. For
+   * a period between 'start_time' (inclusive) and 'end_time' (exclusive). If
+   * scheduling a single run, it is set to execute immediately (schedule_time
+   * equals the current time). When scheduling multiple runs within a time range,
+   * the first run starts now, and subsequent runs are delayed by 15 seconds each.
+   * (transferConfigs.startManualRuns)
    *
-   * @param string $parent Transfer configuration name in the form:
-   * `projects/{project_id}/transferConfigs/{config_id}` or
-   * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+   * @param string $parent Required. Transfer configuration name. If you are using
+   * the regionless method, the location must be `US` and the name should be in
+   * the following form: * `projects/{project_id}/transferConfigs/{config_id}` If
+   * you are using the regionalized method, the name should be in the following
+   * form: *
+   * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
    * @param StartManualTransferRunsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return StartManualTransferRunsResponse
+   * @throws \Google\Service\Exception
    */
   public function startManualRuns($parent, StartManualTransferRunsRequest $postBody, $optParams = [])
   {

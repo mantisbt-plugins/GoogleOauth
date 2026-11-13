@@ -20,20 +20,56 @@ namespace Google\Service\CloudBillingBudget;
 class GoogleCloudBillingBudgetsV1ThresholdRule extends \Google\Model
 {
   /**
+   * Unspecified threshold basis.
+   */
+  public const SPEND_BASIS_BASIS_UNSPECIFIED = 'BASIS_UNSPECIFIED';
+  /**
+   * Use current spend as the basis for comparison against the threshold.
+   */
+  public const SPEND_BASIS_CURRENT_SPEND = 'CURRENT_SPEND';
+  /**
+   * Use forecasted spend for the period as the basis for comparison against the
+   * threshold. FORECASTED_SPEND can only be set when the budget's time period
+   * is a Filter.calendar_period. It cannot be set in combination with
+   * Filter.custom_period. Not supported when `spend_cap` is set.
+   */
+  public const SPEND_BASIS_FORECASTED_SPEND = 'FORECASTED_SPEND';
+  /**
+   * Optional. The type of basis used to determine if spend has passed the
+   * threshold. Behavior defaults to CURRENT_SPEND if not set. When `spend_cap`
+   * is set on the budget, must be `CURRENT_SPEND` or `BASIS_UNSPECIFIED`.
+   * `FORECASTED_SPEND` is not supported.
+   *
    * @var string
    */
   public $spendBasis;
+  /**
+   * Required. Send an alert when this threshold is exceeded. This is a
+   * 1.0-based percentage, so 0.5 = 50%. Validation: non-negative number. When
+   * `spend_cap` is set on the budget, `threshold_rules` must contain exactly
+   * three rules with `threshold_percent` values of `0.5`, `0.8`, and `1.0`
+   * (50%, 80%, and 100%).
+   *
+   * @var 
+   */
   public $thresholdPercent;
 
   /**
-   * @param string
+   * Optional. The type of basis used to determine if spend has passed the
+   * threshold. Behavior defaults to CURRENT_SPEND if not set. When `spend_cap`
+   * is set on the budget, must be `CURRENT_SPEND` or `BASIS_UNSPECIFIED`.
+   * `FORECASTED_SPEND` is not supported.
+   *
+   * Accepted values: BASIS_UNSPECIFIED, CURRENT_SPEND, FORECASTED_SPEND
+   *
+   * @param self::SPEND_BASIS_* $spendBasis
    */
   public function setSpendBasis($spendBasis)
   {
     $this->spendBasis = $spendBasis;
   }
   /**
-   * @return string
+   * @return self::SPEND_BASIS_*
    */
   public function getSpendBasis()
   {

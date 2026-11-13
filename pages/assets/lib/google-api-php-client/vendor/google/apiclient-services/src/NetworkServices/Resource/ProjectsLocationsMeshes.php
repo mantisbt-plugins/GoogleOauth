@@ -20,10 +20,6 @@ namespace Google\Service\NetworkServices\Resource;
 use Google\Service\NetworkServices\ListMeshesResponse;
 use Google\Service\NetworkServices\Mesh;
 use Google\Service\NetworkServices\Operation;
-use Google\Service\NetworkServices\Policy;
-use Google\Service\NetworkServices\SetIamPolicyRequest;
-use Google\Service\NetworkServices\TestIamPermissionsRequest;
-use Google\Service\NetworkServices\TestIamPermissionsResponse;
 
 /**
  * The "meshes" collection of methods.
@@ -39,13 +35,14 @@ class ProjectsLocationsMeshes extends \Google\Service\Resource
    * Creates a new Mesh in a given project and location. (meshes.create)
    *
    * @param string $parent Required. The parent resource of the Mesh. Must be in
-   * the format `projects/locations/global`.
+   * the format `projects/locations`.
    * @param Mesh $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string meshId Required. Short name of the Mesh resource to be
    * created.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Mesh $postBody, $optParams = [])
   {
@@ -57,9 +54,10 @@ class ProjectsLocationsMeshes extends \Google\Service\Resource
    * Deletes a single Mesh. (meshes.delete)
    *
    * @param string $name Required. A name of the Mesh to delete. Must be in the
-   * format `projects/locations/global/meshes`.
+   * format `projects/locations/meshes`.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -71,9 +69,10 @@ class ProjectsLocationsMeshes extends \Google\Service\Resource
    * Gets details of a single Mesh. (meshes.get)
    *
    * @param string $name Required. A name of the Mesh to get. Must be in the
-   * format `projects/locations/global/meshes`.
+   * format `projects/locations/meshes`.
    * @param array $optParams Optional parameters.
    * @return Mesh
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -82,48 +81,22 @@ class ProjectsLocationsMeshes extends \Google\Service\Resource
     return $this->call('get', [$params], Mesh::class);
   }
   /**
-   * Gets the access control policy for a resource. Returns an empty policy if the
-   * resource exists and does not have a policy set. (meshes.getIamPolicy)
-   *
-   * @param string $resource REQUIRED: The resource for which the policy is being
-   * requested. See [Resource
-   * names](https://cloud.google.com/apis/design/resource_names) for the
-   * appropriate value for this field.
-   * @param array $optParams Optional parameters.
-   *
-   * @opt_param int options.requestedPolicyVersion Optional. The maximum policy
-   * version that will be used to format the policy. Valid values are 0, 1, and 3.
-   * Requests specifying an invalid value will be rejected. Requests for policies
-   * with any conditional role bindings must specify version 3. Policies with no
-   * conditional role bindings may specify any valid value or leave the field
-   * unset. The policy in the response might use the policy version that you
-   * specified, or it might use a lower policy version. For example, if you
-   * specify version 3, but the policy has no conditional role bindings, the
-   * response uses version 1. To learn which resources support conditions in their
-   * IAM policies, see the [IAM
-   * documentation](https://cloud.google.com/iam/help/conditions/resource-
-   * policies).
-   * @return Policy
-   */
-  public function getIamPolicy($resource, $optParams = [])
-  {
-    $params = ['resource' => $resource];
-    $params = array_merge($params, $optParams);
-    return $this->call('getIamPolicy', [$params], Policy::class);
-  }
-  /**
    * Lists Meshes in a given project and location.
    * (meshes.listProjectsLocationsMeshes)
    *
    * @param string $parent Required. The project and location from which the
-   * Meshes should be listed, specified in the format `projects/locations/global`.
+   * Meshes should be listed, specified in the format `projects/locations`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize Maximum number of Meshes to return per call.
    * @opt_param string pageToken The value returned by the last
    * `ListMeshesResponse` Indicates that this is a continuation of a prior
    * `ListMeshes` call, and that the system should return the next page of data.
+   * @opt_param bool returnPartialSuccess Optional. If true, allow partial
+   * responses for multi-regional Aggregated List requests. Otherwise if one of
+   * the locations is down or unreachable, the Aggregated List request will fail.
    * @return ListMeshesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsMeshes($parent, $optParams = [])
   {
@@ -134,8 +107,8 @@ class ProjectsLocationsMeshes extends \Google\Service\Resource
   /**
    * Updates the parameters of a single Mesh. (meshes.patch)
    *
-   * @param string $name Required. Name of the Mesh resource. It matches pattern
-   * `projects/locations/global/meshes/`.
+   * @param string $name Identifier. Name of the Mesh resource. It matches pattern
+   * `projects/locations/meshes/`.
    * @param Mesh $postBody
    * @param array $optParams Optional parameters.
    *
@@ -145,52 +118,13 @@ class ProjectsLocationsMeshes extends \Google\Service\Resource
    * request. A field will be overwritten if it is in the mask. If the user does
    * not provide a mask then all fields will be overwritten.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Mesh $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], Operation::class);
-  }
-  /**
-   * Sets the access control policy on the specified resource. Replaces any
-   * existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and
-   * `PERMISSION_DENIED` errors. (meshes.setIamPolicy)
-   *
-   * @param string $resource REQUIRED: The resource for which the policy is being
-   * specified. See [Resource
-   * names](https://cloud.google.com/apis/design/resource_names) for the
-   * appropriate value for this field.
-   * @param SetIamPolicyRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return Policy
-   */
-  public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
-  {
-    $params = ['resource' => $resource, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('setIamPolicy', [$params], Policy::class);
-  }
-  /**
-   * Returns permissions that a caller has on the specified resource. If the
-   * resource does not exist, this will return an empty set of permissions, not a
-   * `NOT_FOUND` error. Note: This operation is designed to be used for building
-   * permission-aware UIs and command-line tools, not for authorization checking.
-   * This operation may "fail open" without warning. (meshes.testIamPermissions)
-   *
-   * @param string $resource REQUIRED: The resource for which the policy detail is
-   * being requested. See [Resource
-   * names](https://cloud.google.com/apis/design/resource_names) for the
-   * appropriate value for this field.
-   * @param TestIamPermissionsRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return TestIamPermissionsResponse
-   */
-  public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
-  {
-    $params = ['resource' => $resource, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('testIamPermissions', [$params], TestIamPermissionsResponse::class);
   }
 }
 

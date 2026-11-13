@@ -40,7 +40,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput extends \Googl
   protected $triggeredIntentDataType = '';
 
   /**
-   * @param GoogleCloudDialogflowCxV3Page
+   * @param GoogleCloudDialogflowCxV3Page $currentPage
    */
   public function setCurrentPage(GoogleCloudDialogflowCxV3Page $currentPage)
   {
@@ -54,7 +54,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput extends \Googl
     return $this->currentPage;
   }
   /**
-   * @param array[]
+   * @param array[] $diagnosticInfo
    */
   public function setDiagnosticInfo($diagnosticInfo)
   {
@@ -68,7 +68,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput extends \Googl
     return $this->diagnosticInfo;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3TestRunDifference[]
+   * @param GoogleCloudDialogflowCxV3TestRunDifference[] $differences
    */
   public function setDifferences($differences)
   {
@@ -82,7 +82,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput extends \Googl
     return $this->differences;
   }
   /**
-   * @param array[]
+   * @param array[] $sessionParameters
    */
   public function setSessionParameters($sessionParameters)
   {
@@ -96,7 +96,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput extends \Googl
     return $this->sessionParameters;
   }
   /**
-   * @param GoogleRpcStatus
+   * @param GoogleRpcStatus $status
    */
   public function setStatus(GoogleRpcStatus $status)
   {
@@ -110,7 +110,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput extends \Googl
     return $this->status;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3ResponseMessageText[]
+   * @param GoogleCloudDialogflowCxV3ResponseMessageText[] $textResponses
    */
   public function setTextResponses($textResponses)
   {
@@ -124,7 +124,7 @@ class GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput extends \Googl
     return $this->textResponses;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3Intent
+   * @param GoogleCloudDialogflowCxV3Intent $triggeredIntent
    */
   public function setTriggeredIntent(GoogleCloudDialogflowCxV3Intent $triggeredIntent)
   {

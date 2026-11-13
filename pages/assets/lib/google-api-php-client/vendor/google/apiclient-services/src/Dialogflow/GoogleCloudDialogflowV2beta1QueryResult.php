@@ -80,7 +80,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
   public $webhookSource;
 
   /**
-   * @param string
+   * @param string $action
    */
   public function setAction($action)
   {
@@ -94,7 +94,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->action;
   }
   /**
-   * @param bool
+   * @param bool $allRequiredParamsPresent
    */
   public function setAllRequiredParamsPresent($allRequiredParamsPresent)
   {
@@ -108,7 +108,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->allRequiredParamsPresent;
   }
   /**
-   * @param bool
+   * @param bool $cancelsSlotFilling
    */
   public function setCancelsSlotFilling($cancelsSlotFilling)
   {
@@ -122,7 +122,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->cancelsSlotFilling;
   }
   /**
-   * @param array[]
+   * @param array[] $diagnosticInfo
    */
   public function setDiagnosticInfo($diagnosticInfo)
   {
@@ -136,7 +136,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->diagnosticInfo;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessage[]
+   * @param GoogleCloudDialogflowV2beta1IntentMessage[] $fulfillmentMessages
    */
   public function setFulfillmentMessages($fulfillmentMessages)
   {
@@ -150,7 +150,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->fulfillmentMessages;
   }
   /**
-   * @param string
+   * @param string $fulfillmentText
    */
   public function setFulfillmentText($fulfillmentText)
   {
@@ -164,7 +164,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->fulfillmentText;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1Intent
+   * @param GoogleCloudDialogflowV2beta1Intent $intent
    */
   public function setIntent(GoogleCloudDialogflowV2beta1Intent $intent)
   {
@@ -178,7 +178,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->intent;
   }
   /**
-   * @param float
+   * @param float $intentDetectionConfidence
    */
   public function setIntentDetectionConfidence($intentDetectionConfidence)
   {
@@ -192,7 +192,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->intentDetectionConfidence;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1KnowledgeAnswers
+   * @param GoogleCloudDialogflowV2beta1KnowledgeAnswers $knowledgeAnswers
    */
   public function setKnowledgeAnswers(GoogleCloudDialogflowV2beta1KnowledgeAnswers $knowledgeAnswers)
   {
@@ -206,7 +206,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->knowledgeAnswers;
   }
   /**
-   * @param string
+   * @param string $languageCode
    */
   public function setLanguageCode($languageCode)
   {
@@ -220,7 +220,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->languageCode;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1Context[]
+   * @param GoogleCloudDialogflowV2beta1Context[] $outputContexts
    */
   public function setOutputContexts($outputContexts)
   {
@@ -234,7 +234,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->outputContexts;
   }
   /**
-   * @param array[]
+   * @param array[] $parameters
    */
   public function setParameters($parameters)
   {
@@ -248,7 +248,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->parameters;
   }
   /**
-   * @param string
+   * @param string $queryText
    */
   public function setQueryText($queryText)
   {
@@ -262,7 +262,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->queryText;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1SentimentAnalysisResult
+   * @param GoogleCloudDialogflowV2beta1SentimentAnalysisResult $sentimentAnalysisResult
    */
   public function setSentimentAnalysisResult(GoogleCloudDialogflowV2beta1SentimentAnalysisResult $sentimentAnalysisResult)
   {
@@ -276,7 +276,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->sentimentAnalysisResult;
   }
   /**
-   * @param float
+   * @param float $speechRecognitionConfidence
    */
   public function setSpeechRecognitionConfidence($speechRecognitionConfidence)
   {
@@ -290,7 +290,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->speechRecognitionConfidence;
   }
   /**
-   * @param array[]
+   * @param array[] $webhookPayload
    */
   public function setWebhookPayload($webhookPayload)
   {
@@ -304,7 +304,7 @@ class GoogleCloudDialogflowV2beta1QueryResult extends \Google\Collection
     return $this->webhookPayload;
   }
   /**
-   * @param string
+   * @param string $webhookSource
    */
   public function setWebhookSource($webhookSource)
   {

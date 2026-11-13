@@ -20,6 +20,8 @@ namespace Google\Service\BigQueryReservation\Resource;
 use Google\Service\BigQueryReservation\BiReservation;
 use Google\Service\BigQueryReservation\SearchAllAssignmentsResponse;
 use Google\Service\BigQueryReservation\SearchAssignmentsResponse;
+use Google\Service\BigQueryReservation\UpgradeEditionRequest;
+use Google\Service\BigQueryReservation\UpgradeEditionResponse;
 
 /**
  * The "locations" collection of methods.
@@ -38,6 +40,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * `projects/{project_id}/locations/{location_id}/biReservation`
    * @param array $optParams Optional parameters.
    * @return BiReservation
+   * @throws \Google\Service\Exception
    */
   public function getBiReservation($name, $optParams = [])
   {
@@ -70,6 +73,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * query. Examples: * `assignee=projects/myproject` * `assignee=folders/123` *
    * `assignee=organizations/456`
    * @return SearchAllAssignmentsResponse
+   * @throws \Google\Service\Exception
    */
   public function searchAllAssignments($parent, $optParams = [])
   {
@@ -103,6 +107,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * query. Examples: * `assignee=projects/myproject` * `assignee=folders/123` *
    * `assignee=organizations/456`
    * @return SearchAssignmentsResponse
+   * @throws \Google\Service\Exception
    */
   public function searchAssignments($parent, $optParams = [])
   {
@@ -117,20 +122,49 @@ class ProjectsLocations extends \Google\Service\Resource
    * 0. In order to release BI capacity reservation size must be set to 0.
    * (locations.updateBiReservation)
    *
-   * @param string $name The resource name of the singleton BI reservation.
-   * Reservation names have the form
+   * @param string $name Identifier. The resource name of the singleton BI
+   * reservation. Reservation names have the form
    * `projects/{project_id}/locations/{location_id}/biReservation`.
    * @param BiReservation $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string updateMask A list of fields to be updated in this request.
    * @return BiReservation
+   * @throws \Google\Service\Exception
    */
   public function updateBiReservation($name, BiReservation $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('updateBiReservation', [$params], BiReservation::class);
+  }
+  /**
+   * Upgrades the edition for a list of reservations and capacity commitments. You
+   * can only upgrade to a higher edition (from `STANDARD` to `ENTERPRISE` or
+   * `ENTERPRISE_PLUS`, from `ENTERPRISE` to `ENTERPRISE_PLUS`, or from
+   * `EDITION_UNSPECIFIED` to `ENTERPRISE` or `ENTERPRISE_PLUS`). You can't
+   * downgrade an edition. The upgrade must not cause an overall flexible slot
+   * increase across the original and target editions (for example, by upgrading a
+   * reservation without upgrading its corresponding capacity commitment).
+   * Otherwise, the method fails with a `google.rpc.Code.FAILED_PRECONDITION`
+   * error. Before the upgrade, the service validates that the resources meet the
+   * requirements of the target edition (for example, all reservations within a
+   * reservation group must be upgraded together). (locations.upgradeEdition)
+   *
+   * @param string $parent The parent resource name that identifies the admin
+   * project and location, in the format
+   * `projects/{project}/locations/{location}`. For example,
+   * `projects/myproject/locations/us-west1`.
+   * @param UpgradeEditionRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return UpgradeEditionResponse
+   * @throws \Google\Service\Exception
+   */
+  public function upgradeEdition($parent, UpgradeEditionRequest $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('upgradeEdition', [$params], UpgradeEditionResponse::class);
   }
 }
 

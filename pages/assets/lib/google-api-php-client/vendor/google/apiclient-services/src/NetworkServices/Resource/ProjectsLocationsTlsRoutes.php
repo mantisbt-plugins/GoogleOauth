@@ -35,13 +35,14 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * Creates a new TlsRoute in a given project and location. (tlsRoutes.create)
    *
    * @param string $parent Required. The parent resource of the TlsRoute. Must be
-   * in the format `projects/locations/global`.
+   * in the format `projects/locations`.
    * @param TlsRoute $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string tlsRouteId Required. Short name of the TlsRoute resource to
-   * be created. E.g. TODO(Add an example).
+   * be created.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, TlsRoute $postBody, $optParams = [])
   {
@@ -53,9 +54,10 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * Deletes a single TlsRoute. (tlsRoutes.delete)
    *
    * @param string $name Required. A name of the TlsRoute to delete. Must be in
-   * the format `projects/locations/global/tlsRoutes`.
+   * the format `projects/locations/tlsRoutes`.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -67,9 +69,10 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * Gets details of a single TlsRoute. (tlsRoutes.get)
    *
    * @param string $name Required. A name of the TlsRoute to get. Must be in the
-   * format `projects/locations/global/tlsRoutes`.
+   * format `projects/locations/tlsRoutes`.
    * @param array $optParams Optional parameters.
    * @return TlsRoute
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -82,8 +85,7 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * (tlsRoutes.listProjectsLocationsTlsRoutes)
    *
    * @param string $parent Required. The project and location from which the
-   * TlsRoutes should be listed, specified in the format
-   * `projects/locations/global`.
+   * TlsRoutes should be listed, specified in the format `projects/locations`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize Maximum number of TlsRoutes to return per call.
@@ -91,7 +93,11 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * `ListTlsRoutesResponse` Indicates that this is a continuation of a prior
    * `ListTlsRoutes` call, and that the system should return the next page of
    * data.
+   * @opt_param bool returnPartialSuccess Optional. If true, allow partial
+   * responses for multi-regional Aggregated List requests. Otherwise if one of
+   * the locations is down or unreachable, the Aggregated List request will fail.
    * @return ListTlsRoutesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsTlsRoutes($parent, $optParams = [])
   {
@@ -102,8 +108,8 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
   /**
    * Updates the parameters of a single TlsRoute. (tlsRoutes.patch)
    *
-   * @param string $name Required. Name of the TlsRoute resource. It matches
-   * pattern `projects/locations/global/tlsRoutes/tls_route_name>`.
+   * @param string $name Identifier. Name of the TlsRoute resource. It matches
+   * pattern `projects/locations/tlsRoutes/tls_route_name>`.
    * @param TlsRoute $postBody
    * @param array $optParams Optional parameters.
    *
@@ -113,6 +119,7 @@ class ProjectsLocationsTlsRoutes extends \Google\Service\Resource
    * request. A field will be overwritten if it is in the mask. If the user does
    * not provide a mask then all fields will be overwritten.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, TlsRoute $postBody, $optParams = [])
   {

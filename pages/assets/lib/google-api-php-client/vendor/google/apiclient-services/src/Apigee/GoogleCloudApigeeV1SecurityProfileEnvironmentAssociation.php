@@ -20,20 +20,32 @@ namespace Google\Service\Apigee;
 class GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation extends \Google\Model
 {
   /**
+   * Output only. The time when environment was attached to the security
+   * profile.
+   *
    * @var string
    */
   public $attachTime;
   /**
+   * Immutable. The environment ID that the profile is attached to, e.g. `prod`.
+   * This is the bare environment ID, not a full resource name; see b/288477507.
+   *
    * @var string
    */
   public $name;
   /**
+   * DEPRECATED: DO NOT USE Revision ID of the security profile.
+   *
+   * @deprecated
    * @var string
    */
   public $securityProfileRevisionId;
 
   /**
-   * @param string
+   * Output only. The time when environment was attached to the security
+   * profile.
+   *
+   * @param string $attachTime
    */
   public function setAttachTime($attachTime)
   {
@@ -47,7 +59,10 @@ class GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation extends \Google\M
     return $this->attachTime;
   }
   /**
-   * @param string
+   * Immutable. The environment ID that the profile is attached to, e.g. `prod`.
+   * This is the bare environment ID, not a full resource name; see b/288477507.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -61,13 +76,17 @@ class GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation extends \Google\M
     return $this->name;
   }
   /**
-   * @param string
+   * DEPRECATED: DO NOT USE Revision ID of the security profile.
+   *
+   * @deprecated
+   * @param string $securityProfileRevisionId
    */
   public function setSecurityProfileRevisionId($securityProfileRevisionId)
   {
     $this->securityProfileRevisionId = $securityProfileRevisionId;
   }
   /**
+   * @deprecated
    * @return string
    */
   public function getSecurityProfileRevisionId()

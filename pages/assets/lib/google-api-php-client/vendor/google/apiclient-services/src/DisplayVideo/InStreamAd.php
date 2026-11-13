@@ -22,12 +22,17 @@ class InStreamAd extends \Google\Model
   protected $commonInStreamAttributeType = CommonInStreamAttribute::class;
   protected $commonInStreamAttributeDataType = '';
   /**
+   * Optional. The custom parameters and accompanying values to add to the
+   * tracking URL.
+   *
    * @var string[]
    */
   public $customParameters;
 
   /**
-   * @param CommonInStreamAttribute
+   * Required. Common ad attributes.
+   *
+   * @param CommonInStreamAttribute $commonInStreamAttribute
    */
   public function setCommonInStreamAttribute(CommonInStreamAttribute $commonInStreamAttribute)
   {
@@ -41,7 +46,10 @@ class InStreamAd extends \Google\Model
     return $this->commonInStreamAttribute;
   }
   /**
-   * @param string[]
+   * Optional. The custom parameters and accompanying values to add to the
+   * tracking URL.
+   *
+   * @param string[] $customParameters
    */
   public function setCustomParameters($customParameters)
   {

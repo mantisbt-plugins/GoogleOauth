@@ -17,31 +17,190 @@
 
 namespace Google\Service\Container;
 
-class NodeNetworkConfig extends \Google\Model
+class NodeNetworkConfig extends \Google\Collection
 {
   /**
+   * Default value.
+   */
+  public const DATAPATH_PROVIDER_DATAPATH_PROVIDER_UNSPECIFIED = 'DATAPATH_PROVIDER_UNSPECIFIED';
+  /**
+   * Use the IPTables implementation based on kube-proxy.
+   */
+  public const DATAPATH_PROVIDER_LEGACY_DATAPATH = 'LEGACY_DATAPATH';
+  /**
+   * Use the eBPF based GKE Dataplane V2 with additional features. See the [GKE
+   * Dataplane V2 documentation](https://cloud.google.com/kubernetes-
+   * engine/docs/how-to/dataplane-v2) for more.
+   */
+  public const DATAPATH_PROVIDER_ADVANCED_DATAPATH = 'ADVANCED_DATAPATH';
+  /**
+   * Cluster has some existing nodes but new nodes should use ADVANCED_DATAPATH.
+   */
+  public const DATAPATH_PROVIDER_MIGRATE_TO_ADVANCED_DATAPATH = 'MIGRATE_TO_ADVANCED_DATAPATH';
+  /**
+   * Cluster has some existing nodes but new nodes should use LEGACY_DATAPATH.
+   */
+  public const DATAPATH_PROVIDER_MIGRATE_TO_LEGACY_DATAPATH = 'MIGRATE_TO_LEGACY_DATAPATH';
+  protected $collection_key = 'additionalPodNetworkConfigs';
+  /**
+   * Immutable. The accelerator network profile for the node pool. For now the
+   * only valid value is "auto". If specified, the network configuration of the
+   * nodes in this node pool will be managed by this profile for the supported
+   * machine types, zone, etc.
+   *
+   * @var string
+   */
+  public $acceleratorNetworkProfile;
+  protected $additionalNodeNetworkConfigsType = AdditionalNodeNetworkConfig::class;
+  protected $additionalNodeNetworkConfigsDataType = 'array';
+  protected $additionalPodNetworkConfigsType = AdditionalPodNetworkConfig::class;
+  protected $additionalPodNetworkConfigsDataType = 'array';
+  /**
+   * Input only. Whether to create a new range for pod IPs in this node pool.
+   * Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are
+   * not specified. If neither `create_pod_range` or `pod_range` are specified,
+   * the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`)
+   * is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true.
+   * This field cannot be changed after the node pool has been created.
+   *
    * @var bool
    */
   public $createPodRange;
   /**
+   * The datapath provider for this node pool.
+   *
+   * @var string
+   */
+  public $datapathProvider;
+  /**
+   * Whether nodes have internal IP addresses only. If enable_private_nodes is
+   * not specified, then the value is derived from
+   * Cluster.NetworkConfig.default_enable_private_nodes
+   *
    * @var bool
    */
   public $enablePrivateNodes;
+  /**
+   * Optional. Immutable. The VPC network for the node pool.
+   *
+   * @var string
+   */
+  public $network;
   protected $networkPerformanceConfigType = NetworkPerformanceConfig::class;
   protected $networkPerformanceConfigDataType = '';
+  protected $networkTierConfigType = NetworkTierConfig::class;
+  protected $networkTierConfigDataType = '';
   protected $podCidrOverprovisionConfigType = PodCIDROverprovisionConfig::class;
   protected $podCidrOverprovisionConfigDataType = '';
   /**
+   * The IP address range for pod IPs in this node pool. Only applicable if
+   * `create_pod_range` is true. Set to blank to have a range chosen with the
+   * default size. Set to /netmask (e.g. `/14`) to have a range chosen with a
+   * specific netmask. Set to a
+   * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+   * notation (e.g. `10.96.0.0/14`) to pick a specific range to use. Only
+   * applicable if `ip_allocation_policy.use_ip_aliases` is true. This field
+   * cannot be changed after the node pool has been created.
+   *
    * @var string
    */
   public $podIpv4CidrBlock;
   /**
+   * Output only. The utilization of the IPv4 range for the pod. The ratio is
+   * Usage/[Total number of IPs in the secondary range],
+   * Usage=numNodes*numZones*podIPsPerNode.
+   *
+   * @var 
+   */
+  public $podIpv4RangeUtilization;
+  /**
+   * The ID of the secondary range for pod IPs. If `create_pod_range` is true,
+   * this ID is used for the new range. If `create_pod_range` is false, uses an
+   * existing secondary range with this ID. Only applicable if
+   * `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed
+   * after the node pool has been created.
+   *
    * @var string
    */
   public $podRange;
+  /**
+   * Optional. The subnetwork name/path for the node pool. Format:
+   * projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster
+   * is associated with multiple subnetworks, the subnetwork can be either: - A
+   * user supplied subnetwork name during node pool creation (e.g., `my-
+   * subnet`). The name must be between 1 and 63 characters long, start with a
+   * letter, contain only letters, numbers, and hyphens, and end with a letter
+   * or a number. - A full subnetwork path during node pool creation, such as
+   * `projects/gke-project/regions/us-central1/subnetworks/my-subnet` - A
+   * subnetwork path picked based on the IP utilization during node pool
+   * creation and is immutable.
+   *
+   * @var string
+   */
+  public $subnetwork;
 
   /**
-   * @param bool
+   * Immutable. The accelerator network profile for the node pool. For now the
+   * only valid value is "auto". If specified, the network configuration of the
+   * nodes in this node pool will be managed by this profile for the supported
+   * machine types, zone, etc.
+   *
+   * @param string $acceleratorNetworkProfile
+   */
+  public function setAcceleratorNetworkProfile($acceleratorNetworkProfile)
+  {
+    $this->acceleratorNetworkProfile = $acceleratorNetworkProfile;
+  }
+  /**
+   * @return string
+   */
+  public function getAcceleratorNetworkProfile()
+  {
+    return $this->acceleratorNetworkProfile;
+  }
+  /**
+   * We specify the additional node networks for this node pool using this list.
+   * Each node network corresponds to an additional interface
+   *
+   * @param AdditionalNodeNetworkConfig[] $additionalNodeNetworkConfigs
+   */
+  public function setAdditionalNodeNetworkConfigs($additionalNodeNetworkConfigs)
+  {
+    $this->additionalNodeNetworkConfigs = $additionalNodeNetworkConfigs;
+  }
+  /**
+   * @return AdditionalNodeNetworkConfig[]
+   */
+  public function getAdditionalNodeNetworkConfigs()
+  {
+    return $this->additionalNodeNetworkConfigs;
+  }
+  /**
+   * We specify the additional pod networks for this node pool using this list.
+   * Each pod network corresponds to an additional alias IP range for the node
+   *
+   * @param AdditionalPodNetworkConfig[] $additionalPodNetworkConfigs
+   */
+  public function setAdditionalPodNetworkConfigs($additionalPodNetworkConfigs)
+  {
+    $this->additionalPodNetworkConfigs = $additionalPodNetworkConfigs;
+  }
+  /**
+   * @return AdditionalPodNetworkConfig[]
+   */
+  public function getAdditionalPodNetworkConfigs()
+  {
+    return $this->additionalPodNetworkConfigs;
+  }
+  /**
+   * Input only. Whether to create a new range for pod IPs in this node pool.
+   * Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are
+   * not specified. If neither `create_pod_range` or `pod_range` are specified,
+   * the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`)
+   * is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true.
+   * This field cannot be changed after the node pool has been created.
+   *
+   * @param bool $createPodRange
    */
   public function setCreatePodRange($createPodRange)
   {
@@ -55,7 +214,30 @@ class NodeNetworkConfig extends \Google\Model
     return $this->createPodRange;
   }
   /**
-   * @param bool
+   * The datapath provider for this node pool.
+   *
+   * Accepted values: DATAPATH_PROVIDER_UNSPECIFIED, LEGACY_DATAPATH,
+   * ADVANCED_DATAPATH, MIGRATE_TO_ADVANCED_DATAPATH, MIGRATE_TO_LEGACY_DATAPATH
+   *
+   * @param self::DATAPATH_PROVIDER_* $datapathProvider
+   */
+  public function setDatapathProvider($datapathProvider)
+  {
+    $this->datapathProvider = $datapathProvider;
+  }
+  /**
+   * @return self::DATAPATH_PROVIDER_*
+   */
+  public function getDatapathProvider()
+  {
+    return $this->datapathProvider;
+  }
+  /**
+   * Whether nodes have internal IP addresses only. If enable_private_nodes is
+   * not specified, then the value is derived from
+   * Cluster.NetworkConfig.default_enable_private_nodes
+   *
+   * @param bool $enablePrivateNodes
    */
   public function setEnablePrivateNodes($enablePrivateNodes)
   {
@@ -69,7 +251,25 @@ class NodeNetworkConfig extends \Google\Model
     return $this->enablePrivateNodes;
   }
   /**
-   * @param NetworkPerformanceConfig
+   * Optional. Immutable. The VPC network for the node pool.
+   *
+   * @param string $network
+   */
+  public function setNetwork($network)
+  {
+    $this->network = $network;
+  }
+  /**
+   * @return string
+   */
+  public function getNetwork()
+  {
+    return $this->network;
+  }
+  /**
+   * Network bandwidth tier configuration.
+   *
+   * @param NetworkPerformanceConfig $networkPerformanceConfig
    */
   public function setNetworkPerformanceConfig(NetworkPerformanceConfig $networkPerformanceConfig)
   {
@@ -83,7 +283,33 @@ class NodeNetworkConfig extends \Google\Model
     return $this->networkPerformanceConfig;
   }
   /**
-   * @param PodCIDROverprovisionConfig
+   * Output only. The network tier configuration for the node pool inherits from
+   * the cluster-level configuration and remains immutable throughout the node
+   * pool's lifecycle, including during upgrades.
+   *
+   * @param NetworkTierConfig $networkTierConfig
+   */
+  public function setNetworkTierConfig(NetworkTierConfig $networkTierConfig)
+  {
+    $this->networkTierConfig = $networkTierConfig;
+  }
+  /**
+   * @return NetworkTierConfig
+   */
+  public function getNetworkTierConfig()
+  {
+    return $this->networkTierConfig;
+  }
+  /**
+   * [PRIVATE FIELD] Pod CIDR size overprovisioning config for the node pool.
+   * Pod CIDR size per node depends on max_pods_per_node. By default, the value
+   * of max_pods_per_node is rounded off to next power of 2 and we then double
+   * that to get the size of pod CIDR block per node. Example: max_pods_per_node
+   * of 30 would result in 64 IPs (/26). This config can disable the doubling of
+   * IPs (we still round off to next power of 2) Example: max_pods_per_node of
+   * 30 will result in 32 IPs (/27) when overprovisioning is disabled.
+   *
+   * @param PodCIDROverprovisionConfig $podCidrOverprovisionConfig
    */
   public function setPodCidrOverprovisionConfig(PodCIDROverprovisionConfig $podCidrOverprovisionConfig)
   {
@@ -97,7 +323,16 @@ class NodeNetworkConfig extends \Google\Model
     return $this->podCidrOverprovisionConfig;
   }
   /**
-   * @param string
+   * The IP address range for pod IPs in this node pool. Only applicable if
+   * `create_pod_range` is true. Set to blank to have a range chosen with the
+   * default size. Set to /netmask (e.g. `/14`) to have a range chosen with a
+   * specific netmask. Set to a
+   * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+   * notation (e.g. `10.96.0.0/14`) to pick a specific range to use. Only
+   * applicable if `ip_allocation_policy.use_ip_aliases` is true. This field
+   * cannot be changed after the node pool has been created.
+   *
+   * @param string $podIpv4CidrBlock
    */
   public function setPodIpv4CidrBlock($podIpv4CidrBlock)
   {
@@ -110,8 +345,22 @@ class NodeNetworkConfig extends \Google\Model
   {
     return $this->podIpv4CidrBlock;
   }
+  public function setPodIpv4RangeUtilization($podIpv4RangeUtilization)
+  {
+    $this->podIpv4RangeUtilization = $podIpv4RangeUtilization;
+  }
+  public function getPodIpv4RangeUtilization()
+  {
+    return $this->podIpv4RangeUtilization;
+  }
   /**
-   * @param string
+   * The ID of the secondary range for pod IPs. If `create_pod_range` is true,
+   * this ID is used for the new range. If `create_pod_range` is false, uses an
+   * existing secondary range with this ID. Only applicable if
+   * `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed
+   * after the node pool has been created.
+   *
+   * @param string $podRange
    */
   public function setPodRange($podRange)
   {
@@ -123,6 +372,31 @@ class NodeNetworkConfig extends \Google\Model
   public function getPodRange()
   {
     return $this->podRange;
+  }
+  /**
+   * Optional. The subnetwork name/path for the node pool. Format:
+   * projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster
+   * is associated with multiple subnetworks, the subnetwork can be either: - A
+   * user supplied subnetwork name during node pool creation (e.g., `my-
+   * subnet`). The name must be between 1 and 63 characters long, start with a
+   * letter, contain only letters, numbers, and hyphens, and end with a letter
+   * or a number. - A full subnetwork path during node pool creation, such as
+   * `projects/gke-project/regions/us-central1/subnetworks/my-subnet` - A
+   * subnetwork path picked based on the IP utilization during node pool
+   * creation and is immutable.
+   *
+   * @param string $subnetwork
+   */
+  public function setSubnetwork($subnetwork)
+  {
+    $this->subnetwork = $subnetwork;
+  }
+  /**
+   * @return string
+   */
+  public function getSubnetwork()
+  {
+    return $this->subnetwork;
   }
 }
 

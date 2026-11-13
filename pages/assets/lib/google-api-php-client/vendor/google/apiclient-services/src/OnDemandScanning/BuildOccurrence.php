@@ -19,6 +19,8 @@ namespace Google\Service\OnDemandScanning;
 
 class BuildOccurrence extends \Google\Model
 {
+  protected $inTotoSlsaProvenanceV1Type = InTotoSlsaProvenanceV1::class;
+  protected $inTotoSlsaProvenanceV1DataType = '';
   protected $intotoProvenanceType = InTotoProvenance::class;
   protected $intotoProvenanceDataType = '';
   protected $intotoStatementType = InTotoStatement::class;
@@ -26,12 +28,43 @@ class BuildOccurrence extends \Google\Model
   protected $provenanceType = BuildProvenance::class;
   protected $provenanceDataType = '';
   /**
+   * Serialized JSON representation of the provenance, used in generating the
+   * build signature in the corresponding build note. After verifying the
+   * signature, `provenance_bytes` can be unmarshalled and compared to the
+   * provenance to confirm that it is unchanged. A base64-encoded string
+   * representation of the provenance bytes is used for the signature in order
+   * to interoperate with openssl which expects this format for signature
+   * verification. The serialized form is captured both to avoid ambiguity in
+   * how the provenance is marshalled to json as well to prevent
+   * incompatibilities with future changes.
+   *
    * @var string
    */
   public $provenanceBytes;
 
   /**
-   * @param InTotoProvenance
+   * In-Toto Slsa Provenance V1 represents a slsa provenance meeting the slsa
+   * spec, wrapped in an in-toto statement. This allows for direct jsonification
+   * of a to-spec in-toto slsa statement with a to-spec slsa provenance.
+   *
+   * @param InTotoSlsaProvenanceV1 $inTotoSlsaProvenanceV1
+   */
+  public function setInTotoSlsaProvenanceV1(InTotoSlsaProvenanceV1 $inTotoSlsaProvenanceV1)
+  {
+    $this->inTotoSlsaProvenanceV1 = $inTotoSlsaProvenanceV1;
+  }
+  /**
+   * @return InTotoSlsaProvenanceV1
+   */
+  public function getInTotoSlsaProvenanceV1()
+  {
+    return $this->inTotoSlsaProvenanceV1;
+  }
+  /**
+   * Deprecated. See InTotoStatement for the replacement. In-toto Provenance
+   * representation as defined in spec.
+   *
+   * @param InTotoProvenance $intotoProvenance
    */
   public function setIntotoProvenance(InTotoProvenance $intotoProvenance)
   {
@@ -45,7 +78,11 @@ class BuildOccurrence extends \Google\Model
     return $this->intotoProvenance;
   }
   /**
-   * @param InTotoStatement
+   * In-toto Statement representation as defined in spec. The intoto_statement
+   * can contain any type of provenance. The serialized payload of the statement
+   * can be stored and signed in the Occurrence's envelope.
+   *
+   * @param InTotoStatement $intotoStatement
    */
   public function setIntotoStatement(InTotoStatement $intotoStatement)
   {
@@ -59,7 +96,9 @@ class BuildOccurrence extends \Google\Model
     return $this->intotoStatement;
   }
   /**
-   * @param BuildProvenance
+   * The actual provenance for the build.
+   *
+   * @param BuildProvenance $provenance
    */
   public function setProvenance(BuildProvenance $provenance)
   {
@@ -73,7 +112,17 @@ class BuildOccurrence extends \Google\Model
     return $this->provenance;
   }
   /**
-   * @param string
+   * Serialized JSON representation of the provenance, used in generating the
+   * build signature in the corresponding build note. After verifying the
+   * signature, `provenance_bytes` can be unmarshalled and compared to the
+   * provenance to confirm that it is unchanged. A base64-encoded string
+   * representation of the provenance bytes is used for the signature in order
+   * to interoperate with openssl which expects this format for signature
+   * verification. The serialized form is captured both to avoid ambiguity in
+   * how the provenance is marshalled to json as well to prevent
+   * incompatibilities with future changes.
+   *
+   * @param string $provenanceBytes
    */
   public function setProvenanceBytes($provenanceBytes)
   {

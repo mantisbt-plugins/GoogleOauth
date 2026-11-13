@@ -20,14 +20,20 @@ namespace Google\Service\DoubleClickBidManager;
 class Options extends \Google\Model
 {
   /**
+   * Whether to include data for audience lists specifically targeted by
+   * filtered line items or insertion orders. Requires the use of
+   * `FILTER_INSERTION_ORDER` or `FILTER_LINE_ITEM` filters.
+   *
    * @var bool
    */
   public $includeOnlyTargetedUserLists;
-  protected $pathQueryOptionsType = PathQueryOptions::class;
-  protected $pathQueryOptionsDataType = '';
 
   /**
-   * @param bool
+   * Whether to include data for audience lists specifically targeted by
+   * filtered line items or insertion orders. Requires the use of
+   * `FILTER_INSERTION_ORDER` or `FILTER_LINE_ITEM` filters.
+   *
+   * @param bool $includeOnlyTargetedUserLists
    */
   public function setIncludeOnlyTargetedUserLists($includeOnlyTargetedUserLists)
   {
@@ -39,20 +45,6 @@ class Options extends \Google\Model
   public function getIncludeOnlyTargetedUserLists()
   {
     return $this->includeOnlyTargetedUserLists;
-  }
-  /**
-   * @param PathQueryOptions
-   */
-  public function setPathQueryOptions(PathQueryOptions $pathQueryOptions)
-  {
-    $this->pathQueryOptions = $pathQueryOptions;
-  }
-  /**
-   * @return PathQueryOptions
-   */
-  public function getPathQueryOptions()
-  {
-    return $this->pathQueryOptions;
   }
 }
 

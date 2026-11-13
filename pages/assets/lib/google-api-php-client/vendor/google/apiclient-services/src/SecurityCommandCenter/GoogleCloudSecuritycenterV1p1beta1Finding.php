@@ -19,6 +19,14 @@ namespace Google\Service\SecurityCommandCenter;
 
 class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
 {
+  public const SEVERITY_SEVERITY_UNSPECIFIED = 'SEVERITY_UNSPECIFIED';
+  public const SEVERITY_CRITICAL = 'CRITICAL';
+  public const SEVERITY_HIGH = 'HIGH';
+  public const SEVERITY_MEDIUM = 'MEDIUM';
+  public const SEVERITY_LOW = 'LOW';
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  public const STATE_ACTIVE = 'ACTIVE';
+  public const STATE_INACTIVE = 'INACTIVE';
   /**
    * @var string
    */
@@ -67,7 +75,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
   public $state;
 
   /**
-   * @param string
+   * @param string $canonicalName
    */
   public function setCanonicalName($canonicalName)
   {
@@ -81,7 +89,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
     return $this->canonicalName;
   }
   /**
-   * @param string
+   * @param string $category
    */
   public function setCategory($category)
   {
@@ -95,7 +103,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
     return $this->category;
   }
   /**
-   * @param string
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -109,7 +117,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
     return $this->createTime;
   }
   /**
-   * @param string
+   * @param string $eventTime
    */
   public function setEventTime($eventTime)
   {
@@ -123,7 +131,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
     return $this->eventTime;
   }
   /**
-   * @param string
+   * @param string $externalUri
    */
   public function setExternalUri($externalUri)
   {
@@ -137,7 +145,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
     return $this->externalUri;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -151,7 +159,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * @param string $parent
    */
   public function setParent($parent)
   {
@@ -165,7 +173,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
     return $this->parent;
   }
   /**
-   * @param string
+   * @param string $resourceName
    */
   public function setResourceName($resourceName)
   {
@@ -179,7 +187,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
     return $this->resourceName;
   }
   /**
-   * @param GoogleCloudSecuritycenterV1p1beta1SecurityMarks
+   * @param GoogleCloudSecuritycenterV1p1beta1SecurityMarks $securityMarks
    */
   public function setSecurityMarks(GoogleCloudSecuritycenterV1p1beta1SecurityMarks $securityMarks)
   {
@@ -193,21 +201,21 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
     return $this->securityMarks;
   }
   /**
-   * @param string
+   * @param self::SEVERITY_* $severity
    */
   public function setSeverity($severity)
   {
     $this->severity = $severity;
   }
   /**
-   * @return string
+   * @return self::SEVERITY_*
    */
   public function getSeverity()
   {
     return $this->severity;
   }
   /**
-   * @param array[]
+   * @param array[] $sourceProperties
    */
   public function setSourceProperties($sourceProperties)
   {
@@ -221,14 +229,14 @@ class GoogleCloudSecuritycenterV1p1beta1Finding extends \Google\Model
     return $this->sourceProperties;
   }
   /**
-   * @param string
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {

@@ -30,7 +30,7 @@ class GoogleCloudDialogflowCxV3ResponseMessageText extends \Google\Collection
   public $text;
 
   /**
-   * @param bool
+   * @param bool $allowPlaybackInterruption
    */
   public function setAllowPlaybackInterruption($allowPlaybackInterruption)
   {
@@ -44,7 +44,7 @@ class GoogleCloudDialogflowCxV3ResponseMessageText extends \Google\Collection
     return $this->allowPlaybackInterruption;
   }
   /**
-   * @param string[]
+   * @param string[] $text
    */
   public function setText($text)
   {

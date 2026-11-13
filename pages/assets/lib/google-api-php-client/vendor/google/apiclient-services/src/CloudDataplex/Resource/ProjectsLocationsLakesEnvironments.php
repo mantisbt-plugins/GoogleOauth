@@ -17,13 +17,10 @@
 
 namespace Google\Service\CloudDataplex\Resource;
 
-use Google\Service\CloudDataplex\GoogleCloudDataplexV1Environment;
-use Google\Service\CloudDataplex\GoogleCloudDataplexV1ListEnvironmentsResponse;
 use Google\Service\CloudDataplex\GoogleIamV1Policy;
 use Google\Service\CloudDataplex\GoogleIamV1SetIamPolicyRequest;
 use Google\Service\CloudDataplex\GoogleIamV1TestIamPermissionsRequest;
 use Google\Service\CloudDataplex\GoogleIamV1TestIamPermissionsResponse;
-use Google\Service\CloudDataplex\GoogleLongrunningOperation;
 
 /**
  * The "environments" collection of methods.
@@ -35,59 +32,6 @@ use Google\Service\CloudDataplex\GoogleLongrunningOperation;
  */
 class ProjectsLocationsLakesEnvironments extends \Google\Service\Resource
 {
-  /**
-   * Create an environment resource. (environments.create)
-   *
-   * @param string $parent Required. The resource name of the parent lake:
-   * projects/{project_id}/locations/{location_id}/lakes/{lake_id}.
-   * @param GoogleCloudDataplexV1Environment $postBody
-   * @param array $optParams Optional parameters.
-   *
-   * @opt_param string environmentId Required. Environment identifier. * Must
-   * contain only lowercase letters, numbers and hyphens. * Must start with a
-   * letter. * Must be between 1-63 characters. * Must end with a number or a
-   * letter. * Must be unique within the lake.
-   * @opt_param bool validateOnly Optional. Only validate the request, but do not
-   * perform mutations. The default is false.
-   * @return GoogleLongrunningOperation
-   */
-  public function create($parent, GoogleCloudDataplexV1Environment $postBody, $optParams = [])
-  {
-    $params = ['parent' => $parent, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('create', [$params], GoogleLongrunningOperation::class);
-  }
-  /**
-   * Delete the environment resource. All the child resources must have been
-   * deleted before environment deletion can be initiated. (environments.delete)
-   *
-   * @param string $name Required. The resource name of the environment: projects/
-   * {project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environmen
-   * t_id}.
-   * @param array $optParams Optional parameters.
-   * @return GoogleLongrunningOperation
-   */
-  public function delete($name, $optParams = [])
-  {
-    $params = ['name' => $name];
-    $params = array_merge($params, $optParams);
-    return $this->call('delete', [$params], GoogleLongrunningOperation::class);
-  }
-  /**
-   * Get environment resource. (environments.get)
-   *
-   * @param string $name Required. The resource name of the environment: projects/
-   * {project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environmen
-   * t_id}.
-   * @param array $optParams Optional parameters.
-   * @return GoogleCloudDataplexV1Environment
-   */
-  public function get($name, $optParams = [])
-  {
-    $params = ['name' => $name];
-    $params = array_merge($params, $optParams);
-    return $this->call('get', [$params], GoogleCloudDataplexV1Environment::class);
-  }
   /**
    * Gets the access control policy for a resource. Returns an empty policy if the
    * resource exists and does not have a policy set. (environments.getIamPolicy)
@@ -110,58 +54,13 @@ class ProjectsLocationsLakesEnvironments extends \Google\Service\Resource
    * IAM policies, see the IAM documentation
    * (https://cloud.google.com/iam/help/conditions/resource-policies).
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
     $params = ['resource' => $resource];
     $params = array_merge($params, $optParams);
     return $this->call('getIamPolicy', [$params], GoogleIamV1Policy::class);
-  }
-  /**
-   * Lists environments under the given lake.
-   * (environments.listProjectsLocationsLakesEnvironments)
-   *
-   * @param string $parent Required. The resource name of the parent lake:
-   * projects/{project_id}/locations/{location_id}/lakes/{lake_id}.
-   * @param array $optParams Optional parameters.
-   *
-   * @opt_param string filter Optional. Filter request.
-   * @opt_param string orderBy Optional. Order by fields for the result.
-   * @opt_param int pageSize Optional. Maximum number of environments to return.
-   * The service may return fewer than this value. If unspecified, at most 10
-   * environments will be returned. The maximum value is 1000; values above 1000
-   * will be coerced to 1000.
-   * @opt_param string pageToken Optional. Page token received from a previous
-   * ListEnvironments call. Provide this to retrieve the subsequent page. When
-   * paginating, all other parameters provided to ListEnvironments must match the
-   * call that provided the page token.
-   * @return GoogleCloudDataplexV1ListEnvironmentsResponse
-   */
-  public function listProjectsLocationsLakesEnvironments($parent, $optParams = [])
-  {
-    $params = ['parent' => $parent];
-    $params = array_merge($params, $optParams);
-    return $this->call('list', [$params], GoogleCloudDataplexV1ListEnvironmentsResponse::class);
-  }
-  /**
-   * Update the environment resource. (environments.patch)
-   *
-   * @param string $name Output only. The relative resource name of the
-   * environment, of the form: projects/{project_id}/locations/{location_id}/lakes
-   * /{lake_id}/environment/{environment_id}
-   * @param GoogleCloudDataplexV1Environment $postBody
-   * @param array $optParams Optional parameters.
-   *
-   * @opt_param string updateMask Required. Mask of fields to update.
-   * @opt_param bool validateOnly Optional. Only validate the request, but do not
-   * perform mutations. The default is false.
-   * @return GoogleLongrunningOperation
-   */
-  public function patch($name, GoogleCloudDataplexV1Environment $postBody, $optParams = [])
-  {
-    $params = ['name' => $name, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('patch', [$params], GoogleLongrunningOperation::class);
   }
   /**
    * Sets the access control policy on the specified resource. Replaces any
@@ -175,6 +74,7 @@ class ProjectsLocationsLakesEnvironments extends \Google\Service\Resource
    * @param GoogleIamV1SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, GoogleIamV1SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -197,6 +97,7 @@ class ProjectsLocationsLakesEnvironments extends \Google\Service\Resource
    * @param GoogleIamV1TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
   {

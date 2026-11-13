@@ -45,7 +45,7 @@ class GoogleCloudDialogflowV2FaqAnswer extends \Google\Model
   public $source;
 
   /**
-   * @param string
+   * @param string $answer
    */
   public function setAnswer($answer)
   {
@@ -59,7 +59,7 @@ class GoogleCloudDialogflowV2FaqAnswer extends \Google\Model
     return $this->answer;
   }
   /**
-   * @param string
+   * @param string $answerRecord
    */
   public function setAnswerRecord($answerRecord)
   {
@@ -73,7 +73,7 @@ class GoogleCloudDialogflowV2FaqAnswer extends \Google\Model
     return $this->answerRecord;
   }
   /**
-   * @param float
+   * @param float $confidence
    */
   public function setConfidence($confidence)
   {
@@ -87,7 +87,7 @@ class GoogleCloudDialogflowV2FaqAnswer extends \Google\Model
     return $this->confidence;
   }
   /**
-   * @param string[]
+   * @param string[] $metadata
    */
   public function setMetadata($metadata)
   {
@@ -101,7 +101,7 @@ class GoogleCloudDialogflowV2FaqAnswer extends \Google\Model
     return $this->metadata;
   }
   /**
-   * @param string
+   * @param string $question
    */
   public function setQuestion($question)
   {
@@ -115,7 +115,7 @@ class GoogleCloudDialogflowV2FaqAnswer extends \Google\Model
     return $this->question;
   }
   /**
-   * @param string
+   * @param string $source
    */
   public function setSource($source)
   {

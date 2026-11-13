@@ -19,6 +19,9 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3SessionEntityType extends \Google\Collection
 {
+  public const ENTITY_OVERRIDE_MODE_ENTITY_OVERRIDE_MODE_UNSPECIFIED = 'ENTITY_OVERRIDE_MODE_UNSPECIFIED';
+  public const ENTITY_OVERRIDE_MODE_ENTITY_OVERRIDE_MODE_OVERRIDE = 'ENTITY_OVERRIDE_MODE_OVERRIDE';
+  public const ENTITY_OVERRIDE_MODE_ENTITY_OVERRIDE_MODE_SUPPLEMENT = 'ENTITY_OVERRIDE_MODE_SUPPLEMENT';
   protected $collection_key = 'entities';
   protected $entitiesType = GoogleCloudDialogflowCxV3EntityTypeEntity::class;
   protected $entitiesDataType = 'array';
@@ -32,7 +35,7 @@ class GoogleCloudDialogflowCxV3SessionEntityType extends \Google\Collection
   public $name;
 
   /**
-   * @param GoogleCloudDialogflowCxV3EntityTypeEntity[]
+   * @param GoogleCloudDialogflowCxV3EntityTypeEntity[] $entities
    */
   public function setEntities($entities)
   {
@@ -46,21 +49,21 @@ class GoogleCloudDialogflowCxV3SessionEntityType extends \Google\Collection
     return $this->entities;
   }
   /**
-   * @param string
+   * @param self::ENTITY_OVERRIDE_MODE_* $entityOverrideMode
    */
   public function setEntityOverrideMode($entityOverrideMode)
   {
     $this->entityOverrideMode = $entityOverrideMode;
   }
   /**
-   * @return string
+   * @return self::ENTITY_OVERRIDE_MODE_*
    */
   public function getEntityOverrideMode()
   {
     return $this->entityOverrideMode;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {

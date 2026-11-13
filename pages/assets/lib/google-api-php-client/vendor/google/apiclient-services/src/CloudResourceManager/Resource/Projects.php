@@ -40,8 +40,8 @@ use Google\Service\CloudResourceManager\UndeleteProjectRequest;
 class Projects extends \Google\Service\Resource
 {
   /**
-   * Request that a new project be created. The result is an `Operation` which can
-   * be used to track the creation process. This process usually takes a few
+   * Requests that a new project be created. The result is an `Operation` which
+   * can be used to track the creation process. This process usually takes a few
    * seconds, but can sometimes take much longer. The tracking `Operation` is
    * automatically deleted after a few hours, so there is no need to call
    * `DeleteOperation`. (projects.create)
@@ -49,6 +49,7 @@ class Projects extends \Google\Service\Resource
    * @param Project $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create(Project $postBody, $optParams = [])
   {
@@ -66,9 +67,7 @@ class Projects extends \Google\Service\Resource
    * checked by retrieving the project with GetProject, and the project remains
    * visible to ListProjects. However, you cannot update the project. After the
    * deletion completes, the project is not retrievable by the GetProject,
-   * ListProjects, and SearchProjects methods. This method behaves idempotently,
-   * such that deleting a `DELETE_REQUESTED` project will not cause an error, but
-   * also won't do anything. The caller must have
+   * ListProjects, and SearchProjects methods. The caller must have
    * `resourcemanager.projects.delete` permissions for this project.
    * (projects.delete)
    *
@@ -76,6 +75,7 @@ class Projects extends \Google\Service\Resource
    * `projects/415104041262`).
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -92,6 +92,7 @@ class Projects extends \Google\Service\Resource
    * `projects/415104041262`).
    * @param array $optParams Optional parameters.
    * @return Project
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -101,8 +102,9 @@ class Projects extends \Google\Service\Resource
   }
   /**
    * Returns the IAM access control policy for the specified project, in the
-   * format `projects/{ProjectIdOrNumber}` e.g. projects/123. Permission is denied
-   * if the policy or the resource do not exist. (projects.getIamPolicy)
+   * format `projects/{ProjectIdOrNumber}`, for example, `projects/123`.
+   * Permission is denied if the policy or the resource do not exist.
+   * (projects.getIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
    * requested. See [Resource
@@ -111,6 +113,7 @@ class Projects extends \Google\Service\Resource
    * @param GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, GetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -143,6 +146,7 @@ class Projects extends \Google\Service\Resource
    * `DELETE_REQUESTED` state should also be returned. Normally only `ACTIVE`
    * projects are returned.
    * @return ListProjectsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjects($optParams = [])
   {
@@ -151,7 +155,7 @@ class Projects extends \Google\Service\Resource
     return $this->call('list', [$params], ListProjectsResponse::class);
   }
   /**
-   * Move a project to another place in your resource hierarchy, under a new
+   * Moves a project to another place in your resource hierarchy, under a new
    * resource parent. Returns an operation which can be used to track the process
    * of the project move workflow. Upon success, the `Operation.response` field
    * will be populated with the moved project. The caller must have
@@ -165,6 +169,7 @@ class Projects extends \Google\Service\Resource
    * @param MoveProjectRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function move($name, MoveProjectRequest $postBody, $optParams = [])
   {
@@ -188,6 +193,7 @@ class Projects extends \Google\Service\Resource
    * @opt_param string updateMask Optional. An update mask to selectively update
    * fields.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Project $postBody, $optParams = [])
   {
@@ -196,13 +202,13 @@ class Projects extends \Google\Service\Resource
     return $this->call('patch', [$params], Operation::class);
   }
   /**
-   * Search for projects that the caller has both `resourcemanager.projects.get`
-   * permission on, and also satisfy the specified query. This method returns
-   * projects in an unspecified order. This method is eventually consistent with
-   * project mutations; this means that a newly created project may not appear in
-   * the results or recent updates to an existing project may not be reflected in
-   * the results. To retrieve the latest state of a project, use the GetProject
-   * method. (projects.search)
+   * Searches for projects on which the caller has the
+   * `resourcemanager.projects.get` permission and that match the specified query.
+   * This method returns projects in an unspecified order. This method is
+   * eventually consistent with project mutations; this means that a newly created
+   * project may not appear in the results or recent updates to an existing
+   * project may not be reflected in the results. To retrieve the latest state of
+   * a project, use the GetProject method. (projects.search)
    *
    * @param array $optParams Optional parameters.
    *
@@ -235,6 +241,7 @@ class Projects extends \Google\Service\Resource
    * no query is specified, the call will return projects for which the user has
    * the `resourcemanager.projects.get` permission.
    * @return SearchProjectsResponse
+   * @throws \Google\Service\Exception
    */
   public function search($optParams = [])
   {
@@ -244,32 +251,33 @@ class Projects extends \Google\Service\Resource
   }
   /**
    * Sets the IAM access control policy for the specified project, in the format
-   * `projects/{ProjectIdOrNumber}` e.g. projects/123. CAUTION: This method will
-   * replace the existing policy, and cannot be used to append additional IAM
-   * settings. Note: Removing service accounts from policies or changing their
-   * roles can render services completely inoperable. It is important to
-   * understand how the service account is being used before removing or updating
-   * its roles. The following constraints apply when using `setIamPolicy()`: +
-   * Project does not support `allUsers` and `allAuthenticatedUsers` as `members`
-   * in a `Binding` of a `Policy`. + The owner role can be granted to a `user`,
-   * `serviceAccount`, or a group that is part of an organization. For example,
-   * group@myownpersonaldomain.com could be added as an owner to a project in the
-   * myownpersonaldomain.com organization, but not the examplepetstore.com
-   * organization. + Service accounts can be made owners of a project directly
-   * without any restrictions. However, to be added as an owner, a user must be
-   * invited using the Cloud Platform console and must accept the invitation. + A
-   * user cannot be granted the owner role using `setIamPolicy()`. The user must
-   * be granted the owner role using the Cloud Platform Console and must
-   * explicitly accept the invitation. + Invitations to grant the owner role
-   * cannot be sent using `setIamPolicy()`; they must be sent only using the Cloud
-   * Platform Console. + If the project is not part of an organization, there must
-   * be at least one owner who has accepted the Terms of Service (ToS) agreement
-   * in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner
-   * from the policy will fail. This restriction also applies to legacy projects
-   * that no longer have owners who have accepted the ToS. Edits to IAM policies
-   * will be rejected until the lack of a ToS-accepting owner is rectified. If the
-   * project is part of an organization, you can remove all owners, potentially
-   * making the organization inaccessible. (projects.setIamPolicy)
+   * `projects/{ProjectIdOrNumber}`, for example, `projects/123`. CAUTION: This
+   * method will replace the existing policy, and cannot be used to append
+   * additional IAM settings. Note: Removing service accounts from policies or
+   * changing their roles can render services completely inoperable. It is
+   * important to understand how the service account is being used before removing
+   * or updating its roles. The following constraints apply when using
+   * `setIamPolicy()`: + Project does not support `allUsers` and
+   * `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`. + The
+   * owner role can be granted to a `user`, `serviceAccount`, or a group that is
+   * part of an organization. For example, group@myownpersonaldomain.com could be
+   * added as an owner to a project in the myownpersonaldomain.com organization,
+   * but not the examplepetstore.com organization. + Service accounts can be made
+   * owners of a project directly without any restrictions. However, to be added
+   * as an owner, a user must be invited using the Cloud Platform console and must
+   * accept the invitation. + A user cannot be granted the owner role using
+   * `setIamPolicy()`. The user must be granted the owner role using the Cloud
+   * Platform Console and must explicitly accept the invitation. + Invitations to
+   * grant the owner role cannot be sent using `setIamPolicy()`; they must be sent
+   * only using the Cloud Platform Console. + If the project is not part of an
+   * organization, there must be at least one owner who has accepted the Terms of
+   * Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the
+   * last ToS-accepted owner from the policy will fail. This restriction also
+   * applies to legacy projects that no longer have owners who have accepted the
+   * ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting
+   * owner is rectified. If the project is part of an organization, you can remove
+   * all owners, potentially making the organization inaccessible.
+   * (projects.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
    * specified. See [Resource
@@ -278,6 +286,7 @@ class Projects extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -287,7 +296,7 @@ class Projects extends \Google\Service\Resource
   }
   /**
    * Returns permissions that a caller has on the specified project, in the format
-   * `projects/{ProjectIdOrNumber}` e.g. projects/123..
+   * `projects/{ProjectIdOrNumber}`, for example, `projects/123`.
    * (projects.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
@@ -297,6 +306,7 @@ class Projects extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {
@@ -316,6 +326,7 @@ class Projects extends \Google\Service\Resource
    * @param UndeleteProjectRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function undelete($name, UndeleteProjectRequest $postBody, $optParams = [])
   {

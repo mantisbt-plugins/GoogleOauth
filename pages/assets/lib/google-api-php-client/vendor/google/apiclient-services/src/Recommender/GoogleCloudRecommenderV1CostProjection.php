@@ -21,13 +21,23 @@ class GoogleCloudRecommenderV1CostProjection extends \Google\Model
 {
   protected $costType = GoogleTypeMoney::class;
   protected $costDataType = '';
+  protected $costInLocalCurrencyType = GoogleTypeMoney::class;
+  protected $costInLocalCurrencyDataType = '';
   /**
+   * Duration for which this cost applies.
+   *
    * @var string
    */
   public $duration;
 
   /**
-   * @param GoogleTypeMoney
+   * An approximate projection on amount saved or amount incurred. Negative cost
+   * units indicate cost savings and positive cost units indicate increase. See
+   * google.type.Money documentation for positive/negative units. A user's
+   * permissions may affect whether the cost is computed using list prices or
+   * custom contract prices.
+   *
+   * @param GoogleTypeMoney $cost
    */
   public function setCost(GoogleTypeMoney $cost)
   {
@@ -41,7 +51,25 @@ class GoogleCloudRecommenderV1CostProjection extends \Google\Model
     return $this->cost;
   }
   /**
-   * @param string
+   * The approximate cost savings in the billing account's local currency.
+   *
+   * @param GoogleTypeMoney $costInLocalCurrency
+   */
+  public function setCostInLocalCurrency(GoogleTypeMoney $costInLocalCurrency)
+  {
+    $this->costInLocalCurrency = $costInLocalCurrency;
+  }
+  /**
+   * @return GoogleTypeMoney
+   */
+  public function getCostInLocalCurrency()
+  {
+    return $this->costInLocalCurrency;
+  }
+  /**
+   * Duration for which this cost applies.
+   *
+   * @param string $duration
    */
   public function setDuration($duration)
   {

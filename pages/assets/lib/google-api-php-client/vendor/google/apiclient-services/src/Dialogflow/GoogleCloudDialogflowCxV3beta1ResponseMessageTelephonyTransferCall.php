@@ -25,7 +25,7 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessageTelephonyTransferCall extends
   public $phoneNumber;
 
   /**
-   * @param string
+   * @param string $phoneNumber
    */
   public function setPhoneNumber($phoneNumber)
   {

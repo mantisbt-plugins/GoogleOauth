@@ -25,7 +25,7 @@ class GoogleCloudDialogflowCxV3SecuritySettingsInsightsExportSettings extends \G
   public $enableInsightsExport;
 
   /**
-   * @param bool
+   * @param bool $enableInsightsExport
    */
   public function setEnableInsightsExport($enableInsightsExport)
   {

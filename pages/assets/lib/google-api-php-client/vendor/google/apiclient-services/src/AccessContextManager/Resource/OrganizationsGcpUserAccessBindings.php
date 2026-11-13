@@ -42,6 +42,7 @@ class OrganizationsGcpUserAccessBindings extends \Google\Service\Resource
    * @param GcpUserAccessBinding $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GcpUserAccessBinding $postBody, $optParams = [])
   {
@@ -58,6 +59,7 @@ class OrganizationsGcpUserAccessBindings extends \Google\Service\Resource
    * "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -73,6 +75,7 @@ class OrganizationsGcpUserAccessBindings extends \Google\Service\Resource
    * "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
    * @param array $optParams Optional parameters.
    * @return GcpUserAccessBinding
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -87,6 +90,15 @@ class OrganizationsGcpUserAccessBindings extends \Google\Service\Resource
    * @param string $parent Required. Example: "organizations/256"
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string filter Optional. Filters the results by principal type.
+   * Uses the [AIP-160](https://google.aip.dev/160) filter syntax. Only the
+   * following filters are supported: * `principal:group_key`: bindings for
+   * groups. This is the default when the filter is empty. *
+   * `principal:service_account OR principal:service_account_project_number`:
+   * bindings for service accounts. * `principal:federated_principal`: bindings
+   * for federated principals. Values can be in snake_case or camelCase.
+   * Whitespace and the order of `OR` terms don't matter. Any other filter returns
+   * an `INVALID_ARGUMENT` error.
    * @opt_param int pageSize Optional. Maximum number of items to return. The
    * server may return fewer items. If left blank, the server may return any
    * number of items.
@@ -94,6 +106,7 @@ class OrganizationsGcpUserAccessBindings extends \Google\Service\Resource
    * To enumerate all items, use the next_page_token from your previous list
    * operation.
    * @return ListGcpUserAccessBindingsResponse
+   * @throws \Google\Service\Exception
    */
   public function listOrganizationsGcpUserAccessBindings($parent, $optParams = [])
   {
@@ -111,15 +124,27 @@ class OrganizationsGcpUserAccessBindings extends \Google\Service\Resource
    * (as defined by [RFC 3986 Section
    * 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be
    * specified by the client during creation. Example:
-   * "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
+   * `"organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"`
    * @param GcpUserAccessBinding $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param bool append Optional. This field controls whether or not certain
+   * repeated settings in the update request overwrite or append to existing
+   * settings on the binding. If true, then append. Otherwise overwrite. So far,
+   * only `scoped_access_settings` with `session_settings` supports appending.
+   * Global `access_levels`, `access_levels` in `scoped_access_settings`,
+   * `dry_run_access_levels`, and `session_settings` are not compatible with
+   * append functionality, and the request will return an error if `append=true`
+   * when these settings are in the `update_mask`. The request will also return an
+   * error if `append=true` when `"scoped_access_settings"` is not set in the
+   * `update_mask`.
    * @opt_param string updateMask Required. Only the fields specified in this mask
-   * are updated. Because name and group_key cannot be changed, update_mask is
-   * required and may only contain the following fields: `access_levels`,
-   * `dry_run_access_levels`. update_mask { paths: "access_levels" }
+   * are updated. Because `name` and `group_key` cannot be changed, `update_mask`
+   * is required and may only contain the following fields: `access_levels`,
+   * `dry_run_access_levels`, `session_settings`, `scoped_access_settings`.
+   * update_mask { paths: "access_levels" }
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GcpUserAccessBinding $postBody, $optParams = [])
   {

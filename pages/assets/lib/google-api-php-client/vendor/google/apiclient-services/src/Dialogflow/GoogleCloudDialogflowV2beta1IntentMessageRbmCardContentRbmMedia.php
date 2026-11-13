@@ -19,6 +19,10 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia extends \Google\Model
 {
+  public const HEIGHT_HEIGHT_UNSPECIFIED = 'HEIGHT_UNSPECIFIED';
+  public const HEIGHT_SHORT = 'SHORT';
+  public const HEIGHT_MEDIUM = 'MEDIUM';
+  public const HEIGHT_TALL = 'TALL';
   /**
    * @var string
    */
@@ -33,7 +37,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia extends \G
   public $thumbnailUri;
 
   /**
-   * @param string
+   * @param string $fileUri
    */
   public function setFileUri($fileUri)
   {
@@ -47,21 +51,21 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia extends \G
     return $this->fileUri;
   }
   /**
-   * @param string
+   * @param self::HEIGHT_* $height
    */
   public function setHeight($height)
   {
     $this->height = $height;
   }
   /**
-   * @return string
+   * @return self::HEIGHT_*
    */
   public function getHeight()
   {
     return $this->height;
   }
   /**
-   * @param string
+   * @param string $thumbnailUri
    */
   public function setThumbnailUri($thumbnailUri)
   {

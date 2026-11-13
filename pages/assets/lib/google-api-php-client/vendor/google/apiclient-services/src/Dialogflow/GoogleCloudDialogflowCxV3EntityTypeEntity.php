@@ -30,7 +30,7 @@ class GoogleCloudDialogflowCxV3EntityTypeEntity extends \Google\Collection
   public $value;
 
   /**
-   * @param string[]
+   * @param string[] $synonyms
    */
   public function setSynonyms($synonyms)
   {
@@ -44,7 +44,7 @@ class GoogleCloudDialogflowCxV3EntityTypeEntity extends \Google\Collection
     return $this->synonyms;
   }
   /**
-   * @param string
+   * @param string $value
    */
   public function setValue($value)
   {

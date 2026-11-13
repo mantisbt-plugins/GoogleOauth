@@ -23,24 +23,53 @@ class BigtableColumnFamily extends \Google\Collection
   protected $columnsType = BigtableColumn::class;
   protected $columnsDataType = 'array';
   /**
+   * Optional. The encoding of the values when the type is not STRING.
+   * Acceptable encoding values are: TEXT - indicates values are alphanumeric
+   * text strings. BINARY - indicates values are encoded using HBase
+   * Bytes.toBytes family of functions. PROTO_BINARY - indicates values are
+   * encoded using serialized proto messages. This can only be used in
+   * combination with JSON type. This can be overridden for a specific column by
+   * listing that column in 'columns' and specifying an encoding for it.
+   *
    * @var string
    */
   public $encoding;
   /**
+   * Identifier of the column family.
+   *
    * @var string
    */
   public $familyId;
   /**
+   * Optional. If this is set only the latest version of value are exposed for
+   * all columns in this column family. This can be overridden for a specific
+   * column by listing that column in 'columns' and specifying a different
+   * setting for that column.
+   *
    * @var bool
    */
   public $onlyReadLatest;
+  protected $protoConfigType = BigtableProtoConfig::class;
+  protected $protoConfigDataType = '';
   /**
+   * Optional. The type to convert the value in cells of this column family. The
+   * values are expected to be encoded using HBase Bytes.toBytes function when
+   * using the BINARY encoding value. Following BigQuery types are allowed
+   * (case-sensitive): * BYTES * STRING * INTEGER * FLOAT * BOOLEAN * JSON
+   * Default type is BYTES. This can be overridden for a specific column by
+   * listing that column in 'columns' and specifying a type for it.
+   *
    * @var string
    */
   public $type;
 
   /**
-   * @param BigtableColumn[]
+   * Optional. Lists of columns that should be exposed as individual fields as
+   * opposed to a list of (column name, value) pairs. All columns whose
+   * qualifier matches a qualifier in this list can be accessed as `.`. Other
+   * columns can be accessed as a list through the `.Column` field.
+   *
+   * @param BigtableColumn[] $columns
    */
   public function setColumns($columns)
   {
@@ -54,7 +83,15 @@ class BigtableColumnFamily extends \Google\Collection
     return $this->columns;
   }
   /**
-   * @param string
+   * Optional. The encoding of the values when the type is not STRING.
+   * Acceptable encoding values are: TEXT - indicates values are alphanumeric
+   * text strings. BINARY - indicates values are encoded using HBase
+   * Bytes.toBytes family of functions. PROTO_BINARY - indicates values are
+   * encoded using serialized proto messages. This can only be used in
+   * combination with JSON type. This can be overridden for a specific column by
+   * listing that column in 'columns' and specifying an encoding for it.
+   *
+   * @param string $encoding
    */
   public function setEncoding($encoding)
   {
@@ -68,7 +105,9 @@ class BigtableColumnFamily extends \Google\Collection
     return $this->encoding;
   }
   /**
-   * @param string
+   * Identifier of the column family.
+   *
+   * @param string $familyId
    */
   public function setFamilyId($familyId)
   {
@@ -82,7 +121,12 @@ class BigtableColumnFamily extends \Google\Collection
     return $this->familyId;
   }
   /**
-   * @param bool
+   * Optional. If this is set only the latest version of value are exposed for
+   * all columns in this column family. This can be overridden for a specific
+   * column by listing that column in 'columns' and specifying a different
+   * setting for that column.
+   *
+   * @param bool $onlyReadLatest
    */
   public function setOnlyReadLatest($onlyReadLatest)
   {
@@ -96,7 +140,31 @@ class BigtableColumnFamily extends \Google\Collection
     return $this->onlyReadLatest;
   }
   /**
-   * @param string
+   * Optional. Protobuf-specific configurations, only takes effect when the
+   * encoding is PROTO_BINARY.
+   *
+   * @param BigtableProtoConfig $protoConfig
+   */
+  public function setProtoConfig(BigtableProtoConfig $protoConfig)
+  {
+    $this->protoConfig = $protoConfig;
+  }
+  /**
+   * @return BigtableProtoConfig
+   */
+  public function getProtoConfig()
+  {
+    return $this->protoConfig;
+  }
+  /**
+   * Optional. The type to convert the value in cells of this column family. The
+   * values are expected to be encoded using HBase Bytes.toBytes function when
+   * using the BINARY encoding value. Following BigQuery types are allowed
+   * (case-sensitive): * BYTES * STRING * INTEGER * FLOAT * BOOLEAN * JSON
+   * Default type is BYTES. This can be overridden for a specific column by
+   * listing that column in 'columns' and specifying a type for it.
+   *
+   * @param string $type
    */
   public function setType($type)
   {

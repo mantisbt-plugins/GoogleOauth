@@ -19,13 +19,35 @@ namespace Google\Service\Bigquery;
 
 class TableListTablesView extends \Google\Model
 {
+  protected $privacyPolicyType = PrivacyPolicy::class;
+  protected $privacyPolicyDataType = '';
   /**
+   * True if view is defined in legacy SQL dialect, false if in GoogleSQL.
+   *
    * @var bool
    */
   public $useLegacySql;
 
   /**
-   * @param bool
+   * Specifies the privacy policy for the view.
+   *
+   * @param PrivacyPolicy $privacyPolicy
+   */
+  public function setPrivacyPolicy(PrivacyPolicy $privacyPolicy)
+  {
+    $this->privacyPolicy = $privacyPolicy;
+  }
+  /**
+   * @return PrivacyPolicy
+   */
+  public function getPrivacyPolicy()
+  {
+    return $this->privacyPolicy;
+  }
+  /**
+   * True if view is defined in legacy SQL dialect, false if in GoogleSQL.
+   *
+   * @param bool $useLegacySql
    */
   public function setUseLegacySql($useLegacySql)
   {

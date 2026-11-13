@@ -17,15 +17,27 @@
 
 namespace Google\Service\Contactcenterinsights;
 
-class GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource extends \Google\Model
+class GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource extends \Google\Collection
 {
+  protected $collection_key = 'turnLevelAudios';
   protected $dialogflowSourceType = GoogleCloudContactcenterinsightsV1alpha1DialogflowSource::class;
   protected $dialogflowSourceDataType = '';
   protected $gcsSourceType = GoogleCloudContactcenterinsightsV1alpha1GcsSource::class;
   protected $gcsSourceDataType = '';
+  /**
+   * Cloud Storage URI that points to a file that contains the conversation
+   * metadata.
+   *
+   * @var string
+   */
+  public $metadataUri;
+  protected $turnLevelAudiosType = GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio::class;
+  protected $turnLevelAudiosDataType = 'array';
 
   /**
-   * @param GoogleCloudContactcenterinsightsV1alpha1DialogflowSource
+   * The source when the conversation comes from Dialogflow.
+   *
+   * @param GoogleCloudContactcenterinsightsV1alpha1DialogflowSource $dialogflowSource
    */
   public function setDialogflowSource(GoogleCloudContactcenterinsightsV1alpha1DialogflowSource $dialogflowSource)
   {
@@ -39,7 +51,9 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource extends \Go
     return $this->dialogflowSource;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1alpha1GcsSource
+   * A Cloud Storage location specification for the audio and transcript.
+   *
+   * @param GoogleCloudContactcenterinsightsV1alpha1GcsSource $gcsSource
    */
   public function setGcsSource(GoogleCloudContactcenterinsightsV1alpha1GcsSource $gcsSource)
   {
@@ -51,6 +65,41 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource extends \Go
   public function getGcsSource()
   {
     return $this->gcsSource;
+  }
+  /**
+   * Cloud Storage URI that points to a file that contains the conversation
+   * metadata.
+   *
+   * @param string $metadataUri
+   */
+  public function setMetadataUri($metadataUri)
+  {
+    $this->metadataUri = $metadataUri;
+  }
+  /**
+   * @return string
+   */
+  public function getMetadataUri()
+  {
+    return $this->metadataUri;
+  }
+  /**
+   * Cloud Storage URIs that points to files that contain the conversation audio
+   * for each turn. Assume the order of the URIs is the same as the order of the
+   * transcript turns.
+   *
+   * @param GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio[] $turnLevelAudios
+   */
+  public function setTurnLevelAudios($turnLevelAudios)
+  {
+    $this->turnLevelAudios = $turnLevelAudios;
+  }
+  /**
+   * @return GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio[]
+   */
+  public function getTurnLevelAudios()
+  {
+    return $this->turnLevelAudios;
   }
 }
 

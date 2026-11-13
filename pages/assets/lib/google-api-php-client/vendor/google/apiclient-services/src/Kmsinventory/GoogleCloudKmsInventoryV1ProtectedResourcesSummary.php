@@ -17,35 +17,56 @@
 
 namespace Google\Service\Kmsinventory;
 
-class GoogleCloudKmsInventoryV1ProtectedResourcesSummary extends \Google\Model
+class GoogleCloudKmsInventoryV1ProtectedResourcesSummary extends \Google\Collection
 {
+  protected $collection_key = 'warnings';
   /**
+   * The number of resources protected by the key grouped by Cloud product.
+   *
    * @var string[]
    */
   public $cloudProducts;
   /**
+   * The number of resources protected by the key grouped by region.
+   *
    * @var string[]
    */
   public $locations;
   /**
+   * The full name of the ProtectedResourcesSummary resource. Example:
+   * projects/test-project/locations/us/keyRings/test-keyring/cryptoKeys/test-
+   * key/protectedResourcesSummary
+   *
    * @var string
    */
   public $name;
   /**
+   * The number of distinct Cloud projects in the same Cloud organization as the
+   * key that have resources protected by the key.
+   *
    * @var int
    */
   public $projectCount;
   /**
+   * The total number of protected resources in the same Cloud organization as
+   * the key.
+   *
    * @var string
    */
   public $resourceCount;
   /**
+   * The number of resources protected by the key grouped by resource type.
+   *
    * @var string[]
    */
   public $resourceTypes;
+  protected $warningsType = GoogleCloudKmsInventoryV1Warning::class;
+  protected $warningsDataType = 'array';
 
   /**
-   * @param string[]
+   * The number of resources protected by the key grouped by Cloud product.
+   *
+   * @param string[] $cloudProducts
    */
   public function setCloudProducts($cloudProducts)
   {
@@ -59,7 +80,9 @@ class GoogleCloudKmsInventoryV1ProtectedResourcesSummary extends \Google\Model
     return $this->cloudProducts;
   }
   /**
-   * @param string[]
+   * The number of resources protected by the key grouped by region.
+   *
+   * @param string[] $locations
    */
   public function setLocations($locations)
   {
@@ -73,7 +96,11 @@ class GoogleCloudKmsInventoryV1ProtectedResourcesSummary extends \Google\Model
     return $this->locations;
   }
   /**
-   * @param string
+   * The full name of the ProtectedResourcesSummary resource. Example:
+   * projects/test-project/locations/us/keyRings/test-keyring/cryptoKeys/test-
+   * key/protectedResourcesSummary
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -87,7 +114,10 @@ class GoogleCloudKmsInventoryV1ProtectedResourcesSummary extends \Google\Model
     return $this->name;
   }
   /**
-   * @param int
+   * The number of distinct Cloud projects in the same Cloud organization as the
+   * key that have resources protected by the key.
+   *
+   * @param int $projectCount
    */
   public function setProjectCount($projectCount)
   {
@@ -101,7 +131,10 @@ class GoogleCloudKmsInventoryV1ProtectedResourcesSummary extends \Google\Model
     return $this->projectCount;
   }
   /**
-   * @param string
+   * The total number of protected resources in the same Cloud organization as
+   * the key.
+   *
+   * @param string $resourceCount
    */
   public function setResourceCount($resourceCount)
   {
@@ -115,7 +148,9 @@ class GoogleCloudKmsInventoryV1ProtectedResourcesSummary extends \Google\Model
     return $this->resourceCount;
   }
   /**
-   * @param string[]
+   * The number of resources protected by the key grouped by resource type.
+   *
+   * @param string[] $resourceTypes
    */
   public function setResourceTypes($resourceTypes)
   {
@@ -127,6 +162,24 @@ class GoogleCloudKmsInventoryV1ProtectedResourcesSummary extends \Google\Model
   public function getResourceTypes()
   {
     return $this->resourceTypes;
+  }
+  /**
+   * Warning messages for the state of response ProtectedResourcesSummary For
+   * example, if the organization service account is not configured,
+   * INSUFFICIENT_PERMISSIONS_PARTIAL_DATA warning will be returned.
+   *
+   * @param GoogleCloudKmsInventoryV1Warning[] $warnings
+   */
+  public function setWarnings($warnings)
+  {
+    $this->warnings = $warnings;
+  }
+  /**
+   * @return GoogleCloudKmsInventoryV1Warning[]
+   */
+  public function getWarnings()
+  {
+    return $this->warnings;
   }
 }
 

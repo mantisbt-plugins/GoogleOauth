@@ -34,11 +34,11 @@ class AccountsContainersWorkspacesZones extends \Google\Service\Resource
   /**
    * Creates a GTM Zone. (zones.create)
    *
-   * @param string $parent GTM Workspace's API relative path. Example:
-   * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+   * @param string $parent GTM Workspace's API relative path.
    * @param Zone $postBody
    * @param array $optParams Optional parameters.
    * @return Zone
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Zone $postBody, $optParams = [])
   {
@@ -49,9 +49,9 @@ class AccountsContainersWorkspacesZones extends \Google\Service\Resource
   /**
    * Deletes a GTM Zone. (zones.delete)
    *
-   * @param string $path GTM Zone's API relative path. Example: accounts/{account_
-   * id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+   * @param string $path GTM Zone's API relative path.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($path, $optParams = [])
   {
@@ -62,10 +62,10 @@ class AccountsContainersWorkspacesZones extends \Google\Service\Resource
   /**
    * Gets a GTM Zone. (zones.get)
    *
-   * @param string $path GTM Zone's API relative path. Example: accounts/{account_
-   * id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+   * @param string $path GTM Zone's API relative path.
    * @param array $optParams Optional parameters.
    * @return Zone
+   * @throws \Google\Service\Exception
    */
   public function get($path, $optParams = [])
   {
@@ -77,13 +77,13 @@ class AccountsContainersWorkspacesZones extends \Google\Service\Resource
    * Lists all GTM Zones of a GTM container workspace.
    * (zones.listAccountsContainersWorkspacesZones)
    *
-   * @param string $parent GTM Workspace's API relative path. Example:
-   * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+   * @param string $parent GTM Workspace's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string pageToken Continuation token for fetching the next page of
    * results.
    * @return ListZonesResponse
+   * @throws \Google\Service\Exception
    */
   public function listAccountsContainersWorkspacesZones($parent, $optParams = [])
   {
@@ -94,13 +94,13 @@ class AccountsContainersWorkspacesZones extends \Google\Service\Resource
   /**
    * Reverts changes to a GTM Zone in a GTM Workspace. (zones.revert)
    *
-   * @param string $path GTM Zone's API relative path. Example: accounts/{account_
-   * id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+   * @param string $path GTM Zone's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string fingerprint When provided, this fingerprint must match the
    * fingerprint of the zone in storage.
    * @return RevertZoneResponse
+   * @throws \Google\Service\Exception
    */
   public function revert($path, $optParams = [])
   {
@@ -111,14 +111,14 @@ class AccountsContainersWorkspacesZones extends \Google\Service\Resource
   /**
    * Updates a GTM Zone. (zones.update)
    *
-   * @param string $path GTM Zone's API relative path. Example: accounts/{account_
-   * id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
+   * @param string $path GTM Zone's API relative path.
    * @param Zone $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string fingerprint When provided, this fingerprint must match the
    * fingerprint of the zone in storage.
    * @return Zone
+   * @throws \Google\Service\Exception
    */
   public function update($path, Zone $postBody, $optParams = [])
   {

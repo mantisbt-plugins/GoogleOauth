@@ -23,18 +23,38 @@ class GooglePrivacyDlpV2DataProfileJobConfig extends \Google\Collection
   protected $dataProfileActionsType = GooglePrivacyDlpV2DataProfileAction::class;
   protected $dataProfileActionsDataType = 'array';
   /**
+   * Detection logic for profile generation. Not all template features are used
+   * by profiles. FindingLimits, include_quote and exclude_info_types have no
+   * impact on data profiling. Multiple templates may be provided if there is
+   * data in multiple regions. At most one template must be specified per-region
+   * (including "global"). Each region is scanned using the applicable template.
+   * If no region-specific template is specified, but a "global" template is
+   * specified, it will be copied to that region and used instead. If no global
+   * or region-specific template is provided for a region with data, that
+   * region's data will not be scanned. For more information, see
+   * https://docs.cloud.google.com/sensitive-data-protection/docs/data-
+   * profiles#data-residency.
+   *
    * @var string[]
    */
   public $inspectTemplates;
   protected $locationType = GooglePrivacyDlpV2DataProfileLocation::class;
   protected $locationDataType = '';
+  protected $otherCloudStartingLocationType = GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation::class;
+  protected $otherCloudStartingLocationDataType = '';
   /**
+   * The project that will run the scan. The DLP service account that exists
+   * within this project must have access to all resources that are profiled,
+   * and the DLP API must be enabled.
+   *
    * @var string
    */
   public $projectId;
 
   /**
-   * @param GooglePrivacyDlpV2DataProfileAction[]
+   * Actions to execute at the completion of the job.
+   *
+   * @param GooglePrivacyDlpV2DataProfileAction[] $dataProfileActions
    */
   public function setDataProfileActions($dataProfileActions)
   {
@@ -48,7 +68,19 @@ class GooglePrivacyDlpV2DataProfileJobConfig extends \Google\Collection
     return $this->dataProfileActions;
   }
   /**
-   * @param string[]
+   * Detection logic for profile generation. Not all template features are used
+   * by profiles. FindingLimits, include_quote and exclude_info_types have no
+   * impact on data profiling. Multiple templates may be provided if there is
+   * data in multiple regions. At most one template must be specified per-region
+   * (including "global"). Each region is scanned using the applicable template.
+   * If no region-specific template is specified, but a "global" template is
+   * specified, it will be copied to that region and used instead. If no global
+   * or region-specific template is provided for a region with data, that
+   * region's data will not be scanned. For more information, see
+   * https://docs.cloud.google.com/sensitive-data-protection/docs/data-
+   * profiles#data-residency.
+   *
+   * @param string[] $inspectTemplates
    */
   public function setInspectTemplates($inspectTemplates)
   {
@@ -62,7 +94,9 @@ class GooglePrivacyDlpV2DataProfileJobConfig extends \Google\Collection
     return $this->inspectTemplates;
   }
   /**
-   * @param GooglePrivacyDlpV2DataProfileLocation
+   * The data to scan.
+   *
+   * @param GooglePrivacyDlpV2DataProfileLocation $location
    */
   public function setLocation(GooglePrivacyDlpV2DataProfileLocation $location)
   {
@@ -76,7 +110,27 @@ class GooglePrivacyDlpV2DataProfileJobConfig extends \Google\Collection
     return $this->location;
   }
   /**
-   * @param string
+   * Must be set only when scanning other clouds.
+   *
+   * @param GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation $otherCloudStartingLocation
+   */
+  public function setOtherCloudStartingLocation(GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation $otherCloudStartingLocation)
+  {
+    $this->otherCloudStartingLocation = $otherCloudStartingLocation;
+  }
+  /**
+   * @return GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation
+   */
+  public function getOtherCloudStartingLocation()
+  {
+    return $this->otherCloudStartingLocation;
+  }
+  /**
+   * The project that will run the scan. The DLP service account that exists
+   * within this project must have access to all resources that are profiled,
+   * and the DLP API must be enabled.
+   *
+   * @param string $projectId
    */
   public function setProjectId($projectId)
   {

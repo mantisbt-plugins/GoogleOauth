@@ -31,7 +31,8 @@ class ProjectsLocationsJobsStages extends \Google\Service\Resource
 {
   /**
    * Request detailed information about the execution status of a stage of the
-   * job. EXPERIMENTAL. This API is subject to change or removal without notice.
+   * job. EXPERIMENTAL. This API is subject to change or removal without notice. #
+   * IAM Permissions Requires the `dataflow.metrics.get` permission on the job.
    * (stages.getExecutionDetails)
    *
    * @param string $projectId A project id.
@@ -53,6 +54,7 @@ class ProjectsLocationsJobsStages extends \Google\Service\Resource
    * @opt_param string startTime Lower time bound of work items to include, by
    * start time.
    * @return StageExecutionDetails
+   * @throws \Google\Service\Exception
    */
   public function getExecutionDetails($projectId, $location, $jobId, $stageId, $optParams = [])
   {

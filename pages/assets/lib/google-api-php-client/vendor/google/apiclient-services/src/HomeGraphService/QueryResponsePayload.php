@@ -19,13 +19,41 @@ namespace Google\Service\HomeGraphService;
 
 class QueryResponsePayload extends \Google\Model
 {
+  protected $deviceMetadataType = DeviceMetadata::class;
+  protected $deviceMetadataDataType = 'map';
   /**
+   * States of the devices. Map of third-party device ID to struct of device
+   * states.
+   *
    * @var array[]
    */
   public $devices;
+  protected $homeTraitPayloadType = HomeTraitPayload::class;
+  protected $homeTraitPayloadDataType = 'map';
 
   /**
-   * @param array[]
+   * Map from the Trait ID (e.g., "action.devices.traits.OnOff") to its last
+   * Spanner commit timestamp. If a trait has no recorded timestamp, it will be
+   * omitted from this map.
+   *
+   * @param DeviceMetadata[] $deviceMetadata
+   */
+  public function setDeviceMetadata($deviceMetadata)
+  {
+    $this->deviceMetadata = $deviceMetadata;
+  }
+  /**
+   * @return DeviceMetadata[]
+   */
+  public function getDeviceMetadata()
+  {
+    return $this->deviceMetadata;
+  }
+  /**
+   * States of the devices. Map of third-party device ID to struct of device
+   * states.
+   *
+   * @param array[] $devices
    */
   public function setDevices($devices)
   {
@@ -37,6 +65,24 @@ class QueryResponsePayload extends \Google\Model
   public function getDevices()
   {
     return $this->devices;
+  }
+  /**
+   * Map of device IDs to their Unified Device Data Model (UDDM) or JSON trait
+   * payloads. This field is populated when `device_view` is set to
+   * `HOME_TRAIT_ONLY`, `HOME_TRAIT_AND_SMART_HOME_TRAIT`, or `JSON_TRAIT_ONLY`.
+   *
+   * @param HomeTraitPayload[] $homeTraitPayload
+   */
+  public function setHomeTraitPayload($homeTraitPayload)
+  {
+    $this->homeTraitPayload = $homeTraitPayload;
+  }
+  /**
+   * @return HomeTraitPayload[]
+   */
+  public function getHomeTraitPayload()
+  {
+    return $this->homeTraitPayload;
   }
 }
 

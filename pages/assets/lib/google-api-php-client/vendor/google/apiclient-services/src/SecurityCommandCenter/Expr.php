@@ -37,7 +37,7 @@ class Expr extends \Google\Model
   public $title;
 
   /**
-   * @param string
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -51,7 +51,7 @@ class Expr extends \Google\Model
     return $this->description;
   }
   /**
-   * @param string
+   * @param string $expression
    */
   public function setExpression($expression)
   {
@@ -65,7 +65,7 @@ class Expr extends \Google\Model
     return $this->expression;
   }
   /**
-   * @param string
+   * @param string $location
    */
   public function setLocation($location)
   {
@@ -79,7 +79,7 @@ class Expr extends \Google\Model
     return $this->location;
   }
   /**
-   * @param string
+   * @param string $title
    */
   public function setTitle($title)
   {

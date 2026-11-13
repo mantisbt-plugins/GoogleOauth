@@ -32,7 +32,7 @@ class GoogleCloudDialogflowV2SuggestFaqAnswersResponse extends \Google\Collectio
   public $latestMessage;
 
   /**
-   * @param int
+   * @param int $contextSize
    */
   public function setContextSize($contextSize)
   {
@@ -46,7 +46,7 @@ class GoogleCloudDialogflowV2SuggestFaqAnswersResponse extends \Google\Collectio
     return $this->contextSize;
   }
   /**
-   * @param GoogleCloudDialogflowV2FaqAnswer[]
+   * @param GoogleCloudDialogflowV2FaqAnswer[] $faqAnswers
    */
   public function setFaqAnswers($faqAnswers)
   {
@@ -60,7 +60,7 @@ class GoogleCloudDialogflowV2SuggestFaqAnswersResponse extends \Google\Collectio
     return $this->faqAnswers;
   }
   /**
-   * @param string
+   * @param string $latestMessage
    */
   public function setLatestMessage($latestMessage)
   {

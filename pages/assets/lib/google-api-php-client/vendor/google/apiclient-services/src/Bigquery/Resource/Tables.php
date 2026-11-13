@@ -37,12 +37,14 @@ class Tables extends \Google\Service\Resource
 {
   /**
    * Deletes the table specified by tableId from the dataset. If the table
-   * contains data, all the data will be deleted. (tables.delete)
+   * contains data, all the data will be deleted. # IAM Permissions Requires the
+   * `bigquery.tables.delete` permission on the table. (tables.delete)
    *
-   * @param string $projectId Project ID of the table to delete
-   * @param string $datasetId Dataset ID of the table to delete
-   * @param string $tableId Table ID of the table to delete
+   * @param string $projectId Required. Project ID of the table to delete
+   * @param string $datasetId Required. Dataset ID of the table to delete
+   * @param string $tableId Required. Table ID of the table to delete
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($projectId, $datasetId, $tableId, $optParams = [])
   {
@@ -53,19 +55,25 @@ class Tables extends \Google\Service\Resource
   /**
    * Gets the specified table resource by table ID. This method does not return
    * the data in the table, it only returns the table resource, which describes
-   * the structure of this table. (tables.get)
+   * the structure of this table. # IAM Permissions Requires the
+   * `bigquery.tables.get` permission on the table. (tables.get)
    *
-   * @param string $projectId Project ID of the requested table
-   * @param string $datasetId Dataset ID of the requested table
-   * @param string $tableId Table ID of the requested table
+   * @param string $projectId Required. Project ID of the requested table
+   * @param string $datasetId Required. Dataset ID of the requested table
+   * @param string $tableId Required. Table ID of the requested table
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string selectedFields List of fields to return (comma-separated).
-   * If unspecified, all fields are returned
-   * @opt_param string view Specifies the view that determines which table
-   * information is returned. By default, basic table information and storage
-   * statistics (STORAGE_STATS) are returned.
+   * @opt_param string selectedFields List of table schema fields to return
+   * (comma-separated). If unspecified, all fields are returned. A fieldMask
+   * cannot be used here because the fields will automatically be converted from
+   * camelCase to snake_case and the conversion will fail if there are
+   * underscores. Since these are fields in BigQuery table schemas, underscores
+   * are allowed.
+   * @opt_param string view Optional. Specifies the view that determines which
+   * table information is returned. By default, basic table information and
+   * storage statistics (STORAGE_STATS) are returned.
    * @return Table
+   * @throws \Google\Service\Exception
    */
   public function get($projectId, $datasetId, $tableId, $optParams = [])
   {
@@ -84,6 +92,7 @@ class Tables extends \Google\Service\Resource
    * @param GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, GetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -92,13 +101,15 @@ class Tables extends \Google\Service\Resource
     return $this->call('getIamPolicy', [$params], Policy::class);
   }
   /**
-   * Creates a new, empty table in the dataset. (tables.insert)
+   * Creates a new, empty table in the dataset. # IAM Permissions Requires the
+   * `bigquery.tables.create` permission on the dataset. (tables.insert)
    *
-   * @param string $projectId Project ID of the new table
-   * @param string $datasetId Dataset ID of the new table
+   * @param string $projectId Required. Project ID of the new table
+   * @param string $datasetId Required. Dataset ID of the new table
    * @param Table $postBody
    * @param array $optParams Optional parameters.
    * @return Table
+   * @throws \Google\Service\Exception
    */
   public function insert($projectId, $datasetId, Table $postBody, $optParams = [])
   {
@@ -108,16 +119,20 @@ class Tables extends \Google\Service\Resource
   }
   /**
    * Lists all tables in the specified dataset. Requires the READER dataset role.
-   * (tables.listTables)
+   * # IAM Permissions Requires the `bigquery.tables.list` permission on the
+   * dataset. (tables.listTables)
    *
-   * @param string $projectId Project ID of the tables to list
-   * @param string $datasetId Dataset ID of the tables to list
+   * @param string $projectId Required. Project ID of the tables to list
+   * @param string $datasetId Required. Dataset ID of the tables to list
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string maxResults Maximum number of results to return
+   * @opt_param string maxResults The maximum number of results to return in a
+   * single response page. Leverage the page tokens to iterate through the entire
+   * collection.
    * @opt_param string pageToken Page token, returned by a previous call, to
    * request the next page of results
    * @return TableList
+   * @throws \Google\Service\Exception
    */
   public function listTables($projectId, $datasetId, $optParams = [])
   {
@@ -128,18 +143,20 @@ class Tables extends \Google\Service\Resource
   /**
    * Updates information in an existing table. The update method replaces the
    * entire table resource, whereas the patch method only replaces fields that are
-   * provided in the submitted table resource. This method supports patch
-   * semantics. (tables.patch)
+   * provided in the submitted table resource. This method supports RFC5789 patch
+   * semantics. # IAM Permissions Requires the following IAM permission(s) on the
+   * table: - `bigquery.tables.update` - `bigquery.tables.get` (tables.patch)
    *
-   * @param string $projectId Project ID of the table to update
-   * @param string $datasetId Dataset ID of the table to update
-   * @param string $tableId Table ID of the table to update
+   * @param string $projectId Required. Project ID of the table to update
+   * @param string $datasetId Required. Dataset ID of the table to update
+   * @param string $tableId Required. Table ID of the table to update
    * @param Table $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param bool autodetect_schema When true will autodetect schema, else will
-   * keep original schema
+   * @opt_param bool autodetect_schema Optional.  When true will autodetect
+   * schema, else will keep original schema
    * @return Table
+   * @throws \Google\Service\Exception
    */
   public function patch($projectId, $datasetId, $tableId, Table $postBody, $optParams = [])
   {
@@ -159,6 +176,7 @@ class Tables extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -180,6 +198,7 @@ class Tables extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {
@@ -189,18 +208,20 @@ class Tables extends \Google\Service\Resource
   }
   /**
    * Updates information in an existing table. The update method replaces the
-   * entire table resource, whereas the patch method only replaces fields that are
-   * provided in the submitted table resource. (tables.update)
+   * entire Table resource, whereas the patch method only replaces fields that are
+   * provided in the submitted Table resource. # IAM Permissions Requires the
+   * `bigquery.tables.update` permission on the table. (tables.update)
    *
-   * @param string $projectId Project ID of the table to update
-   * @param string $datasetId Dataset ID of the table to update
-   * @param string $tableId Table ID of the table to update
+   * @param string $projectId Required. Project ID of the table to update
+   * @param string $datasetId Required. Dataset ID of the table to update
+   * @param string $tableId Required. Table ID of the table to update
    * @param Table $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param bool autodetect_schema When true will autodetect schema, else will
-   * keep original schema
+   * @opt_param bool autodetect_schema Optional.  When true will autodetect
+   * schema, else will keep original schema
    * @return Table
+   * @throws \Google\Service\Exception
    */
   public function update($projectId, $datasetId, $tableId, Table $postBody, $optParams = [])
   {

@@ -19,10 +19,15 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3ImportFlowRequest extends \Google\Model
 {
+  public const IMPORT_OPTION_IMPORT_OPTION_UNSPECIFIED = 'IMPORT_OPTION_UNSPECIFIED';
+  public const IMPORT_OPTION_KEEP = 'KEEP';
+  public const IMPORT_OPTION_FALLBACK = 'FALLBACK';
   /**
    * @var string
    */
   public $flowContent;
+  protected $flowImportStrategyType = GoogleCloudDialogflowCxV3FlowImportStrategy::class;
+  protected $flowImportStrategyDataType = '';
   /**
    * @var string
    */
@@ -33,7 +38,7 @@ class GoogleCloudDialogflowCxV3ImportFlowRequest extends \Google\Model
   public $importOption;
 
   /**
-   * @param string
+   * @param string $flowContent
    */
   public function setFlowContent($flowContent)
   {
@@ -47,7 +52,21 @@ class GoogleCloudDialogflowCxV3ImportFlowRequest extends \Google\Model
     return $this->flowContent;
   }
   /**
-   * @param string
+   * @param GoogleCloudDialogflowCxV3FlowImportStrategy $flowImportStrategy
+   */
+  public function setFlowImportStrategy(GoogleCloudDialogflowCxV3FlowImportStrategy $flowImportStrategy)
+  {
+    $this->flowImportStrategy = $flowImportStrategy;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3FlowImportStrategy
+   */
+  public function getFlowImportStrategy()
+  {
+    return $this->flowImportStrategy;
+  }
+  /**
+   * @param string $flowUri
    */
   public function setFlowUri($flowUri)
   {
@@ -61,14 +80,14 @@ class GoogleCloudDialogflowCxV3ImportFlowRequest extends \Google\Model
     return $this->flowUri;
   }
   /**
-   * @param string
+   * @param self::IMPORT_OPTION_* $importOption
    */
   public function setImportOption($importOption)
   {
     $this->importOption = $importOption;
   }
   /**
-   * @return string
+   * @return self::IMPORT_OPTION_*
    */
   public function getImportOption()
   {

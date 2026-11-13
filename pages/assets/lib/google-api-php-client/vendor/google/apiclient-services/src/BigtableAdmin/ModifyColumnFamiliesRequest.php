@@ -20,11 +20,38 @@ namespace Google\Service\BigtableAdmin;
 class ModifyColumnFamiliesRequest extends \Google\Collection
 {
   protected $collection_key = 'modifications';
+  /**
+   * Optional. If true, ignore safety checks when modifying the column families.
+   *
+   * @var bool
+   */
+  public $ignoreWarnings;
   protected $modificationsType = Modification::class;
   protected $modificationsDataType = 'array';
 
   /**
-   * @param Modification[]
+   * Optional. If true, ignore safety checks when modifying the column families.
+   *
+   * @param bool $ignoreWarnings
+   */
+  public function setIgnoreWarnings($ignoreWarnings)
+  {
+    $this->ignoreWarnings = $ignoreWarnings;
+  }
+  /**
+   * @return bool
+   */
+  public function getIgnoreWarnings()
+  {
+    return $this->ignoreWarnings;
+  }
+  /**
+   * Required. Modifications to be atomically applied to the specified table's
+   * families. Entries are applied in order, meaning that earlier modifications
+   * can be masked by later ones (in the case of repeated updates to the same
+   * family, for example).
+   *
+   * @param Modification[] $modifications
    */
   public function setModifications($modifications)
   {

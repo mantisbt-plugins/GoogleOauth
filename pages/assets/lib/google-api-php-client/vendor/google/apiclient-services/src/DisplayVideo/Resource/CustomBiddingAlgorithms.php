@@ -18,6 +18,7 @@
 namespace Google\Service\DisplayVideo\Resource;
 
 use Google\Service\DisplayVideo\CustomBiddingAlgorithm;
+use Google\Service\DisplayVideo\CustomBiddingAlgorithmRulesRef;
 use Google\Service\DisplayVideo\CustomBiddingScriptRef;
 use Google\Service\DisplayVideo\ListCustomBiddingAlgorithmsResponse;
 
@@ -38,6 +39,7 @@ class CustomBiddingAlgorithms extends \Google\Service\Resource
    * @param CustomBiddingAlgorithm $postBody
    * @param array $optParams Optional parameters.
    * @return CustomBiddingAlgorithm
+   * @throws \Google\Service\Exception
    */
   public function create(CustomBiddingAlgorithm $postBody, $optParams = [])
   {
@@ -57,6 +59,7 @@ class CustomBiddingAlgorithms extends \Google\Service\Resource
    * @opt_param string partnerId The ID of the DV360 partner that has access to
    * the custom bidding algorithm.
    * @return CustomBiddingAlgorithm
+   * @throws \Google\Service\Exception
    */
   public function get($customBiddingAlgorithmId, $optParams = [])
   {
@@ -100,6 +103,7 @@ class CustomBiddingAlgorithms extends \Google\Service\Resource
    * @opt_param string partnerId The ID of the DV360 partner that has access to
    * the custom bidding algorithm.
    * @return ListCustomBiddingAlgorithmsResponse
+   * @throws \Google\Service\Exception
    */
   public function listCustomBiddingAlgorithms($optParams = [])
   {
@@ -109,7 +113,8 @@ class CustomBiddingAlgorithms extends \Google\Service\Resource
   }
   /**
    * Updates an existing custom bidding algorithm. Returns the updated custom
-   * bidding algorithm if successful. (customBiddingAlgorithms.patch)
+   * bidding algorithm if successful. Requests updating a custom bidding algorithm
+   * assigned to a line item will return an error. (customBiddingAlgorithms.patch)
    *
    * @param string $customBiddingAlgorithmId Output only. The unique ID of the
    * custom bidding algorithm. Assigned by the system.
@@ -119,12 +124,37 @@ class CustomBiddingAlgorithms extends \Google\Service\Resource
    * @opt_param string updateMask Required. The mask to control which fields to
    * update.
    * @return CustomBiddingAlgorithm
+   * @throws \Google\Service\Exception
    */
   public function patch($customBiddingAlgorithmId, CustomBiddingAlgorithm $postBody, $optParams = [])
   {
     $params = ['customBiddingAlgorithmId' => $customBiddingAlgorithmId, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], CustomBiddingAlgorithm::class);
+  }
+  /**
+   * Creates a rules reference object for an AlgorithmRules file. The resulting
+   * reference object provides a resource path where the AlgorithmRules file
+   * should be uploaded. This reference object should be included when creating a
+   * new CustomBiddingAlgorithmRules resource.
+   * (customBiddingAlgorithms.uploadRules)
+   *
+   * @param string $customBiddingAlgorithmId Required. The ID of the custom
+   * bidding algorithm that owns the rules resource.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string advertiserId The ID of the advertiser that owns the parent
+   * custom bidding algorithm.
+   * @opt_param string partnerId The ID of the partner that owns the parent custom
+   * bidding algorithm.
+   * @return CustomBiddingAlgorithmRulesRef
+   * @throws \Google\Service\Exception
+   */
+  public function uploadRules($customBiddingAlgorithmId, $optParams = [])
+  {
+    $params = ['customBiddingAlgorithmId' => $customBiddingAlgorithmId];
+    $params = array_merge($params, $optParams);
+    return $this->call('uploadRules', [$params], CustomBiddingAlgorithmRulesRef::class);
   }
   /**
    * Creates a custom bidding script reference object for a script file. The
@@ -142,6 +172,7 @@ class CustomBiddingAlgorithms extends \Google\Service\Resource
    * bidding algorithm. Only this partner will have write access to this custom
    * bidding script.
    * @return CustomBiddingScriptRef
+   * @throws \Google\Service\Exception
    */
   public function uploadScript($customBiddingAlgorithmId, $optParams = [])
   {

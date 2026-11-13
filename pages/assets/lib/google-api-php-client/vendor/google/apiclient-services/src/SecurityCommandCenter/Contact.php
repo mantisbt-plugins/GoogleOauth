@@ -25,7 +25,7 @@ class Contact extends \Google\Model
   public $email;
 
   /**
-   * @param string
+   * @param string $email
    */
   public function setEmail($email)
   {

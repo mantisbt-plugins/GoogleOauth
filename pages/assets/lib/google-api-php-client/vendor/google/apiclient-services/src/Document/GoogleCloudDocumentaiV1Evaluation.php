@@ -17,11 +17,14 @@
 
 namespace Google\Service\Document;
 
-class GoogleCloudDocumentaiV1Evaluation extends \Google\Model
+class GoogleCloudDocumentaiV1Evaluation extends \Google\Collection
 {
+  protected $collection_key = 'revisions';
   protected $allEntitiesMetricsType = GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetrics::class;
   protected $allEntitiesMetricsDataType = '';
   /**
+   * The time that the evaluation was created.
+   *
    * @var string
    */
   public $createTime;
@@ -30,20 +33,32 @@ class GoogleCloudDocumentaiV1Evaluation extends \Google\Model
   protected $entityMetricsType = GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetrics::class;
   protected $entityMetricsDataType = 'map';
   /**
+   * The KMS key name used for encryption.
+   *
    * @var string
    */
   public $kmsKeyName;
   /**
+   * The KMS key version with which data is encrypted.
+   *
    * @var string
    */
   public $kmsKeyVersionName;
   /**
+   * The resource name of the evaluation. Format: `projects/{project}/locations/
+   * {location}/processors/{processor}/processorVersions/{processor_version}/eva
+   * luations/{evaluation}`
+   *
    * @var string
    */
   public $name;
+  protected $revisionsType = GoogleCloudDocumentaiV1EvaluationEvaluationRevision::class;
+  protected $revisionsDataType = 'array';
 
   /**
-   * @param GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetrics
+   * Metrics for all the entities in aggregate.
+   *
+   * @param GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetrics $allEntitiesMetrics
    */
   public function setAllEntitiesMetrics(GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetrics $allEntitiesMetrics)
   {
@@ -57,7 +72,9 @@ class GoogleCloudDocumentaiV1Evaluation extends \Google\Model
     return $this->allEntitiesMetrics;
   }
   /**
-   * @param string
+   * The time that the evaluation was created.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -71,7 +88,9 @@ class GoogleCloudDocumentaiV1Evaluation extends \Google\Model
     return $this->createTime;
   }
   /**
-   * @param GoogleCloudDocumentaiV1EvaluationCounters
+   * Counters for the documents used in the evaluation.
+   *
+   * @param GoogleCloudDocumentaiV1EvaluationCounters $documentCounters
    */
   public function setDocumentCounters(GoogleCloudDocumentaiV1EvaluationCounters $documentCounters)
   {
@@ -85,7 +104,9 @@ class GoogleCloudDocumentaiV1Evaluation extends \Google\Model
     return $this->documentCounters;
   }
   /**
-   * @param GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetrics[]
+   * Metrics across confidence levels, for different entities.
+   *
+   * @param GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetrics[] $entityMetrics
    */
   public function setEntityMetrics($entityMetrics)
   {
@@ -99,7 +120,9 @@ class GoogleCloudDocumentaiV1Evaluation extends \Google\Model
     return $this->entityMetrics;
   }
   /**
-   * @param string
+   * The KMS key name used for encryption.
+   *
+   * @param string $kmsKeyName
    */
   public function setKmsKeyName($kmsKeyName)
   {
@@ -113,7 +136,9 @@ class GoogleCloudDocumentaiV1Evaluation extends \Google\Model
     return $this->kmsKeyName;
   }
   /**
-   * @param string
+   * The KMS key version with which data is encrypted.
+   *
+   * @param string $kmsKeyVersionName
    */
   public function setKmsKeyVersionName($kmsKeyVersionName)
   {
@@ -127,7 +152,11 @@ class GoogleCloudDocumentaiV1Evaluation extends \Google\Model
     return $this->kmsKeyVersionName;
   }
   /**
-   * @param string
+   * The resource name of the evaluation. Format: `projects/{project}/locations/
+   * {location}/processors/{processor}/processorVersions/{processor_version}/eva
+   * luations/{evaluation}`
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -139,6 +168,22 @@ class GoogleCloudDocumentaiV1Evaluation extends \Google\Model
   public function getName()
   {
     return $this->name;
+  }
+  /**
+   * Contains all revisions of the evaluation, excluding the latest one.
+   *
+   * @param GoogleCloudDocumentaiV1EvaluationEvaluationRevision[] $revisions
+   */
+  public function setRevisions($revisions)
+  {
+    $this->revisions = $revisions;
+  }
+  /**
+   * @return GoogleCloudDocumentaiV1EvaluationEvaluationRevision[]
+   */
+  public function getRevisions()
+  {
+    return $this->revisions;
   }
 }
 

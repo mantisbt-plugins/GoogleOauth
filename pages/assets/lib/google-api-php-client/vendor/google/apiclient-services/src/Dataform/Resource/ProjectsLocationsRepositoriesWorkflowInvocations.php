@@ -18,6 +18,7 @@
 namespace Google\Service\Dataform\Resource;
 
 use Google\Service\Dataform\CancelWorkflowInvocationRequest;
+use Google\Service\Dataform\CancelWorkflowInvocationResponse;
 use Google\Service\Dataform\DataformEmpty;
 use Google\Service\Dataform\ListWorkflowInvocationsResponse;
 use Google\Service\Dataform\QueryWorkflowInvocationActionsResponse;
@@ -40,13 +41,14 @@ class ProjectsLocationsRepositoriesWorkflowInvocations extends \Google\Service\R
    * @param string $name Required. The workflow invocation resource's name.
    * @param CancelWorkflowInvocationRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return DataformEmpty
+   * @return CancelWorkflowInvocationResponse
+   * @throws \Google\Service\Exception
    */
   public function cancel($name, CancelWorkflowInvocationRequest $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
-    return $this->call('cancel', [$params], DataformEmpty::class);
+    return $this->call('cancel', [$params], CancelWorkflowInvocationResponse::class);
   }
   /**
    * Creates a new WorkflowInvocation in a given Repository.
@@ -57,6 +59,7 @@ class ProjectsLocationsRepositoriesWorkflowInvocations extends \Google\Service\R
    * @param WorkflowInvocation $postBody
    * @param array $optParams Optional parameters.
    * @return WorkflowInvocation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, WorkflowInvocation $postBody, $optParams = [])
   {
@@ -70,6 +73,7 @@ class ProjectsLocationsRepositoriesWorkflowInvocations extends \Google\Service\R
    * @param string $name Required. The workflow invocation resource's name.
    * @param array $optParams Optional parameters.
    * @return DataformEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -83,6 +87,7 @@ class ProjectsLocationsRepositoriesWorkflowInvocations extends \Google\Service\R
    * @param string $name Required. The workflow invocation resource's name.
    * @param array $optParams Optional parameters.
    * @return WorkflowInvocation
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -107,9 +112,11 @@ class ProjectsLocationsRepositoriesWorkflowInvocations extends \Google\Service\R
    * server will pick an appropriate default.
    * @opt_param string pageToken Optional. Page token received from a previous
    * `ListWorkflowInvocations` call. Provide this to retrieve the subsequent page.
-   * When paginating, all other parameters provided to `ListWorkflowInvocations`
-   * must match the call that provided the page token.
+   * When paginating, all other parameters provided to `ListWorkflowInvocations`,
+   * with the exception of `page_size`, must match the call that provided the page
+   * token.
    * @return ListWorkflowInvocationsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsRepositoriesWorkflowInvocations($parent, $optParams = [])
   {
@@ -130,9 +137,10 @@ class ProjectsLocationsRepositoriesWorkflowInvocations extends \Google\Service\R
    * @opt_param string pageToken Optional. Page token received from a previous
    * `QueryWorkflowInvocationActions` call. Provide this to retrieve the
    * subsequent page. When paginating, all other parameters provided to
-   * `QueryWorkflowInvocationActions` must match the call that provided the page
-   * token.
+   * `QueryWorkflowInvocationActions`, with the exception of `page_size`, must
+   * match the call that provided the page token.
    * @return QueryWorkflowInvocationActionsResponse
+   * @throws \Google\Service\Exception
    */
   public function query($name, $optParams = [])
   {

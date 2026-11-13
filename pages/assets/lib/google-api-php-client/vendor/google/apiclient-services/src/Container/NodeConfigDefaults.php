@@ -19,13 +19,35 @@ namespace Google\Service\Container;
 
 class NodeConfigDefaults extends \Google\Model
 {
+  protected $containerdConfigType = ContainerdConfig::class;
+  protected $containerdConfigDataType = '';
   protected $gcfsConfigType = GcfsConfig::class;
   protected $gcfsConfigDataType = '';
   protected $loggingConfigType = NodePoolLoggingConfig::class;
   protected $loggingConfigDataType = '';
+  protected $nodeKubeletConfigType = NodeKubeletConfig::class;
+  protected $nodeKubeletConfigDataType = '';
 
   /**
-   * @param GcfsConfig
+   * Parameters for containerd customization.
+   *
+   * @param ContainerdConfig $containerdConfig
+   */
+  public function setContainerdConfig(ContainerdConfig $containerdConfig)
+  {
+    $this->containerdConfig = $containerdConfig;
+  }
+  /**
+   * @return ContainerdConfig
+   */
+  public function getContainerdConfig()
+  {
+    return $this->containerdConfig;
+  }
+  /**
+   * GCFS (Google Container File System, also known as Riptide) options.
+   *
+   * @param GcfsConfig $gcfsConfig
    */
   public function setGcfsConfig(GcfsConfig $gcfsConfig)
   {
@@ -39,7 +61,9 @@ class NodeConfigDefaults extends \Google\Model
     return $this->gcfsConfig;
   }
   /**
-   * @param NodePoolLoggingConfig
+   * Logging configuration for node pools.
+   *
+   * @param NodePoolLoggingConfig $loggingConfig
    */
   public function setLoggingConfig(NodePoolLoggingConfig $loggingConfig)
   {
@@ -51,6 +75,23 @@ class NodeConfigDefaults extends \Google\Model
   public function getLoggingConfig()
   {
     return $this->loggingConfig;
+  }
+  /**
+   * NodeKubeletConfig controls the defaults for new node-pools. Currently only
+   * `insecure_kubelet_readonly_port_enabled` can be set here.
+   *
+   * @param NodeKubeletConfig $nodeKubeletConfig
+   */
+  public function setNodeKubeletConfig(NodeKubeletConfig $nodeKubeletConfig)
+  {
+    $this->nodeKubeletConfig = $nodeKubeletConfig;
+  }
+  /**
+   * @return NodeKubeletConfig
+   */
+  public function getNodeKubeletConfig()
+  {
+    return $this->nodeKubeletConfig;
   }
 }
 

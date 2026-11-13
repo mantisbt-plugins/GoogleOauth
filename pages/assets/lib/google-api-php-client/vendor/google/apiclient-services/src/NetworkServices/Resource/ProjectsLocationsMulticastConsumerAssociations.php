@@ -17,10 +17,9 @@
 
 namespace Google\Service\NetworkServices\Resource;
 
-use Google\Service\NetworkServices\Policy;
-use Google\Service\NetworkServices\SetIamPolicyRequest;
-use Google\Service\NetworkServices\TestIamPermissionsRequest;
-use Google\Service\NetworkServices\TestIamPermissionsResponse;
+use Google\Service\NetworkServices\ListMulticastConsumerAssociationsResponse;
+use Google\Service\NetworkServices\MulticastConsumerAssociation;
+use Google\Service\NetworkServices\Operation;
 
 /**
  * The "multicastConsumerAssociations" collection of methods.
@@ -33,76 +32,151 @@ use Google\Service\NetworkServices\TestIamPermissionsResponse;
 class ProjectsLocationsMulticastConsumerAssociations extends \Google\Service\Resource
 {
   /**
-   * Gets the access control policy for a resource. Returns an empty policy if the
-   * resource exists and does not have a policy set.
-   * (multicastConsumerAssociations.getIamPolicy)
+   * Creates a new multicast consumer association in a given project and location.
+   * (multicastConsumerAssociations.create)
    *
-   * @param string $resource REQUIRED: The resource for which the policy is being
-   * requested. See [Resource
-   * names](https://cloud.google.com/apis/design/resource_names) for the
-   * appropriate value for this field.
+   * @param string $parent Required. The parent resource of the multicast consumer
+   * association. Use the following format: `projects/locations`.
+   * @param MulticastConsumerAssociation $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int options.requestedPolicyVersion Optional. The maximum policy
-   * version that will be used to format the policy. Valid values are 0, 1, and 3.
-   * Requests specifying an invalid value will be rejected. Requests for policies
-   * with any conditional role bindings must specify version 3. Policies with no
-   * conditional role bindings may specify any valid value or leave the field
-   * unset. The policy in the response might use the policy version that you
-   * specified, or it might use a lower policy version. For example, if you
-   * specify version 3, but the policy has no conditional role bindings, the
-   * response uses version 1. To learn which resources support conditions in their
-   * IAM policies, see the [IAM
-   * documentation](https://cloud.google.com/iam/help/conditions/resource-
-   * policies).
-   * @return Policy
+   * @opt_param string multicastConsumerAssociationId Required. A unique name for
+   * the multicast consumer association. The name is restricted to lower-case
+   * letters, numbers, and hyphen, with the first character a lower-case letter,
+   * and the last a letter or a number. The name must not exceed 48 characters.
+   * @opt_param string requestId Optional. An optional request ID to identify
+   * requests. Specify a unique request ID so that if you must retry your request,
+   * the server will know to ignore the request if it has already been completed.
+   * The server will guarantee that for at least 60 minutes after the first
+   * request. For example, consider a situation where you make an initial request
+   * and the request times out. If you make the request again with the same
+   * request ID, the server can check if original operation with the same request
+   * ID was received, and if so, will ignore the second request. This prevents
+   * clients from accidentally creating duplicate commitments. The request ID must
+   * be a valid UUID with the exception that zero UUID is not supported
+   * (00000000-0000-0000-0000-000000000000).
+   * @return Operation
+   * @throws \Google\Service\Exception
    */
-  public function getIamPolicy($resource, $optParams = [])
+  public function create($parent, MulticastConsumerAssociation $postBody, $optParams = [])
   {
-    $params = ['resource' => $resource];
+    $params = ['parent' => $parent, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
-    return $this->call('getIamPolicy', [$params], Policy::class);
+    return $this->call('create', [$params], Operation::class);
   }
   /**
-   * Sets the access control policy on the specified resource. Replaces any
-   * existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and
-   * `PERMISSION_DENIED` errors. (multicastConsumerAssociations.setIamPolicy)
+   * Deletes a single multicast consumer association.
+   * (multicastConsumerAssociations.delete)
    *
-   * @param string $resource REQUIRED: The resource for which the policy is being
-   * specified. See [Resource
-   * names](https://cloud.google.com/apis/design/resource_names) for the
-   * appropriate value for this field.
-   * @param SetIamPolicyRequest $postBody
+   * @param string $name Required. The resource name of the multicast consumer
+   * association to delete. Use the following format:
+   * `projects/locations/multicastConsumerAssociations`.
    * @param array $optParams Optional parameters.
-   * @return Policy
+   *
+   * @opt_param string requestId Optional. An optional request ID to identify
+   * requests. Specify a unique request ID so that if you must retry your request,
+   * the server will know to ignore the request if it has already been completed.
+   * The server will guarantee that for at least 60 minutes after the first
+   * request. For example, consider a situation where you make an initial request
+   * and the request times out. If you make the request again with the same
+   * request ID, the server can check if original operation with the same request
+   * ID was received, and if so, will ignore the second request. This prevents
+   * clients from accidentally creating duplicate commitments. The request ID must
+   * be a valid UUID with the exception that zero UUID is not supported
+   * (00000000-0000-0000-0000-000000000000).
+   * @return Operation
+   * @throws \Google\Service\Exception
    */
-  public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
+  public function delete($name, $optParams = [])
   {
-    $params = ['resource' => $resource, 'postBody' => $postBody];
+    $params = ['name' => $name];
     $params = array_merge($params, $optParams);
-    return $this->call('setIamPolicy', [$params], Policy::class);
+    return $this->call('delete', [$params], Operation::class);
   }
   /**
-   * Returns permissions that a caller has on the specified resource. If the
-   * resource does not exist, this will return an empty set of permissions, not a
-   * `NOT_FOUND` error. Note: This operation is designed to be used for building
-   * permission-aware UIs and command-line tools, not for authorization checking.
-   * This operation may "fail open" without warning.
-   * (multicastConsumerAssociations.testIamPermissions)
+   * Gets details of a single multicast consumer association.
+   * (multicastConsumerAssociations.get)
    *
-   * @param string $resource REQUIRED: The resource for which the policy detail is
-   * being requested. See [Resource
-   * names](https://cloud.google.com/apis/design/resource_names) for the
-   * appropriate value for this field.
-   * @param TestIamPermissionsRequest $postBody
+   * @param string $name Required. The resource name of the multicast consumer
+   * association to get. Use the following format:
+   * `projects/locations/multicastConsumerAssociations`.
    * @param array $optParams Optional parameters.
-   * @return TestIamPermissionsResponse
+   * @return MulticastConsumerAssociation
+   * @throws \Google\Service\Exception
    */
-  public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
+  public function get($name, $optParams = [])
   {
-    $params = ['resource' => $resource, 'postBody' => $postBody];
+    $params = ['name' => $name];
     $params = array_merge($params, $optParams);
-    return $this->call('testIamPermissions', [$params], TestIamPermissionsResponse::class);
+    return $this->call('get', [$params], MulticastConsumerAssociation::class);
+  }
+  /**
+   * Lists multicast consumer associations in a given project and location. (multi
+   * castConsumerAssociations.listProjectsLocationsMulticastConsumerAssociations)
+   *
+   * @param string $parent Required. The parent resource for which to list
+   * multicast consumer associations. Use the following format:
+   * `projects/locations`.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string filter Optional. A filter expression that filters the
+   * resources listed in the response. The expression must be of the form ` `
+   * where operators: `<`, `>`, `<=`, `>=`, `!=`, `=`, `:` are supported (colon
+   * `:` represents a HAS operator which is roughly synonymous with equality). can
+   * refer to a proto or JSON field, or a synthetic field. Field names can be
+   * camelCase or snake_case. Examples: * Filter by name: name = "RESOURCE_NAME" *
+   * Filter by labels: * Resources that have a key named `foo` labels.foo:* *
+   * Resources that have a key named `foo` whose value is `bar` labels.foo = bar
+   * @opt_param string orderBy Optional. A field used to sort the results by a
+   * certain order.
+   * @opt_param int pageSize Optional. The maximum number of multicast consumer
+   * associations to return per call.
+   * @opt_param string pageToken Optional. A page token from an earlier query, as
+   * returned in `next_page_token`.
+   * @return ListMulticastConsumerAssociationsResponse
+   * @throws \Google\Service\Exception
+   */
+  public function listProjectsLocationsMulticastConsumerAssociations($parent, $optParams = [])
+  {
+    $params = ['parent' => $parent];
+    $params = array_merge($params, $optParams);
+    return $this->call('list', [$params], ListMulticastConsumerAssociationsResponse::class);
+  }
+  /**
+   * Updates the parameters of a single multicast consumer association.
+   * (multicastConsumerAssociations.patch)
+   *
+   * @param string $name Identifier. The resource name of the multicast consumer
+   * association. Use the following format:
+   * `projects/locations/multicastConsumerAssociations`.
+   * @param MulticastConsumerAssociation $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId Optional. An optional request ID to identify
+   * requests. Specify a unique request ID so that if you must retry your request,
+   * the server will know to ignore the request if it has already been completed.
+   * The server will guarantee that for at least 60 minutes after the first
+   * request. For example, consider a situation where you make an initial request
+   * and the request times out. If you make the request again with the same
+   * request ID, the server can check if original operation with the same request
+   * ID was received, and if so, will ignore the second request. This prevents
+   * clients from accidentally creating duplicate commitments. The request ID must
+   * be a valid UUID with the exception that zero UUID is not supported
+   * (00000000-0000-0000-0000-000000000000).
+   * @opt_param string updateMask Optional. Field mask is used to specify the
+   * fields to be overwritten in the MulticastConsumerAssociation resource by the
+   * update. The fields specified in the `update_mask` are relative to the
+   * resource, not the full request. A field will be overwritten if it is in the
+   * mask. If the user does not provide a mask then all mutable fields present in
+   * the request will be overwritten.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function patch($name, MulticastConsumerAssociation $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('patch', [$params], Operation::class);
   }
 }
 

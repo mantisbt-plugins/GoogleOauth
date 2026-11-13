@@ -28,18 +28,19 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/admin-sdk/licensing/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/admin/licensing/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
  */
 class Licensing extends \Google\Service
 {
-  /** View and manage G Suite licenses for your domain. */
+  /** View and manage Google Workspace licenses for your domain. */
   const APPS_LICENSING =
       "https://www.googleapis.com/auth/apps.licensing";
 
   public $licenseAssignments;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Licensing service.
@@ -52,6 +53,7 @@ class Licensing extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://licensing.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://licensing.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

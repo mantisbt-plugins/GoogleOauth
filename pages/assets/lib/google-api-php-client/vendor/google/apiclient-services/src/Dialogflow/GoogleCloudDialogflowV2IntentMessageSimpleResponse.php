@@ -33,7 +33,7 @@ class GoogleCloudDialogflowV2IntentMessageSimpleResponse extends \Google\Model
   public $textToSpeech;
 
   /**
-   * @param string
+   * @param string $displayText
    */
   public function setDisplayText($displayText)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowV2IntentMessageSimpleResponse extends \Google\Model
     return $this->displayText;
   }
   /**
-   * @param string
+   * @param string $ssml
    */
   public function setSsml($ssml)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowV2IntentMessageSimpleResponse extends \Google\Model
     return $this->ssml;
   }
   /**
-   * @param string
+   * @param string $textToSpeech
    */
   public function setTextToSpeech($textToSpeech)
   {

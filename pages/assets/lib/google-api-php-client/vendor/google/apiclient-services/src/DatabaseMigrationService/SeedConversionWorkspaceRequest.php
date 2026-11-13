@@ -20,20 +20,32 @@ namespace Google\Service\DatabaseMigrationService;
 class SeedConversionWorkspaceRequest extends \Google\Model
 {
   /**
+   * Should the conversion workspace be committed automatically after the seed
+   * operation.
+   *
    * @var bool
    */
   public $autoCommit;
   /**
+   * Optional. Fully qualified (Uri) name of the destination connection profile.
+   *
    * @var string
    */
   public $destinationConnectionProfile;
+  protected $gcsSourceType = GcsSource::class;
+  protected $gcsSourceDataType = '';
   /**
+   * Optional. Fully qualified (Uri) name of the source connection profile.
+   *
    * @var string
    */
   public $sourceConnectionProfile;
 
   /**
-   * @param bool
+   * Should the conversion workspace be committed automatically after the seed
+   * operation.
+   *
+   * @param bool $autoCommit
    */
   public function setAutoCommit($autoCommit)
   {
@@ -47,7 +59,9 @@ class SeedConversionWorkspaceRequest extends \Google\Model
     return $this->autoCommit;
   }
   /**
-   * @param string
+   * Optional. Fully qualified (Uri) name of the destination connection profile.
+   *
+   * @param string $destinationConnectionProfile
    */
   public function setDestinationConnectionProfile($destinationConnectionProfile)
   {
@@ -61,7 +75,25 @@ class SeedConversionWorkspaceRequest extends \Google\Model
     return $this->destinationConnectionProfile;
   }
   /**
-   * @param string
+   * Optional. Cloud Storage source details for seeding.
+   *
+   * @param GcsSource $gcsSource
+   */
+  public function setGcsSource(GcsSource $gcsSource)
+  {
+    $this->gcsSource = $gcsSource;
+  }
+  /**
+   * @return GcsSource
+   */
+  public function getGcsSource()
+  {
+    return $this->gcsSource;
+  }
+  /**
+   * Optional. Fully qualified (Uri) name of the source connection profile.
+   *
+   * @param string $sourceConnectionProfile
    */
   public function setSourceConnectionProfile($sourceConnectionProfile)
   {

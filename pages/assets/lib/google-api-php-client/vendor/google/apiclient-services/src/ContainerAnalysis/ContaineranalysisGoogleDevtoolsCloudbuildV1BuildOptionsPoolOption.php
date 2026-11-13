@@ -20,12 +20,35 @@ namespace Google\Service\ContainerAnalysis;
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption extends \Google\Model
 {
   /**
+   * The `WorkerPool` resource to execute the build on. You must have
+   * `cloudbuild.workerpools.use` on the project hosting the WorkerPool. Format
+   * projects/{project}/locations/{location}/workerPools/{workerPoolId}
+   *
    * @var string
    */
   public $name;
+  /**
+   * Output only. OUTPUT_ONLY. Worker release resolved from the release channel.
+   *
+   * @var string
+   */
+  public $resolvedWorkerRelease;
+  /**
+   * Output only. OUTPUT_ONLY. The release or release channel used to run the
+   * Build. This is set to the same value as
+   * `PrivatePoolV1Config.WorkerConfig.worker_release` for the UI to easily
+   * access.
+   *
+   * @var string
+   */
+  public $workerRelease;
 
   /**
-   * @param string
+   * The `WorkerPool` resource to execute the build on. You must have
+   * `cloudbuild.workerpools.use` on the project hosting the WorkerPool. Format
+   * projects/{project}/locations/{location}/workerPools/{workerPoolId}
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -37,6 +60,41 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption extends 
   public function getName()
   {
     return $this->name;
+  }
+  /**
+   * Output only. OUTPUT_ONLY. Worker release resolved from the release channel.
+   *
+   * @param string $resolvedWorkerRelease
+   */
+  public function setResolvedWorkerRelease($resolvedWorkerRelease)
+  {
+    $this->resolvedWorkerRelease = $resolvedWorkerRelease;
+  }
+  /**
+   * @return string
+   */
+  public function getResolvedWorkerRelease()
+  {
+    return $this->resolvedWorkerRelease;
+  }
+  /**
+   * Output only. OUTPUT_ONLY. The release or release channel used to run the
+   * Build. This is set to the same value as
+   * `PrivatePoolV1Config.WorkerConfig.worker_release` for the UI to easily
+   * access.
+   *
+   * @param string $workerRelease
+   */
+  public function setWorkerRelease($workerRelease)
+  {
+    $this->workerRelease = $workerRelease;
+  }
+  /**
+   * @return string
+   */
+  public function getWorkerRelease()
+  {
+    return $this->workerRelease;
   }
 }
 

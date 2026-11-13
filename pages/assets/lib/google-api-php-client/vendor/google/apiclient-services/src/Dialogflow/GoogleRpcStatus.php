@@ -34,7 +34,7 @@ class GoogleRpcStatus extends \Google\Collection
   public $message;
 
   /**
-   * @param int
+   * @param int $code
    */
   public function setCode($code)
   {
@@ -48,7 +48,7 @@ class GoogleRpcStatus extends \Google\Collection
     return $this->code;
   }
   /**
-   * @param array[]
+   * @param array[] $details
    */
   public function setDetails($details)
   {
@@ -62,7 +62,7 @@ class GoogleRpcStatus extends \Google\Collection
     return $this->details;
   }
   /**
-   * @param string
+   * @param string $message
    */
   public function setMessage($message)
   {

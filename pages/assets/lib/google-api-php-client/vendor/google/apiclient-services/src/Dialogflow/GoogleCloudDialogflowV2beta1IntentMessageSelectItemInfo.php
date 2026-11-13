@@ -30,7 +30,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo extends \Google\Co
   public $synonyms;
 
   /**
-   * @param string
+   * @param string $key
    */
   public function setKey($key)
   {
@@ -44,7 +44,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo extends \Google\Co
     return $this->key;
   }
   /**
-   * @param string[]
+   * @param string[] $synonyms
    */
   public function setSynonyms($synonyms)
   {

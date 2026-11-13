@@ -17,10 +17,19 @@
 
 namespace Google\Service\AuthorizedBuyersMarketplace;
 
-class MarketplaceTargeting extends \Google\Model
+class MarketplaceTargeting extends \Google\Collection
 {
+  protected $collection_key = 'excludedSensitiveCategoryIds';
   protected $daypartTargetingType = DayPartTargeting::class;
   protected $daypartTargetingDataType = '';
+  /**
+   * Output only. The sensitive content category label IDs excluded. Refer to
+   * this file https://storage.googleapis.com/adx-rtb-dictionaries/content-
+   * labels.txt for category IDs.
+   *
+   * @var string[]
+   */
+  public $excludedSensitiveCategoryIds;
   protected $geoTargetingType = CriteriaTargeting::class;
   protected $geoTargetingDataType = '';
   protected $inventorySizeTargetingType = InventorySizeTargeting::class;
@@ -33,11 +42,15 @@ class MarketplaceTargeting extends \Google\Model
   protected $technologyTargetingDataType = '';
   protected $userListTargetingType = CriteriaTargeting::class;
   protected $userListTargetingDataType = '';
+  protected $verticalTargetingType = CriteriaTargeting::class;
+  protected $verticalTargetingDataType = '';
   protected $videoTargetingType = VideoTargeting::class;
   protected $videoTargetingDataType = '';
 
   /**
-   * @param DayPartTargeting
+   * Daypart targeting information.
+   *
+   * @param DayPartTargeting $daypartTargeting
    */
   public function setDaypartTargeting(DayPartTargeting $daypartTargeting)
   {
@@ -51,7 +64,27 @@ class MarketplaceTargeting extends \Google\Model
     return $this->daypartTargeting;
   }
   /**
-   * @param CriteriaTargeting
+   * Output only. The sensitive content category label IDs excluded. Refer to
+   * this file https://storage.googleapis.com/adx-rtb-dictionaries/content-
+   * labels.txt for category IDs.
+   *
+   * @param string[] $excludedSensitiveCategoryIds
+   */
+  public function setExcludedSensitiveCategoryIds($excludedSensitiveCategoryIds)
+  {
+    $this->excludedSensitiveCategoryIds = $excludedSensitiveCategoryIds;
+  }
+  /**
+   * @return string[]
+   */
+  public function getExcludedSensitiveCategoryIds()
+  {
+    return $this->excludedSensitiveCategoryIds;
+  }
+  /**
+   * Output only. Geo criteria IDs to be included/excluded.
+   *
+   * @param CriteriaTargeting $geoTargeting
    */
   public function setGeoTargeting(CriteriaTargeting $geoTargeting)
   {
@@ -65,7 +98,9 @@ class MarketplaceTargeting extends \Google\Model
     return $this->geoTargeting;
   }
   /**
-   * @param InventorySizeTargeting
+   * Output only. Inventory sizes to be included/excluded.
+   *
+   * @param InventorySizeTargeting $inventorySizeTargeting
    */
   public function setInventorySizeTargeting(InventorySizeTargeting $inventorySizeTargeting)
   {
@@ -79,7 +114,9 @@ class MarketplaceTargeting extends \Google\Model
     return $this->inventorySizeTargeting;
   }
   /**
-   * @param InventoryTypeTargeting
+   * Output only. Inventory type targeting information.
+   *
+   * @param InventoryTypeTargeting $inventoryTypeTargeting
    */
   public function setInventoryTypeTargeting(InventoryTypeTargeting $inventoryTypeTargeting)
   {
@@ -93,7 +130,10 @@ class MarketplaceTargeting extends \Google\Model
     return $this->inventoryTypeTargeting;
   }
   /**
-   * @param PlacementTargeting
+   * Output only. Placement targeting information, for example, URL, mobile
+   * applications.
+   *
+   * @param PlacementTargeting $placementTargeting
    */
   public function setPlacementTargeting(PlacementTargeting $placementTargeting)
   {
@@ -107,7 +147,10 @@ class MarketplaceTargeting extends \Google\Model
     return $this->placementTargeting;
   }
   /**
-   * @param TechnologyTargeting
+   * Output only. Technology targeting information, for example, operating
+   * system, device category.
+   *
+   * @param TechnologyTargeting $technologyTargeting
    */
   public function setTechnologyTargeting(TechnologyTargeting $technologyTargeting)
   {
@@ -121,7 +164,10 @@ class MarketplaceTargeting extends \Google\Model
     return $this->technologyTargeting;
   }
   /**
-   * @param CriteriaTargeting
+   * Buyer user list targeting information. User lists can be uploaded using
+   * https://developers.google.com/authorized-buyers/rtb/bulk-uploader.
+   *
+   * @param CriteriaTargeting $userListTargeting
    */
   public function setUserListTargeting(CriteriaTargeting $userListTargeting)
   {
@@ -135,7 +181,27 @@ class MarketplaceTargeting extends \Google\Model
     return $this->userListTargeting;
   }
   /**
-   * @param VideoTargeting
+   * Output only. The verticals included or excluded as defined in
+   * https://developers.google.com/authorized-buyers/rtb/downloads/publisher-
+   * verticals
+   *
+   * @param CriteriaTargeting $verticalTargeting
+   */
+  public function setVerticalTargeting(CriteriaTargeting $verticalTargeting)
+  {
+    $this->verticalTargeting = $verticalTargeting;
+  }
+  /**
+   * @return CriteriaTargeting
+   */
+  public function getVerticalTargeting()
+  {
+    return $this->verticalTargeting;
+  }
+  /**
+   * Output only. Video targeting information.
+   *
+   * @param VideoTargeting $videoTargeting
    */
   public function setVideoTargeting(VideoTargeting $videoTargeting)
   {

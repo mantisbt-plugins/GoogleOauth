@@ -19,6 +19,8 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3beta1FormParameter extends \Google\Model
 {
+  protected $advancedSettingsType = GoogleCloudDialogflowCxV3beta1AdvancedSettings::class;
+  protected $advancedSettingsDataType = '';
   /**
    * @var array
    */
@@ -47,7 +49,21 @@ class GoogleCloudDialogflowCxV3beta1FormParameter extends \Google\Model
   public $required;
 
   /**
-   * @param array
+   * @param GoogleCloudDialogflowCxV3beta1AdvancedSettings $advancedSettings
+   */
+  public function setAdvancedSettings(GoogleCloudDialogflowCxV3beta1AdvancedSettings $advancedSettings)
+  {
+    $this->advancedSettings = $advancedSettings;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3beta1AdvancedSettings
+   */
+  public function getAdvancedSettings()
+  {
+    return $this->advancedSettings;
+  }
+  /**
+   * @param array $defaultValue
    */
   public function setDefaultValue($defaultValue)
   {
@@ -61,7 +77,7 @@ class GoogleCloudDialogflowCxV3beta1FormParameter extends \Google\Model
     return $this->defaultValue;
   }
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -75,7 +91,7 @@ class GoogleCloudDialogflowCxV3beta1FormParameter extends \Google\Model
     return $this->displayName;
   }
   /**
-   * @param string
+   * @param string $entityType
    */
   public function setEntityType($entityType)
   {
@@ -89,7 +105,7 @@ class GoogleCloudDialogflowCxV3beta1FormParameter extends \Google\Model
     return $this->entityType;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1FormParameterFillBehavior
+   * @param GoogleCloudDialogflowCxV3beta1FormParameterFillBehavior $fillBehavior
    */
   public function setFillBehavior(GoogleCloudDialogflowCxV3beta1FormParameterFillBehavior $fillBehavior)
   {
@@ -103,7 +119,7 @@ class GoogleCloudDialogflowCxV3beta1FormParameter extends \Google\Model
     return $this->fillBehavior;
   }
   /**
-   * @param bool
+   * @param bool $isList
    */
   public function setIsList($isList)
   {
@@ -117,7 +133,7 @@ class GoogleCloudDialogflowCxV3beta1FormParameter extends \Google\Model
     return $this->isList;
   }
   /**
-   * @param bool
+   * @param bool $redact
    */
   public function setRedact($redact)
   {
@@ -131,7 +147,7 @@ class GoogleCloudDialogflowCxV3beta1FormParameter extends \Google\Model
     return $this->redact;
   }
   /**
-   * @param bool
+   * @param bool $required
    */
   public function setRequired($required)
   {

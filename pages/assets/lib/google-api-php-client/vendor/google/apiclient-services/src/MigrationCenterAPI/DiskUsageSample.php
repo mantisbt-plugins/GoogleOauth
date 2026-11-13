@@ -20,12 +20,34 @@ namespace Google\Service\MigrationCenterAPI;
 class DiskUsageSample extends \Google\Model
 {
   /**
+   * Optional. Average IOPS sampled over a short window. Must be non-negative.
+   * If read or write are set, the sum of read and write will override the value
+   * of the average_iops.
+   *
    * @var float
    */
   public $averageIops;
+  /**
+   * Optional. Average read IOPS sampled over a short window. Must be non-
+   * negative. If both read and write are zero they are ignored.
+   *
+   * @var float
+   */
+  public $averageReadIops;
+  /**
+   * Optional. Average write IOPS sampled over a short window. Must be non-
+   * negative. If both read and write are zero they are ignored.
+   *
+   * @var float
+   */
+  public $averageWriteIops;
 
   /**
-   * @param float
+   * Optional. Average IOPS sampled over a short window. Must be non-negative.
+   * If read or write are set, the sum of read and write will override the value
+   * of the average_iops.
+   *
+   * @param float $averageIops
    */
   public function setAverageIops($averageIops)
   {
@@ -37,6 +59,40 @@ class DiskUsageSample extends \Google\Model
   public function getAverageIops()
   {
     return $this->averageIops;
+  }
+  /**
+   * Optional. Average read IOPS sampled over a short window. Must be non-
+   * negative. If both read and write are zero they are ignored.
+   *
+   * @param float $averageReadIops
+   */
+  public function setAverageReadIops($averageReadIops)
+  {
+    $this->averageReadIops = $averageReadIops;
+  }
+  /**
+   * @return float
+   */
+  public function getAverageReadIops()
+  {
+    return $this->averageReadIops;
+  }
+  /**
+   * Optional. Average write IOPS sampled over a short window. Must be non-
+   * negative. If both read and write are zero they are ignored.
+   *
+   * @param float $averageWriteIops
+   */
+  public function setAverageWriteIops($averageWriteIops)
+  {
+    $this->averageWriteIops = $averageWriteIops;
+  }
+  /**
+   * @return float
+   */
+  public function getAverageWriteIops()
+  {
+    return $this->averageWriteIops;
   }
 }
 

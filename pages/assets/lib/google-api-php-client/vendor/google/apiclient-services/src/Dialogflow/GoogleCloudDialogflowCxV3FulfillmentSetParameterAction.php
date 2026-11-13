@@ -29,7 +29,7 @@ class GoogleCloudDialogflowCxV3FulfillmentSetParameterAction extends \Google\Mod
   public $value;
 
   /**
-   * @param string
+   * @param string $parameter
    */
   public function setParameter($parameter)
   {
@@ -43,7 +43,7 @@ class GoogleCloudDialogflowCxV3FulfillmentSetParameterAction extends \Google\Mod
     return $this->parameter;
   }
   /**
-   * @param array
+   * @param array $value
    */
   public function setValue($value)
   {

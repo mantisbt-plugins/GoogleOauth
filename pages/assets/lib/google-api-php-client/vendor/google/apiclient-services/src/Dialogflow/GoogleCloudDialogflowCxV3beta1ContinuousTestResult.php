@@ -19,6 +19,9 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3beta1ContinuousTestResult extends \Google\Collection
 {
+  public const RESULT_AGGREGATED_TEST_RESULT_UNSPECIFIED = 'AGGREGATED_TEST_RESULT_UNSPECIFIED';
+  public const RESULT_PASSED = 'PASSED';
+  public const RESULT_FAILED = 'FAILED';
   protected $collection_key = 'testCaseResults';
   /**
    * @var string
@@ -38,7 +41,7 @@ class GoogleCloudDialogflowCxV3beta1ContinuousTestResult extends \Google\Collect
   public $testCaseResults;
 
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -52,21 +55,21 @@ class GoogleCloudDialogflowCxV3beta1ContinuousTestResult extends \Google\Collect
     return $this->name;
   }
   /**
-   * @param string
+   * @param self::RESULT_* $result
    */
   public function setResult($result)
   {
     $this->result = $result;
   }
   /**
-   * @return string
+   * @return self::RESULT_*
    */
   public function getResult()
   {
     return $this->result;
   }
   /**
-   * @param string
+   * @param string $runTime
    */
   public function setRunTime($runTime)
   {
@@ -80,7 +83,7 @@ class GoogleCloudDialogflowCxV3beta1ContinuousTestResult extends \Google\Collect
     return $this->runTime;
   }
   /**
-   * @param string[]
+   * @param string[] $testCaseResults
    */
   public function setTestCaseResults($testCaseResults)
   {

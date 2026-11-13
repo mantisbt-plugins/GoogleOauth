@@ -39,10 +39,11 @@ class ProjectsLocationsProcesses extends \Google\Service\Resource
    * @param GoogleCloudDatacatalogLineageV1Process $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string requestId A unique identifier for this request. Restricted
-   * to 36 ASCII characters. A random UUID is recommended. This request is
-   * idempotent only if a `request_id` is provided.
+   * @opt_param string requestId Optional. A unique identifier for this request.
+   * Restricted to 36 ASCII characters. A random UUID is recommended. This request
+   * is idempotent only if a `request_id` is provided.
    * @return GoogleCloudDatacatalogLineageV1Process
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudDatacatalogLineageV1Process $postBody, $optParams = [])
   {
@@ -56,9 +57,10 @@ class ProjectsLocationsProcesses extends \Google\Service\Resource
    * @param string $name Required. The name of the process to delete.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param bool allowMissing If set to true and the process is not found, the
-   * request succeeds but the server doesn't perform any actions.
+   * @opt_param bool allowMissing Optional. If set to true and the process is not
+   * found, the request succeeds but the server doesn't perform any actions.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -72,6 +74,7 @@ class ProjectsLocationsProcesses extends \Google\Service\Resource
    * @param string $name Required. The name of the process to get.
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDatacatalogLineageV1Process
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -87,15 +90,16 @@ class ProjectsLocationsProcesses extends \Google\Service\Resource
    * owns this collection of processes.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of processes to return. The
-   * service may return fewer than this value. If unspecified, at most 50
+   * @opt_param int pageSize Optional. The maximum number of processes to return.
+   * The service may return fewer than this value. If unspecified, at most 50
    * processes are returned. The maximum value is 100; values greater than 100 are
    * cut to 100.
-   * @opt_param string pageToken The page token received from a previous
+   * @opt_param string pageToken Optional. The page token received from a previous
    * `ListProcesses` call. Specify it to get the next page. When paginating, all
    * other parameters specified in this call must match the parameters of the call
    * that provided the page token.
    * @return GoogleCloudDatacatalogLineageV1ListProcessesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsProcesses($parent, $optParams = [])
   {
@@ -113,11 +117,15 @@ class ProjectsLocationsProcesses extends \Google\Service\Resource
    * @param GoogleCloudDatacatalogLineageV1Process $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param bool allowMissing If set to true and the process is not found, the
-   * request inserts it.
-   * @opt_param string updateMask The list of fields to update. Currently not
-   * used. The whole message is updated.
+   * @opt_param bool allowMissing Optional. If set to true and the process is not
+   * found, the request inserts it.
+   * @opt_param string requestId Optional. A unique identifier for this request.
+   * Restricted to 36 ASCII characters. A random UUID is recommended. This request
+   * is idempotent only if a `request_id` is provided.
+   * @opt_param string updateMask Optional. The list of fields to update.
+   * Currently not used. The whole message is updated.
    * @return GoogleCloudDatacatalogLineageV1Process
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudDatacatalogLineageV1Process $postBody, $optParams = [])
   {

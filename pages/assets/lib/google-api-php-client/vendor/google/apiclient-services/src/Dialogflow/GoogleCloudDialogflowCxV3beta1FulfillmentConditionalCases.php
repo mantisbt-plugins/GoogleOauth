@@ -24,7 +24,7 @@ class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases extends \Google\
   protected $casesDataType = 'array';
 
   /**
-   * @param GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCase[]
+   * @param GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCase[] $cases
    */
   public function setCases($cases)
   {

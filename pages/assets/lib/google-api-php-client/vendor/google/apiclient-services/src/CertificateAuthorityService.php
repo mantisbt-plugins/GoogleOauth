@@ -47,6 +47,7 @@ class CertificateAuthorityService extends \Google\Service
   public $projects_locations_caPools_certificates;
   public $projects_locations_certificateTemplates;
   public $projects_locations_operations;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CertificateAuthorityService
@@ -60,6 +61,7 @@ class CertificateAuthorityService extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://privateca.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://privateca.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -89,6 +91,11 @@ class CertificateAuthorityService extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -793,6 +800,10 @@ class CertificateAuthorityService extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],

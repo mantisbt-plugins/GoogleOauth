@@ -33,7 +33,7 @@ class GoogleCloudDialogflowV2WebhookRequest extends \Google\Model
   public $session;
 
   /**
-   * @param GoogleCloudDialogflowV2OriginalDetectIntentRequest
+   * @param GoogleCloudDialogflowV2OriginalDetectIntentRequest $originalDetectIntentRequest
    */
   public function setOriginalDetectIntentRequest(GoogleCloudDialogflowV2OriginalDetectIntentRequest $originalDetectIntentRequest)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowV2WebhookRequest extends \Google\Model
     return $this->originalDetectIntentRequest;
   }
   /**
-   * @param GoogleCloudDialogflowV2QueryResult
+   * @param GoogleCloudDialogflowV2QueryResult $queryResult
    */
   public function setQueryResult(GoogleCloudDialogflowV2QueryResult $queryResult)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowV2WebhookRequest extends \Google\Model
     return $this->queryResult;
   }
   /**
-   * @param string
+   * @param string $responseId
    */
   public function setResponseId($responseId)
   {
@@ -75,7 +75,7 @@ class GoogleCloudDialogflowV2WebhookRequest extends \Google\Model
     return $this->responseId;
   }
   /**
-   * @param string
+   * @param string $session
    */
   public function setSession($session)
   {

@@ -34,16 +34,14 @@ class EnterprisesEnrollmentTokens extends \Google\Service\Resource
   /**
    * Creates an enrollment token for a given enterprise. It's up to the caller's
    * responsibility to manage the lifecycle of newly created tokens and deleting
-   * them when they're not intended to be used anymore. Once an enrollment token
-   * has been created, it's not possible to retrieve the token's content anymore
-   * using AM API. It is recommended for EMMs to securely store the token if it's
-   * intended to be reused. (enrollmentTokens.create)
+   * them when they're not intended to be used anymore. (enrollmentTokens.create)
    *
    * @param string $parent The name of the enterprise in the form
    * enterprises/{enterpriseId}.
    * @param EnrollmentToken $postBody
    * @param array $optParams Optional parameters.
    * @return EnrollmentToken
+   * @throws \Google\Service\Exception
    */
   public function create($parent, EnrollmentToken $postBody, $optParams = [])
   {
@@ -59,6 +57,7 @@ class EnterprisesEnrollmentTokens extends \Google\Service\Resource
    * enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
    * @param array $optParams Optional parameters.
    * @return AndroidmanagementEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -67,17 +66,18 @@ class EnterprisesEnrollmentTokens extends \Google\Service\Resource
     return $this->call('delete', [$params], AndroidmanagementEmpty::class);
   }
   /**
-   * Gets an active, unexpired enrollment token. Only a partial view of
-   * EnrollmentToken is returned: all the fields but name and expiration_timestamp
-   * are empty. This method is meant to help manage active enrollment tokens
-   * lifecycle. For security reasons, it's recommended to delete active enrollment
-   * tokens as soon as they're not intended to be used anymore.
-   * (enrollmentTokens.get)
+   * Gets an active, unexpired enrollment token. A partial view of the enrollment
+   * token is returned. Only the following fields are populated: name,
+   * expirationTimestamp, allowPersonalUsage, value, qrCode. This method is meant
+   * to help manage active enrollment tokens lifecycle. For security reasons, it's
+   * recommended to delete active enrollment tokens as soon as they're not
+   * intended to be used anymore. (enrollmentTokens.get)
    *
    * @param string $name Required. The name of the enrollment token in the form
    * enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
    * @param array $optParams Optional parameters.
    * @return EnrollmentToken
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -87,11 +87,12 @@ class EnterprisesEnrollmentTokens extends \Google\Service\Resource
   }
   /**
    * Lists active, unexpired enrollment tokens for a given enterprise. The list
-   * items contain only a partial view of EnrollmentToken: all the fields but name
-   * and expiration_timestamp are empty. This method is meant to help manage
-   * active enrollment tokens lifecycle. For security reasons, it's recommended to
-   * delete active enrollment tokens as soon as they're not intended to be used
-   * anymore. (enrollmentTokens.listEnterprisesEnrollmentTokens)
+   * items contain only a partial view of EnrollmentToken object. Only the
+   * following fields are populated: name, expirationTimestamp,
+   * allowPersonalUsage, value, qrCode. This method is meant to help manage active
+   * enrollment tokens lifecycle. For security reasons, it's recommended to delete
+   * active enrollment tokens as soon as they're not intended to be used anymore.
+   * (enrollmentTokens.listEnterprisesEnrollmentTokens)
    *
    * @param string $parent Required. The name of the enterprise in the form
    * enterprises/{enterpriseId}.
@@ -103,6 +104,7 @@ class EnterprisesEnrollmentTokens extends \Google\Service\Resource
    * @opt_param string pageToken A token identifying a page of results returned by
    * the server.
    * @return ListEnrollmentTokensResponse
+   * @throws \Google\Service\Exception
    */
   public function listEnterprisesEnrollmentTokens($parent, $optParams = [])
   {

@@ -20,12 +20,66 @@ namespace Google\Service\Cloudchannel;
 class GoogleCloudChannelV1UnregisterSubscriberRequest extends \Google\Model
 {
   /**
+   * Optional. Resource name of the account. Required if integrator is not
+   * provided. Otherwise, leave this field empty/unset.
+   *
+   * @var string
+   */
+  public $account;
+  /**
+   * Optional. Resource name of the integrator. Required if account is not
+   * provided. Otherwise, leave this field empty/unset.
+   *
+   * @var string
+   */
+  public $integrator;
+  /**
+   * Required. Service account to unregister from subscriber access to the
+   * topic.
+   *
    * @var string
    */
   public $serviceAccount;
 
   /**
-   * @param string
+   * Optional. Resource name of the account. Required if integrator is not
+   * provided. Otherwise, leave this field empty/unset.
+   *
+   * @param string $account
+   */
+  public function setAccount($account)
+  {
+    $this->account = $account;
+  }
+  /**
+   * @return string
+   */
+  public function getAccount()
+  {
+    return $this->account;
+  }
+  /**
+   * Optional. Resource name of the integrator. Required if account is not
+   * provided. Otherwise, leave this field empty/unset.
+   *
+   * @param string $integrator
+   */
+  public function setIntegrator($integrator)
+  {
+    $this->integrator = $integrator;
+  }
+  /**
+   * @return string
+   */
+  public function getIntegrator()
+  {
+    return $this->integrator;
+  }
+  /**
+   * Required. Service account to unregister from subscriber access to the
+   * topic.
+   *
+   * @param string $serviceAccount
    */
   public function setServiceAccount($serviceAccount)
   {

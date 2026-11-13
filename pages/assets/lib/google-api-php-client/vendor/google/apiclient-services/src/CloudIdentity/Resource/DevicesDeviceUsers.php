@@ -47,6 +47,7 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * @param GoogleAppsCloudidentityDevicesV1ApproveDeviceUserRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function approve($name, GoogleAppsCloudidentityDevicesV1ApproveDeviceUserRequest $postBody, $optParams = [])
   {
@@ -65,6 +66,7 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * @param GoogleAppsCloudidentityDevicesV1BlockDeviceUserRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function block($name, GoogleAppsCloudidentityDevicesV1BlockDeviceUserRequest $postBody, $optParams = [])
   {
@@ -85,6 +87,7 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * @param GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function cancelWipe($name, GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserRequest $postBody, $optParams = [])
   {
@@ -110,6 +113,7 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * organization, use `customers/{customer}`, where customer is the customer to
    * whom the device belongs.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -134,6 +138,7 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * organization, use `customers/{customer}`, where customer is the customer to
    * whom the device belongs.
    * @return GoogleAppsCloudidentityDevicesV1DeviceUser
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -169,6 +174,7 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * paginating, all other parameters provided to `ListBooks` must match the call
    * that provided the page token.
    * @return GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
+   * @throws \Google\Service\Exception
    */
   public function listDevicesDeviceUsers($parent, $optParams = [])
   {
@@ -184,11 +190,10 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * properties are provided, only DeviceUsers having all of these properties are
    * considered as matches - i.e. the query behaves like an AND. Different
    * platforms require different amounts of information from the caller to ensure
-   * that the DeviceUser is uniquely identified. - iOS: No properties need to be
-   * passed, the caller's credentials are sufficient to identify the corresponding
-   * DeviceUser. - Android: Specifying the 'android_id' field is required. -
-   * Desktop: Specifying the 'raw_resource_id' field is required.
-   * (deviceUsers.lookup)
+   * that the DeviceUser is uniquely identified. - iOS: If either the `partner` or
+   * `ios_device_id` field is provided, then both fields are required. - Android:
+   * Specifying the `android_id` field is required. - Desktop: Specifying the
+   * `raw_resource_id` field is required. (deviceUsers.lookup)
    *
    * @param string $parent Must be set to "devices/-/deviceUsers" to search across
    * all DeviceUser belonging to the user.
@@ -197,6 +202,10 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * @opt_param string androidId Android Id returned by [Settings.Secure#ANDROID_I
    * D](https://developer.android.com/reference/android/provider/Settings.Secure.h
    * tml#ANDROID_ID).
+   * @opt_param string iosDeviceId Optional. The partner-specified device
+   * identifier assigned to the iOS device that initiated the Lookup API call.
+   * This string must match the value of the iosDeviceId key in the app config
+   * dictionary provided to Google Workspace apps.
    * @opt_param int pageSize The maximum number of DeviceUsers to return. If
    * unspecified, at most 20 DeviceUsers will be returned. The maximum value is
    * 20; values above 20 will be coerced to 20.
@@ -204,6 +213,9 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * `LookupDeviceUsers` call. Provide this to retrieve the subsequent page. When
    * paginating, all other parameters provided to `LookupDeviceUsers` must match
    * the call that provided the page token.
+   * @opt_param string partner Optional. The partner ID of the calling iOS app.
+   * This string must match the value of the partner key within the app
+   * configuration dictionary provided to Google Workspace apps.
    * @opt_param string rawResourceId Raw Resource Id used by Google Endpoint
    * Verification. If the user is enrolled into Google Endpoint Verification, this
    * id will be saved as the 'device_resource_id' field in the following platform
@@ -214,6 +226,7 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * fetched. Must be set to 'me' to fetch the DeviceUser's resource name for the
    * calling user.
    * @return GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
+   * @throws \Google\Service\Exception
    */
   public function lookup($parent, $optParams = [])
   {
@@ -238,6 +251,7 @@ class DevicesDeviceUsers extends \Google\Service\Resource
    * @param GoogleAppsCloudidentityDevicesV1WipeDeviceUserRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function wipe($name, GoogleAppsCloudidentityDevicesV1WipeDeviceUserRequest $postBody, $optParams = [])
   {

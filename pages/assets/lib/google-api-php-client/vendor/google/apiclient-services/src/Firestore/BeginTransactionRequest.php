@@ -21,9 +21,13 @@ class BeginTransactionRequest extends \Google\Model
 {
   protected $optionsType = TransactionOptions::class;
   protected $optionsDataType = '';
+  protected $requestOptionsType = RequestOptions::class;
+  protected $requestOptionsDataType = '';
 
   /**
-   * @param TransactionOptions
+   * The options for the transaction. Defaults to a read-write transaction.
+   *
+   * @param TransactionOptions $options
    */
   public function setOptions(TransactionOptions $options)
   {
@@ -35,6 +39,22 @@ class BeginTransactionRequest extends \Google\Model
   public function getOptions()
   {
     return $this->options;
+  }
+  /**
+   * Optional. The request options for this request.
+   *
+   * @param RequestOptions $requestOptions
+   */
+  public function setRequestOptions(RequestOptions $requestOptions)
+  {
+    $this->requestOptions = $requestOptions;
+  }
+  /**
+   * @return RequestOptions
+   */
+  public function getRequestOptions()
+  {
+    return $this->requestOptions;
   }
 }
 

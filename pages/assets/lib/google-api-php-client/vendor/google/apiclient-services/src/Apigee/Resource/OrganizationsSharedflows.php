@@ -19,6 +19,7 @@ namespace Google\Service\Apigee\Resource;
 
 use Google\Service\Apigee\GoogleApiHttpBody;
 use Google\Service\Apigee\GoogleCloudApigeeV1ListSharedFlowsResponse;
+use Google\Service\Apigee\GoogleCloudApigeeV1MoveSharedFlowRequest;
 use Google\Service\Apigee\GoogleCloudApigeeV1SharedFlow;
 use Google\Service\Apigee\GoogleCloudApigeeV1SharedFlowRevision;
 
@@ -41,14 +42,24 @@ class OrganizationsSharedflows extends \Google\Service\Resource
    *
    * @param string $parent Required. The name of the parent organization under
    * which to create the shared flow. Must be of the form:
-   * `organizations/{organization_id}`
+   * `organizations/{organization_id}` If the resource has the `space` attribute
+   * set, IAM permissions are checked against the Space resource path. To learn
+   * more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
    * @param GoogleApiHttpBody $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string action Required. Must be set to either `import` or
    * `validate`.
    * @opt_param string name Required. The name to give the shared flow
+   * @opt_param string space Optional. The ID of the space to associated with this
+   * shared flow. Any IAM policies applied to the space will affect access to this
+   * shared flow. Note that this field is only respected when creating a new
+   * shared flow. It has no effect when creating a new revision for an existing
+   * shared flow.
    * @return GoogleCloudApigeeV1SharedFlowRevision
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleApiHttpBody $postBody, $optParams = [])
   {
@@ -61,9 +72,14 @@ class OrganizationsSharedflows extends \Google\Service\Resource
    * undeployed before you can delete it. (sharedflows.delete)
    *
    * @param string $name Required. shared flow name of the form:
-   * `organizations/{organization_id}/sharedflows/{shared_flow_id}`
+   * `organizations/{organization_id}/sharedflows/{shared_flow_id}` If the
+   * resource has the `space` attribute set, IAM permissions are checked against
+   * the Space resource path. To learn more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1SharedFlow
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -76,9 +92,14 @@ class OrganizationsSharedflows extends \Google\Service\Resource
    * (sharedflows.get)
    *
    * @param string $name Required. The name of the shared flow to get. Must be of
-   * the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}`
+   * the form: `organizations/{organization_id}/sharedflows/{shared_flow_id}` If
+   * the resource has the `space` attribute set, IAM permissions are checked
+   * against the Space resource path. To learn more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1SharedFlow
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -87,25 +108,54 @@ class OrganizationsSharedflows extends \Google\Service\Resource
     return $this->call('get', [$params], GoogleCloudApigeeV1SharedFlow::class);
   }
   /**
-   * Lists all shared flows in the organization.
+   * Lists all shared flows in the organization. If the resource has the `space`
+   * attribute set, the response may not return all resources. To learn more, read
+   * the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-
+   * platform/system-administration/spaces/apigee-spaces-overview).
    * (sharedflows.listOrganizationsSharedflows)
    *
    * @param string $parent Required. The name of the parent organization under
    * which to get shared flows. Must be of the form:
-   * `organizations/{organization_id}`
+   * `organizations/{organization_id}` If the resource has the `space` attribute
+   * set, IAM permissions are checked against the Space resource path. To learn
+   * more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
    * @param array $optParams Optional parameters.
    *
    * @opt_param bool includeMetaData Indicates whether to include shared flow
    * metadata in the response.
    * @opt_param bool includeRevisions Indicates whether to include a list of
    * revisions in the response.
+   * @opt_param string space Optional. The space ID used to filter the list of
+   * shared flows (optional). If unspecified, all shared flows in the organization
+   * will be listed. To learn how Spaces can be used to manage resources, read the
+   * [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-
+   * platform/system-administration/spaces/apigee-spaces-overview).
    * @return GoogleCloudApigeeV1ListSharedFlowsResponse
+   * @throws \Google\Service\Exception
    */
   public function listOrganizationsSharedflows($parent, $optParams = [])
   {
     $params = ['parent' => $parent];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], GoogleCloudApigeeV1ListSharedFlowsResponse::class);
+  }
+  /**
+   * Moves an shared flow to a different space. (sharedflows.move)
+   *
+   * @param string $name Required. Shared Flow to move in the following format:
+   * `organizations/{org}/sharedflows/{shared_flow}`
+   * @param GoogleCloudApigeeV1MoveSharedFlowRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudApigeeV1SharedFlow
+   * @throws \Google\Service\Exception
+   */
+  public function move($name, GoogleCloudApigeeV1MoveSharedFlowRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('move', [$params], GoogleCloudApigeeV1SharedFlow::class);
   }
 }
 

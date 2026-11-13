@@ -17,11 +17,69 @@
 
 namespace Google\Service\Docs;
 
-class Document extends \Google\Model
+class Document extends \Google\Collection
 {
+  /**
+   * The CommentsViewMode is unspecified. COMMENTS_VIEW_MODE_OMITTED is applied.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_UNSPECIFIED = 'COMMENTS_VIEW_MODE_UNSPECIFIED';
+  /**
+   * The CommentsViewMode applied to the returned document depends on the user's
+   * current access level. If the user only has view access,
+   * COMMENTS_VIEW_MODE_OMITTED is applied. Otherwise,
+   * COMMENTS_VIEW_MODE_INCLUDED is applied.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS = 'COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS';
+  /**
+   * The returned document has comments omitted.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_OMITTED = 'COMMENTS_VIEW_MODE_OMITTED';
+  /**
+   * The returned document has comments included. Requests to retrieve a
+   * document using this mode will return a 403 error if the user does not have
+   * permission to view comments. When set, suggestions_view_mode must also be
+   * set to SUGGESTIONS_INLINE. Returns a 400 bad request error otherwise.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_INCLUDED = 'COMMENTS_VIEW_MODE_INCLUDED';
+  /**
+   * The SuggestionsViewMode applied to the returned document depends on the
+   * user's current access level. If the user only has view access,
+   * PREVIEW_WITHOUT_SUGGESTIONS is applied. Otherwise, SUGGESTIONS_INLINE is
+   * applied. This is the default suggestions view mode.
+   */
+  public const SUGGESTIONS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS = 'DEFAULT_FOR_CURRENT_ACCESS';
+  /**
+   * The returned document has suggestions inline. Suggested changes will be
+   * differentiated from base content within the document. Requests to retrieve
+   * a document using this mode will return a 403 error if the user does not
+   * have permission to view suggested changes.
+   */
+  public const SUGGESTIONS_VIEW_MODE_SUGGESTIONS_INLINE = 'SUGGESTIONS_INLINE';
+  /**
+   * The returned document is a preview with all suggested changes accepted.
+   * Requests to retrieve a document using this mode will return a 403 error if
+   * the user does not have permission to view suggested changes.
+   */
+  public const SUGGESTIONS_VIEW_MODE_PREVIEW_SUGGESTIONS_ACCEPTED = 'PREVIEW_SUGGESTIONS_ACCEPTED';
+  /**
+   * The returned document is a preview with all suggested changes rejected if
+   * there are any suggestions in the document.
+   */
+  public const SUGGESTIONS_VIEW_MODE_PREVIEW_WITHOUT_SUGGESTIONS = 'PREVIEW_WITHOUT_SUGGESTIONS';
+  protected $collection_key = 'tabs';
   protected $bodyType = Body::class;
   protected $bodyDataType = '';
+  protected $commentsType = CommentThread::class;
+  protected $commentsDataType = 'array';
   /**
+   * Output only. The comments view mode applied to the document.
+   *
+   * @var string
+   */
+  public $commentsViewMode;
+  /**
+   * Output only. The ID of the document.
+   *
    * @var string
    */
   public $documentId;
@@ -44,6 +102,18 @@ class Document extends \Google\Model
   protected $positionedObjectsType = PositionedObject::class;
   protected $positionedObjectsDataType = 'map';
   /**
+   * Output only. The revision ID of the document. Can be used in update
+   * requests to specify which revision of a document to apply updates to and
+   * how the request should behave if the document has been edited since that
+   * revision. Only populated if the user has edit access to the document. The
+   * revision ID is not a sequential number but an opaque string. The format of
+   * the revision ID might change over time. A returned revision ID is only
+   * guaranteed to be valid for 24 hours after it has been returned and cannot
+   * be shared across users. If the revision ID is unchanged between calls, then
+   * the document has not changed. Conversely, a changed ID (for the same
+   * document and user) usually means the document has been updated. However, a
+   * changed ID can also be due to internal factors such as ID format changes.
+   *
    * @var string
    */
   public $revisionId;
@@ -51,17 +121,33 @@ class Document extends \Google\Model
   protected $suggestedDocumentStyleChangesDataType = 'map';
   protected $suggestedNamedStylesChangesType = SuggestedNamedStyles::class;
   protected $suggestedNamedStylesChangesDataType = 'map';
+  protected $suggestionsType = SuggestionThread::class;
+  protected $suggestionsDataType = 'array';
   /**
+   * Output only. The suggestions view mode applied to the document. Note: When
+   * editing a document, changes must be based on a document with
+   * SUGGESTIONS_INLINE.
+   *
    * @var string
    */
   public $suggestionsViewMode;
+  protected $tabsType = Tab::class;
+  protected $tabsDataType = 'array';
   /**
+   * The title of the document.
+   *
    * @var string
    */
   public $title;
 
   /**
-   * @param Body
+   * Output only. The main body of the document. Legacy field: Instead, use
+   * Document.tabs.documentTab.body, which exposes the actual document content
+   * from all tabs when the includeTabsContent parameter is set to `true`. If
+   * `false` or unset, this field contains information about the first tab in
+   * the document.
+   *
+   * @param Body $body
    */
   public function setBody(Body $body)
   {
@@ -75,7 +161,47 @@ class Document extends \Google\Model
     return $this->body;
   }
   /**
-   * @param string
+   * Output only. The comments associated with the document. Only populated if
+   * the commentsViewMode parameter is set to require comments (such as
+   * `COMMENTS_VIEW_MODE_INCLUDED`).
+   *
+   * @param CommentThread[] $comments
+   */
+  public function setComments($comments)
+  {
+    $this->comments = $comments;
+  }
+  /**
+   * @return CommentThread[]
+   */
+  public function getComments()
+  {
+    return $this->comments;
+  }
+  /**
+   * Output only. The comments view mode applied to the document.
+   *
+   * Accepted values: COMMENTS_VIEW_MODE_UNSPECIFIED,
+   * COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, COMMENTS_VIEW_MODE_OMITTED,
+   * COMMENTS_VIEW_MODE_INCLUDED
+   *
+   * @param self::COMMENTS_VIEW_MODE_* $commentsViewMode
+   */
+  public function setCommentsViewMode($commentsViewMode)
+  {
+    $this->commentsViewMode = $commentsViewMode;
+  }
+  /**
+   * @return self::COMMENTS_VIEW_MODE_*
+   */
+  public function getCommentsViewMode()
+  {
+    return $this->commentsViewMode;
+  }
+  /**
+   * Output only. The ID of the document.
+   *
+   * @param string $documentId
    */
   public function setDocumentId($documentId)
   {
@@ -89,7 +215,13 @@ class Document extends \Google\Model
     return $this->documentId;
   }
   /**
-   * @param DocumentStyle
+   * Output only. The style of the document. Legacy field: Instead, use
+   * Document.tabs.documentTab.documentStyle, which exposes the actual document
+   * content from all tabs when the includeTabsContent parameter is set to
+   * `true`. If `false` or unset, this field contains information about the
+   * first tab in the document.
+   *
+   * @param DocumentStyle $documentStyle
    */
   public function setDocumentStyle(DocumentStyle $documentStyle)
   {
@@ -103,7 +235,13 @@ class Document extends \Google\Model
     return $this->documentStyle;
   }
   /**
-   * @param Footer[]
+   * Output only. The footers in the document, keyed by footer ID. Legacy field:
+   * Instead, use Document.tabs.documentTab.footers, which exposes the actual
+   * document content from all tabs when the includeTabsContent parameter is set
+   * to `true`. If `false` or unset, this field contains information about the
+   * first tab in the document.
+   *
+   * @param Footer[] $footers
    */
   public function setFooters($footers)
   {
@@ -117,7 +255,13 @@ class Document extends \Google\Model
     return $this->footers;
   }
   /**
-   * @param Footnote[]
+   * Output only. The footnotes in the document, keyed by footnote ID. Legacy
+   * field: Instead, use Document.tabs.documentTab.footnotes, which exposes the
+   * actual document content from all tabs when the includeTabsContent parameter
+   * is set to `true`. If `false` or unset, this field contains information
+   * about the first tab in the document.
+   *
+   * @param Footnote[] $footnotes
    */
   public function setFootnotes($footnotes)
   {
@@ -131,7 +275,13 @@ class Document extends \Google\Model
     return $this->footnotes;
   }
   /**
-   * @param Header[]
+   * Output only. The headers in the document, keyed by header ID. Legacy field:
+   * Instead, use Document.tabs.documentTab.headers, which exposes the actual
+   * document content from all tabs when the includeTabsContent parameter is set
+   * to `true`. If `false` or unset, this field contains information about the
+   * first tab in the document.
+   *
+   * @param Header[] $headers
    */
   public function setHeaders($headers)
   {
@@ -145,7 +295,13 @@ class Document extends \Google\Model
     return $this->headers;
   }
   /**
-   * @param InlineObject[]
+   * Output only. The inline objects in the document, keyed by object ID. Legacy
+   * field: Instead, use Document.tabs.documentTab.inlineObjects, which exposes
+   * the actual document content from all tabs when the includeTabsContent
+   * parameter is set to `true`. If `false` or unset, this field contains
+   * information about the first tab in the document.
+   *
+   * @param InlineObject[] $inlineObjects
    */
   public function setInlineObjects($inlineObjects)
   {
@@ -159,7 +315,13 @@ class Document extends \Google\Model
     return $this->inlineObjects;
   }
   /**
-   * @param DocsList[]
+   * Output only. The lists in the document, keyed by list ID. Legacy field:
+   * Instead, use Document.tabs.documentTab.lists, which exposes the actual
+   * document content from all tabs when the includeTabsContent parameter is set
+   * to `true`. If `false` or unset, this field contains information about the
+   * first tab in the document.
+   *
+   * @param DocsList[] $lists
    */
   public function setLists($lists)
   {
@@ -173,7 +335,13 @@ class Document extends \Google\Model
     return $this->lists;
   }
   /**
-   * @param NamedRanges[]
+   * Output only. The named ranges in the document, keyed by name. Legacy field:
+   * Instead, use Document.tabs.documentTab.namedRanges, which exposes the
+   * actual document content from all tabs when the includeTabsContent parameter
+   * is set to `true`. If `false` or unset, this field contains information
+   * about the first tab in the document.
+   *
+   * @param NamedRanges[] $namedRanges
    */
   public function setNamedRanges($namedRanges)
   {
@@ -187,7 +355,13 @@ class Document extends \Google\Model
     return $this->namedRanges;
   }
   /**
-   * @param NamedStyles
+   * Output only. The named styles of the document. Legacy field: Instead, use
+   * Document.tabs.documentTab.namedStyles, which exposes the actual document
+   * content from all tabs when the includeTabsContent parameter is set to
+   * `true`. If `false` or unset, this field contains information about the
+   * first tab in the document.
+   *
+   * @param NamedStyles $namedStyles
    */
   public function setNamedStyles(NamedStyles $namedStyles)
   {
@@ -201,7 +375,13 @@ class Document extends \Google\Model
     return $this->namedStyles;
   }
   /**
-   * @param PositionedObject[]
+   * Output only. The positioned objects in the document, keyed by object ID.
+   * Legacy field: Instead, use Document.tabs.documentTab.positionedObjects,
+   * which exposes the actual document content from all tabs when the
+   * includeTabsContent parameter is set to `true`. If `false` or unset, this
+   * field contains information about the first tab in the document.
+   *
+   * @param PositionedObject[] $positionedObjects
    */
   public function setPositionedObjects($positionedObjects)
   {
@@ -215,7 +395,19 @@ class Document extends \Google\Model
     return $this->positionedObjects;
   }
   /**
-   * @param string
+   * Output only. The revision ID of the document. Can be used in update
+   * requests to specify which revision of a document to apply updates to and
+   * how the request should behave if the document has been edited since that
+   * revision. Only populated if the user has edit access to the document. The
+   * revision ID is not a sequential number but an opaque string. The format of
+   * the revision ID might change over time. A returned revision ID is only
+   * guaranteed to be valid for 24 hours after it has been returned and cannot
+   * be shared across users. If the revision ID is unchanged between calls, then
+   * the document has not changed. Conversely, a changed ID (for the same
+   * document and user) usually means the document has been updated. However, a
+   * changed ID can also be due to internal factors such as ID format changes.
+   *
+   * @param string $revisionId
    */
   public function setRevisionId($revisionId)
   {
@@ -229,7 +421,14 @@ class Document extends \Google\Model
     return $this->revisionId;
   }
   /**
-   * @param SuggestedDocumentStyle[]
+   * Output only. The suggested changes to the style of the document, keyed by
+   * suggestion ID. Legacy field: Instead, use
+   * Document.tabs.documentTab.suggestedDocumentStyleChanges, which exposes the
+   * actual document content from all tabs when the includeTabsContent parameter
+   * is set to `true`. If `false` or unset, this field contains information
+   * about the first tab in the document.
+   *
+   * @param SuggestedDocumentStyle[] $suggestedDocumentStyleChanges
    */
   public function setSuggestedDocumentStyleChanges($suggestedDocumentStyleChanges)
   {
@@ -243,7 +442,14 @@ class Document extends \Google\Model
     return $this->suggestedDocumentStyleChanges;
   }
   /**
-   * @param SuggestedNamedStyles[]
+   * Output only. The suggested changes to the named styles of the document,
+   * keyed by suggestion ID. Legacy field: Instead, use
+   * Document.tabs.documentTab.suggestedNamedStylesChanges, which exposes the
+   * actual document content from all tabs when the includeTabsContent parameter
+   * is set to `true`. If `false` or unset, this field contains information
+   * about the first tab in the document.
+   *
+   * @param SuggestedNamedStyles[] $suggestedNamedStylesChanges
    */
   public function setSuggestedNamedStylesChanges($suggestedNamedStylesChanges)
   {
@@ -257,21 +463,66 @@ class Document extends \Google\Model
     return $this->suggestedNamedStylesChanges;
   }
   /**
-   * @param string
+   * Output only. The suggestions associated with the document. Only populated
+   * if the commentsViewMode parameter is set to require comments (such as
+   * `COMMENTS_VIEW_MODE_INCLUDED`).
+   *
+   * @param SuggestionThread[] $suggestions
+   */
+  public function setSuggestions($suggestions)
+  {
+    $this->suggestions = $suggestions;
+  }
+  /**
+   * @return SuggestionThread[]
+   */
+  public function getSuggestions()
+  {
+    return $this->suggestions;
+  }
+  /**
+   * Output only. The suggestions view mode applied to the document. Note: When
+   * editing a document, changes must be based on a document with
+   * SUGGESTIONS_INLINE.
+   *
+   * Accepted values: DEFAULT_FOR_CURRENT_ACCESS, SUGGESTIONS_INLINE,
+   * PREVIEW_SUGGESTIONS_ACCEPTED, PREVIEW_WITHOUT_SUGGESTIONS
+   *
+   * @param self::SUGGESTIONS_VIEW_MODE_* $suggestionsViewMode
    */
   public function setSuggestionsViewMode($suggestionsViewMode)
   {
     $this->suggestionsViewMode = $suggestionsViewMode;
   }
   /**
-   * @return string
+   * @return self::SUGGESTIONS_VIEW_MODE_*
    */
   public function getSuggestionsViewMode()
   {
     return $this->suggestionsViewMode;
   }
   /**
-   * @param string
+   * Output only. Tabs that are part of a document. Tabs can contain child tabs,
+   * a tab nested within another tab. Child tabs are represented by the
+   * Tab.childTabs field.
+   *
+   * @param Tab[] $tabs
+   */
+  public function setTabs($tabs)
+  {
+    $this->tabs = $tabs;
+  }
+  /**
+   * @return Tab[]
+   */
+  public function getTabs()
+  {
+    return $this->tabs;
+  }
+  /**
+   * The title of the document.
+   *
+   * @param string $title
    */
   public function setTitle($title)
   {

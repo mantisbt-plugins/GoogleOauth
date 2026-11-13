@@ -19,6 +19,10 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2beta1IntentMessageColumnProperties extends \Google\Model
 {
+  public const HORIZONTAL_ALIGNMENT_HORIZONTAL_ALIGNMENT_UNSPECIFIED = 'HORIZONTAL_ALIGNMENT_UNSPECIFIED';
+  public const HORIZONTAL_ALIGNMENT_LEADING = 'LEADING';
+  public const HORIZONTAL_ALIGNMENT_CENTER = 'CENTER';
+  public const HORIZONTAL_ALIGNMENT_TRAILING = 'TRAILING';
   /**
    * @var string
    */
@@ -29,7 +33,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageColumnProperties extends \Google\
   public $horizontalAlignment;
 
   /**
-   * @param string
+   * @param string $header
    */
   public function setHeader($header)
   {
@@ -43,14 +47,14 @@ class GoogleCloudDialogflowV2beta1IntentMessageColumnProperties extends \Google\
     return $this->header;
   }
   /**
-   * @param string
+   * @param self::HORIZONTAL_ALIGNMENT_* $horizontalAlignment
    */
   public function setHorizontalAlignment($horizontalAlignment)
   {
     $this->horizontalAlignment = $horizontalAlignment;
   }
   /**
-   * @return string
+   * @return self::HORIZONTAL_ALIGNMENT_*
    */
   public function getHorizontalAlignment()
   {

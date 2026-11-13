@@ -21,14 +21,22 @@ class AllocateIdsRequest extends \Google\Collection
 {
   protected $collection_key = 'keys';
   /**
+   * The ID of the database against which to make the request. '(default)' is
+   * not allowed; please use empty string '' to refer the default database.
+   *
    * @var string
    */
   public $databaseId;
   protected $keysType = Key::class;
   protected $keysDataType = 'array';
+  protected $requestOptionsType = RequestOptions::class;
+  protected $requestOptionsDataType = '';
 
   /**
-   * @param string
+   * The ID of the database against which to make the request. '(default)' is
+   * not allowed; please use empty string '' to refer the default database.
+   *
+   * @param string $databaseId
    */
   public function setDatabaseId($databaseId)
   {
@@ -42,7 +50,10 @@ class AllocateIdsRequest extends \Google\Collection
     return $this->databaseId;
   }
   /**
-   * @param Key[]
+   * Required. A list of keys with incomplete key paths for which to allocate
+   * IDs. No key may be reserved/read-only.
+   *
+   * @param Key[] $keys
    */
   public function setKeys($keys)
   {
@@ -54,6 +65,22 @@ class AllocateIdsRequest extends \Google\Collection
   public function getKeys()
   {
     return $this->keys;
+  }
+  /**
+   * Optional. The options for this request.
+   *
+   * @param RequestOptions $requestOptions
+   */
+  public function setRequestOptions(RequestOptions $requestOptions)
+  {
+    $this->requestOptions = $requestOptions;
+  }
+  /**
+   * @return RequestOptions
+   */
+  public function getRequestOptions()
+  {
+    return $this->requestOptions;
   }
 }
 

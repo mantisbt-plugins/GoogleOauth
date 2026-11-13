@@ -19,6 +19,9 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2IntentMessageBrowseCarouselCardBrowseCarouselCardItemOpenUrlAction extends \Google\Model
 {
+  public const URL_TYPE_HINT_URL_TYPE_HINT_UNSPECIFIED = 'URL_TYPE_HINT_UNSPECIFIED';
+  public const URL_TYPE_HINT_AMP_ACTION = 'AMP_ACTION';
+  public const URL_TYPE_HINT_AMP_CONTENT = 'AMP_CONTENT';
   /**
    * @var string
    */
@@ -29,7 +32,7 @@ class GoogleCloudDialogflowV2IntentMessageBrowseCarouselCardBrowseCarouselCardIt
   public $urlTypeHint;
 
   /**
-   * @param string
+   * @param string $url
    */
   public function setUrl($url)
   {
@@ -43,14 +46,14 @@ class GoogleCloudDialogflowV2IntentMessageBrowseCarouselCardBrowseCarouselCardIt
     return $this->url;
   }
   /**
-   * @param string
+   * @param self::URL_TYPE_HINT_* $urlTypeHint
    */
   public function setUrlTypeHint($urlTypeHint)
   {
     $this->urlTypeHint = $urlTypeHint;
   }
   /**
-   * @return string
+   * @return self::URL_TYPE_HINT_*
    */
   public function getUrlTypeHint()
   {

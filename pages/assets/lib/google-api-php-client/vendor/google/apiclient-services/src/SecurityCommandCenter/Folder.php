@@ -29,7 +29,7 @@ class Folder extends \Google\Model
   public $resourceFolderDisplayName;
 
   /**
-   * @param string
+   * @param string $resourceFolder
    */
   public function setResourceFolder($resourceFolder)
   {
@@ -43,7 +43,7 @@ class Folder extends \Google\Model
     return $this->resourceFolder;
   }
   /**
-   * @param string
+   * @param string $resourceFolderDisplayName
    */
   public function setResourceFolderDisplayName($resourceFolderDisplayName)
   {

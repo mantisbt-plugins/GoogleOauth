@@ -19,94 +19,94 @@ namespace Google\Service\Apigee;
 
 class GoogleCloudApigeeV1ApiCategory extends \Google\Model
 {
-  protected $dataType = GoogleCloudApigeeV1ApiCategoryData::class;
-  protected $dataDataType = '';
   /**
+   * ID of the category (a UUID).
+   *
    * @var string
    */
-  public $errorCode;
+  public $id;
   /**
+   * Name of the category.
+   *
    * @var string
    */
-  public $message;
+  public $name;
   /**
+   * Name of the portal.
+   *
    * @var string
    */
-  public $requestId;
+  public $siteId;
   /**
+   * Time the category was last modified in milliseconds since epoch.
+   *
    * @var string
    */
-  public $status;
+  public $updateTime;
 
   /**
-   * @param GoogleCloudApigeeV1ApiCategoryData
+   * ID of the category (a UUID).
+   *
+   * @param string $id
    */
-  public function setData(GoogleCloudApigeeV1ApiCategoryData $data)
+  public function setId($id)
   {
-    $this->data = $data;
-  }
-  /**
-   * @return GoogleCloudApigeeV1ApiCategoryData
-   */
-  public function getData()
-  {
-    return $this->data;
-  }
-  /**
-   * @param string
-   */
-  public function setErrorCode($errorCode)
-  {
-    $this->errorCode = $errorCode;
+    $this->id = $id;
   }
   /**
    * @return string
    */
-  public function getErrorCode()
+  public function getId()
   {
-    return $this->errorCode;
+    return $this->id;
   }
   /**
-   * @param string
+   * Name of the category.
+   *
+   * @param string $name
    */
-  public function setMessage($message)
+  public function setName($name)
   {
-    $this->message = $message;
-  }
-  /**
-   * @return string
-   */
-  public function getMessage()
-  {
-    return $this->message;
-  }
-  /**
-   * @param string
-   */
-  public function setRequestId($requestId)
-  {
-    $this->requestId = $requestId;
+    $this->name = $name;
   }
   /**
    * @return string
    */
-  public function getRequestId()
+  public function getName()
   {
-    return $this->requestId;
+    return $this->name;
   }
   /**
-   * @param string
+   * Name of the portal.
+   *
+   * @param string $siteId
    */
-  public function setStatus($status)
+  public function setSiteId($siteId)
   {
-    $this->status = $status;
+    $this->siteId = $siteId;
   }
   /**
    * @return string
    */
-  public function getStatus()
+  public function getSiteId()
   {
-    return $this->status;
+    return $this->siteId;
+  }
+  /**
+   * Time the category was last modified in milliseconds since epoch.
+   *
+   * @param string $updateTime
+   */
+  public function setUpdateTime($updateTime)
+  {
+    $this->updateTime = $updateTime;
+  }
+  /**
+   * @return string
+   */
+  public function getUpdateTime()
+  {
+    return $this->updateTime;
   }
 }
 

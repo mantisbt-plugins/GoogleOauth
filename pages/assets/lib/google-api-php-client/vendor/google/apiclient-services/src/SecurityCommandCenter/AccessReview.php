@@ -49,7 +49,7 @@ class AccessReview extends \Google\Model
   public $version;
 
   /**
-   * @param string
+   * @param string $group
    */
   public function setGroup($group)
   {
@@ -63,7 +63,7 @@ class AccessReview extends \Google\Model
     return $this->group;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -77,7 +77,7 @@ class AccessReview extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * @param string $ns
    */
   public function setNs($ns)
   {
@@ -91,7 +91,7 @@ class AccessReview extends \Google\Model
     return $this->ns;
   }
   /**
-   * @param string
+   * @param string $resource
    */
   public function setResource($resource)
   {
@@ -105,7 +105,7 @@ class AccessReview extends \Google\Model
     return $this->resource;
   }
   /**
-   * @param string
+   * @param string $subresource
    */
   public function setSubresource($subresource)
   {
@@ -119,7 +119,7 @@ class AccessReview extends \Google\Model
     return $this->subresource;
   }
   /**
-   * @param string
+   * @param string $verb
    */
   public function setVerb($verb)
   {
@@ -133,7 +133,7 @@ class AccessReview extends \Google\Model
     return $this->verb;
   }
   /**
-   * @param string
+   * @param string $version
    */
   public function setVersion($version)
   {

@@ -20,14 +20,36 @@ namespace Google\Service\Firestore;
 class Aggregation extends \Google\Model
 {
   /**
+   * Optional. Optional name of the field to store the result of the aggregation
+   * into. If not provided, Firestore will pick a default name following the
+   * format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS
+   * count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*)
+   * OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1,
+   * COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS
+   * field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation
+   * aliases. * Conform to document field name limitations.
+   *
    * @var string
    */
   public $alias;
+  protected $avgType = Avg::class;
+  protected $avgDataType = '';
   protected $countType = Count::class;
   protected $countDataType = '';
+  protected $sumType = Sum::class;
+  protected $sumDataType = '';
 
   /**
-   * @param string
+   * Optional. Optional name of the field to store the result of the aggregation
+   * into. If not provided, Firestore will pick a default name following the
+   * format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS
+   * count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*)
+   * OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1,
+   * COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS
+   * field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation
+   * aliases. * Conform to document field name limitations.
+   *
+   * @param string $alias
    */
   public function setAlias($alias)
   {
@@ -41,7 +63,25 @@ class Aggregation extends \Google\Model
     return $this->alias;
   }
   /**
-   * @param Count
+   * Average aggregator.
+   *
+   * @param Avg $avg
+   */
+  public function setAvg(Avg $avg)
+  {
+    $this->avg = $avg;
+  }
+  /**
+   * @return Avg
+   */
+  public function getAvg()
+  {
+    return $this->avg;
+  }
+  /**
+   * Count aggregator.
+   *
+   * @param Count $count
    */
   public function setCount(Count $count)
   {
@@ -53,6 +93,22 @@ class Aggregation extends \Google\Model
   public function getCount()
   {
     return $this->count;
+  }
+  /**
+   * Sum aggregator.
+   *
+   * @param Sum $sum
+   */
+  public function setSum(Sum $sum)
+  {
+    $this->sum = $sum;
+  }
+  /**
+   * @return Sum
+   */
+  public function getSum()
+  {
+    return $this->sum;
   }
 }
 

@@ -17,6 +17,7 @@
 
 namespace Google\Service\RealTimeBidding\Resource;
 
+use Google\Service\RealTimeBidding\AddDealsRequest;
 use Google\Service\RealTimeBidding\Creative;
 use Google\Service\RealTimeBidding\ListCreativesResponse;
 
@@ -31,6 +32,23 @@ use Google\Service\RealTimeBidding\ListCreativesResponse;
 class BuyersCreatives extends \Google\Service\Resource
 {
   /**
+   * Adds a list of deals to a creative, which submits the creative for publisher
+   * review. Returns the updated creative. (creatives.addDeals)
+   *
+   * @param string $name Required. Name of the creative to add the deals to. See
+   * creative.name.
+   * @param AddDealsRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Creative
+   * @throws \Google\Service\Exception
+   */
+  public function addDeals($name, AddDealsRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('addDeals', [$params], Creative::class);
+  }
+  /**
    * Creates a creative. (creatives.create)
    *
    * @param string $parent Required. The name of the parent buyer that the new
@@ -41,6 +59,7 @@ class BuyersCreatives extends \Google\Service\Resource
    * @param Creative $postBody
    * @param array $optParams Optional parameters.
    * @return Creative
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Creative $postBody, $optParams = [])
   {
@@ -60,6 +79,7 @@ class BuyersCreatives extends \Google\Service\Resource
    * the entire creative resource (including the declared fields and the creative
    * content) specify the view as "FULL".
    * @return Creative
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -108,6 +128,7 @@ class BuyersCreatives extends \Google\Service\Resource
    * the entire creative resource (including the declared fields and the creative
    * content) specify the view as "FULL".
    * @return ListCreativesResponse
+   * @throws \Google\Service\Exception
    */
   public function listBuyersCreatives($parent, $optParams = [])
   {
@@ -127,6 +148,7 @@ class BuyersCreatives extends \Google\Service\Resource
    *
    * @opt_param string updateMask Field mask to use for partial in-place updates.
    * @return Creative
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Creative $postBody, $optParams = [])
   {

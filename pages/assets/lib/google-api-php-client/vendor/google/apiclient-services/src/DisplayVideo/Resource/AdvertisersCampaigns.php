@@ -17,7 +17,6 @@
 
 namespace Google\Service\DisplayVideo\Resource;
 
-use Google\Service\DisplayVideo\BulkListCampaignAssignedTargetingOptionsResponse;
 use Google\Service\DisplayVideo\Campaign;
 use Google\Service\DisplayVideo\DisplayvideoEmpty;
 use Google\Service\DisplayVideo\ListCampaignsResponse;
@@ -41,6 +40,7 @@ class AdvertisersCampaigns extends \Google\Service\Resource
    * @param Campaign $postBody
    * @param array $optParams Optional parameters.
    * @return Campaign
+   * @throws \Google\Service\Exception
    */
   public function create($advertiserId, Campaign $postBody, $optParams = [])
   {
@@ -51,13 +51,18 @@ class AdvertisersCampaigns extends \Google\Service\Resource
   /**
    * Permanently deletes a campaign. A deleted campaign cannot be recovered. The
    * campaign should be archived first, i.e. set entity_status to
-   * `ENTITY_STATUS_ARCHIVED`, to be able to delete it. (campaigns.delete)
+   * `ENTITY_STATUS_ARCHIVED`, to be able to delete it. **This method regularly
+   * experiences high latency.** We recommend [increasing your default
+   * timeout](/display-video/api/guides/best-
+   * practices/timeouts#client_library_timeout) to avoid errors.
+   * (campaigns.delete)
    *
    * @param string $advertiserId The ID of the advertiser this campaign belongs
    * to.
    * @param string $campaignId The ID of the campaign we need to delete.
    * @param array $optParams Optional parameters.
    * @return DisplayvideoEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($advertiserId, $campaignId, $optParams = [])
   {
@@ -73,6 +78,7 @@ class AdvertisersCampaigns extends \Google\Service\Resource
    * @param string $campaignId Required. The ID of the campaign to fetch.
    * @param array $optParams Optional parameters.
    * @return Campaign
+   * @throws \Google\Service\Exception
    */
   public function get($advertiserId, $campaignId, $optParams = [])
   {
@@ -118,55 +124,13 @@ class AdvertisersCampaigns extends \Google\Service\Resource
    * the previous call to `ListCampaigns` method. If not specified, the first page
    * of results will be returned.
    * @return ListCampaignsResponse
+   * @throws \Google\Service\Exception
    */
   public function listAdvertisersCampaigns($advertiserId, $optParams = [])
   {
     $params = ['advertiserId' => $advertiserId];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], ListCampaignsResponse::class);
-  }
-  /**
-   * Lists assigned targeting options of a campaign across targeting types.
-   * (campaigns.listAssignedTargetingOptions)
-   *
-   * @param string $advertiserId Required. The ID of the advertiser the campaign
-   * belongs to.
-   * @param string $campaignId Required. The ID of the campaign to list assigned
-   * targeting options for.
-   * @param array $optParams Optional parameters.
-   *
-   * @opt_param string filter Allows filtering by assigned targeting option
-   * fields. Supported syntax: * Filter expressions are made up of one or more
-   * restrictions. * Restrictions can be combined by the `OR` logical operator. *
-   * A restriction has the form of `{field} {operator} {value}`. * All fields must
-   * use the `EQUALS (=)` operator. Supported fields: * `targetingType` *
-   * `inheritance` Examples: * `AssignedTargetingOption` resources of targeting
-   * type `TARGETING_TYPE_LANGUAGE` or `TARGETING_TYPE_GENDER`:
-   * `targetingType="TARGETING_TYPE_LANGUAGE" OR
-   * targetingType="TARGETING_TYPE_GENDER"` * `AssignedTargetingOption` resources
-   * with inheritance status of `NOT_INHERITED` or `INHERITED_FROM_PARTNER`:
-   * `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The
-   * length of this field should be no more than 500 characters. Reference our
-   * [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for
-   * more information.
-   * @opt_param string orderBy Field by which to sort the list. Acceptable values
-   * are: * `targetingType` (default) The default sorting order is ascending. To
-   * specify descending order for a field, a suffix "desc" should be added to the
-   * field name. Example: `targetingType desc`.
-   * @opt_param int pageSize Requested page size. The size must be an integer
-   * between `1` and `5000`. If unspecified, the default is `5000`. Returns error
-   * code `INVALID_ARGUMENT` if an invalid value is specified.
-   * @opt_param string pageToken A token that lets the client fetch the next page
-   * of results. Typically, this is the value of next_page_token returned from the
-   * previous call to `BulkListCampaignAssignedTargetingOptions` method. If not
-   * specified, the first page of results will be returned.
-   * @return BulkListCampaignAssignedTargetingOptionsResponse
-   */
-  public function listAssignedTargetingOptions($advertiserId, $campaignId, $optParams = [])
-  {
-    $params = ['advertiserId' => $advertiserId, 'campaignId' => $campaignId];
-    $params = array_merge($params, $optParams);
-    return $this->call('listAssignedTargetingOptions', [$params], BulkListCampaignAssignedTargetingOptionsResponse::class);
   }
   /**
    * Updates an existing campaign. Returns the updated campaign if successful.
@@ -182,6 +146,7 @@ class AdvertisersCampaigns extends \Google\Service\Resource
    * @opt_param string updateMask Required. The mask to control which fields to
    * update.
    * @return Campaign
+   * @throws \Google\Service\Exception
    */
   public function patch($advertiserId, $campaignId, Campaign $postBody, $optParams = [])
   {

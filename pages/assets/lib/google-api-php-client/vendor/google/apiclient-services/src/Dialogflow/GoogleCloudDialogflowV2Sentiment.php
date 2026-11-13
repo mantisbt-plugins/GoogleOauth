@@ -29,7 +29,7 @@ class GoogleCloudDialogflowV2Sentiment extends \Google\Model
   public $score;
 
   /**
-   * @param float
+   * @param float $magnitude
    */
   public function setMagnitude($magnitude)
   {
@@ -43,7 +43,7 @@ class GoogleCloudDialogflowV2Sentiment extends \Google\Model
     return $this->magnitude;
   }
   /**
-   * @param float
+   * @param float $score
    */
   public function setScore($score)
   {

@@ -20,17 +20,55 @@ namespace Google\Service\CloudDeploy;
 class CanaryDeployment extends \Google\Collection
 {
   protected $collection_key = 'percentages';
+  protected $analysisType = Analysis::class;
+  protected $analysisDataType = '';
   /**
+   * Required. The percentage based deployments that will occur as a part of a
+   * `Rollout`. List is expected in ascending order and each integer n is 0 <= n
+   * < 100. If the GatewayServiceMesh is configured for Kubernetes, then the
+   * range for n is 0 <= n <= 100.
+   *
    * @var int[]
    */
   public $percentages;
+  protected $postdeployType = Postdeploy::class;
+  protected $postdeployDataType = '';
+  protected $predeployType = Predeploy::class;
+  protected $predeployDataType = '';
   /**
+   * Optional. Whether to run verify tests after each percentage deployment via
+   * `skaffold verify`.
+   *
    * @var bool
    */
   public $verify;
+  protected $verifyConfigType = Verify::class;
+  protected $verifyConfigDataType = '';
 
   /**
-   * @param int[]
+   * Optional. Configuration for the analysis job. If configured, the analysis
+   * will run after each percentage deployment.
+   *
+   * @param Analysis $analysis
+   */
+  public function setAnalysis(Analysis $analysis)
+  {
+    $this->analysis = $analysis;
+  }
+  /**
+   * @return Analysis
+   */
+  public function getAnalysis()
+  {
+    return $this->analysis;
+  }
+  /**
+   * Required. The percentage based deployments that will occur as a part of a
+   * `Rollout`. List is expected in ascending order and each integer n is 0 <= n
+   * < 100. If the GatewayServiceMesh is configured for Kubernetes, then the
+   * range for n is 0 <= n <= 100.
+   *
+   * @param int[] $percentages
    */
   public function setPercentages($percentages)
   {
@@ -44,7 +82,44 @@ class CanaryDeployment extends \Google\Collection
     return $this->percentages;
   }
   /**
-   * @param bool
+   * Optional. Configuration for the postdeploy job of the last phase. If this
+   * is not configured, there will be no postdeploy job for this phase.
+   *
+   * @param Postdeploy $postdeploy
+   */
+  public function setPostdeploy(Postdeploy $postdeploy)
+  {
+    $this->postdeploy = $postdeploy;
+  }
+  /**
+   * @return Postdeploy
+   */
+  public function getPostdeploy()
+  {
+    return $this->postdeploy;
+  }
+  /**
+   * Optional. Configuration for the predeploy job of the first phase. If this
+   * is not configured, there will be no predeploy job for this phase.
+   *
+   * @param Predeploy $predeploy
+   */
+  public function setPredeploy(Predeploy $predeploy)
+  {
+    $this->predeploy = $predeploy;
+  }
+  /**
+   * @return Predeploy
+   */
+  public function getPredeploy()
+  {
+    return $this->predeploy;
+  }
+  /**
+   * Optional. Whether to run verify tests after each percentage deployment via
+   * `skaffold verify`.
+   *
+   * @param bool $verify
    */
   public function setVerify($verify)
   {
@@ -56,6 +131,23 @@ class CanaryDeployment extends \Google\Collection
   public function getVerify()
   {
     return $this->verify;
+  }
+  /**
+   * Optional. Configuration for the verify job. Cannot be set if `verify` is
+   * set to true.
+   *
+   * @param Verify $verifyConfig
+   */
+  public function setVerifyConfig(Verify $verifyConfig)
+  {
+    $this->verifyConfig = $verifyConfig;
+  }
+  /**
+   * @return Verify
+   */
+  public function getVerifyConfig()
+  {
+    return $this->verifyConfig;
   }
 }
 

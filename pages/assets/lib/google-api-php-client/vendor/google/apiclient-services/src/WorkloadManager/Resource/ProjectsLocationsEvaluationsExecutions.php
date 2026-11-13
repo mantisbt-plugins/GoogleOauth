@@ -33,11 +33,38 @@ use Google\Service\WorkloadManager\RunEvaluationRequest;
 class ProjectsLocationsEvaluationsExecutions extends \Google\Service\Resource
 {
   /**
+   * Deletes a single Execution. (executions.delete)
+   *
+   * @param string $name Required. Name of the resource.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId Optional. An optional request ID to identify
+   * requests. Specify a unique request ID so that if you must retry your request,
+   * the server will know to ignore the request if it has already been completed.
+   * The server will guarantee that for at least 60 minutes after the first
+   * request. For example, consider a situation where you make an initial request
+   * and the request times out. If you make the request again with the same
+   * request ID, the server can check if original operation with the same request
+   * ID was received, and if so, will ignore the second request. This prevents
+   * clients from accidentally creating duplicate commitments. The request ID must
+   * be a valid UUID with the exception that zero UUID is not supported
+   * (00000000-0000-0000-0000-000000000000).
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function delete($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('delete', [$params], Operation::class);
+  }
+  /**
    * Gets details of a single Execution. (executions.get)
    *
-   * @param string $name Required. Name of the resource
+   * @param string $name Required. Name of the resource.
    * @param array $optParams Optional parameters.
    * @return Execution
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -50,10 +77,10 @@ class ProjectsLocationsEvaluationsExecutions extends \Google\Service\Resource
    * (executions.listProjectsLocationsEvaluationsExecutions)
    *
    * @param string $parent Required. The resource prefix of the Execution using
-   * the form: 'projects/{project}/locations/{location}/evaluations/{evaluation}'
+   * the form: `projects/{project}/locations/{location}/evaluations/{evaluation}`.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Filtering results
+   * @opt_param string filter Filtering results.
    * @opt_param string orderBy Field to sort by. See
    * https://google.aip.dev/132#ordering for more details.
    * @opt_param int pageSize Requested page size. Server may return fewer items
@@ -61,6 +88,7 @@ class ProjectsLocationsEvaluationsExecutions extends \Google\Service\Resource
    * @opt_param string pageToken A token identifying a page of results the server
    * should return.
    * @return ListExecutionsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsEvaluationsExecutions($parent, $optParams = [])
   {
@@ -71,12 +99,12 @@ class ProjectsLocationsEvaluationsExecutions extends \Google\Service\Resource
   /**
    * Creates a new Execution in a given project and location. (executions.run)
    *
-   * @param string $name Required. The resource name of the Execution using the
-   * form: 'projects/{project}/locations/{location}/evaluations/{evaluation}/execu
-   * tions/{execution}'
+   * @param string $name Required. The resource name of the Evaluation using the
+   * form: `projects/{project}/locations/{location}/evaluations/{evaluation}`.
    * @param RunEvaluationRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function run($name, RunEvaluationRequest $postBody, $optParams = [])
   {

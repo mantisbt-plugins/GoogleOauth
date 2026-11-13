@@ -28,7 +28,7 @@ class ListMuteConfigsResponse extends \Google\Collection
   public $nextPageToken;
 
   /**
-   * @param GoogleCloudSecuritycenterV1MuteConfig[]
+   * @param GoogleCloudSecuritycenterV1MuteConfig[] $muteConfigs
    */
   public function setMuteConfigs($muteConfigs)
   {
@@ -42,7 +42,7 @@ class ListMuteConfigsResponse extends \Google\Collection
     return $this->muteConfigs;
   }
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {

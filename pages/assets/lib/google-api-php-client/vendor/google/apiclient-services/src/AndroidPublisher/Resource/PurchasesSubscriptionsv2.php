@@ -17,6 +17,12 @@
 
 namespace Google\Service\AndroidPublisher\Resource;
 
+use Google\Service\AndroidPublisher\CancelSubscriptionPurchaseRequest;
+use Google\Service\AndroidPublisher\CancelSubscriptionPurchaseResponse;
+use Google\Service\AndroidPublisher\DeferSubscriptionPurchaseRequest;
+use Google\Service\AndroidPublisher\DeferSubscriptionPurchaseResponse;
+use Google\Service\AndroidPublisher\RevokeSubscriptionPurchaseRequest;
+use Google\Service\AndroidPublisher\RevokeSubscriptionPurchaseResponse;
 use Google\Service\AndroidPublisher\SubscriptionPurchaseV2;
 
 /**
@@ -30,6 +36,42 @@ use Google\Service\AndroidPublisher\SubscriptionPurchaseV2;
 class PurchasesSubscriptionsv2 extends \Google\Service\Resource
 {
   /**
+   * Cancel a subscription purchase for the user. (subscriptionsv2.cancel)
+   *
+   * @param string $packageName Required. The package of the application for which
+   * this subscription was purchased (for example, 'com.some.thing').
+   * @param string $token Required. The token provided to the user's device when
+   * the subscription was purchased.
+   * @param CancelSubscriptionPurchaseRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return CancelSubscriptionPurchaseResponse
+   * @throws \Google\Service\Exception
+   */
+  public function cancel($packageName, $token, CancelSubscriptionPurchaseRequest $postBody, $optParams = [])
+  {
+    $params = ['packageName' => $packageName, 'token' => $token, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('cancel', [$params], CancelSubscriptionPurchaseResponse::class);
+  }
+  /**
+   * Defers the renewal of a subscription. (subscriptionsv2.defer)
+   *
+   * @param string $packageName Required. The package of the application for which
+   * this subscription was purchased (for example, 'com.some.thing').
+   * @param string $token Required. The token provided to the user's device when
+   * the subscription was purchased.
+   * @param DeferSubscriptionPurchaseRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return DeferSubscriptionPurchaseResponse
+   * @throws \Google\Service\Exception
+   */
+  public function defer($packageName, $token, DeferSubscriptionPurchaseRequest $postBody, $optParams = [])
+  {
+    $params = ['packageName' => $packageName, 'token' => $token, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('defer', [$params], DeferSubscriptionPurchaseResponse::class);
+  }
+  /**
    * Get metadata about a subscription (subscriptionsv2.get)
    *
    * @param string $packageName The package of the application for which this
@@ -38,12 +80,31 @@ class PurchasesSubscriptionsv2 extends \Google\Service\Resource
    * the subscription was purchased.
    * @param array $optParams Optional parameters.
    * @return SubscriptionPurchaseV2
+   * @throws \Google\Service\Exception
    */
   public function get($packageName, $token, $optParams = [])
   {
     $params = ['packageName' => $packageName, 'token' => $token];
     $params = array_merge($params, $optParams);
     return $this->call('get', [$params], SubscriptionPurchaseV2::class);
+  }
+  /**
+   * Revoke a subscription purchase for the user. (subscriptionsv2.revoke)
+   *
+   * @param string $packageName Required. The package of the application for which
+   * this subscription was purchased (for example, 'com.some.thing').
+   * @param string $token Required. The token provided to the user's device when
+   * the subscription was purchased.
+   * @param RevokeSubscriptionPurchaseRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return RevokeSubscriptionPurchaseResponse
+   * @throws \Google\Service\Exception
+   */
+  public function revoke($packageName, $token, RevokeSubscriptionPurchaseRequest $postBody, $optParams = [])
+  {
+    $params = ['packageName' => $packageName, 'token' => $token, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('revoke', [$params], RevokeSubscriptionPurchaseResponse::class);
   }
 }
 

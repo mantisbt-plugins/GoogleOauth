@@ -17,31 +17,98 @@
 
 namespace Google\Service\Integrations;
 
-class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata extends \Google\Model
+class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata extends \Google\Collection
 {
+  protected $collection_key = 'ancestorTaskNumbers';
   /**
+   * Ancestor iteration number for the task(it will only be non-empty if the
+   * task is under 'private workflow')
+   *
+   * @var string[]
+   */
+  public $ancestorIterationNumbers;
+  /**
+   * Ancestor task number for the task(it will only be non-empty if the task is
+   * under 'private workflow')
+   *
+   * @var string[]
+   */
+  public $ancestorTaskNumbers;
+  /**
+   * the execution attempt number this snapshot belongs to.
+   *
    * @var int
    */
   public $executionAttempt;
   /**
+   * The direct integration which the event execution snapshots belongs to
+   *
+   * @var string
+   */
+  public $integrationName;
+  /**
+   * the task name associated with this snapshot.
+   *
    * @var string
    */
   public $task;
   /**
+   * the task attempt number this snapshot belongs to.
+   *
    * @var int
    */
   public $taskAttempt;
   /**
+   * the task label associated with this snapshot. Could be empty.
+   *
    * @var string
    */
   public $taskLabel;
   /**
+   * The task number associated with this snapshot.
+   *
    * @var string
    */
   public $taskNumber;
 
   /**
-   * @param int
+   * Ancestor iteration number for the task(it will only be non-empty if the
+   * task is under 'private workflow')
+   *
+   * @param string[] $ancestorIterationNumbers
+   */
+  public function setAncestorIterationNumbers($ancestorIterationNumbers)
+  {
+    $this->ancestorIterationNumbers = $ancestorIterationNumbers;
+  }
+  /**
+   * @return string[]
+   */
+  public function getAncestorIterationNumbers()
+  {
+    return $this->ancestorIterationNumbers;
+  }
+  /**
+   * Ancestor task number for the task(it will only be non-empty if the task is
+   * under 'private workflow')
+   *
+   * @param string[] $ancestorTaskNumbers
+   */
+  public function setAncestorTaskNumbers($ancestorTaskNumbers)
+  {
+    $this->ancestorTaskNumbers = $ancestorTaskNumbers;
+  }
+  /**
+   * @return string[]
+   */
+  public function getAncestorTaskNumbers()
+  {
+    return $this->ancestorTaskNumbers;
+  }
+  /**
+   * the execution attempt number this snapshot belongs to.
+   *
+   * @param int $executionAttempt
    */
   public function setExecutionAttempt($executionAttempt)
   {
@@ -55,7 +122,25 @@ class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata e
     return $this->executionAttempt;
   }
   /**
-   * @param string
+   * The direct integration which the event execution snapshots belongs to
+   *
+   * @param string $integrationName
+   */
+  public function setIntegrationName($integrationName)
+  {
+    $this->integrationName = $integrationName;
+  }
+  /**
+   * @return string
+   */
+  public function getIntegrationName()
+  {
+    return $this->integrationName;
+  }
+  /**
+   * the task name associated with this snapshot.
+   *
+   * @param string $task
    */
   public function setTask($task)
   {
@@ -69,7 +154,9 @@ class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata e
     return $this->task;
   }
   /**
-   * @param int
+   * the task attempt number this snapshot belongs to.
+   *
+   * @param int $taskAttempt
    */
   public function setTaskAttempt($taskAttempt)
   {
@@ -83,7 +170,9 @@ class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata e
     return $this->taskAttempt;
   }
   /**
-   * @param string
+   * the task label associated with this snapshot. Could be empty.
+   *
+   * @param string $taskLabel
    */
   public function setTaskLabel($taskLabel)
   {
@@ -97,7 +186,9 @@ class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata e
     return $this->taskLabel;
   }
   /**
-   * @param string
+   * The task number associated with this snapshot.
+   *
+   * @param string $taskNumber
    */
   public function setTaskNumber($taskNumber)
   {

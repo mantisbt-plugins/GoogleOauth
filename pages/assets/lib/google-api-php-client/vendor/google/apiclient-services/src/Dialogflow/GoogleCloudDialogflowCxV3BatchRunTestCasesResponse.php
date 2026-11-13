@@ -24,7 +24,7 @@ class GoogleCloudDialogflowCxV3BatchRunTestCasesResponse extends \Google\Collect
   protected $resultsDataType = 'array';
 
   /**
-   * @param GoogleCloudDialogflowCxV3TestCaseResult[]
+   * @param GoogleCloudDialogflowCxV3TestCaseResult[] $results
    */
   public function setResults($results)
   {

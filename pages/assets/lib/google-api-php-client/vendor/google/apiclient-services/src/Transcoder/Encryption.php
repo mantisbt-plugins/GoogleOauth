@@ -21,21 +21,25 @@ class Encryption extends \Google\Model
 {
   protected $aes128Type = Aes128Encryption::class;
   protected $aes128DataType = '';
+  protected $drmSystemsType = DrmSystems::class;
+  protected $drmSystemsDataType = '';
   /**
+   * Required. Identifier for this set of encryption options.
+   *
    * @var string
    */
-  public $iv;
-  /**
-   * @var string
-   */
-  public $key;
+  public $id;
   protected $mpegCencType = MpegCommonEncryption::class;
   protected $mpegCencDataType = '';
   protected $sampleAesType = SampleAesEncryption::class;
   protected $sampleAesDataType = '';
+  protected $secretManagerKeySourceType = SecretManagerSource::class;
+  protected $secretManagerKeySourceDataType = '';
 
   /**
-   * @param Aes128Encryption
+   * Configuration for AES-128 encryption.
+   *
+   * @param Aes128Encryption $aes128
    */
   public function setAes128(Aes128Encryption $aes128)
   {
@@ -49,35 +53,42 @@ class Encryption extends \Google\Model
     return $this->aes128;
   }
   /**
-   * @param string
+   * Required. DRM system(s) to use; at least one must be specified. If a DRM
+   * system is omitted, it is considered disabled.
+   *
+   * @param DrmSystems $drmSystems
    */
-  public function setIv($iv)
+  public function setDrmSystems(DrmSystems $drmSystems)
   {
-    $this->iv = $iv;
+    $this->drmSystems = $drmSystems;
+  }
+  /**
+   * @return DrmSystems
+   */
+  public function getDrmSystems()
+  {
+    return $this->drmSystems;
+  }
+  /**
+   * Required. Identifier for this set of encryption options.
+   *
+   * @param string $id
+   */
+  public function setId($id)
+  {
+    $this->id = $id;
   }
   /**
    * @return string
    */
-  public function getIv()
+  public function getId()
   {
-    return $this->iv;
+    return $this->id;
   }
   /**
-   * @param string
-   */
-  public function setKey($key)
-  {
-    $this->key = $key;
-  }
-  /**
-   * @return string
-   */
-  public function getKey()
-  {
-    return $this->key;
-  }
-  /**
-   * @param MpegCommonEncryption
+   * Configuration for MPEG Common Encryption (MPEG-CENC).
+   *
+   * @param MpegCommonEncryption $mpegCenc
    */
   public function setMpegCenc(MpegCommonEncryption $mpegCenc)
   {
@@ -91,7 +102,9 @@ class Encryption extends \Google\Model
     return $this->mpegCenc;
   }
   /**
-   * @param SampleAesEncryption
+   * Configuration for SAMPLE-AES encryption.
+   *
+   * @param SampleAesEncryption $sampleAes
    */
   public function setSampleAes(SampleAesEncryption $sampleAes)
   {
@@ -103,6 +116,22 @@ class Encryption extends \Google\Model
   public function getSampleAes()
   {
     return $this->sampleAes;
+  }
+  /**
+   * Keys are stored in Google Secret Manager.
+   *
+   * @param SecretManagerSource $secretManagerKeySource
+   */
+  public function setSecretManagerKeySource(SecretManagerSource $secretManagerKeySource)
+  {
+    $this->secretManagerKeySource = $secretManagerKeySource;
+  }
+  /**
+   * @return SecretManagerSource
+   */
+  public function getSecretManagerKeySource()
+  {
+    return $this->secretManagerKeySource;
   }
 }
 

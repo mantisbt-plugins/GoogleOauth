@@ -19,8 +19,12 @@ namespace Google\Service\Vault;
 
 class CorpusQuery extends \Google\Model
 {
+  protected $calendarQueryType = HeldCalendarQuery::class;
+  protected $calendarQueryDataType = '';
   protected $driveQueryType = HeldDriveQuery::class;
   protected $driveQueryDataType = '';
+  protected $geminiQueryType = HeldGeminiQuery::class;
+  protected $geminiQueryDataType = '';
   protected $groupsQueryType = HeldGroupsQuery::class;
   protected $groupsQueryDataType = '';
   protected $hangoutsChatQueryType = HeldHangoutsChatQuery::class;
@@ -31,7 +35,27 @@ class CorpusQuery extends \Google\Model
   protected $voiceQueryDataType = '';
 
   /**
-   * @param HeldDriveQuery
+   * Service-specific options for Calendar holds. If set, **CorpusType** must be
+   * **CALENDAR**.
+   *
+   * @param HeldCalendarQuery $calendarQuery
+   */
+  public function setCalendarQuery(HeldCalendarQuery $calendarQuery)
+  {
+    $this->calendarQuery = $calendarQuery;
+  }
+  /**
+   * @return HeldCalendarQuery
+   */
+  public function getCalendarQuery()
+  {
+    return $this->calendarQuery;
+  }
+  /**
+   * Service-specific options for Drive holds. If set, **CorpusType** must be
+   * **DRIVE**.
+   *
+   * @param HeldDriveQuery $driveQuery
    */
   public function setDriveQuery(HeldDriveQuery $driveQuery)
   {
@@ -45,7 +69,27 @@ class CorpusQuery extends \Google\Model
     return $this->driveQuery;
   }
   /**
-   * @param HeldGroupsQuery
+   * Service-specific options for Gemini app holds. If set, **CorpusType** must
+   * be **GEMINI**.
+   *
+   * @param HeldGeminiQuery $geminiQuery
+   */
+  public function setGeminiQuery(HeldGeminiQuery $geminiQuery)
+  {
+    $this->geminiQuery = $geminiQuery;
+  }
+  /**
+   * @return HeldGeminiQuery
+   */
+  public function getGeminiQuery()
+  {
+    return $this->geminiQuery;
+  }
+  /**
+   * Service-specific options for Groups holds. If set, **CorpusType** must be
+   * **GROUPS**.
+   *
+   * @param HeldGroupsQuery $groupsQuery
    */
   public function setGroupsQuery(HeldGroupsQuery $groupsQuery)
   {
@@ -59,7 +103,10 @@ class CorpusQuery extends \Google\Model
     return $this->groupsQuery;
   }
   /**
-   * @param HeldHangoutsChatQuery
+   * Service-specific options for Chat holds. If set, **CorpusType** must be
+   * **HANGOUTS_CHAT**.
+   *
+   * @param HeldHangoutsChatQuery $hangoutsChatQuery
    */
   public function setHangoutsChatQuery(HeldHangoutsChatQuery $hangoutsChatQuery)
   {
@@ -73,7 +120,10 @@ class CorpusQuery extends \Google\Model
     return $this->hangoutsChatQuery;
   }
   /**
-   * @param HeldMailQuery
+   * Service-specific options for Gmail holds. If set, **CorpusType** must be
+   * **MAIL**.
+   *
+   * @param HeldMailQuery $mailQuery
    */
   public function setMailQuery(HeldMailQuery $mailQuery)
   {
@@ -87,7 +137,10 @@ class CorpusQuery extends \Google\Model
     return $this->mailQuery;
   }
   /**
-   * @param HeldVoiceQuery
+   * Service-specific options for Voice holds. If set, **CorpusType** must be
+   * **VOICE**.
+   *
+   * @param HeldVoiceQuery $voiceQuery
    */
   public function setVoiceQuery(HeldVoiceQuery $voiceQuery)
   {

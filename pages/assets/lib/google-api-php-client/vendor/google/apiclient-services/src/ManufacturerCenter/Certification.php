@@ -20,32 +20,52 @@ namespace Google\Service\ManufacturerCenter;
 class Certification extends \Google\Model
 {
   /**
+   * Required. Name of the certification body.
+   *
    * @var string
    */
   public $authority;
   /**
+   * Optional. A unique code to identify the certification.
+   *
+   * @var string
+   */
+  public $code;
+  /**
+   * Optional. A URL link to the certification.
+   *
    * @var string
    */
   public $link;
   /**
+   * Optional. A URL link to the certification logo.
+   *
    * @var string
    */
   public $logo;
   /**
+   * Required. Name of the certification.
+   *
    * @var string
    */
   public $name;
   /**
+   * Optional. The expiration date (UTC).
+   *
    * @var string
    */
   public $validUntil;
   /**
+   * Optional. A custom value of the certification.
+   *
    * @var string
    */
   public $value;
 
   /**
-   * @param string
+   * Required. Name of the certification body.
+   *
+   * @param string $authority
    */
   public function setAuthority($authority)
   {
@@ -59,7 +79,25 @@ class Certification extends \Google\Model
     return $this->authority;
   }
   /**
-   * @param string
+   * Optional. A unique code to identify the certification.
+   *
+   * @param string $code
+   */
+  public function setCode($code)
+  {
+    $this->code = $code;
+  }
+  /**
+   * @return string
+   */
+  public function getCode()
+  {
+    return $this->code;
+  }
+  /**
+   * Optional. A URL link to the certification.
+   *
+   * @param string $link
    */
   public function setLink($link)
   {
@@ -73,7 +111,9 @@ class Certification extends \Google\Model
     return $this->link;
   }
   /**
-   * @param string
+   * Optional. A URL link to the certification logo.
+   *
+   * @param string $logo
    */
   public function setLogo($logo)
   {
@@ -87,7 +127,9 @@ class Certification extends \Google\Model
     return $this->logo;
   }
   /**
-   * @param string
+   * Required. Name of the certification.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -101,7 +143,9 @@ class Certification extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * Optional. The expiration date (UTC).
+   *
+   * @param string $validUntil
    */
   public function setValidUntil($validUntil)
   {
@@ -115,7 +159,9 @@ class Certification extends \Google\Model
     return $this->validUntil;
   }
   /**
-   * @param string
+   * Optional. A custom value of the certification.
+   *
+   * @param string $value
    */
   public function setValue($value)
   {

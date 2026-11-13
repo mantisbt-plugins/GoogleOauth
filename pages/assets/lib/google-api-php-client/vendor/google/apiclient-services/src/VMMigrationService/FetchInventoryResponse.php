@@ -21,11 +21,19 @@ class FetchInventoryResponse extends \Google\Model
 {
   protected $awsVmsType = AwsVmsDetails::class;
   protected $awsVmsDataType = '';
+  protected $azureVmsType = AzureVmsDetails::class;
+  protected $azureVmsDataType = '';
   /**
+   * Output only. A token, which can be sent as `page_token` to retrieve the
+   * next page. If this field is omitted, there are no subsequent pages.
+   *
    * @var string
    */
   public $nextPageToken;
   /**
+   * Output only. The timestamp when the source was last queried (if the result
+   * is from the cache).
+   *
    * @var string
    */
   public $updateTime;
@@ -33,7 +41,9 @@ class FetchInventoryResponse extends \Google\Model
   protected $vmwareVmsDataType = '';
 
   /**
-   * @param AwsVmsDetails
+   * The description of the VMs in a Source of type AWS.
+   *
+   * @param AwsVmsDetails $awsVms
    */
   public function setAwsVms(AwsVmsDetails $awsVms)
   {
@@ -47,7 +57,26 @@ class FetchInventoryResponse extends \Google\Model
     return $this->awsVms;
   }
   /**
-   * @param string
+   * The description of the VMs in a Source of type Azure.
+   *
+   * @param AzureVmsDetails $azureVms
+   */
+  public function setAzureVms(AzureVmsDetails $azureVms)
+  {
+    $this->azureVms = $azureVms;
+  }
+  /**
+   * @return AzureVmsDetails
+   */
+  public function getAzureVms()
+  {
+    return $this->azureVms;
+  }
+  /**
+   * Output only. A token, which can be sent as `page_token` to retrieve the
+   * next page. If this field is omitted, there are no subsequent pages.
+   *
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -61,7 +90,10 @@ class FetchInventoryResponse extends \Google\Model
     return $this->nextPageToken;
   }
   /**
-   * @param string
+   * Output only. The timestamp when the source was last queried (if the result
+   * is from the cache).
+   *
+   * @param string $updateTime
    */
   public function setUpdateTime($updateTime)
   {
@@ -75,7 +107,9 @@ class FetchInventoryResponse extends \Google\Model
     return $this->updateTime;
   }
   /**
-   * @param VmwareVmsDetails
+   * The description of the VMs in a Source of type Vmware.
+   *
+   * @param VmwareVmsDetails $vmwareVms
    */
   public function setVmwareVms(VmwareVmsDetails $vmwareVms)
   {

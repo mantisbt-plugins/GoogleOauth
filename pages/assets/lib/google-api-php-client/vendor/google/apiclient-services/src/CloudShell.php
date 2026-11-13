@@ -41,6 +41,7 @@ class CloudShell extends \Google\Service
 
   public $operations;
   public $users_environments;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudShell service.
@@ -53,6 +54,7 @@ class CloudShell extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://cloudshell.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://cloudshell.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -115,6 +117,10 @@ class CloudShell extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
               ],
             ],
           ]
@@ -144,6 +150,24 @@ class CloudShell extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+              ],
+            ],'generateAccessToken' => [
+              'path' => 'v1/{+environment}:generateAccessToken',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'environment' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'expireTime' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'ttl' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],'get' => [

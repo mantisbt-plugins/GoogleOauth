@@ -19,6 +19,35 @@ namespace Google\Service\CloudIdentity;
 
 class CreateInboundSamlSsoProfileOperationMetadata extends \Google\Model
 {
+  /**
+   * State of this Operation Will be "awaiting-multi-party-approval" when the
+   * operation is deferred due to the target customer having enabled [Multi-
+   * party approval for sensitive
+   * actions](https://support.google.com/a/answer/13790448).
+   *
+   * @var string
+   */
+  public $state;
+
+  /**
+   * State of this Operation Will be "awaiting-multi-party-approval" when the
+   * operation is deferred due to the target customer having enabled [Multi-
+   * party approval for sensitive
+   * actions](https://support.google.com/a/answer/13790448).
+   *
+   * @param string $state
+   */
+  public function setState($state)
+  {
+    $this->state = $state;
+  }
+  /**
+   * @return string
+   */
+  public function getState()
+  {
+    return $this->state;
+  }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

@@ -17,22 +17,28 @@
 
 namespace Google\Service\CloudSecurityToken;
 
-class GoogleIdentityStsV1betaOptions extends \Google\Collection
+class GoogleIdentityStsV1betaOptions extends \Google\Model
 {
-  protected $collection_key = 'audiences';
   protected $accessBoundaryType = GoogleIdentityStsV1betaAccessBoundary::class;
   protected $accessBoundaryDataType = '';
   /**
-   * @var string[]
-   */
-  public $audiences;
-  /**
+   * A Google project used for quota and billing purposes when the credential is
+   * used to access Google APIs. The provided project overrides the project
+   * bound to the credential. The value must be a project number or a project
+   * ID. Example: `my-sample-project-191923`. The maximum length is 32
+   * characters.
+   *
    * @var string
    */
   public $userProject;
 
   /**
-   * @param GoogleIdentityStsV1betaAccessBoundary
+   * An access boundary that defines the upper bound of permissions the
+   * credential may have. The value should be a JSON object of AccessBoundary.
+   * The access boundary can include up to 10 rules. The size of the parameter
+   * value should not exceed 2048 characters.
+   *
+   * @param GoogleIdentityStsV1betaAccessBoundary $accessBoundary
    */
   public function setAccessBoundary(GoogleIdentityStsV1betaAccessBoundary $accessBoundary)
   {
@@ -46,21 +52,13 @@ class GoogleIdentityStsV1betaOptions extends \Google\Collection
     return $this->accessBoundary;
   }
   /**
-   * @param string[]
-   */
-  public function setAudiences($audiences)
-  {
-    $this->audiences = $audiences;
-  }
-  /**
-   * @return string[]
-   */
-  public function getAudiences()
-  {
-    return $this->audiences;
-  }
-  /**
-   * @param string
+   * A Google project used for quota and billing purposes when the credential is
+   * used to access Google APIs. The provided project overrides the project
+   * bound to the credential. The value must be a project number or a project
+   * ID. Example: `my-sample-project-191923`. The maximum length is 32
+   * characters.
+   *
+   * @param string $userProject
    */
   public function setUserProject($userProject)
   {

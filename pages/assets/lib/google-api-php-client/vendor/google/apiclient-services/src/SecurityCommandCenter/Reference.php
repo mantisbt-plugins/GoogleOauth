@@ -29,7 +29,7 @@ class Reference extends \Google\Model
   public $uri;
 
   /**
-   * @param string
+   * @param string $source
    */
   public function setSource($source)
   {
@@ -43,7 +43,7 @@ class Reference extends \Google\Model
     return $this->source;
   }
   /**
-   * @param string
+   * @param string $uri
    */
   public function setUri($uri)
   {

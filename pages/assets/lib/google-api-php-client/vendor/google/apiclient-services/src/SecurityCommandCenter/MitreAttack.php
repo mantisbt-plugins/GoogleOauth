@@ -19,6 +19,21 @@ namespace Google\Service\SecurityCommandCenter;
 
 class MitreAttack extends \Google\Collection
 {
+  public const PRIMARY_TACTIC_TACTIC_UNSPECIFIED = 'TACTIC_UNSPECIFIED';
+  public const PRIMARY_TACTIC_RECONNAISSANCE = 'RECONNAISSANCE';
+  public const PRIMARY_TACTIC_RESOURCE_DEVELOPMENT = 'RESOURCE_DEVELOPMENT';
+  public const PRIMARY_TACTIC_INITIAL_ACCESS = 'INITIAL_ACCESS';
+  public const PRIMARY_TACTIC_EXECUTION = 'EXECUTION';
+  public const PRIMARY_TACTIC_PERSISTENCE = 'PERSISTENCE';
+  public const PRIMARY_TACTIC_PRIVILEGE_ESCALATION = 'PRIVILEGE_ESCALATION';
+  public const PRIMARY_TACTIC_DEFENSE_EVASION = 'DEFENSE_EVASION';
+  public const PRIMARY_TACTIC_CREDENTIAL_ACCESS = 'CREDENTIAL_ACCESS';
+  public const PRIMARY_TACTIC_DISCOVERY = 'DISCOVERY';
+  public const PRIMARY_TACTIC_LATERAL_MOVEMENT = 'LATERAL_MOVEMENT';
+  public const PRIMARY_TACTIC_COLLECTION = 'COLLECTION';
+  public const PRIMARY_TACTIC_COMMAND_AND_CONTROL = 'COMMAND_AND_CONTROL';
+  public const PRIMARY_TACTIC_EXFILTRATION = 'EXFILTRATION';
+  public const PRIMARY_TACTIC_IMPACT = 'IMPACT';
   protected $collection_key = 'primaryTechniques';
   /**
    * @var string[]
@@ -42,7 +57,7 @@ class MitreAttack extends \Google\Collection
   public $version;
 
   /**
-   * @param string[]
+   * @param string[] $additionalTactics
    */
   public function setAdditionalTactics($additionalTactics)
   {
@@ -56,7 +71,7 @@ class MitreAttack extends \Google\Collection
     return $this->additionalTactics;
   }
   /**
-   * @param string[]
+   * @param string[] $additionalTechniques
    */
   public function setAdditionalTechniques($additionalTechniques)
   {
@@ -70,21 +85,21 @@ class MitreAttack extends \Google\Collection
     return $this->additionalTechniques;
   }
   /**
-   * @param string
+   * @param self::PRIMARY_TACTIC_* $primaryTactic
    */
   public function setPrimaryTactic($primaryTactic)
   {
     $this->primaryTactic = $primaryTactic;
   }
   /**
-   * @return string
+   * @return self::PRIMARY_TACTIC_*
    */
   public function getPrimaryTactic()
   {
     return $this->primaryTactic;
   }
   /**
-   * @param string[]
+   * @param string[] $primaryTechniques
    */
   public function setPrimaryTechniques($primaryTechniques)
   {
@@ -98,7 +113,7 @@ class MitreAttack extends \Google\Collection
     return $this->primaryTechniques;
   }
   /**
-   * @param string
+   * @param string $version
    */
   public function setVersion($version)
   {

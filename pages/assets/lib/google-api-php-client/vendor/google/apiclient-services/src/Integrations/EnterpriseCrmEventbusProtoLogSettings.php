@@ -19,12 +19,40 @@ namespace Google\Service\Integrations;
 
 class EnterpriseCrmEventbusProtoLogSettings extends \Google\Model
 {
+  public const SEED_PERIOD_SEED_PERIOD_UNSPECIFIED = 'SEED_PERIOD_UNSPECIFIED';
   /**
+   * Sanitized values remain constant for the day of the event.
+   */
+  public const SEED_PERIOD_DAY = 'DAY';
+  /**
+   * Sanitized values remain constant for the week of the event; may cross month
+   * boundaries.
+   */
+  public const SEED_PERIOD_WEEK = 'WEEK';
+  /**
+   * Sanitized values remain constant for the month of the event.
+   */
+  public const SEED_PERIOD_MONTH = 'MONTH';
+  public const SEED_SCOPE_SEED_SCOPE_UNSPECIFIED = 'SEED_SCOPE_UNSPECIFIED';
+  /**
+   * Hash computations include the event name.
+   */
+  public const SEED_SCOPE_EVENT_NAME = 'EVENT_NAME';
+  /**
+   * Hash computations include a time period.
+   */
+  public const SEED_SCOPE_TIME_PERIOD = 'TIME_PERIOD';
+  /**
+   * Hash computations include the param name.
+   */
+  public const SEED_SCOPE_PARAM_NAME = 'PARAM_NAME';
+  /**
+   * The name of corresponding logging field of the event property. If omitted,
+   * assumes the same name as the event property key.
+   *
    * @var string
    */
   public $logFieldName;
-  protected $sanitizeOptionsType = EnterpriseCrmLoggingGwsSanitizeOptions::class;
-  protected $sanitizeOptionsDataType = '';
   /**
    * @var string
    */
@@ -33,11 +61,12 @@ class EnterpriseCrmEventbusProtoLogSettings extends \Google\Model
    * @var string
    */
   public $seedScope;
-  protected $shorteningLimitsType = EnterpriseCrmLoggingGwsFieldLimits::class;
-  protected $shorteningLimitsDataType = '';
 
   /**
-   * @param string
+   * The name of corresponding logging field of the event property. If omitted,
+   * assumes the same name as the event property key.
+   *
+   * @param string $logFieldName
    */
   public function setLogFieldName($logFieldName)
   {
@@ -51,60 +80,32 @@ class EnterpriseCrmEventbusProtoLogSettings extends \Google\Model
     return $this->logFieldName;
   }
   /**
-   * @param EnterpriseCrmLoggingGwsSanitizeOptions
-   */
-  public function setSanitizeOptions(EnterpriseCrmLoggingGwsSanitizeOptions $sanitizeOptions)
-  {
-    $this->sanitizeOptions = $sanitizeOptions;
-  }
-  /**
-   * @return EnterpriseCrmLoggingGwsSanitizeOptions
-   */
-  public function getSanitizeOptions()
-  {
-    return $this->sanitizeOptions;
-  }
-  /**
-   * @param string
+   * @param self::SEED_PERIOD_* $seedPeriod
    */
   public function setSeedPeriod($seedPeriod)
   {
     $this->seedPeriod = $seedPeriod;
   }
   /**
-   * @return string
+   * @return self::SEED_PERIOD_*
    */
   public function getSeedPeriod()
   {
     return $this->seedPeriod;
   }
   /**
-   * @param string
+   * @param self::SEED_SCOPE_* $seedScope
    */
   public function setSeedScope($seedScope)
   {
     $this->seedScope = $seedScope;
   }
   /**
-   * @return string
+   * @return self::SEED_SCOPE_*
    */
   public function getSeedScope()
   {
     return $this->seedScope;
-  }
-  /**
-   * @param EnterpriseCrmLoggingGwsFieldLimits
-   */
-  public function setShorteningLimits(EnterpriseCrmLoggingGwsFieldLimits $shorteningLimits)
-  {
-    $this->shorteningLimits = $shorteningLimits;
-  }
-  /**
-   * @return EnterpriseCrmLoggingGwsFieldLimits
-   */
-  public function getShorteningLimits()
-  {
-    return $this->shorteningLimits;
   }
 }
 

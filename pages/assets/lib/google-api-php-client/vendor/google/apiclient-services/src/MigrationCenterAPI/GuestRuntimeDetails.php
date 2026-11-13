@@ -20,19 +20,27 @@ namespace Google\Service\MigrationCenterAPI;
 class GuestRuntimeDetails extends \Google\Model
 {
   /**
+   * Domain, e.g. c.stratozone-development.internal.
+   *
    * @var string
    */
   public $domain;
   protected $installedAppsType = GuestInstalledApplicationList::class;
   protected $installedAppsDataType = '';
-  protected $lastUptimeType = Date::class;
-  protected $lastUptimeDataType = '';
   /**
+   * Last time the OS was booted.
+   *
+   * @var string
+   */
+  public $lastBootTime;
+  /**
+   * Machine name.
+   *
    * @var string
    */
   public $machineName;
-  protected $networkInfoType = RuntimeNetworkInfo::class;
-  protected $networkInfoDataType = '';
+  protected $networkType = RuntimeNetworkInfo::class;
+  protected $networkDataType = '';
   protected $openFileListType = OpenFileList::class;
   protected $openFileListDataType = '';
   protected $processesType = RunningProcessList::class;
@@ -41,7 +49,9 @@ class GuestRuntimeDetails extends \Google\Model
   protected $servicesDataType = '';
 
   /**
-   * @param string
+   * Domain, e.g. c.stratozone-development.internal.
+   *
+   * @param string $domain
    */
   public function setDomain($domain)
   {
@@ -55,7 +65,9 @@ class GuestRuntimeDetails extends \Google\Model
     return $this->domain;
   }
   /**
-   * @param GuestInstalledApplicationList
+   * Installed applications information.
+   *
+   * @param GuestInstalledApplicationList $installedApps
    */
   public function setInstalledApps(GuestInstalledApplicationList $installedApps)
   {
@@ -69,21 +81,25 @@ class GuestRuntimeDetails extends \Google\Model
     return $this->installedApps;
   }
   /**
-   * @param Date
+   * Last time the OS was booted.
+   *
+   * @param string $lastBootTime
    */
-  public function setLastUptime(Date $lastUptime)
+  public function setLastBootTime($lastBootTime)
   {
-    $this->lastUptime = $lastUptime;
+    $this->lastBootTime = $lastBootTime;
   }
   /**
-   * @return Date
+   * @return string
    */
-  public function getLastUptime()
+  public function getLastBootTime()
   {
-    return $this->lastUptime;
+    return $this->lastBootTime;
   }
   /**
-   * @param string
+   * Machine name.
+   *
+   * @param string $machineName
    */
   public function setMachineName($machineName)
   {
@@ -97,21 +113,25 @@ class GuestRuntimeDetails extends \Google\Model
     return $this->machineName;
   }
   /**
-   * @param RuntimeNetworkInfo
+   * Runtime network information (connections, ports).
+   *
+   * @param RuntimeNetworkInfo $network
    */
-  public function setNetworkInfo(RuntimeNetworkInfo $networkInfo)
+  public function setNetwork(RuntimeNetworkInfo $network)
   {
-    $this->networkInfo = $networkInfo;
+    $this->network = $network;
   }
   /**
    * @return RuntimeNetworkInfo
    */
-  public function getNetworkInfo()
+  public function getNetwork()
   {
-    return $this->networkInfo;
+    return $this->network;
   }
   /**
-   * @param OpenFileList
+   * Open files information.
+   *
+   * @param OpenFileList $openFileList
    */
   public function setOpenFileList(OpenFileList $openFileList)
   {
@@ -125,7 +145,9 @@ class GuestRuntimeDetails extends \Google\Model
     return $this->openFileList;
   }
   /**
-   * @param RunningProcessList
+   * Running processes.
+   *
+   * @param RunningProcessList $processes
    */
   public function setProcesses(RunningProcessList $processes)
   {
@@ -139,7 +161,9 @@ class GuestRuntimeDetails extends \Google\Model
     return $this->processes;
   }
   /**
-   * @param RunningServiceList
+   * Running background services.
+   *
+   * @param RunningServiceList $services
    */
   public function setServices(RunningServiceList $services)
   {

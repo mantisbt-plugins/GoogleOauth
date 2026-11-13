@@ -36,39 +36,6 @@ use Google\Service\BeyondCorp\ListAppGatewaysResponse;
 class ProjectsLocationsAppGateways extends \Google\Service\Resource
 {
   /**
-   * Creates a new AppGateway in a given project and location.
-   * (appGateways.create)
-   *
-   * @param string $parent Required. The resource project name of the AppGateway
-   * location using the form: `projects/{project_id}/locations/{location_id}`
-   * @param AppGateway $postBody
-   * @param array $optParams Optional parameters.
-   *
-   * @opt_param string appGatewayId Optional. User-settable AppGateway resource
-   * ID. * Must start with a letter. * Must contain between 4-63 characters from
-   * `/a-z-/`. * Must end with a number or a letter.
-   * @opt_param string requestId Optional. An optional request ID to identify
-   * requests. Specify a unique request ID so that if you must retry your request,
-   * the server will know to ignore the request if it has already been completed.
-   * The server will guarantee that for at least 60 minutes since the first
-   * request. For example, consider a situation where you make an initial request
-   * and the request times out. If you make the request again with the same
-   * request ID, the server can check if original operation with the same request
-   * ID was received, and if so, will ignore the second request. This prevents
-   * clients from accidentally creating duplicate commitments. The request ID must
-   * be a valid UUID with the exception that zero UUID is not supported
-   * (00000000-0000-0000-0000-000000000000).
-   * @opt_param bool validateOnly Optional. If set, validates request by executing
-   * a dry-run which would not alter the resource in any way.
-   * @return GoogleLongrunningOperation
-   */
-  public function create($parent, AppGateway $postBody, $optParams = [])
-  {
-    $params = ['parent' => $parent, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('create', [$params], GoogleLongrunningOperation::class);
-  }
-  /**
    * Deletes a single AppGateway. (appGateways.delete)
    *
    * @param string $name Required. BeyondCorp AppGateway name using the form:
@@ -89,6 +56,7 @@ class ProjectsLocationsAppGateways extends \Google\Service\Resource
    * @opt_param bool validateOnly Optional. If set, validates request by executing
    * a dry-run which would not alter the resource in any way.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -103,6 +71,7 @@ class ProjectsLocationsAppGateways extends \Google\Service\Resource
    * `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`
    * @param array $optParams Optional parameters.
    * @return AppGateway
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -133,6 +102,7 @@ class ProjectsLocationsAppGateways extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -162,6 +132,7 @@ class ProjectsLocationsAppGateways extends \Google\Service\Resource
    * @opt_param string pageToken Optional. The next_page_token value returned from
    * a previous ListAppGatewaysRequest, if any.
    * @return ListAppGatewaysResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsAppGateways($parent, $optParams = [])
   {
@@ -181,6 +152,7 @@ class ProjectsLocationsAppGateways extends \Google\Service\Resource
    * @param GoogleIamV1SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, GoogleIamV1SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -203,6 +175,7 @@ class ProjectsLocationsAppGateways extends \Google\Service\Resource
    * @param GoogleIamV1TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
   {

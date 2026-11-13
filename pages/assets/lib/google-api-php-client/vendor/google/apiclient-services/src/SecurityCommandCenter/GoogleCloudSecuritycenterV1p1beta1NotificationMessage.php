@@ -29,7 +29,7 @@ class GoogleCloudSecuritycenterV1p1beta1NotificationMessage extends \Google\Mode
   protected $resourceDataType = '';
 
   /**
-   * @param GoogleCloudSecuritycenterV1p1beta1Finding
+   * @param GoogleCloudSecuritycenterV1p1beta1Finding $finding
    */
   public function setFinding(GoogleCloudSecuritycenterV1p1beta1Finding $finding)
   {
@@ -43,7 +43,7 @@ class GoogleCloudSecuritycenterV1p1beta1NotificationMessage extends \Google\Mode
     return $this->finding;
   }
   /**
-   * @param string
+   * @param string $notificationConfigName
    */
   public function setNotificationConfigName($notificationConfigName)
   {
@@ -57,7 +57,7 @@ class GoogleCloudSecuritycenterV1p1beta1NotificationMessage extends \Google\Mode
     return $this->notificationConfigName;
   }
   /**
-   * @param GoogleCloudSecuritycenterV1p1beta1Resource
+   * @param GoogleCloudSecuritycenterV1p1beta1Resource $resource
    */
   public function setResource(GoogleCloudSecuritycenterV1p1beta1Resource $resource)
   {

@@ -19,6 +19,10 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3VoiceSelectionParams extends \Google\Model
 {
+  public const SSML_GENDER_SSML_VOICE_GENDER_UNSPECIFIED = 'SSML_VOICE_GENDER_UNSPECIFIED';
+  public const SSML_GENDER_SSML_VOICE_GENDER_MALE = 'SSML_VOICE_GENDER_MALE';
+  public const SSML_GENDER_SSML_VOICE_GENDER_FEMALE = 'SSML_VOICE_GENDER_FEMALE';
+  public const SSML_GENDER_SSML_VOICE_GENDER_NEUTRAL = 'SSML_VOICE_GENDER_NEUTRAL';
   /**
    * @var string
    */
@@ -29,7 +33,7 @@ class GoogleCloudDialogflowCxV3VoiceSelectionParams extends \Google\Model
   public $ssmlGender;
 
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -43,14 +47,14 @@ class GoogleCloudDialogflowCxV3VoiceSelectionParams extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * @param self::SSML_GENDER_* $ssmlGender
    */
   public function setSsmlGender($ssmlGender)
   {
     $this->ssmlGender = $ssmlGender;
   }
   /**
-   * @return string
+   * @return self::SSML_GENDER_*
    */
   public function getSsmlGender()
   {

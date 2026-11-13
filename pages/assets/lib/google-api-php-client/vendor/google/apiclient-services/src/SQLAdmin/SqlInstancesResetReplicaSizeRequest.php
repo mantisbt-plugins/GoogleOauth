@@ -19,6 +19,29 @@ namespace Google\Service\SQLAdmin;
 
 class SqlInstancesResetReplicaSizeRequest extends \Google\Model
 {
+  /**
+   * Optional. Region of the Cloud SQL instance.
+   *
+   * @var string
+   */
+  public $location;
+
+  /**
+   * Optional. Region of the Cloud SQL instance.
+   *
+   * @param string $location
+   */
+  public function setLocation($location)
+  {
+    $this->location = $location;
+  }
+  /**
+   * @return string
+   */
+  public function getLocation()
+  {
+    return $this->location;
+  }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

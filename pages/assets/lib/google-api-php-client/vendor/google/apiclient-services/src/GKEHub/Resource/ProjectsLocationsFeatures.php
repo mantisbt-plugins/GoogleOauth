@@ -56,6 +56,7 @@ class ProjectsLocationsFeatures extends \Google\Service\Resource
    * exception that zero UUID is not supported
    * (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Feature $postBody, $optParams = [])
   {
@@ -85,6 +86,7 @@ class ProjectsLocationsFeatures extends \Google\Service\Resource
    * valid UUID with the exception that zero UUID is not supported
    * (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -98,7 +100,13 @@ class ProjectsLocationsFeatures extends \Google\Service\Resource
    * @param string $name Required. The Feature resource name in the format
    * `projects/locations/features`
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param bool returnPartialSuccess Optional. If set to true, the response
+   * will return partial results when some regions are unreachable and the
+   * unreachable field in Feature proto will be populated. If set to false, the
+   * request will fail when some regions are unreachable.
    * @return Feature
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -129,6 +137,7 @@ class ProjectsLocationsFeatures extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -146,10 +155,10 @@ class ProjectsLocationsFeatures extends \Google\Service\Resource
    *
    * @opt_param string filter Lists Features that match the filter expression,
    * following the syntax outlined in https://google.aip.dev/160. Examples: -
-   * Feature with the name "servicemesh" in project "foo-proj": name = "projects
-   * /foo-proj/locations/global/features/servicemesh" - Features that have a label
-   * called `foo`: labels.foo:* - Features that have a label called `foo` whose
-   * value is `bar`: labels.foo = bar
+   * Feature with the name "servicemesh" in project "foo-proj": name =
+   * "projects/foo-proj/locations/global/features/servicemesh" - Features that
+   * have a label called `foo`: labels.foo:* - Features that have a label called
+   * `foo` whose value is `bar`: labels.foo = bar
    * @opt_param string orderBy One or more fields to compare and use to sort the
    * output. See https://google.aip.dev/132#ordering.
    * @opt_param int pageSize When requesting a 'page' of resources, `page_size`
@@ -158,7 +167,12 @@ class ProjectsLocationsFeatures extends \Google\Service\Resource
    * @opt_param string pageToken Token returned by previous call to `ListFeatures`
    * which specifies the position in the list from where to continue listing the
    * resources.
+   * @opt_param bool returnPartialSuccess Optional. If set to true, the response
+   * will return partial results when some regions are unreachable and the
+   * unreachable field in Feature proto will be populated. If set to false, the
+   * request will fail when some regions are unreachable.
    * @return ListFeaturesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsFeatures($parent, $optParams = [])
   {
@@ -187,6 +201,7 @@ class ProjectsLocationsFeatures extends \Google\Service\Resource
    * (00000000-0000-0000-0000-000000000000).
    * @opt_param string updateMask Mask of fields to update.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Feature $postBody, $optParams = [])
   {
@@ -206,6 +221,7 @@ class ProjectsLocationsFeatures extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -227,6 +243,7 @@ class ProjectsLocationsFeatures extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

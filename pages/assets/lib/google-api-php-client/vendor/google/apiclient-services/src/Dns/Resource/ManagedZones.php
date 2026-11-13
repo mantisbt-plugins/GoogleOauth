@@ -37,7 +37,10 @@ use Google\Service\Dns\Operation;
 class ManagedZones extends \Google\Service\Resource
 {
   /**
-   * Creates a new ManagedZone. (managedZones.create)
+   * Creates a new ManagedZone. Note: While `dns.managedZones.create` is the
+   * baseline permission required to invoke this method, additional permissions
+   * are required if the managed zone configuration references other resources.
+   * (managedZones.create)
    *
    * @param string $project Identifies the project addressed by this request.
    * @param ManagedZone $postBody
@@ -47,6 +50,7 @@ class ManagedZones extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return ManagedZone
+   * @throws \Google\Service\Exception
    */
   public function create($project, ManagedZone $postBody, $optParams = [])
   {
@@ -65,6 +69,7 @@ class ManagedZones extends \Google\Service\Resource
    * @opt_param string clientOperationId For mutating operation requests only. An
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
+   * @throws \Google\Service\Exception
    */
   public function delete($project, $managedZone, $optParams = [])
   {
@@ -84,6 +89,7 @@ class ManagedZones extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return ManagedZone
+   * @throws \Google\Service\Exception
    */
   public function get($project, $managedZone, $optParams = [])
   {
@@ -102,6 +108,7 @@ class ManagedZones extends \Google\Service\Resource
    * @param GoogleIamV1GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, GoogleIamV1GetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -124,6 +131,7 @@ class ManagedZones extends \Google\Service\Resource
    * request that was truncated. Use this parameter to continue a previous list
    * request.
    * @return ManagedZonesListResponse
+   * @throws \Google\Service\Exception
    */
   public function listManagedZones($project, $optParams = [])
   {
@@ -144,6 +152,7 @@ class ManagedZones extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($project, $managedZone, ManagedZone $postBody, $optParams = [])
   {
@@ -163,6 +172,7 @@ class ManagedZones extends \Google\Service\Resource
    * @param GoogleIamV1SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, GoogleIamV1SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -185,6 +195,7 @@ class ManagedZones extends \Google\Service\Resource
    * @param GoogleIamV1TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
   {
@@ -205,6 +216,7 @@ class ManagedZones extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function update($project, $managedZone, ManagedZone $postBody, $optParams = [])
   {

@@ -20,28 +20,116 @@ namespace Google\Service\Pubsub;
 class BigQueryConfig extends \Google\Model
 {
   /**
+   * Default value. This value is unused.
+   */
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  /**
+   * The subscription can actively send messages to BigQuery
+   */
+  public const STATE_ACTIVE = 'ACTIVE';
+  /**
+   * Cannot write to the BigQuery table because of permission denied errors.
+   * This can happen if - Pub/Sub SA has not been granted the [appropriate
+   * BigQuery IAM permissions](https://cloud.google.com/pubsub/docs/create-
+   * subscription#assign_bigquery_service_account) - bigquery.googleapis.com API
+   * is not enabled for the project
+   * ([instructions](https://cloud.google.com/service-usage/docs/enable-
+   * disable))
+   */
+  public const STATE_PERMISSION_DENIED = 'PERMISSION_DENIED';
+  /**
+   * Cannot write to the BigQuery table because it does not exist.
+   */
+  public const STATE_NOT_FOUND = 'NOT_FOUND';
+  /**
+   * Cannot write to the BigQuery table due to a schema mismatch.
+   */
+  public const STATE_SCHEMA_MISMATCH = 'SCHEMA_MISMATCH';
+  /**
+   * Cannot write to the destination because enforce_in_transit is set to true
+   * and the destination locations are not in the allowed regions.
+   */
+  public const STATE_IN_TRANSIT_LOCATION_RESTRICTION = 'IN_TRANSIT_LOCATION_RESTRICTION';
+  /**
+   * Cannot write to the BigQuery table because the table is not in the same
+   * location as where Vertex AI models used in `message_transform`s are
+   * deployed.
+   */
+  public const STATE_VERTEX_AI_LOCATION_RESTRICTION = 'VERTEX_AI_LOCATION_RESTRICTION';
+  /**
+   * Optional. If true and `use_topic_schema` is true, drops any fields that are
+   * part of the topic schema that are not part of the BigQuery table schema
+   * when writing to BigQuery. Otherwise, the schemas must be kept in sync and
+   * any messages with extra fields are not written and remain in the
+   * subscription's backlog. If true and `use_table_schema` is true, drops any
+   * fields in the message that are not part of the BigQuery table schema when
+   * writing to BigQuery. Otherwise, the write to BigQuery will fail.
+   *
    * @var bool
    */
   public $dropUnknownFields;
   /**
+   * Optional. The service account to use to write to BigQuery. The subscription
+   * creator or updater that specifies this field must have
+   * `iam.serviceAccounts.actAs` permission on the service account. If not
+   * specified, the Pub/Sub [service
+   * agent](https://cloud.google.com/iam/docs/service-agents),
+   * service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+   *
+   * @var string
+   */
+  public $serviceAccountEmail;
+  /**
+   * Output only. An output-only field that indicates whether or not the
+   * subscription can receive messages.
+   *
    * @var string
    */
   public $state;
   /**
+   * Optional. The name of the table to which to write data, of the form
+   * {projectId}.{datasetId}.{tableId}
+   *
    * @var string
    */
   public $table;
   /**
+   * Optional. When true, use the BigQuery table's schema as the columns to
+   * write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
+   * enabled at the same time.
+   *
+   * @var bool
+   */
+  public $useTableSchema;
+  /**
+   * Optional. When true, use the topic's schema as the columns to write to in
+   * BigQuery, if it exists. `use_topic_schema` and `use_table_schema` cannot be
+   * enabled at the same time.
+   *
    * @var bool
    */
   public $useTopicSchema;
   /**
+   * Optional. When true, write the subscription name, message_id, publish_time,
+   * attributes, and ordering_key to additional columns in the table. The
+   * subscription name, message_id, and publish_time fields are put in their own
+   * columns while all other message properties (other than data) are written to
+   * a JSON object in the attributes column.
+   *
    * @var bool
    */
   public $writeMetadata;
 
   /**
-   * @param bool
+   * Optional. If true and `use_topic_schema` is true, drops any fields that are
+   * part of the topic schema that are not part of the BigQuery table schema
+   * when writing to BigQuery. Otherwise, the schemas must be kept in sync and
+   * any messages with extra fields are not written and remain in the
+   * subscription's backlog. If true and `use_table_schema` is true, drops any
+   * fields in the message that are not part of the BigQuery table schema when
+   * writing to BigQuery. Otherwise, the write to BigQuery will fail.
+   *
+   * @param bool $dropUnknownFields
    */
   public function setDropUnknownFields($dropUnknownFields)
   {
@@ -55,21 +143,52 @@ class BigQueryConfig extends \Google\Model
     return $this->dropUnknownFields;
   }
   /**
-   * @param string
+   * Optional. The service account to use to write to BigQuery. The subscription
+   * creator or updater that specifies this field must have
+   * `iam.serviceAccounts.actAs` permission on the service account. If not
+   * specified, the Pub/Sub [service
+   * agent](https://cloud.google.com/iam/docs/service-agents),
+   * service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+   *
+   * @param string $serviceAccountEmail
+   */
+  public function setServiceAccountEmail($serviceAccountEmail)
+  {
+    $this->serviceAccountEmail = $serviceAccountEmail;
+  }
+  /**
+   * @return string
+   */
+  public function getServiceAccountEmail()
+  {
+    return $this->serviceAccountEmail;
+  }
+  /**
+   * Output only. An output-only field that indicates whether or not the
+   * subscription can receive messages.
+   *
+   * Accepted values: STATE_UNSPECIFIED, ACTIVE, PERMISSION_DENIED, NOT_FOUND,
+   * SCHEMA_MISMATCH, IN_TRANSIT_LOCATION_RESTRICTION,
+   * VERTEX_AI_LOCATION_RESTRICTION
+   *
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {
     return $this->state;
   }
   /**
-   * @param string
+   * Optional. The name of the table to which to write data, of the form
+   * {projectId}.{datasetId}.{tableId}
+   *
+   * @param string $table
    */
   public function setTable($table)
   {
@@ -83,7 +202,29 @@ class BigQueryConfig extends \Google\Model
     return $this->table;
   }
   /**
-   * @param bool
+   * Optional. When true, use the BigQuery table's schema as the columns to
+   * write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
+   * enabled at the same time.
+   *
+   * @param bool $useTableSchema
+   */
+  public function setUseTableSchema($useTableSchema)
+  {
+    $this->useTableSchema = $useTableSchema;
+  }
+  /**
+   * @return bool
+   */
+  public function getUseTableSchema()
+  {
+    return $this->useTableSchema;
+  }
+  /**
+   * Optional. When true, use the topic's schema as the columns to write to in
+   * BigQuery, if it exists. `use_topic_schema` and `use_table_schema` cannot be
+   * enabled at the same time.
+   *
+   * @param bool $useTopicSchema
    */
   public function setUseTopicSchema($useTopicSchema)
   {
@@ -97,7 +238,13 @@ class BigQueryConfig extends \Google\Model
     return $this->useTopicSchema;
   }
   /**
-   * @param bool
+   * Optional. When true, write the subscription name, message_id, publish_time,
+   * attributes, and ordering_key to additional columns in the table. The
+   * subscription name, message_id, and publish_time fields are put in their own
+   * columns while all other message properties (other than data) are written to
+   * a JSON object in the attributes column.
+   *
+   * @param bool $writeMetadata
    */
   public function setWriteMetadata($writeMetadata)
   {

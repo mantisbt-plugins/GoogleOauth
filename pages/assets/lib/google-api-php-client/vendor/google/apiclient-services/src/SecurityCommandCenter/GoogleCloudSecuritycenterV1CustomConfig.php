@@ -19,6 +19,11 @@ namespace Google\Service\SecurityCommandCenter;
 
 class GoogleCloudSecuritycenterV1CustomConfig extends \Google\Model
 {
+  public const SEVERITY_SEVERITY_UNSPECIFIED = 'SEVERITY_UNSPECIFIED';
+  public const SEVERITY_CRITICAL = 'CRITICAL';
+  public const SEVERITY_HIGH = 'HIGH';
+  public const SEVERITY_MEDIUM = 'MEDIUM';
+  public const SEVERITY_LOW = 'LOW';
   protected $customOutputType = GoogleCloudSecuritycenterV1CustomOutputSpec::class;
   protected $customOutputDataType = '';
   /**
@@ -39,7 +44,7 @@ class GoogleCloudSecuritycenterV1CustomConfig extends \Google\Model
   public $severity;
 
   /**
-   * @param GoogleCloudSecuritycenterV1CustomOutputSpec
+   * @param GoogleCloudSecuritycenterV1CustomOutputSpec $customOutput
    */
   public function setCustomOutput(GoogleCloudSecuritycenterV1CustomOutputSpec $customOutput)
   {
@@ -53,7 +58,7 @@ class GoogleCloudSecuritycenterV1CustomConfig extends \Google\Model
     return $this->customOutput;
   }
   /**
-   * @param string
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -67,7 +72,7 @@ class GoogleCloudSecuritycenterV1CustomConfig extends \Google\Model
     return $this->description;
   }
   /**
-   * @param Expr
+   * @param Expr $predicate
    */
   public function setPredicate(Expr $predicate)
   {
@@ -81,7 +86,7 @@ class GoogleCloudSecuritycenterV1CustomConfig extends \Google\Model
     return $this->predicate;
   }
   /**
-   * @param string
+   * @param string $recommendation
    */
   public function setRecommendation($recommendation)
   {
@@ -95,7 +100,7 @@ class GoogleCloudSecuritycenterV1CustomConfig extends \Google\Model
     return $this->recommendation;
   }
   /**
-   * @param GoogleCloudSecuritycenterV1ResourceSelector
+   * @param GoogleCloudSecuritycenterV1ResourceSelector $resourceSelector
    */
   public function setResourceSelector(GoogleCloudSecuritycenterV1ResourceSelector $resourceSelector)
   {
@@ -109,14 +114,14 @@ class GoogleCloudSecuritycenterV1CustomConfig extends \Google\Model
     return $this->resourceSelector;
   }
   /**
-   * @param string
+   * @param self::SEVERITY_* $severity
    */
   public function setSeverity($severity)
   {
     $this->severity = $severity;
   }
   /**
-   * @return string
+   * @return self::SEVERITY_*
    */
   public function getSeverity()
   {

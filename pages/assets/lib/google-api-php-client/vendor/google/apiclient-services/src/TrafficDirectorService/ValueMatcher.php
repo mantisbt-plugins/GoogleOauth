@@ -20,6 +20,9 @@ namespace Google\Service\TrafficDirectorService;
 class ValueMatcher extends \Google\Model
 {
   /**
+   * If specified, a match occurs if and only if the target value is a bool
+   * value and is equal to this field.
+   *
    * @var bool
    */
   public $boolMatch;
@@ -29,7 +32,13 @@ class ValueMatcher extends \Google\Model
   protected $listMatchDataType = '';
   protected $nullMatchType = NullMatch::class;
   protected $nullMatchDataType = '';
+  protected $orMatchType = OrMatcher::class;
+  protected $orMatchDataType = '';
   /**
+   * If specified, value match will be performed based on whether the path is
+   * referring to a valid primitive value in the metadata. If the path is
+   * referring to a non-primitive value, the result is always not matched.
+   *
    * @var bool
    */
   public $presentMatch;
@@ -37,7 +46,10 @@ class ValueMatcher extends \Google\Model
   protected $stringMatchDataType = '';
 
   /**
-   * @param bool
+   * If specified, a match occurs if and only if the target value is a bool
+   * value and is equal to this field.
+   *
+   * @param bool $boolMatch
    */
   public function setBoolMatch($boolMatch)
   {
@@ -51,7 +63,10 @@ class ValueMatcher extends \Google\Model
     return $this->boolMatch;
   }
   /**
-   * @param DoubleMatcher
+   * If specified, a match occurs if and only if the target value is a double
+   * value and is matched to this field.
+   *
+   * @param DoubleMatcher $doubleMatch
    */
   public function setDoubleMatch(DoubleMatcher $doubleMatch)
   {
@@ -65,7 +80,10 @@ class ValueMatcher extends \Google\Model
     return $this->doubleMatch;
   }
   /**
-   * @param ListMatcher
+   * If specified, a match occurs if and only if the target value is a list
+   * value and is matched to this field.
+   *
+   * @param ListMatcher $listMatch
    */
   public function setListMatch(ListMatcher $listMatch)
   {
@@ -79,7 +97,10 @@ class ValueMatcher extends \Google\Model
     return $this->listMatch;
   }
   /**
-   * @param NullMatch
+   * If specified, a match occurs if and only if the target value is a
+   * NullValue.
+   *
+   * @param NullMatch $nullMatch
    */
   public function setNullMatch(NullMatch $nullMatch)
   {
@@ -93,7 +114,28 @@ class ValueMatcher extends \Google\Model
     return $this->nullMatch;
   }
   /**
-   * @param bool
+   * If specified, a match occurs if and only if any of the alternatives in the
+   * match accept the value.
+   *
+   * @param OrMatcher $orMatch
+   */
+  public function setOrMatch(OrMatcher $orMatch)
+  {
+    $this->orMatch = $orMatch;
+  }
+  /**
+   * @return OrMatcher
+   */
+  public function getOrMatch()
+  {
+    return $this->orMatch;
+  }
+  /**
+   * If specified, value match will be performed based on whether the path is
+   * referring to a valid primitive value in the metadata. If the path is
+   * referring to a non-primitive value, the result is always not matched.
+   *
+   * @param bool $presentMatch
    */
   public function setPresentMatch($presentMatch)
   {
@@ -107,7 +149,10 @@ class ValueMatcher extends \Google\Model
     return $this->presentMatch;
   }
   /**
-   * @param StringMatcher
+   * If specified, a match occurs if and only if the target value is a string
+   * value and is matched to this field.
+   *
+   * @param StringMatcher $stringMatch
    */
   public function setStringMatch(StringMatcher $stringMatch)
   {

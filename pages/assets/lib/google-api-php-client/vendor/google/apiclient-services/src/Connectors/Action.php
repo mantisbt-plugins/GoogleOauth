@@ -20,17 +20,91 @@ namespace Google\Service\Connectors;
 class Action extends \Google\Collection
 {
   protected $collection_key = 'resultMetadata';
+  /**
+   * Brief Description of action
+   *
+   * @var string
+   */
+  public $description;
+  /**
+   * Display Name of action to be shown on client side
+   *
+   * @var string
+   */
+  public $displayName;
+  protected $inputJsonSchemaType = JsonSchema::class;
+  protected $inputJsonSchemaDataType = '';
   protected $inputParametersType = InputParameter::class;
   protected $inputParametersDataType = 'array';
   /**
+   * Metadata like service latency, etc.
+   *
+   * @var array[]
+   */
+  public $metadata;
+  /**
+   * Name of the action.
+   *
    * @var string
    */
   public $name;
+  protected $resultJsonSchemaType = JsonSchema::class;
+  protected $resultJsonSchemaDataType = '';
   protected $resultMetadataType = ResultMetadata::class;
   protected $resultMetadataDataType = 'array';
 
   /**
-   * @param InputParameter[]
+   * Brief Description of action
+   *
+   * @param string $description
+   */
+  public function setDescription($description)
+  {
+    $this->description = $description;
+  }
+  /**
+   * @return string
+   */
+  public function getDescription()
+  {
+    return $this->description;
+  }
+  /**
+   * Display Name of action to be shown on client side
+   *
+   * @param string $displayName
+   */
+  public function setDisplayName($displayName)
+  {
+    $this->displayName = $displayName;
+  }
+  /**
+   * @return string
+   */
+  public function getDisplayName()
+  {
+    return $this->displayName;
+  }
+  /**
+   * JsonSchema representation of this actions's input schema
+   *
+   * @param JsonSchema $inputJsonSchema
+   */
+  public function setInputJsonSchema(JsonSchema $inputJsonSchema)
+  {
+    $this->inputJsonSchema = $inputJsonSchema;
+  }
+  /**
+   * @return JsonSchema
+   */
+  public function getInputJsonSchema()
+  {
+    return $this->inputJsonSchema;
+  }
+  /**
+   * List containing input parameter metadata.
+   *
+   * @param InputParameter[] $inputParameters
    */
   public function setInputParameters($inputParameters)
   {
@@ -44,7 +118,25 @@ class Action extends \Google\Collection
     return $this->inputParameters;
   }
   /**
-   * @param string
+   * Metadata like service latency, etc.
+   *
+   * @param array[] $metadata
+   */
+  public function setMetadata($metadata)
+  {
+    $this->metadata = $metadata;
+  }
+  /**
+   * @return array[]
+   */
+  public function getMetadata()
+  {
+    return $this->metadata;
+  }
+  /**
+   * Name of the action.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -58,7 +150,25 @@ class Action extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param ResultMetadata[]
+   * JsonSchema representation of this actions's result schema
+   *
+   * @param JsonSchema $resultJsonSchema
+   */
+  public function setResultJsonSchema(JsonSchema $resultJsonSchema)
+  {
+    $this->resultJsonSchema = $resultJsonSchema;
+  }
+  /**
+   * @return JsonSchema
+   */
+  public function getResultJsonSchema()
+  {
+    return $this->resultJsonSchema;
+  }
+  /**
+   * List containing the metadata of result fields.
+   *
+   * @param ResultMetadata[] $resultMetadata
    */
   public function setResultMetadata($resultMetadata)
   {

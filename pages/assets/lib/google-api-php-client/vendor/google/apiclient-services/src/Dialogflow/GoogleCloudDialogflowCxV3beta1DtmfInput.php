@@ -29,7 +29,7 @@ class GoogleCloudDialogflowCxV3beta1DtmfInput extends \Google\Model
   public $finishDigit;
 
   /**
-   * @param string
+   * @param string $digits
    */
   public function setDigits($digits)
   {
@@ -43,7 +43,7 @@ class GoogleCloudDialogflowCxV3beta1DtmfInput extends \Google\Model
     return $this->digits;
   }
   /**
-   * @param string
+   * @param string $finishDigit
    */
   public function setFinishDigit($finishDigit)
   {

@@ -18,10 +18,14 @@
 namespace Google\Service\CloudMemorystoreforMemcached\Resource;
 
 use Google\Service\CloudMemorystoreforMemcached\ApplyParametersRequest;
+use Google\Service\CloudMemorystoreforMemcached\GetTagsResponse;
+use Google\Service\CloudMemorystoreforMemcached\GoogleCloudMemcacheV1UpgradeInstanceRequest;
 use Google\Service\CloudMemorystoreforMemcached\Instance;
 use Google\Service\CloudMemorystoreforMemcached\ListInstancesResponse;
 use Google\Service\CloudMemorystoreforMemcached\Operation;
 use Google\Service\CloudMemorystoreforMemcached\RescheduleMaintenanceRequest;
+use Google\Service\CloudMemorystoreforMemcached\SetTagsRequest;
+use Google\Service\CloudMemorystoreforMemcached\SetTagsResponse;
 use Google\Service\CloudMemorystoreforMemcached\UpdateParametersRequest;
 
 /**
@@ -44,6 +48,7 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * @param ApplyParametersRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function applyParameters($name, ApplyParametersRequest $postBody, $optParams = [])
   {
@@ -67,6 +72,7 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * be unique within the user project / location. If any of the above are not
    * met, the API raises an invalid argument error.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Instance $postBody, $optParams = [])
   {
@@ -82,6 +88,7 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * `location_id` refers to a GCP region
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -97,12 +104,27 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * `location_id` refers to a GCP region
    * @param array $optParams Optional parameters.
    * @return Instance
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
     $params = ['name' => $name];
     $params = array_merge($params, $optParams);
     return $this->call('get', [$params], Instance::class);
+  }
+  /**
+   * Returns tags directly bound to a GCP resource. (instances.getTags)
+   *
+   * @param string $name Required. The full resource name of the service resource.
+   * @param array $optParams Optional parameters.
+   * @return GetTagsResponse
+   * @throws \Google\Service\Exception
+   */
+  public function getTags($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('getTags', [$params], GetTagsResponse::class);
   }
   /**
    * Lists Instances in a given location.
@@ -125,6 +147,7 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * @opt_param string pageToken The `next_page_token` value returned from a
    * previous List request, if any.
    * @return ListInstancesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsInstances($parent, $optParams = [])
   {
@@ -149,6 +172,7 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * @opt_param string updateMask Required. Mask of fields to update. *
    * `displayName`
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Instance $postBody, $optParams = [])
   {
@@ -165,12 +189,28 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * @param RescheduleMaintenanceRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function rescheduleMaintenance($instance, RescheduleMaintenanceRequest $postBody, $optParams = [])
   {
     $params = ['instance' => $instance, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('rescheduleMaintenance', [$params], Operation::class);
+  }
+  /**
+   * Updates tags directly bound to a GCP resource. (instances.setTags)
+   *
+   * @param string $name Required. The full resource name of the service resource.
+   * @param SetTagsRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return SetTagsResponse
+   * @throws \Google\Service\Exception
+   */
+  public function setTags($name, SetTagsRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('setTags', [$params], SetTagsResponse::class);
   }
   /**
    * Updates the defined Memcached parameters for an existing instance. This
@@ -183,12 +223,31 @@ class ProjectsLocationsInstances extends \Google\Service\Resource
    * @param UpdateParametersRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function updateParameters($name, UpdateParametersRequest $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('updateParameters', [$params], Operation::class);
+  }
+  /**
+   * Upgrades the Memcache instance to a newer memcached engine version specified
+   * in the request. (instances.upgrade)
+   *
+   * @param string $name Required. Memcache instance resource name using the form:
+   * `projects/{project}/locations/{location}/instances/{instance}` where
+   * `location_id` refers to a GCP region.
+   * @param GoogleCloudMemcacheV1UpgradeInstanceRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function upgrade($name, GoogleCloudMemcacheV1UpgradeInstanceRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('upgrade', [$params], Operation::class);
   }
 }
 

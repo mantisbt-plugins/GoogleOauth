@@ -31,7 +31,11 @@ use Google\Service\Dataflow\LaunchFlexTemplateResponse;
 class ProjectsLocationsFlexTemplates extends \Google\Service\Resource
 {
   /**
-   * Launch a job with a FlexTemplate. (flexTemplates.launch)
+   * Launch a job with a FlexTemplate. # IAM Permissions Requires the following
+   * IAM permission(s) on the resource: - `dataflow.jobs.create` -
+   * `resourcemanager.projects.get` - `iam.serviceAccounts.actAs` -
+   * `storage.buckets.get` - `storage.buckets.create` (Required if the default
+   * staging bucket must be created) (flexTemplates.launch)
    *
    * @param string $projectId Required. The ID of the Cloud Platform project that
    * the job belongs to.
@@ -41,6 +45,7 @@ class ProjectsLocationsFlexTemplates extends \Google\Service\Resource
    * @param LaunchFlexTemplateRequest $postBody
    * @param array $optParams Optional parameters.
    * @return LaunchFlexTemplateResponse
+   * @throws \Google\Service\Exception
    */
   public function launch($projectId, $location, LaunchFlexTemplateRequest $postBody, $optParams = [])
   {

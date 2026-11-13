@@ -24,7 +24,7 @@ class GoogleCloudDialogflowV2beta1KnowledgeAnswers extends \Google\Collection
   protected $answersDataType = 'array';
 
   /**
-   * @param GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer[]
+   * @param GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer[] $answers
    */
   public function setAnswers($answers)
   {

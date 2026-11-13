@@ -29,7 +29,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/admin-sdk/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/admin/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -48,10 +48,10 @@ class Directory extends \Google\Service
   /** View customer related information. */
   const ADMIN_DIRECTORY_CUSTOMER_READONLY =
       "https://www.googleapis.com/auth/admin.directory.customer.readonly";
-  /** View and manage your Chrome OS devices' metadata. */
+  /** View and manage your ChromeOS devices' metadata. */
   const ADMIN_DIRECTORY_DEVICE_CHROMEOS =
       "https://www.googleapis.com/auth/admin.directory.device.chromeos";
-  /** View your Chrome OS devices' metadata. */
+  /** View your ChromeOS devices' metadata. */
   const ADMIN_DIRECTORY_DEVICE_CHROMEOS_READONLY =
       "https://www.googleapis.com/auth/admin.directory.device.chromeos.readonly";
   /** View and manage your mobile devices' metadata. */
@@ -152,6 +152,7 @@ class Directory extends \Google\Service
   public $users_aliases;
   public $users_photos;
   public $verificationCodes;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Directory service.
@@ -164,6 +165,7 @@ class Directory extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://admin.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://admin.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'directory_v1';
@@ -378,7 +380,39 @@ class Directory extends \Google\Service
         'chromeos',
         [
           'methods' => [
-            'issueCommand' => [
+            'batchChangeStatus' => [
+              'path' => 'admin/directory/v1/customer/{customerId}/devices/chromeos:batchChangeStatus',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'customerId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'countChromeOsDevices' => [
+              'path' => 'admin/directory/v1/customer/{customerId}/devices/chromeos:countChromeOsDevices',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'customerId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'includeChildOrgunits' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+                'orgUnitPath' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'issueCommand' => [
               'path' => 'admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}:issueCommand',
               'httpMethod' => 'POST',
               'parameters' => [
@@ -1966,7 +2000,11 @@ class Directory extends \Google\Service
         'users',
         [
           'methods' => [
-            'delete' => [
+            'createGuest' => [
+              'path' => 'admin/directory/v1/users:createGuest',
+              'httpMethod' => 'POST',
+              'parameters' => [],
+            ],'delete' => [
               'path' => 'admin/directory/v1/users/{userKey}',
               'httpMethod' => 'DELETE',
               'parameters' => [
@@ -2001,7 +2039,12 @@ class Directory extends \Google\Service
             ],'insert' => [
               'path' => 'admin/directory/v1/users',
               'httpMethod' => 'POST',
-              'parameters' => [],
+              'parameters' => [
+                'resolveConflictAccount' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
             ],'list' => [
               'path' => 'admin/directory/v1/users',
               'httpMethod' => 'GET',

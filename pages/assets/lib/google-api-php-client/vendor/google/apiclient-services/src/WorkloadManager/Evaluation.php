@@ -19,20 +19,67 @@ namespace Google\Service\WorkloadManager;
 
 class Evaluation extends \Google\Collection
 {
-  protected $collection_key = 'ruleVersions';
   /**
+   * Not specified.
+   */
+  public const EVALUATION_TYPE_EVALUATION_TYPE_UNSPECIFIED = 'EVALUATION_TYPE_UNSPECIFIED';
+  /**
+   * SAP best practices.
+   */
+  public const EVALUATION_TYPE_SAP = 'SAP';
+  /**
+   * SQL best practices.
+   */
+  public const EVALUATION_TYPE_SQL_SERVER = 'SQL_SERVER';
+  /**
+   * Customized best practices.
+   */
+  public const EVALUATION_TYPE_OTHER = 'OTHER';
+  protected $collection_key = 'ruleNames';
+  protected $bigQueryDestinationType = BigQueryDestination::class;
+  protected $bigQueryDestinationDataType = '';
+  /**
+   * Output only. [Output only] Create time stamp.
+   *
    * @var string
    */
   public $createTime;
   /**
+   * The Cloud Storage bucket name for custom rules.
+   *
+   * @var string
+   */
+  public $customRulesBucket;
+  /**
+   * Description of the Evaluation.
+   *
    * @var string
    */
   public $description;
   /**
+   * Evaluation type.
+   *
+   * @var string
+   */
+  public $evaluationType;
+  /**
+   * Optional. Immutable. Customer-managed encryption key name, in the format
+   * projects/locations/keyRings/cryptoKeys. The key will be used for CMEK
+   * encryption of the evaluation resource.
+   *
+   * @var string
+   */
+  public $kmsKey;
+  /**
+   * Labels as key value pairs.
+   *
    * @var string[]
    */
   public $labels;
   /**
+   * Name of resource that has the form `projects/{project_id}/locations/{locati
+   * on_id}/evaluations/{evaluation_id}`.
+   *
    * @var string
    */
   public $name;
@@ -41,24 +88,49 @@ class Evaluation extends \Google\Collection
   protected $resourceStatusType = ResourceStatus::class;
   protected $resourceStatusDataType = '';
   /**
+   * The names of the rules used for this evaluation.
+   *
    * @var string[]
    */
   public $ruleNames;
   /**
-   * @var string[]
-   */
-  public $ruleVersions;
-  /**
+   * Crontab format schedule for scheduled evaluation, currently only supports
+   * the following fixed schedules: * `0 1 * * *` # Hourly * `0 6 * * *` # Every
+   * 6 hours * `0 12 * * *` # Every 12 hours * `0 0 1 * *` # Daily * `0 0 7 * *`
+   * # Weekly * `0 0 14 * *` # Every 14 days * `0 0 1 1 *` # Monthly
+   *
    * @var string
    */
   public $schedule;
   /**
+   * Output only. [Output only] Update time stamp.
+   *
    * @var string
    */
   public $updateTime;
 
   /**
-   * @param string
+   * Optional. The BigQuery destination for detailed evaluation results. If this
+   * field is specified, the results of each evaluation execution are exported
+   * to BigQuery.
+   *
+   * @param BigQueryDestination $bigQueryDestination
+   */
+  public function setBigQueryDestination(BigQueryDestination $bigQueryDestination)
+  {
+    $this->bigQueryDestination = $bigQueryDestination;
+  }
+  /**
+   * @return BigQueryDestination
+   */
+  public function getBigQueryDestination()
+  {
+    return $this->bigQueryDestination;
+  }
+  /**
+   * Output only. [Output only] Create time stamp.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -72,7 +144,25 @@ class Evaluation extends \Google\Collection
     return $this->createTime;
   }
   /**
-   * @param string
+   * The Cloud Storage bucket name for custom rules.
+   *
+   * @param string $customRulesBucket
+   */
+  public function setCustomRulesBucket($customRulesBucket)
+  {
+    $this->customRulesBucket = $customRulesBucket;
+  }
+  /**
+   * @return string
+   */
+  public function getCustomRulesBucket()
+  {
+    return $this->customRulesBucket;
+  }
+  /**
+   * Description of the Evaluation.
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -86,7 +176,45 @@ class Evaluation extends \Google\Collection
     return $this->description;
   }
   /**
-   * @param string[]
+   * Evaluation type.
+   *
+   * Accepted values: EVALUATION_TYPE_UNSPECIFIED, SAP, SQL_SERVER, OTHER
+   *
+   * @param self::EVALUATION_TYPE_* $evaluationType
+   */
+  public function setEvaluationType($evaluationType)
+  {
+    $this->evaluationType = $evaluationType;
+  }
+  /**
+   * @return self::EVALUATION_TYPE_*
+   */
+  public function getEvaluationType()
+  {
+    return $this->evaluationType;
+  }
+  /**
+   * Optional. Immutable. Customer-managed encryption key name, in the format
+   * projects/locations/keyRings/cryptoKeys. The key will be used for CMEK
+   * encryption of the evaluation resource.
+   *
+   * @param string $kmsKey
+   */
+  public function setKmsKey($kmsKey)
+  {
+    $this->kmsKey = $kmsKey;
+  }
+  /**
+   * @return string
+   */
+  public function getKmsKey()
+  {
+    return $this->kmsKey;
+  }
+  /**
+   * Labels as key value pairs.
+   *
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -100,7 +228,10 @@ class Evaluation extends \Google\Collection
     return $this->labels;
   }
   /**
-   * @param string
+   * Name of resource that has the form `projects/{project_id}/locations/{locati
+   * on_id}/evaluations/{evaluation_id}`.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -114,7 +245,10 @@ class Evaluation extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param ResourceFilter
+   * Resource filter for an evaluation defining the scope of resources to be
+   * evaluated.
+   *
+   * @param ResourceFilter $resourceFilter
    */
   public function setResourceFilter(ResourceFilter $resourceFilter)
   {
@@ -128,7 +262,10 @@ class Evaluation extends \Google\Collection
     return $this->resourceFilter;
   }
   /**
-   * @param ResourceStatus
+   * Output only. [Output only] The current lifecycle state of the evaluation
+   * resource.
+   *
+   * @param ResourceStatus $resourceStatus
    */
   public function setResourceStatus(ResourceStatus $resourceStatus)
   {
@@ -142,7 +279,9 @@ class Evaluation extends \Google\Collection
     return $this->resourceStatus;
   }
   /**
-   * @param string[]
+   * The names of the rules used for this evaluation.
+   *
+   * @param string[] $ruleNames
    */
   public function setRuleNames($ruleNames)
   {
@@ -156,21 +295,12 @@ class Evaluation extends \Google\Collection
     return $this->ruleNames;
   }
   /**
-   * @param string[]
-   */
-  public function setRuleVersions($ruleVersions)
-  {
-    $this->ruleVersions = $ruleVersions;
-  }
-  /**
-   * @return string[]
-   */
-  public function getRuleVersions()
-  {
-    return $this->ruleVersions;
-  }
-  /**
-   * @param string
+   * Crontab format schedule for scheduled evaluation, currently only supports
+   * the following fixed schedules: * `0 1 * * *` # Hourly * `0 6 * * *` # Every
+   * 6 hours * `0 12 * * *` # Every 12 hours * `0 0 1 * *` # Daily * `0 0 7 * *`
+   * # Weekly * `0 0 14 * *` # Every 14 days * `0 0 1 1 *` # Monthly
+   *
+   * @param string $schedule
    */
   public function setSchedule($schedule)
   {
@@ -184,7 +314,9 @@ class Evaluation extends \Google\Collection
     return $this->schedule;
   }
   /**
-   * @param string
+   * Output only. [Output only] Update time stamp.
+   *
+   * @param string $updateTime
    */
   public function setUpdateTime($updateTime)
   {

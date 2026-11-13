@@ -23,15 +23,27 @@ class GoogleCloudRunV2Volume extends \Google\Model
   protected $cloudSqlInstanceDataType = '';
   protected $emptyDirType = GoogleCloudRunV2EmptyDirVolumeSource::class;
   protected $emptyDirDataType = '';
+  protected $filestoreType = GoogleCloudRunV2FilestoreVolumeSource::class;
+  protected $filestoreDataType = '';
+  protected $gcsType = GoogleCloudRunV2GCSVolumeSource::class;
+  protected $gcsDataType = '';
   /**
+   * Required. Volume's name.
+   *
    * @var string
    */
   public $name;
+  protected $nfsType = GoogleCloudRunV2NFSVolumeSource::class;
+  protected $nfsDataType = '';
   protected $secretType = GoogleCloudRunV2SecretVolumeSource::class;
   protected $secretDataType = '';
 
   /**
-   * @param GoogleCloudRunV2CloudSqlInstance
+   * For Cloud SQL volumes, contains the specific instances that should be
+   * mounted. Visit https://cloud.google.com/sql/docs/mysql/connect-run for more
+   * information on how to connect Cloud SQL and Cloud Run.
+   *
+   * @param GoogleCloudRunV2CloudSqlInstance $cloudSqlInstance
    */
   public function setCloudSqlInstance(GoogleCloudRunV2CloudSqlInstance $cloudSqlInstance)
   {
@@ -45,7 +57,9 @@ class GoogleCloudRunV2Volume extends \Google\Model
     return $this->cloudSqlInstance;
   }
   /**
-   * @param GoogleCloudRunV2EmptyDirVolumeSource
+   * Ephemeral storage used as a shared volume.
+   *
+   * @param GoogleCloudRunV2EmptyDirVolumeSource $emptyDir
    */
   public function setEmptyDir(GoogleCloudRunV2EmptyDirVolumeSource $emptyDir)
   {
@@ -59,7 +73,41 @@ class GoogleCloudRunV2Volume extends \Google\Model
     return $this->emptyDir;
   }
   /**
-   * @param string
+   * Optional. Represents a volume backed by a Filestore instance.
+   *
+   * @param GoogleCloudRunV2FilestoreVolumeSource $filestore
+   */
+  public function setFilestore(GoogleCloudRunV2FilestoreVolumeSource $filestore)
+  {
+    $this->filestore = $filestore;
+  }
+  /**
+   * @return GoogleCloudRunV2FilestoreVolumeSource
+   */
+  public function getFilestore()
+  {
+    return $this->filestore;
+  }
+  /**
+   * Persistent storage backed by a Google Cloud Storage bucket.
+   *
+   * @param GoogleCloudRunV2GCSVolumeSource $gcs
+   */
+  public function setGcs(GoogleCloudRunV2GCSVolumeSource $gcs)
+  {
+    $this->gcs = $gcs;
+  }
+  /**
+   * @return GoogleCloudRunV2GCSVolumeSource
+   */
+  public function getGcs()
+  {
+    return $this->gcs;
+  }
+  /**
+   * Required. Volume's name.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -73,7 +121,25 @@ class GoogleCloudRunV2Volume extends \Google\Model
     return $this->name;
   }
   /**
-   * @param GoogleCloudRunV2SecretVolumeSource
+   * For NFS Voumes, contains the path to the nfs Volume
+   *
+   * @param GoogleCloudRunV2NFSVolumeSource $nfs
+   */
+  public function setNfs(GoogleCloudRunV2NFSVolumeSource $nfs)
+  {
+    $this->nfs = $nfs;
+  }
+  /**
+   * @return GoogleCloudRunV2NFSVolumeSource
+   */
+  public function getNfs()
+  {
+    return $this->nfs;
+  }
+  /**
+   * Secret represents a secret that should populate this volume.
+   *
+   * @param GoogleCloudRunV2SecretVolumeSource $secret
    */
   public function setSecret(GoogleCloudRunV2SecretVolumeSource $secret)
   {

@@ -41,7 +41,7 @@ class GoogleCloudLocationLocation extends \Google\Model
   public $name;
 
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -55,7 +55,7 @@ class GoogleCloudLocationLocation extends \Google\Model
     return $this->displayName;
   }
   /**
-   * @param string[]
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -69,7 +69,7 @@ class GoogleCloudLocationLocation extends \Google\Model
     return $this->labels;
   }
   /**
-   * @param string
+   * @param string $locationId
    */
   public function setLocationId($locationId)
   {
@@ -83,7 +83,7 @@ class GoogleCloudLocationLocation extends \Google\Model
     return $this->locationId;
   }
   /**
-   * @param array[]
+   * @param array[] $metadata
    */
   public function setMetadata($metadata)
   {
@@ -97,7 +97,7 @@ class GoogleCloudLocationLocation extends \Google\Model
     return $this->metadata;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {

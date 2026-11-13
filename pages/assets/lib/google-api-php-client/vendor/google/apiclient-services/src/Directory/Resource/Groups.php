@@ -36,6 +36,7 @@ class Groups extends \Google\Service\Resource
    * @param string $groupKey Identifies the group in the API request. The value
    * can be the group's email address, group alias, or the unique group ID.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($groupKey, $optParams = [])
   {
@@ -50,6 +51,7 @@ class Groups extends \Google\Service\Resource
    * can be the group's email address, group alias, or the unique group ID.
    * @param array $optParams Optional parameters.
    * @return Group
+   * @throws \Google\Service\Exception
    */
   public function get($groupKey, $optParams = [])
   {
@@ -63,6 +65,7 @@ class Groups extends \Google\Service\Resource
    * @param Group $postBody
    * @param array $optParams Optional parameters.
    * @return Group
+   * @throws \Google\Service\Exception
    */
   public function insert(Group $postBody, $optParams = [])
   {
@@ -80,9 +83,9 @@ class Groups extends \Google\Service\Resource
    * account. In case of a multi-domain account, to fetch all groups for a
    * customer, use this field instead of `domain`. You can also use the
    * `my_customer` alias to represent your account's `customerId`. The
-   * `customerId` is also returned as part of the [Users](/admin-
-   * sdk/directory/v1/reference/users) resource. You must provide either the
-   * `customer` or the `domain` parameter.
+   * `customerId` is also returned as part of the [Users](https://developers.googl
+   * e.com/workspace/admin/directory/v1/reference/users) resource. You must
+   * provide either the `customer` or the `domain` parameter.
    * @opt_param string domain The domain name. Use this field to get groups from
    * only one domain. To return all domains for a customer account, use the
    * `customer` query parameter instead.
@@ -90,15 +93,18 @@ class Groups extends \Google\Service\Resource
    * value is 200.
    * @opt_param string orderBy Column to use for sorting results
    * @opt_param string pageToken Token to specify next page in the list
-   * @opt_param string query Query string search. Should be of the form "".
-   * Complete documentation is at https: //developers.google.com/admin-
-   * sdk/directory/v1/guides/search-groups
+   * @opt_param string query Query string search. Contains one or more search
+   * clauses, each with a field, operator, and value. For complete documentation,
+   * go to [Search for groups](https://developers.google.com/workspace/admin/direc
+   * tory/v1/guides/search-groups).
    * @opt_param string sortOrder Whether to return results in ascending or
    * descending order. Only of use when orderBy is also used
    * @opt_param string userKey Email or immutable ID of the user if only those
    * groups are to be listed, the given user is a member of. If it's an ID, it
-   * should match with the ID of the user object.
+   * should match with the ID of the user object. Cannot be used with the
+   * `customer` parameter.
    * @return GroupsModel
+   * @throws \Google\Service\Exception
    */
   public function listGroups($optParams = [])
   {
@@ -107,14 +113,16 @@ class Groups extends \Google\Service\Resource
     return $this->call('list', [$params], GroupsModel::class);
   }
   /**
-   * Updates a group's properties. This method supports [patch semantics](/admin-
-   * sdk/directory/v1/guides/performance#patch). (groups.patch)
+   * Updates a group's properties. This method supports [patch semantics](https://
+   * developers.google.com/workspace/admin/directory/v1/guides/performance#patch).
+   * (groups.patch)
    *
    * @param string $groupKey Identifies the group in the API request. The value
    * can be the group's email address, group alias, or the unique group ID.
    * @param Group $postBody
    * @param array $optParams Optional parameters.
    * @return Group
+   * @throws \Google\Service\Exception
    */
   public function patch($groupKey, Group $postBody, $optParams = [])
   {
@@ -130,6 +138,7 @@ class Groups extends \Google\Service\Resource
    * @param Group $postBody
    * @param array $optParams Optional parameters.
    * @return Group
+   * @throws \Google\Service\Exception
    */
   public function update($groupKey, Group $postBody, $optParams = [])
   {

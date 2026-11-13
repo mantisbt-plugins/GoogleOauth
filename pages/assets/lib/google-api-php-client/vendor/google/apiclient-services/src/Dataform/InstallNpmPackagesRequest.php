@@ -19,6 +19,26 @@ namespace Google\Service\Dataform;
 
 class InstallNpmPackagesRequest extends \Google\Model
 {
+  protected $pipelineConfigType = PipelineConfig::class;
+  protected $pipelineConfigDataType = '';
+
+  /**
+   * Optional. The pipeline options which defines the pipeline type and path
+   * within the Git repository.
+   *
+   * @param PipelineConfig $pipelineConfig
+   */
+  public function setPipelineConfig(PipelineConfig $pipelineConfig)
+  {
+    $this->pipelineConfig = $pipelineConfig;
+  }
+  /**
+   * @return PipelineConfig
+   */
+  public function getPipelineConfig()
+  {
+    return $this->pipelineConfig;
+  }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

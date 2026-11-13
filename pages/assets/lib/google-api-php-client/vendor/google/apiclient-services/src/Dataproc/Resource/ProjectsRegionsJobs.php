@@ -54,6 +54,7 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * @param CancelJobRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function cancel($projectId, $region, $jobId, CancelJobRequest $postBody, $optParams = [])
   {
@@ -72,6 +73,7 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * @param string $jobId Required. The job ID.
    * @param array $optParams Optional parameters.
    * @return DataprocEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($projectId, $region, $jobId, $optParams = [])
   {
@@ -89,6 +91,7 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * @param string $jobId Required. The job ID.
    * @param array $optParams Optional parameters.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function get($projectId, $region, $jobId, $optParams = [])
   {
@@ -107,6 +110,7 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * @param GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, GetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -127,11 +131,14 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * includes only jobs that were submitted to the named cluster.
    * @opt_param string filter Optional. A filter constraining the jobs to list.
    * Filters are case-sensitive and have the following syntax:field = value AND
-   * field = value ...where field is status.state or labels.[KEY], and [KEY] is a
-   * label key. value can be * to match all values. status.state can be either
-   * ACTIVE or NON_ACTIVE. Only the logical AND operator is supported; space-
-   * separated items are treated as having an implicit AND operator.Example
-   * filter:status.state = ACTIVE AND labels.env = staging AND labels.starred = *
+   * field = value ...where field is status.state or insertTime, or labels.[KEY],
+   * and [KEY] is a label key. value can be * to match all values. status.state
+   * can be either ACTIVE or NON_ACTIVE. Allows insertTime to be a timestamp in
+   * RFC 3339 format in double quotes, such as 2025-01-01T00:00:00Z. Only the
+   * logical AND operator is supported; space-separated items are treated as
+   * having an implicit AND operator.Example filter:status.state = ACTIVE AND
+   * labels.env = staging AND labels.starred = * AND insertTime <=
+   * "2025-01-01T00:00:00Z"
    * @opt_param string jobStateMatcher Optional. Specifies enumerated categories
    * of jobs to list. (default = match ALL jobs).If filter is provided,
    * jobStateMatcher will be ignored.
@@ -140,6 +147,7 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * @opt_param string pageToken Optional. The page token, returned by a previous
    * call, to request the next page of results.
    * @return ListJobsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsRegionsJobs($projectId, $region, $optParams = [])
   {
@@ -164,6 +172,7 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * body would specify the new value. *Note:* Currently, labels is the only field
    * that can be updated.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function patch($projectId, $region, $jobId, Job $postBody, $optParams = [])
   {
@@ -183,6 +192,7 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -200,6 +210,7 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * @param SubmitJobRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function submit($projectId, $region, SubmitJobRequest $postBody, $optParams = [])
   {
@@ -217,6 +228,7 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * @param SubmitJobRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function submitAsOperation($projectId, $region, SubmitJobRequest $postBody, $optParams = [])
   {
@@ -238,6 +250,7 @@ class ProjectsRegionsJobs extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

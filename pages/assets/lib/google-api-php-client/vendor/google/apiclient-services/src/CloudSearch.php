@@ -29,7 +29,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/cloud-search/docs/guides/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/cloud-search/docs/guides/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -84,6 +84,7 @@ class CloudSearch extends \Google\Service
   public $stats_session_searchapplications;
   public $stats_user_searchapplications;
   public $v1;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudSearch service.
@@ -96,6 +97,7 @@ class CloudSearch extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://cloudsearch.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://cloudsearch.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -502,6 +504,10 @@ class CloudSearch extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
               ],
             ],
           ]
@@ -513,7 +519,11 @@ class CloudSearch extends \Google\Service
         'query',
         [
           'methods' => [
-            'search' => [
+            'removeActivity' => [
+              'path' => 'v1/query:removeActivity',
+              'httpMethod' => 'POST',
+              'parameters' => [],
+            ],'search' => [
               'path' => 'v1/query/search',
               'httpMethod' => 'POST',
               'parameters' => [],
@@ -536,6 +546,14 @@ class CloudSearch extends \Google\Service
               'httpMethod' => 'GET',
               'parameters' => [
                 'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'requestOptions.clientDisplayLanguageCode' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'requestOptions.countryCode' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],

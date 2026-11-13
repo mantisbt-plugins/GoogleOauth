@@ -43,7 +43,7 @@ class PeopleService extends \Google\Service
   /** See and download your contacts. */
   const CONTACTS_READONLY =
       "https://www.googleapis.com/auth/contacts.readonly";
-  /** See and download your organization's GSuite directory. */
+  /** See and download your organization's Google Workspace directory. */
   const DIRECTORY_READONLY =
       "https://www.googleapis.com/auth/directory.readonly";
   /** View your street addresses. */
@@ -76,6 +76,7 @@ class PeopleService extends \Google\Service
   public $otherContacts;
   public $people;
   public $people_connections;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the PeopleService service.
@@ -88,6 +89,7 @@ class PeopleService extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://people.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://people.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

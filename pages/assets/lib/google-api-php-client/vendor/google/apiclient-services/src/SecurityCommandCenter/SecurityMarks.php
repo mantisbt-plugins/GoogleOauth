@@ -33,7 +33,7 @@ class SecurityMarks extends \Google\Model
   public $name;
 
   /**
-   * @param string
+   * @param string $canonicalName
    */
   public function setCanonicalName($canonicalName)
   {
@@ -47,7 +47,7 @@ class SecurityMarks extends \Google\Model
     return $this->canonicalName;
   }
   /**
-   * @param string[]
+   * @param string[] $marks
    */
   public function setMarks($marks)
   {
@@ -61,7 +61,7 @@ class SecurityMarks extends \Google\Model
     return $this->marks;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {

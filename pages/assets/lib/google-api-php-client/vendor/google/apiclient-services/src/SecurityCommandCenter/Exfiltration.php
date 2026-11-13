@@ -24,9 +24,13 @@ class Exfiltration extends \Google\Collection
   protected $sourcesDataType = 'array';
   protected $targetsType = ExfilResource::class;
   protected $targetsDataType = 'array';
+  /**
+   * @var string
+   */
+  public $totalExfiltratedBytes;
 
   /**
-   * @param ExfilResource[]
+   * @param ExfilResource[] $sources
    */
   public function setSources($sources)
   {
@@ -40,7 +44,7 @@ class Exfiltration extends \Google\Collection
     return $this->sources;
   }
   /**
-   * @param ExfilResource[]
+   * @param ExfilResource[] $targets
    */
   public function setTargets($targets)
   {
@@ -52,6 +56,20 @@ class Exfiltration extends \Google\Collection
   public function getTargets()
   {
     return $this->targets;
+  }
+  /**
+   * @param string $totalExfiltratedBytes
+   */
+  public function setTotalExfiltratedBytes($totalExfiltratedBytes)
+  {
+    $this->totalExfiltratedBytes = $totalExfiltratedBytes;
+  }
+  /**
+   * @return string
+   */
+  public function getTotalExfiltratedBytes()
+  {
+    return $this->totalExfiltratedBytes;
   }
 }
 

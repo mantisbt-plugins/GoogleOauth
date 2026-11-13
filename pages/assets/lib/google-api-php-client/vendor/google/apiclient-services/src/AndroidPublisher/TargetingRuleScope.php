@@ -19,13 +19,42 @@ namespace Google\Service\AndroidPublisher;
 
 class TargetingRuleScope extends \Google\Model
 {
+  protected $anySubscriptionInAppType = TargetingRuleScopeAnySubscriptionInApp::class;
+  protected $anySubscriptionInAppDataType = '';
   /**
+   * The scope of the current targeting rule is the subscription with the
+   * specified subscription ID. Must be a subscription within the same parent
+   * app.
+   *
    * @var string
    */
   public $specificSubscriptionInApp;
+  protected $thisSubscriptionType = TargetingRuleScopeThisSubscription::class;
+  protected $thisSubscriptionDataType = '';
 
   /**
-   * @param string
+   * The scope of the current targeting rule is any subscription in the parent
+   * app.
+   *
+   * @param TargetingRuleScopeAnySubscriptionInApp $anySubscriptionInApp
+   */
+  public function setAnySubscriptionInApp(TargetingRuleScopeAnySubscriptionInApp $anySubscriptionInApp)
+  {
+    $this->anySubscriptionInApp = $anySubscriptionInApp;
+  }
+  /**
+   * @return TargetingRuleScopeAnySubscriptionInApp
+   */
+  public function getAnySubscriptionInApp()
+  {
+    return $this->anySubscriptionInApp;
+  }
+  /**
+   * The scope of the current targeting rule is the subscription with the
+   * specified subscription ID. Must be a subscription within the same parent
+   * app.
+   *
+   * @param string $specificSubscriptionInApp
    */
   public function setSpecificSubscriptionInApp($specificSubscriptionInApp)
   {
@@ -37,6 +66,23 @@ class TargetingRuleScope extends \Google\Model
   public function getSpecificSubscriptionInApp()
   {
     return $this->specificSubscriptionInApp;
+  }
+  /**
+   * The scope of the current targeting rule is the subscription in which this
+   * offer is defined.
+   *
+   * @param TargetingRuleScopeThisSubscription $thisSubscription
+   */
+  public function setThisSubscription(TargetingRuleScopeThisSubscription $thisSubscription)
+  {
+    $this->thisSubscription = $thisSubscription;
+  }
+  /**
+   * @return TargetingRuleScopeThisSubscription
+   */
+  public function getThisSubscription()
+  {
+    return $this->thisSubscription;
   }
 }
 

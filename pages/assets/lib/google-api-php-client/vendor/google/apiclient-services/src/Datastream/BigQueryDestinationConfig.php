@@ -19,17 +19,65 @@ namespace Google\Service\Datastream;
 
 class BigQueryDestinationConfig extends \Google\Model
 {
+  protected $appendOnlyType = AppendOnly::class;
+  protected $appendOnlyDataType = '';
+  protected $blmtConfigType = BlmtConfig::class;
+  protected $blmtConfigDataType = '';
   /**
+   * The guaranteed data freshness (in seconds) when querying tables created by
+   * the stream. Editing this field will only affect new tables created in the
+   * future, but existing tables will not be impacted. Lower values mean that
+   * queries will return fresher data, but may result in higher cost.
+   *
    * @var string
    */
   public $dataFreshness;
+  protected $mergeType = Merge::class;
+  protected $mergeDataType = '';
   protected $singleTargetDatasetType = SingleTargetDataset::class;
   protected $singleTargetDatasetDataType = '';
   protected $sourceHierarchyDatasetsType = SourceHierarchyDatasets::class;
   protected $sourceHierarchyDatasetsDataType = '';
 
   /**
-   * @param string
+   * Append only mode
+   *
+   * @param AppendOnly $appendOnly
+   */
+  public function setAppendOnly(AppendOnly $appendOnly)
+  {
+    $this->appendOnly = $appendOnly;
+  }
+  /**
+   * @return AppendOnly
+   */
+  public function getAppendOnly()
+  {
+    return $this->appendOnly;
+  }
+  /**
+   * Optional. Big Lake Managed Tables (BLMT) configuration.
+   *
+   * @param BlmtConfig $blmtConfig
+   */
+  public function setBlmtConfig(BlmtConfig $blmtConfig)
+  {
+    $this->blmtConfig = $blmtConfig;
+  }
+  /**
+   * @return BlmtConfig
+   */
+  public function getBlmtConfig()
+  {
+    return $this->blmtConfig;
+  }
+  /**
+   * The guaranteed data freshness (in seconds) when querying tables created by
+   * the stream. Editing this field will only affect new tables created in the
+   * future, but existing tables will not be impacted. Lower values mean that
+   * queries will return fresher data, but may result in higher cost.
+   *
+   * @param string $dataFreshness
    */
   public function setDataFreshness($dataFreshness)
   {
@@ -43,7 +91,25 @@ class BigQueryDestinationConfig extends \Google\Model
     return $this->dataFreshness;
   }
   /**
-   * @param SingleTargetDataset
+   * The standard mode
+   *
+   * @param Merge $merge
+   */
+  public function setMerge(Merge $merge)
+  {
+    $this->merge = $merge;
+  }
+  /**
+   * @return Merge
+   */
+  public function getMerge()
+  {
+    return $this->merge;
+  }
+  /**
+   * Single destination dataset.
+   *
+   * @param SingleTargetDataset $singleTargetDataset
    */
   public function setSingleTargetDataset(SingleTargetDataset $singleTargetDataset)
   {
@@ -57,7 +123,9 @@ class BigQueryDestinationConfig extends \Google\Model
     return $this->singleTargetDataset;
   }
   /**
-   * @param SourceHierarchyDatasets
+   * Source hierarchy datasets.
+   *
+   * @param SourceHierarchyDatasets $sourceHierarchyDatasets
    */
   public function setSourceHierarchyDatasets(SourceHierarchyDatasets $sourceHierarchyDatasets)
   {

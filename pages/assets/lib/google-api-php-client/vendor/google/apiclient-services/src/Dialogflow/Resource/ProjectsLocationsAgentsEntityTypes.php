@@ -18,7 +18,10 @@
 namespace Google\Service\Dialogflow\Resource;
 
 use Google\Service\Dialogflow\GoogleCloudDialogflowCxV3EntityType;
+use Google\Service\Dialogflow\GoogleCloudDialogflowCxV3ExportEntityTypesRequest;
+use Google\Service\Dialogflow\GoogleCloudDialogflowCxV3ImportEntityTypesRequest;
 use Google\Service\Dialogflow\GoogleCloudDialogflowCxV3ListEntityTypesResponse;
+use Google\Service\Dialogflow\GoogleLongrunningOperation;
 use Google\Service\Dialogflow\GoogleProtobufEmpty;
 
 /**
@@ -32,24 +35,15 @@ use Google\Service\Dialogflow\GoogleProtobufEmpty;
 class ProjectsLocationsAgentsEntityTypes extends \Google\Service\Resource
 {
   /**
-   * Creates an entity type in the specified agent. Note: You should always train
-   * a flow prior to sending it queries. See the [training
-   * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
    * (entityTypes.create)
    *
-   * @param string $parent Required. The agent to create a entity type for.
-   * Format: `projects//locations//agents/`.
+   * @param string $parent
    * @param GoogleCloudDialogflowCxV3EntityType $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string languageCode The language of the following fields in
-   * `entity_type`: * `EntityType.entities.value` * `EntityType.entities.synonyms`
-   * * `EntityType.excluded_phrases.value` If not specified, the agent's default
-   * language is used. [Many
-   * languages](https://cloud.google.com/dialogflow/cx/docs/reference/language)
-   * are supported. Note: languages must be enabled in the agent before they can
-   * be used.
+   * @opt_param string languageCode
    * @return GoogleCloudDialogflowCxV3EntityType
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudDialogflowCxV3EntityType $postBody, $optParams = [])
   {
@@ -58,23 +52,14 @@ class ProjectsLocationsAgentsEntityTypes extends \Google\Service\Resource
     return $this->call('create', [$params], GoogleCloudDialogflowCxV3EntityType::class);
   }
   /**
-   * Deletes the specified entity type. Note: You should always train a flow prior
-   * to sending it queries. See the [training
-   * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
    * (entityTypes.delete)
    *
-   * @param string $name Required. The name of the entity type to delete. Format:
-   * `projects//locations//agents//entityTypes/`.
+   * @param string $name
    * @param array $optParams Optional parameters.
    *
-   * @opt_param bool force This field has no effect for entity type not being
-   * used. For entity types that are used by intents or pages: * If `force` is set
-   * to false, an error will be returned with message indicating the referencing
-   * resources. * If `force` is set to true, Dialogflow will remove the entity
-   * type, as well as any references to the entity type (i.e. Page parameter of
-   * the entity type will be changed to '@sys.any' and intent parameter of the
-   * entity type will be removed).
+   * @opt_param bool force
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -83,20 +68,29 @@ class ProjectsLocationsAgentsEntityTypes extends \Google\Service\Resource
     return $this->call('delete', [$params], GoogleProtobufEmpty::class);
   }
   /**
-   * Retrieves the specified entity type. (entityTypes.get)
+   * (entityTypes.export)
    *
-   * @param string $name Required. The name of the entity type. Format:
-   * `projects//locations//agents//entityTypes/`.
+   * @param string $parent
+   * @param GoogleCloudDialogflowCxV3ExportEntityTypesRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
+   */
+  public function export($parent, GoogleCloudDialogflowCxV3ExportEntityTypesRequest $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('export', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
+   * (entityTypes.get)
+   *
+   * @param string $name
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string languageCode The language to retrieve the entity type for.
-   * The following fields are language dependent: * `EntityType.entities.value` *
-   * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not
-   * specified, the agent's default language is used. [Many
-   * languages](https://cloud.google.com/dialogflow/cx/docs/reference/language)
-   * are supported. Note: languages must be enabled in the agent before they can
-   * be used.
+   * @opt_param string languageCode
    * @return GoogleCloudDialogflowCxV3EntityType
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -105,25 +99,31 @@ class ProjectsLocationsAgentsEntityTypes extends \Google\Service\Resource
     return $this->call('get', [$params], GoogleCloudDialogflowCxV3EntityType::class);
   }
   /**
-   * Returns the list of all entity types in the specified agent.
+   * (entityTypes.import)
+   *
+   * @param string $parent
+   * @param GoogleCloudDialogflowCxV3ImportEntityTypesRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
+   */
+  public function import($parent, GoogleCloudDialogflowCxV3ImportEntityTypesRequest $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('import', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
    * (entityTypes.listProjectsLocationsAgentsEntityTypes)
    *
-   * @param string $parent Required. The agent to list all entity types for.
-   * Format: `projects//locations//agents/`.
+   * @param string $parent
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string languageCode The language to list entity types for. The
-   * following fields are language dependent: * `EntityType.entities.value` *
-   * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not
-   * specified, the agent's default language is used. [Many
-   * languages](https://cloud.google.com/dialogflow/cx/docs/reference/language)
-   * are supported. Note: languages must be enabled in the agent before they can
-   * be used.
-   * @opt_param int pageSize The maximum number of items to return in a single
-   * page. By default 100 and at most 1000.
-   * @opt_param string pageToken The next_page_token value returned from a
-   * previous list request.
+   * @opt_param string languageCode
+   * @opt_param int pageSize
+   * @opt_param string pageToken
    * @return GoogleCloudDialogflowCxV3ListEntityTypesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsAgentsEntityTypes($parent, $optParams = [])
   {
@@ -132,26 +132,16 @@ class ProjectsLocationsAgentsEntityTypes extends \Google\Service\Resource
     return $this->call('list', [$params], GoogleCloudDialogflowCxV3ListEntityTypesResponse::class);
   }
   /**
-   * Updates the specified entity type. Note: You should always train a flow prior
-   * to sending it queries. See the [training
-   * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
    * (entityTypes.patch)
    *
-   * @param string $name The unique identifier of the entity type. Required for
-   * EntityTypes.UpdateEntityType. Format:
-   * `projects//locations//agents//entityTypes/`.
+   * @param string $name
    * @param GoogleCloudDialogflowCxV3EntityType $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string languageCode The language of the following fields in
-   * `entity_type`: * `EntityType.entities.value` * `EntityType.entities.synonyms`
-   * * `EntityType.excluded_phrases.value` If not specified, the agent's default
-   * language is used. [Many
-   * languages](https://cloud.google.com/dialogflow/cx/docs/reference/language)
-   * are supported. Note: languages must be enabled in the agent before they can
-   * be used.
-   * @opt_param string updateMask The mask to control which fields get updated.
+   * @opt_param string languageCode
+   * @opt_param string updateMask
    * @return GoogleCloudDialogflowCxV3EntityType
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudDialogflowCxV3EntityType $postBody, $optParams = [])
   {

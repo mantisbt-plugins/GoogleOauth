@@ -28,7 +28,7 @@ class GoogleCloudDialogflowV2MessageAnnotation extends \Google\Collection
   protected $partsDataType = 'array';
 
   /**
-   * @param bool
+   * @param bool $containEntities
    */
   public function setContainEntities($containEntities)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowV2MessageAnnotation extends \Google\Collection
     return $this->containEntities;
   }
   /**
-   * @param GoogleCloudDialogflowV2AnnotatedMessagePart[]
+   * @param GoogleCloudDialogflowV2AnnotatedMessagePart[] $parts
    */
   public function setParts($parts)
   {

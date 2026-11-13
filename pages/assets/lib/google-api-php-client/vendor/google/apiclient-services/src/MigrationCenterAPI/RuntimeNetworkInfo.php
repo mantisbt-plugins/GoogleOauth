@@ -22,14 +22,16 @@ class RuntimeNetworkInfo extends \Google\Model
   protected $connectionsType = NetworkConnectionList::class;
   protected $connectionsDataType = '';
   /**
+   * Time of the last network scan.
+   *
    * @var string
    */
-  public $netstat;
-  protected $netstatTimeType = DateTime::class;
-  protected $netstatTimeDataType = '';
+  public $scanTime;
 
   /**
-   * @param NetworkConnectionList
+   * Network connections.
+   *
+   * @param NetworkConnectionList $connections
    */
   public function setConnections(NetworkConnectionList $connections)
   {
@@ -43,32 +45,20 @@ class RuntimeNetworkInfo extends \Google\Model
     return $this->connections;
   }
   /**
-   * @param string
+   * Time of the last network scan.
+   *
+   * @param string $scanTime
    */
-  public function setNetstat($netstat)
+  public function setScanTime($scanTime)
   {
-    $this->netstat = $netstat;
+    $this->scanTime = $scanTime;
   }
   /**
    * @return string
    */
-  public function getNetstat()
+  public function getScanTime()
   {
-    return $this->netstat;
-  }
-  /**
-   * @param DateTime
-   */
-  public function setNetstatTime(DateTime $netstatTime)
-  {
-    $this->netstatTime = $netstatTime;
-  }
-  /**
-   * @return DateTime
-   */
-  public function getNetstatTime()
-  {
-    return $this->netstatTime;
+    return $this->scanTime;
   }
 }
 

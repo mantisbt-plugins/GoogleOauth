@@ -20,13 +20,35 @@ namespace Google\Service\Container;
 class AdditionalPodRangesConfig extends \Google\Collection
 {
   protected $collection_key = 'podRangeNames';
+  protected $podRangeInfoType = RangeInfo::class;
+  protected $podRangeInfoDataType = 'array';
   /**
+   * Name for pod secondary ipv4 range which has the actual range defined ahead.
+   *
    * @var string[]
    */
   public $podRangeNames;
 
   /**
-   * @param string[]
+   * Output only. Information for additional pod range.
+   *
+   * @param RangeInfo[] $podRangeInfo
+   */
+  public function setPodRangeInfo($podRangeInfo)
+  {
+    $this->podRangeInfo = $podRangeInfo;
+  }
+  /**
+   * @return RangeInfo[]
+   */
+  public function getPodRangeInfo()
+  {
+    return $this->podRangeInfo;
+  }
+  /**
+   * Name for pod secondary ipv4 range which has the actual range defined ahead.
+   *
+   * @param string[] $podRangeNames
    */
   public function setPodRangeNames($podRangeNames)
   {

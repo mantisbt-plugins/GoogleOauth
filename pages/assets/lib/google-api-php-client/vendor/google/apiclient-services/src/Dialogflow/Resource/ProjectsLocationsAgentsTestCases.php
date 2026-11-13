@@ -39,13 +39,13 @@ use Google\Service\Dialogflow\GoogleProtobufEmpty;
 class ProjectsLocationsAgentsTestCases extends \Google\Service\Resource
 {
   /**
-   * Batch deletes test cases. (testCases.batchDelete)
+   * (testCases.batchDelete)
    *
-   * @param string $parent Required. The agent to delete test cases from. Format:
-   * `projects//locations//agents/`.
+   * @param string $parent
    * @param GoogleCloudDialogflowCxV3BatchDeleteTestCasesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function batchDelete($parent, GoogleCloudDialogflowCxV3BatchDeleteTestCasesRequest $postBody, $optParams = [])
   {
@@ -54,17 +54,13 @@ class ProjectsLocationsAgentsTestCases extends \Google\Service\Resource
     return $this->call('batchDelete', [$params], GoogleProtobufEmpty::class);
   }
   /**
-   * Kicks off a batch run of test cases. This method is a [long-running
-   * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-
-   * operation). The returned `Operation` type has the following method-specific
-   * fields: - `metadata`: BatchRunTestCasesMetadata - `response`:
-   * BatchRunTestCasesResponse (testCases.batchRun)
+   * (testCases.batchRun)
    *
-   * @param string $parent Required. Agent name. Format:
-   * `projects//locations//agents/ `.
+   * @param string $parent
    * @param GoogleCloudDialogflowCxV3BatchRunTestCasesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function batchRun($parent, GoogleCloudDialogflowCxV3BatchRunTestCasesRequest $postBody, $optParams = [])
   {
@@ -73,14 +69,14 @@ class ProjectsLocationsAgentsTestCases extends \Google\Service\Resource
     return $this->call('batchRun', [$params], GoogleLongrunningOperation::class);
   }
   /**
-   * Calculates the test coverage for an agent. (testCases.calculateCoverage)
+   * (testCases.calculateCoverage)
    *
-   * @param string $agent Required. The agent to calculate coverage for. Format:
-   * `projects//locations//agents/`.
+   * @param string $agent
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string type Required. The type of coverage requested.
+   * @opt_param string type
    * @return GoogleCloudDialogflowCxV3CalculateCoverageResponse
+   * @throws \Google\Service\Exception
    */
   public function calculateCoverage($agent, $optParams = [])
   {
@@ -89,13 +85,13 @@ class ProjectsLocationsAgentsTestCases extends \Google\Service\Resource
     return $this->call('calculateCoverage', [$params], GoogleCloudDialogflowCxV3CalculateCoverageResponse::class);
   }
   /**
-   * Creates a test case for the given agent. (testCases.create)
+   * (testCases.create)
    *
-   * @param string $parent Required. The agent to create the test case for.
-   * Format: `projects//locations//agents/`.
+   * @param string $parent
    * @param GoogleCloudDialogflowCxV3TestCase $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDialogflowCxV3TestCase
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudDialogflowCxV3TestCase $postBody, $optParams = [])
   {
@@ -104,18 +100,13 @@ class ProjectsLocationsAgentsTestCases extends \Google\Service\Resource
     return $this->call('create', [$params], GoogleCloudDialogflowCxV3TestCase::class);
   }
   /**
-   * Exports the test cases under the agent to a Cloud Storage bucket or a local
-   * file. Filter can be applied to export a subset of test cases. This method is
-   * a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how
-   * /long-running-operation). The returned `Operation` type has the following
-   * method-specific fields: - `metadata`: ExportTestCasesMetadata - `response`:
-   * ExportTestCasesResponse (testCases.export)
+   * (testCases.export)
    *
-   * @param string $parent Required. The agent where to export test cases from.
-   * Format: `projects//locations//agents/`.
+   * @param string $parent
    * @param GoogleCloudDialogflowCxV3ExportTestCasesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function export($parent, GoogleCloudDialogflowCxV3ExportTestCasesRequest $postBody, $optParams = [])
   {
@@ -124,12 +115,12 @@ class ProjectsLocationsAgentsTestCases extends \Google\Service\Resource
     return $this->call('export', [$params], GoogleLongrunningOperation::class);
   }
   /**
-   * Gets a test case. (testCases.get)
+   * (testCases.get)
    *
-   * @param string $name Required. The name of the testcase. Format:
-   * `projects//locations//agents//testCases/`.
+   * @param string $name
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDialogflowCxV3TestCase
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -138,19 +129,13 @@ class ProjectsLocationsAgentsTestCases extends \Google\Service\Resource
     return $this->call('get', [$params], GoogleCloudDialogflowCxV3TestCase::class);
   }
   /**
-   * Imports the test cases from a Cloud Storage bucket or a local file. It always
-   * creates new test cases and won't overwrite any existing ones. The provided ID
-   * in the imported test case is neglected. This method is a [long-running
-   * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-
-   * operation). The returned `Operation` type has the following method-specific
-   * fields: - `metadata`: ImportTestCasesMetadata - `response`:
-   * ImportTestCasesResponse (testCases.import)
+   * (testCases.import)
    *
-   * @param string $parent Required. The agent to import test cases to. Format:
-   * `projects//locations//agents/`.
+   * @param string $parent
    * @param GoogleCloudDialogflowCxV3ImportTestCasesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function import($parent, GoogleCloudDialogflowCxV3ImportTestCasesRequest $postBody, $optParams = [])
   {
@@ -159,22 +144,16 @@ class ProjectsLocationsAgentsTestCases extends \Google\Service\Resource
     return $this->call('import', [$params], GoogleLongrunningOperation::class);
   }
   /**
-   * Fetches a list of test cases for a given agent.
    * (testCases.listProjectsLocationsAgentsTestCases)
    *
-   * @param string $parent Required. The agent to list all pages for. Format:
-   * `projects//locations//agents/`.
+   * @param string $parent
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of items to return in a single
-   * page. By default 20. Note that when TestCaseView = FULL, the maximum page
-   * size allowed is 20. When TestCaseView = BASIC, the maximum page size allowed
-   * is 500.
-   * @opt_param string pageToken The next_page_token value returned from a
-   * previous list request.
-   * @opt_param string view Specifies whether response should include all fields
-   * or just the metadata.
+   * @opt_param int pageSize
+   * @opt_param string pageToken
+   * @opt_param string view
    * @return GoogleCloudDialogflowCxV3ListTestCasesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsAgentsTestCases($parent, $optParams = [])
   {
@@ -183,17 +162,15 @@ class ProjectsLocationsAgentsTestCases extends \Google\Service\Resource
     return $this->call('list', [$params], GoogleCloudDialogflowCxV3ListTestCasesResponse::class);
   }
   /**
-   * Updates the specified test case. (testCases.patch)
+   * (testCases.patch)
    *
-   * @param string $name The unique identifier of the test case.
-   * TestCases.CreateTestCase will populate the name automatically. Otherwise use
-   * format: `projects//locations//agents/ /testCases/`.
+   * @param string $name
    * @param GoogleCloudDialogflowCxV3TestCase $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string updateMask Required. The mask to specify which fields
-   * should be updated. The `creationTime` and `lastTestResult` cannot be updated.
+   * @opt_param string updateMask
    * @return GoogleCloudDialogflowCxV3TestCase
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudDialogflowCxV3TestCase $postBody, $optParams = [])
   {
@@ -202,17 +179,13 @@ class ProjectsLocationsAgentsTestCases extends \Google\Service\Resource
     return $this->call('patch', [$params], GoogleCloudDialogflowCxV3TestCase::class);
   }
   /**
-   * Kicks off a test case run. This method is a [long-running
-   * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-
-   * operation). The returned `Operation` type has the following method-specific
-   * fields: - `metadata`: RunTestCaseMetadata - `response`: RunTestCaseResponse
    * (testCases.run)
    *
-   * @param string $name Required. Format of test case name to run:
-   * `projects//locations/ /agents//testCases/`.
+   * @param string $name
    * @param GoogleCloudDialogflowCxV3RunTestCaseRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function run($name, GoogleCloudDialogflowCxV3RunTestCaseRequest $postBody, $optParams = [])
   {

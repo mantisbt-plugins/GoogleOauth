@@ -28,7 +28,7 @@ class GoogleCloudDialogflowCxV3ListSessionEntityTypesResponse extends \Google\Co
   protected $sessionEntityTypesDataType = 'array';
 
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3ListSessionEntityTypesResponse extends \Google\Co
     return $this->nextPageToken;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3SessionEntityType[]
+   * @param GoogleCloudDialogflowCxV3SessionEntityType[] $sessionEntityTypes
    */
   public function setSessionEntityTypes($sessionEntityTypes)
   {

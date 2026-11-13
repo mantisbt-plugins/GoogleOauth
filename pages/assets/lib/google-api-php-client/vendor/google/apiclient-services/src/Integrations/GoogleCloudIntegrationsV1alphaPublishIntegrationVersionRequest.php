@@ -19,6 +19,29 @@ namespace Google\Service\Integrations;
 
 class GoogleCloudIntegrationsV1alphaPublishIntegrationVersionRequest extends \Google\Model
 {
+  /**
+   * Optional. Config parameters used during integration execution.
+   *
+   * @var array[]
+   */
+  public $configParameters;
+
+  /**
+   * Optional. Config parameters used during integration execution.
+   *
+   * @param array[] $configParameters
+   */
+  public function setConfigParameters($configParameters)
+  {
+    $this->configParameters = $configParameters;
+  }
+  /**
+   * @return array[]
+   */
+  public function getConfigParameters()
+  {
+    return $this->configParameters;
+  }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

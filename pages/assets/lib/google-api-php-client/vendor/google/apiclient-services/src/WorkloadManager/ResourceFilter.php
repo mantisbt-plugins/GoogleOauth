@@ -23,20 +23,34 @@ class ResourceFilter extends \Google\Collection
   protected $gceInstanceFilterType = GceInstanceFilter::class;
   protected $gceInstanceFilterDataType = '';
   /**
+   * Labels to filter resources by. Each key-value pair in the map must exist on
+   * the resource for it to be included (e.g. VM instance labels). For example,
+   * specifying `{ "env": "prod", "database": "nosql" }` will only include
+   * resources that have labels `env=prod` and `database=nosql`.
+   *
    * @var string[]
    */
   public $inclusionLabels;
   /**
+   * The pattern to filter resources by their id For example, a pattern of
+   * ".*prod-cluster.*" will match all resources that contain "prod-cluster" in
+   * their ID.
+   *
    * @var string[]
    */
   public $resourceIdPatterns;
   /**
+   * The scopes of evaluation resource. Format: * `projects/{project_id}` *
+   * `folders/{folder_id}` * `organizations/{organization_id}`
+   *
    * @var string[]
    */
   public $scopes;
 
   /**
-   * @param GceInstanceFilter
+   * Filter compute engine resources.
+   *
+   * @param GceInstanceFilter $gceInstanceFilter
    */
   public function setGceInstanceFilter(GceInstanceFilter $gceInstanceFilter)
   {
@@ -50,7 +64,12 @@ class ResourceFilter extends \Google\Collection
     return $this->gceInstanceFilter;
   }
   /**
-   * @param string[]
+   * Labels to filter resources by. Each key-value pair in the map must exist on
+   * the resource for it to be included (e.g. VM instance labels). For example,
+   * specifying `{ "env": "prod", "database": "nosql" }` will only include
+   * resources that have labels `env=prod` and `database=nosql`.
+   *
+   * @param string[] $inclusionLabels
    */
   public function setInclusionLabels($inclusionLabels)
   {
@@ -64,7 +83,11 @@ class ResourceFilter extends \Google\Collection
     return $this->inclusionLabels;
   }
   /**
-   * @param string[]
+   * The pattern to filter resources by their id For example, a pattern of
+   * ".*prod-cluster.*" will match all resources that contain "prod-cluster" in
+   * their ID.
+   *
+   * @param string[] $resourceIdPatterns
    */
   public function setResourceIdPatterns($resourceIdPatterns)
   {
@@ -78,7 +101,10 @@ class ResourceFilter extends \Google\Collection
     return $this->resourceIdPatterns;
   }
   /**
-   * @param string[]
+   * The scopes of evaluation resource. Format: * `projects/{project_id}` *
+   * `folders/{folder_id}` * `organizations/{organization_id}`
+   *
+   * @param string[] $scopes
    */
   public function setScopes($scopes)
   {

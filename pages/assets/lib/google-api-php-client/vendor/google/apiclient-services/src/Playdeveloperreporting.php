@@ -39,15 +39,20 @@ class Playdeveloperreporting extends \Google\Service
       "https://www.googleapis.com/auth/playdeveloperreporting";
 
   public $anomalies;
+  public $apps;
+  public $vitals_anonrssandswapmemoryusage;
   public $vitals_anrrate;
+  public $vitals_bitmapmemoryusage;
   public $vitals_crashrate;
   public $vitals_errors_counts;
   public $vitals_errors_issues;
   public $vitals_errors_reports;
   public $vitals_excessivewakeuprate;
+  public $vitals_lmkrate;
   public $vitals_slowrenderingrate;
   public $vitals_slowstartrate;
   public $vitals_stuckbackgroundwakelockrate;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Playdeveloperreporting
@@ -61,6 +66,7 @@ class Playdeveloperreporting extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://playdeveloperreporting.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://playdeveloperreporting.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1beta1';
@@ -98,10 +104,103 @@ class Playdeveloperreporting extends \Google\Service
           ]
         ]
     );
+    $this->apps = new Playdeveloperreporting\Resource\Apps(
+        $this,
+        $this->serviceName,
+        'apps',
+        [
+          'methods' => [
+            'fetchReleaseFilterOptions' => [
+              'path' => 'v1beta1/{+name}:fetchReleaseFilterOptions',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'search' => [
+              'path' => 'v1beta1/apps:search',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->vitals_anonrssandswapmemoryusage = new Playdeveloperreporting\Resource\VitalsAnonrssandswapmemoryusage(
+        $this,
+        $this->serviceName,
+        'anonrssandswapmemoryusage',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1beta1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'query' => [
+              'path' => 'v1beta1/{+name}:query',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->vitals_anrrate = new Playdeveloperreporting\Resource\VitalsAnrrate(
         $this,
         $this->serviceName,
         'anrrate',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1beta1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'query' => [
+              'path' => 'v1beta1/{+name}:query',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->vitals_bitmapmemoryusage = new Playdeveloperreporting\Resource\VitalsBitmapmemoryusage(
+        $this,
+        $this->serviceName,
+        'bitmapmemoryusage',
         [
           'methods' => [
             'get' => [
@@ -287,6 +386,10 @@ class Playdeveloperreporting extends \Google\Service
                   'location' => 'query',
                   'type' => 'integer',
                 ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
                 'pageSize' => [
                   'location' => 'query',
                   'type' => 'integer',
@@ -294,6 +397,10 @@ class Playdeveloperreporting extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'sampleErrorReportLimit' => [
+                  'location' => 'query',
+                  'type' => 'integer',
                 ],
               ],
             ],
@@ -416,6 +523,36 @@ class Playdeveloperreporting extends \Google\Service
         $this,
         $this->serviceName,
         'excessivewakeuprate',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1beta1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'query' => [
+              'path' => 'v1beta1/{+name}:query',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->vitals_lmkrate = new Playdeveloperreporting\Resource\VitalsLmkrate(
+        $this,
+        $this->serviceName,
+        'lmkrate',
         [
           'methods' => [
             'get' => [

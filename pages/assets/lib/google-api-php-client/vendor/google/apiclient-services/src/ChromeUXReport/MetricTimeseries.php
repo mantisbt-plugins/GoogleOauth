@@ -20,13 +20,35 @@ namespace Google\Service\ChromeUXReport;
 class MetricTimeseries extends \Google\Collection
 {
   protected $collection_key = 'histogramTimeseries';
+  protected $fractionTimeseriesType = FractionTimeseries::class;
+  protected $fractionTimeseriesDataType = 'map';
   protected $histogramTimeseriesType = TimeseriesBin::class;
   protected $histogramTimeseriesDataType = 'array';
   protected $percentilesTimeseriesType = TimeseriesPercentiles::class;
   protected $percentilesTimeseriesDataType = '';
 
   /**
-   * @param TimeseriesBin[]
+   * Mapping from labels to timeseries of fractions attributed to this label.
+   *
+   * @param FractionTimeseries[] $fractionTimeseries
+   */
+  public function setFractionTimeseries($fractionTimeseries)
+  {
+    $this->fractionTimeseries = $fractionTimeseries;
+  }
+  /**
+   * @return FractionTimeseries[]
+   */
+  public function getFractionTimeseries()
+  {
+    return $this->fractionTimeseries;
+  }
+  /**
+   * The histogram of user experiences for a metric. The histogram will have at
+   * least one bin and the densities of all bins will add up to ~1, for each
+   * timeseries entry.
+   *
+   * @param TimeseriesBin[] $histogramTimeseries
    */
   public function setHistogramTimeseries($histogramTimeseries)
   {
@@ -40,7 +62,11 @@ class MetricTimeseries extends \Google\Collection
     return $this->histogramTimeseries;
   }
   /**
-   * @param TimeseriesPercentiles
+   * Commonly useful percentiles of the Metric. The value type for the
+   * percentiles will be the same as the value types given for the Histogram
+   * bins.
+   *
+   * @param TimeseriesPercentiles $percentilesTimeseries
    */
   public function setPercentilesTimeseries(TimeseriesPercentiles $percentilesTimeseries)
   {

@@ -17,6 +17,7 @@
 
 namespace Google\Service\Connectors\Resource;
 
+use Google\Service\Connectors\Action;
 use Google\Service\Connectors\ExecuteActionRequest;
 use Google\Service\Connectors\ExecuteActionResponse;
 use Google\Service\Connectors\ListActionsResponse;
@@ -41,12 +42,33 @@ class ProjectsLocationsConnectionsActions extends \Google\Service\Resource
    * @param ExecuteActionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return ExecuteActionResponse
+   * @throws \Google\Service\Exception
    */
   public function execute($name, ExecuteActionRequest $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('execute', [$params], ExecuteActionResponse::class);
+  }
+  /**
+   * Gets the schema of the given action. (actions.get)
+   *
+   * @param string $name Required. Resource name of the Action. Format: projects/{
+   * project}/locations/{location}/connections/{connection}/actions/{action}
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string executionConfig.headers headers to be used for the request.
+   * For example: headers:'{"x-integration-connectors-managed-connection-
+   * id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"}'
+   * @opt_param string view Specified view of the action schema.
+   * @return Action
+   * @throws \Google\Service\Exception
+   */
+  public function get($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('get', [$params], Action::class);
   }
   /**
    * Gets the schema of all the actions supported by the connector.
@@ -56,11 +78,17 @@ class ProjectsLocationsConnectionsActions extends \Google\Service\Resource
    * projects/{project}/locations/{location}/connections/{connection}
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string executionConfig.headers headers to be used for the request.
+   * For example: headers:'{"x-integration-connectors-managed-connection-
+   * id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"}'
    * @opt_param int pageSize Number of Actions to return. Defaults to 25.
    * @opt_param string pageToken Page token, return from a previous ListActions
    * call, that can be used retrieve the next page of content. If unspecified, the
    * request returns the first page of actions.
+   * @opt_param string view Specifies which fields of the Action are returned in
+   * the response.
    * @return ListActionsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsConnectionsActions($parent, $optParams = [])
   {

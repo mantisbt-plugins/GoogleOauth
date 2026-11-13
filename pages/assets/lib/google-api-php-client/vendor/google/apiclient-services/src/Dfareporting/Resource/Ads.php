@@ -37,6 +37,7 @@ class Ads extends \Google\Service\Resource
    * @param string $id Ad ID.
    * @param array $optParams Optional parameters.
    * @return Ad
+   * @throws \Google\Service\Exception
    */
   public function get($profileId, $id, $optParams = [])
   {
@@ -51,6 +52,7 @@ class Ads extends \Google\Service\Resource
    * @param Ad $postBody
    * @param array $optParams Optional parameters.
    * @return Ad
+   * @throws \Google\Service\Exception
    */
   public function insert($profileId, Ad $postBody, $optParams = [])
   {
@@ -109,6 +111,7 @@ class Ads extends \Google\Service\Resource
    * @opt_param bool sslRequired Select only ads that require SSL.
    * @opt_param string type Select only ads with these types.
    * @return AdsListResponse
+   * @throws \Google\Service\Exception
    */
   public function listAds($profileId, $optParams = [])
   {
@@ -120,10 +123,11 @@ class Ads extends \Google\Service\Resource
    * Updates an existing ad. This method supports patch semantics. (ads.patch)
    *
    * @param string $profileId User profile ID associated with this request.
-   * @param string $id Ad ID.
+   * @param string $id Required. RemarketingList ID.
    * @param Ad $postBody
    * @param array $optParams Optional parameters.
    * @return Ad
+   * @throws \Google\Service\Exception
    */
   public function patch($profileId, $id, Ad $postBody, $optParams = [])
   {
@@ -138,6 +142,7 @@ class Ads extends \Google\Service\Resource
    * @param Ad $postBody
    * @param array $optParams Optional parameters.
    * @return Ad
+   * @throws \Google\Service\Exception
    */
   public function update($profileId, Ad $postBody, $optParams = [])
   {

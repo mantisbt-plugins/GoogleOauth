@@ -20,13 +20,22 @@ namespace Google\Service\Dns;
 class PoliciesListResponse extends \Google\Collection
 {
   protected $collection_key = 'policies';
-  protected $headerType = ResponseHeader::class;
-  protected $headerDataType = '';
   /**
+   * Output only. Type of resource.
+   *
    * @var string
    */
   public $kind;
   /**
+   * This field indicates that more results are available beyond the last page
+   * displayed. To fetch the results, make another list request and use this
+   * value as your page token. This lets you retrieve the complete contents of a
+   * very large collection one page at a time. However, if the contents of the
+   * collection change between the first and last paginated list request, the
+   * set of all elements returned are an inconsistent view of the collection.
+   * You can't retrieve a consistent snapshot of a collection larger than the
+   * maximum page size.
+   *
    * @var string
    */
   public $nextPageToken;
@@ -34,21 +43,9 @@ class PoliciesListResponse extends \Google\Collection
   protected $policiesDataType = 'array';
 
   /**
-   * @param ResponseHeader
-   */
-  public function setHeader(ResponseHeader $header)
-  {
-    $this->header = $header;
-  }
-  /**
-   * @return ResponseHeader
-   */
-  public function getHeader()
-  {
-    return $this->header;
-  }
-  /**
-   * @param string
+   * Output only. Type of resource.
+   *
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -62,7 +59,16 @@ class PoliciesListResponse extends \Google\Collection
     return $this->kind;
   }
   /**
-   * @param string
+   * This field indicates that more results are available beyond the last page
+   * displayed. To fetch the results, make another list request and use this
+   * value as your page token. This lets you retrieve the complete contents of a
+   * very large collection one page at a time. However, if the contents of the
+   * collection change between the first and last paginated list request, the
+   * set of all elements returned are an inconsistent view of the collection.
+   * You can't retrieve a consistent snapshot of a collection larger than the
+   * maximum page size.
+   *
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -76,7 +82,9 @@ class PoliciesListResponse extends \Google\Collection
     return $this->nextPageToken;
   }
   /**
-   * @param Policy[]
+   * The policy resources.
+   *
+   * @param Policy[] $policies
    */
   public function setPolicies($policies)
   {

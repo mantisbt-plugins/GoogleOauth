@@ -20,24 +20,39 @@ namespace Google\Service\DisplayVideo;
 class CommonInStreamAttribute extends \Google\Model
 {
   /**
+   * Optional. The text on the call-to-action button. Must be set if
+   * actionHeadline is set.
+   *
    * @var string
    */
   public $actionButtonLabel;
   /**
+   * Optional. The headline of the call-to-action banner.
+   *
    * @var string
    */
   public $actionHeadline;
   protected $companionBannerType = ImageAsset::class;
   protected $companionBannerDataType = '';
   /**
+   * Required. The webpage address that appears with the ad.
+   *
    * @var string
    */
   public $displayUrl;
   /**
+   * Required. The URL address of the webpage that people reach after they click
+   * the ad.
+   *
    * @var string
    */
   public $finalUrl;
   /**
+   * Output only. The URL address loaded in the background for tracking
+   * purposes. In v4 and earlier, this field represents the tracking URL
+   * specified by the user manually. This can be found at
+   * userSpecifiedTrackingUrl in v5.
+   *
    * @var string
    */
   public $trackingUrl;
@@ -45,7 +60,10 @@ class CommonInStreamAttribute extends \Google\Model
   protected $videoDataType = '';
 
   /**
-   * @param string
+   * Optional. The text on the call-to-action button. Must be set if
+   * actionHeadline is set.
+   *
+   * @param string $actionButtonLabel
    */
   public function setActionButtonLabel($actionButtonLabel)
   {
@@ -59,7 +77,9 @@ class CommonInStreamAttribute extends \Google\Model
     return $this->actionButtonLabel;
   }
   /**
-   * @param string
+   * Optional. The headline of the call-to-action banner.
+   *
+   * @param string $actionHeadline
    */
   public function setActionHeadline($actionHeadline)
   {
@@ -73,7 +93,9 @@ class CommonInStreamAttribute extends \Google\Model
     return $this->actionHeadline;
   }
   /**
-   * @param ImageAsset
+   * Optional. The image which shows next to the video ad.
+   *
+   * @param ImageAsset $companionBanner
    */
   public function setCompanionBanner(ImageAsset $companionBanner)
   {
@@ -87,7 +109,9 @@ class CommonInStreamAttribute extends \Google\Model
     return $this->companionBanner;
   }
   /**
-   * @param string
+   * Required. The webpage address that appears with the ad.
+   *
+   * @param string $displayUrl
    */
   public function setDisplayUrl($displayUrl)
   {
@@ -101,7 +125,10 @@ class CommonInStreamAttribute extends \Google\Model
     return $this->displayUrl;
   }
   /**
-   * @param string
+   * Required. The URL address of the webpage that people reach after they click
+   * the ad.
+   *
+   * @param string $finalUrl
    */
   public function setFinalUrl($finalUrl)
   {
@@ -115,7 +142,12 @@ class CommonInStreamAttribute extends \Google\Model
     return $this->finalUrl;
   }
   /**
-   * @param string
+   * Output only. The URL address loaded in the background for tracking
+   * purposes. In v4 and earlier, this field represents the tracking URL
+   * specified by the user manually. This can be found at
+   * userSpecifiedTrackingUrl in v5.
+   *
+   * @param string $trackingUrl
    */
   public function setTrackingUrl($trackingUrl)
   {
@@ -129,7 +161,9 @@ class CommonInStreamAttribute extends \Google\Model
     return $this->trackingUrl;
   }
   /**
-   * @param YoutubeVideoDetails
+   * Required. Immutable. The YouTube video of the ad.
+   *
+   * @param YoutubeVideoDetails $video
    */
   public function setVideo(YoutubeVideoDetails $video)
   {

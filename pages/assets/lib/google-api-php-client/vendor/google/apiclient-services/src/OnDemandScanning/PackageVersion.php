@@ -17,8 +17,18 @@
 
 namespace Google\Service\OnDemandScanning;
 
-class PackageVersion extends \Google\Model
+class PackageVersion extends \Google\Collection
 {
+  protected $collection_key = 'licenses';
+  /**
+   * The licenses associated with this package. Note that this has to go on the
+   * PackageVersion level, because we can have cases with images with the same
+   * source having different licences. E.g. in Alpine, musl and musl-utils both
+   * have the same origin musl, but have different sets of licenses.
+   *
+   * @var string[]
+   */
+  public $licenses;
   /**
    * @var string
    */
@@ -29,7 +39,26 @@ class PackageVersion extends \Google\Model
   public $version;
 
   /**
-   * @param string
+   * The licenses associated with this package. Note that this has to go on the
+   * PackageVersion level, because we can have cases with images with the same
+   * source having different licences. E.g. in Alpine, musl and musl-utils both
+   * have the same origin musl, but have different sets of licenses.
+   *
+   * @param string[] $licenses
+   */
+  public function setLicenses($licenses)
+  {
+    $this->licenses = $licenses;
+  }
+  /**
+   * @return string[]
+   */
+  public function getLicenses()
+  {
+    return $this->licenses;
+  }
+  /**
+   * @param string $name
    */
   public function setName($name)
   {
@@ -43,7 +72,7 @@ class PackageVersion extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * @param string $version
    */
   public function setVersion($version)
   {

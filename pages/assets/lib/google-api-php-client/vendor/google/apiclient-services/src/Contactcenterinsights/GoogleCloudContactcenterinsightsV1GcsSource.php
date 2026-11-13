@@ -17,25 +17,46 @@
 
 namespace Google\Service\Contactcenterinsights;
 
-class GoogleCloudContactcenterinsightsV1GcsSource extends \Google\Model
+class GoogleCloudContactcenterinsightsV1GcsSource extends \Google\Collection
 {
+  protected $collection_key = 'audioUris';
   /**
+   * Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that
+   * points to a file that contains the conversation audio.
+   *
+   * @deprecated
    * @var string
    */
   public $audioUri;
   /**
+   * Immutable. Cloud Storage URIs that point to files that contain the
+   * conversation audio. Supports both single audio files and multi-leg session
+   * recordings (e.g., call transfers, rolling recording buffers).
+   *
+   * @var string[]
+   */
+  public $audioUris;
+  /**
+   * Immutable. Cloud Storage URI that points to a file that contains the
+   * conversation transcript.
+   *
    * @var string
    */
   public $transcriptUri;
 
   /**
-   * @param string
+   * Immutable. Deprecated: Use `audio_uris` instead. Cloud Storage URI that
+   * points to a file that contains the conversation audio.
+   *
+   * @deprecated
+   * @param string $audioUri
    */
   public function setAudioUri($audioUri)
   {
     $this->audioUri = $audioUri;
   }
   /**
+   * @deprecated
    * @return string
    */
   public function getAudioUri()
@@ -43,7 +64,28 @@ class GoogleCloudContactcenterinsightsV1GcsSource extends \Google\Model
     return $this->audioUri;
   }
   /**
-   * @param string
+   * Immutable. Cloud Storage URIs that point to files that contain the
+   * conversation audio. Supports both single audio files and multi-leg session
+   * recordings (e.g., call transfers, rolling recording buffers).
+   *
+   * @param string[] $audioUris
+   */
+  public function setAudioUris($audioUris)
+  {
+    $this->audioUris = $audioUris;
+  }
+  /**
+   * @return string[]
+   */
+  public function getAudioUris()
+  {
+    return $this->audioUris;
+  }
+  /**
+   * Immutable. Cloud Storage URI that points to a file that contains the
+   * conversation transcript.
+   *
+   * @param string $transcriptUri
    */
   public function setTranscriptUri($transcriptUri)
   {

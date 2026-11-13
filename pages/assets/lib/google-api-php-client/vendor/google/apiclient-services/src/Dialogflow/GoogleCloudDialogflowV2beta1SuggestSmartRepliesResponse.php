@@ -32,7 +32,7 @@ class GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse extends \Google\Co
   protected $smartReplyAnswersDataType = 'array';
 
   /**
-   * @param int
+   * @param int $contextSize
    */
   public function setContextSize($contextSize)
   {
@@ -46,7 +46,7 @@ class GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse extends \Google\Co
     return $this->contextSize;
   }
   /**
-   * @param string
+   * @param string $latestMessage
    */
   public function setLatestMessage($latestMessage)
   {
@@ -60,7 +60,7 @@ class GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse extends \Google\Co
     return $this->latestMessage;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1SmartReplyAnswer[]
+   * @param GoogleCloudDialogflowV2beta1SmartReplyAnswer[] $smartReplyAnswers
    */
   public function setSmartReplyAnswers($smartReplyAnswers)
   {

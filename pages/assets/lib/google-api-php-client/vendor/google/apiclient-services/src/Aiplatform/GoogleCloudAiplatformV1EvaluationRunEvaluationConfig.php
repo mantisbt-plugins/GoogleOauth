@@ -1,0 +1,213 @@
+<?php
+/*
+ * Copyright 2014 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+namespace Google\Service\Aiplatform;
+
+class GoogleCloudAiplatformV1EvaluationRunEvaluationConfig extends \Google\Collection
+{
+  protected $collection_key = 'rubricConfigs';
+  /**
+   * Optional. Allows the evaluation run to use cross region models. When this
+   * flag is set, the service may route traffic to other regions if a model is
+   * unavailable in the current region (e.g., to a `global` endpoint). If a
+   * fully-qualified model endpoint resource name with a different region than
+   * the run location is provided elsewhere in the run config, this flag must be
+   * set to true or the request will fail.
+   *
+   * @var bool
+   */
+  public $allowCrossRegionModel;
+  protected $autoraterConfigType = GoogleCloudAiplatformV1EvaluationRunEvaluationConfigAutoraterConfig::class;
+  protected $autoraterConfigDataType = '';
+  protected $cloudLoggingConfigType = GoogleCloudAiplatformV1CloudLoggingConfig::class;
+  protected $cloudLoggingConfigDataType = '';
+  protected $datasetCustomMetricsType = GoogleCloudAiplatformV1DatasetCustomMetric::class;
+  protected $datasetCustomMetricsDataType = 'array';
+  protected $lossAnalysisConfigType = GoogleCloudAiplatformV1LossAnalysisConfig::class;
+  protected $lossAnalysisConfigDataType = 'array';
+  protected $metricsType = GoogleCloudAiplatformV1EvaluationRunMetric::class;
+  protected $metricsDataType = 'array';
+  protected $outputConfigType = GoogleCloudAiplatformV1EvaluationRunEvaluationConfigOutputConfig::class;
+  protected $outputConfigDataType = '';
+  protected $promptTemplateType = GoogleCloudAiplatformV1EvaluationRunEvaluationConfigPromptTemplate::class;
+  protected $promptTemplateDataType = '';
+  protected $rubricConfigsType = GoogleCloudAiplatformV1EvaluationRubricConfig::class;
+  protected $rubricConfigsDataType = 'array';
+
+  /**
+   * Optional. Allows the evaluation run to use cross region models. When this
+   * flag is set, the service may route traffic to other regions if a model is
+   * unavailable in the current region (e.g., to a `global` endpoint). If a
+   * fully-qualified model endpoint resource name with a different region than
+   * the run location is provided elsewhere in the run config, this flag must be
+   * set to true or the request will fail.
+   *
+   * @param bool $allowCrossRegionModel
+   */
+  public function setAllowCrossRegionModel($allowCrossRegionModel)
+  {
+    $this->allowCrossRegionModel = $allowCrossRegionModel;
+  }
+  /**
+   * @return bool
+   */
+  public function getAllowCrossRegionModel()
+  {
+    return $this->allowCrossRegionModel;
+  }
+  /**
+   * Optional. The autorater config for the evaluation run.
+   *
+   * @param GoogleCloudAiplatformV1EvaluationRunEvaluationConfigAutoraterConfig $autoraterConfig
+   */
+  public function setAutoraterConfig(GoogleCloudAiplatformV1EvaluationRunEvaluationConfigAutoraterConfig $autoraterConfig)
+  {
+    $this->autoraterConfig = $autoraterConfig;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1EvaluationRunEvaluationConfigAutoraterConfig
+   */
+  public function getAutoraterConfig()
+  {
+    return $this->autoraterConfig;
+  }
+  /**
+   * Optional. Configuration for exporting evaluation results to Cloud Logging.
+   *
+   * @param GoogleCloudAiplatformV1CloudLoggingConfig $cloudLoggingConfig
+   */
+  public function setCloudLoggingConfig(GoogleCloudAiplatformV1CloudLoggingConfig $cloudLoggingConfig)
+  {
+    $this->cloudLoggingConfig = $cloudLoggingConfig;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1CloudLoggingConfig
+   */
+  public function getCloudLoggingConfig()
+  {
+    return $this->cloudLoggingConfig;
+  }
+  /**
+   * Optional. Specifications for custom dataset-level aggregations.
+   *
+   * @param GoogleCloudAiplatformV1DatasetCustomMetric[] $datasetCustomMetrics
+   */
+  public function setDatasetCustomMetrics($datasetCustomMetrics)
+  {
+    $this->datasetCustomMetrics = $datasetCustomMetrics;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1DatasetCustomMetric[]
+   */
+  public function getDatasetCustomMetrics()
+  {
+    return $this->datasetCustomMetrics;
+  }
+  /**
+   * Optional. Specifications for loss analysis. Each config can be specified
+   * for one metric.
+   *
+   * @param GoogleCloudAiplatformV1LossAnalysisConfig[] $lossAnalysisConfig
+   */
+  public function setLossAnalysisConfig($lossAnalysisConfig)
+  {
+    $this->lossAnalysisConfig = $lossAnalysisConfig;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1LossAnalysisConfig[]
+   */
+  public function getLossAnalysisConfig()
+  {
+    return $this->lossAnalysisConfig;
+  }
+  /**
+   * Optional. The metrics to be calculated in the evaluation run. Required when
+   * analysis_configs is not set.
+   *
+   * @param GoogleCloudAiplatformV1EvaluationRunMetric[] $metrics
+   */
+  public function setMetrics($metrics)
+  {
+    $this->metrics = $metrics;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1EvaluationRunMetric[]
+   */
+  public function getMetrics()
+  {
+    return $this->metrics;
+  }
+  /**
+   * Optional. The output config for the evaluation run.
+   *
+   * @param GoogleCloudAiplatformV1EvaluationRunEvaluationConfigOutputConfig $outputConfig
+   */
+  public function setOutputConfig(GoogleCloudAiplatformV1EvaluationRunEvaluationConfigOutputConfig $outputConfig)
+  {
+    $this->outputConfig = $outputConfig;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1EvaluationRunEvaluationConfigOutputConfig
+   */
+  public function getOutputConfig()
+  {
+    return $this->outputConfig;
+  }
+  /**
+   * The prompt template used for inference. The values for variables in the
+   * prompt template are defined in
+   * EvaluationItem.EvaluationPrompt.PromptTemplateData.values.
+   *
+   * @param GoogleCloudAiplatformV1EvaluationRunEvaluationConfigPromptTemplate $promptTemplate
+   */
+  public function setPromptTemplate(GoogleCloudAiplatformV1EvaluationRunEvaluationConfigPromptTemplate $promptTemplate)
+  {
+    $this->promptTemplate = $promptTemplate;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1EvaluationRunEvaluationConfigPromptTemplate
+   */
+  public function getPromptTemplate()
+  {
+    return $this->promptTemplate;
+  }
+  /**
+   * Optional. The rubric configs for the evaluation run. They are used to
+   * generate rubrics which can be used by rubric-based metrics. Multiple rubric
+   * configs can be specified for rubric generation but only one rubric config
+   * can be used for a rubric-based metric. If more than one rubric config is
+   * provided, the evaluation metric must specify a rubric group key. Note that
+   * if a generation spec is specified on both a rubric config and an evaluation
+   * metric, the rubrics generated for the metric will be used for evaluation.
+   *
+   * @param GoogleCloudAiplatformV1EvaluationRubricConfig[] $rubricConfigs
+   */
+  public function setRubricConfigs($rubricConfigs)
+  {
+    $this->rubricConfigs = $rubricConfigs;
+  }
+  /**
+   * @return GoogleCloudAiplatformV1EvaluationRubricConfig[]
+   */
+  public function getRubricConfigs()
+  {
+    return $this->rubricConfigs;
+  }
+}
+
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(GoogleCloudAiplatformV1EvaluationRunEvaluationConfig::class, 'Google_Service_Aiplatform_GoogleCloudAiplatformV1EvaluationRunEvaluationConfig');

@@ -19,6 +19,9 @@ namespace Google\Service\SecurityCommandCenter;
 
 class AssetDiscoveryConfig extends \Google\Collection
 {
+  public const INCLUSION_MODE_INCLUSION_MODE_UNSPECIFIED = 'INCLUSION_MODE_UNSPECIFIED';
+  public const INCLUSION_MODE_INCLUDE_ONLY = 'INCLUDE_ONLY';
+  public const INCLUSION_MODE_EXCLUDE = 'EXCLUDE';
   protected $collection_key = 'projectIds';
   /**
    * @var string[]
@@ -34,7 +37,7 @@ class AssetDiscoveryConfig extends \Google\Collection
   public $projectIds;
 
   /**
-   * @param string[]
+   * @param string[] $folderIds
    */
   public function setFolderIds($folderIds)
   {
@@ -48,21 +51,21 @@ class AssetDiscoveryConfig extends \Google\Collection
     return $this->folderIds;
   }
   /**
-   * @param string
+   * @param self::INCLUSION_MODE_* $inclusionMode
    */
   public function setInclusionMode($inclusionMode)
   {
     $this->inclusionMode = $inclusionMode;
   }
   /**
-   * @return string
+   * @return self::INCLUSION_MODE_*
    */
   public function getInclusionMode()
   {
     return $this->inclusionMode;
   }
   /**
-   * @param string[]
+   * @param string[] $projectIds
    */
   public function setProjectIds($projectIds)
   {

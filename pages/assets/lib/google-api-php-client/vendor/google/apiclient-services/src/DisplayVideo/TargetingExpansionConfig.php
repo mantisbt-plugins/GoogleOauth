@@ -20,41 +20,153 @@ namespace Google\Service\DisplayVideo;
 class TargetingExpansionConfig extends \Google\Model
 {
   /**
-   * @var bool
+   * Audience expansion level is not specified or is unknown in this version.
    */
-  public $excludeFirstPartyAudience;
+  public const AUDIENCE_EXPANSION_LEVEL_UNKNOWN = 'UNKNOWN';
   /**
+   * Audience expansion off.
+   */
+  public const AUDIENCE_EXPANSION_LEVEL_NO_REACH = 'NO_REACH';
+  /**
+   * Conservative audience expansion.
+   */
+  public const AUDIENCE_EXPANSION_LEVEL_LEAST_REACH = 'LEAST_REACH';
+  /**
+   * Moderate audience expansion.
+   */
+  public const AUDIENCE_EXPANSION_LEVEL_MID_REACH = 'MID_REACH';
+  /**
+   * Aggressive audience expansion.
+   */
+  public const AUDIENCE_EXPANSION_LEVEL_MOST_REACH = 'MOST_REACH';
+  /**
+   * Output only. Magnitude of expansion for eligible first-party user lists
+   * under this ad group. This field only applies to YouTube and Partners line
+   * item and ad group resources.
+   *
    * @var string
    */
-  public $targetingExpansionLevel;
+  public $audienceExpansionLevel;
+  /**
+   * Output only. Whether to exclude seed list for audience expansion. This
+   * field only applies to YouTube and Partners line item and ad group
+   * resources.
+   *
+   * @var bool
+   */
+  public $audienceExpansionSeedListExcluded;
+  /**
+   * Required. Whether to enable Optimized Targeting for the line item.
+   * Optimized targeting is not compatible with all bid strategies. Attempting
+   * to set this field to `true` for a line item using the BiddingStrategy field
+   * fixed_bid or one of the following combinations of BiddingStrategy fields
+   * and BiddingStrategyPerformanceGoalType will result in an error:
+   * maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` *
+   * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` *
+   * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED`
+   * performance_goal_auto_bid: *
+   * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM` This also applies if
+   * the line item inherits one of the above bid strategies from the parent
+   * insertion order. Bid strategies set at the insertion order-level will be
+   * inherited by their line items if the `InsertionOrder` budget field
+   * automationType is set to `INSERTION_ORDER_AUTOMATION_TYPE_BUDGET` or
+   * `INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET`.
+   *
+   * @var bool
+   */
+  public $enableOptimizedTargeting;
+  /**
+   * Optional. Whether to exclude demographic expansion for Optimized Targeting.
+   * This field can only be set for Demand Gen ad groups.
+   *
+   * @var bool
+   */
+  public $excludeDemographicExpansion;
 
   /**
-   * @param bool
+   * Output only. Magnitude of expansion for eligible first-party user lists
+   * under this ad group. This field only applies to YouTube and Partners line
+   * item and ad group resources.
+   *
+   * Accepted values: UNKNOWN, NO_REACH, LEAST_REACH, MID_REACH, MOST_REACH
+   *
+   * @param self::AUDIENCE_EXPANSION_LEVEL_* $audienceExpansionLevel
    */
-  public function setExcludeFirstPartyAudience($excludeFirstPartyAudience)
+  public function setAudienceExpansionLevel($audienceExpansionLevel)
   {
-    $this->excludeFirstPartyAudience = $excludeFirstPartyAudience;
+    $this->audienceExpansionLevel = $audienceExpansionLevel;
+  }
+  /**
+   * @return self::AUDIENCE_EXPANSION_LEVEL_*
+   */
+  public function getAudienceExpansionLevel()
+  {
+    return $this->audienceExpansionLevel;
+  }
+  /**
+   * Output only. Whether to exclude seed list for audience expansion. This
+   * field only applies to YouTube and Partners line item and ad group
+   * resources.
+   *
+   * @param bool $audienceExpansionSeedListExcluded
+   */
+  public function setAudienceExpansionSeedListExcluded($audienceExpansionSeedListExcluded)
+  {
+    $this->audienceExpansionSeedListExcluded = $audienceExpansionSeedListExcluded;
   }
   /**
    * @return bool
    */
-  public function getExcludeFirstPartyAudience()
+  public function getAudienceExpansionSeedListExcluded()
   {
-    return $this->excludeFirstPartyAudience;
+    return $this->audienceExpansionSeedListExcluded;
   }
   /**
-   * @param string
+   * Required. Whether to enable Optimized Targeting for the line item.
+   * Optimized targeting is not compatible with all bid strategies. Attempting
+   * to set this field to `true` for a line item using the BiddingStrategy field
+   * fixed_bid or one of the following combinations of BiddingStrategy fields
+   * and BiddingStrategyPerformanceGoalType will result in an error:
+   * maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` *
+   * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` *
+   * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED`
+   * performance_goal_auto_bid: *
+   * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM` This also applies if
+   * the line item inherits one of the above bid strategies from the parent
+   * insertion order. Bid strategies set at the insertion order-level will be
+   * inherited by their line items if the `InsertionOrder` budget field
+   * automationType is set to `INSERTION_ORDER_AUTOMATION_TYPE_BUDGET` or
+   * `INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET`.
+   *
+   * @param bool $enableOptimizedTargeting
    */
-  public function setTargetingExpansionLevel($targetingExpansionLevel)
+  public function setEnableOptimizedTargeting($enableOptimizedTargeting)
   {
-    $this->targetingExpansionLevel = $targetingExpansionLevel;
+    $this->enableOptimizedTargeting = $enableOptimizedTargeting;
   }
   /**
-   * @return string
+   * @return bool
    */
-  public function getTargetingExpansionLevel()
+  public function getEnableOptimizedTargeting()
   {
-    return $this->targetingExpansionLevel;
+    return $this->enableOptimizedTargeting;
+  }
+  /**
+   * Optional. Whether to exclude demographic expansion for Optimized Targeting.
+   * This field can only be set for Demand Gen ad groups.
+   *
+   * @param bool $excludeDemographicExpansion
+   */
+  public function setExcludeDemographicExpansion($excludeDemographicExpansion)
+  {
+    $this->excludeDemographicExpansion = $excludeDemographicExpansion;
+  }
+  /**
+   * @return bool
+   */
+  public function getExcludeDemographicExpansion()
+  {
+    return $this->excludeDemographicExpansion;
   }
 }
 

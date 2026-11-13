@@ -25,7 +25,7 @@ class GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata extends \Goog
   public $version;
 
   /**
-   * @param string
+   * @param string $version
    */
   public function setVersion($version)
   {

@@ -20,14 +20,26 @@ namespace Google\Service\AndroidPublisher;
 class AutoRenewingPlan extends \Google\Model
 {
   /**
+   * If the subscription is currently set to auto-renew, e.g. the user has not
+   * canceled the subscription
+   *
    * @var bool
    */
   public $autoRenewEnabled;
+  protected $installmentDetailsType = InstallmentPlan::class;
+  protected $installmentDetailsDataType = '';
   protected $priceChangeDetailsType = SubscriptionItemPriceChangeDetails::class;
   protected $priceChangeDetailsDataType = '';
+  protected $priceStepUpConsentDetailsType = PriceStepUpConsentDetails::class;
+  protected $priceStepUpConsentDetailsDataType = '';
+  protected $recurringPriceType = Money::class;
+  protected $recurringPriceDataType = '';
 
   /**
-   * @param bool
+   * If the subscription is currently set to auto-renew, e.g. the user has not
+   * canceled the subscription
+   *
+   * @param bool $autoRenewEnabled
    */
   public function setAutoRenewEnabled($autoRenewEnabled)
   {
@@ -41,7 +53,27 @@ class AutoRenewingPlan extends \Google\Model
     return $this->autoRenewEnabled;
   }
   /**
-   * @param SubscriptionItemPriceChangeDetails
+   * The installment plan commitment and state related info for the auto
+   * renewing plan.
+   *
+   * @param InstallmentPlan $installmentDetails
+   */
+  public function setInstallmentDetails(InstallmentPlan $installmentDetails)
+  {
+    $this->installmentDetails = $installmentDetails;
+  }
+  /**
+   * @return InstallmentPlan
+   */
+  public function getInstallmentDetails()
+  {
+    return $this->installmentDetails;
+  }
+  /**
+   * The information of the last price change for the item since subscription
+   * signup.
+   *
+   * @param SubscriptionItemPriceChangeDetails $priceChangeDetails
    */
   public function setPriceChangeDetails(SubscriptionItemPriceChangeDetails $priceChangeDetails)
   {
@@ -53,6 +85,41 @@ class AutoRenewingPlan extends \Google\Model
   public function getPriceChangeDetails()
   {
     return $this->priceChangeDetails;
+  }
+  /**
+   * The information of the latest price step-up consent.
+   *
+   * @param PriceStepUpConsentDetails $priceStepUpConsentDetails
+   */
+  public function setPriceStepUpConsentDetails(PriceStepUpConsentDetails $priceStepUpConsentDetails)
+  {
+    $this->priceStepUpConsentDetails = $priceStepUpConsentDetails;
+  }
+  /**
+   * @return PriceStepUpConsentDetails
+   */
+  public function getPriceStepUpConsentDetails()
+  {
+    return $this->priceStepUpConsentDetails;
+  }
+  /**
+   * The current recurring price of the auto renewing plan. Note that the price
+   * does not take into account discounts and does not include taxes. For tax-
+   * exclusive pricing, please call orders.get API instead if transaction
+   * details are needed.
+   *
+   * @param Money $recurringPrice
+   */
+  public function setRecurringPrice(Money $recurringPrice)
+  {
+    $this->recurringPrice = $recurringPrice;
+  }
+  /**
+   * @return Money
+   */
+  public function getRecurringPrice()
+  {
+    return $this->recurringPrice;
   }
 }
 

@@ -20,36 +20,114 @@ namespace Google\Service\RecaptchaEnterprise;
 class GoogleCloudRecaptchaenterpriseV1TokenProperties extends \Google\Model
 {
   /**
+   * Default unspecified type.
+   */
+  public const INVALID_REASON_INVALID_REASON_UNSPECIFIED = 'INVALID_REASON_UNSPECIFIED';
+  /**
+   * If the failure reason was not accounted for.
+   */
+  public const INVALID_REASON_UNKNOWN_INVALID_REASON = 'UNKNOWN_INVALID_REASON';
+  /**
+   * The provided user verification token was malformed.
+   */
+  public const INVALID_REASON_MALFORMED = 'MALFORMED';
+  /**
+   * The user verification token had expired.
+   */
+  public const INVALID_REASON_EXPIRED = 'EXPIRED';
+  /**
+   * The user verification had already been seen.
+   */
+  public const INVALID_REASON_DUPE = 'DUPE';
+  /**
+   * The user verification token was not present.
+   */
+  public const INVALID_REASON_MISSING = 'MISSING';
+  /**
+   * A retriable error (such as network failure) occurred on the browser. Could
+   * easily be simulated by an attacker.
+   */
+  public const INVALID_REASON_BROWSER_ERROR = 'BROWSER_ERROR';
+  /**
+   * The action provided at token generation was different than the
+   * `expected_action` in the assessment request. The comparison is case-
+   * insensitive. This reason can only be returned if an `expected_action` is
+   * provided and either: - your `site_key` is a Universal key, or - your
+   * `site_key` has the `POLICY_BASED_CHALLENGE` integration type with an action
+   * score threshold higher than 0.0
+   */
+  public const INVALID_REASON_UNEXPECTED_ACTION = 'UNEXPECTED_ACTION';
+  /**
+   * The key used to generate the token does not match the `site_key`.
+   */
+  public const INVALID_REASON_KEY_MISMATCH = 'KEY_MISMATCH';
+  /**
+   * The domain of the page on which the token was generated does not match the
+   * `allowed_domains` configured in the `site_key`.
+   */
+  public const INVALID_REASON_DOMAIN_MISMATCH = 'DOMAIN_MISMATCH';
+  /**
+   * Output only. Action name provided at token generation.
+   *
    * @var string
    */
   public $action;
   /**
+   * Output only. The name of the Android package with which the token was
+   * generated (Android keys only).
+   *
    * @var string
    */
   public $androidPackageName;
+  protected $clientPropertiesType = GoogleCloudRecaptchaenterpriseV1TokenPropertiesClientProperties::class;
+  protected $clientPropertiesDataType = '';
   /**
+   * Output only. Indicates a failure collecting reCAPTCHA signals at token
+   * generation. This might be a transient condition, or persistent for a user's
+   * environment.
+   *
+   * @var bool
+   */
+  public $clientSignalsFailed;
+  /**
+   * Output only. The timestamp corresponding to the generation of the token.
+   *
    * @var string
    */
   public $createTime;
   /**
+   * Output only. The hostname of the page on which the token was generated (Web
+   * keys only).
+   *
    * @var string
    */
   public $hostname;
   /**
+   * Output only. Reason associated with the response when valid = false.
+   *
    * @var string
    */
   public $invalidReason;
   /**
+   * Output only. The ID of the iOS bundle with which the token was generated
+   * (iOS keys only).
+   *
    * @var string
    */
   public $iosBundleId;
   /**
+   * Output only. Indicates whether the provided user response token is valid.
+   * If `false`, the token is invalid, either because the user failed the
+   * challenge or for a reason provided in the `invalid_reason` field.
+   *
    * @var bool
    */
   public $valid;
 
   /**
-   * @param string
+   * Output only. Action name provided at token generation.
+   *
+   * @param string $action
    */
   public function setAction($action)
   {
@@ -63,7 +141,10 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties extends \Google\Model
     return $this->action;
   }
   /**
-   * @param string
+   * Output only. The name of the Android package with which the token was
+   * generated (Android keys only).
+   *
+   * @param string $androidPackageName
    */
   public function setAndroidPackageName($androidPackageName)
   {
@@ -77,7 +158,44 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties extends \Google\Model
     return $this->androidPackageName;
   }
   /**
-   * @param string
+   * Output only. Information collected by the reCAPTCHA Enterprise client-side
+   * integration when the token is generated.
+   *
+   * @param GoogleCloudRecaptchaenterpriseV1TokenPropertiesClientProperties $clientProperties
+   */
+  public function setClientProperties(GoogleCloudRecaptchaenterpriseV1TokenPropertiesClientProperties $clientProperties)
+  {
+    $this->clientProperties = $clientProperties;
+  }
+  /**
+   * @return GoogleCloudRecaptchaenterpriseV1TokenPropertiesClientProperties
+   */
+  public function getClientProperties()
+  {
+    return $this->clientProperties;
+  }
+  /**
+   * Output only. Indicates a failure collecting reCAPTCHA signals at token
+   * generation. This might be a transient condition, or persistent for a user's
+   * environment.
+   *
+   * @param bool $clientSignalsFailed
+   */
+  public function setClientSignalsFailed($clientSignalsFailed)
+  {
+    $this->clientSignalsFailed = $clientSignalsFailed;
+  }
+  /**
+   * @return bool
+   */
+  public function getClientSignalsFailed()
+  {
+    return $this->clientSignalsFailed;
+  }
+  /**
+   * Output only. The timestamp corresponding to the generation of the token.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -91,7 +209,10 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties extends \Google\Model
     return $this->createTime;
   }
   /**
-   * @param string
+   * Output only. The hostname of the page on which the token was generated (Web
+   * keys only).
+   *
+   * @param string $hostname
    */
   public function setHostname($hostname)
   {
@@ -105,21 +226,30 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties extends \Google\Model
     return $this->hostname;
   }
   /**
-   * @param string
+   * Output only. Reason associated with the response when valid = false.
+   *
+   * Accepted values: INVALID_REASON_UNSPECIFIED, UNKNOWN_INVALID_REASON,
+   * MALFORMED, EXPIRED, DUPE, MISSING, BROWSER_ERROR, UNEXPECTED_ACTION,
+   * KEY_MISMATCH, DOMAIN_MISMATCH
+   *
+   * @param self::INVALID_REASON_* $invalidReason
    */
   public function setInvalidReason($invalidReason)
   {
     $this->invalidReason = $invalidReason;
   }
   /**
-   * @return string
+   * @return self::INVALID_REASON_*
    */
   public function getInvalidReason()
   {
     return $this->invalidReason;
   }
   /**
-   * @param string
+   * Output only. The ID of the iOS bundle with which the token was generated
+   * (iOS keys only).
+   *
+   * @param string $iosBundleId
    */
   public function setIosBundleId($iosBundleId)
   {
@@ -133,7 +263,11 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties extends \Google\Model
     return $this->iosBundleId;
   }
   /**
-   * @param bool
+   * Output only. Indicates whether the provided user response token is valid.
+   * If `false`, the token is invalid, either because the user failed the
+   * challenge or for a reason provided in the `invalid_reason` field.
+   *
+   * @param bool $valid
    */
   public function setValid($valid)
   {

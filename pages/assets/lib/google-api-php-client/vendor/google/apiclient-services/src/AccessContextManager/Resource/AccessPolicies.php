@@ -46,6 +46,7 @@ class AccessPolicies extends \Google\Service\Resource
    * @param AccessPolicy $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create(AccessPolicy $postBody, $optParams = [])
   {
@@ -59,9 +60,10 @@ class AccessPolicies extends \Google\Service\Resource
    * long-lasting storage. (accessPolicies.delete)
    *
    * @param string $name Required. Resource name for the access policy to delete.
-   * Format `accessPolicies/{policy_id}`
+   * Format: `accessPolicies/{policy_id}`
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -73,9 +75,10 @@ class AccessPolicies extends \Google\Service\Resource
    * Returns an access policy based on the name. (accessPolicies.get)
    *
    * @param string $name Required. Resource name for the access policy to get.
-   * Format `accessPolicies/{policy_id}`
+   * Format: `accessPolicies/{policy_id}`
    * @param array $optParams Optional parameters.
    * @return AccessPolicy
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -94,6 +97,7 @@ class AccessPolicies extends \Google\Service\Resource
    * @param GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, GetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -114,6 +118,7 @@ class AccessPolicies extends \Google\Service\Resource
    * @opt_param string parent Required. Resource name for the container to list
    * AccessPolicy instances from. Format: `organizations/{org_id}`
    * @return ListAccessPoliciesResponse
+   * @throws \Google\Service\Exception
    */
   public function listAccessPolicies($optParams = [])
   {
@@ -126,14 +131,15 @@ class AccessPolicies extends \Google\Service\Resource
    * successful status after the changes to the access policy propagate to long-
    * lasting storage. (accessPolicies.patch)
    *
-   * @param string $name Output only. Resource name of the `AccessPolicy`. Format:
-   * `accessPolicies/{access_policy}`
+   * @param string $name Output only. Identifier. Resource name of the
+   * `AccessPolicy`. Format: `accessPolicies/{access_policy}`
    * @param AccessPolicy $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string updateMask Required. Mask to control which fields get
    * updated. Must be non-empty.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, AccessPolicy $postBody, $optParams = [])
   {
@@ -154,6 +160,7 @@ class AccessPolicies extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -164,7 +171,9 @@ class AccessPolicies extends \Google\Service\Resource
   /**
    * Returns the IAM permissions that the caller has on the specified Access
    * Context Manager resource. The resource can be an AccessPolicy, AccessLevel,
-   * or ServicePerimeter. This method does not support other resources.
+   * or ServicePerimeter. This method does not support other resources. **IAM
+   * Permissions**: No specific IAM permission is required to call this method. It
+   * returns the subset of the requested permissions that the caller possesses.
    * (accessPolicies.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
@@ -174,6 +183,7 @@ class AccessPolicies extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

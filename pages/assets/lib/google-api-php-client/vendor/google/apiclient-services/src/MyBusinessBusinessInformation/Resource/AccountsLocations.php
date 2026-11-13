@@ -45,6 +45,7 @@ class AccountsLocations extends \Google\Service\Resource
    * @opt_param bool validateOnly Optional. If true, the request is validated
    * without actually creating the location.
    * @return Location
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Location $postBody, $optParams = [])
   {
@@ -57,9 +58,13 @@ class AccountsLocations extends \Google\Service\Resource
    * (locations.listAccountsLocations)
    *
    * @param string $parent Required. The name of the account to fetch locations
-   * from. If the parent Account is of AccountType PERSONAL, only Locations that
-   * are directly owned by the Account are returned, otherwise it will return all
-   * accessible locations from the Account, either directly or indirectly.
+   * from. * **Specific Account ID**: If the account is of type
+   * `AccountType.PERSONAL`, the response returns only locations directly owned by
+   * that account. For all other types (e.g., `AccountType.LOCATION_GROUP`), it
+   * returns all accessible locations. * **Wildcard (`-`)**: Using `accounts/-`
+   * identifies the authenticated user. This scope defaults to
+   * `AccountType.PERSONAL` but includes both directly and indirectly owned
+   * locations (e.g., those accessible via member groups).
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter Optional. A filter constraining the locations to
@@ -83,6 +88,7 @@ class AccountsLocations extends \Google\Service\Resource
    * @opt_param string readMask Required. Read mask to specify what fields will be
    * returned in the response.
    * @return ListLocationsResponse
+   * @throws \Google\Service\Exception
    */
   public function listAccountsLocations($parent, $optParams = [])
   {

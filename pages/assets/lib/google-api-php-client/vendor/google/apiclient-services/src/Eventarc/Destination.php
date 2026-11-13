@@ -20,6 +20,12 @@ namespace Google\Service\Eventarc;
 class Destination extends \Google\Model
 {
   /**
+   * The Cloud Function resource name. Cloud Functions V1 and V2 are supported.
+   * Format: `projects/{project}/locations/{location}/functions/{function}` This
+   * is a read-only field. Creating Cloud Functions V1/V2 triggers is only
+   * supported via the Cloud Functions product. An error will be returned if the
+   * user sets this value.
+   *
    * @var string
    */
   public $cloudFunction;
@@ -27,13 +33,28 @@ class Destination extends \Google\Model
   protected $cloudRunDataType = '';
   protected $gkeType = GKE::class;
   protected $gkeDataType = '';
+  protected $httpEndpointType = HttpEndpoint::class;
+  protected $httpEndpointDataType = '';
+  protected $networkConfigType = NetworkConfig::class;
+  protected $networkConfigDataType = '';
   /**
+   * The resource name of the Workflow whose Executions are triggered by the
+   * events. The Workflow resource should be deployed in the same project as the
+   * trigger. Format:
+   * `projects/{project}/locations/{location}/workflows/{workflow}`
+   *
    * @var string
    */
   public $workflow;
 
   /**
-   * @param string
+   * The Cloud Function resource name. Cloud Functions V1 and V2 are supported.
+   * Format: `projects/{project}/locations/{location}/functions/{function}` This
+   * is a read-only field. Creating Cloud Functions V1/V2 triggers is only
+   * supported via the Cloud Functions product. An error will be returned if the
+   * user sets this value.
+   *
+   * @param string $cloudFunction
    */
   public function setCloudFunction($cloudFunction)
   {
@@ -47,7 +68,10 @@ class Destination extends \Google\Model
     return $this->cloudFunction;
   }
   /**
-   * @param CloudRun
+   * Cloud Run fully-managed resource that receives the events. The resource
+   * should be in the same project as the trigger.
+   *
+   * @param CloudRun $cloudRun
    */
   public function setCloudRun(CloudRun $cloudRun)
   {
@@ -61,7 +85,10 @@ class Destination extends \Google\Model
     return $this->cloudRun;
   }
   /**
-   * @param GKE
+   * A GKE service capable of receiving events. The service should be running in
+   * the same project as the trigger.
+   *
+   * @param GKE $gke
    */
   public function setGke(GKE $gke)
   {
@@ -75,7 +102,46 @@ class Destination extends \Google\Model
     return $this->gke;
   }
   /**
-   * @param string
+   * An HTTP endpoint destination described by an URI.
+   *
+   * @param HttpEndpoint $httpEndpoint
+   */
+  public function setHttpEndpoint(HttpEndpoint $httpEndpoint)
+  {
+    $this->httpEndpoint = $httpEndpoint;
+  }
+  /**
+   * @return HttpEndpoint
+   */
+  public function getHttpEndpoint()
+  {
+    return $this->httpEndpoint;
+  }
+  /**
+   * Optional. Network config is used to configure how Eventarc resolves and
+   * connect to a destination. This should only be used with HttpEndpoint
+   * destination type.
+   *
+   * @param NetworkConfig $networkConfig
+   */
+  public function setNetworkConfig(NetworkConfig $networkConfig)
+  {
+    $this->networkConfig = $networkConfig;
+  }
+  /**
+   * @return NetworkConfig
+   */
+  public function getNetworkConfig()
+  {
+    return $this->networkConfig;
+  }
+  /**
+   * The resource name of the Workflow whose Executions are triggered by the
+   * events. The Workflow resource should be deployed in the same project as the
+   * trigger. Format:
+   * `projects/{project}/locations/{location}/workflows/{workflow}`
+   *
+   * @param string $workflow
    */
   public function setWorkflow($workflow)
   {

@@ -36,6 +36,7 @@ class ProjectsLocationsRepositoriesDockerImages extends \Google\Service\Resource
    * @param string $name Required. The name of the docker images.
    * @param array $optParams Optional parameters.
    * @return DockerImage
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -52,10 +53,12 @@ class ProjectsLocationsRepositoriesDockerImages extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string orderBy The field to order the results by.
-   * @opt_param int pageSize The maximum number of artifacts to return.
+   * @opt_param int pageSize The maximum number of artifacts to return. Maximum
+   * page size is 1,000.
    * @opt_param string pageToken The next_page_token value returned from a
    * previous list request, if any.
    * @return ListDockerImagesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsRepositoriesDockerImages($parent, $optParams = [])
   {

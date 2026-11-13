@@ -26,7 +26,7 @@ class GoogleCloudDialogflowV2IntentMessageText extends \Google\Collection
   public $text;
 
   /**
-   * @param string[]
+   * @param string[] $text
    */
   public function setText($text)
   {

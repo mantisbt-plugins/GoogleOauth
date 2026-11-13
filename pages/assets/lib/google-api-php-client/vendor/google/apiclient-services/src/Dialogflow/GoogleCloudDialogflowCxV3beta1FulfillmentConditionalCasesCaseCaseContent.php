@@ -25,7 +25,7 @@ class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCaseCaseContent e
   protected $messageDataType = '';
 
   /**
-   * @param GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases
+   * @param GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases $additionalCases
    */
   public function setAdditionalCases(GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases $additionalCases)
   {
@@ -39,7 +39,7 @@ class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCaseCaseContent e
     return $this->additionalCases;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1ResponseMessage
+   * @param GoogleCloudDialogflowCxV3beta1ResponseMessage $message
    */
   public function setMessage(GoogleCloudDialogflowCxV3beta1ResponseMessage $message)
   {

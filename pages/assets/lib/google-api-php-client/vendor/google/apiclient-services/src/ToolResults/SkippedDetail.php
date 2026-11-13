@@ -20,20 +20,35 @@ namespace Google\Service\ToolResults;
 class SkippedDetail extends \Google\Model
 {
   /**
+   * If the App doesn't support the specific API level.
+   *
    * @var bool
    */
   public $incompatibleAppVersion;
   /**
+   * If the App doesn't run on the specific architecture, for example, x86.
+   *
    * @var bool
    */
   public $incompatibleArchitecture;
   /**
+   * If the requested OS version doesn't run on the specific device model.
+   *
    * @var bool
    */
   public $incompatibleDevice;
+  /**
+   * Indicates that the test could not be scheduled in the requested time
+   * because no suitable device was available.
+   *
+   * @var bool
+   */
+  public $pendingTimeout;
 
   /**
-   * @param bool
+   * If the App doesn't support the specific API level.
+   *
+   * @param bool $incompatibleAppVersion
    */
   public function setIncompatibleAppVersion($incompatibleAppVersion)
   {
@@ -47,7 +62,9 @@ class SkippedDetail extends \Google\Model
     return $this->incompatibleAppVersion;
   }
   /**
-   * @param bool
+   * If the App doesn't run on the specific architecture, for example, x86.
+   *
+   * @param bool $incompatibleArchitecture
    */
   public function setIncompatibleArchitecture($incompatibleArchitecture)
   {
@@ -61,7 +78,9 @@ class SkippedDetail extends \Google\Model
     return $this->incompatibleArchitecture;
   }
   /**
-   * @param bool
+   * If the requested OS version doesn't run on the specific device model.
+   *
+   * @param bool $incompatibleDevice
    */
   public function setIncompatibleDevice($incompatibleDevice)
   {
@@ -73,6 +92,23 @@ class SkippedDetail extends \Google\Model
   public function getIncompatibleDevice()
   {
     return $this->incompatibleDevice;
+  }
+  /**
+   * Indicates that the test could not be scheduled in the requested time
+   * because no suitable device was available.
+   *
+   * @param bool $pendingTimeout
+   */
+  public function setPendingTimeout($pendingTimeout)
+  {
+    $this->pendingTimeout = $pendingTimeout;
+  }
+  /**
+   * @return bool
+   */
+  public function getPendingTimeout()
+  {
+    return $this->pendingTimeout;
   }
 }
 

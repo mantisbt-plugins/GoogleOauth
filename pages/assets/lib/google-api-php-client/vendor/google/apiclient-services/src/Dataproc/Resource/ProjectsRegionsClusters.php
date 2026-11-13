@@ -48,8 +48,7 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    *
    * @param string $projectId Required. The ID of the Google Cloud Platform
    * project that the cluster belongs to.
-   * @param string $region Required. The Dataproc region in which to handle the
-   * request.
+   * @param string $region Required. The region in which to handle the request.
    * @param Cluster $postBody
    * @param array $optParams Optional parameters.
    *
@@ -65,6 +64,7 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens
    * (-). The maximum length is 40 characters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($projectId, $region, Cluster $postBody, $optParams = [])
   {
@@ -79,14 +79,21 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    *
    * @param string $projectId Required. The ID of the Google Cloud Platform
    * project that the cluster belongs to.
-   * @param string $region Required. The Dataproc region in which to handle the
-   * request.
+   * @param string $region Required. The region in which to handle the request.
    * @param string $clusterName Required. The cluster name.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string clusterUuid Optional. Specifying the cluster_uuid means the
    * RPC should fail (with error NOT_FOUND) if cluster with specified UUID does
    * not exist.
+   * @opt_param string gracefulTerminationTimeout Optional. The graceful
+   * termination timeout for the deletion of the cluster. Indicate the time the
+   * request will wait to complete the running jobs on the cluster before its
+   * forceful deletion. Default value is 0 indicating that the user has not
+   * enabled the graceful termination. Value can be between 60 second and 6 Hours,
+   * in case the graceful termination is enabled. (There is no separate flag to
+   * check the enabling or disabling of graceful termination, it can be checked by
+   * the values in the field).
    * @opt_param string requestId Optional. A unique ID used to identify the
    * request. If the server receives two DeleteClusterRequest (https://cloud.googl
    * e.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.datap
@@ -97,6 +104,7 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens
    * (-). The maximum length is 40 characters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($projectId, $region, $clusterName, $optParams = [])
   {
@@ -114,12 +122,12 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    *
    * @param string $projectId Required. The ID of the Google Cloud Platform
    * project that the cluster belongs to.
-   * @param string $region Required. The Dataproc region in which to handle the
-   * request.
+   * @param string $region Required. The region in which to handle the request.
    * @param string $clusterName Required. The cluster name.
    * @param DiagnoseClusterRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function diagnose($projectId, $region, $clusterName, DiagnoseClusterRequest $postBody, $optParams = [])
   {
@@ -132,11 +140,11 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    *
    * @param string $projectId Required. The ID of the Google Cloud Platform
    * project that the cluster belongs to.
-   * @param string $region Required. The Dataproc region in which to handle the
-   * request.
+   * @param string $region Required. The region in which to handle the request.
    * @param string $clusterName Required. The cluster name.
    * @param array $optParams Optional parameters.
    * @return Cluster
+   * @throws \Google\Service\Exception
    */
   public function get($projectId, $region, $clusterName, $optParams = [])
   {
@@ -155,6 +163,7 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    * @param GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, GetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -175,6 +184,7 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    * @param InjectCredentialsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function injectCredentials($project, $region, $cluster, InjectCredentialsRequest $postBody, $optParams = [])
   {
@@ -188,24 +198,28 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    *
    * @param string $projectId Required. The ID of the Google Cloud Platform
    * project that the cluster belongs to.
-   * @param string $region Required. The Dataproc region in which to handle the
-   * request.
+   * @param string $region Required. The region in which to handle the request.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter Optional. A filter constraining the clusters to
    * list. Filters are case-sensitive and have the following syntax:field = value
    * AND field = value ...where field is one of status.state, clusterName, or
-   * labels.[KEY], and [KEY] is a label key. value can be * to match all values.
+   * labels.[KEY], and [KEY] is a label key. value can be "*" to match all values.
    * status.state can be one of the following: ACTIVE, INACTIVE, CREATING,
-   * RUNNING, ERROR, DELETING, or UPDATING. ACTIVE contains the CREATING,
-   * UPDATING, and RUNNING states. INACTIVE contains the DELETING and ERROR
-   * states. clusterName is the name of the cluster provided at creation time.
-   * Only the logical AND operator is supported; space-separated items are treated
-   * as having an implicit AND operator.Example filter:status.state = ACTIVE AND
-   * clusterName = mycluster AND labels.env = staging AND labels.starred = *
-   * @opt_param int pageSize Optional. The standard List page size.
-   * @opt_param string pageToken Optional. The standard List page token.
+   * RUNNING, ERROR, DELETING, UPDATING, STOPPING, or STOPPED. ACTIVE contains the
+   * CREATING, UPDATING, and RUNNING states. INACTIVE contains the DELETING,
+   * ERROR, STOPPING, and STOPPED states. clusterName is the name of the cluster
+   * provided at creation time. Only the logical AND operator is supported; space-
+   * separated items are treated as having an implicit AND operator.Example
+   * filter:status.state = ACTIVE AND clusterName = mycluster AND labels.env =
+   * staging AND labels.starred = *
+   * @opt_param int pageSize Optional. The maximum number of clusters to return in
+   * each response. The service may return fewer than this value. If unspecified,
+   * the default value is 200. The maximum value is 1000.
+   * @opt_param string pageToken Optional. A page token received from a previous
+   * ListClusters call. Provide this token to retrieve the subsequent page.
    * @return ListClustersResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsRegionsClusters($projectId, $region, $optParams = [])
   {
@@ -221,8 +235,7 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    *
    * @param string $projectId Required. The ID of the Google Cloud Platform
    * project the cluster belongs to.
-   * @param string $region Required. The Dataproc region in which to handle the
-   * request.
+   * @param string $region Required. The region in which to handle the request.
    * @param string $clusterName Required. The cluster name.
    * @param Cluster $postBody
    * @param array $optParams Optional parameters.
@@ -234,8 +247,7 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    * potentially interrupting jobs). Default timeout is 0 (for forceful
    * decommission), and the maximum allowed timeout is 1 day. (see JSON
    * representation of Duration (https://developers.google.com/protocol-
-   * buffers/docs/proto3#json)).Only supported on Dataproc image versions 1.2 and
-   * higher.
+   * buffers/docs/proto3#json)).Supported in image versions 1.2 and higher.
    * @opt_param string requestId Optional. A unique ID used to identify the
    * request. If the server receives two UpdateClusterRequest (https://cloud.googl
    * e.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.datap
@@ -261,6 +273,7 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    * config.autoscaling_config.policy_uri Use, stop using, or change autoscaling
    * policies
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($projectId, $region, $clusterName, Cluster $postBody, $optParams = [])
   {
@@ -273,12 +286,12 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    *
    * @param string $projectId Required. The ID of the Google Cloud Platform
    * project the cluster belongs to.
-   * @param string $region Required. The Dataproc region in which to handle the
-   * request.
+   * @param string $region Required. The region in which to handle the request.
    * @param string $clusterName Required. The cluster name.
    * @param RepairClusterRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function repair($projectId, $region, $clusterName, RepairClusterRequest $postBody, $optParams = [])
   {
@@ -298,6 +311,7 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -310,12 +324,12 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    *
    * @param string $projectId Required. The ID of the Google Cloud Platform
    * project the cluster belongs to.
-   * @param string $region Required. The Dataproc region in which to handle the
-   * request.
+   * @param string $region Required. The region in which to handle the request.
    * @param string $clusterName Required. The cluster name.
    * @param StartClusterRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function start($projectId, $region, $clusterName, StartClusterRequest $postBody, $optParams = [])
   {
@@ -328,12 +342,12 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    *
    * @param string $projectId Required. The ID of the Google Cloud Platform
    * project the cluster belongs to.
-   * @param string $region Required. The Dataproc region in which to handle the
-   * request.
+   * @param string $region Required. The region in which to handle the request.
    * @param string $clusterName Required. The cluster name.
    * @param StopClusterRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function stop($projectId, $region, $clusterName, StopClusterRequest $postBody, $optParams = [])
   {
@@ -355,6 +369,7 @@ class ProjectsRegionsClusters extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

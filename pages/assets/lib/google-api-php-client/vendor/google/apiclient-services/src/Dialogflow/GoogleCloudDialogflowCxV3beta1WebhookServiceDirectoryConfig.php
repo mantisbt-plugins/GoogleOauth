@@ -27,7 +27,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig extends \Googl
   public $service;
 
   /**
-   * @param GoogleCloudDialogflowCxV3beta1WebhookGenericWebService
+   * @param GoogleCloudDialogflowCxV3beta1WebhookGenericWebService $genericWebService
    */
   public function setGenericWebService(GoogleCloudDialogflowCxV3beta1WebhookGenericWebService $genericWebService)
   {
@@ -41,7 +41,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig extends \Googl
     return $this->genericWebService;
   }
   /**
-   * @param string
+   * @param string $service
    */
   public function setService($service)
   {

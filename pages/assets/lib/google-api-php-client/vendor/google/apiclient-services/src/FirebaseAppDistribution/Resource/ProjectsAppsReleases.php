@@ -40,10 +40,11 @@ class ProjectsAppsReleases extends \Google\Service\Resource
    *
    * @param string $parent Required. The name of the app resource, which is the
    * parent of the release resources. Format:
-   * `projects/{project_number}/apps/{app_id}`
+   * `projects/{project_number}/apps/{app}`
    * @param GoogleFirebaseAppdistroV1BatchDeleteReleasesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function batchDelete($parent, GoogleFirebaseAppdistroV1BatchDeleteReleasesRequest $postBody, $optParams = [])
   {
@@ -60,10 +61,11 @@ class ProjectsAppsReleases extends \Google\Service\Resource
    * (releases.distribute)
    *
    * @param string $name Required. The name of the release resource to distribute.
-   * Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}`
+   * Format: `projects/{project_number}/apps/{app}/releases/{release}`
    * @param GoogleFirebaseAppdistroV1DistributeReleaseRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleFirebaseAppdistroV1DistributeReleaseResponse
+   * @throws \Google\Service\Exception
    */
   public function distribute($name, GoogleFirebaseAppdistroV1DistributeReleaseRequest $postBody, $optParams = [])
   {
@@ -75,9 +77,10 @@ class ProjectsAppsReleases extends \Google\Service\Resource
    * Gets a release. (releases.get)
    *
    * @param string $name Required. The name of the release resource to retrieve.
-   * Format: projects/{project_number}/apps/{app_id}/releases/{release_id}
+   * Format: projects/{project_number}/apps/{app}/releases/{release}
    * @param array $optParams Optional parameters.
    * @return GoogleFirebaseAppdistroV1Release
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -91,29 +94,40 @@ class ProjectsAppsReleases extends \Google\Service\Resource
    *
    * @param string $parent Required. The name of the app resource, which is the
    * parent of the release resources. Format:
-   * `projects/{project_number}/apps/{app_id}`
+   * `projects/{project_number}/apps/{app}`
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter The expression to filter releases listed in the
-   * response. To learn more about filtering, refer to [Google's AIP-160
-   * standard](http://aip.dev/160). Supported fields: - `releaseNotes.text`
-   * supports `=` (can contain a wildcard character (`*`) at the beginning or end
-   * of the string) - `createTime` supports `<`, `<=`, `>` and `>=`, and expects
-   * an RFC-3339 formatted string Examples: - `createTime <=
+   * @opt_param string filter Optional. The expression to filter releases listed
+   * in the response. To learn more about filtering, refer to the [AIP-160
+   * standard](http://aip.dev/160). Supported fields: - Time fields supporting
+   * `<`, `<=`, `>` and `>=`; expecting an RFC-3339 formatted string: -
+   * `create_time` (or `createTime`) - `update_time` (or `updateTime`) -
+   * `expire_time` (or `expireTime`) - Text fields supporting `=`. The compared
+   * text can contain a wildcard character (`*`) at the beginning and/or end of
+   * the string which also enables case-insensitive matching: -
+   * `release_notes.text` (or `releaseNotes.text`) - `display_version` (or
+   * `displayVersion`) - `build_version` (or `buildVersion`). Examples: -
+   * `createTime <= "2021-09-08T00:00:00+04:00"` - `expire_time >
    * "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime >=
-   * "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"`
-   * @opt_param string orderBy The fields used to order releases. Supported
-   * fields: - `createTime` To specify descending order for a field, append a
-   * "desc" suffix, for example, `createTime desc`. If this parameter is not set,
-   * releases are ordered by `createTime` in descending order.
-   * @opt_param int pageSize The maximum number of releases to return. The service
-   * may return fewer than this value. The valid range is [1-100]; If unspecified
-   * (0), at most 25 releases are returned. Values above 100 are coerced to 100.
-   * @opt_param string pageToken A page token, received from a previous
+   * "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"` -
+   * `(display_version = "v1.0.0-rc2" AND `build_version = "123") OR release_notes
+   * = "*v1.0.0-rc2 (123)*"`
+   * @opt_param string orderBy Optional. The fields used to order releases.
+   * Supported fields: - `create_time` (or `createTime`) - `update_time` (or
+   * `updateTime`) - `expire_time` (or `expireTime`) To specify descending order
+   * for a field, append a "desc" suffix, for example, `createTime desc`. If this
+   * parameter is not set, releases are ordered by `createTime` in descending
+   * order.
+   * @opt_param int pageSize Optional. The maximum number of releases to return.
+   * The service may return fewer than this value. The valid range is [1-100]; If
+   * unspecified (0), at most 25 releases are returned. Values above 100 are
+   * coerced to 100.
+   * @opt_param string pageToken Optional. A page token, received from a previous
    * `ListReleases` call. Provide this to retrieve the subsequent page. When
    * paginating, all other parameters provided to `ListReleases` must match the
    * call that provided the page token.
    * @return GoogleFirebaseAppdistroV1ListReleasesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsAppsReleases($parent, $optParams = [])
   {
@@ -125,12 +139,13 @@ class ProjectsAppsReleases extends \Google\Service\Resource
    * Updates a release. (releases.patch)
    *
    * @param string $name The name of the release resource. Format:
-   * `projects/{project_number}/apps/{app_id}/releases/{release_id}`
+   * `projects/{project_number}/apps/{app}/releases/{release}`
    * @param GoogleFirebaseAppdistroV1Release $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string updateMask The list of fields to update.
+   * @opt_param string updateMask Optional. The list of fields to update.
    * @return GoogleFirebaseAppdistroV1Release
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleFirebaseAppdistroV1Release $postBody, $optParams = [])
   {

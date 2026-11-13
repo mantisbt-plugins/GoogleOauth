@@ -37,6 +37,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * @param string $name Resource name for the location.
    * @param array $optParams Optional parameters.
    * @return Location
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -45,11 +46,13 @@ class ProjectsLocations extends \Google\Service\Resource
     return $this->call('get', [$params], Location::class);
   }
   /**
-   * Get a GoogleChannelConfig (locations.getGoogleChannelConfig)
+   * Get a GoogleChannelConfig. The name of the GoogleChannelConfig in the
+   * response is ALWAYS coded with projectID. (locations.getGoogleChannelConfig)
    *
    * @param string $name Required. The name of the config to get.
    * @param array $optParams Optional parameters.
    * @return GoogleChannelConfig
+   * @throws \Google\Service\Exception
    */
   public function getGoogleChannelConfig($name, $optParams = [])
   {
@@ -58,13 +61,24 @@ class ProjectsLocations extends \Google\Service\Resource
     return $this->call('getGoogleChannelConfig', [$params], GoogleChannelConfig::class);
   }
   /**
-   * Lists information about the supported locations for this service.
-   * (locations.listProjectsLocations)
+   * Lists information about the supported locations for this service. This method
+   * lists locations based on the resource scope provided in the
+   * ListLocationsRequest.name field: * **Global locations**: If `name` is empty,
+   * the method lists the public locations available to all projects. * **Project-
+   * specific locations**: If `name` follows the format `projects/{project}`, the
+   * method lists locations visible to that specific project. This includes
+   * public, private, or other project-specific locations enabled for the project.
+   * For gRPC and client library implementations, the resource name is passed as
+   * the `name` field. For direct service calls, the resource name is incorporated
+   * into the request path based on the specific service implementation and
+   * version. (locations.listProjectsLocations)
    *
    * @param string $name The resource that owns the locations collection, if
    * applicable.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string extraLocationTypes Optional. Do not use this field unless
+   * explicitly documented otherwise. This is primarily for internal usage.
    * @opt_param string filter A filter to narrow down results to a preferred
    * subset. The filtering language accepts strings like `"displayName=tokyo"`,
    * and is documented in more detail in [AIP-160](https://google.aip.dev/160).
@@ -73,6 +87,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * @opt_param string pageToken A page token received from the `next_page_token`
    * field in the response. Send that page token to receive the subsequent page.
    * @return ListLocationsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocations($name, $optParams = [])
   {
@@ -84,7 +99,9 @@ class ProjectsLocations extends \Google\Service\Resource
    * Update a single GoogleChannelConfig (locations.updateGoogleChannelConfig)
    *
    * @param string $name Required. The resource name of the config. Must be in the
-   * format of, `projects/{project}/locations/{location}/googleChannelConfig`.
+   * format of, `projects/{project}/locations/{location}/googleChannelConfig`. In
+   * API responses, the config name always includes the projectID, regardless of
+   * whether the projectID or projectNumber was provided.
    * @param GoogleChannelConfig $postBody
    * @param array $optParams Optional parameters.
    *
@@ -92,6 +109,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * provided are updated. If no field mask is provided, all provided fields in
    * the request are updated. To update all fields, provide a field mask of "*".
    * @return GoogleChannelConfig
+   * @throws \Google\Service\Exception
    */
   public function updateGoogleChannelConfig($name, GoogleChannelConfig $postBody, $optParams = [])
   {

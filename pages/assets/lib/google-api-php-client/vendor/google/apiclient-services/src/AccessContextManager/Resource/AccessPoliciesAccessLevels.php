@@ -45,6 +45,7 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
    * @param AccessLevel $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, AccessLevel $postBody, $optParams = [])
   {
@@ -61,6 +62,7 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
    * `accessPolicies/{policy_id}/accessLevels/{access_level_id}`
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -77,11 +79,12 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
    *
    * @opt_param string accessLevelFormat Whether to return `BasicLevels` in the
    * Cloud Common Expression Language rather than as `BasicLevels`. Defaults to
-   * AS_DEFINED, where Access Levels are returned as `BasicLevels` or
-   * `CustomLevels` based on how they were created. If set to CEL, all Access
-   * Levels are returned as `CustomLevels`. In the CEL case, `BasicLevels` are
+   * `AS_DEFINED`, where Access Levels are returned as `BasicLevels` or
+   * `CustomLevels` based on how they were created. If set to `CEL`, all Access
+   * Levels are returned as `CustomLevels`. In the `CEL` case, `BasicLevels` are
    * translated to equivalent `CustomLevels`.
    * @return AccessLevel
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -98,7 +101,7 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string accessLevelFormat Whether to return `BasicLevels` in the
-   * Cloud Common Expression language, as `CustomLevels`, rather than as
+   * Cloud Common Expression Language, as `CustomLevels`, rather than as
    * `BasicLevels`. Defaults to returning `AccessLevels` in the format they were
    * defined.
    * @opt_param int pageSize Number of Access Levels to include in the list.
@@ -106,6 +109,7 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
    * @opt_param string pageToken Next page token for the next batch of Access
    * Level instances. Defaults to the first page of results.
    * @return ListAccessLevelsResponse
+   * @throws \Google\Service\Exception
    */
   public function listAccessPoliciesAccessLevels($parent, $optParams = [])
   {
@@ -119,7 +123,7 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
    * lasting storage. If access levels contain errors, an error response is
    * returned for the first error encountered. (accessLevels.patch)
    *
-   * @param string $name Resource name for the `AccessLevel`. Format:
+   * @param string $name Identifier. Resource name for the `AccessLevel`. Format:
    * `accessPolicies/{access_policy}/accessLevels/{access_level}`. The
    * `access_level` component must begin with a letter, followed by alphanumeric
    * characters or `_`. Its maximum length is 50 characters. After you create an
@@ -130,6 +134,7 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
    * @opt_param string updateMask Required. Mask to control which fields get
    * updated. Must be non-empty.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, AccessLevel $postBody, $optParams = [])
   {
@@ -144,8 +149,8 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
    * lasting storage. If the replacement contains errors, an error response is
    * returned for the first error encountered. Upon error, the replacement is
    * cancelled, and existing access levels are not affected. The
-   * Operation.response field contains ReplaceAccessLevelsResponse. Removing
-   * access levels contained in existing service perimeters result in an error.
+   * `Operation.response` field contains `ReplaceAccessLevelsResponse`. Removing
+   * access levels contained in existing service perimeters results in an error.
    * (accessLevels.replaceAll)
    *
    * @param string $parent Required. Resource name for the access policy which
@@ -153,6 +158,7 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
    * @param ReplaceAccessLevelsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function replaceAll($parent, ReplaceAccessLevelsRequest $postBody, $optParams = [])
   {
@@ -163,7 +169,9 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
   /**
    * Returns the IAM permissions that the caller has on the specified Access
    * Context Manager resource. The resource can be an AccessPolicy, AccessLevel,
-   * or ServicePerimeter. This method does not support other resources.
+   * or ServicePerimeter. This method does not support other resources. **IAM
+   * Permissions**: No specific IAM permission is required to call this method. It
+   * returns the subset of the requested permissions that the caller possesses.
    * (accessLevels.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
@@ -173,6 +181,7 @@ class AccessPoliciesAccessLevels extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

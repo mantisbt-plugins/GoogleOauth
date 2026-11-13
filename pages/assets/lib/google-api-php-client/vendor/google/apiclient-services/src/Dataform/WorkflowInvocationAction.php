@@ -19,17 +19,71 @@ namespace Google\Service\Dataform;
 
 class WorkflowInvocationAction extends \Google\Model
 {
+  /**
+   * The action has not yet been considered for invocation.
+   */
+  public const STATE_PENDING = 'PENDING';
+  /**
+   * The action is currently running.
+   */
+  public const STATE_RUNNING = 'RUNNING';
+  /**
+   * Execution of the action was skipped because upstream dependencies did not
+   * all complete successfully. A terminal state.
+   */
+  public const STATE_SKIPPED = 'SKIPPED';
+  /**
+   * Execution of the action was disabled as per the configuration of the
+   * corresponding compilation result action. A terminal state.
+   */
+  public const STATE_DISABLED = 'DISABLED';
+  /**
+   * The action succeeded. A terminal state.
+   */
+  public const STATE_SUCCEEDED = 'SUCCEEDED';
+  /**
+   * The action was cancelled. A terminal state.
+   */
+  public const STATE_CANCELLED = 'CANCELLED';
+  /**
+   * The action failed. A terminal state.
+   */
+  public const STATE_FAILED = 'FAILED';
+  /**
+   * Execution of the action was queued waiting for an available concurrency
+   * slot.
+   */
+  public const STATE_QUEUED = 'QUEUED';
   protected $bigqueryActionType = BigQueryAction::class;
   protected $bigqueryActionDataType = '';
+  protected $bigqueryUnitTestActionType = BigQueryUnitTestAction::class;
+  protected $bigqueryUnitTestActionDataType = '';
   protected $canonicalTargetType = Target::class;
   protected $canonicalTargetDataType = '';
+  protected $dataPreparationActionType = DataPreparationAction::class;
+  protected $dataPreparationActionDataType = '';
   /**
+   * Output only. If and only if action's state is FAILED a failure reason is
+   * set.
+   *
    * @var string
    */
   public $failureReason;
+  /**
+   * Output only. All the metadata information that is used internally to serve
+   * the resource. For example: timestamps, flags, status fields, etc. The
+   * format of this field is a JSON string.
+   *
+   * @var string
+   */
+  public $internalMetadata;
   protected $invocationTimingType = Interval::class;
   protected $invocationTimingDataType = '';
+  protected $notebookActionType = NotebookAction::class;
+  protected $notebookActionDataType = '';
   /**
+   * Output only. This action's current state.
+   *
    * @var string
    */
   public $state;
@@ -37,7 +91,9 @@ class WorkflowInvocationAction extends \Google\Model
   protected $targetDataType = '';
 
   /**
-   * @param BigQueryAction
+   * Output only. The workflow action's bigquery action details.
+   *
+   * @param BigQueryAction $bigqueryAction
    */
   public function setBigqueryAction(BigQueryAction $bigqueryAction)
   {
@@ -51,7 +107,26 @@ class WorkflowInvocationAction extends \Google\Model
     return $this->bigqueryAction;
   }
   /**
-   * @param Target
+   * Output only. The workflow action's unit test details.
+   *
+   * @param BigQueryUnitTestAction $bigqueryUnitTestAction
+   */
+  public function setBigqueryUnitTestAction(BigQueryUnitTestAction $bigqueryUnitTestAction)
+  {
+    $this->bigqueryUnitTestAction = $bigqueryUnitTestAction;
+  }
+  /**
+   * @return BigQueryUnitTestAction
+   */
+  public function getBigqueryUnitTestAction()
+  {
+    return $this->bigqueryUnitTestAction;
+  }
+  /**
+   * Output only. The action's identifier if the project had been compiled
+   * without any overrides configured. Unique within the compilation result.
+   *
+   * @param Target $canonicalTarget
    */
   public function setCanonicalTarget(Target $canonicalTarget)
   {
@@ -65,7 +140,26 @@ class WorkflowInvocationAction extends \Google\Model
     return $this->canonicalTarget;
   }
   /**
-   * @param string
+   * Output only. The workflow action's data preparation action details.
+   *
+   * @param DataPreparationAction $dataPreparationAction
+   */
+  public function setDataPreparationAction(DataPreparationAction $dataPreparationAction)
+  {
+    $this->dataPreparationAction = $dataPreparationAction;
+  }
+  /**
+   * @return DataPreparationAction
+   */
+  public function getDataPreparationAction()
+  {
+    return $this->dataPreparationAction;
+  }
+  /**
+   * Output only. If and only if action's state is FAILED a failure reason is
+   * set.
+   *
+   * @param string $failureReason
    */
   public function setFailureReason($failureReason)
   {
@@ -79,7 +173,29 @@ class WorkflowInvocationAction extends \Google\Model
     return $this->failureReason;
   }
   /**
-   * @param Interval
+   * Output only. All the metadata information that is used internally to serve
+   * the resource. For example: timestamps, flags, status fields, etc. The
+   * format of this field is a JSON string.
+   *
+   * @param string $internalMetadata
+   */
+  public function setInternalMetadata($internalMetadata)
+  {
+    $this->internalMetadata = $internalMetadata;
+  }
+  /**
+   * @return string
+   */
+  public function getInternalMetadata()
+  {
+    return $this->internalMetadata;
+  }
+  /**
+   * Output only. This action's timing details. `start_time` will be set if the
+   * action is in [RUNNING, SUCCEEDED, CANCELLED, FAILED] state. `end_time` will
+   * be set if the action is in [SUCCEEDED, CANCELLED, FAILED] state.
+   *
+   * @param Interval $invocationTiming
    */
   public function setInvocationTiming(Interval $invocationTiming)
   {
@@ -93,21 +209,45 @@ class WorkflowInvocationAction extends \Google\Model
     return $this->invocationTiming;
   }
   /**
-   * @param string
+   * Output only. The workflow action's notebook action details.
+   *
+   * @param NotebookAction $notebookAction
+   */
+  public function setNotebookAction(NotebookAction $notebookAction)
+  {
+    $this->notebookAction = $notebookAction;
+  }
+  /**
+   * @return NotebookAction
+   */
+  public function getNotebookAction()
+  {
+    return $this->notebookAction;
+  }
+  /**
+   * Output only. This action's current state.
+   *
+   * Accepted values: PENDING, RUNNING, SKIPPED, DISABLED, SUCCEEDED, CANCELLED,
+   * FAILED, QUEUED
+   *
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {
     return $this->state;
   }
   /**
-   * @param Target
+   * Output only. This action's identifier. Unique within the workflow
+   * invocation.
+   *
+   * @param Target $target
    */
   public function setTarget(Target $target)
   {

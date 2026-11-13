@@ -34,7 +34,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent extends \Google\Co
   public $title;
 
   /**
-   * @param string
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -48,7 +48,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent extends \Google\Co
     return $this->description;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia
+   * @param GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia $media
    */
   public function setMedia(GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia $media)
   {
@@ -62,7 +62,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent extends \Google\Co
     return $this->media;
   }
   /**
-   * @param GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestion[]
+   * @param GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestion[] $suggestions
    */
   public function setSuggestions($suggestions)
   {
@@ -76,7 +76,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent extends \Google\Co
     return $this->suggestions;
   }
   /**
-   * @param string
+   * @param string $title
    */
   public function setTitle($title)
   {

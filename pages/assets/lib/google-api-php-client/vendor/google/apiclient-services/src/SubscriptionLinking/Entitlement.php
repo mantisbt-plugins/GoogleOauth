@@ -20,24 +20,49 @@ namespace Google\Service\SubscriptionLinking;
 class Entitlement extends \Google\Model
 {
   /**
+   * The detail field can carry a description of the SKU that corresponds to
+   * what the user has been granted access to. This description, which is opaque
+   * to Google, can be displayed in the Google user subscription console for
+   * users who linked the subscription to a Google Account. Max 80 character
+   * limit.
+   *
    * @var string
    */
   public $detail;
   /**
+   * Optional. Expiration time of the entitlement. If unset, the entitlement
+   * does not expire (indefinite entitlement). We need to support indefinite
+   * entitlements for platform publishers. dd: go/rrm-sl-notedotcom Entitlements
+   * that have expired over 30 days will be purged.
+   *
    * @var string
    */
   public $expireTime;
   /**
+   * Required. The publication's product ID that the user has access to. This is
+   * the same product ID as can be found in Schema.org markup
+   * (http://schema.org/productID). E.g. "dailybugle.com:basic"
+   *
    * @var string
    */
   public $productId;
   /**
+   * A source-specific subscription token. This is an opaque string that the
+   * publisher provides to Google. This token is opaque and has no meaning to
+   * Google.
+   *
    * @var string
    */
   public $subscriptionToken;
 
   /**
-   * @param string
+   * The detail field can carry a description of the SKU that corresponds to
+   * what the user has been granted access to. This description, which is opaque
+   * to Google, can be displayed in the Google user subscription console for
+   * users who linked the subscription to a Google Account. Max 80 character
+   * limit.
+   *
+   * @param string $detail
    */
   public function setDetail($detail)
   {
@@ -51,7 +76,12 @@ class Entitlement extends \Google\Model
     return $this->detail;
   }
   /**
-   * @param string
+   * Optional. Expiration time of the entitlement. If unset, the entitlement
+   * does not expire (indefinite entitlement). We need to support indefinite
+   * entitlements for platform publishers. dd: go/rrm-sl-notedotcom Entitlements
+   * that have expired over 30 days will be purged.
+   *
+   * @param string $expireTime
    */
   public function setExpireTime($expireTime)
   {
@@ -65,7 +95,11 @@ class Entitlement extends \Google\Model
     return $this->expireTime;
   }
   /**
-   * @param string
+   * Required. The publication's product ID that the user has access to. This is
+   * the same product ID as can be found in Schema.org markup
+   * (http://schema.org/productID). E.g. "dailybugle.com:basic"
+   *
+   * @param string $productId
    */
   public function setProductId($productId)
   {
@@ -79,7 +113,11 @@ class Entitlement extends \Google\Model
     return $this->productId;
   }
   /**
-   * @param string
+   * A source-specific subscription token. This is an opaque string that the
+   * publisher provides to Google. This token is opaque and has no meaning to
+   * Google.
+   *
+   * @param string $subscriptionToken
    */
   public function setSubscriptionToken($subscriptionToken)
   {

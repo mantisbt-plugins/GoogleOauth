@@ -38,6 +38,7 @@ class ProjectsLocationsBackups extends \Google\Service\Resource
    * `projects/{project}/locations/{location}/backups/{backup}`.
    * @param array $optParams Optional parameters.
    * @return FirestoreEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -52,6 +53,7 @@ class ProjectsLocationsBackups extends \Google\Service\Resource
    * `projects/{project}/locations/{location}/backups/{backup}`.
    * @param array $optParams Optional parameters.
    * @return GoogleFirestoreAdminV1Backup
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -67,7 +69,16 @@ class ProjectsLocationsBackups extends \Google\Service\Resource
    * backups from all locations for the given project. This allows listing backups
    * from a single location or from all locations.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string filter An expression that filters the list of returned
+   * backups. A filter expression consists of a field name, a comparison operator,
+   * and a value for filtering. The value must be a string, a number, or a
+   * boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`,
+   * `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case
+   * sensitive. The following fields in the Backup are eligible for filtering: *
+   * `database_uid` (supports `=` only)
    * @return GoogleFirestoreAdminV1ListBackupsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsBackups($parent, $optParams = [])
   {

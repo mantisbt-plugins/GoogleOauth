@@ -19,15 +19,39 @@ namespace Google\Service\CloudComposer;
 
 class WorkloadsConfig extends \Google\Model
 {
+  protected $dagProcessorType = DagProcessorResource::class;
+  protected $dagProcessorDataType = '';
   protected $schedulerType = SchedulerResource::class;
   protected $schedulerDataType = '';
+  protected $triggererType = TriggererResource::class;
+  protected $triggererDataType = '';
   protected $webServerType = WebServerResource::class;
   protected $webServerDataType = '';
   protected $workerType = WorkerResource::class;
   protected $workerDataType = '';
 
   /**
-   * @param SchedulerResource
+   * Optional. Resources used by Airflow DAG processors. This field is supported
+   * for Cloud Composer environments in versions
+   * composer-3-airflow-*.*.*-build.* and newer.
+   *
+   * @param DagProcessorResource $dagProcessor
+   */
+  public function setDagProcessor(DagProcessorResource $dagProcessor)
+  {
+    $this->dagProcessor = $dagProcessor;
+  }
+  /**
+   * @return DagProcessorResource
+   */
+  public function getDagProcessor()
+  {
+    return $this->dagProcessor;
+  }
+  /**
+   * Optional. Resources used by Airflow schedulers.
+   *
+   * @param SchedulerResource $scheduler
    */
   public function setScheduler(SchedulerResource $scheduler)
   {
@@ -41,7 +65,25 @@ class WorkloadsConfig extends \Google\Model
     return $this->scheduler;
   }
   /**
-   * @param WebServerResource
+   * Optional. Resources used by Airflow triggerers.
+   *
+   * @param TriggererResource $triggerer
+   */
+  public function setTriggerer(TriggererResource $triggerer)
+  {
+    $this->triggerer = $triggerer;
+  }
+  /**
+   * @return TriggererResource
+   */
+  public function getTriggerer()
+  {
+    return $this->triggerer;
+  }
+  /**
+   * Optional. Resources used by Airflow web server.
+   *
+   * @param WebServerResource $webServer
    */
   public function setWebServer(WebServerResource $webServer)
   {
@@ -55,7 +97,9 @@ class WorkloadsConfig extends \Google\Model
     return $this->webServer;
   }
   /**
-   * @param WorkerResource
+   * Optional. Resources used by Airflow workers.
+   *
+   * @param WorkerResource $worker
    */
   public function setWorker(WorkerResource $worker)
   {

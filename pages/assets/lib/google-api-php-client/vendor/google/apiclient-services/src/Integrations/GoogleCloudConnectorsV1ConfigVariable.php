@@ -20,26 +20,38 @@ namespace Google\Service\Integrations;
 class GoogleCloudConnectorsV1ConfigVariable extends \Google\Model
 {
   /**
+   * Optional. Value is a bool.
+   *
    * @var bool
    */
   public $boolValue;
+  protected $encryptionKeyValueType = GoogleCloudConnectorsV1EncryptionKey::class;
+  protected $encryptionKeyValueDataType = '';
   /**
+   * Optional. Value is an integer
+   *
    * @var string
    */
   public $intValue;
   /**
+   * Optional. Key of the config variable.
+   *
    * @var string
    */
   public $key;
   protected $secretValueType = GoogleCloudConnectorsV1Secret::class;
   protected $secretValueDataType = '';
   /**
+   * Optional. Value is a string.
+   *
    * @var string
    */
   public $stringValue;
 
   /**
-   * @param bool
+   * Optional. Value is a bool.
+   *
+   * @param bool $boolValue
    */
   public function setBoolValue($boolValue)
   {
@@ -53,7 +65,25 @@ class GoogleCloudConnectorsV1ConfigVariable extends \Google\Model
     return $this->boolValue;
   }
   /**
-   * @param string
+   * Optional. Value is a Encryption Key.
+   *
+   * @param GoogleCloudConnectorsV1EncryptionKey $encryptionKeyValue
+   */
+  public function setEncryptionKeyValue(GoogleCloudConnectorsV1EncryptionKey $encryptionKeyValue)
+  {
+    $this->encryptionKeyValue = $encryptionKeyValue;
+  }
+  /**
+   * @return GoogleCloudConnectorsV1EncryptionKey
+   */
+  public function getEncryptionKeyValue()
+  {
+    return $this->encryptionKeyValue;
+  }
+  /**
+   * Optional. Value is an integer
+   *
+   * @param string $intValue
    */
   public function setIntValue($intValue)
   {
@@ -67,7 +97,9 @@ class GoogleCloudConnectorsV1ConfigVariable extends \Google\Model
     return $this->intValue;
   }
   /**
-   * @param string
+   * Optional. Key of the config variable.
+   *
+   * @param string $key
    */
   public function setKey($key)
   {
@@ -81,7 +113,9 @@ class GoogleCloudConnectorsV1ConfigVariable extends \Google\Model
     return $this->key;
   }
   /**
-   * @param GoogleCloudConnectorsV1Secret
+   * Optional. Value is a secret.
+   *
+   * @param GoogleCloudConnectorsV1Secret $secretValue
    */
   public function setSecretValue(GoogleCloudConnectorsV1Secret $secretValue)
   {
@@ -95,7 +129,9 @@ class GoogleCloudConnectorsV1ConfigVariable extends \Google\Model
     return $this->secretValue;
   }
   /**
-   * @param string
+   * Optional. Value is a string.
+   *
+   * @param string $stringValue
    */
   public function setStringValue($stringValue)
   {

@@ -49,6 +49,7 @@ class BuyersFinalizedDeals extends \Google\Service\Resource
    * @param AddCreativeRequest $postBody
    * @param array $optParams Optional parameters.
    * @return FinalizedDeal
+   * @throws \Google\Service\Exception
    */
   public function addCreative($deal, AddCreativeRequest $postBody, $optParams = [])
   {
@@ -63,6 +64,7 @@ class BuyersFinalizedDeals extends \Google\Service\Resource
    * `buyers/{accountId}/finalizedDeals/{dealId}`
    * @param array $optParams Optional parameters.
    * @return FinalizedDeal
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -85,9 +87,10 @@ class BuyersFinalizedDeals extends \Google\Service\Resource
    *
    * @opt_param string filter Optional query string using the [Cloud API list
    * filtering syntax](https://developers.google.com/authorized-
-   * buyers/apis/guides/v2/list-filters) Supported columns for filtering are: *
+   * buyers/apis/guides/list-filters) Supported columns for filtering are: *
    * deal.displayName * deal.dealType * deal.createTime * deal.updateTime *
-   * deal.flightStartTime * deal.flightEndTime * dealServingStatus
+   * deal.flightStartTime * deal.flightEndTime * deal.eligibleSeatIds *
+   * dealServingStatus * readyToServe
    * @opt_param string orderBy An optional query string to sort finalized deals
    * using the [Cloud API sorting
    * syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
@@ -96,8 +99,7 @@ class BuyersFinalizedDeals extends \Google\Service\Resource
    * deal.createTime * deal.updateTime * deal.flightStartTime * deal.flightEndTime
    * * rtbMetrics.bidRequests7Days * rtbMetrics.bids7Days *
    * rtbMetrics.adImpressions7Days * rtbMetrics.bidRate7Days *
-   * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth Example:
-   * 'deal.displayName, deal.updateTime desc'
+   * rtbMetrics.filteredBidRate7Days * rtbMetrics.mustBidRateCurrentMonth
    * @opt_param int pageSize Requested page size. The server may return fewer
    * results than requested. If requested more than 500, the server will return
    * 500 results per page. If unspecified, the server will pick a default page
@@ -105,6 +107,7 @@ class BuyersFinalizedDeals extends \Google\Service\Resource
    * @opt_param string pageToken The page token as returned from
    * ListFinalizedDealsResponse.
    * @return ListFinalizedDealsResponse
+   * @throws \Google\Service\Exception
    */
   public function listBuyersFinalizedDeals($parent, $optParams = [])
   {
@@ -116,13 +119,14 @@ class BuyersFinalizedDeals extends \Google\Service\Resource
    * Pauses serving of the given finalized deal. This call only pauses the serving
    * status, and does not affect other fields of the finalized deal. Calling this
    * method for an already paused deal has no effect. This method only applies to
-   * programmatic guaranteed deals. (finalizedDeals.pause)
+   * programmatic guaranteed deals and preferred deals. (finalizedDeals.pause)
    *
    * @param string $name Required. Format:
    * `buyers/{accountId}/finalizedDeals/{dealId}`
    * @param PauseFinalizedDealRequest $postBody
    * @param array $optParams Optional parameters.
    * @return FinalizedDeal
+   * @throws \Google\Service\Exception
    */
   public function pause($name, PauseFinalizedDealRequest $postBody, $optParams = [])
   {
@@ -134,14 +138,15 @@ class BuyersFinalizedDeals extends \Google\Service\Resource
    * Resumes serving of the given finalized deal. Calling this method for an
    * running deal has no effect. If a deal is initially paused by the seller,
    * calling this method will not resume serving of the deal until the seller also
-   * resumes the deal. This method only applies to programmatic guaranteed deals.
-   * (finalizedDeals.resume)
+   * resumes the deal. This method only applies to programmatic guaranteed deals
+   * and preferred deals. (finalizedDeals.resume)
    *
    * @param string $name Required. Format:
    * `buyers/{accountId}/finalizedDeals/{dealId}`
    * @param ResumeFinalizedDealRequest $postBody
    * @param array $optParams Optional parameters.
    * @return FinalizedDeal
+   * @throws \Google\Service\Exception
    */
   public function resume($name, ResumeFinalizedDealRequest $postBody, $optParams = [])
   {
@@ -157,14 +162,19 @@ class BuyersFinalizedDeals extends \Google\Service\Resource
    * use this method, finalized deals belonging to the bidder and its child seats
    * don't start serving until after you call `setReadyToServe`, and after the
    * deals become active. For example, you can use this method to delay receiving
-   * bid requests until your creative is ready. This method only applies to
-   * programmatic guaranteed deals. (finalizedDeals.setReadyToServe)
+   * bid requests until your creative is ready. In addition, bidders can use the
+   * URL path "/v1/bidders/{accountId}/finalizedDeals/{dealId}" to set ready to
+   * serve for the finalized deals belong to itself, its child seats and all their
+   * clients. This method only applies to programmatic guaranteed deals.
+   * (finalizedDeals.setReadyToServe)
    *
    * @param string $deal Required. Format:
-   * `buyers/{accountId}/finalizedDeals/{dealId}`
+   * `buyers/{accountId}/finalizedDeals/{dealId}` or
+   * `bidders/{accountId}/finalizedDeals/{dealId}`
    * @param SetReadyToServeRequest $postBody
    * @param array $optParams Optional parameters.
    * @return FinalizedDeal
+   * @throws \Google\Service\Exception
    */
   public function setReadyToServe($deal, SetReadyToServeRequest $postBody, $optParams = [])
   {

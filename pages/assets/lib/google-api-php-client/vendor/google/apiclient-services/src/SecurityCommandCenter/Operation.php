@@ -39,7 +39,7 @@ class Operation extends \Google\Model
   public $response;
 
   /**
-   * @param bool
+   * @param bool $done
    */
   public function setDone($done)
   {
@@ -53,7 +53,7 @@ class Operation extends \Google\Model
     return $this->done;
   }
   /**
-   * @param Status
+   * @param Status $error
    */
   public function setError(Status $error)
   {
@@ -67,7 +67,7 @@ class Operation extends \Google\Model
     return $this->error;
   }
   /**
-   * @param array[]
+   * @param array[] $metadata
    */
   public function setMetadata($metadata)
   {
@@ -81,7 +81,7 @@ class Operation extends \Google\Model
     return $this->metadata;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -95,7 +95,7 @@ class Operation extends \Google\Model
     return $this->name;
   }
   /**
-   * @param array[]
+   * @param array[] $response
    */
   public function setResponse($response)
   {

@@ -17,6 +17,9 @@
 
 namespace Google\Service\Directory\Resource;
 
+use Google\Service\Directory\BatchChangeChromeOsDeviceStatusRequest;
+use Google\Service\Directory\BatchChangeChromeOsDeviceStatusResponse;
+use Google\Service\Directory\CountChromeOsDevicesResponse;
 use Google\Service\Directory\DirectoryChromeosdevicesIssueCommandRequest;
 use Google\Service\Directory\DirectoryChromeosdevicesIssueCommandResponse;
 
@@ -31,6 +34,50 @@ use Google\Service\Directory\DirectoryChromeosdevicesIssueCommandResponse;
 class CustomerDevicesChromeos extends \Google\Service\Resource
 {
   /**
+   * Changes the status of a batch of ChromeOS devices. For more information about
+   * changing a ChromeOS device state [Repair, repurpose, or retire ChromeOS
+   * devices](https://support.google.com/chrome/a/answer/3523633).
+   * (chromeos.batchChangeStatus)
+   *
+   * @param string $customerId Required. Immutable ID of the Google Workspace
+   * account.
+   * @param BatchChangeChromeOsDeviceStatusRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return BatchChangeChromeOsDeviceStatusResponse
+   * @throws \Google\Service\Exception
+   */
+  public function batchChangeStatus($customerId, BatchChangeChromeOsDeviceStatusRequest $postBody, $optParams = [])
+  {
+    $params = ['customerId' => $customerId, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('batchChangeStatus', [$params], BatchChangeChromeOsDeviceStatusResponse::class);
+  }
+  /**
+   * Counts ChromeOS devices matching the request. (chromeos.countChromeOsDevices)
+   *
+   * @param string $customerId Required. Immutable ID of the Google Workspace
+   * account.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string filter Optional. Search string in the format given at [List
+   * query
+   * operators](https://developers.google.com/workspace/admin/directory/v1/list-
+   * query-operators).
+   * @opt_param bool includeChildOrgunits Optional. Return devices from all child
+   * orgunits, as well as the specified org unit. If this is set to true,
+   * 'orgUnitPath' must be provided.
+   * @opt_param string orgUnitPath Optional. The full path of the organizational
+   * unit (minus the leading `/`) or its unique ID.
+   * @return CountChromeOsDevicesResponse
+   * @throws \Google\Service\Exception
+   */
+  public function countChromeOsDevices($customerId, $optParams = [])
+  {
+    $params = ['customerId' => $customerId];
+    $params = array_merge($params, $optParams);
+    return $this->call('countChromeOsDevices', [$params], CountChromeOsDevicesResponse::class);
+  }
+  /**
    * Issues a command for the device to execute. (chromeos.issueCommand)
    *
    * @param string $customerId Immutable. ID of the Google Workspace account.
@@ -38,6 +85,7 @@ class CustomerDevicesChromeos extends \Google\Service\Resource
    * @param DirectoryChromeosdevicesIssueCommandRequest $postBody
    * @param array $optParams Optional parameters.
    * @return DirectoryChromeosdevicesIssueCommandResponse
+   * @throws \Google\Service\Exception
    */
   public function issueCommand($customerId, $deviceId, DirectoryChromeosdevicesIssueCommandRequest $postBody, $optParams = [])
   {

@@ -50,6 +50,7 @@ class Advertisers extends \Google\Service\Resource
    * usedCampaignsCount * channelsCount * negativelyTargetedChannelsCount *
    * negativeKeywordListsCount * adGroupCriteriaCount * campaignCriteriaCount
    * @return AuditAdvertiserResponse
+   * @throws \Google\Service\Exception
    */
   public function audit($advertiserId, $optParams = [])
   {
@@ -59,11 +60,15 @@ class Advertisers extends \Google\Service\Resource
   }
   /**
    * Creates a new advertiser. Returns the newly created advertiser if successful.
-   * This method can take up to 180 seconds to complete. (advertisers.create)
+   * **This method regularly experiences high latency.** We recommend [increasing
+   * your default timeout](/display-video/api/guides/best-
+   * practices/timeouts#client_library_timeout) to avoid errors.
+   * (advertisers.create)
    *
    * @param Advertiser $postBody
    * @param array $optParams Optional parameters.
    * @return Advertiser
+   * @throws \Google\Service\Exception
    */
   public function create(Advertiser $postBody, $optParams = [])
   {
@@ -79,6 +84,7 @@ class Advertisers extends \Google\Service\Resource
    * @param string $advertiserId The ID of the advertiser we need to delete.
    * @param array $optParams Optional parameters.
    * @return DisplayvideoEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($advertiserId, $optParams = [])
   {
@@ -98,6 +104,7 @@ class Advertisers extends \Google\Service\Resource
    * @param BulkEditAdvertiserAssignedTargetingOptionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return BulkEditAdvertiserAssignedTargetingOptionsResponse
+   * @throws \Google\Service\Exception
    */
   public function editAssignedTargetingOptions($advertiserId, BulkEditAdvertiserAssignedTargetingOptionsRequest $postBody, $optParams = [])
   {
@@ -111,6 +118,7 @@ class Advertisers extends \Google\Service\Resource
    * @param string $advertiserId Required. The ID of the advertiser to fetch.
    * @param array $optParams Optional parameters.
    * @return Advertiser
+   * @throws \Google\Service\Exception
    */
   public function get($advertiserId, $optParams = [])
   {
@@ -142,9 +150,10 @@ class Advertisers extends \Google\Service\Resource
    * more than 500 characters. Reference our [filter `LIST` requests](/display-
    * video/api/guides/how-tos/filters) guide for more information.
    * @opt_param string orderBy Field by which to sort the list. Acceptable values
-   * are: * `displayName` (default) * `entityStatus` * `updateTime` The default
-   * sorting order is ascending. To specify descending order for a field, a suffix
-   * "desc" should be added to the field name. For example, `displayName desc`.
+   * are: * `advertiserId` (default) * `displayName` * `entityStatus` *
+   * `updateTime` The default sorting order is ascending. To specify descending
+   * order for a field, a suffix "desc" should be added to the field name. For
+   * example, `displayName desc`.
    * @opt_param int pageSize Requested page size. Must be between `1` and `200`.
    * If unspecified will default to `100`.
    * @opt_param string pageToken A token identifying a page of results the server
@@ -155,6 +164,7 @@ class Advertisers extends \Google\Service\Resource
    * advertisers should all belong to. The system only supports listing
    * advertisers for one partner at a time.
    * @return ListAdvertisersResponse
+   * @throws \Google\Service\Exception
    */
   public function listAdvertisers($optParams = [])
   {
@@ -191,6 +201,7 @@ class Advertisers extends \Google\Service\Resource
    * previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not
    * specified, the first page of results will be returned.
    * @return BulkListAdvertiserAssignedTargetingOptionsResponse
+   * @throws \Google\Service\Exception
    */
   public function listAssignedTargetingOptions($advertiserId, $optParams = [])
   {
@@ -210,6 +221,7 @@ class Advertisers extends \Google\Service\Resource
    * @opt_param string updateMask Required. The mask to control which fields to
    * update.
    * @return Advertiser
+   * @throws \Google\Service\Exception
    */
   public function patch($advertiserId, Advertiser $postBody, $optParams = [])
   {

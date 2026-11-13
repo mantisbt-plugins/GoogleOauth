@@ -28,7 +28,7 @@ class GoogleCloudDialogflowCxV3TransitionRouteGroupCoverage extends \Google\Coll
   protected $coveragesDataType = 'array';
 
   /**
-   * @param float
+   * @param float $coverageScore
    */
   public function setCoverageScore($coverageScore)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3TransitionRouteGroupCoverage extends \Google\Coll
     return $this->coverageScore;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3TransitionRouteGroupCoverageCoverage[]
+   * @param GoogleCloudDialogflowCxV3TransitionRouteGroupCoverageCoverage[] $coverages
    */
   public function setCoverages($coverages)
   {

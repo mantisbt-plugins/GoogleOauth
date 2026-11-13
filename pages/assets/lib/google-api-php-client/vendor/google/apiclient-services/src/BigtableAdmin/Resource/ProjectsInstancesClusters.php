@@ -20,6 +20,7 @@ namespace Google\Service\BigtableAdmin\Resource;
 use Google\Service\BigtableAdmin\BigtableadminEmpty;
 use Google\Service\BigtableAdmin\Cluster;
 use Google\Service\BigtableAdmin\ListClustersResponse;
+use Google\Service\BigtableAdmin\MemoryLayer;
 use Google\Service\BigtableAdmin\Operation;
 
 /**
@@ -49,6 +50,7 @@ class ProjectsInstancesClusters extends \Google\Service\Resource
    * new cluster within its instance, e.g., just `mycluster` rather than
    * `projects/myproject/instances/myinstance/clusters/mycluster`.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Cluster $postBody, $optParams = [])
   {
@@ -64,6 +66,7 @@ class ProjectsInstancesClusters extends \Google\Service\Resource
    * `projects/{project}/instances/{instance}/clusters/{cluster}`.
    * @param array $optParams Optional parameters.
    * @return BigtableadminEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -79,12 +82,30 @@ class ProjectsInstancesClusters extends \Google\Service\Resource
    * `projects/{project}/instances/{instance}/clusters/{cluster}`.
    * @param array $optParams Optional parameters.
    * @return Cluster
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
     $params = ['name' => $name];
     $params = array_merge($params, $optParams);
     return $this->call('get', [$params], Cluster::class);
+  }
+  /**
+   * Gets information about the memory layer of a cluster.
+   * (clusters.getMemoryLayer)
+   *
+   * @param string $name Required. The unique name of the requested cluster's
+   * memory layer. Values are of the form
+   * `projects/{project}/instances/{instance}/clusters/{cluster}/memoryLayer`.
+   * @param array $optParams Optional parameters.
+   * @return MemoryLayer
+   * @throws \Google\Service\Exception
+   */
+  public function getMemoryLayer($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('getMemoryLayer', [$params], MemoryLayer::class);
   }
   /**
    * Lists information about clusters in an instance.
@@ -99,6 +120,7 @@ class ProjectsInstancesClusters extends \Google\Service\Resource
    *
    * @opt_param string pageToken DEPRECATED: This field is unused and ignored.
    * @return ListClustersResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsInstancesClusters($parent, $optParams = [])
   {
@@ -125,6 +147,7 @@ class ProjectsInstancesClusters extends \Google\Service\Resource
    * @opt_param string updateMask Required. The subset of Cluster fields which
    * should be replaced.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function partialUpdateCluster($name, Cluster $postBody, $optParams = [])
   {
@@ -142,12 +165,33 @@ class ProjectsInstancesClusters extends \Google\Service\Resource
    * @param Cluster $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function update($name, Cluster $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('update', [$params], Operation::class);
+  }
+  /**
+   * Updates the memory layer of a cluster. To enable the memory layer, set the
+   * memory_config. To disable the memory layer, unset the memory_config.
+   * (clusters.updateMemoryLayer)
+   *
+   * @param string $name Identifier. Name of the memory layer. This is always:
+   * "projects/{project}/instances/{instance}/clusters/{cluster}/memoryLayer".
+   * @param MemoryLayer $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string updateMask Optional. The list of fields to update.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function updateMemoryLayer($name, MemoryLayer $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('updateMemoryLayer', [$params], Operation::class);
   }
 }
 

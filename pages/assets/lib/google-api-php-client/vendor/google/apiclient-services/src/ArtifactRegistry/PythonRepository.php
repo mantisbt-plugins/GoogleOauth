@@ -20,19 +20,53 @@ namespace Google\Service\ArtifactRegistry;
 class PythonRepository extends \Google\Model
 {
   /**
+   * Unspecified repository.
+   */
+  public const PUBLIC_REPOSITORY_PUBLIC_REPOSITORY_UNSPECIFIED = 'PUBLIC_REPOSITORY_UNSPECIFIED';
+  /**
+   * PyPI.
+   */
+  public const PUBLIC_REPOSITORY_PYPI = 'PYPI';
+  protected $customRepositoryType = GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository::class;
+  protected $customRepositoryDataType = '';
+  /**
+   * One of the publicly available Python repositories supported by Artifact
+   * Registry.
+   *
    * @var string
    */
   public $publicRepository;
 
   /**
-   * @param string
+   * Customer-specified remote repository.
+   *
+   * @param GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository $customRepository
+   */
+  public function setCustomRepository(GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository $customRepository)
+  {
+    $this->customRepository = $customRepository;
+  }
+  /**
+   * @return GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository
+   */
+  public function getCustomRepository()
+  {
+    return $this->customRepository;
+  }
+  /**
+   * One of the publicly available Python repositories supported by Artifact
+   * Registry.
+   *
+   * Accepted values: PUBLIC_REPOSITORY_UNSPECIFIED, PYPI
+   *
+   * @param self::PUBLIC_REPOSITORY_* $publicRepository
    */
   public function setPublicRepository($publicRepository)
   {
     $this->publicRepository = $publicRepository;
   }
   /**
-   * @return string
+   * @return self::PUBLIC_REPOSITORY_*
    */
   public function getPublicRepository()
   {

@@ -1,0 +1,193 @@
+<?php
+/*
+ * Copyright 2014 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+namespace Google\Service\GoogleHealthAPI;
+
+class RollUpDataPointsRequest extends \Google\Model
+{
+  /**
+   * Optional. The data source family name to roll up. If empty, data points
+   * from all available data sources will be rolled up. Format:
+   * `users/{user}/dataSourceFamilies/{data_source_family}` The `{user}` can be
+   * either the alias `me` or the authenticated user's numeric Health User ID,
+   * retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or
+   * `users/1234567890/dataSourceFamilies/...`). The supported values are: -
+   * `users/{user}/dataSourceFamilies/all-sources` - Default value. Includes
+   * data from all available data sources. -
+   * `users/{user}/dataSourceFamilies/google-wearables` - Includes data from
+   * Google and Fitbit tracker devices (such as Fitbit trackers and Pixel
+   * Watch). Excludes manually logged data. -
+   * `users/{user}/dataSourceFamilies/google-sources` - Includes first-party
+   * Google data, such as data from tracker devices, manually logged data, and
+   * Health Connect. - `users/{user}/dataSourceFamilies/self-sources` - Includes
+   * only the data the calling client wrote through this API, that is, data
+   * points whose data source was registered through this API with the same
+   * OAuth client ID as the caller. Callers that were only granted write scopes
+   * for the requested data type may only read the data they wrote themselves:
+   * their requests are implicitly restricted to `self-sources`, and requesting
+   * any other data source family fails with `PERMISSION_DENIED`. If no data
+   * point matches the requested data source family, the response is an empty
+   * list rather than an error.
+   *
+   * @var string
+   */
+  public $dataSourceFamily;
+  /**
+   * Optional. The maximum number of data points to return. If unspecified, at
+   * most 1440 data points will be returned. The maximum page size is 10000;
+   * values above that will be truncated accordingly.
+   *
+   * @var int
+   */
+  public $pageSize;
+  /**
+   * Optional. The next_page_token from a previous request, if any. All other
+   * request fields need to be the same as in the initial request when the page
+   * token is specified.
+   *
+   * @var string
+   */
+  public $pageToken;
+  protected $rangeType = Interval::class;
+  protected $rangeDataType = '';
+  /**
+   * Required. The size of the time window to group data points into before
+   * applying the aggregation functions. Must be at least 1 second. If the
+   * requested range is not an exact multiple of `window_size`, the final bucket
+   * chronologically will be truncated at the upper endpoint of the range and
+   * will cover a duration shorter than `window_size`.
+   *
+   * @var string
+   */
+  public $windowSize;
+
+  /**
+   * Optional. The data source family name to roll up. If empty, data points
+   * from all available data sources will be rolled up. Format:
+   * `users/{user}/dataSourceFamilies/{data_source_family}` The `{user}` can be
+   * either the alias `me` or the authenticated user's numeric Health User ID,
+   * retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or
+   * `users/1234567890/dataSourceFamilies/...`). The supported values are: -
+   * `users/{user}/dataSourceFamilies/all-sources` - Default value. Includes
+   * data from all available data sources. -
+   * `users/{user}/dataSourceFamilies/google-wearables` - Includes data from
+   * Google and Fitbit tracker devices (such as Fitbit trackers and Pixel
+   * Watch). Excludes manually logged data. -
+   * `users/{user}/dataSourceFamilies/google-sources` - Includes first-party
+   * Google data, such as data from tracker devices, manually logged data, and
+   * Health Connect. - `users/{user}/dataSourceFamilies/self-sources` - Includes
+   * only the data the calling client wrote through this API, that is, data
+   * points whose data source was registered through this API with the same
+   * OAuth client ID as the caller. Callers that were only granted write scopes
+   * for the requested data type may only read the data they wrote themselves:
+   * their requests are implicitly restricted to `self-sources`, and requesting
+   * any other data source family fails with `PERMISSION_DENIED`. If no data
+   * point matches the requested data source family, the response is an empty
+   * list rather than an error.
+   *
+   * @param string $dataSourceFamily
+   */
+  public function setDataSourceFamily($dataSourceFamily)
+  {
+    $this->dataSourceFamily = $dataSourceFamily;
+  }
+  /**
+   * @return string
+   */
+  public function getDataSourceFamily()
+  {
+    return $this->dataSourceFamily;
+  }
+  /**
+   * Optional. The maximum number of data points to return. If unspecified, at
+   * most 1440 data points will be returned. The maximum page size is 10000;
+   * values above that will be truncated accordingly.
+   *
+   * @param int $pageSize
+   */
+  public function setPageSize($pageSize)
+  {
+    $this->pageSize = $pageSize;
+  }
+  /**
+   * @return int
+   */
+  public function getPageSize()
+  {
+    return $this->pageSize;
+  }
+  /**
+   * Optional. The next_page_token from a previous request, if any. All other
+   * request fields need to be the same as in the initial request when the page
+   * token is specified.
+   *
+   * @param string $pageToken
+   */
+  public function setPageToken($pageToken)
+  {
+    $this->pageToken = $pageToken;
+  }
+  /**
+   * @return string
+   */
+  public function getPageToken()
+  {
+    return $this->pageToken;
+  }
+  /**
+   * Required. Closed-open range of data points that will be rolled up. The
+   * maximum range for `calories-in-heart-rate-zone`, `heart-rate`, `active-
+   * minutes` and `total-calories` is 14 days. The maximum range for all other
+   * data types is 90 days.
+   *
+   * @param Interval $range
+   */
+  public function setRange(Interval $range)
+  {
+    $this->range = $range;
+  }
+  /**
+   * @return Interval
+   */
+  public function getRange()
+  {
+    return $this->range;
+  }
+  /**
+   * Required. The size of the time window to group data points into before
+   * applying the aggregation functions. Must be at least 1 second. If the
+   * requested range is not an exact multiple of `window_size`, the final bucket
+   * chronologically will be truncated at the upper endpoint of the range and
+   * will cover a duration shorter than `window_size`.
+   *
+   * @param string $windowSize
+   */
+  public function setWindowSize($windowSize)
+  {
+    $this->windowSize = $windowSize;
+  }
+  /**
+   * @return string
+   */
+  public function getWindowSize()
+  {
+    return $this->windowSize;
+  }
+}
+
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(RollUpDataPointsRequest::class, 'Google_Service_GoogleHealthAPI_RollUpDataPointsRequest');

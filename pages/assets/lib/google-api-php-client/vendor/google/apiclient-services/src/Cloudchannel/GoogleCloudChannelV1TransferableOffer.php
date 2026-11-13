@@ -21,9 +21,19 @@ class GoogleCloudChannelV1TransferableOffer extends \Google\Model
 {
   protected $offerType = GoogleCloudChannelV1Offer::class;
   protected $offerDataType = '';
+  /**
+   * Optional. Price reference ID for the offer. Only for offers that require
+   * additional price information. Used to guarantee that the pricing is
+   * consistent between quoting the offer and placing the order.
+   *
+   * @var string
+   */
+  public $priceReferenceId;
 
   /**
-   * @param GoogleCloudChannelV1Offer
+   * Offer with parameter constraints updated to allow the Transfer.
+   *
+   * @param GoogleCloudChannelV1Offer $offer
    */
   public function setOffer(GoogleCloudChannelV1Offer $offer)
   {
@@ -35,6 +45,24 @@ class GoogleCloudChannelV1TransferableOffer extends \Google\Model
   public function getOffer()
   {
     return $this->offer;
+  }
+  /**
+   * Optional. Price reference ID for the offer. Only for offers that require
+   * additional price information. Used to guarantee that the pricing is
+   * consistent between quoting the offer and placing the order.
+   *
+   * @param string $priceReferenceId
+   */
+  public function setPriceReferenceId($priceReferenceId)
+  {
+    $this->priceReferenceId = $priceReferenceId;
+  }
+  /**
+   * @return string
+   */
+  public function getPriceReferenceId()
+  {
+    return $this->priceReferenceId;
   }
 }
 

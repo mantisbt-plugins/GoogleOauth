@@ -21,22 +21,37 @@ class Quota extends \Google\Collection
 {
   protected $collection_key = 'whitelistedKeySpecs';
   /**
+   * Maximum allowed number of DnsKeys per ManagedZone.
+   *
    * @var int
    */
   public $dnsKeysPerManagedZone;
   /**
+   * Maximum allowed number of GKE clusters to which a privately scoped zone can
+   * be attached.
+   *
    * @var int
    */
   public $gkeClustersPerManagedZone;
   /**
+   * Maximum allowed number of GKE clusters per policy.
+   *
    * @var int
    */
   public $gkeClustersPerPolicy;
   /**
+   * Maximum allowed number of GKE clusters per response policy.
+   *
    * @var int
    */
   public $gkeClustersPerResponsePolicy;
   /**
+   * @var int
+   */
+  public $internetHealthChecksPerManagedZone;
+  /**
+   * Maximum allowed number of items per routing policy.
+   *
    * @var int
    */
   public $itemsPerRoutingPolicy;
@@ -45,70 +60,127 @@ class Quota extends \Google\Collection
    */
   public $kind;
   /**
+   * Maximum allowed number of managed zones in the project.
+   *
    * @var int
    */
   public $managedZones;
   /**
+   * Maximum allowed number of managed zones which can be attached to a GKE
+   * cluster.
+   *
    * @var int
    */
   public $managedZonesPerGkeCluster;
   /**
+   * Maximum allowed number of managed zones which can be attached to a network.
+   *
    * @var int
    */
   public $managedZonesPerNetwork;
   /**
+   * Maximum number of nameservers per delegation, meant to prevent abuse
+   *
+   * @var int
+   */
+  public $nameserversPerDelegation;
+  /**
+   * Maximum allowed number of networks to which a privately scoped zone can be
+   * attached.
+   *
    * @var int
    */
   public $networksPerManagedZone;
   /**
+   * Maximum allowed number of networks per policy.
+   *
    * @var int
    */
   public $networksPerPolicy;
   /**
+   * Maximum allowed number of networks per response policy.
+   *
    * @var int
    */
   public $networksPerResponsePolicy;
   /**
+   * Maximum allowed number of outbound endpoints per managed zone.
+   *
+   * @var int
+   */
+  public $outboundEndpointsPerManagedZone;
+  /**
+   * Maximum allowed number of outbound endpoints per policy.
+   *
+   * @var int
+   */
+  public $outboundEndpointsPerPolicy;
+  /**
+   * Maximum allowed number of consumer peering zones per target network owned
+   * by this producer project
+   *
    * @var int
    */
   public $peeringZonesPerTargetNetwork;
   /**
+   * Maximum allowed number of policies per project.
+   *
    * @var int
    */
   public $policies;
   /**
+   * Maximum allowed number of ResourceRecords per ResourceRecordSet.
+   *
    * @var int
    */
   public $resourceRecordsPerRrset;
   /**
+   * Maximum allowed number of response policies per project.
+   *
    * @var int
    */
   public $responsePolicies;
   /**
+   * Maximum allowed number of rules per response policy.
+   *
    * @var int
    */
   public $responsePolicyRulesPerResponsePolicy;
   /**
+   * Maximum allowed number of ResourceRecordSets to add per
+   * ChangesCreateRequest.
+   *
    * @var int
    */
   public $rrsetAdditionsPerChange;
   /**
+   * Maximum allowed number of ResourceRecordSets to delete per
+   * ChangesCreateRequest.
+   *
    * @var int
    */
   public $rrsetDeletionsPerChange;
   /**
+   * Maximum allowed number of ResourceRecordSets per zone in the project.
+   *
    * @var int
    */
   public $rrsetsPerManagedZone;
   /**
+   * Maximum allowed number of target name servers per managed forwarding zone.
+   *
    * @var int
    */
   public $targetNameServersPerManagedZone;
   /**
+   * Maximum allowed number of alternative target name servers per policy.
+   *
    * @var int
    */
   public $targetNameServersPerPolicy;
   /**
+   * Maximum allowed size for total rrdata in one ChangesCreateRequest in bytes.
+   *
    * @var int
    */
   public $totalRrdataSizePerChange;
@@ -116,7 +188,9 @@ class Quota extends \Google\Collection
   protected $whitelistedKeySpecsDataType = 'array';
 
   /**
-   * @param int
+   * Maximum allowed number of DnsKeys per ManagedZone.
+   *
+   * @param int $dnsKeysPerManagedZone
    */
   public function setDnsKeysPerManagedZone($dnsKeysPerManagedZone)
   {
@@ -130,7 +204,10 @@ class Quota extends \Google\Collection
     return $this->dnsKeysPerManagedZone;
   }
   /**
-   * @param int
+   * Maximum allowed number of GKE clusters to which a privately scoped zone can
+   * be attached.
+   *
+   * @param int $gkeClustersPerManagedZone
    */
   public function setGkeClustersPerManagedZone($gkeClustersPerManagedZone)
   {
@@ -144,7 +221,9 @@ class Quota extends \Google\Collection
     return $this->gkeClustersPerManagedZone;
   }
   /**
-   * @param int
+   * Maximum allowed number of GKE clusters per policy.
+   *
+   * @param int $gkeClustersPerPolicy
    */
   public function setGkeClustersPerPolicy($gkeClustersPerPolicy)
   {
@@ -158,7 +237,9 @@ class Quota extends \Google\Collection
     return $this->gkeClustersPerPolicy;
   }
   /**
-   * @param int
+   * Maximum allowed number of GKE clusters per response policy.
+   *
+   * @param int $gkeClustersPerResponsePolicy
    */
   public function setGkeClustersPerResponsePolicy($gkeClustersPerResponsePolicy)
   {
@@ -172,7 +253,23 @@ class Quota extends \Google\Collection
     return $this->gkeClustersPerResponsePolicy;
   }
   /**
-   * @param int
+   * @param int $internetHealthChecksPerManagedZone
+   */
+  public function setInternetHealthChecksPerManagedZone($internetHealthChecksPerManagedZone)
+  {
+    $this->internetHealthChecksPerManagedZone = $internetHealthChecksPerManagedZone;
+  }
+  /**
+   * @return int
+   */
+  public function getInternetHealthChecksPerManagedZone()
+  {
+    return $this->internetHealthChecksPerManagedZone;
+  }
+  /**
+   * Maximum allowed number of items per routing policy.
+   *
+   * @param int $itemsPerRoutingPolicy
    */
   public function setItemsPerRoutingPolicy($itemsPerRoutingPolicy)
   {
@@ -186,7 +283,7 @@ class Quota extends \Google\Collection
     return $this->itemsPerRoutingPolicy;
   }
   /**
-   * @param string
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -200,7 +297,9 @@ class Quota extends \Google\Collection
     return $this->kind;
   }
   /**
-   * @param int
+   * Maximum allowed number of managed zones in the project.
+   *
+   * @param int $managedZones
    */
   public function setManagedZones($managedZones)
   {
@@ -214,7 +313,10 @@ class Quota extends \Google\Collection
     return $this->managedZones;
   }
   /**
-   * @param int
+   * Maximum allowed number of managed zones which can be attached to a GKE
+   * cluster.
+   *
+   * @param int $managedZonesPerGkeCluster
    */
   public function setManagedZonesPerGkeCluster($managedZonesPerGkeCluster)
   {
@@ -228,7 +330,9 @@ class Quota extends \Google\Collection
     return $this->managedZonesPerGkeCluster;
   }
   /**
-   * @param int
+   * Maximum allowed number of managed zones which can be attached to a network.
+   *
+   * @param int $managedZonesPerNetwork
    */
   public function setManagedZonesPerNetwork($managedZonesPerNetwork)
   {
@@ -242,7 +346,26 @@ class Quota extends \Google\Collection
     return $this->managedZonesPerNetwork;
   }
   /**
-   * @param int
+   * Maximum number of nameservers per delegation, meant to prevent abuse
+   *
+   * @param int $nameserversPerDelegation
+   */
+  public function setNameserversPerDelegation($nameserversPerDelegation)
+  {
+    $this->nameserversPerDelegation = $nameserversPerDelegation;
+  }
+  /**
+   * @return int
+   */
+  public function getNameserversPerDelegation()
+  {
+    return $this->nameserversPerDelegation;
+  }
+  /**
+   * Maximum allowed number of networks to which a privately scoped zone can be
+   * attached.
+   *
+   * @param int $networksPerManagedZone
    */
   public function setNetworksPerManagedZone($networksPerManagedZone)
   {
@@ -256,7 +379,9 @@ class Quota extends \Google\Collection
     return $this->networksPerManagedZone;
   }
   /**
-   * @param int
+   * Maximum allowed number of networks per policy.
+   *
+   * @param int $networksPerPolicy
    */
   public function setNetworksPerPolicy($networksPerPolicy)
   {
@@ -270,7 +395,9 @@ class Quota extends \Google\Collection
     return $this->networksPerPolicy;
   }
   /**
-   * @param int
+   * Maximum allowed number of networks per response policy.
+   *
+   * @param int $networksPerResponsePolicy
    */
   public function setNetworksPerResponsePolicy($networksPerResponsePolicy)
   {
@@ -284,7 +411,42 @@ class Quota extends \Google\Collection
     return $this->networksPerResponsePolicy;
   }
   /**
-   * @param int
+   * Maximum allowed number of outbound endpoints per managed zone.
+   *
+   * @param int $outboundEndpointsPerManagedZone
+   */
+  public function setOutboundEndpointsPerManagedZone($outboundEndpointsPerManagedZone)
+  {
+    $this->outboundEndpointsPerManagedZone = $outboundEndpointsPerManagedZone;
+  }
+  /**
+   * @return int
+   */
+  public function getOutboundEndpointsPerManagedZone()
+  {
+    return $this->outboundEndpointsPerManagedZone;
+  }
+  /**
+   * Maximum allowed number of outbound endpoints per policy.
+   *
+   * @param int $outboundEndpointsPerPolicy
+   */
+  public function setOutboundEndpointsPerPolicy($outboundEndpointsPerPolicy)
+  {
+    $this->outboundEndpointsPerPolicy = $outboundEndpointsPerPolicy;
+  }
+  /**
+   * @return int
+   */
+  public function getOutboundEndpointsPerPolicy()
+  {
+    return $this->outboundEndpointsPerPolicy;
+  }
+  /**
+   * Maximum allowed number of consumer peering zones per target network owned
+   * by this producer project
+   *
+   * @param int $peeringZonesPerTargetNetwork
    */
   public function setPeeringZonesPerTargetNetwork($peeringZonesPerTargetNetwork)
   {
@@ -298,7 +460,9 @@ class Quota extends \Google\Collection
     return $this->peeringZonesPerTargetNetwork;
   }
   /**
-   * @param int
+   * Maximum allowed number of policies per project.
+   *
+   * @param int $policies
    */
   public function setPolicies($policies)
   {
@@ -312,7 +476,9 @@ class Quota extends \Google\Collection
     return $this->policies;
   }
   /**
-   * @param int
+   * Maximum allowed number of ResourceRecords per ResourceRecordSet.
+   *
+   * @param int $resourceRecordsPerRrset
    */
   public function setResourceRecordsPerRrset($resourceRecordsPerRrset)
   {
@@ -326,7 +492,9 @@ class Quota extends \Google\Collection
     return $this->resourceRecordsPerRrset;
   }
   /**
-   * @param int
+   * Maximum allowed number of response policies per project.
+   *
+   * @param int $responsePolicies
    */
   public function setResponsePolicies($responsePolicies)
   {
@@ -340,7 +508,9 @@ class Quota extends \Google\Collection
     return $this->responsePolicies;
   }
   /**
-   * @param int
+   * Maximum allowed number of rules per response policy.
+   *
+   * @param int $responsePolicyRulesPerResponsePolicy
    */
   public function setResponsePolicyRulesPerResponsePolicy($responsePolicyRulesPerResponsePolicy)
   {
@@ -354,7 +524,10 @@ class Quota extends \Google\Collection
     return $this->responsePolicyRulesPerResponsePolicy;
   }
   /**
-   * @param int
+   * Maximum allowed number of ResourceRecordSets to add per
+   * ChangesCreateRequest.
+   *
+   * @param int $rrsetAdditionsPerChange
    */
   public function setRrsetAdditionsPerChange($rrsetAdditionsPerChange)
   {
@@ -368,7 +541,10 @@ class Quota extends \Google\Collection
     return $this->rrsetAdditionsPerChange;
   }
   /**
-   * @param int
+   * Maximum allowed number of ResourceRecordSets to delete per
+   * ChangesCreateRequest.
+   *
+   * @param int $rrsetDeletionsPerChange
    */
   public function setRrsetDeletionsPerChange($rrsetDeletionsPerChange)
   {
@@ -382,7 +558,9 @@ class Quota extends \Google\Collection
     return $this->rrsetDeletionsPerChange;
   }
   /**
-   * @param int
+   * Maximum allowed number of ResourceRecordSets per zone in the project.
+   *
+   * @param int $rrsetsPerManagedZone
    */
   public function setRrsetsPerManagedZone($rrsetsPerManagedZone)
   {
@@ -396,7 +574,9 @@ class Quota extends \Google\Collection
     return $this->rrsetsPerManagedZone;
   }
   /**
-   * @param int
+   * Maximum allowed number of target name servers per managed forwarding zone.
+   *
+   * @param int $targetNameServersPerManagedZone
    */
   public function setTargetNameServersPerManagedZone($targetNameServersPerManagedZone)
   {
@@ -410,7 +590,9 @@ class Quota extends \Google\Collection
     return $this->targetNameServersPerManagedZone;
   }
   /**
-   * @param int
+   * Maximum allowed number of alternative target name servers per policy.
+   *
+   * @param int $targetNameServersPerPolicy
    */
   public function setTargetNameServersPerPolicy($targetNameServersPerPolicy)
   {
@@ -424,7 +606,9 @@ class Quota extends \Google\Collection
     return $this->targetNameServersPerPolicy;
   }
   /**
-   * @param int
+   * Maximum allowed size for total rrdata in one ChangesCreateRequest in bytes.
+   *
+   * @param int $totalRrdataSizePerChange
    */
   public function setTotalRrdataSizePerChange($totalRrdataSizePerChange)
   {
@@ -438,7 +622,9 @@ class Quota extends \Google\Collection
     return $this->totalRrdataSizePerChange;
   }
   /**
-   * @param DnsKeySpec[]
+   * DNSSEC algorithm and key length types that can be used for DnsKeys.
+   *
+   * @param DnsKeySpec[] $whitelistedKeySpecs
    */
   public function setWhitelistedKeySpecs($whitelistedKeySpecs)
   {

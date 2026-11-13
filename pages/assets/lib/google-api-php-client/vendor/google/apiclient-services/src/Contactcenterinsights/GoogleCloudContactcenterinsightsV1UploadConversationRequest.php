@@ -22,18 +22,30 @@ class GoogleCloudContactcenterinsightsV1UploadConversationRequest extends \Googl
   protected $conversationType = GoogleCloudContactcenterinsightsV1Conversation::class;
   protected $conversationDataType = '';
   /**
+   * Optional. A unique ID for the new conversation. This ID will become the
+   * final component of the conversation's resource name. If no ID is specified,
+   * a server-generated ID will be used. This value should be 4-64 characters
+   * and must match the regular expression `^[a-z0-9-]{4,64}$`. Valid characters
+   * are `a-z-`
+   *
    * @var string
    */
   public $conversationId;
   /**
+   * Required. The parent resource of the conversation.
+   *
    * @var string
    */
   public $parent;
   protected $redactionConfigType = GoogleCloudContactcenterinsightsV1RedactionConfig::class;
   protected $redactionConfigDataType = '';
+  protected $speechConfigType = GoogleCloudContactcenterinsightsV1SpeechConfig::class;
+  protected $speechConfigDataType = '';
 
   /**
-   * @param GoogleCloudContactcenterinsightsV1Conversation
+   * Required. The conversation resource to create.
+   *
+   * @param GoogleCloudContactcenterinsightsV1Conversation $conversation
    */
   public function setConversation(GoogleCloudContactcenterinsightsV1Conversation $conversation)
   {
@@ -47,7 +59,13 @@ class GoogleCloudContactcenterinsightsV1UploadConversationRequest extends \Googl
     return $this->conversation;
   }
   /**
-   * @param string
+   * Optional. A unique ID for the new conversation. This ID will become the
+   * final component of the conversation's resource name. If no ID is specified,
+   * a server-generated ID will be used. This value should be 4-64 characters
+   * and must match the regular expression `^[a-z0-9-]{4,64}$`. Valid characters
+   * are `a-z-`
+   *
+   * @param string $conversationId
    */
   public function setConversationId($conversationId)
   {
@@ -61,7 +79,9 @@ class GoogleCloudContactcenterinsightsV1UploadConversationRequest extends \Googl
     return $this->conversationId;
   }
   /**
-   * @param string
+   * Required. The parent resource of the conversation.
+   *
+   * @param string $parent
    */
   public function setParent($parent)
   {
@@ -75,7 +95,10 @@ class GoogleCloudContactcenterinsightsV1UploadConversationRequest extends \Googl
     return $this->parent;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1RedactionConfig
+   * Optional. DLP settings for transcript redaction. Will default to the config
+   * specified in Settings.
+   *
+   * @param GoogleCloudContactcenterinsightsV1RedactionConfig $redactionConfig
    */
   public function setRedactionConfig(GoogleCloudContactcenterinsightsV1RedactionConfig $redactionConfig)
   {
@@ -87,6 +110,23 @@ class GoogleCloudContactcenterinsightsV1UploadConversationRequest extends \Googl
   public function getRedactionConfig()
   {
     return $this->redactionConfig;
+  }
+  /**
+   * Optional. Speech-to-Text configuration. Will default to the config
+   * specified in Settings.
+   *
+   * @param GoogleCloudContactcenterinsightsV1SpeechConfig $speechConfig
+   */
+  public function setSpeechConfig(GoogleCloudContactcenterinsightsV1SpeechConfig $speechConfig)
+  {
+    $this->speechConfig = $speechConfig;
+  }
+  /**
+   * @return GoogleCloudContactcenterinsightsV1SpeechConfig
+   */
+  public function getSpeechConfig()
+  {
+    return $this->speechConfig;
   }
 }
 

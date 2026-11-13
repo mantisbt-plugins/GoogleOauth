@@ -44,7 +44,7 @@ class GoogleCloudDialogflowCxV3Environment extends \Google\Collection
   protected $webhookConfigDataType = '';
 
   /**
-   * @param string
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -58,7 +58,7 @@ class GoogleCloudDialogflowCxV3Environment extends \Google\Collection
     return $this->description;
   }
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -72,7 +72,7 @@ class GoogleCloudDialogflowCxV3Environment extends \Google\Collection
     return $this->displayName;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -86,7 +86,7 @@ class GoogleCloudDialogflowCxV3Environment extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig
+   * @param GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig $testCasesConfig
    */
   public function setTestCasesConfig(GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig $testCasesConfig)
   {
@@ -100,7 +100,7 @@ class GoogleCloudDialogflowCxV3Environment extends \Google\Collection
     return $this->testCasesConfig;
   }
   /**
-   * @param string
+   * @param string $updateTime
    */
   public function setUpdateTime($updateTime)
   {
@@ -114,7 +114,7 @@ class GoogleCloudDialogflowCxV3Environment extends \Google\Collection
     return $this->updateTime;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3EnvironmentVersionConfig[]
+   * @param GoogleCloudDialogflowCxV3EnvironmentVersionConfig[] $versionConfigs
    */
   public function setVersionConfigs($versionConfigs)
   {
@@ -128,7 +128,7 @@ class GoogleCloudDialogflowCxV3Environment extends \Google\Collection
     return $this->versionConfigs;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3EnvironmentWebhookConfig
+   * @param GoogleCloudDialogflowCxV3EnvironmentWebhookConfig $webhookConfig
    */
   public function setWebhookConfig(GoogleCloudDialogflowCxV3EnvironmentWebhookConfig $webhookConfig)
   {

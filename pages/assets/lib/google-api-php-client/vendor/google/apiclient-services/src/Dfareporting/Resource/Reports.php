@@ -37,6 +37,7 @@ class Reports extends \Google\Service\Resource
    * @param string $profileId The Campaign Manager 360 user profile ID.
    * @param string $reportId The ID of the report.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($profileId, $reportId, $optParams = [])
   {
@@ -51,6 +52,7 @@ class Reports extends \Google\Service\Resource
    * @param string $reportId The ID of the report.
    * @param array $optParams Optional parameters.
    * @return Report
+   * @throws \Google\Service\Exception
    */
   public function get($profileId, $reportId, $optParams = [])
   {
@@ -65,6 +67,7 @@ class Reports extends \Google\Service\Resource
    * @param Report $postBody
    * @param array $optParams Optional parameters.
    * @return Report
+   * @throws \Google\Service\Exception
    */
   public function insert($profileId, Report $postBody, $optParams = [])
   {
@@ -85,28 +88,13 @@ class Reports extends \Google\Service\Resource
    * @opt_param string sortField The field by which to sort the list.
    * @opt_param string sortOrder Order of sorted results.
    * @return ReportList
+   * @throws \Google\Service\Exception
    */
   public function listReports($profileId, $optParams = [])
   {
     $params = ['profileId' => $profileId];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], ReportList::class);
-  }
-  /**
-   * Updates an existing report. This method supports patch semantics.
-   * (reports.patch)
-   *
-   * @param string $profileId The Campaign Manager 360 user profile ID.
-   * @param string $reportId The ID of the report.
-   * @param Report $postBody
-   * @param array $optParams Optional parameters.
-   * @return Report
-   */
-  public function patch($profileId, $reportId, Report $postBody, $optParams = [])
-  {
-    $params = ['profileId' => $profileId, 'reportId' => $reportId, 'postBody' => $postBody];
-    $params = array_merge($params, $optParams);
-    return $this->call('patch', [$params], Report::class);
   }
   /**
    * Runs a report. (reports.run)
@@ -118,6 +106,7 @@ class Reports extends \Google\Service\Resource
    * @opt_param bool synchronous If set and true, tries to run the report
    * synchronously.
    * @return DfareportingFile
+   * @throws \Google\Service\Exception
    */
   public function run($profileId, $reportId, $optParams = [])
   {
@@ -133,6 +122,7 @@ class Reports extends \Google\Service\Resource
    * @param Report $postBody
    * @param array $optParams Optional parameters.
    * @return Report
+   * @throws \Google\Service\Exception
    */
   public function update($profileId, $reportId, Report $postBody, $optParams = [])
   {

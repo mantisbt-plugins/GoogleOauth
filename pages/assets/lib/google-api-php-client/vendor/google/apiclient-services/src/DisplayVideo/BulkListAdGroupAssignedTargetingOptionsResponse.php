@@ -19,16 +19,45 @@ namespace Google\Service\DisplayVideo;
 
 class BulkListAdGroupAssignedTargetingOptionsResponse extends \Google\Collection
 {
-  protected $collection_key = 'youtubeAdGroupAssignedTargetingOptions';
+  protected $collection_key = 'adGroupAssignedTargetingOptions';
+  protected $adGroupAssignedTargetingOptionsType = AdGroupAssignedTargetingOption::class;
+  protected $adGroupAssignedTargetingOptionsDataType = 'array';
   /**
+   * A token identifying the next page of results. This value should be
+   * specified as the pageToken in a subsequent call to
+   * `BulkListAdGroupAssignedTargetingOptions` to fetch the next page of
+   * results. This token will be absent if there are no more
+   * AdGroupAssignedTargetingOption resources to return.
+   *
    * @var string
    */
   public $nextPageToken;
-  protected $youtubeAdGroupAssignedTargetingOptionsType = YoutubeAdGroupAssignedTargetingOption::class;
-  protected $youtubeAdGroupAssignedTargetingOptionsDataType = 'array';
 
   /**
-   * @param string
+   * The list of wrapper objects, each providing an assigned targeting option
+   * and the ad group it is assigned to. This list will be absent if empty.
+   *
+   * @param AdGroupAssignedTargetingOption[] $adGroupAssignedTargetingOptions
+   */
+  public function setAdGroupAssignedTargetingOptions($adGroupAssignedTargetingOptions)
+  {
+    $this->adGroupAssignedTargetingOptions = $adGroupAssignedTargetingOptions;
+  }
+  /**
+   * @return AdGroupAssignedTargetingOption[]
+   */
+  public function getAdGroupAssignedTargetingOptions()
+  {
+    return $this->adGroupAssignedTargetingOptions;
+  }
+  /**
+   * A token identifying the next page of results. This value should be
+   * specified as the pageToken in a subsequent call to
+   * `BulkListAdGroupAssignedTargetingOptions` to fetch the next page of
+   * results. This token will be absent if there are no more
+   * AdGroupAssignedTargetingOption resources to return.
+   *
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -40,20 +69,6 @@ class BulkListAdGroupAssignedTargetingOptionsResponse extends \Google\Collection
   public function getNextPageToken()
   {
     return $this->nextPageToken;
-  }
-  /**
-   * @param YoutubeAdGroupAssignedTargetingOption[]
-   */
-  public function setYoutubeAdGroupAssignedTargetingOptions($youtubeAdGroupAssignedTargetingOptions)
-  {
-    $this->youtubeAdGroupAssignedTargetingOptions = $youtubeAdGroupAssignedTargetingOptions;
-  }
-  /**
-   * @return YoutubeAdGroupAssignedTargetingOption[]
-   */
-  public function getYoutubeAdGroupAssignedTargetingOptions()
-  {
-    return $this->youtubeAdGroupAssignedTargetingOptions;
   }
 }
 

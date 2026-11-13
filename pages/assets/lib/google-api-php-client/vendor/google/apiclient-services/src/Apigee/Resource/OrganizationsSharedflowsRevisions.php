@@ -36,9 +36,14 @@ class OrganizationsSharedflowsRevisions extends \Google\Service\Resource
    *
    * @param string $name Required. The name of the shared flow revision to delete.
    * Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flo
-   * w_id}/revisions/{revision_id}`
+   * w_id}/revisions/{revision_id}` If the Shared Flow resource has the `space`
+   * attribute set, IAM permissions are checked against the Space resource path.
+   * To learn more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1SharedFlowRevision
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -57,12 +62,17 @@ class OrganizationsSharedflowsRevisions extends \Google\Service\Resource
    *
    * @param string $name Required. The name of the shared flow revision to get.
    * Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flo
-   * w_id}/revisions/{revision_id}`
+   * w_id}/revisions/{revision_id}` If the Shared Flow resource has the `space`
+   * attribute set, IAM permissions are checked against the Space resource path.
+   * To learn more, read the [Apigee Spaces
+   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
+   * administration/spaces/apigee-spaces-overview).
    * @param array $optParams Optional parameters.
    *
    * @opt_param string format Specify `bundle` to export the contents of the
    * shared flow bundle. Otherwise, the bundle metadata is returned.
    * @return GoogleApiHttpBody
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -74,12 +84,15 @@ class OrganizationsSharedflowsRevisions extends \Google\Service\Resource
    * Updates a shared flow revision. This operation is only allowed on revisions
    * which have never been deployed. After deployment a revision becomes
    * immutable, even if it becomes undeployed. The payload is a ZIP-formatted
-   * shared flow. Content type must be either multipart/form-data or application
-   * /octet-stream. (revisions.updateSharedFlowRevision)
+   * shared flow. Content type must be either multipart/form-data or
+   * application/octet-stream. (revisions.updateSharedFlowRevision)
    *
    * @param string $name Required. The name of the shared flow revision to update.
    * Must be of the form: `organizations/{organization_id}/sharedflows/{shared_flo
-   * w_id}/revisions/{revision_id}`
+   * w_id}/revisions/{revision_id}` If the resource has the `space` attribute set,
+   * IAM permissions are checked against the Space resource path. To learn more,
+   * read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-
+   * platform/system-administration/spaces/apigee-spaces-overview).
    * @param GoogleApiHttpBody $postBody
    * @param array $optParams Optional parameters.
    *
@@ -87,6 +100,7 @@ class OrganizationsSharedflowsRevisions extends \Google\Service\Resource
    * value of this field. It is kept for compatibility with existing APIs. Must be
    * `true` or `false` if provided.
    * @return GoogleCloudApigeeV1SharedFlowRevision
+   * @throws \Google\Service\Exception
    */
   public function updateSharedFlowRevision($name, GoogleApiHttpBody $postBody, $optParams = [])
   {

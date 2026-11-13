@@ -20,16 +20,36 @@ namespace Google\Service\CloudRun;
 class GoogleCloudRunV2BinaryAuthorization extends \Google\Model
 {
   /**
+   * Optional. If present, indicates to use Breakglass using this justification.
+   * If use_default is False, then it must be empty. For more information on
+   * breakglass, see https://cloud.google.com/binary-authorization/docs/using-
+   * breakglass
+   *
    * @var string
    */
   public $breakglassJustification;
   /**
+   * Optional. The path to a binary authorization policy. Format:
+   * `projects/{project}/platforms/cloudRun/{policy-name}`
+   *
+   * @var string
+   */
+  public $policy;
+  /**
+   * Optional. If True, indicates to use the default project's binary
+   * authorization policy. If False, binary authorization will be disabled.
+   *
    * @var bool
    */
   public $useDefault;
 
   /**
-   * @param string
+   * Optional. If present, indicates to use Breakglass using this justification.
+   * If use_default is False, then it must be empty. For more information on
+   * breakglass, see https://cloud.google.com/binary-authorization/docs/using-
+   * breakglass
+   *
+   * @param string $breakglassJustification
    */
   public function setBreakglassJustification($breakglassJustification)
   {
@@ -43,7 +63,27 @@ class GoogleCloudRunV2BinaryAuthorization extends \Google\Model
     return $this->breakglassJustification;
   }
   /**
-   * @param bool
+   * Optional. The path to a binary authorization policy. Format:
+   * `projects/{project}/platforms/cloudRun/{policy-name}`
+   *
+   * @param string $policy
+   */
+  public function setPolicy($policy)
+  {
+    $this->policy = $policy;
+  }
+  /**
+   * @return string
+   */
+  public function getPolicy()
+  {
+    return $this->policy;
+  }
+  /**
+   * Optional. If True, indicates to use the default project's binary
+   * authorization policy. If False, binary authorization will be disabled.
+   *
+   * @param bool $useDefault
    */
   public function setUseDefault($useDefault)
   {

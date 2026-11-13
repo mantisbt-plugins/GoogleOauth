@@ -20,12 +20,22 @@ namespace Google\Service\WorkloadManager;
 class ScannedResource extends \Google\Model
 {
   /**
+   * Resource name.
+   *
    * @var string
    */
   public $resource;
+  /**
+   * Resource type.
+   *
+   * @var string
+   */
+  public $type;
 
   /**
-   * @param string
+   * Resource name.
+   *
+   * @param string $resource
    */
   public function setResource($resource)
   {
@@ -37,6 +47,22 @@ class ScannedResource extends \Google\Model
   public function getResource()
   {
     return $this->resource;
+  }
+  /**
+   * Resource type.
+   *
+   * @param string $type
+   */
+  public function setType($type)
+  {
+    $this->type = $type;
+  }
+  /**
+   * @return string
+   */
+  public function getType()
+  {
+    return $this->type;
   }
 }
 

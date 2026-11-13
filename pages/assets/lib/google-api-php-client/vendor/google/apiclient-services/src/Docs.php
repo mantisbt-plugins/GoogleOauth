@@ -27,7 +27,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/docs/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/docs/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -51,6 +51,7 @@ class Docs extends \Google\Service
       "https://www.googleapis.com/auth/drive.readonly";
 
   public $documents;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Docs service.
@@ -63,6 +64,7 @@ class Docs extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://docs.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://docs.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -96,6 +98,14 @@ class Docs extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'commentsViewMode' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'includeTabsContent' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'suggestionsViewMode' => [
                   'location' => 'query',

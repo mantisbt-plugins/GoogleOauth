@@ -20,19 +20,80 @@ namespace Google\Service\Firestore;
 class GoogleFirestoreAdminV1TtlConfig extends \Google\Model
 {
   /**
+   * The state is unspecified or unknown.
+   */
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  /**
+   * The TTL is being applied. There is an active long-running operation to
+   * track the change. Newly written documents will have TTLs applied as
+   * requested. Requested TTLs on existing documents are still being processed.
+   * When TTLs on all existing documents have been processed, the state will
+   * move to 'ACTIVE'.
+   */
+  public const STATE_CREATING = 'CREATING';
+  /**
+   * The TTL is active for all documents.
+   */
+  public const STATE_ACTIVE = 'ACTIVE';
+  /**
+   * The TTL configuration could not be enabled for all existing documents.
+   * Newly written documents will continue to have their TTL applied. The LRO
+   * returned when last attempting to enable TTL for this `Field` has failed,
+   * and may have more details.
+   */
+  public const STATE_NEEDS_REPAIR = 'NEEDS_REPAIR';
+  /**
+   * Optional. The offset, relative to the timestamp value from the TTL-enabled
+   * field, used to determine the document's expiration time.
+   * `expiration_offset.seconds` must be between 0 and 2,147,483,647 inclusive.
+   * Values more precise than seconds are rejected. If unset, defaults to 0, in
+   * which case the expiration time is the same as the timestamp value from the
+   * TTL-enabled field.
+   *
+   * @var string
+   */
+  public $expirationOffset;
+  /**
+   * Output only. The state of the TTL configuration.
+   *
    * @var string
    */
   public $state;
 
   /**
-   * @param string
+   * Optional. The offset, relative to the timestamp value from the TTL-enabled
+   * field, used to determine the document's expiration time.
+   * `expiration_offset.seconds` must be between 0 and 2,147,483,647 inclusive.
+   * Values more precise than seconds are rejected. If unset, defaults to 0, in
+   * which case the expiration time is the same as the timestamp value from the
+   * TTL-enabled field.
+   *
+   * @param string $expirationOffset
+   */
+  public function setExpirationOffset($expirationOffset)
+  {
+    $this->expirationOffset = $expirationOffset;
+  }
+  /**
+   * @return string
+   */
+  public function getExpirationOffset()
+  {
+    return $this->expirationOffset;
+  }
+  /**
+   * Output only. The state of the TTL configuration.
+   *
+   * Accepted values: STATE_UNSPECIFIED, CREATING, ACTIVE, NEEDS_REPAIR
+   *
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {

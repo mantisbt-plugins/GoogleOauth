@@ -19,13 +19,37 @@ namespace Google\Service\Connectors;
 
 class ExecuteActionRequest extends \Google\Model
 {
+  protected $executionConfigType = ExecutionConfig::class;
+  protected $executionConfigDataType = '';
   /**
+   * Parameters for executing the action. The parameters can be key/value pairs
+   * or nested structs.
+   *
    * @var array[]
    */
   public $parameters;
 
   /**
-   * @param array[]
+   * Execution config for the request.
+   *
+   * @param ExecutionConfig $executionConfig
+   */
+  public function setExecutionConfig(ExecutionConfig $executionConfig)
+  {
+    $this->executionConfig = $executionConfig;
+  }
+  /**
+   * @return ExecutionConfig
+   */
+  public function getExecutionConfig()
+  {
+    return $this->executionConfig;
+  }
+  /**
+   * Parameters for executing the action. The parameters can be key/value pairs
+   * or nested structs.
+   *
+   * @param array[] $parameters
    */
   public function setParameters($parameters)
   {

@@ -34,11 +34,11 @@ class AccountsContainersWorkspacesClients extends \Google\Service\Resource
   /**
    * Creates a GTM Client. (clients.create)
    *
-   * @param string $parent GTM Workspace's API relative path. Example:
-   * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+   * @param string $parent GTM Workspace's API relative path.
    * @param Client $postBody
    * @param array $optParams Optional parameters.
    * @return Client
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Client $postBody, $optParams = [])
   {
@@ -49,9 +49,9 @@ class AccountsContainersWorkspacesClients extends \Google\Service\Resource
   /**
    * Deletes a GTM Client. (clients.delete)
    *
-   * @param string $path GTM Client's API relative path. Example: accounts/{accoun
-   * t_id}/containers/{container_id}/workspaces/{workspace_id}/clients/{client_id}
+   * @param string $path GTM Client's API relative path.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($path, $optParams = [])
   {
@@ -62,10 +62,10 @@ class AccountsContainersWorkspacesClients extends \Google\Service\Resource
   /**
    * Gets a GTM Client. (clients.get)
    *
-   * @param string $path GTM Client's API relative path. Example: accounts/{accoun
-   * t_id}/containers/{container_id}/workspaces/{workspace_id}/clients/{client_id}
+   * @param string $path GTM Client's API relative path.
    * @param array $optParams Optional parameters.
    * @return Client
+   * @throws \Google\Service\Exception
    */
   public function get($path, $optParams = [])
   {
@@ -77,13 +77,13 @@ class AccountsContainersWorkspacesClients extends \Google\Service\Resource
    * Lists all GTM Clients of a GTM container workspace.
    * (clients.listAccountsContainersWorkspacesClients)
    *
-   * @param string $parent GTM Workspace's API relative path. Example:
-   * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+   * @param string $parent GTM Workspace's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string pageToken Continuation token for fetching the next page of
    * results.
    * @return ListClientsResponse
+   * @throws \Google\Service\Exception
    */
   public function listAccountsContainersWorkspacesClients($parent, $optParams = [])
   {
@@ -94,13 +94,13 @@ class AccountsContainersWorkspacesClients extends \Google\Service\Resource
   /**
    * Reverts changes to a GTM Client in a GTM Workspace. (clients.revert)
    *
-   * @param string $path GTM Client's API relative path. Example: accounts/{accoun
-   * t_id}/containers/{container_id}/workspaces/{workspace_id}/clients/{client_id}
+   * @param string $path GTM Client's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string fingerprint When provided, this fingerprint must match the
    * fingerprint of the client in storage.
    * @return RevertClientResponse
+   * @throws \Google\Service\Exception
    */
   public function revert($path, $optParams = [])
   {
@@ -111,14 +111,14 @@ class AccountsContainersWorkspacesClients extends \Google\Service\Resource
   /**
    * Updates a GTM Client. (clients.update)
    *
-   * @param string $path GTM Client's API relative path. Example: accounts/{accoun
-   * t_id}/containers/{container_id}/workspaces/{workspace_id}/clients/{client_id}
+   * @param string $path GTM Client's API relative path.
    * @param Client $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string fingerprint When provided, this fingerprint must match the
    * fingerprint of the client in storage.
    * @return Client
+   * @throws \Google\Service\Exception
    */
   public function update($path, Client $postBody, $optParams = [])
   {

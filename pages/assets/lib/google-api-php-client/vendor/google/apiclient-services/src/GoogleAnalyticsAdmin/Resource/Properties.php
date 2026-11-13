@@ -46,6 +46,7 @@ class Properties extends \Google\Service\Resource
    * @param GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponse
+   * @throws \Google\Service\Exception
    */
   public function acknowledgeUserDataCollection($property, GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionRequest $postBody, $optParams = [])
   {
@@ -54,12 +55,13 @@ class Properties extends \Google\Service\Resource
     return $this->call('acknowledgeUserDataCollection', [$params], GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponse::class);
   }
   /**
-   * Creates an "GA4" property with the specified location and attributes.
-   * (properties.create)
+   * Creates a Google Analytics property with the specified location and
+   * attributes. (properties.create)
    *
    * @param GoogleAnalyticsAdminV1betaProperty $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaProperty
+   * @throws \Google\Service\Exception
    */
   public function create(GoogleAnalyticsAdminV1betaProperty $postBody, $optParams = [])
   {
@@ -72,14 +74,15 @@ class Properties extends \Google\Service\Resource
    * API does not have a method to restore soft-deleted properties. However, they
    * can be restored using the Trash Can UI. If the properties are not restored
    * before the expiration time, the Property and all child resources (eg:
-   * GoogleAdsLinks, Streams, UserLinks) will be permanently purged.
+   * GoogleAdsLinks, Streams, AccessBindings) will be permanently purged.
    * https://support.google.com/analytics/answer/6154772 Returns an error if the
-   * target is not found, or is not a GA4 Property. (properties.delete)
+   * target is not found. (properties.delete)
    *
    * @param string $name Required. The name of the Property to soft-delete.
    * Format: properties/{property_id} Example: "properties/1000"
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaProperty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -88,12 +91,13 @@ class Properties extends \Google\Service\Resource
     return $this->call('delete', [$params], GoogleAnalyticsAdminV1betaProperty::class);
   }
   /**
-   * Lookup for a single "GA4" Property. (properties.get)
+   * Lookup for a single GA Property. (properties.get)
    *
    * @param string $name Required. The name of the property to lookup. Format:
    * properties/{property_id} Example: "properties/1000"
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaProperty
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -110,6 +114,7 @@ class Properties extends \Google\Service\Resource
    * "properties/1000/dataRetentionSettings"
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaDataRetentionSettings
+   * @throws \Google\Service\Exception
    */
   public function getDataRetentionSettings($name, $optParams = [])
   {
@@ -118,11 +123,10 @@ class Properties extends \Google\Service\Resource
     return $this->call('getDataRetentionSettings', [$params], GoogleAnalyticsAdminV1betaDataRetentionSettings::class);
   }
   /**
-   * Returns child Properties under the specified parent Account. Only "GA4"
-   * properties will be returned. Properties will be excluded if the caller does
-   * not have access. Soft-deleted (ie: "trashed") properties are excluded by
-   * default. Returns an empty list if no relevant properties are found.
-   * (properties.listProperties)
+   * Returns child Properties under the specified parent Account. Properties will
+   * be excluded if the caller does not have access. Soft-deleted (ie: "trashed")
+   * properties are excluded by default. Returns an empty list if no relevant
+   * properties are found. (properties.listProperties)
    *
    * @param array $optParams Optional parameters.
    *
@@ -137,11 +141,11 @@ class Properties extends \Google\Service\Resource
    * ancestor:accounts/123 | The account with account id: 123. | |
    * firebase_project:project-id | The firebase project with id: project-id. | |
    * firebase_project:123 | The firebase project with number: 123. | ```
-   * @opt_param int pageSize The maximum number of resources to return. The
-   * service may return fewer than this value, even if there are additional pages.
-   * If unspecified, at most 50 resources will be returned. The maximum value is
-   * 200; (higher values will be coerced to the maximum)
-   * @opt_param string pageToken A page token, received from a previous
+   * @opt_param int pageSize Optional. The maximum number of resources to return.
+   * The service may return fewer than this value, even if there are additional
+   * pages. If unspecified, at most 50 resources will be returned. The maximum
+   * value is 200; (higher values will be coerced to the maximum)
+   * @opt_param string pageToken Optional. A page token, received from a previous
    * `ListProperties` call. Provide this to retrieve the subsequent page. When
    * paginating, all other parameters provided to `ListProperties` must match the
    * call that provided the page token.
@@ -149,6 +153,7 @@ class Properties extends \Google\Service\Resource
    * Properties in the results. Properties can be inspected to determine whether
    * they are deleted or not.
    * @return GoogleAnalyticsAdminV1betaListPropertiesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProperties($optParams = [])
   {
@@ -159,7 +164,7 @@ class Properties extends \Google\Service\Resource
   /**
    * Updates a property. (properties.patch)
    *
-   * @param string $name Output only. Resource name of this property. Format:
+   * @param string $name Identifier. Resource name of this property. Format:
    * properties/{property_id} Example: "properties/1000"
    * @param GoogleAnalyticsAdminV1betaProperty $postBody
    * @param array $optParams Optional parameters.
@@ -169,6 +174,7 @@ class Properties extends \Google\Service\Resource
    * will not be updated. To replace the entire entity, use one path with the
    * string "*" to match all fields.
    * @return GoogleAnalyticsAdminV1betaProperty
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleAnalyticsAdminV1betaProperty $postBody, $optParams = [])
   {
@@ -180,25 +186,31 @@ class Properties extends \Google\Service\Resource
    * Returns a customized report of data access records. The report provides
    * records of each time a user reads Google Analytics reporting data. Access
    * records are retained for up to 2 years. Data Access Reports can be requested
-   * for a property. The property must be in Google Analytics 360. This method is
-   * only available to Administrators. These data access records include GA4 UI
-   * Reporting, GA4 UI Explorations, GA4 Data API, and other products like
-   * Firebase & Admob that can retrieve data from Google Analytics through a
-   * linkage. These records don't include property configuration changes like
-   * adding a stream or changing a property's time zone. For configuration change
-   * history, see [searchChangeHistoryEvents](https://developers.google.com/analyt
-   * ics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents
-   * ). (properties.runAccessReport)
+   * for a property. Reports may be requested for any property, but dimensions
+   * that aren't related to quota can only be requested on Google Analytics 360
+   * properties. This method is only available to Administrators. These data
+   * access records include GA UI Reporting, GA UI Explorations, GA Data API, and
+   * other products like Firebase & Admob that can retrieve data from Google
+   * Analytics through a linkage. These records don't include property
+   * configuration changes like adding a stream or changing a property's time
+   * zone. For configuration change history, see [searchChangeHistoryEvents](https
+   * ://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/acc
+   * ounts/searchChangeHistoryEvents). To give your feedback on this API, complete
+   * the [Google Analytics Access Reports feedback](https://docs.google.com/forms/
+   * d/e/1FAIpQLSdmEBUrMzAEdiEKk5TV5dEHvDUZDRlgWYdQdAeSdtR4hVjEhw/viewform) form.
+   * (properties.runAccessReport)
    *
    * @param string $entity The Data Access Report supports requesting at the
    * property level or account level. If requested at the account level, Data
    * Access Reports include all access for all properties under that account. To
    * request at the property level, entity should be for example 'properties/123'
-   * if "123" is your GA4 property ID. To request at the account level, entity
-   * should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+   * if "123" is your Google Analytics property ID. To request at the account
+   * level, entity should be for example 'accounts/1234' if "1234" is your Google
+   * Analytics Account ID.
    * @param GoogleAnalyticsAdminV1betaRunAccessReportRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleAnalyticsAdminV1betaRunAccessReportResponse
+   * @throws \Google\Service\Exception
    */
   public function runAccessReport($entity, GoogleAnalyticsAdminV1betaRunAccessReportRequest $postBody, $optParams = [])
   {
@@ -210,7 +222,7 @@ class Properties extends \Google\Service\Resource
    * Updates the singleton data retention settings for this property.
    * (properties.updateDataRetentionSettings)
    *
-   * @param string $name Output only. Resource name for this DataRetentionSetting
+   * @param string $name Identifier. Resource name for this DataRetentionSetting
    * resource. Format: properties/{property}/dataRetentionSettings
    * @param GoogleAnalyticsAdminV1betaDataRetentionSettings $postBody
    * @param array $optParams Optional parameters.
@@ -220,6 +232,7 @@ class Properties extends \Google\Service\Resource
    * will not be updated. To replace the entire entity, use one path with the
    * string "*" to match all fields.
    * @return GoogleAnalyticsAdminV1betaDataRetentionSettings
+   * @throws \Google\Service\Exception
    */
   public function updateDataRetentionSettings($name, GoogleAnalyticsAdminV1betaDataRetentionSettings $postBody, $optParams = [])
   {

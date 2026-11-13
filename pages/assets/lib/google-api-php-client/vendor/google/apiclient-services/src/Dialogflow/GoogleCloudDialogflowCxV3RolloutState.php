@@ -33,7 +33,7 @@ class GoogleCloudDialogflowCxV3RolloutState extends \Google\Model
   public $stepIndex;
 
   /**
-   * @param string
+   * @param string $startTime
    */
   public function setStartTime($startTime)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowCxV3RolloutState extends \Google\Model
     return $this->startTime;
   }
   /**
-   * @param string
+   * @param string $step
    */
   public function setStep($step)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowCxV3RolloutState extends \Google\Model
     return $this->step;
   }
   /**
-   * @param int
+   * @param int $stepIndex
    */
   public function setStepIndex($stepIndex)
   {

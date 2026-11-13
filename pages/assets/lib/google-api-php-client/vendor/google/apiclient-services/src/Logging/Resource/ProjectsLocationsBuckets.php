@@ -38,15 +38,17 @@ class ProjectsLocationsBuckets extends \Google\Service\Resource
    * has been created, the bucket's location cannot be changed. (buckets.create)
    *
    * @param string $parent Required. The resource in which to create the log
-   * bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects
-   * /my-project/locations/global"
+   * bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For
+   * example:"projects/my-project/locations/global"
    * @param LogBucket $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string bucketId Required. A client-assigned identifier such as
    * "my-bucket". Identifiers are limited to 100 characters and can include only
-   * letters, digits, underscores, hyphens, and periods.
+   * letters, digits, underscores, hyphens, and periods. Bucket identifiers must
+   * start with an alphanumeric character.
    * @return LogBucket
+   * @throws \Google\Service\Exception
    */
   public function create($parent, LogBucket $postBody, $optParams = [])
   {
@@ -60,15 +62,17 @@ class ProjectsLocationsBuckets extends \Google\Service\Resource
    * changed. (buckets.createAsync)
    *
    * @param string $parent Required. The resource in which to create the log
-   * bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects
-   * /my-project/locations/global"
+   * bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For
+   * example:"projects/my-project/locations/global"
    * @param LogBucket $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string bucketId Required. A client-assigned identifier such as
    * "my-bucket". Identifiers are limited to 100 characters and can include only
-   * letters, digits, underscores, hyphens, and periods.
+   * letters, digits, underscores, hyphens, and periods. Bucket identifiers must
+   * start with an alphanumeric character.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function createAsync($parent, LogBucket $postBody, $optParams = [])
   {
@@ -89,6 +93,7 @@ class ProjectsLocationsBuckets extends \Google\Service\Resource
    * example:"projects/my-project/locations/global/buckets/my-bucket"
    * @param array $optParams Optional parameters.
    * @return LoggingEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -107,6 +112,7 @@ class ProjectsLocationsBuckets extends \Google\Service\Resource
    * example:"projects/my-project/locations/global/buckets/my-bucket"
    * @param array $optParams Optional parameters.
    * @return LogBucket
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -134,6 +140,7 @@ class ProjectsLocationsBuckets extends \Google\Service\Resource
    * the value of nextPageToken from the previous response. The values of other
    * method parameters should be identical to those in the previous call.
    * @return ListBucketsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsBuckets($parent, $optParams = [])
   {
@@ -163,6 +170,7 @@ class ProjectsLocationsBuckets extends \Google\Service\Resource
    * buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example:
    * updateMask=retention_days
    * @return LogBucket
+   * @throws \Google\Service\Exception
    */
   public function patch($name, LogBucket $postBody, $optParams = [])
   {
@@ -183,6 +191,7 @@ class ProjectsLocationsBuckets extends \Google\Service\Resource
    * @param UndeleteBucketRequest $postBody
    * @param array $optParams Optional parameters.
    * @return LoggingEmpty
+   * @throws \Google\Service\Exception
    */
   public function undelete($name, UndeleteBucketRequest $postBody, $optParams = [])
   {
@@ -213,6 +222,7 @@ class ProjectsLocationsBuckets extends \Google\Service\Resource
    * buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example:
    * updateMask=retention_days
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function updateAsync($name, LogBucket $postBody, $optParams = [])
   {

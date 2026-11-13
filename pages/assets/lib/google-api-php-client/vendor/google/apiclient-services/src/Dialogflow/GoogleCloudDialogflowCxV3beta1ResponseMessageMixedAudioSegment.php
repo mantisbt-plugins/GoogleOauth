@@ -33,7 +33,7 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment extends \Go
   public $uri;
 
   /**
-   * @param bool
+   * @param bool $allowPlaybackInterruption
    */
   public function setAllowPlaybackInterruption($allowPlaybackInterruption)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment extends \Go
     return $this->allowPlaybackInterruption;
   }
   /**
-   * @param string
+   * @param string $audio
    */
   public function setAudio($audio)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment extends \Go
     return $this->audio;
   }
   /**
-   * @param string
+   * @param string $uri
    */
   public function setUri($uri)
   {

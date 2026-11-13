@@ -20,7 +20,7 @@ namespace Google\Service;
 use Google\Client;
 
 /**
- * Service definition for Safebrowsing (v4).
+ * Service definition for Safebrowsing (v5).
  *
  * <p>
  * Enables client applications to check web resources (most commonly URLs)
@@ -40,13 +40,11 @@ class Safebrowsing extends \Google\Service
 {
 
 
-  public $encodedFullHashes;
-  public $encodedUpdates;
-  public $fullHashes;
-  public $threatHits;
-  public $threatListUpdates;
-  public $threatLists;
-  public $threatMatches;
+  public $hashList;
+  public $hashLists;
+  public $hashes;
+  public $urls;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Safebrowsing service.
@@ -59,31 +57,36 @@ class Safebrowsing extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://safebrowsing.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://safebrowsing.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
-    $this->version = 'v4';
+    $this->version = 'v5';
     $this->serviceName = 'safebrowsing';
 
-    $this->encodedFullHashes = new Safebrowsing\Resource\EncodedFullHashes(
+    $this->hashList = new Safebrowsing\Resource\HashList(
         $this,
         $this->serviceName,
-        'encodedFullHashes',
+        'hashList',
         [
           'methods' => [
             'get' => [
-              'path' => 'v4/encodedFullHashes/{encodedRequest}',
+              'path' => 'v5/hashList/{name}',
               'httpMethod' => 'GET',
               'parameters' => [
-                'encodedRequest' => [
+                'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
                 ],
-                'clientId' => [
+                'sizeConstraints.maxDatabaseEntries' => [
                   'location' => 'query',
-                  'type' => 'string',
+                  'type' => 'integer',
                 ],
-                'clientVersion' => [
+                'sizeConstraints.maxUpdateEntries' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'version' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -92,26 +95,44 @@ class Safebrowsing extends \Google\Service
           ]
         ]
     );
-    $this->encodedUpdates = new Safebrowsing\Resource\EncodedUpdates(
+    $this->hashLists = new Safebrowsing\Resource\HashLists(
         $this,
         $this->serviceName,
-        'encodedUpdates',
+        'hashLists',
         [
           'methods' => [
-            'get' => [
-              'path' => 'v4/encodedUpdates/{encodedRequest}',
+            'batchGet' => [
+              'path' => 'v5/hashLists:batchGet',
               'httpMethod' => 'GET',
               'parameters' => [
-                'encodedRequest' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'clientId' => [
+                'names' => [
                   'location' => 'query',
                   'type' => 'string',
+                  'repeated' => true,
                 ],
-                'clientVersion' => [
+                'sizeConstraints.maxDatabaseEntries' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'sizeConstraints.maxUpdateEntries' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'version' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v5/hashLists',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -120,72 +141,42 @@ class Safebrowsing extends \Google\Service
           ]
         ]
     );
-    $this->fullHashes = new Safebrowsing\Resource\FullHashes(
+    $this->hashes = new Safebrowsing\Resource\Hashes(
         $this,
         $this->serviceName,
-        'fullHashes',
+        'hashes',
         [
           'methods' => [
-            'find' => [
-              'path' => 'v4/fullHashes:find',
-              'httpMethod' => 'POST',
-              'parameters' => [],
-            ],
-          ]
-        ]
-    );
-    $this->threatHits = new Safebrowsing\Resource\ThreatHits(
-        $this,
-        $this->serviceName,
-        'threatHits',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v4/threatHits',
-              'httpMethod' => 'POST',
-              'parameters' => [],
-            ],
-          ]
-        ]
-    );
-    $this->threatListUpdates = new Safebrowsing\Resource\ThreatListUpdates(
-        $this,
-        $this->serviceName,
-        'threatListUpdates',
-        [
-          'methods' => [
-            'fetch' => [
-              'path' => 'v4/threatListUpdates:fetch',
-              'httpMethod' => 'POST',
-              'parameters' => [],
-            ],
-          ]
-        ]
-    );
-    $this->threatLists = new Safebrowsing\Resource\ThreatLists(
-        $this,
-        $this->serviceName,
-        'threatLists',
-        [
-          'methods' => [
-            'list' => [
-              'path' => 'v4/threatLists',
+            'search' => [
+              'path' => 'v5/hashes:search',
               'httpMethod' => 'GET',
-              'parameters' => [],
+              'parameters' => [
+                'hashPrefixes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
+              ],
             ],
           ]
         ]
     );
-    $this->threatMatches = new Safebrowsing\Resource\ThreatMatches(
+    $this->urls = new Safebrowsing\Resource\Urls(
         $this,
         $this->serviceName,
-        'threatMatches',
+        'urls',
         [
           'methods' => [
-            'find' => [
-              'path' => 'v4/threatMatches:find',
-              'httpMethod' => 'POST',
-              'parameters' => [],
+            'search' => [
+              'path' => 'v5/urls:search',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'urls' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
+              ],
             ],
           ]
         ]

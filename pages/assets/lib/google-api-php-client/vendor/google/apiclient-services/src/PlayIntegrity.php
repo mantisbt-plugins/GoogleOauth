@@ -41,7 +41,9 @@ class PlayIntegrity extends \Google\Service
   const PLAYINTEGRITY =
       "https://www.googleapis.com/auth/playintegrity";
 
+  public $deviceRecall;
   public $v1;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the PlayIntegrity service.
@@ -54,11 +56,32 @@ class PlayIntegrity extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://playintegrity.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://playintegrity.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'playintegrity';
 
+    $this->deviceRecall = new PlayIntegrity\Resource\DeviceRecall(
+        $this,
+        $this->serviceName,
+        'deviceRecall',
+        [
+          'methods' => [
+            'write' => [
+              'path' => 'v1/{+packageName}/deviceRecall:write',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->v1 = new PlayIntegrity\Resource\V1(
         $this,
         $this->serviceName,
@@ -67,6 +90,16 @@ class PlayIntegrity extends \Google\Service
           'methods' => [
             'decodeIntegrityToken' => [
               'path' => 'v1/{+packageName}:decodeIntegrityToken',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'packageName' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'decodePcIntegrityToken' => [
+              'path' => 'v1/{+packageName}:decodePcIntegrityToken',
               'httpMethod' => 'POST',
               'parameters' => [
                 'packageName' => [

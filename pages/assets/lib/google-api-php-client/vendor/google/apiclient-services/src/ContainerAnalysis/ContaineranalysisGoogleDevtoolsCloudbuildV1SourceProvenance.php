@@ -21,6 +21,10 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance extends \Googl
 {
   protected $fileHashesType = ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes::class;
   protected $fileHashesDataType = 'map';
+  protected $resolvedConnectedRepositoryType = ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository::class;
+  protected $resolvedConnectedRepositoryDataType = '';
+  protected $resolvedGitSourceType = ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource::class;
+  protected $resolvedGitSourceDataType = '';
   protected $resolvedRepoSourceType = ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource::class;
   protected $resolvedRepoSourceDataType = '';
   protected $resolvedStorageSourceType = ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource::class;
@@ -29,7 +33,15 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance extends \Googl
   protected $resolvedStorageSourceManifestDataType = '';
 
   /**
-   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes[]
+   * Output only. Hash(es) of the build source, which can be used to verify that
+   * the original source integrity was maintained in the build. Note that
+   * `FileHashes` will only be populated if `BuildOptions` has requested a
+   * `SourceProvenanceHash`. The keys to this map are file paths used as build
+   * source and the values contain the hash values for those files. If the build
+   * source came in a single package such as a gzipped tarfile (`.tar.gz`), the
+   * `FileHash` will be for the single path to that file.
+   *
+   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes[] $fileHashes
    */
   public function setFileHashes($fileHashes)
   {
@@ -43,7 +55,44 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance extends \Googl
     return $this->fileHashes;
   }
   /**
-   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource
+   * Output only. A copy of the build's `source.connected_repository`, if
+   * exists, with any revisions resolved.
+   *
+   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository $resolvedConnectedRepository
+   */
+  public function setResolvedConnectedRepository(ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository $resolvedConnectedRepository)
+  {
+    $this->resolvedConnectedRepository = $resolvedConnectedRepository;
+  }
+  /**
+   * @return ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository
+   */
+  public function getResolvedConnectedRepository()
+  {
+    return $this->resolvedConnectedRepository;
+  }
+  /**
+   * Output only. A copy of the build's `source.git_source`, if exists, with any
+   * revisions resolved.
+   *
+   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource $resolvedGitSource
+   */
+  public function setResolvedGitSource(ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource $resolvedGitSource)
+  {
+    $this->resolvedGitSource = $resolvedGitSource;
+  }
+  /**
+   * @return ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource
+   */
+  public function getResolvedGitSource()
+  {
+    return $this->resolvedGitSource;
+  }
+  /**
+   * A copy of the build's `source.repo_source`, if exists, with any revisions
+   * resolved.
+   *
+   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource $resolvedRepoSource
    */
   public function setResolvedRepoSource(ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource $resolvedRepoSource)
   {
@@ -57,7 +106,10 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance extends \Googl
     return $this->resolvedRepoSource;
   }
   /**
-   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource
+   * A copy of the build's `source.storage_source`, if exists, with any
+   * generations resolved.
+   *
+   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource $resolvedStorageSource
    */
   public function setResolvedStorageSource(ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource $resolvedStorageSource)
   {
@@ -71,7 +123,10 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance extends \Googl
     return $this->resolvedStorageSource;
   }
   /**
-   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+   * A copy of the build's `source.storage_source_manifest`, if exists, with any
+   * revisions resolved. This feature is in Preview.
+   *
+   * @param ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest $resolvedStorageSourceManifest
    */
   public function setResolvedStorageSourceManifest(ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest $resolvedStorageSourceManifest)
   {

@@ -49,6 +49,7 @@ class ProjectsLocationsServerTlsPolicies extends \Google\Service\Resource
    * long, containing only letters, numbers, hyphens, and underscores, and should
    * not start with a number. E.g. "server_mtls_policy".
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, ServerTlsPolicy $postBody, $optParams = [])
   {
@@ -63,6 +64,7 @@ class ProjectsLocationsServerTlsPolicies extends \Google\Service\Resource
    * be in the format `projects/locations/{location}/serverTlsPolicies`.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -77,6 +79,7 @@ class ProjectsLocationsServerTlsPolicies extends \Google\Service\Resource
    * in the format `projects/locations/{location}/serverTlsPolicies`.
    * @param array $optParams Optional parameters.
    * @return ServerTlsPolicy
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -108,6 +111,7 @@ class ProjectsLocationsServerTlsPolicies extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -130,7 +134,14 @@ class ProjectsLocationsServerTlsPolicies extends \Google\Service\Resource
    * `ListServerTlsPoliciesResponse` Indicates that this is a continuation of a
    * prior `ListServerTlsPolicies` call, and that the system should return the
    * next page of data.
+   * @opt_param bool returnPartialSuccess Optional. Setting this field to `true`
+   * will opt the request into returning the resources that are reachable, and
+   * into including the names of those that were unreachable in the
+   * [ListServerTlsPoliciesResponse.unreachable] field. This can only be `true`
+   * when reading across collections e.g. when `parent` is set to
+   * `"projects/example/locations/-"`.
    * @return ListServerTlsPoliciesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsServerTlsPolicies($parent, $optParams = [])
   {
@@ -153,6 +164,7 @@ class ProjectsLocationsServerTlsPolicies extends \Google\Service\Resource
    * full request. A field will be overwritten if it is in the mask. If the user
    * does not provide a mask then all fields will be overwritten.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, ServerTlsPolicy $postBody, $optParams = [])
   {
@@ -172,6 +184,7 @@ class ProjectsLocationsServerTlsPolicies extends \Google\Service\Resource
    * @param GoogleIamV1SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, GoogleIamV1SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -194,6 +207,7 @@ class ProjectsLocationsServerTlsPolicies extends \Google\Service\Resource
    * @param GoogleIamV1TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
   {

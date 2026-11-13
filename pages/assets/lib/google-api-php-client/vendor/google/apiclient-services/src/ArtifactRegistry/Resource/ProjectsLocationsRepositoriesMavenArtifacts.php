@@ -36,6 +36,7 @@ class ProjectsLocationsRepositoriesMavenArtifacts extends \Google\Service\Resour
    * @param string $name Required. The name of the maven artifact.
    * @param array $optParams Optional parameters.
    * @return MavenArtifact
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -51,10 +52,12 @@ class ProjectsLocationsRepositoriesMavenArtifacts extends \Google\Service\Resour
    * artifacts will be listed.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize The maximum number of artifacts to return.
+   * @opt_param int pageSize The maximum number of artifacts to return. Maximum
+   * page size is 1,000.
    * @opt_param string pageToken The next_page_token value returned from a
    * previous list request, if any.
    * @return ListMavenArtifactsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsRepositoriesMavenArtifacts($parent, $optParams = [])
   {

@@ -19,16 +19,29 @@ namespace Google\Service\Dataproc;
 
 class ListBatchesResponse extends \Google\Collection
 {
-  protected $collection_key = 'batches';
+  protected $collection_key = 'unreachable';
   protected $batchesType = Batch::class;
   protected $batchesDataType = 'array';
   /**
+   * A token, which can be sent as page_token to retrieve the next page. If this
+   * field is omitted, there are no subsequent pages.
+   *
    * @var string
    */
   public $nextPageToken;
+  /**
+   * Output only. List of Batches that could not be included in the response.
+   * Attempting to get one of these resources may indicate why it was not
+   * included in the list response.
+   *
+   * @var string[]
+   */
+  public $unreachable;
 
   /**
-   * @param Batch[]
+   * Output only. The batches from the specified collection.
+   *
+   * @param Batch[] $batches
    */
   public function setBatches($batches)
   {
@@ -42,7 +55,10 @@ class ListBatchesResponse extends \Google\Collection
     return $this->batches;
   }
   /**
-   * @param string
+   * A token, which can be sent as page_token to retrieve the next page. If this
+   * field is omitted, there are no subsequent pages.
+   *
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -54,6 +70,24 @@ class ListBatchesResponse extends \Google\Collection
   public function getNextPageToken()
   {
     return $this->nextPageToken;
+  }
+  /**
+   * Output only. List of Batches that could not be included in the response.
+   * Attempting to get one of these resources may indicate why it was not
+   * included in the list response.
+   *
+   * @param string[] $unreachable
+   */
+  public function setUnreachable($unreachable)
+  {
+    $this->unreachable = $unreachable;
+  }
+  /**
+   * @return string[]
+   */
+  public function getUnreachable()
+  {
+    return $this->unreachable;
   }
 }
 

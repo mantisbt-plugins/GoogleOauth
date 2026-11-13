@@ -28,7 +28,7 @@ class NodePool extends \Google\Collection
   protected $nodesDataType = 'array';
 
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -42,7 +42,7 @@ class NodePool extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param Node[]
+   * @param Node[] $nodes
    */
   public function setNodes($nodes)
   {

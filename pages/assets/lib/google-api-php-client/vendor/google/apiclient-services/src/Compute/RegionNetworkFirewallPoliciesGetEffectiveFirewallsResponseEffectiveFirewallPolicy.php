@@ -19,24 +19,48 @@ namespace Google\Service\Compute;
 
 class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Google\Collection
 {
+  public const TYPE_HIERARCHY = 'HIERARCHY';
+  public const TYPE_NETWORK = 'NETWORK';
+  public const TYPE_NETWORK_REGIONAL = 'NETWORK_REGIONAL';
+  public const TYPE_SYSTEM_GLOBAL = 'SYSTEM_GLOBAL';
+  public const TYPE_SYSTEM_REGIONAL = 'SYSTEM_REGIONAL';
+  public const TYPE_UNSPECIFIED = 'UNSPECIFIED';
   protected $collection_key = 'rules';
   /**
+   * Output only. [Output Only] The display name of the firewall policy.
+   *
    * @var string
    */
   public $displayName;
   /**
+   * Output only. [Output Only] The name of the firewall policy.
+   *
    * @var string
    */
   public $name;
+  protected $packetMirroringRulesType = FirewallPolicyRule::class;
+  protected $packetMirroringRulesDataType = 'array';
+  /**
+   * Output only. [Output only] Priority of firewall policy association. Not
+   * applicable for type=HIERARCHY.
+   *
+   * @var int
+   */
+  public $priority;
   protected $rulesType = FirewallPolicyRule::class;
   protected $rulesDataType = 'array';
   /**
+   * Output only. [Output Only] The type of the firewall policy. Can be one of
+   * HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
+   *
    * @var string
    */
   public $type;
 
   /**
-   * @param string
+   * Output only. [Output Only] The display name of the firewall policy.
+   *
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -50,7 +74,9 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     return $this->displayName;
   }
   /**
-   * @param string
+   * Output only. [Output Only] The name of the firewall policy.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -64,7 +90,43 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     return $this->name;
   }
   /**
-   * @param FirewallPolicyRule[]
+   * Output only. [Output only] The packet mirroring rules that apply to the
+   * network.
+   *
+   * @param FirewallPolicyRule[] $packetMirroringRules
+   */
+  public function setPacketMirroringRules($packetMirroringRules)
+  {
+    $this->packetMirroringRules = $packetMirroringRules;
+  }
+  /**
+   * @return FirewallPolicyRule[]
+   */
+  public function getPacketMirroringRules()
+  {
+    return $this->packetMirroringRules;
+  }
+  /**
+   * Output only. [Output only] Priority of firewall policy association. Not
+   * applicable for type=HIERARCHY.
+   *
+   * @param int $priority
+   */
+  public function setPriority($priority)
+  {
+    $this->priority = $priority;
+  }
+  /**
+   * @return int
+   */
+  public function getPriority()
+  {
+    return $this->priority;
+  }
+  /**
+   * Output only. [Output only] The rules that apply to the network.
+   *
+   * @param FirewallPolicyRule[] $rules
    */
   public function setRules($rules)
   {
@@ -78,14 +140,20 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     return $this->rules;
   }
   /**
-   * @param string
+   * Output only. [Output Only] The type of the firewall policy. Can be one of
+   * HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
+   *
+   * Accepted values: HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL,
+   * SYSTEM_REGIONAL, UNSPECIFIED
+   *
+   * @param self::TYPE_* $type
    */
   public function setType($type)
   {
     $this->type = $type;
   }
   /**
-   * @return string
+   * @return self::TYPE_*
    */
   public function getType()
   {

@@ -20,16 +20,28 @@ namespace Google\Service\ApigeeRegistry;
 class Config extends \Google\Model
 {
   /**
+   * Required. The Customer Managed Encryption Key (CMEK) used for data
+   * encryption. The CMEK name should follow the format of
+   * `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`,
+   * where the `location` must match InstanceConfig.location.
+   *
    * @var string
    */
   public $cmekKeyName;
   /**
+   * Output only. The GCP location where the Instance resides.
+   *
    * @var string
    */
   public $location;
 
   /**
-   * @param string
+   * Required. The Customer Managed Encryption Key (CMEK) used for data
+   * encryption. The CMEK name should follow the format of
+   * `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`,
+   * where the `location` must match InstanceConfig.location.
+   *
+   * @param string $cmekKeyName
    */
   public function setCmekKeyName($cmekKeyName)
   {
@@ -43,7 +55,9 @@ class Config extends \Google\Model
     return $this->cmekKeyName;
   }
   /**
-   * @param string
+   * Output only. The GCP location where the Instance resides.
+   *
+   * @param string $location
    */
   public function setLocation($location)
   {

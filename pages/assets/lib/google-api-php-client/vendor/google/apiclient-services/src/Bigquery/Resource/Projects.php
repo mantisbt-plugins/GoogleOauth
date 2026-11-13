@@ -31,13 +31,16 @@ use Google\Service\Bigquery\ProjectList;
 class Projects extends \Google\Service\Resource
 {
   /**
-   * Returns the email address of the service account for your project used for
-   * interactions with Google Cloud KMS. (projects.getServiceAccount)
+   * RPC to get the service account for a project used for interactions with
+   * Google Cloud KMS. Requires the `bigquery.jobs.create` permission on the
+   * project resource. This permission is required to authorize the retrieval of
+   * the project's service identity for technical management tasks like encryption
+   * configuration. (projects.getServiceAccount)
    *
-   * @param string $projectId Project ID for which the service account is
-   * requested.
+   * @param string $projectId Required. ID of the project.
    * @param array $optParams Optional parameters.
    * @return GetServiceAccountResponse
+   * @throws \Google\Service\Exception
    */
   public function getServiceAccount($projectId, $optParams = [])
   {
@@ -46,15 +49,26 @@ class Projects extends \Google\Service\Resource
     return $this->call('getServiceAccount', [$params], GetServiceAccountResponse::class);
   }
   /**
-   * Lists all projects to which you have been granted any project role.
-   * (projects.listProjects)
+   * RPC to list projects to which the user has been granted any project role.
+   * Users of this method are encouraged to consider the [Resource
+   * Manager](https://cloud.google.com/resource-manager/docs/) API, which provides
+   * the underlying data for this method and has more capabilities. # IAM
+   * Permissions Requires no specific IAM permission(s) to use this method. The
+   * results are filtered to only include projects on which the caller has been
+   * granted a project-level role such as a BigQuery predefined IAM role or a
+   * basic role such as Viewer or Owner. (projects.listProjects)
    *
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string maxResults Maximum number of results to return
+   * @opt_param string maxResults `maxResults` unset returns all results, up to 50
+   * per page. Additionally, the number of projects in a page may be fewer than
+   * `maxResults` because projects are retrieved and then filtered to only
+   * projects with the BigQuery API enabled.
    * @opt_param string pageToken Page token, returned by a previous call, to
-   * request the next page of results
+   * request the next page of results. If not present, no further pages are
+   * present.
    * @return ProjectList
+   * @throws \Google\Service\Exception
    */
   public function listProjects($optParams = [])
   {

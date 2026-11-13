@@ -33,15 +33,29 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
    */
   public $currentPage;
   /**
+   * @var string
+   */
+  public $currentPlaybook;
+  /**
    * @var bool
    */
   public $disableWebhook;
+  /**
+   * @var array[]
+   */
+  public $endUserMetadata;
   /**
    * @var string[]
    */
   public $flowVersions;
   protected $geoLocationType = GoogleTypeLatLng::class;
   protected $geoLocationDataType = '';
+  protected $llmModelSettingsType = GoogleCloudDialogflowCxV3LlmModelSettings::class;
+  protected $llmModelSettingsDataType = '';
+  /**
+   * @var string
+   */
+  public $parameterScope;
   /**
    * @var array[]
    */
@@ -50,8 +64,19 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
    * @var array[]
    */
   public $payload;
+  /**
+   * @deprecated
+   * @var bool
+   */
+  public $populateDataStoreConnectionSignals;
+  protected $searchConfigType = GoogleCloudDialogflowCxV3SearchConfig::class;
+  protected $searchConfigDataType = '';
   protected $sessionEntityTypesType = GoogleCloudDialogflowCxV3SessionEntityType::class;
   protected $sessionEntityTypesDataType = 'array';
+  /**
+   * @var string
+   */
+  public $sessionTtl;
   /**
    * @var string
    */
@@ -62,7 +87,7 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
   public $webhookHeaders;
 
   /**
-   * @param bool
+   * @param bool $analyzeQueryTextSentiment
    */
   public function setAnalyzeQueryTextSentiment($analyzeQueryTextSentiment)
   {
@@ -76,7 +101,7 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
     return $this->analyzeQueryTextSentiment;
   }
   /**
-   * @param string
+   * @param string $channel
    */
   public function setChannel($channel)
   {
@@ -90,7 +115,7 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
     return $this->channel;
   }
   /**
-   * @param string
+   * @param string $currentPage
    */
   public function setCurrentPage($currentPage)
   {
@@ -104,7 +129,21 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
     return $this->currentPage;
   }
   /**
-   * @param bool
+   * @param string $currentPlaybook
+   */
+  public function setCurrentPlaybook($currentPlaybook)
+  {
+    $this->currentPlaybook = $currentPlaybook;
+  }
+  /**
+   * @return string
+   */
+  public function getCurrentPlaybook()
+  {
+    return $this->currentPlaybook;
+  }
+  /**
+   * @param bool $disableWebhook
    */
   public function setDisableWebhook($disableWebhook)
   {
@@ -118,7 +157,21 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
     return $this->disableWebhook;
   }
   /**
-   * @param string[]
+   * @param array[] $endUserMetadata
+   */
+  public function setEndUserMetadata($endUserMetadata)
+  {
+    $this->endUserMetadata = $endUserMetadata;
+  }
+  /**
+   * @return array[]
+   */
+  public function getEndUserMetadata()
+  {
+    return $this->endUserMetadata;
+  }
+  /**
+   * @param string[] $flowVersions
    */
   public function setFlowVersions($flowVersions)
   {
@@ -132,7 +185,7 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
     return $this->flowVersions;
   }
   /**
-   * @param GoogleTypeLatLng
+   * @param GoogleTypeLatLng $geoLocation
    */
   public function setGeoLocation(GoogleTypeLatLng $geoLocation)
   {
@@ -146,7 +199,35 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
     return $this->geoLocation;
   }
   /**
-   * @param array[]
+   * @param GoogleCloudDialogflowCxV3LlmModelSettings $llmModelSettings
+   */
+  public function setLlmModelSettings(GoogleCloudDialogflowCxV3LlmModelSettings $llmModelSettings)
+  {
+    $this->llmModelSettings = $llmModelSettings;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3LlmModelSettings
+   */
+  public function getLlmModelSettings()
+  {
+    return $this->llmModelSettings;
+  }
+  /**
+   * @param string $parameterScope
+   */
+  public function setParameterScope($parameterScope)
+  {
+    $this->parameterScope = $parameterScope;
+  }
+  /**
+   * @return string
+   */
+  public function getParameterScope()
+  {
+    return $this->parameterScope;
+  }
+  /**
+   * @param array[] $parameters
    */
   public function setParameters($parameters)
   {
@@ -160,7 +241,7 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
     return $this->parameters;
   }
   /**
-   * @param array[]
+   * @param array[] $payload
    */
   public function setPayload($payload)
   {
@@ -174,7 +255,37 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
     return $this->payload;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3SessionEntityType[]
+   * @deprecated
+   * @param bool $populateDataStoreConnectionSignals
+   */
+  public function setPopulateDataStoreConnectionSignals($populateDataStoreConnectionSignals)
+  {
+    $this->populateDataStoreConnectionSignals = $populateDataStoreConnectionSignals;
+  }
+  /**
+   * @deprecated
+   * @return bool
+   */
+  public function getPopulateDataStoreConnectionSignals()
+  {
+    return $this->populateDataStoreConnectionSignals;
+  }
+  /**
+   * @param GoogleCloudDialogflowCxV3SearchConfig $searchConfig
+   */
+  public function setSearchConfig(GoogleCloudDialogflowCxV3SearchConfig $searchConfig)
+  {
+    $this->searchConfig = $searchConfig;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3SearchConfig
+   */
+  public function getSearchConfig()
+  {
+    return $this->searchConfig;
+  }
+  /**
+   * @param GoogleCloudDialogflowCxV3SessionEntityType[] $sessionEntityTypes
    */
   public function setSessionEntityTypes($sessionEntityTypes)
   {
@@ -188,7 +299,21 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
     return $this->sessionEntityTypes;
   }
   /**
-   * @param string
+   * @param string $sessionTtl
+   */
+  public function setSessionTtl($sessionTtl)
+  {
+    $this->sessionTtl = $sessionTtl;
+  }
+  /**
+   * @return string
+   */
+  public function getSessionTtl()
+  {
+    return $this->sessionTtl;
+  }
+  /**
+   * @param string $timeZone
    */
   public function setTimeZone($timeZone)
   {
@@ -202,7 +327,7 @@ class GoogleCloudDialogflowCxV3QueryParameters extends \Google\Collection
     return $this->timeZone;
   }
   /**
-   * @param string[]
+   * @param string[] $webhookHeaders
    */
   public function setWebhookHeaders($webhookHeaders)
   {

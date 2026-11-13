@@ -21,22 +21,41 @@ class CommonLanguageSettings extends \Google\Collection
 {
   protected $collection_key = 'destinations';
   /**
+   * Deprecated: Client libraries are published for all supported languages by
+   * default when a `library_settings` entry is present with a `version` and
+   * `launch_stage`. The destination where API teams want this client library to
+   * be published.
+   *
+   * @deprecated
    * @var string[]
    */
   public $destinations;
   /**
+   * Link to automatically generated reference documentation. Example:
+   * https://cloud.google.com/nodejs/docs/reference/asset/latest
+   *
+   * @deprecated
    * @var string
    */
   public $referenceDocsUri;
+  protected $selectiveGapicGenerationType = SelectiveGapicGeneration::class;
+  protected $selectiveGapicGenerationDataType = '';
 
   /**
-   * @param string[]
+   * Deprecated: Client libraries are published for all supported languages by
+   * default when a `library_settings` entry is present with a `version` and
+   * `launch_stage`. The destination where API teams want this client library to
+   * be published.
+   *
+   * @deprecated
+   * @param string[] $destinations
    */
   public function setDestinations($destinations)
   {
     $this->destinations = $destinations;
   }
   /**
+   * @deprecated
    * @return string[]
    */
   public function getDestinations()
@@ -44,18 +63,40 @@ class CommonLanguageSettings extends \Google\Collection
     return $this->destinations;
   }
   /**
-   * @param string
+   * Link to automatically generated reference documentation. Example:
+   * https://cloud.google.com/nodejs/docs/reference/asset/latest
+   *
+   * @deprecated
+   * @param string $referenceDocsUri
    */
   public function setReferenceDocsUri($referenceDocsUri)
   {
     $this->referenceDocsUri = $referenceDocsUri;
   }
   /**
+   * @deprecated
    * @return string
    */
   public function getReferenceDocsUri()
   {
     return $this->referenceDocsUri;
+  }
+  /**
+   * Configuration for which RPCs should be generated in the GAPIC client. Note:
+   * This field should not be used in most cases.
+   *
+   * @param SelectiveGapicGeneration $selectiveGapicGeneration
+   */
+  public function setSelectiveGapicGeneration(SelectiveGapicGeneration $selectiveGapicGeneration)
+  {
+    $this->selectiveGapicGeneration = $selectiveGapicGeneration;
+  }
+  /**
+   * @return SelectiveGapicGeneration
+   */
+  public function getSelectiveGapicGeneration()
+  {
+    return $this->selectiveGapicGeneration;
   }
 }
 

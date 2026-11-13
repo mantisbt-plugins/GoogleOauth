@@ -28,7 +28,7 @@ class GoogleCloudDialogflowCxV3ListTestCaseResultsResponse extends \Google\Colle
   protected $testCaseResultsDataType = 'array';
 
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3ListTestCaseResultsResponse extends \Google\Colle
     return $this->nextPageToken;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3TestCaseResult[]
+   * @param GoogleCloudDialogflowCxV3TestCaseResult[] $testCaseResults
    */
   public function setTestCaseResults($testCaseResults)
   {

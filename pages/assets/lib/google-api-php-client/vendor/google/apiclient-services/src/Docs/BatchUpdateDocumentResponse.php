@@ -19,18 +19,65 @@ namespace Google\Service\Docs;
 
 class BatchUpdateDocumentResponse extends \Google\Collection
 {
-  protected $collection_key = 'replies';
   /**
+   * The status of comment updates is unspecified.
+   */
+  public const COMMENT_UPDATE_STATE_COMMENT_UPDATE_STATE_UNSPECIFIED = 'COMMENT_UPDATE_STATE_UNSPECIFIED';
+  /**
+   * No comment updates were requested in the batch request.
+   */
+  public const COMMENT_UPDATE_STATE_NO_UPDATES_REQUESTED = 'NO_UPDATES_REQUESTED';
+  /**
+   * All requested comment updates were applied in the batch request.
+   */
+  public const COMMENT_UPDATE_STATE_ALL_SAVED = 'ALL_SAVED';
+  /**
+   * All requested comment updates failed.
+   */
+  public const COMMENT_UPDATE_STATE_ALL_FAILED_UNKNOWN_REASON = 'ALL_FAILED_UNKNOWN_REASON';
+  protected $collection_key = 'suggestionResponses';
+  /**
+   * Whether comment updates were applied in the batch request.
+   *
+   * @var string
+   */
+  public $commentUpdateState;
+  /**
+   * The ID of the document to which the updates were applied to.
+   *
    * @var string
    */
   public $documentId;
   protected $repliesType = Response::class;
   protected $repliesDataType = 'array';
+  protected $suggestionResponsesType = SuggestionResponse::class;
+  protected $suggestionResponsesDataType = 'array';
   protected $writeControlType = WriteControl::class;
   protected $writeControlDataType = '';
 
   /**
-   * @param string
+   * Whether comment updates were applied in the batch request.
+   *
+   * Accepted values: COMMENT_UPDATE_STATE_UNSPECIFIED, NO_UPDATES_REQUESTED,
+   * ALL_SAVED, ALL_FAILED_UNKNOWN_REASON
+   *
+   * @param self::COMMENT_UPDATE_STATE_* $commentUpdateState
+   */
+  public function setCommentUpdateState($commentUpdateState)
+  {
+    $this->commentUpdateState = $commentUpdateState;
+  }
+  /**
+   * @return self::COMMENT_UPDATE_STATE_*
+   */
+  public function getCommentUpdateState()
+  {
+    return $this->commentUpdateState;
+  }
+  /**
+   * The ID of the document to which the updates were applied to.
+   *
+   * @param string $documentId
    */
   public function setDocumentId($documentId)
   {
@@ -44,7 +91,10 @@ class BatchUpdateDocumentResponse extends \Google\Collection
     return $this->documentId;
   }
   /**
-   * @param Response[]
+   * The reply of the updates. This maps 1:1 with the updates, although replies
+   * to some requests may be empty.
+   *
+   * @param Response[] $replies
    */
   public function setReplies($replies)
   {
@@ -58,7 +108,26 @@ class BatchUpdateDocumentResponse extends \Google\Collection
     return $this->replies;
   }
   /**
-   * @param WriteControl
+   * The suggestions which were affected by each update. This maps 1:1 with the
+   * updates.
+   *
+   * @param SuggestionResponse[] $suggestionResponses
+   */
+  public function setSuggestionResponses($suggestionResponses)
+  {
+    $this->suggestionResponses = $suggestionResponses;
+  }
+  /**
+   * @return SuggestionResponse[]
+   */
+  public function getSuggestionResponses()
+  {
+    return $this->suggestionResponses;
+  }
+  /**
+   * The updated write control after applying the request.
+   *
+   * @param WriteControl $writeControl
    */
   public function setWriteControl(WriteControl $writeControl)
   {

@@ -20,20 +20,56 @@ namespace Google\Service\CloudDeploy;
 class GatewayServiceMesh extends \Google\Model
 {
   /**
+   * Required. Name of the Kubernetes Deployment whose traffic is managed by the
+   * specified HTTPRoute and Service.
+   *
    * @var string
    */
   public $deployment;
   /**
+   * Required. Name of the Gateway API HTTPRoute.
+   *
    * @var string
    */
   public $httpRoute;
   /**
+   * Optional. The label to use when selecting Pods for the Deployment and
+   * Service resources. This label must already be present in both resources.
+   *
+   * @var string
+   */
+  public $podSelectorLabel;
+  protected $routeDestinationsType = RouteDestinations::class;
+  protected $routeDestinationsDataType = '';
+  /**
+   * Optional. The time to wait for route updates to propagate. The maximum
+   * configurable time is 3 hours, in seconds format. If unspecified, there is
+   * no wait time.
+   *
+   * @var string
+   */
+  public $routeUpdateWaitTime;
+  /**
+   * Required. Name of the Kubernetes Service.
+   *
    * @var string
    */
   public $service;
+  /**
+   * Optional. The amount of time to migrate traffic back from the canary
+   * Service to the original Service during the stable phase deployment. If
+   * specified, must be between 15s and 3600s. If unspecified, there is no
+   * cutback time.
+   *
+   * @var string
+   */
+  public $stableCutbackDuration;
 
   /**
-   * @param string
+   * Required. Name of the Kubernetes Deployment whose traffic is managed by the
+   * specified HTTPRoute and Service.
+   *
+   * @param string $deployment
    */
   public function setDeployment($deployment)
   {
@@ -47,7 +83,9 @@ class GatewayServiceMesh extends \Google\Model
     return $this->deployment;
   }
   /**
-   * @param string
+   * Required. Name of the Gateway API HTTPRoute.
+   *
+   * @param string $httpRoute
    */
   public function setHttpRoute($httpRoute)
   {
@@ -61,7 +99,64 @@ class GatewayServiceMesh extends \Google\Model
     return $this->httpRoute;
   }
   /**
-   * @param string
+   * Optional. The label to use when selecting Pods for the Deployment and
+   * Service resources. This label must already be present in both resources.
+   *
+   * @param string $podSelectorLabel
+   */
+  public function setPodSelectorLabel($podSelectorLabel)
+  {
+    $this->podSelectorLabel = $podSelectorLabel;
+  }
+  /**
+   * @return string
+   */
+  public function getPodSelectorLabel()
+  {
+    return $this->podSelectorLabel;
+  }
+  /**
+   * Optional. Route destinations allow configuring the Gateway API HTTPRoute to
+   * be deployed to additional clusters. This option is available for multi-
+   * cluster service mesh set ups that require the route to exist in the
+   * clusters that call the service. If unspecified, the HTTPRoute will only be
+   * deployed to the Target cluster.
+   *
+   * @param RouteDestinations $routeDestinations
+   */
+  public function setRouteDestinations(RouteDestinations $routeDestinations)
+  {
+    $this->routeDestinations = $routeDestinations;
+  }
+  /**
+   * @return RouteDestinations
+   */
+  public function getRouteDestinations()
+  {
+    return $this->routeDestinations;
+  }
+  /**
+   * Optional. The time to wait for route updates to propagate. The maximum
+   * configurable time is 3 hours, in seconds format. If unspecified, there is
+   * no wait time.
+   *
+   * @param string $routeUpdateWaitTime
+   */
+  public function setRouteUpdateWaitTime($routeUpdateWaitTime)
+  {
+    $this->routeUpdateWaitTime = $routeUpdateWaitTime;
+  }
+  /**
+   * @return string
+   */
+  public function getRouteUpdateWaitTime()
+  {
+    return $this->routeUpdateWaitTime;
+  }
+  /**
+   * Required. Name of the Kubernetes Service.
+   *
+   * @param string $service
    */
   public function setService($service)
   {
@@ -73,6 +168,25 @@ class GatewayServiceMesh extends \Google\Model
   public function getService()
   {
     return $this->service;
+  }
+  /**
+   * Optional. The amount of time to migrate traffic back from the canary
+   * Service to the original Service during the stable phase deployment. If
+   * specified, must be between 15s and 3600s. If unspecified, there is no
+   * cutback time.
+   *
+   * @param string $stableCutbackDuration
+   */
+  public function setStableCutbackDuration($stableCutbackDuration)
+  {
+    $this->stableCutbackDuration = $stableCutbackDuration;
+  }
+  /**
+   * @return string
+   */
+  public function getStableCutbackDuration()
+  {
+    return $this->stableCutbackDuration;
   }
 }
 

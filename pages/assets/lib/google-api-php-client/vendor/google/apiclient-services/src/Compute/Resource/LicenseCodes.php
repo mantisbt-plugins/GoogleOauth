@@ -17,7 +17,9 @@
 
 namespace Google\Service\Compute\Resource;
 
+use Google\Service\Compute\GlobalSetPolicyRequest;
 use Google\Service\Compute\LicenseCode;
+use Google\Service\Compute\Policy;
 use Google\Service\Compute\TestPermissionsRequest;
 use Google\Service\Compute\TestPermissionsResponse;
 
@@ -31,17 +33,20 @@ use Google\Service\Compute\TestPermissionsResponse;
  */
 class LicenseCodes extends \Google\Service\Resource
 {
+  protected $apiVersion = '2026-11-01';
+
   /**
    * Return a specified license code. License codes are mirrored across all
-   * projects that have permissions to read the License Code. *Caution* This
-   * resource is intended for use only by third-party partners who are creating
-   * Cloud Marketplace images.  (licenseCodes.get)
+   * projects that have permissions to read the License Code. Caution* This
+   * resource is intended for use only by third-party partners who are
+   * creatingCloud Marketplace images. (licenseCodes.get)
    *
    * @param string $project Project ID for this request.
    * @param string $licenseCode Number corresponding to the License code resource
    * to return.
    * @param array $optParams Optional parameters.
    * @return LicenseCode
+   * @throws \Google\Service\Exception
    */
   public function get($project, $licenseCode, $optParams = [])
   {
@@ -50,15 +55,55 @@ class LicenseCodes extends \Google\Service\Resource
     return $this->call('get', [$params], LicenseCode::class);
   }
   /**
-   * Returns permissions that a caller has on the specified resource. *Caution*
+   * Gets the access control policy for a resource. May be empty if no such policy
+   * or resource exists. Caution* This resource is intended for use only by third-
+   * party partners who are creatingCloud Marketplace images.
+   * (licenseCodes.getIamPolicy)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $resource Name or id of the resource for this request.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param int optionsRequestedPolicyVersion Requested IAM Policy version.
+   * @return Policy
+   * @throws \Google\Service\Exception
+   */
+  public function getIamPolicy($project, $resource, $optParams = [])
+  {
+    $params = ['project' => $project, 'resource' => $resource];
+    $params = array_merge($params, $optParams);
+    return $this->call('getIamPolicy', [$params], Policy::class);
+  }
+  /**
+   * Sets the access control policy on the specified resource. Replaces any
+   * existing policy. Caution* This resource is intended for use only by third-
+   * party partners who are creatingCloud Marketplace images.
+   * (licenseCodes.setIamPolicy)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $resource Name or id of the resource for this request.
+   * @param GlobalSetPolicyRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Policy
+   * @throws \Google\Service\Exception
+   */
+  public function setIamPolicy($project, $resource, GlobalSetPolicyRequest $postBody, $optParams = [])
+  {
+    $params = ['project' => $project, 'resource' => $resource, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('setIamPolicy', [$params], Policy::class);
+  }
+  /**
+   * Returns permissions that a caller has on the specified resource. Caution*
    * This resource is intended for use only by third-party partners who are
-   * creating Cloud Marketplace images.  (licenseCodes.testIamPermissions)
+   * creatingCloud Marketplace images. (licenseCodes.testIamPermissions)
    *
    * @param string $project Project ID for this request.
    * @param string $resource Name or id of the resource for this request.
    * @param TestPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($project, $resource, TestPermissionsRequest $postBody, $optParams = [])
   {

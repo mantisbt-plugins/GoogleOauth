@@ -19,6 +19,11 @@ namespace Google\Service\SecurityCommandCenter;
 
 class ListFindingsResult extends \Google\Model
 {
+  public const STATE_CHANGE_UNUSED = 'UNUSED';
+  public const STATE_CHANGE_CHANGED = 'CHANGED';
+  public const STATE_CHANGE_UNCHANGED = 'UNCHANGED';
+  public const STATE_CHANGE_ADDED = 'ADDED';
+  public const STATE_CHANGE_REMOVED = 'REMOVED';
   protected $findingType = Finding::class;
   protected $findingDataType = '';
   protected $resourceType = SecuritycenterResource::class;
@@ -29,7 +34,7 @@ class ListFindingsResult extends \Google\Model
   public $stateChange;
 
   /**
-   * @param Finding
+   * @param Finding $finding
    */
   public function setFinding(Finding $finding)
   {
@@ -43,7 +48,7 @@ class ListFindingsResult extends \Google\Model
     return $this->finding;
   }
   /**
-   * @param SecuritycenterResource
+   * @param SecuritycenterResource $resource
    */
   public function setResource(SecuritycenterResource $resource)
   {
@@ -57,14 +62,14 @@ class ListFindingsResult extends \Google\Model
     return $this->resource;
   }
   /**
-   * @param string
+   * @param self::STATE_CHANGE_* $stateChange
    */
   public function setStateChange($stateChange)
   {
     $this->stateChange = $stateChange;
   }
   /**
-   * @return string
+   * @return self::STATE_CHANGE_*
    */
   public function getStateChange()
   {

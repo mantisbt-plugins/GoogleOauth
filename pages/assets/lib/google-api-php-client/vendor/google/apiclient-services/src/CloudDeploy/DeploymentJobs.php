@@ -19,13 +19,38 @@ namespace Google\Service\CloudDeploy;
 
 class DeploymentJobs extends \Google\Model
 {
+  protected $analysisJobType = Job::class;
+  protected $analysisJobDataType = '';
   protected $deployJobType = Job::class;
   protected $deployJobDataType = '';
+  protected $postdeployJobType = Job::class;
+  protected $postdeployJobDataType = '';
+  protected $predeployJobType = Job::class;
+  protected $predeployJobDataType = '';
   protected $verifyJobType = Job::class;
   protected $verifyJobDataType = '';
 
   /**
-   * @param Job
+   * Output only. The analysis Job. Runs after a verify if there is a verify job
+   * and the verify job succeeds.
+   *
+   * @param Job $analysisJob
+   */
+  public function setAnalysisJob(Job $analysisJob)
+  {
+    $this->analysisJob = $analysisJob;
+  }
+  /**
+   * @return Job
+   */
+  public function getAnalysisJob()
+  {
+    return $this->analysisJob;
+  }
+  /**
+   * Output only. The deploy Job. This is the deploy job in the phase.
+   *
+   * @param Job $deployJob
    */
   public function setDeployJob(Job $deployJob)
   {
@@ -39,7 +64,41 @@ class DeploymentJobs extends \Google\Model
     return $this->deployJob;
   }
   /**
-   * @param Job
+   * Output only. The postdeploy Job, which is the last job on the phase.
+   *
+   * @param Job $postdeployJob
+   */
+  public function setPostdeployJob(Job $postdeployJob)
+  {
+    $this->postdeployJob = $postdeployJob;
+  }
+  /**
+   * @return Job
+   */
+  public function getPostdeployJob()
+  {
+    return $this->postdeployJob;
+  }
+  /**
+   * Output only. The predeploy Job, which is the first job on the phase.
+   *
+   * @param Job $predeployJob
+   */
+  public function setPredeployJob(Job $predeployJob)
+  {
+    $this->predeployJob = $predeployJob;
+  }
+  /**
+   * @return Job
+   */
+  public function getPredeployJob()
+  {
+    return $this->predeployJob;
+  }
+  /**
+   * Output only. The verify Job. Runs after a deploy if the deploy succeeds.
+   *
+   * @param Job $verifyJob
    */
   public function setVerifyJob(Job $verifyJob)
   {

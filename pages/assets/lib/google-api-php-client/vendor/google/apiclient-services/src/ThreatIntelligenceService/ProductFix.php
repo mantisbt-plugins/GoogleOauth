@@ -1,0 +1,114 @@
+<?php
+/*
+ * Copyright 2014 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+namespace Google\Service\ThreatIntelligenceService;
+
+class ProductFix extends \Google\Model
+{
+  /**
+   * Required. The name of the fix. Ex: "Magento".
+   *
+   * @var string
+   */
+  public $displayName;
+  /**
+   * Optional. The published time of the fix.
+   *
+   * @var string
+   */
+  public $publishTime;
+  /**
+   * Required. The source ID of the fix. Ex: "APPSEC-1420".
+   *
+   * @var string
+   */
+  public $sourceId;
+  /**
+   * Optional. The URI of the fix.
+   *
+   * @var string
+   */
+  public $uri;
+
+  /**
+   * Required. The name of the fix. Ex: "Magento".
+   *
+   * @param string $displayName
+   */
+  public function setDisplayName($displayName)
+  {
+    $this->displayName = $displayName;
+  }
+  /**
+   * @return string
+   */
+  public function getDisplayName()
+  {
+    return $this->displayName;
+  }
+  /**
+   * Optional. The published time of the fix.
+   *
+   * @param string $publishTime
+   */
+  public function setPublishTime($publishTime)
+  {
+    $this->publishTime = $publishTime;
+  }
+  /**
+   * @return string
+   */
+  public function getPublishTime()
+  {
+    return $this->publishTime;
+  }
+  /**
+   * Required. The source ID of the fix. Ex: "APPSEC-1420".
+   *
+   * @param string $sourceId
+   */
+  public function setSourceId($sourceId)
+  {
+    $this->sourceId = $sourceId;
+  }
+  /**
+   * @return string
+   */
+  public function getSourceId()
+  {
+    return $this->sourceId;
+  }
+  /**
+   * Optional. The URI of the fix.
+   *
+   * @param string $uri
+   */
+  public function setUri($uri)
+  {
+    $this->uri = $uri;
+  }
+  /**
+   * @return string
+   */
+  public function getUri()
+  {
+    return $this->uri;
+  }
+}
+
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(ProductFix::class, 'Google_Service_ThreatIntelligenceService_ProductFix');

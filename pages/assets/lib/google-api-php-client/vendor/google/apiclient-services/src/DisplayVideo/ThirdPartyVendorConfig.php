@@ -20,16 +20,112 @@ namespace Google\Service\DisplayVideo;
 class ThirdPartyVendorConfig extends \Google\Model
 {
   /**
+   * Unknown third-party vendor.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_UNSPECIFIED = 'THIRD_PARTY_VENDOR_UNSPECIFIED';
+  /**
+   * Moat.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_MOAT = 'THIRD_PARTY_VENDOR_MOAT';
+  /**
+   * DoubleVerify.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_DOUBLE_VERIFY = 'THIRD_PARTY_VENDOR_DOUBLE_VERIFY';
+  /**
+   * Integral Ad Science.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE = 'THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE';
+  /**
+   * Comscore.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_COMSCORE = 'THIRD_PARTY_VENDOR_COMSCORE';
+  /**
+   * Telemetry.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_TELEMETRY = 'THIRD_PARTY_VENDOR_TELEMETRY';
+  /**
+   * Meetrics.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_MEETRICS = 'THIRD_PARTY_VENDOR_MEETRICS';
+  /**
+   * ZEFR.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_ZEFR = 'THIRD_PARTY_VENDOR_ZEFR';
+  /**
+   * Nielsen.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_NIELSEN = 'THIRD_PARTY_VENDOR_NIELSEN';
+  /**
+   * Kantar.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_KANTAR = 'THIRD_PARTY_VENDOR_KANTAR';
+  /**
+   * Dynata.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_DYNATA = 'THIRD_PARTY_VENDOR_DYNATA';
+  /**
+   * Transunion.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_TRANSUNION = 'THIRD_PARTY_VENDOR_TRANSUNION';
+  /**
+   * Origin.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_ORIGIN = 'THIRD_PARTY_VENDOR_ORIGIN';
+  /**
+   * Gemius.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_GEMIUS = 'THIRD_PARTY_VENDOR_GEMIUS';
+  /**
+   * MediaScope.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_MEDIA_SCOPE = 'THIRD_PARTY_VENDOR_MEDIA_SCOPE';
+  /**
+   * Audience Project.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_AUDIENCE_PROJECT = 'THIRD_PARTY_VENDOR_AUDIENCE_PROJECT';
+  /**
+   * Video Amp.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_VIDEO_AMP = 'THIRD_PARTY_VENDOR_VIDEO_AMP';
+  /**
+   * Ispot TV.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_ISPOT_TV = 'THIRD_PARTY_VENDOR_ISPOT_TV';
+  /**
+   * Intage.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_INTAGE = 'THIRD_PARTY_VENDOR_INTAGE';
+  /**
+   * Macromill.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_MACROMILL = 'THIRD_PARTY_VENDOR_MACROMILL';
+  /**
+   * Video Research.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_VIDEO_RESEARCH = 'THIRD_PARTY_VENDOR_VIDEO_RESEARCH';
+  /**
+   * Aquila.
+   */
+  public const VENDOR_THIRD_PARTY_VENDOR_AQUILA = 'THIRD_PARTY_VENDOR_AQUILA';
+  /**
+   * The ID used by the platform of the third-party vendor to identify the line
+   * item.
+   *
    * @var string
    */
   public $placementId;
   /**
+   * The third-party measurement vendor.
+   *
    * @var string
    */
   public $vendor;
 
   /**
-   * @param string
+   * The ID used by the platform of the third-party vendor to identify the line
+   * item.
+   *
+   * @param string $placementId
    */
   public function setPlacementId($placementId)
   {
@@ -43,14 +139,28 @@ class ThirdPartyVendorConfig extends \Google\Model
     return $this->placementId;
   }
   /**
-   * @param string
+   * The third-party measurement vendor.
+   *
+   * Accepted values: THIRD_PARTY_VENDOR_UNSPECIFIED, THIRD_PARTY_VENDOR_MOAT,
+   * THIRD_PARTY_VENDOR_DOUBLE_VERIFY, THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE,
+   * THIRD_PARTY_VENDOR_COMSCORE, THIRD_PARTY_VENDOR_TELEMETRY,
+   * THIRD_PARTY_VENDOR_MEETRICS, THIRD_PARTY_VENDOR_ZEFR,
+   * THIRD_PARTY_VENDOR_NIELSEN, THIRD_PARTY_VENDOR_KANTAR,
+   * THIRD_PARTY_VENDOR_DYNATA, THIRD_PARTY_VENDOR_TRANSUNION,
+   * THIRD_PARTY_VENDOR_ORIGIN, THIRD_PARTY_VENDOR_GEMIUS,
+   * THIRD_PARTY_VENDOR_MEDIA_SCOPE, THIRD_PARTY_VENDOR_AUDIENCE_PROJECT,
+   * THIRD_PARTY_VENDOR_VIDEO_AMP, THIRD_PARTY_VENDOR_ISPOT_TV,
+   * THIRD_PARTY_VENDOR_INTAGE, THIRD_PARTY_VENDOR_MACROMILL,
+   * THIRD_PARTY_VENDOR_VIDEO_RESEARCH, THIRD_PARTY_VENDOR_AQUILA
+   *
+   * @param self::VENDOR_* $vendor
    */
   public function setVendor($vendor)
   {
     $this->vendor = $vendor;
   }
   /**
-   * @return string
+   * @return self::VENDOR_*
    */
   public function getVendor()
   {

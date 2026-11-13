@@ -20,16 +20,161 @@ namespace Google\Service\Dataproc;
 class UsageMetrics extends \Google\Model
 {
   /**
+   * Optional. Accelerator type being used, if any Deprecated: This field is
+   * only used in runtime versions below 3.0.
+   *
+   * @var string
+   */
+  public $acceleratorType;
+  /**
+   * Optional. Accelerator usage in (milliAccelerator x seconds) (see Dataproc
+   * Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+   * Deprecated: This field is only used in runtime versions below 3.0.
+   *
+   * @var string
+   */
+  public $milliAcceleratorSeconds;
+  /**
+   * Optional. A100-40 accelerator usage in (milliAccelerator x seconds) (see
+   * Dataproc Serverless pricing (https://cloud.google.com/dataproc-
+   * serverless/pricing)).
+   *
+   * @var string
+   */
+  public $milliAcceleratorSecondsA10040;
+  /**
+   * Optional. A100-80 accelerator usage in (milliAccelerator x seconds) (see
+   * Dataproc Serverless pricing (https://cloud.google.com/dataproc-
+   * serverless/pricing)).
+   *
+   * @var string
+   */
+  public $milliAcceleratorSecondsA10080;
+  /**
+   * Optional. L4 accelerator usage in (milliAccelerator x seconds) (see
+   * Dataproc Serverless pricing (https://cloud.google.com/dataproc-
+   * serverless/pricing)).
+   *
+   * @var string
+   */
+  public $milliAcceleratorSecondsL4;
+  /**
+   * Optional. DCU (Dataproc Compute Units) usage in (milliDCU x seconds) (see
+   * Dataproc Serverless pricing (https://cloud.google.com/dataproc-
+   * serverless/pricing)).
+   *
    * @var string
    */
   public $milliDcuSeconds;
   /**
+   * Optional. Shuffle storage usage in (GB x seconds) (see Dataproc Serverless
+   * pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+   *
    * @var string
    */
   public $shuffleStorageGbSeconds;
+  /**
+   * Optional. The timestamp of the usage metrics.
+   *
+   * @var string
+   */
+  public $updateTime;
 
   /**
-   * @param string
+   * Optional. Accelerator type being used, if any Deprecated: This field is
+   * only used in runtime versions below 3.0.
+   *
+   * @param string $acceleratorType
+   */
+  public function setAcceleratorType($acceleratorType)
+  {
+    $this->acceleratorType = $acceleratorType;
+  }
+  /**
+   * @return string
+   */
+  public function getAcceleratorType()
+  {
+    return $this->acceleratorType;
+  }
+  /**
+   * Optional. Accelerator usage in (milliAccelerator x seconds) (see Dataproc
+   * Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+   * Deprecated: This field is only used in runtime versions below 3.0.
+   *
+   * @param string $milliAcceleratorSeconds
+   */
+  public function setMilliAcceleratorSeconds($milliAcceleratorSeconds)
+  {
+    $this->milliAcceleratorSeconds = $milliAcceleratorSeconds;
+  }
+  /**
+   * @return string
+   */
+  public function getMilliAcceleratorSeconds()
+  {
+    return $this->milliAcceleratorSeconds;
+  }
+  /**
+   * Optional. A100-40 accelerator usage in (milliAccelerator x seconds) (see
+   * Dataproc Serverless pricing (https://cloud.google.com/dataproc-
+   * serverless/pricing)).
+   *
+   * @param string $milliAcceleratorSecondsA10040
+   */
+  public function setMilliAcceleratorSecondsA10040($milliAcceleratorSecondsA10040)
+  {
+    $this->milliAcceleratorSecondsA10040 = $milliAcceleratorSecondsA10040;
+  }
+  /**
+   * @return string
+   */
+  public function getMilliAcceleratorSecondsA10040()
+  {
+    return $this->milliAcceleratorSecondsA10040;
+  }
+  /**
+   * Optional. A100-80 accelerator usage in (milliAccelerator x seconds) (see
+   * Dataproc Serverless pricing (https://cloud.google.com/dataproc-
+   * serverless/pricing)).
+   *
+   * @param string $milliAcceleratorSecondsA10080
+   */
+  public function setMilliAcceleratorSecondsA10080($milliAcceleratorSecondsA10080)
+  {
+    $this->milliAcceleratorSecondsA10080 = $milliAcceleratorSecondsA10080;
+  }
+  /**
+   * @return string
+   */
+  public function getMilliAcceleratorSecondsA10080()
+  {
+    return $this->milliAcceleratorSecondsA10080;
+  }
+  /**
+   * Optional. L4 accelerator usage in (milliAccelerator x seconds) (see
+   * Dataproc Serverless pricing (https://cloud.google.com/dataproc-
+   * serverless/pricing)).
+   *
+   * @param string $milliAcceleratorSecondsL4
+   */
+  public function setMilliAcceleratorSecondsL4($milliAcceleratorSecondsL4)
+  {
+    $this->milliAcceleratorSecondsL4 = $milliAcceleratorSecondsL4;
+  }
+  /**
+   * @return string
+   */
+  public function getMilliAcceleratorSecondsL4()
+  {
+    return $this->milliAcceleratorSecondsL4;
+  }
+  /**
+   * Optional. DCU (Dataproc Compute Units) usage in (milliDCU x seconds) (see
+   * Dataproc Serverless pricing (https://cloud.google.com/dataproc-
+   * serverless/pricing)).
+   *
+   * @param string $milliDcuSeconds
    */
   public function setMilliDcuSeconds($milliDcuSeconds)
   {
@@ -43,7 +188,10 @@ class UsageMetrics extends \Google\Model
     return $this->milliDcuSeconds;
   }
   /**
-   * @param string
+   * Optional. Shuffle storage usage in (GB x seconds) (see Dataproc Serverless
+   * pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+   *
+   * @param string $shuffleStorageGbSeconds
    */
   public function setShuffleStorageGbSeconds($shuffleStorageGbSeconds)
   {
@@ -55,6 +203,22 @@ class UsageMetrics extends \Google\Model
   public function getShuffleStorageGbSeconds()
   {
     return $this->shuffleStorageGbSeconds;
+  }
+  /**
+   * Optional. The timestamp of the usage metrics.
+   *
+   * @param string $updateTime
+   */
+  public function setUpdateTime($updateTime)
+  {
+    $this->updateTime = $updateTime;
+  }
+  /**
+   * @return string
+   */
+  public function getUpdateTime()
+  {
+    return $this->updateTime;
   }
 }
 

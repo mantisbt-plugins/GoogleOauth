@@ -23,7 +23,7 @@ class GoogleCloudDialogflowV2ExportOperationMetadata extends \Google\Model
   protected $exportedGcsDestinationDataType = '';
 
   /**
-   * @param GoogleCloudDialogflowV2GcsDestination
+   * @param GoogleCloudDialogflowV2GcsDestination $exportedGcsDestination
    */
   public function setExportedGcsDestination(GoogleCloudDialogflowV2GcsDestination $exportedGcsDestination)
   {

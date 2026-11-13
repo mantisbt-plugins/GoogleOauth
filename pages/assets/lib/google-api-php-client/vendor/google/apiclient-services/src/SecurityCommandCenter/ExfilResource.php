@@ -30,7 +30,7 @@ class ExfilResource extends \Google\Collection
   public $name;
 
   /**
-   * @param string[]
+   * @param string[] $components
    */
   public function setComponents($components)
   {
@@ -44,7 +44,7 @@ class ExfilResource extends \Google\Collection
     return $this->components;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {

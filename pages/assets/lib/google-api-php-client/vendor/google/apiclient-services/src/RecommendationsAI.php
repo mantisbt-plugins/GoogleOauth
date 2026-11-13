@@ -51,6 +51,7 @@ class RecommendationsAI extends \Google\Service
   public $projects_locations_catalogs_eventStores_predictionApiKeyRegistrations;
   public $projects_locations_catalogs_eventStores_userEvents;
   public $projects_locations_catalogs_operations;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the RecommendationsAI service.
@@ -63,6 +64,7 @@ class RecommendationsAI extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://recommendationengine.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://recommendationengine.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1beta1';
@@ -232,6 +234,10 @@ class RecommendationsAI extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],
@@ -436,6 +442,10 @@ class RecommendationsAI extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],

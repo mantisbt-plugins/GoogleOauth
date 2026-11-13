@@ -32,7 +32,7 @@ class GoogleCloudDialogflowCxV3IntentTrainingPhrase extends \Google\Collection
   public $repeatCount;
 
   /**
-   * @param string
+   * @param string $id
    */
   public function setId($id)
   {
@@ -46,7 +46,7 @@ class GoogleCloudDialogflowCxV3IntentTrainingPhrase extends \Google\Collection
     return $this->id;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3IntentTrainingPhrasePart[]
+   * @param GoogleCloudDialogflowCxV3IntentTrainingPhrasePart[] $parts
    */
   public function setParts($parts)
   {
@@ -60,7 +60,7 @@ class GoogleCloudDialogflowCxV3IntentTrainingPhrase extends \Google\Collection
     return $this->parts;
   }
   /**
-   * @param int
+   * @param int $repeatCount
    */
   public function setRepeatCount($repeatCount)
   {

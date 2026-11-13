@@ -22,12 +22,25 @@ class Installment extends \Google\Model
   protected $amountType = Price::class;
   protected $amountDataType = '';
   /**
+   * Optional. Type of installment payments. Supported values are: - "`finance`"
+   * - "`lease`"
+   *
+   * @var string
+   */
+  public $creditType;
+  protected $downpaymentType = Price::class;
+  protected $downpaymentDataType = '';
+  /**
+   * The number of installments the buyer has to pay.
+   *
    * @var string
    */
   public $months;
 
   /**
-   * @param Price
+   * The amount the buyer has to pay per month.
+   *
+   * @param Price $amount
    */
   public function setAmount(Price $amount)
   {
@@ -41,7 +54,42 @@ class Installment extends \Google\Model
     return $this->amount;
   }
   /**
-   * @param string
+   * Optional. Type of installment payments. Supported values are: - "`finance`"
+   * - "`lease`"
+   *
+   * @param string $creditType
+   */
+  public function setCreditType($creditType)
+  {
+    $this->creditType = $creditType;
+  }
+  /**
+   * @return string
+   */
+  public function getCreditType()
+  {
+    return $this->creditType;
+  }
+  /**
+   * Optional. The initial down payment amount the buyer has to pay.
+   *
+   * @param Price $downpayment
+   */
+  public function setDownpayment(Price $downpayment)
+  {
+    $this->downpayment = $downpayment;
+  }
+  /**
+   * @return Price
+   */
+  public function getDownpayment()
+  {
+    return $this->downpayment;
+  }
+  /**
+   * The number of installments the buyer has to pay.
+   *
+   * @param string $months
    */
   public function setMonths($months)
   {

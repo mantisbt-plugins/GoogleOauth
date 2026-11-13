@@ -20,20 +20,29 @@ namespace Google\Service\Assuredworkloads;
 class GoogleCloudAssuredworkloadsV1ViolationExceptionContext extends \Google\Model
 {
   /**
+   * The time when the violation was acknowledged.
+   *
    * @var string
    */
   public $acknowledgementTime;
   /**
+   * The business justification that was provided when the violation was
+   * acknowledged.
+   *
    * @var string
    */
   public $comment;
   /**
+   * The name of the user (or service account) who acknowledged the violation.
+   *
    * @var string
    */
-  public $principalEmail;
+  public $userName;
 
   /**
-   * @param string
+   * The time when the violation was acknowledged.
+   *
+   * @param string $acknowledgementTime
    */
   public function setAcknowledgementTime($acknowledgementTime)
   {
@@ -47,7 +56,10 @@ class GoogleCloudAssuredworkloadsV1ViolationExceptionContext extends \Google\Mod
     return $this->acknowledgementTime;
   }
   /**
-   * @param string
+   * The business justification that was provided when the violation was
+   * acknowledged.
+   *
+   * @param string $comment
    */
   public function setComment($comment)
   {
@@ -61,18 +73,20 @@ class GoogleCloudAssuredworkloadsV1ViolationExceptionContext extends \Google\Mod
     return $this->comment;
   }
   /**
-   * @param string
+   * The name of the user (or service account) who acknowledged the violation.
+   *
+   * @param string $userName
    */
-  public function setPrincipalEmail($principalEmail)
+  public function setUserName($userName)
   {
-    $this->principalEmail = $principalEmail;
+    $this->userName = $userName;
   }
   /**
    * @return string
    */
-  public function getPrincipalEmail()
+  public function getUserName()
   {
-    return $this->principalEmail;
+    return $this->userName;
   }
 }
 

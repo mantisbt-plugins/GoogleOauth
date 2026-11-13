@@ -35,11 +35,15 @@ class GoogleCloudDialogflowCxV3EventHandler extends \Google\Model
    * @var string
    */
   public $targetPage;
+  /**
+   * @var string
+   */
+  public $targetPlaybook;
   protected $triggerFulfillmentType = GoogleCloudDialogflowCxV3Fulfillment::class;
   protected $triggerFulfillmentDataType = '';
 
   /**
-   * @param string
+   * @param string $event
    */
   public function setEvent($event)
   {
@@ -53,7 +57,7 @@ class GoogleCloudDialogflowCxV3EventHandler extends \Google\Model
     return $this->event;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -67,7 +71,7 @@ class GoogleCloudDialogflowCxV3EventHandler extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * @param string $targetFlow
    */
   public function setTargetFlow($targetFlow)
   {
@@ -81,7 +85,7 @@ class GoogleCloudDialogflowCxV3EventHandler extends \Google\Model
     return $this->targetFlow;
   }
   /**
-   * @param string
+   * @param string $targetPage
    */
   public function setTargetPage($targetPage)
   {
@@ -95,7 +99,21 @@ class GoogleCloudDialogflowCxV3EventHandler extends \Google\Model
     return $this->targetPage;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3Fulfillment
+   * @param string $targetPlaybook
+   */
+  public function setTargetPlaybook($targetPlaybook)
+  {
+    $this->targetPlaybook = $targetPlaybook;
+  }
+  /**
+   * @return string
+   */
+  public function getTargetPlaybook()
+  {
+    return $this->targetPlaybook;
+  }
+  /**
+   * @param GoogleCloudDialogflowCxV3Fulfillment $triggerFulfillment
    */
   public function setTriggerFulfillment(GoogleCloudDialogflowCxV3Fulfillment $triggerFulfillment)
   {

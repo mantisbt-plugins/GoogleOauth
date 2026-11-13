@@ -41,7 +41,7 @@ class ProjectsInstancesBackupOperations extends \Google\Service\Resource
    * (backupOperations.listProjectsInstancesBackupOperations)
    *
    * @param string $parent Required. The instance of the backup operations. Values
-   * are of the form `projects//instances/`.
+   * are of the form `projects/{project}/instances/{instance}`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter An expression that filters the list of returned
@@ -92,6 +92,7 @@ class ProjectsInstancesBackupOperations extends \Google\Service\Resource
    * next_page_token from a previous ListBackupOperationsResponse to the same
    * `parent` and with the same `filter`.
    * @return ListBackupOperationsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsInstancesBackupOperations($parent, $optParams = [])
   {

@@ -23,9 +23,9 @@ use Google\Client;
  * Service definition for MyBusinessQA (v1).
  *
  * <p>
- * The My Business Q API allows questions and answers to be posted for specific
- * listings. Note - If you have a quota of 0 after enabling the API, please
- * request for GBP API access.</p>
+ * The My Business Q&A API allows questions and answers to be posted for
+ * specific listings. Note - If you have a quota of 0 after enabling the API,
+ * please request for GBP API access.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -40,6 +40,7 @@ class MyBusinessQA extends \Google\Service
 
   public $locations_questions;
   public $locations_questions_answers;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the MyBusinessQA service.
@@ -52,6 +53,7 @@ class MyBusinessQA extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://mybusinessqanda.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://mybusinessqanda.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

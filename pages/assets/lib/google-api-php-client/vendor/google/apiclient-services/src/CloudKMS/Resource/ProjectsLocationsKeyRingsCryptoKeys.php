@@ -23,6 +23,7 @@ use Google\Service\CloudKMS\DecryptResponse;
 use Google\Service\CloudKMS\EncryptRequest;
 use Google\Service\CloudKMS\EncryptResponse;
 use Google\Service\CloudKMS\ListCryptoKeysResponse;
+use Google\Service\CloudKMS\Operation;
 use Google\Service\CloudKMS\Policy;
 use Google\Service\CloudKMS\SetIamPolicyRequest;
 use Google\Service\CloudKMS\TestIamPermissionsRequest;
@@ -54,7 +55,13 @@ class ProjectsLocationsKeyRingsCryptoKeys extends \Google\Service\Resource
    * create a CryptoKey without any CryptoKeyVersions. You must manually call
    * CreateCryptoKeyVersion or ImportCryptoKeyVersion before you can use this
    * CryptoKey.
+   * @opt_param bool trustedWrappingEnabled Optional. Whether trusted wrapping
+   * will be enabled on the first CryptoKeyVersions created for this CryptoKey.
+   * This field is only supported for keys with
+   * CryptoKeyVersionTemplate.protection_level HSM_SINGLE_TENANT. This field is
+   * supported for all CryptoKeyPurposes except ENCRYPT_DECRYPT.
    * @return CryptoKey
+   * @throws \Google\Service\Exception
    */
   public function create($parent, CryptoKey $postBody, $optParams = [])
   {
@@ -71,12 +78,31 @@ class ProjectsLocationsKeyRingsCryptoKeys extends \Google\Service\Resource
    * @param DecryptRequest $postBody
    * @param array $optParams Optional parameters.
    * @return DecryptResponse
+   * @throws \Google\Service\Exception
    */
   public function decrypt($name, DecryptRequest $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('decrypt', [$params], DecryptResponse::class);
+  }
+  /**
+   * Permanently deletes the given CryptoKey. All child CryptoKeyVersions must
+   * have been previously deleted using
+   * KeyManagementService.DeleteCryptoKeyVersion. The specified crypto key will be
+   * immediately and permanently deleted upon calling this method. This action
+   * cannot be undone. (cryptoKeys.delete)
+   *
+   * @param string $name Required. The name of the CryptoKey to delete.
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function delete($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('delete', [$params], Operation::class);
   }
   /**
    * Encrypts data, so that it can only be recovered by a call to Decrypt. The
@@ -88,6 +114,7 @@ class ProjectsLocationsKeyRingsCryptoKeys extends \Google\Service\Resource
    * @param EncryptRequest $postBody
    * @param array $optParams Optional parameters.
    * @return EncryptResponse
+   * @throws \Google\Service\Exception
    */
   public function encrypt($name, EncryptRequest $postBody, $optParams = [])
   {
@@ -102,6 +129,7 @@ class ProjectsLocationsKeyRingsCryptoKeys extends \Google\Service\Resource
    * @param string $name Required. The name of the CryptoKey to get.
    * @param array $optParams Optional parameters.
    * @return CryptoKey
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -132,6 +160,7 @@ class ProjectsLocationsKeyRingsCryptoKeys extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -162,6 +191,7 @@ class ProjectsLocationsKeyRingsCryptoKeys extends \Google\Service\Resource
    * @opt_param string versionView The fields of the primary version to include in
    * the response.
    * @return ListCryptoKeysResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsKeyRingsCryptoKeys($parent, $optParams = [])
   {
@@ -180,6 +210,7 @@ class ProjectsLocationsKeyRingsCryptoKeys extends \Google\Service\Resource
    * @opt_param string updateMask Required. List of fields to be updated in this
    * request.
    * @return CryptoKey
+   * @throws \Google\Service\Exception
    */
   public function patch($name, CryptoKey $postBody, $optParams = [])
   {
@@ -199,6 +230,7 @@ class ProjectsLocationsKeyRingsCryptoKeys extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -221,6 +253,7 @@ class ProjectsLocationsKeyRingsCryptoKeys extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {
@@ -237,6 +270,7 @@ class ProjectsLocationsKeyRingsCryptoKeys extends \Google\Service\Resource
    * @param UpdateCryptoKeyPrimaryVersionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return CryptoKey
+   * @throws \Google\Service\Exception
    */
   public function updatePrimaryVersion($name, UpdateCryptoKeyPrimaryVersionRequest $postBody, $optParams = [])
   {

@@ -33,7 +33,7 @@ class GoogleCloudDialogflowV2AnnotatedMessagePart extends \Google\Model
   public $text;
 
   /**
-   * @param string
+   * @param string $entityType
    */
   public function setEntityType($entityType)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowV2AnnotatedMessagePart extends \Google\Model
     return $this->entityType;
   }
   /**
-   * @param array
+   * @param array $formattedValue
    */
   public function setFormattedValue($formattedValue)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowV2AnnotatedMessagePart extends \Google\Model
     return $this->formattedValue;
   }
   /**
-   * @param string
+   * @param string $text
    */
   public function setText($text)
   {

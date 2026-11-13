@@ -37,15 +37,18 @@ class UsersSettingsSendAs extends \Google\Service\Resource
    * alias, a message will be sent to the email address and the resource's
    * verification status will be set to `pending`; otherwise, the resource will be
    * created with verification status set to `accepted`. If a signature is
-   * provided, Gmail will sanitize the HTML before saving it with the alias. This
-   * method is only available to service account clients that have been delegated
-   * domain-wide authority. (sendAs.create)
+   * provided, Gmail will sanitize the HTML before saving it with the alias. For
+   * more information, see [Manage aliases and signatures with the Gmail API](http
+   * s://developers.google.com/workspace/gmail/api/guides/alias_and_signature_sett
+   * ings). This method is only available to service account clients that have
+   * been delegated domain-wide authority. (sendAs.create)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param SendAs $postBody
    * @param array $optParams Optional parameters.
    * @return SendAs
+   * @throws \Google\Service\Exception
    */
   public function create($userId, SendAs $postBody, $optParams = [])
   {
@@ -55,13 +58,17 @@ class UsersSettingsSendAs extends \Google\Service\Resource
   }
   /**
    * Deletes the specified send-as alias. Revokes any verification that may have
-   * been required for using it. This method is only available to service account
-   * clients that have been delegated domain-wide authority. (sendAs.delete)
+   * been required for using it. For more information, see [Manage aliases and
+   * signatures with the Gmail API](https://developers.google.com/workspace/gmail/
+   * api/guides/alias_and_signature_settings). This method is only available to
+   * service account clients that have been delegated domain-wide authority.
+   * (sendAs.delete)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param string $sendAsEmail The send-as alias to be deleted.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($userId, $sendAsEmail, $optParams = [])
   {
@@ -71,13 +78,17 @@ class UsersSettingsSendAs extends \Google\Service\Resource
   }
   /**
    * Gets the specified send-as alias. Fails with an HTTP 404 error if the
-   * specified address is not a member of the collection. (sendAs.get)
+   * specified address is not a member of the collection. For more information,
+   * see [Manage aliases and signatures with the Gmail API](https://developers.goo
+   * gle.com/workspace/gmail/api/guides/alias_and_signature_settings).
+   * (sendAs.get)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param string $sendAsEmail The send-as alias to be retrieved.
    * @param array $optParams Optional parameters.
    * @return SendAs
+   * @throws \Google\Service\Exception
    */
   public function get($userId, $sendAsEmail, $optParams = [])
   {
@@ -88,12 +99,15 @@ class UsersSettingsSendAs extends \Google\Service\Resource
   /**
    * Lists the send-as aliases for the specified account. The result includes the
    * primary send-as address associated with the account as well as any custom
-   * "from" aliases. (sendAs.listUsersSettingsSendAs)
+   * "from" aliases. For more information, see [Manage aliases and signatures with
+   * the Gmail API](https://developers.google.com/workspace/gmail/api/guides/alias
+   * _and_signature_settings). (sendAs.listUsersSettingsSendAs)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param array $optParams Optional parameters.
    * @return ListSendAsResponse
+   * @throws \Google\Service\Exception
    */
   public function listUsersSettingsSendAs($userId, $optParams = [])
   {
@@ -102,7 +116,9 @@ class UsersSettingsSendAs extends \Google\Service\Resource
     return $this->call('list', [$params], ListSendAsResponse::class);
   }
   /**
-   * Patch the specified send-as alias. (sendAs.patch)
+   * Patch the specified send-as alias. For more information, see [Manage aliases
+   * and signatures with the Gmail API](https://developers.google.com/workspace/gm
+   * ail/api/guides/alias_and_signature_settings). (sendAs.patch)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
@@ -110,6 +126,7 @@ class UsersSettingsSendAs extends \Google\Service\Resource
    * @param SendAs $postBody
    * @param array $optParams Optional parameters.
    * @return SendAs
+   * @throws \Google\Service\Exception
    */
   public function patch($userId, $sendAsEmail, SendAs $postBody, $optParams = [])
   {
@@ -119,9 +136,11 @@ class UsersSettingsSendAs extends \Google\Service\Resource
   }
   /**
    * Updates a send-as alias. If a signature is provided, Gmail will sanitize the
-   * HTML before saving it with the alias. Addresses other than the primary
-   * address for the account can only be updated by service account clients that
-   * have been delegated domain-wide authority. (sendAs.update)
+   * HTML before saving it with the alias. For more information, see [Manage
+   * aliases and signatures with the Gmail API](https://developers.google.com/work
+   * space/gmail/api/guides/alias_and_signature_settings). Addresses other than
+   * the primary address for the account can only be updated by service account
+   * clients that have been delegated domain-wide authority. (sendAs.update)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
@@ -129,6 +148,7 @@ class UsersSettingsSendAs extends \Google\Service\Resource
    * @param SendAs $postBody
    * @param array $optParams Optional parameters.
    * @return SendAs
+   * @throws \Google\Service\Exception
    */
   public function update($userId, $sendAsEmail, SendAs $postBody, $optParams = [])
   {
@@ -138,14 +158,17 @@ class UsersSettingsSendAs extends \Google\Service\Resource
   }
   /**
    * Sends a verification email to the specified send-as alias address. The
-   * verification status must be `pending`. This method is only available to
-   * service account clients that have been delegated domain-wide authority.
-   * (sendAs.verify)
+   * verification status must be `pending`. For more information, see [Manage
+   * aliases and signatures with the Gmail API](https://developers.google.com/work
+   * space/gmail/api/guides/alias_and_signature_settings). This method is only
+   * available to service account clients that have been delegated domain-wide
+   * authority. (sendAs.verify)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param string $sendAsEmail The send-as alias to be verified.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function verify($userId, $sendAsEmail, $optParams = [])
   {

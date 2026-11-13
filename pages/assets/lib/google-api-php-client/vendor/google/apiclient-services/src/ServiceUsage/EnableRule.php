@@ -21,52 +21,52 @@ class EnableRule extends \Google\Collection
 {
   protected $collection_key = 'values';
   /**
-   * @var string
-   */
-  public $enableType;
-  /**
+   * The names of the catalogs that are enabled. Example: `catalogs/default-
+   * cloud-services`.
+   *
    * @var string[]
    */
-  public $groups;
+  public $catalogs;
   /**
+   * The names of the services that are enabled. Example:
+   * `services/storage.googleapis.com`.
+   *
    * @var string[]
    */
   public $services;
   /**
+   * Deprecated: Use the `services` field instead. The names of the services or
+   * service groups that are enabled. Example:
+   * `services/storage.googleapis.com`, `groups/googleServices`,
+   * `groups/allServices`.
+   *
+   * @deprecated
    * @var string[]
    */
   public $values;
 
   /**
-   * @param string
+   * The names of the catalogs that are enabled. Example: `catalogs/default-
+   * cloud-services`.
+   *
+   * @param string[] $catalogs
    */
-  public function setEnableType($enableType)
+  public function setCatalogs($catalogs)
   {
-    $this->enableType = $enableType;
-  }
-  /**
-   * @return string
-   */
-  public function getEnableType()
-  {
-    return $this->enableType;
-  }
-  /**
-   * @param string[]
-   */
-  public function setGroups($groups)
-  {
-    $this->groups = $groups;
+    $this->catalogs = $catalogs;
   }
   /**
    * @return string[]
    */
-  public function getGroups()
+  public function getCatalogs()
   {
-    return $this->groups;
+    return $this->catalogs;
   }
   /**
-   * @param string[]
+   * The names of the services that are enabled. Example:
+   * `services/storage.googleapis.com`.
+   *
+   * @param string[] $services
    */
   public function setServices($services)
   {
@@ -80,13 +80,20 @@ class EnableRule extends \Google\Collection
     return $this->services;
   }
   /**
-   * @param string[]
+   * Deprecated: Use the `services` field instead. The names of the services or
+   * service groups that are enabled. Example:
+   * `services/storage.googleapis.com`, `groups/googleServices`,
+   * `groups/allServices`.
+   *
+   * @deprecated
+   * @param string[] $values
    */
   public function setValues($values)
   {
     $this->values = $values;
   }
   /**
+   * @deprecated
    * @return string[]
    */
   public function getValues()

@@ -20,42 +20,80 @@ namespace Google\Service\ShoppingContent;
 class PosInventory extends \Google\Model
 {
   /**
+   * Required. The two-letter ISO 639-1 language code for the item.
+   *
    * @var string
    */
   public $contentLanguage;
   /**
+   * Global Trade Item Number.
+   *
    * @var string
    */
   public $gtin;
   /**
+   * Required. A unique identifier for the item.
+   *
    * @var string
    */
   public $itemId;
   /**
+   * Identifies what kind of resource this is. Value: the fixed string
+   * "`content#posInventory`"
+   *
    * @var string
    */
   public $kind;
+  /**
+   * Optional. Supported pickup method for this offer. Unless the value is "not
+   * supported", this field must be submitted together with `pickupSla`. For
+   * accepted attribute values, see the [local product inventory feed
+   * specification](https://support.google.com/merchants/answer/3061342).
+   *
+   * @var string
+   */
+  public $pickupMethod;
+  /**
+   * Optional. Expected date that an order will be ready for pickup relative to
+   * the order date. Must be submitted together with `pickupMethod`. For
+   * accepted attribute values, see the [local product inventory feed
+   * specification](https://support.google.com/merchants/answer/3061342).
+   *
+   * @var string
+   */
+  public $pickupSla;
   protected $priceType = Price::class;
   protected $priceDataType = '';
   /**
+   * Required. The available quantity of the item.
+   *
    * @var string
    */
   public $quantity;
   /**
+   * Required. The identifier of the merchant's store. Either a `storeCode`
+   * inserted through the API or the code of the store in a Business Profile.
+   *
    * @var string
    */
   public $storeCode;
   /**
+   * Required. The CLDR territory code for the item.
+   *
    * @var string
    */
   public $targetCountry;
   /**
+   * Required. The inventory timestamp, in ISO 8601 format.
+   *
    * @var string
    */
   public $timestamp;
 
   /**
-   * @param string
+   * Required. The two-letter ISO 639-1 language code for the item.
+   *
+   * @param string $contentLanguage
    */
   public function setContentLanguage($contentLanguage)
   {
@@ -69,7 +107,9 @@ class PosInventory extends \Google\Model
     return $this->contentLanguage;
   }
   /**
-   * @param string
+   * Global Trade Item Number.
+   *
+   * @param string $gtin
    */
   public function setGtin($gtin)
   {
@@ -83,7 +123,9 @@ class PosInventory extends \Google\Model
     return $this->gtin;
   }
   /**
-   * @param string
+   * Required. A unique identifier for the item.
+   *
+   * @param string $itemId
    */
   public function setItemId($itemId)
   {
@@ -97,7 +139,10 @@ class PosInventory extends \Google\Model
     return $this->itemId;
   }
   /**
-   * @param string
+   * Identifies what kind of resource this is. Value: the fixed string
+   * "`content#posInventory`"
+   *
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -111,7 +156,47 @@ class PosInventory extends \Google\Model
     return $this->kind;
   }
   /**
-   * @param Price
+   * Optional. Supported pickup method for this offer. Unless the value is "not
+   * supported", this field must be submitted together with `pickupSla`. For
+   * accepted attribute values, see the [local product inventory feed
+   * specification](https://support.google.com/merchants/answer/3061342).
+   *
+   * @param string $pickupMethod
+   */
+  public function setPickupMethod($pickupMethod)
+  {
+    $this->pickupMethod = $pickupMethod;
+  }
+  /**
+   * @return string
+   */
+  public function getPickupMethod()
+  {
+    return $this->pickupMethod;
+  }
+  /**
+   * Optional. Expected date that an order will be ready for pickup relative to
+   * the order date. Must be submitted together with `pickupMethod`. For
+   * accepted attribute values, see the [local product inventory feed
+   * specification](https://support.google.com/merchants/answer/3061342).
+   *
+   * @param string $pickupSla
+   */
+  public function setPickupSla($pickupSla)
+  {
+    $this->pickupSla = $pickupSla;
+  }
+  /**
+   * @return string
+   */
+  public function getPickupSla()
+  {
+    return $this->pickupSla;
+  }
+  /**
+   * Required. The current price of the item.
+   *
+   * @param Price $price
    */
   public function setPrice(Price $price)
   {
@@ -125,7 +210,9 @@ class PosInventory extends \Google\Model
     return $this->price;
   }
   /**
-   * @param string
+   * Required. The available quantity of the item.
+   *
+   * @param string $quantity
    */
   public function setQuantity($quantity)
   {
@@ -139,7 +226,10 @@ class PosInventory extends \Google\Model
     return $this->quantity;
   }
   /**
-   * @param string
+   * Required. The identifier of the merchant's store. Either a `storeCode`
+   * inserted through the API or the code of the store in a Business Profile.
+   *
+   * @param string $storeCode
    */
   public function setStoreCode($storeCode)
   {
@@ -153,7 +243,9 @@ class PosInventory extends \Google\Model
     return $this->storeCode;
   }
   /**
-   * @param string
+   * Required. The CLDR territory code for the item.
+   *
+   * @param string $targetCountry
    */
   public function setTargetCountry($targetCountry)
   {
@@ -167,7 +259,9 @@ class PosInventory extends \Google\Model
     return $this->targetCountry;
   }
   /**
-   * @param string
+   * Required. The inventory timestamp, in ISO 8601 format.
+   *
+   * @param string $timestamp
    */
   public function setTimestamp($timestamp)
   {

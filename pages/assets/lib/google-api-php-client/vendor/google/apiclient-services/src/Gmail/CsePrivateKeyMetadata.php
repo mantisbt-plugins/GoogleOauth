@@ -19,15 +19,38 @@ namespace Google\Service\Gmail;
 
 class CsePrivateKeyMetadata extends \Google\Model
 {
+  protected $hardwareKeyMetadataType = HardwareKeyMetadata::class;
+  protected $hardwareKeyMetadataDataType = '';
   protected $kaclsKeyMetadataType = KaclsKeyMetadata::class;
   protected $kaclsKeyMetadataDataType = '';
   /**
+   * Output only. The immutable ID for the private key metadata instance.
+   *
    * @var string
    */
   public $privateKeyMetadataId;
 
   /**
-   * @param KaclsKeyMetadata
+   * Metadata for hardware keys.
+   *
+   * @param HardwareKeyMetadata $hardwareKeyMetadata
+   */
+  public function setHardwareKeyMetadata(HardwareKeyMetadata $hardwareKeyMetadata)
+  {
+    $this->hardwareKeyMetadata = $hardwareKeyMetadata;
+  }
+  /**
+   * @return HardwareKeyMetadata
+   */
+  public function getHardwareKeyMetadata()
+  {
+    return $this->hardwareKeyMetadata;
+  }
+  /**
+   * Metadata for a private key instance managed by an external key access
+   * control list service. The maximum size of the KACLS data field is 8 KiB.
+   *
+   * @param KaclsKeyMetadata $kaclsKeyMetadata
    */
   public function setKaclsKeyMetadata(KaclsKeyMetadata $kaclsKeyMetadata)
   {
@@ -41,7 +64,9 @@ class CsePrivateKeyMetadata extends \Google\Model
     return $this->kaclsKeyMetadata;
   }
   /**
-   * @param string
+   * Output only. The immutable ID for the private key metadata instance.
+   *
+   * @param string $privateKeyMetadataId
    */
   public function setPrivateKeyMetadataId($privateKeyMetadataId)
   {

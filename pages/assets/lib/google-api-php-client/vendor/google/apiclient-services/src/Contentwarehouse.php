@@ -47,6 +47,7 @@ class Contentwarehouse extends \Google\Service
   public $projects_locations_operations;
   public $projects_locations_ruleSets;
   public $projects_locations_synonymSets;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Contentwarehouse service.
@@ -59,6 +60,7 @@ class Contentwarehouse extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://contentwarehouse.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://contentwarehouse.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -100,11 +102,31 @@ class Contentwarehouse extends \Google\Service
         'locations',
         [
           'methods' => [
-            'initialize' => [
+            'getStatus' => [
+              'path' => 'v1/{+location}:getStatus',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'location' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'initialize' => [
               'path' => 'v1/{+location}:initialize',
               'httpMethod' => 'POST',
               'parameters' => [
                 'location' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'runPipeline' => [
+              'path' => 'v1/{+name}:runPipeline',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,

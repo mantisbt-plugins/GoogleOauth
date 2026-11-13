@@ -34,15 +34,17 @@ class UsersSettingsForwardingAddresses extends \Google\Service\Resource
    * Creates a forwarding address. If ownership verification is required, a
    * message will be sent to the recipient and the resource's verification status
    * will be set to `pending`; otherwise, the resource will be created with
-   * verification status set to `accepted`. This method is only available to
-   * service account clients that have been delegated domain-wide authority.
-   * (forwardingAddresses.create)
+   * verification status set to `accepted`. For more information, see [Manage
+   * email forwarding](https://developers.google.com/workspace/gmail/api/guides/fo
+   * rwarding_settings). This method is only available to service account clients
+   * that have been delegated domain-wide authority. (forwardingAddresses.create)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param ForwardingAddress $postBody
    * @param array $optParams Optional parameters.
    * @return ForwardingAddress
+   * @throws \Google\Service\Exception
    */
   public function create($userId, ForwardingAddress $postBody, $optParams = [])
   {
@@ -52,14 +54,16 @@ class UsersSettingsForwardingAddresses extends \Google\Service\Resource
   }
   /**
    * Deletes the specified forwarding address and revokes any verification that
-   * may have been required. This method is only available to service account
-   * clients that have been delegated domain-wide authority.
-   * (forwardingAddresses.delete)
+   * may have been required. For more information, see [Manage email forwarding](h
+   * ttps://developers.google.com/workspace/gmail/api/guides/forwarding_settings).
+   * This method is only available to service account clients that have been
+   * delegated domain-wide authority. (forwardingAddresses.delete)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param string $forwardingEmail The forwarding address to be deleted.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($userId, $forwardingEmail, $optParams = [])
   {
@@ -68,13 +72,16 @@ class UsersSettingsForwardingAddresses extends \Google\Service\Resource
     return $this->call('delete', [$params]);
   }
   /**
-   * Gets the specified forwarding address. (forwardingAddresses.get)
+   * Gets the specified forwarding address. For more information, see [Manage
+   * email forwarding](https://developers.google.com/workspace/gmail/api/guides/fo
+   * rwarding_settings). (forwardingAddresses.get)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param string $forwardingEmail The forwarding address to be retrieved.
    * @param array $optParams Optional parameters.
    * @return ForwardingAddress
+   * @throws \Google\Service\Exception
    */
   public function get($userId, $forwardingEmail, $optParams = [])
   {
@@ -83,13 +90,16 @@ class UsersSettingsForwardingAddresses extends \Google\Service\Resource
     return $this->call('get', [$params], ForwardingAddress::class);
   }
   /**
-   * Lists the forwarding addresses for the specified account.
+   * Lists the forwarding addresses for the specified account. For more
+   * information, see [Manage email forwarding](https://developers.google.com/work
+   * space/gmail/api/guides/forwarding_settings).
    * (forwardingAddresses.listUsersSettingsForwardingAddresses)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param array $optParams Optional parameters.
    * @return ListForwardingAddressesResponse
+   * @throws \Google\Service\Exception
    */
   public function listUsersSettingsForwardingAddresses($userId, $optParams = [])
   {

@@ -19,6 +19,12 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3EntityType extends \Google\Collection
 {
+  public const AUTO_EXPANSION_MODE_AUTO_EXPANSION_MODE_UNSPECIFIED = 'AUTO_EXPANSION_MODE_UNSPECIFIED';
+  public const AUTO_EXPANSION_MODE_AUTO_EXPANSION_MODE_DEFAULT = 'AUTO_EXPANSION_MODE_DEFAULT';
+  public const KIND_KIND_UNSPECIFIED = 'KIND_UNSPECIFIED';
+  public const KIND_KIND_MAP = 'KIND_MAP';
+  public const KIND_KIND_LIST = 'KIND_LIST';
+  public const KIND_KIND_REGEXP = 'KIND_REGEXP';
   protected $collection_key = 'excludedPhrases';
   /**
    * @var string
@@ -50,21 +56,21 @@ class GoogleCloudDialogflowCxV3EntityType extends \Google\Collection
   public $redact;
 
   /**
-   * @param string
+   * @param self::AUTO_EXPANSION_MODE_* $autoExpansionMode
    */
   public function setAutoExpansionMode($autoExpansionMode)
   {
     $this->autoExpansionMode = $autoExpansionMode;
   }
   /**
-   * @return string
+   * @return self::AUTO_EXPANSION_MODE_*
    */
   public function getAutoExpansionMode()
   {
     return $this->autoExpansionMode;
   }
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -78,7 +84,7 @@ class GoogleCloudDialogflowCxV3EntityType extends \Google\Collection
     return $this->displayName;
   }
   /**
-   * @param bool
+   * @param bool $enableFuzzyExtraction
    */
   public function setEnableFuzzyExtraction($enableFuzzyExtraction)
   {
@@ -92,7 +98,7 @@ class GoogleCloudDialogflowCxV3EntityType extends \Google\Collection
     return $this->enableFuzzyExtraction;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3EntityTypeEntity[]
+   * @param GoogleCloudDialogflowCxV3EntityTypeEntity[] $entities
    */
   public function setEntities($entities)
   {
@@ -106,7 +112,7 @@ class GoogleCloudDialogflowCxV3EntityType extends \Google\Collection
     return $this->entities;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3EntityTypeExcludedPhrase[]
+   * @param GoogleCloudDialogflowCxV3EntityTypeExcludedPhrase[] $excludedPhrases
    */
   public function setExcludedPhrases($excludedPhrases)
   {
@@ -120,21 +126,21 @@ class GoogleCloudDialogflowCxV3EntityType extends \Google\Collection
     return $this->excludedPhrases;
   }
   /**
-   * @param string
+   * @param self::KIND_* $kind
    */
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
   /**
-   * @return string
+   * @return self::KIND_*
    */
   public function getKind()
   {
     return $this->kind;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -148,7 +154,7 @@ class GoogleCloudDialogflowCxV3EntityType extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param bool
+   * @param bool $redact
    */
   public function setRedact($redact)
   {

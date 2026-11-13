@@ -43,6 +43,7 @@ class ProjectsLocationsCertificateMaps extends \Google\Service\Resource
    * @opt_param string certificateMapId Required. A user-provided name of the
    * certificate map.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, CertificateMap $postBody, $optParams = [])
   {
@@ -59,6 +60,7 @@ class ProjectsLocationsCertificateMaps extends \Google\Service\Resource
    * be in the format `projects/locations/certificateMaps`.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -73,6 +75,7 @@ class ProjectsLocationsCertificateMaps extends \Google\Service\Resource
    * be in the format `projects/locations/certificateMaps`.
    * @param array $optParams Optional parameters.
    * @return CertificateMap
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -89,18 +92,20 @@ class ProjectsLocationsCertificateMaps extends \Google\Service\Resource
    * `projects/locations`.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Filter expression to restrict the Certificates Maps
-   * returned.
-   * @opt_param string orderBy A list of Certificate Map field names used to
-   * specify the order of the returned results. The default sorting order is
-   * ascending. To specify descending order for a field, add a suffix " desc".
-   * @opt_param int pageSize Maximum number of certificate maps to return per
-   * call.
-   * @opt_param string pageToken The value returned by the last
+   * @opt_param string filter Optional. Filter expression to restrict the
+   * Certificates Maps returned.
+   * @opt_param string orderBy Optional. A list of Certificate Map field names
+   * used to specify the order of the returned results. The default sorting order
+   * is ascending. To specify descending order for a field, add a suffix `"
+   * desc"`.
+   * @opt_param int pageSize Optional. Maximum number of certificate maps to
+   * return per call.
+   * @opt_param string pageToken Optional. The value returned by the last
    * `ListCertificateMapsResponse`. Indicates that this is a continuation of a
    * prior `ListCertificateMaps` call, and that the system should return the next
    * page of data.
    * @return ListCertificateMapsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsCertificateMaps($parent, $optParams = [])
   {
@@ -111,16 +116,18 @@ class ProjectsLocationsCertificateMaps extends \Google\Service\Resource
   /**
    * Updates a CertificateMap. (certificateMaps.patch)
    *
-   * @param string $name A user-defined name of the Certificate Map. Certificate
-   * Map names must be unique globally and match pattern
+   * @param string $name Identifier. A user-defined name of the Certificate Map.
+   * Certificate Map names must be unique globally and match pattern
    * `projects/locations/certificateMaps`.
    * @param CertificateMap $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string updateMask Required. The update mask applies to the
-   * resource. For the `FieldMask` definition, see https://developers.google.com
-   * /protocol-buffers/docs/reference/google.protobuf#fieldmask.
+   * resource. For the `FieldMask` definition, see
+   * https://developers.google.com/protocol-
+   * buffers/docs/reference/google.protobuf#fieldmask.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, CertificateMap $postBody, $optParams = [])
   {

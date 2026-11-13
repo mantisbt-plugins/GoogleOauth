@@ -21,26 +21,44 @@ class OSImage extends \Google\Collection
 {
   protected $collection_key = 'supportedNetworkTemplates';
   /**
+   * Instance types this image is applicable to. [Available
+   * types](https://cloud.google.com/bare-metal/docs/bms-
+   * planning#server_configurations)
+   *
    * @var string[]
    */
   public $applicableInstanceTypes;
   /**
+   * OS Image code.
+   *
    * @var string
    */
   public $code;
   /**
+   * OS Image description.
+   *
    * @var string
    */
   public $description;
   /**
+   * Output only. OS Image's unique name.
+   *
    * @var string
    */
   public $name;
-  protected $supportedNetworkTemplatesType = ServerNetworkTemplate::class;
-  protected $supportedNetworkTemplatesDataType = 'array';
+  /**
+   * Network templates that can be used with this OS Image.
+   *
+   * @var string[]
+   */
+  public $supportedNetworkTemplates;
 
   /**
-   * @param string[]
+   * Instance types this image is applicable to. [Available
+   * types](https://cloud.google.com/bare-metal/docs/bms-
+   * planning#server_configurations)
+   *
+   * @param string[] $applicableInstanceTypes
    */
   public function setApplicableInstanceTypes($applicableInstanceTypes)
   {
@@ -54,7 +72,9 @@ class OSImage extends \Google\Collection
     return $this->applicableInstanceTypes;
   }
   /**
-   * @param string
+   * OS Image code.
+   *
+   * @param string $code
    */
   public function setCode($code)
   {
@@ -68,7 +88,9 @@ class OSImage extends \Google\Collection
     return $this->code;
   }
   /**
-   * @param string
+   * OS Image description.
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -82,7 +104,9 @@ class OSImage extends \Google\Collection
     return $this->description;
   }
   /**
-   * @param string
+   * Output only. OS Image's unique name.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -96,14 +120,16 @@ class OSImage extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param ServerNetworkTemplate[]
+   * Network templates that can be used with this OS Image.
+   *
+   * @param string[] $supportedNetworkTemplates
    */
   public function setSupportedNetworkTemplates($supportedNetworkTemplates)
   {
     $this->supportedNetworkTemplates = $supportedNetworkTemplates;
   }
   /**
-   * @return ServerNetworkTemplate[]
+   * @return string[]
    */
   public function getSupportedNetworkTemplates()
   {

@@ -19,6 +19,9 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3beta1TestCaseResult extends \Google\Collection
 {
+  public const TEST_RESULT_TEST_RESULT_UNSPECIFIED = 'TEST_RESULT_UNSPECIFIED';
+  public const TEST_RESULT_PASSED = 'PASSED';
+  public const TEST_RESULT_FAILED = 'FAILED';
   protected $collection_key = 'conversationTurns';
   protected $conversationTurnsType = GoogleCloudDialogflowCxV3beta1ConversationTurn::class;
   protected $conversationTurnsDataType = 'array';
@@ -40,7 +43,7 @@ class GoogleCloudDialogflowCxV3beta1TestCaseResult extends \Google\Collection
   public $testTime;
 
   /**
-   * @param GoogleCloudDialogflowCxV3beta1ConversationTurn[]
+   * @param GoogleCloudDialogflowCxV3beta1ConversationTurn[] $conversationTurns
    */
   public function setConversationTurns($conversationTurns)
   {
@@ -54,7 +57,7 @@ class GoogleCloudDialogflowCxV3beta1TestCaseResult extends \Google\Collection
     return $this->conversationTurns;
   }
   /**
-   * @param string
+   * @param string $environment
    */
   public function setEnvironment($environment)
   {
@@ -68,7 +71,7 @@ class GoogleCloudDialogflowCxV3beta1TestCaseResult extends \Google\Collection
     return $this->environment;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -82,21 +85,21 @@ class GoogleCloudDialogflowCxV3beta1TestCaseResult extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param string
+   * @param self::TEST_RESULT_* $testResult
    */
   public function setTestResult($testResult)
   {
     $this->testResult = $testResult;
   }
   /**
-   * @return string
+   * @return self::TEST_RESULT_*
    */
   public function getTestResult()
   {
     return $this->testResult;
   }
   /**
-   * @param string
+   * @param string $testTime
    */
   public function setTestTime($testTime)
   {

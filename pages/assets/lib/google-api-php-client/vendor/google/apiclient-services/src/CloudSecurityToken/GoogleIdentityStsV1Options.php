@@ -17,22 +17,36 @@
 
 namespace Google\Service\CloudSecurityToken;
 
-class GoogleIdentityStsV1Options extends \Google\Collection
+class GoogleIdentityStsV1Options extends \Google\Model
 {
-  protected $collection_key = 'audiences';
   protected $accessBoundaryType = GoogleIdentityStsV1AccessBoundary::class;
   protected $accessBoundaryDataType = '';
   /**
-   * @var string[]
+   * The unpadded, URL-escaped, base64-encoded SHA-256 hash of the certificate's
+   * DER encoding. It must be 43 characters long. The resulting token will be
+   * bound to this value.
+   *
+   * @var string
    */
-  public $audiences;
+  public $bindCertFingerprint;
   /**
+   * A Google project used for quota and billing purposes when the credential is
+   * used to access Google APIs. The provided project overrides the project
+   * bound to the credential. The value must be a project number or a project
+   * ID. Example: `my-sample-project-191923`. The maximum length is 32
+   * characters.
+   *
    * @var string
    */
   public $userProject;
 
   /**
-   * @param GoogleIdentityStsV1AccessBoundary
+   * An access boundary that defines the upper bound of permissions the
+   * credential may have. The value should be a JSON object of AccessBoundary.
+   * The access boundary can include up to 10 rules. The size of the parameter
+   * value should not exceed 2048 characters.
+   *
+   * @param GoogleIdentityStsV1AccessBoundary $accessBoundary
    */
   public function setAccessBoundary(GoogleIdentityStsV1AccessBoundary $accessBoundary)
   {
@@ -46,21 +60,31 @@ class GoogleIdentityStsV1Options extends \Google\Collection
     return $this->accessBoundary;
   }
   /**
-   * @param string[]
+   * The unpadded, URL-escaped, base64-encoded SHA-256 hash of the certificate's
+   * DER encoding. It must be 43 characters long. The resulting token will be
+   * bound to this value.
+   *
+   * @param string $bindCertFingerprint
    */
-  public function setAudiences($audiences)
+  public function setBindCertFingerprint($bindCertFingerprint)
   {
-    $this->audiences = $audiences;
+    $this->bindCertFingerprint = $bindCertFingerprint;
   }
   /**
-   * @return string[]
+   * @return string
    */
-  public function getAudiences()
+  public function getBindCertFingerprint()
   {
-    return $this->audiences;
+    return $this->bindCertFingerprint;
   }
   /**
-   * @param string
+   * A Google project used for quota and billing purposes when the credential is
+   * used to access Google APIs. The provided project overrides the project
+   * bound to the credential. The value must be a project number or a project
+   * ID. Example: `my-sample-project-191923`. The maximum length is 32
+   * characters.
+   *
+   * @param string $userProject
    */
   public function setUserProject($userProject)
   {

@@ -37,7 +37,7 @@ class GoogleCloudDialogflowCxV3beta1IntentParameter extends \Google\Model
   public $redact;
 
   /**
-   * @param string
+   * @param string $entityType
    */
   public function setEntityType($entityType)
   {
@@ -51,7 +51,7 @@ class GoogleCloudDialogflowCxV3beta1IntentParameter extends \Google\Model
     return $this->entityType;
   }
   /**
-   * @param string
+   * @param string $id
    */
   public function setId($id)
   {
@@ -65,7 +65,7 @@ class GoogleCloudDialogflowCxV3beta1IntentParameter extends \Google\Model
     return $this->id;
   }
   /**
-   * @param bool
+   * @param bool $isList
    */
   public function setIsList($isList)
   {
@@ -79,7 +79,7 @@ class GoogleCloudDialogflowCxV3beta1IntentParameter extends \Google\Model
     return $this->isList;
   }
   /**
-   * @param bool
+   * @param bool $redact
    */
   public function setRedact($redact)
   {

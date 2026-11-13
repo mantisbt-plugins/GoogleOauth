@@ -19,6 +19,7 @@ namespace Google\Service\Contactcenterinsights\Resource;
 
 use Google\Service\Contactcenterinsights\GoogleCloudContactcenterinsightsV1Issue;
 use Google\Service\Contactcenterinsights\GoogleCloudContactcenterinsightsV1ListIssuesResponse;
+use Google\Service\Contactcenterinsights\GoogleLongrunningOperation;
 use Google\Service\Contactcenterinsights\GoogleProtobufEmpty;
 
 /**
@@ -32,11 +33,27 @@ use Google\Service\Contactcenterinsights\GoogleProtobufEmpty;
 class ProjectsLocationsIssueModelsIssues extends \Google\Service\Resource
 {
   /**
+   * Creates an issue. (issues.create)
+   *
+   * @param string $parent Required. The parent resource of the issue.
+   * @param GoogleCloudContactcenterinsightsV1Issue $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
+   */
+  public function create($parent, GoogleCloudContactcenterinsightsV1Issue $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('create', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
    * Deletes an issue. (issues.delete)
    *
    * @param string $name Required. The name of the issue to delete.
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -50,6 +67,7 @@ class ProjectsLocationsIssueModelsIssues extends \Google\Service\Resource
    * @param string $name Required. The name of the issue to get.
    * @param array $optParams Optional parameters.
    * @return GoogleCloudContactcenterinsightsV1Issue
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -63,6 +81,7 @@ class ProjectsLocationsIssueModelsIssues extends \Google\Service\Resource
    * @param string $parent Required. The parent resource of the issue.
    * @param array $optParams Optional parameters.
    * @return GoogleCloudContactcenterinsightsV1ListIssuesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsIssueModelsIssues($parent, $optParams = [])
   {
@@ -80,6 +99,7 @@ class ProjectsLocationsIssueModelsIssues extends \Google\Service\Resource
    *
    * @opt_param string updateMask The list of fields to be updated.
    * @return GoogleCloudContactcenterinsightsV1Issue
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudContactcenterinsightsV1Issue $postBody, $optParams = [])
   {

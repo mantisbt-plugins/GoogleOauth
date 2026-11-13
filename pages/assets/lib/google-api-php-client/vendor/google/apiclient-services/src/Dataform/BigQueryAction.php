@@ -20,12 +20,40 @@ namespace Google\Service\Dataform;
 class BigQueryAction extends \Google\Model
 {
   /**
+   * Output only. The ID of the BigQuery job that executed the SQL in
+   * sql_script. Only set once the job has started to run.
+   *
+   * @var string
+   */
+  public $jobId;
+  /**
+   * Output only. The generated BigQuery SQL script that will be executed.
+   *
    * @var string
    */
   public $sqlScript;
 
   /**
-   * @param string
+   * Output only. The ID of the BigQuery job that executed the SQL in
+   * sql_script. Only set once the job has started to run.
+   *
+   * @param string $jobId
+   */
+  public function setJobId($jobId)
+  {
+    $this->jobId = $jobId;
+  }
+  /**
+   * @return string
+   */
+  public function getJobId()
+  {
+    return $this->jobId;
+  }
+  /**
+   * Output only. The generated BigQuery SQL script that will be executed.
+   *
+   * @param string $sqlScript
    */
   public function setSqlScript($sqlScript)
   {

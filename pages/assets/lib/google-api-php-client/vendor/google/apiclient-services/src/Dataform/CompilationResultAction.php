@@ -21,14 +21,31 @@ class CompilationResultAction extends \Google\Model
 {
   protected $assertionType = Assertion::class;
   protected $assertionDataType = '';
+  protected $bigqueryUnitTestType = BigQueryUnitTest::class;
+  protected $bigqueryUnitTestDataType = '';
   protected $canonicalTargetType = Target::class;
   protected $canonicalTargetDataType = '';
+  protected $dataPreparationType = DataPreparation::class;
+  protected $dataPreparationDataType = '';
   protected $declarationType = Declaration::class;
   protected $declarationDataType = '';
   /**
+   * The full path including filename in which this action is located, relative
+   * to the workspace root.
+   *
    * @var string
    */
   public $filePath;
+  /**
+   * Output only. All the metadata information that is used internally to serve
+   * the resource. For example: timestamps, flags, status fields, etc. The
+   * format of this field is a JSON string.
+   *
+   * @var string
+   */
+  public $internalMetadata;
+  protected $notebookType = Notebook::class;
+  protected $notebookDataType = '';
   protected $operationsType = Operations::class;
   protected $operationsDataType = '';
   protected $relationType = Relation::class;
@@ -37,7 +54,9 @@ class CompilationResultAction extends \Google\Model
   protected $targetDataType = '';
 
   /**
-   * @param Assertion
+   * The assertion executed by this action.
+   *
+   * @param Assertion $assertion
    */
   public function setAssertion(Assertion $assertion)
   {
@@ -51,7 +70,26 @@ class CompilationResultAction extends \Google\Model
     return $this->assertion;
   }
   /**
-   * @param Target
+   * The unit test executed by this action.
+   *
+   * @param BigQueryUnitTest $bigqueryUnitTest
+   */
+  public function setBigqueryUnitTest(BigQueryUnitTest $bigqueryUnitTest)
+  {
+    $this->bigqueryUnitTest = $bigqueryUnitTest;
+  }
+  /**
+   * @return BigQueryUnitTest
+   */
+  public function getBigqueryUnitTest()
+  {
+    return $this->bigqueryUnitTest;
+  }
+  /**
+   * The action's identifier if the project had been compiled without any
+   * overrides configured. Unique within the compilation result.
+   *
+   * @param Target $canonicalTarget
    */
   public function setCanonicalTarget(Target $canonicalTarget)
   {
@@ -65,7 +103,25 @@ class CompilationResultAction extends \Google\Model
     return $this->canonicalTarget;
   }
   /**
-   * @param Declaration
+   * The data preparation executed by this action.
+   *
+   * @param DataPreparation $dataPreparation
+   */
+  public function setDataPreparation(DataPreparation $dataPreparation)
+  {
+    $this->dataPreparation = $dataPreparation;
+  }
+  /**
+   * @return DataPreparation
+   */
+  public function getDataPreparation()
+  {
+    return $this->dataPreparation;
+  }
+  /**
+   * The declaration declared by this action.
+   *
+   * @param Declaration $declaration
    */
   public function setDeclaration(Declaration $declaration)
   {
@@ -79,7 +135,10 @@ class CompilationResultAction extends \Google\Model
     return $this->declaration;
   }
   /**
-   * @param string
+   * The full path including filename in which this action is located, relative
+   * to the workspace root.
+   *
+   * @param string $filePath
    */
   public function setFilePath($filePath)
   {
@@ -93,7 +152,43 @@ class CompilationResultAction extends \Google\Model
     return $this->filePath;
   }
   /**
-   * @param Operations
+   * Output only. All the metadata information that is used internally to serve
+   * the resource. For example: timestamps, flags, status fields, etc. The
+   * format of this field is a JSON string.
+   *
+   * @param string $internalMetadata
+   */
+  public function setInternalMetadata($internalMetadata)
+  {
+    $this->internalMetadata = $internalMetadata;
+  }
+  /**
+   * @return string
+   */
+  public function getInternalMetadata()
+  {
+    return $this->internalMetadata;
+  }
+  /**
+   * The notebook executed by this action.
+   *
+   * @param Notebook $notebook
+   */
+  public function setNotebook(Notebook $notebook)
+  {
+    $this->notebook = $notebook;
+  }
+  /**
+   * @return Notebook
+   */
+  public function getNotebook()
+  {
+    return $this->notebook;
+  }
+  /**
+   * The database operations executed by this action.
+   *
+   * @param Operations $operations
    */
   public function setOperations(Operations $operations)
   {
@@ -107,7 +202,9 @@ class CompilationResultAction extends \Google\Model
     return $this->operations;
   }
   /**
-   * @param Relation
+   * The database relation created/updated by this action.
+   *
+   * @param Relation $relation
    */
   public function setRelation(Relation $relation)
   {
@@ -121,7 +218,9 @@ class CompilationResultAction extends \Google\Model
     return $this->relation;
   }
   /**
-   * @param Target
+   * This action's identifier. Unique within the compilation result.
+   *
+   * @param Target $target
    */
   public function setTarget(Target $target)
   {

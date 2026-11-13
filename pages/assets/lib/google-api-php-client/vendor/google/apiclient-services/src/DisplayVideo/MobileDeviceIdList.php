@@ -20,13 +20,40 @@ namespace Google\Service\DisplayVideo;
 class MobileDeviceIdList extends \Google\Collection
 {
   protected $collection_key = 'mobileDeviceIds';
+  protected $consentType = Consent::class;
+  protected $consentDataType = '';
   /**
+   * Optional. A list of mobile device IDs defining Customer Match audience
+   * members. The size of mobile_device_ids mustn't be greater than 500,000.
+   *
    * @var string[]
    */
   public $mobileDeviceIds;
 
   /**
-   * @param string[]
+   * Input only. The consent setting for the users in mobile_device_ids. Leaving
+   * this field unset indicates that consent is not specified. If ad_user_data
+   * or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the
+   * request will return an error.
+   *
+   * @param Consent $consent
+   */
+  public function setConsent(Consent $consent)
+  {
+    $this->consent = $consent;
+  }
+  /**
+   * @return Consent
+   */
+  public function getConsent()
+  {
+    return $this->consent;
+  }
+  /**
+   * Optional. A list of mobile device IDs defining Customer Match audience
+   * members. The size of mobile_device_ids mustn't be greater than 500,000.
+   *
+   * @param string[] $mobileDeviceIds
    */
   public function setMobileDeviceIds($mobileDeviceIds)
   {

@@ -20,44 +20,89 @@ namespace Google\Service\NetworkManagement;
 class VpnTunnelInfo extends \Google\Model
 {
   /**
+   * Unspecified type. Default value.
+   */
+  public const ROUTING_TYPE_ROUTING_TYPE_UNSPECIFIED = 'ROUTING_TYPE_UNSPECIFIED';
+  /**
+   * Route based VPN.
+   */
+  public const ROUTING_TYPE_ROUTE_BASED = 'ROUTE_BASED';
+  /**
+   * Policy based routing.
+   */
+  public const ROUTING_TYPE_POLICY_BASED = 'POLICY_BASED';
+  /**
+   * Dynamic (BGP) routing.
+   */
+  public const ROUTING_TYPE_DYNAMIC = 'DYNAMIC';
+  /**
+   * Name of a VPN tunnel.
+   *
    * @var string
    */
   public $displayName;
   /**
+   * URI of the VPC network where the VPN tunnel is configured. Format:
+   * `projects/{project_id}/global/networks/{network_id}`
+   *
    * @var string
    */
   public $networkUri;
   /**
+   * Name of a Google Cloud region where this VPN tunnel is configured.
+   *
    * @var string
    */
   public $region;
   /**
+   * URI of a VPN gateway at remote end of the tunnel. Format: *
+   * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}` (GCP
+   * HA VPN gateway) *
+   * `projects/{project_id}/global/peerVpnGateways/{peer_vpn_gateway_id}` (GCP
+   * peer VPN gateway)
+   *
    * @var string
    */
   public $remoteGateway;
   /**
+   * Remote VPN gateway's IP address.
+   *
    * @var string
    */
   public $remoteGatewayIp;
   /**
+   * Type of the routing policy.
+   *
    * @var string
    */
   public $routingType;
   /**
+   * URI of the VPN gateway at local end of the tunnel. Format: *
+   * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}` (HA
+   * VPN gateway) * `projects/{project_id}/regions/{region}/targetVpnGateways/{t
+   * arget_vpn_gateway_id}` (Classic VPN gateway)
+   *
    * @var string
    */
   public $sourceGateway;
   /**
+   * Local VPN gateway's IP address.
+   *
    * @var string
    */
   public $sourceGatewayIp;
   /**
+   * URI of the VPN tunnel. Format:
+   * `projects/{project_id}/regions/{region}/vpnTunnels/{vpn_tunnel_id}`
+   *
    * @var string
    */
   public $uri;
 
   /**
-   * @param string
+   * Name of a VPN tunnel.
+   *
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -71,7 +116,10 @@ class VpnTunnelInfo extends \Google\Model
     return $this->displayName;
   }
   /**
-   * @param string
+   * URI of the VPC network where the VPN tunnel is configured. Format:
+   * `projects/{project_id}/global/networks/{network_id}`
+   *
+   * @param string $networkUri
    */
   public function setNetworkUri($networkUri)
   {
@@ -85,7 +133,9 @@ class VpnTunnelInfo extends \Google\Model
     return $this->networkUri;
   }
   /**
-   * @param string
+   * Name of a Google Cloud region where this VPN tunnel is configured.
+   *
+   * @param string $region
    */
   public function setRegion($region)
   {
@@ -99,7 +149,13 @@ class VpnTunnelInfo extends \Google\Model
     return $this->region;
   }
   /**
-   * @param string
+   * URI of a VPN gateway at remote end of the tunnel. Format: *
+   * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}` (GCP
+   * HA VPN gateway) *
+   * `projects/{project_id}/global/peerVpnGateways/{peer_vpn_gateway_id}` (GCP
+   * peer VPN gateway)
+   *
+   * @param string $remoteGateway
    */
   public function setRemoteGateway($remoteGateway)
   {
@@ -113,7 +169,9 @@ class VpnTunnelInfo extends \Google\Model
     return $this->remoteGateway;
   }
   /**
-   * @param string
+   * Remote VPN gateway's IP address.
+   *
+   * @param string $remoteGatewayIp
    */
   public function setRemoteGatewayIp($remoteGatewayIp)
   {
@@ -127,21 +185,31 @@ class VpnTunnelInfo extends \Google\Model
     return $this->remoteGatewayIp;
   }
   /**
-   * @param string
+   * Type of the routing policy.
+   *
+   * Accepted values: ROUTING_TYPE_UNSPECIFIED, ROUTE_BASED, POLICY_BASED,
+   * DYNAMIC
+   *
+   * @param self::ROUTING_TYPE_* $routingType
    */
   public function setRoutingType($routingType)
   {
     $this->routingType = $routingType;
   }
   /**
-   * @return string
+   * @return self::ROUTING_TYPE_*
    */
   public function getRoutingType()
   {
     return $this->routingType;
   }
   /**
-   * @param string
+   * URI of the VPN gateway at local end of the tunnel. Format: *
+   * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}` (HA
+   * VPN gateway) * `projects/{project_id}/regions/{region}/targetVpnGateways/{t
+   * arget_vpn_gateway_id}` (Classic VPN gateway)
+   *
+   * @param string $sourceGateway
    */
   public function setSourceGateway($sourceGateway)
   {
@@ -155,7 +223,9 @@ class VpnTunnelInfo extends \Google\Model
     return $this->sourceGateway;
   }
   /**
-   * @param string
+   * Local VPN gateway's IP address.
+   *
+   * @param string $sourceGatewayIp
    */
   public function setSourceGatewayIp($sourceGatewayIp)
   {
@@ -169,7 +239,10 @@ class VpnTunnelInfo extends \Google\Model
     return $this->sourceGatewayIp;
   }
   /**
-   * @param string
+   * URI of the VPN tunnel. Format:
+   * `projects/{project_id}/regions/{region}/vpnTunnels/{vpn_tunnel_id}`
+   *
+   * @param string $uri
    */
   public function setUri($uri)
   {

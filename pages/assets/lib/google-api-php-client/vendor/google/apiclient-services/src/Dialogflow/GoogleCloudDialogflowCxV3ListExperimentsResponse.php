@@ -28,7 +28,7 @@ class GoogleCloudDialogflowCxV3ListExperimentsResponse extends \Google\Collectio
   public $nextPageToken;
 
   /**
-   * @param GoogleCloudDialogflowCxV3Experiment[]
+   * @param GoogleCloudDialogflowCxV3Experiment[] $experiments
    */
   public function setExperiments($experiments)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3ListExperimentsResponse extends \Google\Collectio
     return $this->experiments;
   }
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {

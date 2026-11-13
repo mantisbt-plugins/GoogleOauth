@@ -17,6 +17,9 @@
 
 namespace Google\Service\Integrations\Resource;
 
+use Google\Service\Integrations\GoogleCloudIntegrationsV2DuetGenerateIntegrationRequest;
+use Google\Service\Integrations\GoogleCloudIntegrationsV2DuetGenerateIntegrationResponse;
+
 /**
  * The "locations" collection of methods.
  * Typical usage is:
@@ -27,6 +30,23 @@ namespace Google\Service\Integrations\Resource;
  */
 class ProjectsLocations extends \Google\Service\Resource
 {
+  /**
+   * Generates an integration skeleton based on a natural language prompt.
+   * (locations.generateIntegration)
+   *
+   * @param string $parent Required. The location in which the integration will be
+   * generated. Format: `projects/{project}/locations/{location}`
+   * @param GoogleCloudIntegrationsV2DuetGenerateIntegrationRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudIntegrationsV2DuetGenerateIntegrationResponse
+   * @throws \Google\Service\Exception
+   */
+  public function generateIntegration($parent, GoogleCloudIntegrationsV2DuetGenerateIntegrationRequest $postBody, $optParams = [])
+  {
+    $params = ['parent' => $parent, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('generateIntegration', [$params], GoogleCloudIntegrationsV2DuetGenerateIntegrationResponse::class);
+  }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

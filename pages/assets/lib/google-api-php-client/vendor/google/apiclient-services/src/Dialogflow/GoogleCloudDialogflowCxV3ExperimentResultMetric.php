@@ -19,6 +19,16 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3ExperimentResultMetric extends \Google\Model
 {
+  public const COUNT_TYPE_COUNT_TYPE_UNSPECIFIED = 'COUNT_TYPE_UNSPECIFIED';
+  public const COUNT_TYPE_TOTAL_NO_MATCH_COUNT = 'TOTAL_NO_MATCH_COUNT';
+  public const COUNT_TYPE_TOTAL_TURN_COUNT = 'TOTAL_TURN_COUNT';
+  public const COUNT_TYPE_AVERAGE_TURN_COUNT = 'AVERAGE_TURN_COUNT';
+  public const TYPE_METRIC_UNSPECIFIED = 'METRIC_UNSPECIFIED';
+  public const TYPE_CONTAINED_SESSION_NO_CALLBACK_RATE = 'CONTAINED_SESSION_NO_CALLBACK_RATE';
+  public const TYPE_LIVE_AGENT_HANDOFF_RATE = 'LIVE_AGENT_HANDOFF_RATE';
+  public const TYPE_CALLBACK_SESSION_RATE = 'CALLBACK_SESSION_RATE';
+  public const TYPE_ABANDONED_SESSION_RATE = 'ABANDONED_SESSION_RATE';
+  public const TYPE_SESSION_END_RATE = 'SESSION_END_RATE';
   protected $confidenceIntervalType = GoogleCloudDialogflowCxV3ExperimentResultConfidenceInterval::class;
   protected $confidenceIntervalDataType = '';
   public $count;
@@ -33,7 +43,7 @@ class GoogleCloudDialogflowCxV3ExperimentResultMetric extends \Google\Model
   public $type;
 
   /**
-   * @param GoogleCloudDialogflowCxV3ExperimentResultConfidenceInterval
+   * @param GoogleCloudDialogflowCxV3ExperimentResultConfidenceInterval $confidenceInterval
    */
   public function setConfidenceInterval(GoogleCloudDialogflowCxV3ExperimentResultConfidenceInterval $confidenceInterval)
   {
@@ -55,14 +65,14 @@ class GoogleCloudDialogflowCxV3ExperimentResultMetric extends \Google\Model
     return $this->count;
   }
   /**
-   * @param string
+   * @param self::COUNT_TYPE_* $countType
    */
   public function setCountType($countType)
   {
     $this->countType = $countType;
   }
   /**
-   * @return string
+   * @return self::COUNT_TYPE_*
    */
   public function getCountType()
   {
@@ -77,14 +87,14 @@ class GoogleCloudDialogflowCxV3ExperimentResultMetric extends \Google\Model
     return $this->ratio;
   }
   /**
-   * @param string
+   * @param self::TYPE_* $type
    */
   public function setType($type)
   {
     $this->type = $type;
   }
   /**
-   * @return string
+   * @return self::TYPE_*
    */
   public function getType()
   {

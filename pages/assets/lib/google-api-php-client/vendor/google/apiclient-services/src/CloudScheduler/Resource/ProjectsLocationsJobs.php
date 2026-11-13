@@ -42,6 +42,7 @@ class ProjectsLocationsJobs extends \Google\Service\Resource
    * @param Job $postBody
    * @param array $optParams Optional parameters.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Job $postBody, $optParams = [])
   {
@@ -56,6 +57,7 @@ class ProjectsLocationsJobs extends \Google\Service\Resource
    * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
    * @param array $optParams Optional parameters.
    * @return CloudschedulerEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -70,6 +72,7 @@ class ProjectsLocationsJobs extends \Google\Service\Resource
    * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
    * @param array $optParams Optional parameters.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -91,9 +94,9 @@ class ProjectsLocationsJobs extends \Google\Service\Resource
    * @opt_param string pageToken A token identifying a page of results the server
    * will return. To request the first page results, page_token must be empty. To
    * request the next page of results, page_token must be the value of
-   * next_page_token returned from the previous call to ListJobs. It is an error
-   * to switch the value of filter or order_by while iterating through pages.
+   * next_page_token returned from the previous call to ListJobs.
    * @return ListJobsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsJobs($parent, $optParams = [])
   {
@@ -112,20 +115,22 @@ class ProjectsLocationsJobs extends \Google\Service\Resource
    * becomes output only. The job name. For example:
    * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. * `PROJECT_ID` can
    * contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or
-   * periods (.). For more information, see [Identifying
-   * projects](https://cloud.google.com/resource-manager/docs/creating-managing-
-   * projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the
-   * job's location. The list of available locations can be obtained by calling
-   * ListLocations. For more information, see
-   * https://cloud.google.com/about/locations/. * `JOB_ID` can contain only
-   * letters ([A-Za-z]), numbers ([0-9]), hyphens (-), or underscores (_). The
-   * maximum length is 500 characters.
+   * periods (.). For more information, see [Identifying projects](/resource-
+   * manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID`
+   * is the canonical ID for the job's location. The list of available locations
+   * can be obtained by calling
+   * [locations.list](/scheduler/docs/reference/rest/v1/projects.locations/list).
+   * For more information, see [Cloud Scheduler
+   * locations](/scheduler/docs/locations). * `JOB_ID` can contain only letters
+   * ([A-Za-z]), numbers ([0-9]), hyphens (-), or underscores (_). The maximum
+   * length is 500 characters.
    * @param Job $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string updateMask A mask used to specify which fields of the job
    * are being updated.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Job $postBody, $optParams = [])
   {
@@ -144,6 +149,7 @@ class ProjectsLocationsJobs extends \Google\Service\Resource
    * @param PauseJobRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function pause($name, PauseJobRequest $postBody, $optParams = [])
   {
@@ -162,6 +168,7 @@ class ProjectsLocationsJobs extends \Google\Service\Resource
    * @param ResumeJobRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function resume($name, ResumeJobRequest $postBody, $optParams = [])
   {
@@ -178,6 +185,7 @@ class ProjectsLocationsJobs extends \Google\Service\Resource
    * @param RunJobRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function run($name, RunJobRequest $postBody, $optParams = [])
   {

@@ -19,7 +19,36 @@ namespace Google\Service\Sheets;
 
 class Spreadsheet extends \Google\Collection
 {
+  /**
+   * The CommentsViewMode is unspecified; COMMENTS_VIEW_MODE_OMITTED is applied.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_UNSPECIFIED = 'COMMENTS_VIEW_MODE_UNSPECIFIED';
+  /**
+   * The CommentsViewMode applied to the returned spreadsheet depends on the
+   * user's current access level. If the user only has view access,
+   * COMMENTS_VIEW_MODE_OMITTED is applied. Otherwise,
+   * COMMENTS_VIEW_MODE_INCLUDED is applied.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS = 'COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS';
+  /**
+   * The returned spreadsheet has comments omitted.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_OMITTED = 'COMMENTS_VIEW_MODE_OMITTED';
+  /**
+   * The returned spreadsheet has comments included. Requests to retrieve a
+   * spreadsheet using this mode will return a 403 error if the user does not
+   * have permission to view comments.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_INCLUDED = 'COMMENTS_VIEW_MODE_INCLUDED';
   protected $collection_key = 'sheets';
+  protected $commentsType = CommentThread::class;
+  protected $commentsDataType = 'array';
+  /**
+   * Output only. The comments view mode applied to the spreadsheet.
+   *
+   * @var string
+   */
+  public $commentsViewMode;
   protected $dataSourceSchedulesType = DataSourceRefreshSchedule::class;
   protected $dataSourceSchedulesDataType = 'array';
   protected $dataSourcesType = DataSource::class;
@@ -33,16 +62,58 @@ class Spreadsheet extends \Google\Collection
   protected $sheetsType = Sheet::class;
   protected $sheetsDataType = 'array';
   /**
+   * The ID of the spreadsheet. This field is read-only.
+   *
    * @var string
    */
   public $spreadsheetId;
   /**
+   * The url of the spreadsheet. This field is read-only.
+   *
    * @var string
    */
   public $spreadsheetUrl;
 
   /**
-   * @param DataSourceRefreshSchedule[]
+   * The comment threads associated with the spreadsheet.
+   *
+   * @param CommentThread[] $comments
+   */
+  public function setComments($comments)
+  {
+    $this->comments = $comments;
+  }
+  /**
+   * @return CommentThread[]
+   */
+  public function getComments()
+  {
+    return $this->comments;
+  }
+  /**
+   * Output only. The comments view mode applied to the spreadsheet.
+   *
+   * Accepted values: COMMENTS_VIEW_MODE_UNSPECIFIED,
+   * COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, COMMENTS_VIEW_MODE_OMITTED,
+   * COMMENTS_VIEW_MODE_INCLUDED
+   *
+   * @param self::COMMENTS_VIEW_MODE_* $commentsViewMode
+   */
+  public function setCommentsViewMode($commentsViewMode)
+  {
+    $this->commentsViewMode = $commentsViewMode;
+  }
+  /**
+   * @return self::COMMENTS_VIEW_MODE_*
+   */
+  public function getCommentsViewMode()
+  {
+    return $this->commentsViewMode;
+  }
+  /**
+   * Output only. A list of data source refresh schedules.
+   *
+   * @param DataSourceRefreshSchedule[] $dataSourceSchedules
    */
   public function setDataSourceSchedules($dataSourceSchedules)
   {
@@ -56,7 +127,9 @@ class Spreadsheet extends \Google\Collection
     return $this->dataSourceSchedules;
   }
   /**
-   * @param DataSource[]
+   * A list of external data sources connected with the spreadsheet.
+   *
+   * @param DataSource[] $dataSources
    */
   public function setDataSources($dataSources)
   {
@@ -70,7 +143,9 @@ class Spreadsheet extends \Google\Collection
     return $this->dataSources;
   }
   /**
-   * @param DeveloperMetadata[]
+   * The developer metadata associated with a spreadsheet.
+   *
+   * @param DeveloperMetadata[] $developerMetadata
    */
   public function setDeveloperMetadata($developerMetadata)
   {
@@ -84,7 +159,9 @@ class Spreadsheet extends \Google\Collection
     return $this->developerMetadata;
   }
   /**
-   * @param NamedRange[]
+   * The named ranges defined in a spreadsheet.
+   *
+   * @param NamedRange[] $namedRanges
    */
   public function setNamedRanges($namedRanges)
   {
@@ -98,7 +175,9 @@ class Spreadsheet extends \Google\Collection
     return $this->namedRanges;
   }
   /**
-   * @param SpreadsheetProperties
+   * Overall properties of a spreadsheet.
+   *
+   * @param SpreadsheetProperties $properties
    */
   public function setProperties(SpreadsheetProperties $properties)
   {
@@ -112,7 +191,9 @@ class Spreadsheet extends \Google\Collection
     return $this->properties;
   }
   /**
-   * @param Sheet[]
+   * The sheets that are part of a spreadsheet.
+   *
+   * @param Sheet[] $sheets
    */
   public function setSheets($sheets)
   {
@@ -126,7 +207,9 @@ class Spreadsheet extends \Google\Collection
     return $this->sheets;
   }
   /**
-   * @param string
+   * The ID of the spreadsheet. This field is read-only.
+   *
+   * @param string $spreadsheetId
    */
   public function setSpreadsheetId($spreadsheetId)
   {
@@ -140,7 +223,9 @@ class Spreadsheet extends \Google\Collection
     return $this->spreadsheetId;
   }
   /**
-   * @param string
+   * The url of the spreadsheet. This field is read-only.
+   *
+   * @param string $spreadsheetUrl
    */
   public function setSpreadsheetUrl($spreadsheetUrl)
   {

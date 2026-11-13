@@ -19,6 +19,17 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata extends \Google\Model
 {
+  public const PARTICIPANT_ROLE_ROLE_UNSPECIFIED = 'ROLE_UNSPECIFIED';
+  public const PARTICIPANT_ROLE_HUMAN_AGENT = 'HUMAN_AGENT';
+  public const PARTICIPANT_ROLE_AUTOMATED_AGENT = 'AUTOMATED_AGENT';
+  public const PARTICIPANT_ROLE_END_USER = 'END_USER';
+  public const SUGGESTION_FEATURE_TYPE_TYPE_UNSPECIFIED = 'TYPE_UNSPECIFIED';
+  public const SUGGESTION_FEATURE_TYPE_ARTICLE_SUGGESTION = 'ARTICLE_SUGGESTION';
+  public const SUGGESTION_FEATURE_TYPE_FAQ = 'FAQ';
+  public const SUGGESTION_FEATURE_TYPE_SMART_REPLY = 'SMART_REPLY';
+  public const SUGGESTION_FEATURE_TYPE_CONVERSATION_SUMMARIZATION = 'CONVERSATION_SUMMARIZATION';
+  public const SUGGESTION_FEATURE_TYPE_KNOWLEDGE_SEARCH = 'KNOWLEDGE_SEARCH';
+  public const SUGGESTION_FEATURE_TYPE_KNOWLEDGE_ASSIST = 'KNOWLEDGE_ASSIST';
   /**
    * @var string
    */
@@ -37,7 +48,7 @@ class GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata exten
   public $suggestionFeatureType;
 
   /**
-   * @param string
+   * @param string $conversationProfile
    */
   public function setConversationProfile($conversationProfile)
   {
@@ -51,7 +62,7 @@ class GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata exten
     return $this->conversationProfile;
   }
   /**
-   * @param string
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -65,28 +76,28 @@ class GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata exten
     return $this->createTime;
   }
   /**
-   * @param string
+   * @param self::PARTICIPANT_ROLE_* $participantRole
    */
   public function setParticipantRole($participantRole)
   {
     $this->participantRole = $participantRole;
   }
   /**
-   * @return string
+   * @return self::PARTICIPANT_ROLE_*
    */
   public function getParticipantRole()
   {
     return $this->participantRole;
   }
   /**
-   * @param string
+   * @param self::SUGGESTION_FEATURE_TYPE_* $suggestionFeatureType
    */
   public function setSuggestionFeatureType($suggestionFeatureType)
   {
     $this->suggestionFeatureType = $suggestionFeatureType;
   }
   /**
-   * @return string
+   * @return self::SUGGESTION_FEATURE_TYPE_*
    */
   public function getSuggestionFeatureType()
   {

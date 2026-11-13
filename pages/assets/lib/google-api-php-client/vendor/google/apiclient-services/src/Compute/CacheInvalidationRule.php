@@ -17,19 +17,133 @@
 
 namespace Google\Service\Compute;
 
-class CacheInvalidationRule extends \Google\Model
+class CacheInvalidationRule extends \Google\Collection
 {
+  protected $collection_key = 'cacheTags';
   /**
+   * If set, this invalidation rule will only apply to requests routed to the
+   * given backend service or backend bucket. For example, for a backend bucket
+   * `bb1` in the same scope as the URL map, the path would be `projects/my-
+   * project/global/backendBuckets/bb1`; and for a backend service `bs1` in the
+   * same scope as the URL map, the path would be `projects/my-
+   * project/global/backendServices/bs1`.
+   *
+   * @var string
+   */
+  public $backendService;
+  /**
+   * A list of cache tags used to identify cached objects.
+   *
+   *        - Cache tags are specified when the response is first cached, by
+   * setting    the `Cache-Tag` response header at the origin.    - Multiple
+   * cache tags in the same invalidation request are treated as    Boolean `OR`
+   * - for example, `tag1 OR tag2 OR tag3`.    - If other fields are also
+   * specified, these are treated as Boolean `AND`    with any tags.
+   *
+   * Up to 10 tags can be specified in a single invalidation request.
+   *
+   * @var string[]
+   */
+  public $cacheTags;
+  /**
+   * If set, this invalidation rule will only apply to responses with the given
+   * content-type. Parameters are not allowed and are ignored from the response
+   * when matching. Wildcards are not allowed.
+   *
+   * @var string
+   */
+  public $contentType;
+  /**
+   * If set, this invalidation rule will only apply to requests with a Host
+   * header matching host. This field also accepts wildcards (*) to replace the
+   * leftmost (or first) label of a hostname. For example, *.example.com will
+   * match www.example.com, but not sub1.dev.example.com.
+   *
    * @var string
    */
   public $host;
+  /**
+   * If set, this invalidation rule will only apply to responses with the given
+   * HTTP status. Valid range is 200-599.
+   *
+   * @var int
+   */
+  public $httpStatus;
   /**
    * @var string
    */
   public $path;
 
   /**
-   * @param string
+   * If set, this invalidation rule will only apply to requests routed to the
+   * given backend service or backend bucket. For example, for a backend bucket
+   * `bb1` in the same scope as the URL map, the path would be `projects/my-
+   * project/global/backendBuckets/bb1`; and for a backend service `bs1` in the
+   * same scope as the URL map, the path would be `projects/my-
+   * project/global/backendServices/bs1`.
+   *
+   * @param string $backendService
+   */
+  public function setBackendService($backendService)
+  {
+    $this->backendService = $backendService;
+  }
+  /**
+   * @return string
+   */
+  public function getBackendService()
+  {
+    return $this->backendService;
+  }
+  /**
+   * A list of cache tags used to identify cached objects.
+   *
+   *        - Cache tags are specified when the response is first cached, by
+   * setting    the `Cache-Tag` response header at the origin.    - Multiple
+   * cache tags in the same invalidation request are treated as    Boolean `OR`
+   * - for example, `tag1 OR tag2 OR tag3`.    - If other fields are also
+   * specified, these are treated as Boolean `AND`    with any tags.
+   *
+   * Up to 10 tags can be specified in a single invalidation request.
+   *
+   * @param string[] $cacheTags
+   */
+  public function setCacheTags($cacheTags)
+  {
+    $this->cacheTags = $cacheTags;
+  }
+  /**
+   * @return string[]
+   */
+  public function getCacheTags()
+  {
+    return $this->cacheTags;
+  }
+  /**
+   * If set, this invalidation rule will only apply to responses with the given
+   * content-type. Parameters are not allowed and are ignored from the response
+   * when matching. Wildcards are not allowed.
+   *
+   * @param string $contentType
+   */
+  public function setContentType($contentType)
+  {
+    $this->contentType = $contentType;
+  }
+  /**
+   * @return string
+   */
+  public function getContentType()
+  {
+    return $this->contentType;
+  }
+  /**
+   * If set, this invalidation rule will only apply to requests with a Host
+   * header matching host. This field also accepts wildcards (*) to replace the
+   * leftmost (or first) label of a hostname. For example, *.example.com will
+   * match www.example.com, but not sub1.dev.example.com.
+   *
+   * @param string $host
    */
   public function setHost($host)
   {
@@ -43,7 +157,24 @@ class CacheInvalidationRule extends \Google\Model
     return $this->host;
   }
   /**
-   * @param string
+   * If set, this invalidation rule will only apply to responses with the given
+   * HTTP status. Valid range is 200-599.
+   *
+   * @param int $httpStatus
+   */
+  public function setHttpStatus($httpStatus)
+  {
+    $this->httpStatus = $httpStatus;
+  }
+  /**
+   * @return int
+   */
+  public function getHttpStatus()
+  {
+    return $this->httpStatus;
+  }
+  /**
+   * @param string $path
    */
   public function setPath($path)
   {

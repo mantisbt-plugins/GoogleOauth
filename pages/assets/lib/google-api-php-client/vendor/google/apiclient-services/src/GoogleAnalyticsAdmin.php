@@ -23,7 +23,13 @@ use Google\Client;
  * Service definition for GoogleAnalyticsAdmin (v1beta).
  *
  * <p>
-</p>
+ * Manage properties in Google Analytics. Warning: Creating multiple Customer
+ * Applications, Accounts, or Projects to simulate or act as a single Customer
+ * Application, Account, or Project (respectively) or to circumvent Service-
+ * specific usage limits or quotas is a direct violation of Google Cloud
+ * Platform Terms of Service as well as Google APIs Terms of Service. These
+ * actions can result in immediate termination of your GCP project(s) without
+ * any warning.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -51,6 +57,8 @@ class GoogleAnalyticsAdmin extends \Google\Service
   public $properties_dataStreams_measurementProtocolSecrets;
   public $properties_firebaseLinks;
   public $properties_googleAdsLinks;
+  public $properties_keyEvents;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the GoogleAnalyticsAdmin service.
@@ -63,6 +71,7 @@ class GoogleAnalyticsAdmin extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://analyticsadmin.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://analyticsadmin.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1beta';
@@ -349,6 +358,20 @@ class GoogleAnalyticsAdmin extends \Google\Service
                   'type' => 'integer',
                 ],
                 'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1beta/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -721,6 +744,78 @@ class GoogleAnalyticsAdmin extends \Google\Service
               ],
             ],'list' => [
               'path' => 'v1beta/{+parent}/googleAdsLinks',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1beta/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->properties_keyEvents = new GoogleAnalyticsAdmin\Resource\PropertiesKeyEvents(
+        $this,
+        $this->serviceName,
+        'keyEvents',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v1beta/{+parent}/keyEvents',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1beta/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1beta/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1beta/{+parent}/keyEvents',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [

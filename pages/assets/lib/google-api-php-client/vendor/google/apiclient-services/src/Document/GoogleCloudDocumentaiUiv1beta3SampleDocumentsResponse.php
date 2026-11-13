@@ -20,11 +20,49 @@ namespace Google\Service\Document;
 class GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponse extends \Google\Collection
 {
   protected $collection_key = 'selectedDocuments';
+  protected $sampleTestStatusType = GoogleRpcStatus::class;
+  protected $sampleTestStatusDataType = '';
+  protected $sampleTrainingStatusType = GoogleRpcStatus::class;
+  protected $sampleTrainingStatusDataType = '';
   protected $selectedDocumentsType = GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponseSelectedDocument::class;
   protected $selectedDocumentsDataType = 'array';
 
   /**
-   * @param GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponseSelectedDocument[]
+   * The status of sampling documents in test split.
+   *
+   * @param GoogleRpcStatus $sampleTestStatus
+   */
+  public function setSampleTestStatus(GoogleRpcStatus $sampleTestStatus)
+  {
+    $this->sampleTestStatus = $sampleTestStatus;
+  }
+  /**
+   * @return GoogleRpcStatus
+   */
+  public function getSampleTestStatus()
+  {
+    return $this->sampleTestStatus;
+  }
+  /**
+   * The status of sampling documents in training split.
+   *
+   * @param GoogleRpcStatus $sampleTrainingStatus
+   */
+  public function setSampleTrainingStatus(GoogleRpcStatus $sampleTrainingStatus)
+  {
+    $this->sampleTrainingStatus = $sampleTrainingStatus;
+  }
+  /**
+   * @return GoogleRpcStatus
+   */
+  public function getSampleTrainingStatus()
+  {
+    return $this->sampleTrainingStatus;
+  }
+  /**
+   * The result of the sampling process.
+   *
+   * @param GoogleCloudDocumentaiUiv1beta3SampleDocumentsResponseSelectedDocument[] $selectedDocuments
    */
   public function setSelectedDocuments($selectedDocuments)
   {

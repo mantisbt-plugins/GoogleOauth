@@ -28,7 +28,7 @@ class GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse extends \Google
   public $nextPageToken;
 
   /**
-   * @param GoogleCloudDialogflowCxV3ContinuousTestResult[]
+   * @param GoogleCloudDialogflowCxV3ContinuousTestResult[] $continuousTestResults
    */
   public function setContinuousTestResults($continuousTestResults)
   {
@@ -42,7 +42,7 @@ class GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse extends \Google
     return $this->continuousTestResults;
   }
   /**
-   * @param string
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {

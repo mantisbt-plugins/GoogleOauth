@@ -20,11 +20,57 @@ namespace Google\Service\DataprocMetastore;
 class LocationMetadata extends \Google\Collection
 {
   protected $collection_key = 'supportedHiveMetastoreVersions';
+  protected $customRegionMetadataType = CustomRegionMetadata::class;
+  protected $customRegionMetadataDataType = 'array';
+  protected $multiRegionMetadataType = MultiRegionMetadata::class;
+  protected $multiRegionMetadataDataType = '';
   protected $supportedHiveMetastoreVersionsType = HiveMetastoreVersion::class;
   protected $supportedHiveMetastoreVersionsDataType = 'array';
 
   /**
-   * @param HiveMetastoreVersion[]
+   * Deprecated: Use a single region service instead. Possible configurations
+   * supported if the current region is a custom region.
+   *
+   * @deprecated
+   * @param CustomRegionMetadata[] $customRegionMetadata
+   */
+  public function setCustomRegionMetadata($customRegionMetadata)
+  {
+    $this->customRegionMetadata = $customRegionMetadata;
+  }
+  /**
+   * @deprecated
+   * @return CustomRegionMetadata[]
+   */
+  public function getCustomRegionMetadata()
+  {
+    return $this->customRegionMetadata;
+  }
+  /**
+   * Deprecated: Use a single region service instead. The multi-region metadata
+   * if the current region is a multi-region.
+   *
+   * @deprecated
+   * @param MultiRegionMetadata $multiRegionMetadata
+   */
+  public function setMultiRegionMetadata(MultiRegionMetadata $multiRegionMetadata)
+  {
+    $this->multiRegionMetadata = $multiRegionMetadata;
+  }
+  /**
+   * @deprecated
+   * @return MultiRegionMetadata
+   */
+  public function getMultiRegionMetadata()
+  {
+    return $this->multiRegionMetadata;
+  }
+  /**
+   * The versions of Hive Metastore that can be used when creating a new
+   * metastore service in this location. The server guarantees that exactly one
+   * HiveMetastoreVersion in the list will set is_default.
+   *
+   * @param HiveMetastoreVersion[] $supportedHiveMetastoreVersions
    */
   public function setSupportedHiveMetastoreVersions($supportedHiveMetastoreVersions)
   {

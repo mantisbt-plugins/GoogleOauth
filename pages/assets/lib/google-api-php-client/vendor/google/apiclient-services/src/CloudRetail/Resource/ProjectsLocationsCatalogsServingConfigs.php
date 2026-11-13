@@ -18,6 +18,8 @@
 namespace Google\Service\CloudRetail\Resource;
 
 use Google\Service\CloudRetail\GoogleCloudRetailV2AddControlRequest;
+use Google\Service\CloudRetail\GoogleCloudRetailV2ConversationalSearchRequest;
+use Google\Service\CloudRetail\GoogleCloudRetailV2ConversationalSearchResponse;
 use Google\Service\CloudRetail\GoogleCloudRetailV2ListServingConfigsResponse;
 use Google\Service\CloudRetail\GoogleCloudRetailV2PredictRequest;
 use Google\Service\CloudRetail\GoogleCloudRetailV2PredictResponse;
@@ -52,12 +54,34 @@ class ProjectsLocationsCatalogsServingConfigs extends \Google\Service\Resource
    * @param GoogleCloudRetailV2AddControlRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudRetailV2ServingConfig
+   * @throws \Google\Service\Exception
    */
   public function addControl($servingConfig, GoogleCloudRetailV2AddControlRequest $postBody, $optParams = [])
   {
     $params = ['servingConfig' => $servingConfig, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('addControl', [$params], GoogleCloudRetailV2ServingConfig::class);
+  }
+  /**
+   * Performs a conversational search. This feature is only available for users
+   * who have Conversational Search enabled. (servingConfigs.conversationalSearch)
+   *
+   * @param string $placement Required. The resource name of the search engine
+   * placement, such as `projects/locations/global/catalogs/default_catalog/placem
+   * ents/default_search` or `projects/locations/global/catalogs/default_catalog/s
+   * ervingConfigs/default_serving_config` This field is used to identify the
+   * serving config name and the set of models that will be used to make the
+   * search.
+   * @param GoogleCloudRetailV2ConversationalSearchRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudRetailV2ConversationalSearchResponse
+   * @throws \Google\Service\Exception
+   */
+  public function conversationalSearch($placement, GoogleCloudRetailV2ConversationalSearchRequest $postBody, $optParams = [])
+  {
+    $params = ['placement' => $placement, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('conversationalSearch', [$params], GoogleCloudRetailV2ConversationalSearchResponse::class);
   }
   /**
    * Creates a ServingConfig. A maximum of 100 ServingConfigs are allowed in a
@@ -74,6 +98,7 @@ class ProjectsLocationsCatalogsServingConfigs extends \Google\Service\Resource
    * resource name. This value should be 4-63 characters, and valid characters are
    * /a-z-_/.
    * @return GoogleCloudRetailV2ServingConfig
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudRetailV2ServingConfig $postBody, $optParams = [])
   {
@@ -90,6 +115,7 @@ class ProjectsLocationsCatalogsServingConfigs extends \Google\Service\Resource
    * catalog_id}/servingConfigs/{serving_config_id}`
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -106,6 +132,7 @@ class ProjectsLocationsCatalogsServingConfigs extends \Google\Service\Resource
    * id}/servingConfigs/{serving_config_id}`
    * @param array $optParams Optional parameters.
    * @return GoogleCloudRetailV2ServingConfig
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -127,6 +154,7 @@ class ProjectsLocationsCatalogsServingConfigs extends \Google\Service\Resource
    * @opt_param string pageToken Optional. A page token, received from a previous
    * `ListServingConfigs` call. Provide this to retrieve the subsequent page.
    * @return GoogleCloudRetailV2ListServingConfigsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsCatalogsServingConfigs($parent, $optParams = [])
   {
@@ -146,6 +174,7 @@ class ProjectsLocationsCatalogsServingConfigs extends \Google\Service\Resource
    * ServingConfig to update. The following are NOT supported: *
    * ServingConfig.name If not set, all supported fields are updated.
    * @return GoogleCloudRetailV2ServingConfig
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudRetailV2ServingConfig $postBody, $optParams = [])
   {
@@ -169,6 +198,7 @@ class ProjectsLocationsCatalogsServingConfigs extends \Google\Service\Resource
    * @param GoogleCloudRetailV2PredictRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudRetailV2PredictResponse
+   * @throws \Google\Service\Exception
    */
   public function predict($placement, GoogleCloudRetailV2PredictRequest $postBody, $optParams = [])
   {
@@ -187,6 +217,7 @@ class ProjectsLocationsCatalogsServingConfigs extends \Google\Service\Resource
    * @param GoogleCloudRetailV2RemoveControlRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudRetailV2ServingConfig
+   * @throws \Google\Service\Exception
    */
   public function removeControl($servingConfig, GoogleCloudRetailV2RemoveControlRequest $postBody, $optParams = [])
   {
@@ -208,6 +239,7 @@ class ProjectsLocationsCatalogsServingConfigs extends \Google\Service\Resource
    * @param GoogleCloudRetailV2SearchRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudRetailV2SearchResponse
+   * @throws \Google\Service\Exception
    */
   public function search($placement, GoogleCloudRetailV2SearchRequest $postBody, $optParams = [])
   {

@@ -38,6 +38,9 @@ class CloudAsset extends \Google\Service
   /** See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.. */
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
+  /** See, edit, configure, and delete your Google Cloud Asset data and see the email address for your Google Account. */
+  const CLOUDASSET =
+      "https://www.googleapis.com/auth/cloudasset";
 
   public $assets;
   public $effectiveIamPolicies;
@@ -45,6 +48,7 @@ class CloudAsset extends \Google\Service
   public $operations;
   public $savedQueries;
   public $v1;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CloudAsset service.
@@ -57,6 +61,7 @@ class CloudAsset extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://cloudasset.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://cloudasset.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -339,10 +344,6 @@ class CloudAsset extends \Google\Service
                   'type' => 'boolean',
                 ],
                 'analysisQuery.options.expandRoles' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
-                'analysisQuery.options.includeDenyPolicyAnalysis' => [
                   'location' => 'query',
                   'type' => 'boolean',
                 ],

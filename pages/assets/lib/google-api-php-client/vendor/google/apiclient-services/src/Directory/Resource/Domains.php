@@ -36,6 +36,7 @@ class Domains extends \Google\Service\Resource
    * @param string $customer Immutable ID of the Google Workspace account.
    * @param string $domainName Name of domain to be deleted
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($customer, $domainName, $optParams = [])
   {
@@ -50,12 +51,13 @@ class Domains extends \Google\Service\Resource
    * account. In case of a multi-domain account, to fetch all groups for a
    * customer, use this field instead of `domain`. You can also use the
    * `my_customer` alias to represent your account's `customerId`. The
-   * `customerId` is also returned as part of the [Users](/admin-
-   * sdk/directory/v1/reference/users) resource. You must provide either the
-   * `customer` or the `domain` parameter.
+   * `customerId` is also returned as part of the [Users](https://developers.googl
+   * e.com/workspace/admin/directory/v1/reference/users) resource. You must
+   * provide either the `customer` or the `domain` parameter.
    * @param string $domainName Name of domain to be retrieved
    * @param array $optParams Optional parameters.
    * @return DomainsModel
+   * @throws \Google\Service\Exception
    */
   public function get($customer, $domainName, $optParams = [])
   {
@@ -70,6 +72,7 @@ class Domains extends \Google\Service\Resource
    * @param DomainsModel $postBody
    * @param array $optParams Optional parameters.
    * @return DomainsModel
+   * @throws \Google\Service\Exception
    */
   public function insert($customer, DomainsModel $postBody, $optParams = [])
   {
@@ -84,11 +87,12 @@ class Domains extends \Google\Service\Resource
    * account. In case of a multi-domain account, to fetch all groups for a
    * customer, use this field instead of `domain`. You can also use the
    * `my_customer` alias to represent your account's `customerId`. The
-   * `customerId` is also returned as part of the [Users](/admin-
-   * sdk/directory/v1/reference/users) resource. You must provide either the
-   * `customer` or the `domain` parameter.
+   * `customerId` is also returned as part of the [Users](https://developers.googl
+   * e.com/workspace/admin/directory/v1/reference/users) resource. You must
+   * provide either the `customer` or the `domain` parameter.
    * @param array $optParams Optional parameters.
    * @return Domains2
+   * @throws \Google\Service\Exception
    */
   public function listDomains($customer, $optParams = [])
   {

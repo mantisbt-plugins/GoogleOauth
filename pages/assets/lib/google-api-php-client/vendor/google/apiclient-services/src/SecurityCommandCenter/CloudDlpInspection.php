@@ -37,7 +37,7 @@ class CloudDlpInspection extends \Google\Model
   public $inspectJob;
 
   /**
-   * @param bool
+   * @param bool $fullScan
    */
   public function setFullScan($fullScan)
   {
@@ -51,7 +51,7 @@ class CloudDlpInspection extends \Google\Model
     return $this->fullScan;
   }
   /**
-   * @param string
+   * @param string $infoType
    */
   public function setInfoType($infoType)
   {
@@ -65,7 +65,7 @@ class CloudDlpInspection extends \Google\Model
     return $this->infoType;
   }
   /**
-   * @param string
+   * @param string $infoTypeCount
    */
   public function setInfoTypeCount($infoTypeCount)
   {
@@ -79,7 +79,7 @@ class CloudDlpInspection extends \Google\Model
     return $this->infoTypeCount;
   }
   /**
-   * @param string
+   * @param string $inspectJob
    */
   public function setInspectJob($inspectJob)
   {

@@ -21,9 +21,13 @@ class SubscribeListingRequest extends \Google\Model
 {
   protected $destinationDatasetType = DestinationDataset::class;
   protected $destinationDatasetDataType = '';
+  protected $destinationPubsubSubscriptionType = DestinationPubSubSubscription::class;
+  protected $destinationPubsubSubscriptionDataType = '';
 
   /**
-   * @param DestinationDataset
+   * Input only. BigQuery destination dataset to create for the subscriber.
+   *
+   * @param DestinationDataset $destinationDataset
    */
   public function setDestinationDataset(DestinationDataset $destinationDataset)
   {
@@ -35,6 +39,22 @@ class SubscribeListingRequest extends \Google\Model
   public function getDestinationDataset()
   {
     return $this->destinationDataset;
+  }
+  /**
+   * Input only. Destination Pub/Sub subscription to create for the subscriber.
+   *
+   * @param DestinationPubSubSubscription $destinationPubsubSubscription
+   */
+  public function setDestinationPubsubSubscription(DestinationPubSubSubscription $destinationPubsubSubscription)
+  {
+    $this->destinationPubsubSubscription = $destinationPubsubSubscription;
+  }
+  /**
+   * @return DestinationPubSubSubscription
+   */
+  public function getDestinationPubsubSubscription()
+  {
+    return $this->destinationPubsubSubscription;
   }
 }
 

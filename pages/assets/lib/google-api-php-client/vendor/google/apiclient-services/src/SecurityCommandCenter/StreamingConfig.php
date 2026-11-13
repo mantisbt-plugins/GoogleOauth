@@ -25,7 +25,7 @@ class StreamingConfig extends \Google\Model
   public $filter;
 
   /**
-   * @param string
+   * @param string $filter
    */
   public function setFilter($filter)
   {

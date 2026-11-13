@@ -23,6 +23,9 @@ class RelationshipData extends \Google\Collection
   protected $childrenLocationsType = RelevantLocation::class;
   protected $childrenLocationsDataType = 'array';
   /**
+   * Optional. The resource name of the Chain that this location is member of.
+   * How to find Chain ID
+   *
    * @var string
    */
   public $parentChain;
@@ -30,7 +33,10 @@ class RelationshipData extends \Google\Collection
   protected $parentLocationDataType = '';
 
   /**
-   * @param RelevantLocation[]
+   * Optional. The list of children locations that this location has relations
+   * with.
+   *
+   * @param RelevantLocation[] $childrenLocations
    */
   public function setChildrenLocations($childrenLocations)
   {
@@ -44,7 +50,10 @@ class RelationshipData extends \Google\Collection
     return $this->childrenLocations;
   }
   /**
-   * @param string
+   * Optional. The resource name of the Chain that this location is member of.
+   * How to find Chain ID
+   *
+   * @param string $parentChain
    */
   public function setParentChain($parentChain)
   {
@@ -58,7 +67,9 @@ class RelationshipData extends \Google\Collection
     return $this->parentChain;
   }
   /**
-   * @param RelevantLocation
+   * Optional. The parent location that this location has relations with.
+   *
+   * @param RelevantLocation $parentLocation
    */
   public function setParentLocation(RelevantLocation $parentLocation)
   {

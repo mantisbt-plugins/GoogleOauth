@@ -20,34 +20,66 @@ namespace Google\Service\DisplayVideo;
 class YoutubeAndPartnersInventorySourceConfig extends \Google\Model
 {
   /**
+   * Optional. Whether to target inventory in video apps available with Google
+   * TV.
+   *
    * @var bool
    */
-  public $includeYoutubeSearch;
+  public $includeGoogleTv;
   /**
+   * Optional. Whether to target inventory on YouTube. This includes both
+   * search, channels and videos.
+   *
+   * @var bool
+   */
+  public $includeYoutube;
+  /**
+   * Whether to target inventory on a collection of partner sites and apps that
+   * follow the same brand safety standards as YouTube.
+   *
    * @var bool
    */
   public $includeYoutubeVideoPartners;
-  /**
-   * @var bool
-   */
-  public $includeYoutubeVideos;
 
   /**
-   * @param bool
+   * Optional. Whether to target inventory in video apps available with Google
+   * TV.
+   *
+   * @param bool $includeGoogleTv
    */
-  public function setIncludeYoutubeSearch($includeYoutubeSearch)
+  public function setIncludeGoogleTv($includeGoogleTv)
   {
-    $this->includeYoutubeSearch = $includeYoutubeSearch;
+    $this->includeGoogleTv = $includeGoogleTv;
   }
   /**
    * @return bool
    */
-  public function getIncludeYoutubeSearch()
+  public function getIncludeGoogleTv()
   {
-    return $this->includeYoutubeSearch;
+    return $this->includeGoogleTv;
   }
   /**
-   * @param bool
+   * Optional. Whether to target inventory on YouTube. This includes both
+   * search, channels and videos.
+   *
+   * @param bool $includeYoutube
+   */
+  public function setIncludeYoutube($includeYoutube)
+  {
+    $this->includeYoutube = $includeYoutube;
+  }
+  /**
+   * @return bool
+   */
+  public function getIncludeYoutube()
+  {
+    return $this->includeYoutube;
+  }
+  /**
+   * Whether to target inventory on a collection of partner sites and apps that
+   * follow the same brand safety standards as YouTube.
+   *
+   * @param bool $includeYoutubeVideoPartners
    */
   public function setIncludeYoutubeVideoPartners($includeYoutubeVideoPartners)
   {
@@ -59,20 +91,6 @@ class YoutubeAndPartnersInventorySourceConfig extends \Google\Model
   public function getIncludeYoutubeVideoPartners()
   {
     return $this->includeYoutubeVideoPartners;
-  }
-  /**
-   * @param bool
-   */
-  public function setIncludeYoutubeVideos($includeYoutubeVideos)
-  {
-    $this->includeYoutubeVideos = $includeYoutubeVideos;
-  }
-  /**
-   * @return bool
-   */
-  public function getIncludeYoutubeVideos()
-  {
-    return $this->includeYoutubeVideos;
   }
 }
 

@@ -61,6 +61,7 @@ class Sasportal extends \Google\Service
   public $nodes_nodes_devices;
   public $nodes_nodes_nodes;
   public $policies;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Sasportal service.
@@ -73,6 +74,7 @@ class Sasportal extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://sasportal.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://sasportal.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1alpha1';
@@ -107,6 +109,18 @@ class Sasportal extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'listGcpProjectDeployments' => [
+              'path' => 'v1alpha1/customers:listGcpProjectDeployments',
+              'httpMethod' => 'GET',
+              'parameters' => [],
+            ],'listLegacyOrganizations' => [
+              'path' => 'v1alpha1/customers:listLegacyOrganizations',
+              'httpMethod' => 'GET',
+              'parameters' => [],
+            ],'migrateOrganization' => [
+              'path' => 'v1alpha1/customers:migrateOrganization',
+              'httpMethod' => 'POST',
+              'parameters' => [],
             ],'patch' => [
               'path' => 'v1alpha1/{+name}',
               'httpMethod' => 'PATCH',
@@ -123,6 +137,10 @@ class Sasportal extends \Google\Service
               ],
             ],'provisionDeployment' => [
               'path' => 'v1alpha1/customers:provisionDeployment',
+              'httpMethod' => 'POST',
+              'parameters' => [],
+            ],'setupSasAnalytics' => [
+              'path' => 'v1alpha1/customers:setupSasAnalytics',
               'httpMethod' => 'POST',
               'parameters' => [],
             ],

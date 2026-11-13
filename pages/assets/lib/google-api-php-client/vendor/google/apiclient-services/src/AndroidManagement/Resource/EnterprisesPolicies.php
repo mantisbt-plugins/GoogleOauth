@@ -19,7 +19,11 @@ namespace Google\Service\AndroidManagement\Resource;
 
 use Google\Service\AndroidManagement\AndroidmanagementEmpty;
 use Google\Service\AndroidManagement\ListPoliciesResponse;
+use Google\Service\AndroidManagement\ModifyPolicyApplicationsRequest;
+use Google\Service\AndroidManagement\ModifyPolicyApplicationsResponse;
 use Google\Service\AndroidManagement\Policy;
+use Google\Service\AndroidManagement\RemovePolicyApplicationsRequest;
+use Google\Service\AndroidManagement\RemovePolicyApplicationsResponse;
 
 /**
  * The "policies" collection of methods.
@@ -39,6 +43,7 @@ class EnterprisesPolicies extends \Google\Service\Resource
    * enterprises/{enterpriseId}/policies/{policyId}.
    * @param array $optParams Optional parameters.
    * @return AndroidmanagementEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -53,6 +58,7 @@ class EnterprisesPolicies extends \Google\Service\Resource
    * enterprises/{enterpriseId}/policies/{policyId}.
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -72,12 +78,31 @@ class EnterprisesPolicies extends \Google\Service\Resource
    * @opt_param string pageToken A token identifying a page of results returned by
    * the server.
    * @return ListPoliciesResponse
+   * @throws \Google\Service\Exception
    */
   public function listEnterprisesPolicies($parent, $optParams = [])
   {
     $params = ['parent' => $parent];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], ListPoliciesResponse::class);
+  }
+  /**
+   * Updates or creates applications in a policy.
+   * (policies.modifyPolicyApplications)
+   *
+   * @param string $name Required. The name of the Policy containing the
+   * ApplicationPolicy objects to be updated, in the form
+   * enterprises/{enterpriseId}/policies/{policyId}.
+   * @param ModifyPolicyApplicationsRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return ModifyPolicyApplicationsResponse
+   * @throws \Google\Service\Exception
+   */
+  public function modifyPolicyApplications($name, ModifyPolicyApplicationsRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('modifyPolicyApplications', [$params], ModifyPolicyApplicationsResponse::class);
   }
   /**
    * Updates or creates a policy. (policies.patch)
@@ -90,12 +115,30 @@ class EnterprisesPolicies extends \Google\Service\Resource
    * @opt_param string updateMask The field mask indicating the fields to update.
    * If not set, all modifiable fields will be modified.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Policy $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], Policy::class);
+  }
+  /**
+   * Removes applications in a policy. (policies.removePolicyApplications)
+   *
+   * @param string $name Required. The name of the policy containing the
+   * ApplicationPolicy objects to be removed, in the form
+   * enterprises/{enterpriseId}/policies/{policyId}.
+   * @param RemovePolicyApplicationsRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return RemovePolicyApplicationsResponse
+   * @throws \Google\Service\Exception
+   */
+  public function removePolicyApplications($name, RemovePolicyApplicationsRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('removePolicyApplications', [$params], RemovePolicyApplicationsResponse::class);
   }
 }
 

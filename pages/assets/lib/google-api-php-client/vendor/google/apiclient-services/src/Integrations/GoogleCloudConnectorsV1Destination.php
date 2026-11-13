@@ -20,20 +20,30 @@ namespace Google\Service\Integrations;
 class GoogleCloudConnectorsV1Destination extends \Google\Model
 {
   /**
+   * For publicly routable host.
+   *
    * @var string
    */
   public $host;
   /**
+   * Optional. The port is the target port number that is accepted by the
+   * destination.
+   *
    * @var int
    */
   public $port;
   /**
+   * PSC service attachments. Format: projects/regions/serviceAttachments
+   *
+   * @deprecated
    * @var string
    */
   public $serviceAttachment;
 
   /**
-   * @param string
+   * For publicly routable host.
+   *
+   * @param string $host
    */
   public function setHost($host)
   {
@@ -47,7 +57,10 @@ class GoogleCloudConnectorsV1Destination extends \Google\Model
     return $this->host;
   }
   /**
-   * @param int
+   * Optional. The port is the target port number that is accepted by the
+   * destination.
+   *
+   * @param int $port
    */
   public function setPort($port)
   {
@@ -61,13 +74,17 @@ class GoogleCloudConnectorsV1Destination extends \Google\Model
     return $this->port;
   }
   /**
-   * @param string
+   * PSC service attachments. Format: projects/regions/serviceAttachments
+   *
+   * @deprecated
+   * @param string $serviceAttachment
    */
   public function setServiceAttachment($serviceAttachment)
   {
     $this->serviceAttachment = $serviceAttachment;
   }
   /**
+   * @deprecated
    * @return string
    */
   public function getServiceAttachment()

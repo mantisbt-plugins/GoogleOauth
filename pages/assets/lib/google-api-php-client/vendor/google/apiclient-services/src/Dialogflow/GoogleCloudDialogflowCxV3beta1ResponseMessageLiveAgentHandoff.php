@@ -25,7 +25,7 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff extends \Goo
   public $metadata;
 
   /**
-   * @param array[]
+   * @param array[] $metadata
    */
   public function setMetadata($metadata)
   {

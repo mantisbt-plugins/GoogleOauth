@@ -19,22 +19,187 @@ namespace Google\Service\Vault;
 
 class Query extends \Google\Model
 {
+  /**
+   * No service specified.
+   */
+  public const CORPUS_CORPUS_TYPE_UNSPECIFIED = 'CORPUS_TYPE_UNSPECIFIED';
+  /**
+   * Drive, including Meet and Sites.
+   */
+  public const CORPUS_DRIVE = 'DRIVE';
+  /**
+   * For search, Gmail and classic Hangouts. For holds, Gmail only.
+   */
+  public const CORPUS_MAIL = 'MAIL';
+  /**
+   * Groups.
+   */
+  public const CORPUS_GROUPS = 'GROUPS';
+  /**
+   * For export, Google Chat only. For holds, Google Chat and classic Hangouts.
+   */
+  public const CORPUS_HANGOUTS_CHAT = 'HANGOUTS_CHAT';
+  /**
+   * Google Voice.
+   */
+  public const CORPUS_VOICE = 'VOICE';
+  /**
+   * Calendar.
+   */
+  public const CORPUS_CALENDAR = 'CALENDAR';
+  /**
+   * Gemini app.
+   */
+  public const CORPUS_GEMINI = 'GEMINI';
+  /**
+   * Gemini in Workspace.
+   */
+  public const CORPUS_GEMINI_IN_WORKSPACE = 'GEMINI_IN_WORKSPACE';
+  /**
+   * No data source specified.
+   */
+  public const DATA_SCOPE_DATA_SCOPE_UNSPECIFIED = 'DATA_SCOPE_UNSPECIFIED';
+  /**
+   * All available data.
+   */
+  public const DATA_SCOPE_ALL_DATA = 'ALL_DATA';
+  /**
+   * Only data on hold.
+   */
+  public const DATA_SCOPE_HELD_DATA = 'HELD_DATA';
+  /**
+   * Only data not yet processed by Vault. (Gmail and Groups only)
+   */
+  public const DATA_SCOPE_UNPROCESSED_DATA = 'UNPROCESSED_DATA';
+  /**
+   * A search method must be specified or else it is rejected.
+   */
+  public const METHOD_SEARCH_METHOD_UNSPECIFIED = 'SEARCH_METHOD_UNSPECIFIED';
+  /**
+   * Search the data of the accounts specified in [AccountInfo](https://develope
+   * rs.google.com/workspace/vault/reference/rest/v1/Query#accountinfo).
+   */
+  public const METHOD_ACCOUNT = 'ACCOUNT';
+  /**
+   * Search the data of all accounts in the organizational unit specified in [Or
+   * gUnitInfo](https://developers.google.com/workspace/vault/reference/rest/v1/
+   * Query#orgunitinfo).
+   */
+  public const METHOD_ORG_UNIT = 'ORG_UNIT';
+  /**
+   * Search the data in the Team Drive specified in **team_drive_info**.
+   *
+   * @deprecated
+   */
+  public const METHOD_TEAM_DRIVE = 'TEAM_DRIVE';
+  /**
+   * Search the data of all accounts in the organization. Supported only for
+   * Gmail. When specified, you don't need to specify **AccountInfo** or
+   * **OrgUnitInfo**.
+   */
+  public const METHOD_ENTIRE_ORG = 'ENTIRE_ORG';
+  /**
+   * Search messages in the Chat spaces specified in [HangoutsChatInfo](https://
+   * developers.google.com/workspace/vault/reference/rest/v1/Query#hangoutschati
+   * nfo).
+   */
+  public const METHOD_ROOM = 'ROOM';
+  /**
+   * Search for sites by the published site URLs specified in [SitesUrlInfo](htt
+   * ps://developers.google.com/workspace/vault/reference/rest/v1/Query#sitesurl
+   * info).
+   */
+  public const METHOD_SITES_URL = 'SITES_URL';
+  /**
+   * Search the files in the shared drives specified in [SharedDriveInfo](https:
+   * //developers.google.com/workspace/vault/reference/rest/v1/Query#shareddrive
+   * info).
+   */
+  public const METHOD_SHARED_DRIVE = 'SHARED_DRIVE';
+  /**
+   * Retrieve the documents specified in DriveDocumentInfo.
+   */
+  public const METHOD_DRIVE_DOCUMENT = 'DRIVE_DOCUMENT';
+  /**
+   * A search method must be specified or else it is rejected.
+   */
+  public const SEARCH_METHOD_SEARCH_METHOD_UNSPECIFIED = 'SEARCH_METHOD_UNSPECIFIED';
+  /**
+   * Search the data of the accounts specified in [AccountInfo](https://develope
+   * rs.google.com/workspace/vault/reference/rest/v1/Query#accountinfo).
+   */
+  public const SEARCH_METHOD_ACCOUNT = 'ACCOUNT';
+  /**
+   * Search the data of all accounts in the organizational unit specified in [Or
+   * gUnitInfo](https://developers.google.com/workspace/vault/reference/rest/v1/
+   * Query#orgunitinfo).
+   */
+  public const SEARCH_METHOD_ORG_UNIT = 'ORG_UNIT';
+  /**
+   * Search the data in the Team Drive specified in **team_drive_info**.
+   *
+   * @deprecated
+   */
+  public const SEARCH_METHOD_TEAM_DRIVE = 'TEAM_DRIVE';
+  /**
+   * Search the data of all accounts in the organization. Supported only for
+   * Gmail. When specified, you don't need to specify **AccountInfo** or
+   * **OrgUnitInfo**.
+   */
+  public const SEARCH_METHOD_ENTIRE_ORG = 'ENTIRE_ORG';
+  /**
+   * Search messages in the Chat spaces specified in [HangoutsChatInfo](https://
+   * developers.google.com/workspace/vault/reference/rest/v1/Query#hangoutschati
+   * nfo).
+   */
+  public const SEARCH_METHOD_ROOM = 'ROOM';
+  /**
+   * Search for sites by the published site URLs specified in [SitesUrlInfo](htt
+   * ps://developers.google.com/workspace/vault/reference/rest/v1/Query#sitesurl
+   * info).
+   */
+  public const SEARCH_METHOD_SITES_URL = 'SITES_URL';
+  /**
+   * Search the files in the shared drives specified in [SharedDriveInfo](https:
+   * //developers.google.com/workspace/vault/reference/rest/v1/Query#shareddrive
+   * info).
+   */
+  public const SEARCH_METHOD_SHARED_DRIVE = 'SHARED_DRIVE';
+  /**
+   * Retrieve the documents specified in DriveDocumentInfo.
+   */
+  public const SEARCH_METHOD_DRIVE_DOCUMENT = 'DRIVE_DOCUMENT';
   protected $accountInfoType = AccountInfo::class;
   protected $accountInfoDataType = '';
+  protected $calendarOptionsType = CalendarOptions::class;
+  protected $calendarOptionsDataType = '';
   /**
+   * The Google Workspace service to search.
+   *
    * @var string
    */
   public $corpus;
   /**
+   * The data source to search.
+   *
    * @var string
    */
   public $dataScope;
+  protected $driveDocumentInfoType = DriveDocumentInfo::class;
+  protected $driveDocumentInfoDataType = '';
   protected $driveOptionsType = DriveOptions::class;
   protected $driveOptionsDataType = '';
   /**
+   * The end time for the search query. Specify in GMT. The value is rounded to
+   * 12 AM on the specified date.
+   *
    * @var string
    */
   public $endTime;
+  protected $geminiInWorkspaceOptionsType = GeminiInWorkspaceOptions::class;
+  protected $geminiInWorkspaceOptionsDataType = '';
+  protected $geminiOptionsType = GeminiOptions::class;
+  protected $geminiOptionsDataType = '';
   protected $hangoutsChatInfoType = HangoutsChatInfo::class;
   protected $hangoutsChatInfoDataType = '';
   protected $hangoutsChatOptionsType = HangoutsChatOptions::class;
@@ -42,12 +207,19 @@ class Query extends \Google\Model
   protected $mailOptionsType = MailOptions::class;
   protected $mailOptionsDataType = '';
   /**
+   * The entity to search. This field replaces **searchMethod** to support
+   * shared drives. When **searchMethod** is **TEAM_DRIVE**, the response of
+   * this field is **SHARED_DRIVE**.
+   *
    * @var string
    */
   public $method;
   protected $orgUnitInfoType = OrgUnitInfo::class;
   protected $orgUnitInfoDataType = '';
   /**
+   * The search method to use.
+   *
+   * @deprecated
    * @var string
    */
   public $searchMethod;
@@ -56,16 +228,29 @@ class Query extends \Google\Model
   protected $sitesUrlInfoType = SitesUrlInfo::class;
   protected $sitesUrlInfoDataType = '';
   /**
+   * The start time for the search query. Specify in GMT. The value is rounded
+   * to 12 AM on the specified date.
+   *
    * @var string
    */
   public $startTime;
   protected $teamDriveInfoType = TeamDriveInfo::class;
   protected $teamDriveInfoDataType = '';
   /**
+   * Service-specific [search
+   * operators](https://support.google.com/vault/answer/2474474) to filter
+   * search results.
+   *
    * @var string
    */
   public $terms;
   /**
+   * The time zone name. It should be an IANA TZ name, such as
+   * "America/Los_Angeles". For a list of time zone names, see [Time
+   * Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For
+   * more information about how Vault uses time zones, see [the Vault help
+   * center](https://support.google.com/vault/answer/6092995#time).
+   *
    * @var string
    */
   public $timeZone;
@@ -73,7 +258,9 @@ class Query extends \Google\Model
   protected $voiceOptionsDataType = '';
 
   /**
-   * @param AccountInfo
+   * Required when **SearchMethod** is **ACCOUNT**.
+   *
+   * @param AccountInfo $accountInfo
    */
   public function setAccountInfo(AccountInfo $accountInfo)
   {
@@ -87,35 +274,79 @@ class Query extends \Google\Model
     return $this->accountInfo;
   }
   /**
-   * @param string
+   * Set Calendar search-specific options.
+   *
+   * @param CalendarOptions $calendarOptions
+   */
+  public function setCalendarOptions(CalendarOptions $calendarOptions)
+  {
+    $this->calendarOptions = $calendarOptions;
+  }
+  /**
+   * @return CalendarOptions
+   */
+  public function getCalendarOptions()
+  {
+    return $this->calendarOptions;
+  }
+  /**
+   * The Google Workspace service to search.
+   *
+   * Accepted values: CORPUS_TYPE_UNSPECIFIED, DRIVE, MAIL, GROUPS,
+   * HANGOUTS_CHAT, VOICE, CALENDAR, GEMINI, GEMINI_IN_WORKSPACE
+   *
+   * @param self::CORPUS_* $corpus
    */
   public function setCorpus($corpus)
   {
     $this->corpus = $corpus;
   }
   /**
-   * @return string
+   * @return self::CORPUS_*
    */
   public function getCorpus()
   {
     return $this->corpus;
   }
   /**
-   * @param string
+   * The data source to search.
+   *
+   * Accepted values: DATA_SCOPE_UNSPECIFIED, ALL_DATA, HELD_DATA,
+   * UNPROCESSED_DATA
+   *
+   * @param self::DATA_SCOPE_* $dataScope
    */
   public function setDataScope($dataScope)
   {
     $this->dataScope = $dataScope;
   }
   /**
-   * @return string
+   * @return self::DATA_SCOPE_*
    */
   public function getDataScope()
   {
     return $this->dataScope;
   }
   /**
-   * @param DriveOptions
+   * Required when **SearchMethod** is **DRIVE_DOCUMENT**.
+   *
+   * @param DriveDocumentInfo $driveDocumentInfo
+   */
+  public function setDriveDocumentInfo(DriveDocumentInfo $driveDocumentInfo)
+  {
+    $this->driveDocumentInfo = $driveDocumentInfo;
+  }
+  /**
+   * @return DriveDocumentInfo
+   */
+  public function getDriveDocumentInfo()
+  {
+    return $this->driveDocumentInfo;
+  }
+  /**
+   * Set Drive search-specific options.
+   *
+   * @param DriveOptions $driveOptions
    */
   public function setDriveOptions(DriveOptions $driveOptions)
   {
@@ -129,7 +360,10 @@ class Query extends \Google\Model
     return $this->driveOptions;
   }
   /**
-   * @param string
+   * The end time for the search query. Specify in GMT. The value is rounded to
+   * 12 AM on the specified date.
+   *
+   * @param string $endTime
    */
   public function setEndTime($endTime)
   {
@@ -143,7 +377,41 @@ class Query extends \Google\Model
     return $this->endTime;
   }
   /**
-   * @param HangoutsChatInfo
+   * Set Gemini in Workspace search-specific options.
+   *
+   * @param GeminiInWorkspaceOptions $geminiInWorkspaceOptions
+   */
+  public function setGeminiInWorkspaceOptions(GeminiInWorkspaceOptions $geminiInWorkspaceOptions)
+  {
+    $this->geminiInWorkspaceOptions = $geminiInWorkspaceOptions;
+  }
+  /**
+   * @return GeminiInWorkspaceOptions
+   */
+  public function getGeminiInWorkspaceOptions()
+  {
+    return $this->geminiInWorkspaceOptions;
+  }
+  /**
+   * Set Gemini app search-specific options.
+   *
+   * @param GeminiOptions $geminiOptions
+   */
+  public function setGeminiOptions(GeminiOptions $geminiOptions)
+  {
+    $this->geminiOptions = $geminiOptions;
+  }
+  /**
+   * @return GeminiOptions
+   */
+  public function getGeminiOptions()
+  {
+    return $this->geminiOptions;
+  }
+  /**
+   * Required when **SearchMethod** is **ROOM**. (read-only)
+   *
+   * @param HangoutsChatInfo $hangoutsChatInfo
    */
   public function setHangoutsChatInfo(HangoutsChatInfo $hangoutsChatInfo)
   {
@@ -157,7 +425,9 @@ class Query extends \Google\Model
     return $this->hangoutsChatInfo;
   }
   /**
-   * @param HangoutsChatOptions
+   * Set Chat search-specific options. (read-only)
+   *
+   * @param HangoutsChatOptions $hangoutsChatOptions
    */
   public function setHangoutsChatOptions(HangoutsChatOptions $hangoutsChatOptions)
   {
@@ -171,7 +441,9 @@ class Query extends \Google\Model
     return $this->hangoutsChatOptions;
   }
   /**
-   * @param MailOptions
+   * Set Gmail search-specific options.
+   *
+   * @param MailOptions $mailOptions
    */
   public function setMailOptions(MailOptions $mailOptions)
   {
@@ -185,21 +457,30 @@ class Query extends \Google\Model
     return $this->mailOptions;
   }
   /**
-   * @param string
+   * The entity to search. This field replaces **searchMethod** to support
+   * shared drives. When **searchMethod** is **TEAM_DRIVE**, the response of
+   * this field is **SHARED_DRIVE**.
+   *
+   * Accepted values: SEARCH_METHOD_UNSPECIFIED, ACCOUNT, ORG_UNIT, TEAM_DRIVE,
+   * ENTIRE_ORG, ROOM, SITES_URL, SHARED_DRIVE, DRIVE_DOCUMENT
+   *
+   * @param self::METHOD_* $method
    */
   public function setMethod($method)
   {
     $this->method = $method;
   }
   /**
-   * @return string
+   * @return self::METHOD_*
    */
   public function getMethod()
   {
     return $this->method;
   }
   /**
-   * @param OrgUnitInfo
+   * Required when **SearchMethod** is **ORG_UNIT**.
+   *
+   * @param OrgUnitInfo $orgUnitInfo
    */
   public function setOrgUnitInfo(OrgUnitInfo $orgUnitInfo)
   {
@@ -213,21 +494,30 @@ class Query extends \Google\Model
     return $this->orgUnitInfo;
   }
   /**
-   * @param string
+   * The search method to use.
+   *
+   * Accepted values: SEARCH_METHOD_UNSPECIFIED, ACCOUNT, ORG_UNIT, TEAM_DRIVE,
+   * ENTIRE_ORG, ROOM, SITES_URL, SHARED_DRIVE, DRIVE_DOCUMENT
+   *
+   * @deprecated
+   * @param self::SEARCH_METHOD_* $searchMethod
    */
   public function setSearchMethod($searchMethod)
   {
     $this->searchMethod = $searchMethod;
   }
   /**
-   * @return string
+   * @deprecated
+   * @return self::SEARCH_METHOD_*
    */
   public function getSearchMethod()
   {
     return $this->searchMethod;
   }
   /**
-   * @param SharedDriveInfo
+   * Required when **SearchMethod** is **SHARED_DRIVE**.
+   *
+   * @param SharedDriveInfo $sharedDriveInfo
    */
   public function setSharedDriveInfo(SharedDriveInfo $sharedDriveInfo)
   {
@@ -241,7 +531,9 @@ class Query extends \Google\Model
     return $this->sharedDriveInfo;
   }
   /**
-   * @param SitesUrlInfo
+   * Required when **SearchMethod** is **SITES_URL**.
+   *
+   * @param SitesUrlInfo $sitesUrlInfo
    */
   public function setSitesUrlInfo(SitesUrlInfo $sitesUrlInfo)
   {
@@ -255,7 +547,10 @@ class Query extends \Google\Model
     return $this->sitesUrlInfo;
   }
   /**
-   * @param string
+   * The start time for the search query. Specify in GMT. The value is rounded
+   * to 12 AM on the specified date.
+   *
+   * @param string $startTime
    */
   public function setStartTime($startTime)
   {
@@ -269,13 +564,17 @@ class Query extends \Google\Model
     return $this->startTime;
   }
   /**
-   * @param TeamDriveInfo
+   * Required when **SearchMethod** is **TEAM_DRIVE**.
+   *
+   * @deprecated
+   * @param TeamDriveInfo $teamDriveInfo
    */
   public function setTeamDriveInfo(TeamDriveInfo $teamDriveInfo)
   {
     $this->teamDriveInfo = $teamDriveInfo;
   }
   /**
+   * @deprecated
    * @return TeamDriveInfo
    */
   public function getTeamDriveInfo()
@@ -283,7 +582,11 @@ class Query extends \Google\Model
     return $this->teamDriveInfo;
   }
   /**
-   * @param string
+   * Service-specific [search
+   * operators](https://support.google.com/vault/answer/2474474) to filter
+   * search results.
+   *
+   * @param string $terms
    */
   public function setTerms($terms)
   {
@@ -297,7 +600,13 @@ class Query extends \Google\Model
     return $this->terms;
   }
   /**
-   * @param string
+   * The time zone name. It should be an IANA TZ name, such as
+   * "America/Los_Angeles". For a list of time zone names, see [Time
+   * Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For
+   * more information about how Vault uses time zones, see [the Vault help
+   * center](https://support.google.com/vault/answer/6092995#time).
+   *
+   * @param string $timeZone
    */
   public function setTimeZone($timeZone)
   {
@@ -311,7 +620,9 @@ class Query extends \Google\Model
     return $this->timeZone;
   }
   /**
-   * @param VoiceOptions
+   * Set Voice search-specific options.
+   *
+   * @param VoiceOptions $voiceOptions
    */
   public function setVoiceOptions(VoiceOptions $voiceOptions)
   {

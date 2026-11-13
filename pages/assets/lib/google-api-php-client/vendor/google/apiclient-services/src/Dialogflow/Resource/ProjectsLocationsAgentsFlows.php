@@ -38,26 +38,15 @@ use Google\Service\Dialogflow\GoogleProtobufEmpty;
 class ProjectsLocationsAgentsFlows extends \Google\Service\Resource
 {
   /**
-   * Creates a flow in the specified agent. Note: You should always train a flow
-   * prior to sending it queries. See the [training
-   * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
    * (flows.create)
    *
-   * @param string $parent Required. The agent to create a flow for. Format:
-   * `projects//locations//agents/`.
+   * @param string $parent
    * @param GoogleCloudDialogflowCxV3Flow $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string languageCode The language of the following fields in
-   * `flow`: * `Flow.event_handlers.trigger_fulfillment.messages` *
-   * `Flow.event_handlers.trigger_fulfillment.conditional_cases` *
-   * `Flow.transition_routes.trigger_fulfillment.messages` *
-   * `Flow.transition_routes.trigger_fulfillment.conditional_cases` If not
-   * specified, the agent's default language is used. [Many
-   * languages](https://cloud.google.com/dialogflow/cx/docs/reference/language)
-   * are supported. Note: languages must be enabled in the agent before they can
-   * be used.
+   * @opt_param string languageCode
    * @return GoogleCloudDialogflowCxV3Flow
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudDialogflowCxV3Flow $postBody, $optParams = [])
   {
@@ -66,19 +55,14 @@ class ProjectsLocationsAgentsFlows extends \Google\Service\Resource
     return $this->call('create', [$params], GoogleCloudDialogflowCxV3Flow::class);
   }
   /**
-   * Deletes a specified flow. (flows.delete)
+   * (flows.delete)
    *
-   * @param string $name Required. The name of the flow to delete. Format:
-   * `projects//locations//agents//flows/`.
+   * @param string $name
    * @param array $optParams Optional parameters.
    *
-   * @opt_param bool force This field has no effect for flows with no incoming
-   * transitions. For flows with incoming transitions: * If `force` is set to
-   * false, an error will be returned with message indicating the incoming
-   * transitions. * If `force` is set to true, Dialogflow will remove the flow, as
-   * well as any transitions to the flow (i.e. Target flow in event handlers or
-   * Target flow in transition routes that point to this flow will be cleared).
+   * @opt_param bool force
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -87,19 +71,13 @@ class ProjectsLocationsAgentsFlows extends \Google\Service\Resource
     return $this->call('delete', [$params], GoogleProtobufEmpty::class);
   }
   /**
-   * Exports the specified flow to a binary file. This method is a [long-running
-   * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-
-   * operation). The returned `Operation` type has the following method-specific
-   * fields: - `metadata`: An empty [Struct message](https://developers.google.com
-   * /protocol-buffers/docs/reference/google.protobuf#struct) - `response`:
-   * ExportFlowResponse Note that resources (e.g. intents, entities, webhooks)
-   * that the flow references will also be exported. (flows.export)
+   * (flows.export)
    *
-   * @param string $name Required. The name of the flow to export. Format:
-   * `projects//locations//agents//flows/`.
+   * @param string $name
    * @param GoogleCloudDialogflowCxV3ExportFlowRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function export($name, GoogleCloudDialogflowCxV3ExportFlowRequest $postBody, $optParams = [])
   {
@@ -108,23 +86,14 @@ class ProjectsLocationsAgentsFlows extends \Google\Service\Resource
     return $this->call('export', [$params], GoogleLongrunningOperation::class);
   }
   /**
-   * Retrieves the specified flow. (flows.get)
+   * (flows.get)
    *
-   * @param string $name Required. The name of the flow to get. Format:
-   * `projects//locations//agents//flows/`.
+   * @param string $name
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string languageCode The language to retrieve the flow for. The
-   * following fields are language dependent: *
-   * `Flow.event_handlers.trigger_fulfillment.messages` *
-   * `Flow.event_handlers.trigger_fulfillment.conditional_cases` *
-   * `Flow.transition_routes.trigger_fulfillment.messages` *
-   * `Flow.transition_routes.trigger_fulfillment.conditional_cases` If not
-   * specified, the agent's default language is used. [Many
-   * languages](https://cloud.google.com/dialogflow/cx/docs/reference/language)
-   * are supported. Note: languages must be enabled in the agent before they can
-   * be used.
+   * @opt_param string languageCode
    * @return GoogleCloudDialogflowCxV3Flow
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -133,16 +102,14 @@ class ProjectsLocationsAgentsFlows extends \Google\Service\Resource
     return $this->call('get', [$params], GoogleCloudDialogflowCxV3Flow::class);
   }
   /**
-   * Gets the latest flow validation result. Flow validation is performed when
-   * ValidateFlow is called. (flows.getValidationResult)
+   * (flows.getValidationResult)
    *
-   * @param string $name Required. The flow name. Format:
-   * `projects//locations//agents//flows//validationResult`.
+   * @param string $name
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string languageCode If not specified, the agent's default language
-   * is used.
+   * @opt_param string languageCode
    * @return GoogleCloudDialogflowCxV3FlowValidationResult
+   * @throws \Google\Service\Exception
    */
   public function getValidationResult($name, $optParams = [])
   {
@@ -151,22 +118,13 @@ class ProjectsLocationsAgentsFlows extends \Google\Service\Resource
     return $this->call('getValidationResult', [$params], GoogleCloudDialogflowCxV3FlowValidationResult::class);
   }
   /**
-   * Imports the specified flow to the specified agent from a binary file. This
-   * method is a [long-running
-   * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-
-   * operation). The returned `Operation` type has the following method-specific
-   * fields: - `metadata`: An empty [Struct message](https://developers.google.com
-   * /protocol-buffers/docs/reference/google.protobuf#struct) - `response`:
-   * ImportFlowResponse Note: You should always train a flow prior to sending it
-   * queries. See the [training
-   * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
    * (flows.import)
    *
-   * @param string $parent Required. The agent to import the flow into. Format:
-   * `projects//locations//agents/`.
+   * @param string $parent
    * @param GoogleCloudDialogflowCxV3ImportFlowRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function import($parent, GoogleCloudDialogflowCxV3ImportFlowRequest $postBody, $optParams = [])
   {
@@ -175,28 +133,16 @@ class ProjectsLocationsAgentsFlows extends \Google\Service\Resource
     return $this->call('import', [$params], GoogleLongrunningOperation::class);
   }
   /**
-   * Returns the list of all flows in the specified agent.
    * (flows.listProjectsLocationsAgentsFlows)
    *
-   * @param string $parent Required. The agent containing the flows. Format:
-   * `projects//locations//agents/`.
+   * @param string $parent
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string languageCode The language to list flows for. The following
-   * fields are language dependent: *
-   * `Flow.event_handlers.trigger_fulfillment.messages` *
-   * `Flow.event_handlers.trigger_fulfillment.conditional_cases` *
-   * `Flow.transition_routes.trigger_fulfillment.messages` *
-   * `Flow.transition_routes.trigger_fulfillment.conditional_cases` If not
-   * specified, the agent's default language is used. [Many
-   * languages](https://cloud.google.com/dialogflow/cx/docs/reference/language)
-   * are supported. Note: languages must be enabled in the agent before they can
-   * be used.
-   * @opt_param int pageSize The maximum number of items to return in a single
-   * page. By default 100 and at most 1000.
-   * @opt_param string pageToken The next_page_token value returned from a
-   * previous list request.
+   * @opt_param string languageCode
+   * @opt_param int pageSize
+   * @opt_param string pageToken
    * @return GoogleCloudDialogflowCxV3ListFlowsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsAgentsFlows($parent, $optParams = [])
   {
@@ -205,28 +151,16 @@ class ProjectsLocationsAgentsFlows extends \Google\Service\Resource
     return $this->call('list', [$params], GoogleCloudDialogflowCxV3ListFlowsResponse::class);
   }
   /**
-   * Updates the specified flow. Note: You should always train a flow prior to
-   * sending it queries. See the [training
-   * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
    * (flows.patch)
    *
-   * @param string $name The unique identifier of the flow. Format:
-   * `projects//locations//agents//flows/`.
+   * @param string $name
    * @param GoogleCloudDialogflowCxV3Flow $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string languageCode The language of the following fields in
-   * `flow`: * `Flow.event_handlers.trigger_fulfillment.messages` *
-   * `Flow.event_handlers.trigger_fulfillment.conditional_cases` *
-   * `Flow.transition_routes.trigger_fulfillment.messages` *
-   * `Flow.transition_routes.trigger_fulfillment.conditional_cases` If not
-   * specified, the agent's default language is used. [Many
-   * languages](https://cloud.google.com/dialogflow/cx/docs/reference/language)
-   * are supported. Note: languages must be enabled in the agent before they can
-   * be used.
-   * @opt_param string updateMask The mask to control which fields get updated. If
-   * the mask is not present, all fields will be updated.
+   * @opt_param string languageCode
+   * @opt_param string updateMask
    * @return GoogleCloudDialogflowCxV3Flow
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudDialogflowCxV3Flow $postBody, $optParams = [])
   {
@@ -235,23 +169,13 @@ class ProjectsLocationsAgentsFlows extends \Google\Service\Resource
     return $this->call('patch', [$params], GoogleCloudDialogflowCxV3Flow::class);
   }
   /**
-   * Trains the specified flow. Note that only the flow in 'draft' environment is
-   * trained. This method is a [long-running
-   * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-
-   * operation). The returned `Operation` type has the following method-specific
-   * fields: - `metadata`: An empty [Struct message](https://developers.google.com
-   * /protocol-buffers/docs/reference/google.protobuf#struct) - `response`: An
-   * [Empty message](https://developers.google.com/protocol-
-   * buffers/docs/reference/google.protobuf#empty) Note: You should always train a
-   * flow prior to sending it queries. See the [training
-   * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
    * (flows.train)
    *
-   * @param string $name Required. The flow to train. Format:
-   * `projects//locations//agents//flows/`.
+   * @param string $name
    * @param GoogleCloudDialogflowCxV3TrainFlowRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function train($name, GoogleCloudDialogflowCxV3TrainFlowRequest $postBody, $optParams = [])
   {
@@ -260,15 +184,13 @@ class ProjectsLocationsAgentsFlows extends \Google\Service\Resource
     return $this->call('train', [$params], GoogleLongrunningOperation::class);
   }
   /**
-   * Validates the specified flow and creates or updates validation results.
-   * Please call this API after the training is completed to get the complete
-   * validation results. (flows.validate)
+   * (flows.validate)
    *
-   * @param string $name Required. The flow to validate. Format:
-   * `projects//locations//agents//flows/`.
+   * @param string $name
    * @param GoogleCloudDialogflowCxV3ValidateFlowRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDialogflowCxV3FlowValidationResult
+   * @throws \Google\Service\Exception
    */
   public function validate($name, GoogleCloudDialogflowCxV3ValidateFlowRequest $postBody, $optParams = [])
   {

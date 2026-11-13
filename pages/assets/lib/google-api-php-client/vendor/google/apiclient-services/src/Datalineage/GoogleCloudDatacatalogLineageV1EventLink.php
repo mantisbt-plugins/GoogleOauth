@@ -19,13 +19,33 @@ namespace Google\Service\Datalineage;
 
 class GoogleCloudDatacatalogLineageV1EventLink extends \Google\Model
 {
+  protected $dependencyInfoType = GoogleCloudDatacatalogLineageV1DependencyInfo::class;
+  protected $dependencyInfoDataType = '';
   protected $sourceType = GoogleCloudDatacatalogLineageV1EntityReference::class;
   protected $sourceDataType = '';
   protected $targetType = GoogleCloudDatacatalogLineageV1EntityReference::class;
   protected $targetDataType = '';
 
   /**
-   * @param GoogleCloudDatacatalogLineageV1EntityReference
+   * Optional. Describes how the target depends on the source.
+   *
+   * @param GoogleCloudDatacatalogLineageV1DependencyInfo $dependencyInfo
+   */
+  public function setDependencyInfo(GoogleCloudDatacatalogLineageV1DependencyInfo $dependencyInfo)
+  {
+    $this->dependencyInfo = $dependencyInfo;
+  }
+  /**
+   * @return GoogleCloudDatacatalogLineageV1DependencyInfo
+   */
+  public function getDependencyInfo()
+  {
+    return $this->dependencyInfo;
+  }
+  /**
+   * Required. Reference to the source entity
+   *
+   * @param GoogleCloudDatacatalogLineageV1EntityReference $source
    */
   public function setSource(GoogleCloudDatacatalogLineageV1EntityReference $source)
   {
@@ -39,7 +59,9 @@ class GoogleCloudDatacatalogLineageV1EventLink extends \Google\Model
     return $this->source;
   }
   /**
-   * @param GoogleCloudDatacatalogLineageV1EntityReference
+   * Required. Reference to the target entity
+   *
+   * @param GoogleCloudDatacatalogLineageV1EntityReference $target
    */
   public function setTarget(GoogleCloudDatacatalogLineageV1EntityReference $target)
   {

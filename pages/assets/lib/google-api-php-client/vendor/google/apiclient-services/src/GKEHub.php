@@ -20,7 +20,7 @@ namespace Google\Service;
 use Google\Client;
 
 /**
- * Service definition for GKEHub (v1).
+ * Service definition for GKEHub (v2).
  *
  * <p>
 </p>
@@ -39,11 +39,9 @@ class GKEHub extends \Google\Service
       "https://www.googleapis.com/auth/cloud-platform";
 
   public $projects_locations;
-  public $projects_locations_features;
-  public $projects_locations_memberships;
-  public $projects_locations_memberships_bindings;
+  public $projects_locations_memberships_features;
   public $projects_locations_operations;
-  public $projects_locations_scopes;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the GKEHub service.
@@ -56,9 +54,10 @@ class GKEHub extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://gkehub.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://gkehub.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
-    $this->version = 'v1';
+    $this->version = 'v2';
     $this->serviceName = 'gkehub';
 
     $this->projects_locations = new GKEHub\Resource\ProjectsLocations(
@@ -68,7 +67,7 @@ class GKEHub extends \Google\Service
         [
           'methods' => [
             'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -78,13 +77,18 @@ class GKEHub extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+name}/locations',
+              'path' => 'v2/{+name}/locations',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -103,14 +107,14 @@ class GKEHub extends \Google\Service
           ]
         ]
     );
-    $this->projects_locations_features = new GKEHub\Resource\ProjectsLocationsFeatures(
+    $this->projects_locations_memberships_features = new GKEHub\Resource\ProjectsLocationsMembershipsFeatures(
         $this,
         $this->serviceName,
         'features',
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/{+parent}/features',
+              'path' => 'v2/{+parent}/features',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -128,7 +132,7 @@ class GKEHub extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -136,17 +140,13 @@ class GKEHub extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'force' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
                 'requestId' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -155,22 +155,8 @@ class GKEHub extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'getIamPolicy' => [
-              'path' => 'v1/{+resource}:getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'options.requestedPolicyVersion' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-              ],
             ],'list' => [
-              'path' => 'v1/{+parent}/features',
+              'path' => 'v2/{+parent}/features',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -196,7 +182,7 @@ class GKEHub extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -204,273 +190,13 @@ class GKEHub extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'requestId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'setIamPolicy' => [
-              'path' => 'v1/{+resource}:setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'testIamPermissions' => [
-              'path' => 'v1/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_memberships = new GKEHub\Resource\ProjectsLocationsMemberships(
-        $this,
-        $this->serviceName,
-        'memberships',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/memberships',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'membershipId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'requestId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'force' => [
+                'allowMissing' => [
                   'location' => 'query',
                   'type' => 'boolean',
                 ],
                 'requestId' => [
                   'location' => 'query',
                   'type' => 'string',
-                ],
-              ],
-            ],'generateConnectManifest' => [
-              'path' => 'v1/{+name}:generateConnectManifest',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'imagePullSecretContent' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'isUpgrade' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
-                'namespace' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'proxy' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'registry' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'version' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'getIamPolicy' => [
-              'path' => 'v1/{+resource}:getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'options.requestedPolicyVersion' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/memberships',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'filter' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'orderBy' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'requestId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'setIamPolicy' => [
-              'path' => 'v1/{+resource}:setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'testIamPermissions' => [
-              'path' => 'v1/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'resource' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_memberships_bindings = new GKEHub\Resource\ProjectsLocationsMembershipsBindings(
-        $this,
-        $this->serviceName,
-        'bindings',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/bindings',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'membershipBindingId' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/bindings',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
                 ],
                 'updateMask' => [
                   'location' => 'query',
@@ -488,7 +214,7 @@ class GKEHub extends \Google\Service
         [
           'methods' => [
             'cancel' => [
-              'path' => 'v1/{+name}:cancel',
+              'path' => 'v2/{+name}:cancel',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -497,18 +223,8 @@ class GKEHub extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
             ],'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -518,7 +234,7 @@ class GKEHub extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+name}/operations',
+              'path' => 'v2/{+name}/operations',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -538,67 +254,9 @@ class GKEHub extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_scopes = new GKEHub\Resource\ProjectsLocationsScopes(
-        $this,
-        $this->serviceName,
-        'scopes',
-        [
-          'methods' => [
-            'create' => [
-              'path' => 'v1/{+parent}/scopes',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'scopeId' => [
+                'returnPartialSuccess' => [
                   'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'delete' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'get' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'list' => [
-              'path' => 'v1/{+parent}/scopes',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
+                  'type' => 'boolean',
                 ],
               ],
             ],

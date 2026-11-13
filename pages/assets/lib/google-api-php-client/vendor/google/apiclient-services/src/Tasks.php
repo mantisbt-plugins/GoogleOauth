@@ -27,7 +27,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/tasks/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/tasks/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -43,6 +43,7 @@ class Tasks extends \Google\Service
 
   public $tasklists;
   public $tasks;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Tasks service.
@@ -55,6 +56,7 @@ class Tasks extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://tasks.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://tasks.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -224,6 +226,10 @@ class Tasks extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'showAssigned' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'showCompleted' => [
                   'location' => 'query',
                   'type' => 'boolean',
@@ -254,6 +260,10 @@ class Tasks extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'destinationTasklist' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
                 'parent' => [
                   'location' => 'query',

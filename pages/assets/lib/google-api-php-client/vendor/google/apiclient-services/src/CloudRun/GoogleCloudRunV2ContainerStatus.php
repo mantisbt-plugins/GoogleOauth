@@ -19,17 +19,47 @@ namespace Google\Service\CloudRun;
 
 class GoogleCloudRunV2ContainerStatus extends \Google\Model
 {
+  protected $buildStatusType = GoogleCloudRunV2BuildStatus::class;
+  protected $buildStatusDataType = '';
   /**
+   * ImageDigest holds the resolved digest for the image specified and resolved
+   * during the creation of Revision. This field holds the digest value
+   * regardless of whether a tag or digest was originally specified in the
+   * Container object.
+   *
    * @var string
    */
   public $imageDigest;
   /**
+   * The name of the container, if specified.
+   *
    * @var string
    */
   public $name;
 
   /**
-   * @param string
+   * Output only. The build status of the container image.
+   *
+   * @param GoogleCloudRunV2BuildStatus $buildStatus
+   */
+  public function setBuildStatus(GoogleCloudRunV2BuildStatus $buildStatus)
+  {
+    $this->buildStatus = $buildStatus;
+  }
+  /**
+   * @return GoogleCloudRunV2BuildStatus
+   */
+  public function getBuildStatus()
+  {
+    return $this->buildStatus;
+  }
+  /**
+   * ImageDigest holds the resolved digest for the image specified and resolved
+   * during the creation of Revision. This field holds the digest value
+   * regardless of whether a tag or digest was originally specified in the
+   * Container object.
+   *
+   * @param string $imageDigest
    */
   public function setImageDigest($imageDigest)
   {
@@ -43,7 +73,9 @@ class GoogleCloudRunV2ContainerStatus extends \Google\Model
     return $this->imageDigest;
   }
   /**
-   * @param string
+   * The name of the container, if specified.
+   *
+   * @param string $name
    */
   public function setName($name)
   {

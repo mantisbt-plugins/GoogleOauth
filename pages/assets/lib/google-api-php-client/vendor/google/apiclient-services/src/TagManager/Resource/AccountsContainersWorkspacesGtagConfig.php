@@ -33,11 +33,11 @@ class AccountsContainersWorkspacesGtagConfig extends \Google\Service\Resource
   /**
    * Creates a Google tag config. (gtag_config.create)
    *
-   * @param string $parent Workspace's API relative path. Example:
-   * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+   * @param string $parent Workspace's API relative path.
    * @param GtagConfig $postBody
    * @param array $optParams Optional parameters.
    * @return GtagConfig
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GtagConfig $postBody, $optParams = [])
   {
@@ -48,10 +48,9 @@ class AccountsContainersWorkspacesGtagConfig extends \Google\Service\Resource
   /**
    * Deletes a Google tag config. (gtag_config.delete)
    *
-   * @param string $path Google tag config's API relative path. Example: accounts/
-   * {account_id}/containers/{container_id}/workspaces/{workspace_id}/gtag_config/
-   * {gtag_config_id}
+   * @param string $path Google tag config's API relative path.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($path, $optParams = [])
   {
@@ -62,11 +61,10 @@ class AccountsContainersWorkspacesGtagConfig extends \Google\Service\Resource
   /**
    * Gets a Google tag config. (gtag_config.get)
    *
-   * @param string $path Google tag config's API relative path. Example: accounts/
-   * {account_id}/containers/{container_id}/workspaces/{workspace_id}/gtag_config/
-   * {gtag_config_id}
+   * @param string $path Google tag config's API relative path.
    * @param array $optParams Optional parameters.
    * @return GtagConfig
+   * @throws \Google\Service\Exception
    */
   public function get($path, $optParams = [])
   {
@@ -78,13 +76,13 @@ class AccountsContainersWorkspacesGtagConfig extends \Google\Service\Resource
    * Lists all Google tag configs in a Container.
    * (gtag_config.listAccountsContainersWorkspacesGtagConfig)
    *
-   * @param string $parent Workspace's API relative path. Example:
-   * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+   * @param string $parent Workspace's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string pageToken Continuation token for fetching the next page of
    * results.
    * @return ListGtagConfigResponse
+   * @throws \Google\Service\Exception
    */
   public function listAccountsContainersWorkspacesGtagConfig($parent, $optParams = [])
   {
@@ -95,15 +93,14 @@ class AccountsContainersWorkspacesGtagConfig extends \Google\Service\Resource
   /**
    * Updates a Google tag config. (gtag_config.update)
    *
-   * @param string $path Google tag config's API relative path. Example: accounts/
-   * {account_id}/containers/{container_id}/workspaces/{workspace_id}/gtag_config/
-   * {gtag_config_id}
+   * @param string $path Google tag config's API relative path.
    * @param GtagConfig $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string fingerprint When provided, this fingerprint must match the
    * fingerprint of the config in storage.
    * @return GtagConfig
+   * @throws \Google\Service\Exception
    */
   public function update($path, GtagConfig $postBody, $optParams = [])
   {

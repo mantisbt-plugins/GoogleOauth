@@ -41,6 +41,7 @@ class OrganizationsDevelopersApps extends \Google\Service\Resource
    * @param GoogleCloudApigeeV1Attributes $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1Attributes
+   * @throws \Google\Service\Exception
    */
   public function attributes($name, GoogleCloudApigeeV1Attributes $postBody, $optParams = [])
   {
@@ -61,6 +62,7 @@ class OrganizationsDevelopersApps extends \Google\Service\Resource
    * @param GoogleCloudApigeeV1DeveloperApp $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1DeveloperApp
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudApigeeV1DeveloperApp $postBody, $optParams = [])
   {
@@ -79,6 +81,7 @@ class OrganizationsDevelopersApps extends \Google\Service\Resource
    * `organizations/{org}/developers/{developer_email}/apps/{app}`
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1DeveloperApp
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -120,6 +123,7 @@ class OrganizationsDevelopersApps extends \Google\Service\Resource
    *
    * @opt_param string action Action. Valid values are `approve` or `revoke`.
    * @return GoogleCloudApigeeV1DeveloperApp
+   * @throws \Google\Service\Exception
    */
   public function generateKeyPairOrUpdateDeveloperAppStatus($name, GoogleCloudApigeeV1DeveloperApp $postBody, $optParams = [])
   {
@@ -144,6 +148,7 @@ class OrganizationsDevelopersApps extends \Google\Service\Resource
    * have been approved for access by a developer app in the specified Apigee
    * organization.
    * @return GoogleCloudApigeeV1DeveloperApp
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -167,9 +172,12 @@ class OrganizationsDevelopersApps extends \Google\Service\Resource
    * limit is 1000.
    * @opt_param bool expand Optional. Specifies whether to expand the results. Set
    * to `true` to expand the results. This query parameter is not valid if you use
-   * the `count` or `startKey` query parameters.
+   * the `count` or `startKey` query parameters. **Note**: If set to `true`, the
+   * `apigee.developerapps.get` permission is required.
    * @opt_param bool shallowExpand Optional. Specifies whether to expand the
    * results in shallow mode. Set to `true` to expand the results in shallow mode.
+   * **Note**: If set to `true`, the `apigee.developerapps.get` permission is
+   * required.
    * @opt_param string startKey **Note**: Must be used in conjunction with the
    * `count` parameter. Name of the developer app from which to start displaying
    * the list of developer apps. For example, if you're returning 50 developer
@@ -177,6 +185,7 @@ class OrganizationsDevelopersApps extends \Google\Service\Resource
    * apps 50-99 by entering the name of the 50th developer app. The developer app
    * name is case sensitive.
    * @return GoogleCloudApigeeV1ListDeveloperAppsResponse
+   * @throws \Google\Service\Exception
    */
   public function listOrganizationsDevelopersApps($parent, $optParams = [])
   {
@@ -194,7 +203,11 @@ class OrganizationsDevelopersApps extends \Google\Service\Resource
    * changed. * Scopes associated with the app. Instead, use the
    * ReplaceDeveloperAppKey API. This API replaces the existing attributes with
    * those specified in the request. Include or exclude any existing attributes
-   * that you want to retain or delete, respectively. (apps.update)
+   * that you want to retain or delete, respectively. **Note:** We recommend that
+   * you avoid making concurrent update requests for the same resource. Near-
+   * simultaneous writes to the same entity can result in conflicts and unexpected
+   * behavior. Ensure operations are sequential when modifying a single resource.
+   * (apps.update)
    *
    * @param string $name Required. Name of the developer app. Use the following
    * structure in your request:
@@ -202,6 +215,7 @@ class OrganizationsDevelopersApps extends \Google\Service\Resource
    * @param GoogleCloudApigeeV1DeveloperApp $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1DeveloperApp
+   * @throws \Google\Service\Exception
    */
   public function update($name, GoogleCloudApigeeV1DeveloperApp $postBody, $optParams = [])
   {

@@ -33,7 +33,7 @@ class GoogleCloudDialogflowV2Context extends \Google\Model
   public $parameters;
 
   /**
-   * @param int
+   * @param int $lifespanCount
    */
   public function setLifespanCount($lifespanCount)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowV2Context extends \Google\Model
     return $this->lifespanCount;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowV2Context extends \Google\Model
     return $this->name;
   }
   /**
-   * @param array[]
+   * @param array[] $parameters
    */
   public function setParameters($parameters)
   {

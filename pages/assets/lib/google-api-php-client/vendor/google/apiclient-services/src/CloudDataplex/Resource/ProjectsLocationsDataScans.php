@@ -18,6 +18,8 @@
 namespace Google\Service\CloudDataplex\Resource;
 
 use Google\Service\CloudDataplex\GoogleCloudDataplexV1DataScan;
+use Google\Service\CloudDataplex\GoogleCloudDataplexV1GenerateDataQualityRulesRequest;
+use Google\Service\CloudDataplex\GoogleCloudDataplexV1GenerateDataQualityRulesResponse;
 use Google\Service\CloudDataplex\GoogleCloudDataplexV1ListDataScansResponse;
 use Google\Service\CloudDataplex\GoogleCloudDataplexV1RunDataScanRequest;
 use Google\Service\CloudDataplex\GoogleCloudDataplexV1RunDataScanResponse;
@@ -42,17 +44,19 @@ class ProjectsLocationsDataScans extends \Google\Service\Resource
    *
    * @param string $parent Required. The resource name of the parent location:
    * projects/{project}/locations/{location_id} where project refers to a
-   * project_id or project_number and location_id refers to a GCP region.
+   * project_id or project_number and location_id refers to a Google Cloud region.
    * @param GoogleCloudDataplexV1DataScan $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string dataScanId Required. DataScan identifier. Must contain only
+   * @opt_param string dataScanId Optional. DataScan identifier. If not provided,
+   * a unique ID will be generated with the prefix "data-scan-". Must contain only
    * lowercase letters, numbers and hyphens. Must start with a letter. Must end
    * with a number or a letter. Must be between 1-63 characters. Must be unique
    * within the customer project / location.
    * @opt_param bool validateOnly Optional. Only validate the request, but do not
    * perform mutations. The default is false.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudDataplexV1DataScan $postBody, $optParams = [])
   {
@@ -66,9 +70,14 @@ class ProjectsLocationsDataScans extends \Google\Service\Resource
    * @param string $name Required. The resource name of the dataScan:
    * projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where
    * project refers to a project_id or project_number and location_id refers to a
-   * GCP region.
+   * Google Cloud region.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param bool force Optional. If set to true, any child resources of this
+   * data scan will also be deleted. (Otherwise, the request will only work if the
+   * data scan has no child resources.)
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -77,17 +86,38 @@ class ProjectsLocationsDataScans extends \Google\Service\Resource
     return $this->call('delete', [$params], GoogleLongrunningOperation::class);
   }
   /**
+   * Generates recommended data quality rules based on the results of a data
+   * profiling scan.Use the recommendations to build rules for a data quality
+   * scan. (dataScans.generateDataQualityRules)
+   *
+   * @param string $name Required. The name must be one of the following: The name
+   * of a data scan with at least one successful, completed data profiling job The
+   * name of a successful, completed data profiling job (a data scan job where the
+   * job type is data profiling)
+   * @param GoogleCloudDataplexV1GenerateDataQualityRulesRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleCloudDataplexV1GenerateDataQualityRulesResponse
+   * @throws \Google\Service\Exception
+   */
+  public function generateDataQualityRules($name, GoogleCloudDataplexV1GenerateDataQualityRulesRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('generateDataQualityRules', [$params], GoogleCloudDataplexV1GenerateDataQualityRulesResponse::class);
+  }
+  /**
    * Gets a DataScan resource. (dataScans.get)
    *
    * @param string $name Required. The resource name of the dataScan:
    * projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where
    * project refers to a project_id or project_number and location_id refers to a
-   * GCP region.
+   * Google Cloud region.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string view Optional. Select the DataScan view to return. Defaults
    * to BASIC.
    * @return GoogleCloudDataplexV1DataScan
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -117,6 +147,7 @@ class ProjectsLocationsDataScans extends \Google\Service\Resource
    * IAM policies, see the IAM documentation
    * (https://cloud.google.com/iam/help/conditions/resource-policies).
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -129,7 +160,7 @@ class ProjectsLocationsDataScans extends \Google\Service\Resource
    *
    * @param string $parent Required. The resource name of the parent location:
    * projects/{project}/locations/{location_id} where project refers to a
-   * project_id or project_number and location_id refers to a GCP region.
+   * project_id or project_number and location_id refers to a Google Cloud region.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter Optional. Filter request.
@@ -144,6 +175,7 @@ class ProjectsLocationsDataScans extends \Google\Service\Resource
    * paginating, all other parameters provided to ListDataScans must match the
    * call that provided the page token.
    * @return GoogleCloudDataplexV1ListDataScansResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsDataScans($parent, $optParams = [])
   {
@@ -154,17 +186,19 @@ class ProjectsLocationsDataScans extends \Google\Service\Resource
   /**
    * Updates a DataScan resource. (dataScans.patch)
    *
-   * @param string $name Output only. The relative resource name of the scan, of
-   * the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id},
-   * where project refers to a project_id or project_number and location_id refers
-   * to a GCP region.
+   * @param string $name Output only. Identifier. The relative resource name of
+   * the scan, of the form:
+   * projects/{project}/locations/{location_id}/dataScans/{datascan_id}, where
+   * project refers to a project_id or project_number and location_id refers to a
+   * Google Cloud region.
    * @param GoogleCloudDataplexV1DataScan $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string updateMask Required. Mask of fields to update.
+   * @opt_param string updateMask Optional. Mask of fields to update.
    * @opt_param bool validateOnly Optional. Only validate the request, but do not
    * perform mutations. The default is false.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudDataplexV1DataScan $postBody, $optParams = [])
   {
@@ -178,10 +212,11 @@ class ProjectsLocationsDataScans extends \Google\Service\Resource
    * @param string $name Required. The resource name of the DataScan:
    * projects/{project}/locations/{location_id}/dataScans/{data_scan_id}. where
    * project refers to a project_id or project_number and location_id refers to a
-   * GCP region.Only OnDemand data scans are allowed.
+   * Google Cloud region.Only OnDemand data scans are allowed.
    * @param GoogleCloudDataplexV1RunDataScanRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDataplexV1RunDataScanResponse
+   * @throws \Google\Service\Exception
    */
   public function run($name, GoogleCloudDataplexV1RunDataScanRequest $postBody, $optParams = [])
   {
@@ -201,6 +236,7 @@ class ProjectsLocationsDataScans extends \Google\Service\Resource
    * @param GoogleIamV1SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, GoogleIamV1SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -223,6 +259,7 @@ class ProjectsLocationsDataScans extends \Google\Service\Resource
    * @param GoogleIamV1TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
   {

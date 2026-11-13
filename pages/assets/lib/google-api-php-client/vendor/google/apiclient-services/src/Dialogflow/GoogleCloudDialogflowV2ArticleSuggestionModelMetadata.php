@@ -19,20 +19,23 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowV2ArticleSuggestionModelMetadata extends \Google\Model
 {
+  public const TRAINING_MODEL_TYPE_MODEL_TYPE_UNSPECIFIED = 'MODEL_TYPE_UNSPECIFIED';
+  public const TRAINING_MODEL_TYPE_SMART_REPLY_DUAL_ENCODER_MODEL = 'SMART_REPLY_DUAL_ENCODER_MODEL';
+  public const TRAINING_MODEL_TYPE_SMART_REPLY_BERT_MODEL = 'SMART_REPLY_BERT_MODEL';
   /**
    * @var string
    */
   public $trainingModelType;
 
   /**
-   * @param string
+   * @param self::TRAINING_MODEL_TYPE_* $trainingModelType
    */
   public function setTrainingModelType($trainingModelType)
   {
     $this->trainingModelType = $trainingModelType;
   }
   /**
-   * @return string
+   * @return self::TRAINING_MODEL_TYPE_*
    */
   public function getTrainingModelType()
   {

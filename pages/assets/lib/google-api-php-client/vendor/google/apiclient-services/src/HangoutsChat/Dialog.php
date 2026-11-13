@@ -23,7 +23,9 @@ class Dialog extends \Google\Model
   protected $bodyDataType = '';
 
   /**
-   * @param GoogleAppsCardV1Card
+   * Input only. Body of the dialog, which is rendered in a modal.
+   *
+   * @param GoogleAppsCardV1Card $body
    */
   public function setBody(GoogleAppsCardV1Card $body)
   {

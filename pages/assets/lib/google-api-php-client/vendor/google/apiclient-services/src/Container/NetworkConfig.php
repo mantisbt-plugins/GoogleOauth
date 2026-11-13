@@ -20,54 +20,236 @@ namespace Google\Service\Container;
 class NetworkConfig extends \Google\Model
 {
   /**
+   * Default value.
+   */
+  public const DATAPATH_PROVIDER_DATAPATH_PROVIDER_UNSPECIFIED = 'DATAPATH_PROVIDER_UNSPECIFIED';
+  /**
+   * Use the IPTables implementation based on kube-proxy.
+   */
+  public const DATAPATH_PROVIDER_LEGACY_DATAPATH = 'LEGACY_DATAPATH';
+  /**
+   * Use the eBPF based GKE Dataplane V2 with additional features. See the [GKE
+   * Dataplane V2 documentation](https://cloud.google.com/kubernetes-
+   * engine/docs/how-to/dataplane-v2) for more.
+   */
+  public const DATAPATH_PROVIDER_ADVANCED_DATAPATH = 'ADVANCED_DATAPATH';
+  /**
+   * Cluster has some existing nodes but new nodes should use ADVANCED_DATAPATH.
+   */
+  public const DATAPATH_PROVIDER_MIGRATE_TO_ADVANCED_DATAPATH = 'MIGRATE_TO_ADVANCED_DATAPATH';
+  /**
+   * Cluster has some existing nodes but new nodes should use LEGACY_DATAPATH.
+   */
+  public const DATAPATH_PROVIDER_MIGRATE_TO_LEGACY_DATAPATH = 'MIGRATE_TO_LEGACY_DATAPATH';
+  /**
+   * Unspecified, will be inferred as default -
+   * IN_TRANSIT_ENCRYPTION_UNSPECIFIED.
+   */
+  public const IN_TRANSIT_ENCRYPTION_CONFIG_IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED = 'IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED';
+  /**
+   * In-transit encryption is disabled.
+   */
+  public const IN_TRANSIT_ENCRYPTION_CONFIG_IN_TRANSIT_ENCRYPTION_DISABLED = 'IN_TRANSIT_ENCRYPTION_DISABLED';
+  /**
+   * Data in-transit is encrypted using inter-node transparent encryption.
+   */
+  public const IN_TRANSIT_ENCRYPTION_CONFIG_IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT = 'IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT';
+  /**
+   * Default value. Same as DISABLED
+   */
+  public const PRIVATE_IPV6_GOOGLE_ACCESS_PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED = 'PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED';
+  /**
+   * No private access to or from Google Services
+   */
+  public const PRIVATE_IPV6_GOOGLE_ACCESS_PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED = 'PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED';
+  /**
+   * Enables private IPv6 access to Google Services from GKE
+   */
+  public const PRIVATE_IPV6_GOOGLE_ACCESS_PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE = 'PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE';
+  /**
+   * Enables private IPv6 access to and from Google Services
+   */
+  public const PRIVATE_IPV6_GOOGLE_ACCESS_PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL = 'PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL';
+  protected $ambientNetworkingConfigType = AmbientNetworkingConfig::class;
+  protected $ambientNetworkingConfigDataType = '';
+  /**
+   * The desired datapath provider for this cluster. By default, uses the
+   * IPTables-based kube-proxy implementation.
+   *
    * @var string
    */
   public $datapathProvider;
+  protected $dataplaneV2ConfigType = DataplaneV2Config::class;
+  protected $dataplaneV2ConfigDataType = '';
+  /**
+   * Controls whether by default nodes have private IP addresses only. It is
+   * invalid to specify both PrivateClusterConfig.enablePrivateNodes and this
+   * field at the same time. To update the default setting, use
+   * ClusterUpdate.desired_default_enable_private_nodes
+   *
+   * @var bool
+   */
+  public $defaultEnablePrivateNodes;
   protected $defaultSnatStatusType = DefaultSnatStatus::class;
   protected $defaultSnatStatusDataType = '';
+  /**
+   * Disable L4 load balancer VPC firewalls to enable firewall policies.
+   *
+   * @var bool
+   */
+  public $disableL4LbFirewallReconciliation;
   protected $dnsConfigType = DNSConfig::class;
   protected $dnsConfigDataType = '';
   /**
+   * Whether CiliumClusterwideNetworkPolicy is enabled on this cluster.
+   *
+   * @var bool
+   */
+  public $enableCiliumClusterwideNetworkPolicy;
+  /**
+   * Whether FQDN Network Policy is enabled on this cluster.
+   *
+   * @var bool
+   */
+  public $enableFqdnNetworkPolicy;
+  /**
+   * Whether Intra-node visibility is enabled for this cluster. This makes same
+   * node pod to pod traffic visible for VPC network.
+   *
    * @var bool
    */
   public $enableIntraNodeVisibility;
   /**
+   * Whether L4ILB Subsetting is enabled for this cluster.
+   *
    * @var bool
    */
   public $enableL4ilbSubsetting;
+  /**
+   * Whether multi-networking is enabled for this cluster.
+   *
+   * @var bool
+   */
+  public $enableMultiNetworking;
   protected $gatewayApiConfigType = GatewayAPIConfig::class;
   protected $gatewayApiConfigDataType = '';
   /**
+   * Specify the details of in-transit encryption. Now named inter-node
+   * transparent encryption.
+   *
+   * @var string
+   */
+  public $inTransitEncryptionConfig;
+  /**
+   * Output only. The relative name of the Google Compute Engine
+   * [network](https://cloud.google.com/compute/docs/networks-and-
+   * firewalls#networks) to which the cluster is connected. Example:
+   * projects/my-project/global/networks/my-network
+   *
    * @var string
    */
   public $network;
+  protected $networkPerformanceConfigType = ClusterNetworkPerformanceConfig::class;
+  protected $networkPerformanceConfigDataType = '';
   /**
+   * The desired state of IPv6 connectivity to Google Services. By default, no
+   * private IPv6 access to or from Google Services (all access will be via
+   * IPv4)
+   *
    * @var string
    */
   public $privateIpv6GoogleAccess;
   protected $serviceExternalIpsConfigType = ServiceExternalIPsConfig::class;
   protected $serviceExternalIpsConfigDataType = '';
   /**
+   * Output only. The relative name of the Google Compute Engine
+   * [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
+   * cluster is connected. Example: projects/my-project/regions/us-
+   * central1/subnetworks/my-subnet
+   *
    * @var string
    */
   public $subnetwork;
 
   /**
-   * @param string
+   * Optional. Contains the desired config of Ambient Networking mode on this
+   * cluster.
+   *
+   * @param AmbientNetworkingConfig $ambientNetworkingConfig
+   */
+  public function setAmbientNetworkingConfig(AmbientNetworkingConfig $ambientNetworkingConfig)
+  {
+    $this->ambientNetworkingConfig = $ambientNetworkingConfig;
+  }
+  /**
+   * @return AmbientNetworkingConfig
+   */
+  public function getAmbientNetworkingConfig()
+  {
+    return $this->ambientNetworkingConfig;
+  }
+  /**
+   * The desired datapath provider for this cluster. By default, uses the
+   * IPTables-based kube-proxy implementation.
+   *
+   * Accepted values: DATAPATH_PROVIDER_UNSPECIFIED, LEGACY_DATAPATH,
+   * ADVANCED_DATAPATH, MIGRATE_TO_ADVANCED_DATAPATH, MIGRATE_TO_LEGACY_DATAPATH
+   *
+   * @param self::DATAPATH_PROVIDER_* $datapathProvider
    */
   public function setDatapathProvider($datapathProvider)
   {
     $this->datapathProvider = $datapathProvider;
   }
   /**
-   * @return string
+   * @return self::DATAPATH_PROVIDER_*
    */
   public function getDatapathProvider()
   {
     return $this->datapathProvider;
   }
   /**
-   * @param DefaultSnatStatus
+   * Optional. DataplaneV2Config specifies the DPv2 configuration.
+   *
+   * @param DataplaneV2Config $dataplaneV2Config
+   */
+  public function setDataplaneV2Config(DataplaneV2Config $dataplaneV2Config)
+  {
+    $this->dataplaneV2Config = $dataplaneV2Config;
+  }
+  /**
+   * @return DataplaneV2Config
+   */
+  public function getDataplaneV2Config()
+  {
+    return $this->dataplaneV2Config;
+  }
+  /**
+   * Controls whether by default nodes have private IP addresses only. It is
+   * invalid to specify both PrivateClusterConfig.enablePrivateNodes and this
+   * field at the same time. To update the default setting, use
+   * ClusterUpdate.desired_default_enable_private_nodes
+   *
+   * @param bool $defaultEnablePrivateNodes
+   */
+  public function setDefaultEnablePrivateNodes($defaultEnablePrivateNodes)
+  {
+    $this->defaultEnablePrivateNodes = $defaultEnablePrivateNodes;
+  }
+  /**
+   * @return bool
+   */
+  public function getDefaultEnablePrivateNodes()
+  {
+    return $this->defaultEnablePrivateNodes;
+  }
+  /**
+   * Whether the cluster disables default in-node sNAT rules. In-node sNAT rules
+   * will be disabled when default_snat_status is disabled. When disabled is set
+   * to false, default IP masquerade rules will be applied to the nodes to
+   * prevent sNAT on cluster internal traffic.
+   *
+   * @param DefaultSnatStatus $defaultSnatStatus
    */
   public function setDefaultSnatStatus(DefaultSnatStatus $defaultSnatStatus)
   {
@@ -81,7 +263,25 @@ class NetworkConfig extends \Google\Model
     return $this->defaultSnatStatus;
   }
   /**
-   * @param DNSConfig
+   * Disable L4 load balancer VPC firewalls to enable firewall policies.
+   *
+   * @param bool $disableL4LbFirewallReconciliation
+   */
+  public function setDisableL4LbFirewallReconciliation($disableL4LbFirewallReconciliation)
+  {
+    $this->disableL4LbFirewallReconciliation = $disableL4LbFirewallReconciliation;
+  }
+  /**
+   * @return bool
+   */
+  public function getDisableL4LbFirewallReconciliation()
+  {
+    return $this->disableL4LbFirewallReconciliation;
+  }
+  /**
+   * DNSConfig contains clusterDNS config for this cluster.
+   *
+   * @param DNSConfig $dnsConfig
    */
   public function setDnsConfig(DNSConfig $dnsConfig)
   {
@@ -95,7 +295,42 @@ class NetworkConfig extends \Google\Model
     return $this->dnsConfig;
   }
   /**
-   * @param bool
+   * Whether CiliumClusterwideNetworkPolicy is enabled on this cluster.
+   *
+   * @param bool $enableCiliumClusterwideNetworkPolicy
+   */
+  public function setEnableCiliumClusterwideNetworkPolicy($enableCiliumClusterwideNetworkPolicy)
+  {
+    $this->enableCiliumClusterwideNetworkPolicy = $enableCiliumClusterwideNetworkPolicy;
+  }
+  /**
+   * @return bool
+   */
+  public function getEnableCiliumClusterwideNetworkPolicy()
+  {
+    return $this->enableCiliumClusterwideNetworkPolicy;
+  }
+  /**
+   * Whether FQDN Network Policy is enabled on this cluster.
+   *
+   * @param bool $enableFqdnNetworkPolicy
+   */
+  public function setEnableFqdnNetworkPolicy($enableFqdnNetworkPolicy)
+  {
+    $this->enableFqdnNetworkPolicy = $enableFqdnNetworkPolicy;
+  }
+  /**
+   * @return bool
+   */
+  public function getEnableFqdnNetworkPolicy()
+  {
+    return $this->enableFqdnNetworkPolicy;
+  }
+  /**
+   * Whether Intra-node visibility is enabled for this cluster. This makes same
+   * node pod to pod traffic visible for VPC network.
+   *
+   * @param bool $enableIntraNodeVisibility
    */
   public function setEnableIntraNodeVisibility($enableIntraNodeVisibility)
   {
@@ -109,7 +344,9 @@ class NetworkConfig extends \Google\Model
     return $this->enableIntraNodeVisibility;
   }
   /**
-   * @param bool
+   * Whether L4ILB Subsetting is enabled for this cluster.
+   *
+   * @param bool $enableL4ilbSubsetting
    */
   public function setEnableL4ilbSubsetting($enableL4ilbSubsetting)
   {
@@ -123,7 +360,26 @@ class NetworkConfig extends \Google\Model
     return $this->enableL4ilbSubsetting;
   }
   /**
-   * @param GatewayAPIConfig
+   * Whether multi-networking is enabled for this cluster.
+   *
+   * @param bool $enableMultiNetworking
+   */
+  public function setEnableMultiNetworking($enableMultiNetworking)
+  {
+    $this->enableMultiNetworking = $enableMultiNetworking;
+  }
+  /**
+   * @return bool
+   */
+  public function getEnableMultiNetworking()
+  {
+    return $this->enableMultiNetworking;
+  }
+  /**
+   * GatewayAPIConfig contains the desired config of Gateway API on this
+   * cluster.
+   *
+   * @param GatewayAPIConfig $gatewayApiConfig
    */
   public function setGatewayApiConfig(GatewayAPIConfig $gatewayApiConfig)
   {
@@ -137,7 +393,33 @@ class NetworkConfig extends \Google\Model
     return $this->gatewayApiConfig;
   }
   /**
-   * @param string
+   * Specify the details of in-transit encryption. Now named inter-node
+   * transparent encryption.
+   *
+   * Accepted values: IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED,
+   * IN_TRANSIT_ENCRYPTION_DISABLED,
+   * IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT
+   *
+   * @param self::IN_TRANSIT_ENCRYPTION_CONFIG_* $inTransitEncryptionConfig
+   */
+  public function setInTransitEncryptionConfig($inTransitEncryptionConfig)
+  {
+    $this->inTransitEncryptionConfig = $inTransitEncryptionConfig;
+  }
+  /**
+   * @return self::IN_TRANSIT_ENCRYPTION_CONFIG_*
+   */
+  public function getInTransitEncryptionConfig()
+  {
+    return $this->inTransitEncryptionConfig;
+  }
+  /**
+   * Output only. The relative name of the Google Compute Engine
+   * [network](https://cloud.google.com/compute/docs/networks-and-
+   * firewalls#networks) to which the cluster is connected. Example:
+   * projects/my-project/global/networks/my-network
+   *
+   * @param string $network
    */
   public function setNetwork($network)
   {
@@ -151,21 +433,48 @@ class NetworkConfig extends \Google\Model
     return $this->network;
   }
   /**
-   * @param string
+   * Network bandwidth tier configuration.
+   *
+   * @param ClusterNetworkPerformanceConfig $networkPerformanceConfig
+   */
+  public function setNetworkPerformanceConfig(ClusterNetworkPerformanceConfig $networkPerformanceConfig)
+  {
+    $this->networkPerformanceConfig = $networkPerformanceConfig;
+  }
+  /**
+   * @return ClusterNetworkPerformanceConfig
+   */
+  public function getNetworkPerformanceConfig()
+  {
+    return $this->networkPerformanceConfig;
+  }
+  /**
+   * The desired state of IPv6 connectivity to Google Services. By default, no
+   * private IPv6 access to or from Google Services (all access will be via
+   * IPv4)
+   *
+   * Accepted values: PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED,
+   * PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED, PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE,
+   * PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL
+   *
+   * @param self::PRIVATE_IPV6_GOOGLE_ACCESS_* $privateIpv6GoogleAccess
    */
   public function setPrivateIpv6GoogleAccess($privateIpv6GoogleAccess)
   {
     $this->privateIpv6GoogleAccess = $privateIpv6GoogleAccess;
   }
   /**
-   * @return string
+   * @return self::PRIVATE_IPV6_GOOGLE_ACCESS_*
    */
   public function getPrivateIpv6GoogleAccess()
   {
     return $this->privateIpv6GoogleAccess;
   }
   /**
-   * @param ServiceExternalIPsConfig
+   * ServiceExternalIPsConfig specifies if services with externalIPs field are
+   * blocked or not.
+   *
+   * @param ServiceExternalIPsConfig $serviceExternalIpsConfig
    */
   public function setServiceExternalIpsConfig(ServiceExternalIPsConfig $serviceExternalIpsConfig)
   {
@@ -179,7 +488,12 @@ class NetworkConfig extends \Google\Model
     return $this->serviceExternalIpsConfig;
   }
   /**
-   * @param string
+   * Output only. The relative name of the Google Compute Engine
+   * [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
+   * cluster is connected. Example: projects/my-project/regions/us-
+   * central1/subnetworks/my-subnet
+   *
+   * @param string $subnetwork
    */
   public function setSubnetwork($subnetwork)
   {

@@ -40,6 +40,8 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription extends \Google\Coll
   public $freeTrialEndTime;
   protected $lineItemsType = GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem::class;
   protected $lineItemsDataType = 'array';
+  protected $migrationDetailsType = GoogleCloudPaymentsResellerSubscriptionV1SubscriptionMigrationDetails::class;
+  protected $migrationDetailsDataType = '';
   /**
    * @var string
    */
@@ -62,6 +64,10 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription extends \Google\Coll
    * @var string[]
    */
   public $promotions;
+  /**
+   * @var string
+   */
+  public $purchaseTime;
   /**
    * @var string
    */
@@ -168,6 +174,20 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription extends \Google\Coll
     return $this->lineItems;
   }
   /**
+   * @param GoogleCloudPaymentsResellerSubscriptionV1SubscriptionMigrationDetails
+   */
+  public function setMigrationDetails(GoogleCloudPaymentsResellerSubscriptionV1SubscriptionMigrationDetails $migrationDetails)
+  {
+    $this->migrationDetails = $migrationDetails;
+  }
+  /**
+   * @return GoogleCloudPaymentsResellerSubscriptionV1SubscriptionMigrationDetails
+   */
+  public function getMigrationDetails()
+  {
+    return $this->migrationDetails;
+  }
+  /**
    * @param string
    */
   public function setName($name)
@@ -250,6 +270,20 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription extends \Google\Coll
   public function getPromotions()
   {
     return $this->promotions;
+  }
+  /**
+   * @param string
+   */
+  public function setPurchaseTime($purchaseTime)
+  {
+    $this->purchaseTime = $purchaseTime;
+  }
+  /**
+   * @return string
+   */
+  public function getPurchaseTime()
+  {
+    return $this->purchaseTime;
   }
   /**
    * @param string

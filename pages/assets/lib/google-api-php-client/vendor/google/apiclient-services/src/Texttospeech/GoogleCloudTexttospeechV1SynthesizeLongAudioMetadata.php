@@ -19,12 +19,44 @@ namespace Google\Service\Texttospeech;
 
 class GoogleCloudTexttospeechV1SynthesizeLongAudioMetadata extends \Google\Model
 {
+  /**
+   * Deprecated. Do not use.
+   *
+   * @deprecated
+   * @var string
+   */
+  public $lastUpdateTime;
+  /**
+   * The progress of the most recent processing update in percentage, ie. 70.0%.
+   *
+   * @var 
+   */
   public $progressPercentage;
   /**
+   * Time when the request was received.
+   *
    * @var string
    */
   public $startTime;
 
+  /**
+   * Deprecated. Do not use.
+   *
+   * @deprecated
+   * @param string $lastUpdateTime
+   */
+  public function setLastUpdateTime($lastUpdateTime)
+  {
+    $this->lastUpdateTime = $lastUpdateTime;
+  }
+  /**
+   * @deprecated
+   * @return string
+   */
+  public function getLastUpdateTime()
+  {
+    return $this->lastUpdateTime;
+  }
   public function setProgressPercentage($progressPercentage)
   {
     $this->progressPercentage = $progressPercentage;
@@ -34,7 +66,9 @@ class GoogleCloudTexttospeechV1SynthesizeLongAudioMetadata extends \Google\Model
     return $this->progressPercentage;
   }
   /**
-   * @param string
+   * Time when the request was received.
+   *
+   * @param string $startTime
    */
   public function setStartTime($startTime)
   {

@@ -33,7 +33,7 @@ class GoogleCloudDialogflowV2beta1SmartReplyAnswer extends \Google\Model
   public $reply;
 
   /**
-   * @param string
+   * @param string $answerRecord
    */
   public function setAnswerRecord($answerRecord)
   {
@@ -47,7 +47,7 @@ class GoogleCloudDialogflowV2beta1SmartReplyAnswer extends \Google\Model
     return $this->answerRecord;
   }
   /**
-   * @param float
+   * @param float $confidence
    */
   public function setConfidence($confidence)
   {
@@ -61,7 +61,7 @@ class GoogleCloudDialogflowV2beta1SmartReplyAnswer extends \Google\Model
     return $this->confidence;
   }
   /**
-   * @param string
+   * @param string $reply
    */
   public function setReply($reply)
   {

@@ -20,28 +20,77 @@ namespace Google\Service\Pubsub;
 class Schema extends \Google\Model
 {
   /**
+   * Default value. This value is unused.
+   */
+  public const TYPE_TYPE_UNSPECIFIED = 'TYPE_UNSPECIFIED';
+  /**
+   * A Protocol Buffer schema definition.
+   */
+  public const TYPE_PROTOCOL_BUFFER = 'PROTOCOL_BUFFER';
+  /**
+   * An Avro schema definition.
+   */
+  public const TYPE_AVRO = 'AVRO';
+  protected $compiledProtoSchemaType = CompiledProtoSchema::class;
+  protected $compiledProtoSchemaDataType = '';
+  /**
+   * The definition of the schema. This should contain a string representing the
+   * full definition of the schema that is a valid schema definition of the type
+   * specified in `type`.
+   *
    * @var string
    */
   public $definition;
   /**
+   * Required. Name of the schema. Format is
+   * `projects/{project}/schemas/{schema}`.
+   *
    * @var string
    */
   public $name;
   /**
+   * Output only. The timestamp that the revision was created.
+   *
    * @var string
    */
   public $revisionCreateTime;
   /**
+   * Output only. Immutable. The revision ID of the schema.
+   *
    * @var string
    */
   public $revisionId;
   /**
+   * The type of the schema definition.
+   *
    * @var string
    */
   public $type;
 
   /**
-   * @param string
+   * Optional. Configuration for a schema provided as a pre-compiled Protocol
+   * Buffer FileDescriptorSet. The `type` field above must be set to
+   * PROTOCOL_BUFFER.
+   *
+   * @param CompiledProtoSchema $compiledProtoSchema
+   */
+  public function setCompiledProtoSchema(CompiledProtoSchema $compiledProtoSchema)
+  {
+    $this->compiledProtoSchema = $compiledProtoSchema;
+  }
+  /**
+   * @return CompiledProtoSchema
+   */
+  public function getCompiledProtoSchema()
+  {
+    return $this->compiledProtoSchema;
+  }
+  /**
+   * The definition of the schema. This should contain a string representing the
+   * full definition of the schema that is a valid schema definition of the type
+   * specified in `type`.
+   *
+   * @param string $definition
    */
   public function setDefinition($definition)
   {
@@ -55,7 +104,10 @@ class Schema extends \Google\Model
     return $this->definition;
   }
   /**
-   * @param string
+   * Required. Name of the schema. Format is
+   * `projects/{project}/schemas/{schema}`.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -69,7 +121,9 @@ class Schema extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * Output only. The timestamp that the revision was created.
+   *
+   * @param string $revisionCreateTime
    */
   public function setRevisionCreateTime($revisionCreateTime)
   {
@@ -83,7 +137,9 @@ class Schema extends \Google\Model
     return $this->revisionCreateTime;
   }
   /**
-   * @param string
+   * Output only. Immutable. The revision ID of the schema.
+   *
+   * @param string $revisionId
    */
   public function setRevisionId($revisionId)
   {
@@ -97,14 +153,18 @@ class Schema extends \Google\Model
     return $this->revisionId;
   }
   /**
-   * @param string
+   * The type of the schema definition.
+   *
+   * Accepted values: TYPE_UNSPECIFIED, PROTOCOL_BUFFER, AVRO
+   *
+   * @param self::TYPE_* $type
    */
   public function setType($type)
   {
     $this->type = $type;
   }
   /**
-   * @return string
+   * @return self::TYPE_*
    */
   public function getType()
   {

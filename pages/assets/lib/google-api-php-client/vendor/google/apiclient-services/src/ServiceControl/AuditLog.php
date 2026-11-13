@@ -20,25 +20,53 @@ namespace Google\Service\ServiceControl;
 class AuditLog extends \Google\Collection
 {
   protected $collection_key = 'authorizationInfo';
+  /**
+   * The API version identifier of the operation that uses interface based
+   * versioning (IBV). For example, `"2026-01-01-preview"`. The version
+   * identifier generally follows the format of [variant_]date[_decorator]. It
+   * should not be parsed because the exact format varies across services.
+   *
+   * @var string
+   */
+  public $apiVersionIdentifier;
   protected $authenticationInfoType = AuthenticationInfo::class;
   protected $authenticationInfoDataType = '';
   protected $authorizationInfoType = AuthorizationInfo::class;
   protected $authorizationInfoDataType = 'array';
+  protected $callerAgentType = CallerAgent::class;
+  protected $callerAgentDataType = '';
   /**
+   * Other service-specific data about the request, response, and other
+   * information associated with the current audited event.
+   *
    * @var array[]
    */
   public $metadata;
   /**
+   * The name of the service method or operation. For API calls, this should be
+   * the name of the API method. For example,
+   * "google.cloud.bigquery.v2.TableService.InsertTable"
+   * "google.logging.v2.ConfigServiceV2.CreateSink"
+   *
    * @var string
    */
   public $methodName;
   /**
+   * The number of items returned from a List or Query API method, if
+   * applicable.
+   *
    * @var string
    */
   public $numResponseItems;
   protected $policyViolationInfoType = PolicyViolationInfo::class;
   protected $policyViolationInfoDataType = '';
   /**
+   * The operation request. This may not include all request parameters, such as
+   * those that are too large, privacy-sensitive, or duplicated elsewhere in the
+   * log record. It should never include user-generated data, such as file
+   * contents. When the JSON object represented here has a proto equivalent, the
+   * proto name will be indicated in the `@type` property.
+   *
    * @var array[]
    */
   public $request;
@@ -47,22 +75,47 @@ class AuditLog extends \Google\Collection
   protected $resourceLocationType = ResourceLocation::class;
   protected $resourceLocationDataType = '';
   /**
+   * The resource or collection that is the target of the operation. The name is
+   * a scheme-less URI, not including the API service name. For example:
+   * "projects/PROJECT_ID/zones/us-central1-a/instances"
+   * "projects/PROJECT_ID/datasets/DATASET_ID"
+   *
    * @var string
    */
   public $resourceName;
   /**
+   * The resource's original state before mutation. Present only for operations
+   * which have successfully modified the targeted resource(s). In general, this
+   * field should contain all changed fields, except those that are already been
+   * included in `request`, `response`, `metadata` or `service_data` fields.
+   * When the JSON object represented here has a proto equivalent, the proto
+   * name will be indicated in the `@type` property.
+   *
    * @var array[]
    */
   public $resourceOriginalState;
   /**
+   * The operation response. This may not include all response elements, such as
+   * those that are too large, privacy-sensitive, or duplicated elsewhere in the
+   * log record. It should never include user-generated data, such as file
+   * contents. When the JSON object represented here has a proto equivalent, the
+   * proto name will be indicated in the `@type` property.
+   *
    * @var array[]
    */
   public $response;
   /**
+   * Deprecated. Use the `metadata` field instead. Other service-specific data
+   * about the request, response, and other activities.
+   *
+   * @deprecated
    * @var array[]
    */
   public $serviceData;
   /**
+   * The name of the API service performing the operation. For example,
+   * `"compute.googleapis.com"`.
+   *
    * @var string
    */
   public $serviceName;
@@ -70,7 +123,28 @@ class AuditLog extends \Google\Collection
   protected $statusDataType = '';
 
   /**
-   * @param AuthenticationInfo
+   * The API version identifier of the operation that uses interface based
+   * versioning (IBV). For example, `"2026-01-01-preview"`. The version
+   * identifier generally follows the format of [variant_]date[_decorator]. It
+   * should not be parsed because the exact format varies across services.
+   *
+   * @param string $apiVersionIdentifier
+   */
+  public function setApiVersionIdentifier($apiVersionIdentifier)
+  {
+    $this->apiVersionIdentifier = $apiVersionIdentifier;
+  }
+  /**
+   * @return string
+   */
+  public function getApiVersionIdentifier()
+  {
+    return $this->apiVersionIdentifier;
+  }
+  /**
+   * Authentication information.
+   *
+   * @param AuthenticationInfo $authenticationInfo
    */
   public function setAuthenticationInfo(AuthenticationInfo $authenticationInfo)
   {
@@ -84,7 +158,11 @@ class AuditLog extends \Google\Collection
     return $this->authenticationInfo;
   }
   /**
-   * @param AuthorizationInfo[]
+   * Authorization information. If there are multiple resources or permissions
+   * involved, then there is one AuthorizationInfo element for each {resource,
+   * permission} tuple.
+   *
+   * @param AuthorizationInfo[] $authorizationInfo
    */
   public function setAuthorizationInfo($authorizationInfo)
   {
@@ -98,7 +176,26 @@ class AuditLog extends \Google\Collection
     return $this->authorizationInfo;
   }
   /**
-   * @param array[]
+   * Information set when the caller is an agent.
+   *
+   * @param CallerAgent $callerAgent
+   */
+  public function setCallerAgent(CallerAgent $callerAgent)
+  {
+    $this->callerAgent = $callerAgent;
+  }
+  /**
+   * @return CallerAgent
+   */
+  public function getCallerAgent()
+  {
+    return $this->callerAgent;
+  }
+  /**
+   * Other service-specific data about the request, response, and other
+   * information associated with the current audited event.
+   *
+   * @param array[] $metadata
    */
   public function setMetadata($metadata)
   {
@@ -112,7 +209,12 @@ class AuditLog extends \Google\Collection
     return $this->metadata;
   }
   /**
-   * @param string
+   * The name of the service method or operation. For API calls, this should be
+   * the name of the API method. For example,
+   * "google.cloud.bigquery.v2.TableService.InsertTable"
+   * "google.logging.v2.ConfigServiceV2.CreateSink"
+   *
+   * @param string $methodName
    */
   public function setMethodName($methodName)
   {
@@ -126,7 +228,10 @@ class AuditLog extends \Google\Collection
     return $this->methodName;
   }
   /**
-   * @param string
+   * The number of items returned from a List or Query API method, if
+   * applicable.
+   *
+   * @param string $numResponseItems
    */
   public function setNumResponseItems($numResponseItems)
   {
@@ -140,7 +245,10 @@ class AuditLog extends \Google\Collection
     return $this->numResponseItems;
   }
   /**
-   * @param PolicyViolationInfo
+   * Indicates the policy violations for this request. If the request is denied
+   * by the policy, violation information will be logged here.
+   *
+   * @param PolicyViolationInfo $policyViolationInfo
    */
   public function setPolicyViolationInfo(PolicyViolationInfo $policyViolationInfo)
   {
@@ -154,7 +262,13 @@ class AuditLog extends \Google\Collection
     return $this->policyViolationInfo;
   }
   /**
-   * @param array[]
+   * The operation request. This may not include all request parameters, such as
+   * those that are too large, privacy-sensitive, or duplicated elsewhere in the
+   * log record. It should never include user-generated data, such as file
+   * contents. When the JSON object represented here has a proto equivalent, the
+   * proto name will be indicated in the `@type` property.
+   *
+   * @param array[] $request
    */
   public function setRequest($request)
   {
@@ -168,7 +282,9 @@ class AuditLog extends \Google\Collection
     return $this->request;
   }
   /**
-   * @param RequestMetadata
+   * Metadata about the operation.
+   *
+   * @param RequestMetadata $requestMetadata
    */
   public function setRequestMetadata(RequestMetadata $requestMetadata)
   {
@@ -182,7 +298,9 @@ class AuditLog extends \Google\Collection
     return $this->requestMetadata;
   }
   /**
-   * @param ResourceLocation
+   * The resource location information.
+   *
+   * @param ResourceLocation $resourceLocation
    */
   public function setResourceLocation(ResourceLocation $resourceLocation)
   {
@@ -196,7 +314,12 @@ class AuditLog extends \Google\Collection
     return $this->resourceLocation;
   }
   /**
-   * @param string
+   * The resource or collection that is the target of the operation. The name is
+   * a scheme-less URI, not including the API service name. For example:
+   * "projects/PROJECT_ID/zones/us-central1-a/instances"
+   * "projects/PROJECT_ID/datasets/DATASET_ID"
+   *
+   * @param string $resourceName
    */
   public function setResourceName($resourceName)
   {
@@ -210,7 +333,14 @@ class AuditLog extends \Google\Collection
     return $this->resourceName;
   }
   /**
-   * @param array[]
+   * The resource's original state before mutation. Present only for operations
+   * which have successfully modified the targeted resource(s). In general, this
+   * field should contain all changed fields, except those that are already been
+   * included in `request`, `response`, `metadata` or `service_data` fields.
+   * When the JSON object represented here has a proto equivalent, the proto
+   * name will be indicated in the `@type` property.
+   *
+   * @param array[] $resourceOriginalState
    */
   public function setResourceOriginalState($resourceOriginalState)
   {
@@ -224,7 +354,13 @@ class AuditLog extends \Google\Collection
     return $this->resourceOriginalState;
   }
   /**
-   * @param array[]
+   * The operation response. This may not include all response elements, such as
+   * those that are too large, privacy-sensitive, or duplicated elsewhere in the
+   * log record. It should never include user-generated data, such as file
+   * contents. When the JSON object represented here has a proto equivalent, the
+   * proto name will be indicated in the `@type` property.
+   *
+   * @param array[] $response
    */
   public function setResponse($response)
   {
@@ -238,13 +374,18 @@ class AuditLog extends \Google\Collection
     return $this->response;
   }
   /**
-   * @param array[]
+   * Deprecated. Use the `metadata` field instead. Other service-specific data
+   * about the request, response, and other activities.
+   *
+   * @deprecated
+   * @param array[] $serviceData
    */
   public function setServiceData($serviceData)
   {
     $this->serviceData = $serviceData;
   }
   /**
+   * @deprecated
    * @return array[]
    */
   public function getServiceData()
@@ -252,7 +393,10 @@ class AuditLog extends \Google\Collection
     return $this->serviceData;
   }
   /**
-   * @param string
+   * The name of the API service performing the operation. For example,
+   * `"compute.googleapis.com"`.
+   *
+   * @param string $serviceName
    */
   public function setServiceName($serviceName)
   {
@@ -266,7 +410,9 @@ class AuditLog extends \Google\Collection
     return $this->serviceName;
   }
   /**
-   * @param Status
+   * The status of the overall operation.
+   *
+   * @param Status $status
    */
   public function setStatus(Status $status)
   {

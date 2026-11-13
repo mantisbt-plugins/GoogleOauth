@@ -1,36 +1,15 @@
 {
-    "name": "google/apiclient",
+    "name": "googleoauth-plugin/google-api-client",
+    "description": "Bundled google/apiclient for the MantisBT GoogleOauth plugin",
     "type": "library",
-    "description": "Client library for Google APIs",
-    "keywords": ["google"],
-    "homepage": "http://developers.google.com/api-client-library/php",
-    "license": "Apache-2.0",
     "require": {
-        "php": ">=8.0",
-        "google/auth": "^1.28",
-        "google/apiclient-services": "^0.300",
-        "firebase/php-jwt": "^6.0",
-        "monolog/monolog": "^2.0|^3.0",
-        "guzzlehttp/guzzle": "^7.0",
-        "guzzlehttp/psr7": "^1.4|^2.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9|^10"
-    },
-    "autoload": {
-        "psr-4": {
-            "Google\\": "src/Google/"
-        },
-        "files": [
-            "src/Google/aliases.php"
-        ]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.x-dev"
-        }
+        "php": ">=7.4",
+        "google/apiclient": "^2.15"
     },
     "config": {
+        "allow-plugins": {
+            "google/apiclient-services": true
+        },
         "audit": {
             "ignore": ["PKSA-y2cr-5h3j-g3ys"]
         }

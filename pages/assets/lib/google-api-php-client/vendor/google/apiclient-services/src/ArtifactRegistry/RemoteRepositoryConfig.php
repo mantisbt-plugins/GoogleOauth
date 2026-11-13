@@ -19,21 +19,75 @@ namespace Google\Service\ArtifactRegistry;
 
 class RemoteRepositoryConfig extends \Google\Model
 {
+  protected $aptRepositoryType = AptRepository::class;
+  protected $aptRepositoryDataType = '';
+  protected $commonRepositoryType = CommonRemoteRepository::class;
+  protected $commonRepositoryDataType = '';
   /**
+   * The description of the remote source.
+   *
    * @var string
    */
   public $description;
+  /**
+   * Input only. A create/update remote repo option to avoid making a HEAD/GET
+   * request to validate a remote repo and any supplied upstream credentials.
+   *
+   * @var bool
+   */
+  public $disableUpstreamValidation;
   protected $dockerRepositoryType = DockerRepository::class;
   protected $dockerRepositoryDataType = '';
   protected $mavenRepositoryType = MavenRepository::class;
   protected $mavenRepositoryDataType = '';
+  protected $noCacheType = NoCacheFetching::class;
+  protected $noCacheDataType = '';
   protected $npmRepositoryType = NpmRepository::class;
   protected $npmRepositoryDataType = '';
   protected $pythonRepositoryType = PythonRepository::class;
   protected $pythonRepositoryDataType = '';
+  protected $upstreamCredentialsType = UpstreamCredentials::class;
+  protected $upstreamCredentialsDataType = '';
+  protected $yumRepositoryType = YumRepository::class;
+  protected $yumRepositoryDataType = '';
 
   /**
-   * @param string
+   * Specific settings for an Apt remote repository.
+   *
+   * @param AptRepository $aptRepository
+   */
+  public function setAptRepository(AptRepository $aptRepository)
+  {
+    $this->aptRepository = $aptRepository;
+  }
+  /**
+   * @return AptRepository
+   */
+  public function getAptRepository()
+  {
+    return $this->aptRepository;
+  }
+  /**
+   * Common remote repository settings. Used as the remote repository upstream
+   * URL.
+   *
+   * @param CommonRemoteRepository $commonRepository
+   */
+  public function setCommonRepository(CommonRemoteRepository $commonRepository)
+  {
+    $this->commonRepository = $commonRepository;
+  }
+  /**
+   * @return CommonRemoteRepository
+   */
+  public function getCommonRepository()
+  {
+    return $this->commonRepository;
+  }
+  /**
+   * The description of the remote source.
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -47,7 +101,26 @@ class RemoteRepositoryConfig extends \Google\Model
     return $this->description;
   }
   /**
-   * @param DockerRepository
+   * Input only. A create/update remote repo option to avoid making a HEAD/GET
+   * request to validate a remote repo and any supplied upstream credentials.
+   *
+   * @param bool $disableUpstreamValidation
+   */
+  public function setDisableUpstreamValidation($disableUpstreamValidation)
+  {
+    $this->disableUpstreamValidation = $disableUpstreamValidation;
+  }
+  /**
+   * @return bool
+   */
+  public function getDisableUpstreamValidation()
+  {
+    return $this->disableUpstreamValidation;
+  }
+  /**
+   * Specific settings for a Docker remote repository.
+   *
+   * @param DockerRepository $dockerRepository
    */
   public function setDockerRepository(DockerRepository $dockerRepository)
   {
@@ -61,7 +134,9 @@ class RemoteRepositoryConfig extends \Google\Model
     return $this->dockerRepository;
   }
   /**
-   * @param MavenRepository
+   * Specific settings for a Maven remote repository.
+   *
+   * @param MavenRepository $mavenRepository
    */
   public function setMavenRepository(MavenRepository $mavenRepository)
   {
@@ -75,7 +150,25 @@ class RemoteRepositoryConfig extends \Google\Model
     return $this->mavenRepository;
   }
   /**
-   * @param NpmRepository
+   * The remote repository will act as a non-caching proxy.
+   *
+   * @param NoCacheFetching $noCache
+   */
+  public function setNoCache(NoCacheFetching $noCache)
+  {
+    $this->noCache = $noCache;
+  }
+  /**
+   * @return NoCacheFetching
+   */
+  public function getNoCache()
+  {
+    return $this->noCache;
+  }
+  /**
+   * Specific settings for an Npm remote repository.
+   *
+   * @param NpmRepository $npmRepository
    */
   public function setNpmRepository(NpmRepository $npmRepository)
   {
@@ -89,7 +182,9 @@ class RemoteRepositoryConfig extends \Google\Model
     return $this->npmRepository;
   }
   /**
-   * @param PythonRepository
+   * Specific settings for a Python remote repository.
+   *
+   * @param PythonRepository $pythonRepository
    */
   public function setPythonRepository(PythonRepository $pythonRepository)
   {
@@ -101,6 +196,38 @@ class RemoteRepositoryConfig extends \Google\Model
   public function getPythonRepository()
   {
     return $this->pythonRepository;
+  }
+  /**
+   * Optional. The credentials used to access the remote repository.
+   *
+   * @param UpstreamCredentials $upstreamCredentials
+   */
+  public function setUpstreamCredentials(UpstreamCredentials $upstreamCredentials)
+  {
+    $this->upstreamCredentials = $upstreamCredentials;
+  }
+  /**
+   * @return UpstreamCredentials
+   */
+  public function getUpstreamCredentials()
+  {
+    return $this->upstreamCredentials;
+  }
+  /**
+   * Specific settings for a Yum remote repository.
+   *
+   * @param YumRepository $yumRepository
+   */
+  public function setYumRepository(YumRepository $yumRepository)
+  {
+    $this->yumRepository = $yumRepository;
+  }
+  /**
+   * @return YumRepository
+   */
+  public function getYumRepository()
+  {
+    return $this->yumRepository;
   }
 }
 

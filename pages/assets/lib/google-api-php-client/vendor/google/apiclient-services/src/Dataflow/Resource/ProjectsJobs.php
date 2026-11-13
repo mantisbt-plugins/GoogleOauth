@@ -34,24 +34,40 @@ use Google\Service\Dataflow\SnapshotJobRequest;
 class ProjectsJobs extends \Google\Service\Resource
 {
   /**
-   * List the jobs of a project across all regions. (jobs.aggregated)
+   * List the jobs of a project across all regions. **Note:** This method doesn't
+   * support filtering the list of jobs by name. # IAM Permissions Requires the
+   * `dataflow.jobs.list` permission on the project. (jobs.aggregated)
    *
    * @param string $projectId The project which owns the jobs.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string createTimeRange.endTime Optional. Exclusive end of the
+   * interval. If specified, a Timestamp matching this interval will have to be
+   * before the end.
+   * @opt_param string createTimeRange.startTime Optional. Inclusive start of the
+   * interval. If specified, a Timestamp matching this interval will have to be
+   * the same or after the start.
    * @opt_param string filter The kind of filter to use.
    * @opt_param string location The [regional endpoint]
    * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
    * contains this job.
-   * @opt_param string name Optional. The job name. Optional.
+   * @opt_param string name Optional. The job name.
    * @opt_param int pageSize If there are many jobs, limit response to at most
    * this many. The actual number of jobs returned will be the lesser of
    * max_responses and an unspecified server-defined limit.
    * @opt_param string pageToken Set this to the 'next_page_token' field of a
    * previous response to request additional results in a long list.
+   * @opt_param bool regionalFanoutRequested Optional.
+   * @opt_param string terminationTimeRange.endTime Optional. Exclusive end of the
+   * interval. If specified, a Timestamp matching this interval will have to be
+   * before the end.
+   * @opt_param string terminationTimeRange.startTime Optional. Inclusive start of
+   * the interval. If specified, a Timestamp matching this interval will have to
+   * be the same or after the start.
    * @opt_param string view Deprecated. ListJobs always returns summaries now. Use
    * GetJob for other JobViews.
    * @return ListJobsResponse
+   * @throws \Google\Service\Exception
    */
   public function aggregated($projectId, $optParams = [])
   {
@@ -60,12 +76,15 @@ class ProjectsJobs extends \Google\Service\Resource
     return $this->call('aggregated', [$params], ListJobsResponse::class);
   }
   /**
-   * Creates a Cloud Dataflow job. To create a job, we recommend using
+   * Creates a Dataflow job. To create a job, we recommend using
    * `projects.locations.jobs.create` with a [regional endpoint]
    * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
    * `projects.jobs.create` is not recommended, as your job will always start in
    * `us-central1`. Do not enter confidential information when you supply string
-   * values using the API. (jobs.create)
+   * values using the API. # IAM Permissions 1. Requires the
+   * `dataflow.jobs.create` permission on the project. 2.
+   * `resourcemanager.projects.get` (Specifically required for regional endpoints
+   * to resolve regional resource metadata) (jobs.create)
    *
    * @param string $projectId The ID of the Cloud Platform project that the job
    * belongs to.
@@ -79,6 +98,7 @@ class ProjectsJobs extends \Google\Service\Resource
    * message.
    * @opt_param string view The level of information requested in response.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function create($projectId, Job $postBody, $optParams = [])
   {
@@ -91,7 +111,8 @@ class ProjectsJobs extends \Google\Service\Resource
    * job, we recommend using `projects.locations.jobs.get` with a [regional
    * endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-
    * endpoints). Using `projects.jobs.get` is not recommended, as you can only get
-   * the state of jobs that are running in `us-central1`. (jobs.get)
+   * the state of jobs that are running in `us-central1`. # IAM Permissions
+   * Requires the `dataflow.jobs.get` permission on the job. (jobs.get)
    *
    * @param string $projectId The ID of the Cloud Platform project that the job
    * belongs to.
@@ -103,6 +124,7 @@ class ProjectsJobs extends \Google\Service\Resource
    * contains this job.
    * @opt_param string view The level of information requested in response.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function get($projectId, $jobId, $optParams = [])
   {
@@ -115,7 +137,8 @@ class ProjectsJobs extends \Google\Service\Resource
    * `projects.locations.jobs.getMetrics` with a [regional endpoint]
    * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
    * `projects.jobs.getMetrics` is not recommended, as you can only request the
-   * status of jobs that are running in `us-central1`. (jobs.getMetrics)
+   * status of jobs that are running in `us-central1`. # IAM Permissions Requires
+   * the `dataflow.metrics.get` permission on the job. (jobs.getMetrics)
    *
    * @param string $projectId A project id.
    * @param string $jobId The job to get metrics for.
@@ -128,6 +151,7 @@ class ProjectsJobs extends \Google\Service\Resource
    * this time. Default is to return all information about all metrics for the
    * job.
    * @return JobMetrics
+   * @throws \Google\Service\Exception
    */
   public function getMetrics($projectId, $jobId, $optParams = [])
   {
@@ -140,25 +164,43 @@ class ProjectsJobs extends \Google\Service\Resource
    * recommend using `projects.locations.jobs.list` with a [regional endpoint]
    * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To list
    * the all jobs across all regions, use `projects.jobs.aggregated`. Using
-   * `projects.jobs.list` is not recommended, as you can only get the list of jobs
-   * that are running in `us-central1`. (jobs.listProjectsJobs)
+   * `projects.jobs.list` is not recommended, because you can only get the list of
+   * jobs that are running in `us-central1`. `projects.locations.jobs.list` and
+   * `projects.jobs.list` support filtering the list of jobs by name. Filtering by
+   * name isn't supported by `projects.jobs.aggregated`. # IAM Permissions
+   * Requires the `dataflow.jobs.list` permission on the project.
+   * (jobs.listProjectsJobs)
    *
    * @param string $projectId The project which owns the jobs.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string createTimeRange.endTime Optional. Exclusive end of the
+   * interval. If specified, a Timestamp matching this interval will have to be
+   * before the end.
+   * @opt_param string createTimeRange.startTime Optional. Inclusive start of the
+   * interval. If specified, a Timestamp matching this interval will have to be
+   * the same or after the start.
    * @opt_param string filter The kind of filter to use.
    * @opt_param string location The [regional endpoint]
    * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
    * contains this job.
-   * @opt_param string name Optional. The job name. Optional.
+   * @opt_param string name Optional. The job name.
    * @opt_param int pageSize If there are many jobs, limit response to at most
    * this many. The actual number of jobs returned will be the lesser of
    * max_responses and an unspecified server-defined limit.
    * @opt_param string pageToken Set this to the 'next_page_token' field of a
    * previous response to request additional results in a long list.
+   * @opt_param bool regionalFanoutRequested Optional.
+   * @opt_param string terminationTimeRange.endTime Optional. Exclusive end of the
+   * interval. If specified, a Timestamp matching this interval will have to be
+   * before the end.
+   * @opt_param string terminationTimeRange.startTime Optional. Inclusive start of
+   * the interval. If specified, a Timestamp matching this interval will have to
+   * be the same or after the start.
    * @opt_param string view Deprecated. ListJobs always returns summaries now. Use
    * GetJob for other JobViews.
    * @return ListJobsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsJobs($projectId, $optParams = [])
   {
@@ -167,13 +209,15 @@ class ProjectsJobs extends \Google\Service\Resource
     return $this->call('list', [$params], ListJobsResponse::class);
   }
   /**
-   * Snapshot the state of a streaming job. (jobs.snapshot)
+   * Snapshot the state of a streaming job. # IAM Permissions Requires the
+   * `dataflow.jobs.snapshot` permission on the job. (jobs.snapshot)
    *
    * @param string $projectId The project which owns the job to be snapshotted.
    * @param string $jobId The job to be snapshotted.
    * @param SnapshotJobRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Snapshot
+   * @throws \Google\Service\Exception
    */
   public function snapshot($projectId, $jobId, SnapshotJobRequest $postBody, $optParams = [])
   {
@@ -184,9 +228,12 @@ class ProjectsJobs extends \Google\Service\Resource
   /**
    * Updates the state of an existing Cloud Dataflow job. To update the state of
    * an existing job, we recommend using `projects.locations.jobs.update` with a
-   * [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts
-   * /regional-endpoints). Using `projects.jobs.update` is not recommended, as you
-   * can only update the state of jobs that are running in `us-central1`.
+   * [regional endpoint]
+   * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
+   * `projects.jobs.update` is not recommended, as you can only update the state
+   * of jobs that are running in `us-central1`. # IAM Permissions 1. Requires the
+   * `dataflow.jobs.cancel` permission to cancel a job. 2. Requires the
+   * `dataflow.jobs.updateContents` permission to update runtime parameters.
    * (jobs.update)
    *
    * @param string $projectId The ID of the Cloud Platform project that the job
@@ -202,9 +249,10 @@ class ProjectsJobs extends \Google\Service\Resource
    * empty, only RequestedJobState will be considered for update. If the FieldMask
    * is not empty and RequestedJobState is none/empty, The fields specified in the
    * update mask will be the only ones considered for update. If both
-   * RequestedJobState and update_mask are specified, we will first handle
-   * RequestedJobState and then the update_mask fields.
+   * RequestedJobState and update_mask are specified, an error will be returned as
+   * we cannot update both state and mask.
    * @return Job
+   * @throws \Google\Service\Exception
    */
   public function update($projectId, $jobId, Job $postBody, $optParams = [])
   {

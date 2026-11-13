@@ -19,15 +19,53 @@ namespace Google\Service\DLP;
 
 class GooglePrivacyDlpV2MetadataLocation extends \Google\Model
 {
+  /**
+   * Unused
+   */
+  public const TYPE_METADATATYPE_UNSPECIFIED = 'METADATATYPE_UNSPECIFIED';
+  /**
+   * General file metadata provided by Cloud Storage.
+   */
+  public const TYPE_STORAGE_METADATA = 'STORAGE_METADATA';
+  /**
+   * Metadata extracted from the files.
+   */
+  public const TYPE_CONTENT_METADATA = 'CONTENT_METADATA';
+  /**
+   * Metadata provided by the client.
+   */
+  public const TYPE_CLIENT_PROVIDED_METADATA = 'CLIENT_PROVIDED_METADATA';
+  protected $keyValueMetadataLabelType = GooglePrivacyDlpV2KeyValueMetadataLabel::class;
+  protected $keyValueMetadataLabelDataType = '';
   protected $storageLabelType = GooglePrivacyDlpV2StorageMetadataLabel::class;
   protected $storageLabelDataType = '';
   /**
+   * Type of metadata containing the finding.
+   *
    * @var string
    */
   public $type;
 
   /**
-   * @param GooglePrivacyDlpV2StorageMetadataLabel
+   * Metadata key that contains the finding.
+   *
+   * @param GooglePrivacyDlpV2KeyValueMetadataLabel $keyValueMetadataLabel
+   */
+  public function setKeyValueMetadataLabel(GooglePrivacyDlpV2KeyValueMetadataLabel $keyValueMetadataLabel)
+  {
+    $this->keyValueMetadataLabel = $keyValueMetadataLabel;
+  }
+  /**
+   * @return GooglePrivacyDlpV2KeyValueMetadataLabel
+   */
+  public function getKeyValueMetadataLabel()
+  {
+    return $this->keyValueMetadataLabel;
+  }
+  /**
+   * Storage metadata.
+   *
+   * @param GooglePrivacyDlpV2StorageMetadataLabel $storageLabel
    */
   public function setStorageLabel(GooglePrivacyDlpV2StorageMetadataLabel $storageLabel)
   {
@@ -41,14 +79,19 @@ class GooglePrivacyDlpV2MetadataLocation extends \Google\Model
     return $this->storageLabel;
   }
   /**
-   * @param string
+   * Type of metadata containing the finding.
+   *
+   * Accepted values: METADATATYPE_UNSPECIFIED, STORAGE_METADATA,
+   * CONTENT_METADATA, CLIENT_PROVIDED_METADATA
+   *
+   * @param self::TYPE_* $type
    */
   public function setType($type)
   {
     $this->type = $type;
   }
   /**
-   * @return string
+   * @return self::TYPE_*
    */
   public function getType()
   {

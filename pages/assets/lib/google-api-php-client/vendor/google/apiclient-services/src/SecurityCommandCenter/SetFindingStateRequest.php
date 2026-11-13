@@ -19,7 +19,11 @@ namespace Google\Service\SecurityCommandCenter;
 
 class SetFindingStateRequest extends \Google\Model
 {
+  public const STATE_STATE_UNSPECIFIED = 'STATE_UNSPECIFIED';
+  public const STATE_ACTIVE = 'ACTIVE';
+  public const STATE_INACTIVE = 'INACTIVE';
   /**
+   * @deprecated
    * @var string
    */
   public $startTime;
@@ -29,13 +33,15 @@ class SetFindingStateRequest extends \Google\Model
   public $state;
 
   /**
-   * @param string
+   * @deprecated
+   * @param string $startTime
    */
   public function setStartTime($startTime)
   {
     $this->startTime = $startTime;
   }
   /**
+   * @deprecated
    * @return string
    */
   public function getStartTime()
@@ -43,14 +49,14 @@ class SetFindingStateRequest extends \Google\Model
     return $this->startTime;
   }
   /**
-   * @param string
+   * @param self::STATE_* $state
    */
   public function setState($state)
   {
     $this->state = $state;
   }
   /**
-   * @return string
+   * @return self::STATE_*
    */
   public function getState()
   {

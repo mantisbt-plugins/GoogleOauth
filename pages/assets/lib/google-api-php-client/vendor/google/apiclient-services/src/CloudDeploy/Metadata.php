@@ -19,11 +19,35 @@ namespace Google\Service\CloudDeploy;
 
 class Metadata extends \Google\Model
 {
+  protected $automationType = AutomationRolloutMetadata::class;
+  protected $automationDataType = '';
   protected $cloudRunType = CloudRunMetadata::class;
   protected $cloudRunDataType = '';
+  protected $customType = CustomMetadata::class;
+  protected $customDataType = '';
 
   /**
-   * @param CloudRunMetadata
+   * Output only. AutomationRolloutMetadata contains the information about the
+   * interactions between Automation service and this rollout.
+   *
+   * @param AutomationRolloutMetadata $automation
+   */
+  public function setAutomation(AutomationRolloutMetadata $automation)
+  {
+    $this->automation = $automation;
+  }
+  /**
+   * @return AutomationRolloutMetadata
+   */
+  public function getAutomation()
+  {
+    return $this->automation;
+  }
+  /**
+   * Output only. The name of the Cloud Run Service that is associated with a
+   * `Rollout`.
+   *
+   * @param CloudRunMetadata $cloudRun
    */
   public function setCloudRun(CloudRunMetadata $cloudRun)
   {
@@ -35,6 +59,22 @@ class Metadata extends \Google\Model
   public function getCloudRun()
   {
     return $this->cloudRun;
+  }
+  /**
+   * Output only. Custom metadata provided by user-defined `Rollout` operations.
+   *
+   * @param CustomMetadata $custom
+   */
+  public function setCustom(CustomMetadata $custom)
+  {
+    $this->custom = $custom;
+  }
+  /**
+   * @return CustomMetadata
+   */
+  public function getCustom()
+  {
+    return $this->custom;
   }
 }
 

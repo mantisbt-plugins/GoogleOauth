@@ -17,6 +17,8 @@
 
 namespace Google\Service\Networkconnectivity\Resource;
 
+use Google\Service\Networkconnectivity\CheckConsumerConfigRequest;
+use Google\Service\Networkconnectivity\CheckConsumerConfigResponse;
 use Google\Service\Networkconnectivity\ListLocationsResponse;
 use Google\Service\Networkconnectivity\Location;
 
@@ -31,11 +33,35 @@ use Google\Service\Networkconnectivity\Location;
 class ProjectsLocations extends \Google\Service\Resource
 {
   /**
+   * CheckConsumerConfig validates the consumer network and project for potential
+   * PSC connection creation. This method performs several checks, including: -
+   * Validating the existence and permissions of the service class. - Ensuring the
+   * consumer network exists and is accessible. - Verifying XPN relationships if
+   * applicable. - Checking for compatible IP versions between the consumer
+   * network and the requested version. This method performs a dynamic IAM check
+   * for the `networkconnectivity.serviceClasses.use` permission on the service
+   * class resource in the Prepare phase. (locations.checkConsumerConfig)
+   *
+   * @param string $location Required. The location resource path. Example: -
+   * projects/{project}/locations/{location}
+   * @param CheckConsumerConfigRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return CheckConsumerConfigResponse
+   * @throws \Google\Service\Exception
+   */
+  public function checkConsumerConfig($location, CheckConsumerConfigRequest $postBody, $optParams = [])
+  {
+    $params = ['location' => $location, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('checkConsumerConfig', [$params], CheckConsumerConfigResponse::class);
+  }
+  /**
    * Gets information about a location. (locations.get)
    *
    * @param string $name Resource name for the location.
    * @param array $optParams Optional parameters.
    * @return Location
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -44,13 +70,24 @@ class ProjectsLocations extends \Google\Service\Resource
     return $this->call('get', [$params], Location::class);
   }
   /**
-   * Lists information about the supported locations for this service.
-   * (locations.listProjectsLocations)
+   * Lists information about the supported locations for this service. This method
+   * lists locations based on the resource scope provided in the
+   * ListLocationsRequest.name field: * **Global locations**: If `name` is empty,
+   * the method lists the public locations available to all projects. * **Project-
+   * specific locations**: If `name` follows the format `projects/{project}`, the
+   * method lists locations visible to that specific project. This includes
+   * public, private, or other project-specific locations enabled for the project.
+   * For gRPC and client library implementations, the resource name is passed as
+   * the `name` field. For direct service calls, the resource name is incorporated
+   * into the request path based on the specific service implementation and
+   * version. (locations.listProjectsLocations)
    *
    * @param string $name The resource that owns the locations collection, if
    * applicable.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string extraLocationTypes Optional. Do not use this field unless
+   * explicitly documented otherwise. This is primarily for internal usage.
    * @opt_param string filter A filter to narrow down results to a preferred
    * subset. The filtering language accepts strings like `"displayName=tokyo"`,
    * and is documented in more detail in [AIP-160](https://google.aip.dev/160).
@@ -59,6 +96,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * @opt_param string pageToken A page token received from the `next_page_token`
    * field in the response. Send that page token to receive the subsequent page.
    * @return ListLocationsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocations($name, $optParams = [])
   {

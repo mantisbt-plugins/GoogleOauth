@@ -23,6 +23,8 @@ class Response extends \Google\Model
   protected $addBandingDataType = '';
   protected $addChartType = AddChartResponse::class;
   protected $addChartDataType = '';
+  protected $addCommentReplyType = AddCommentReplyResponse::class;
+  protected $addCommentReplyDataType = '';
   protected $addDataSourceType = AddDataSourceResponse::class;
   protected $addDataSourceDataType = '';
   protected $addDimensionGroupType = AddDimensionGroupResponse::class;
@@ -37,6 +39,10 @@ class Response extends \Google\Model
   protected $addSheetDataType = '';
   protected $addSlicerType = AddSlicerResponse::class;
   protected $addSlicerDataType = '';
+  protected $addTableType = AddTableResponse::class;
+  protected $addTableDataType = '';
+  protected $cancelDataSourceRefreshType = CancelDataSourceRefreshResponse::class;
+  protected $cancelDataSourceRefreshDataType = '';
   protected $createDeveloperMetadataType = CreateDeveloperMetadataResponse::class;
   protected $createDeveloperMetadataDataType = '';
   protected $deleteConditionalFormatRuleType = DeleteConditionalFormatRuleResponse::class;
@@ -53,6 +59,8 @@ class Response extends \Google\Model
   protected $duplicateSheetDataType = '';
   protected $findReplaceType = FindReplaceResponse::class;
   protected $findReplaceDataType = '';
+  protected $insertCommentType = InsertCommentResponse::class;
+  protected $insertCommentDataType = '';
   protected $refreshDataSourceType = RefreshDataSourceResponse::class;
   protected $refreshDataSourceDataType = '';
   protected $trimWhitespaceType = TrimWhitespaceResponse::class;
@@ -67,7 +75,9 @@ class Response extends \Google\Model
   protected $updateEmbeddedObjectPositionDataType = '';
 
   /**
-   * @param AddBandingResponse
+   * A reply from adding a banded range.
+   *
+   * @param AddBandingResponse $addBanding
    */
   public function setAddBanding(AddBandingResponse $addBanding)
   {
@@ -81,7 +91,9 @@ class Response extends \Google\Model
     return $this->addBanding;
   }
   /**
-   * @param AddChartResponse
+   * A reply from adding a chart.
+   *
+   * @param AddChartResponse $addChart
    */
   public function setAddChart(AddChartResponse $addChart)
   {
@@ -95,7 +107,25 @@ class Response extends \Google\Model
     return $this->addChart;
   }
   /**
-   * @param AddDataSourceResponse
+   * The result of creating a reply.
+   *
+   * @param AddCommentReplyResponse $addCommentReply
+   */
+  public function setAddCommentReply(AddCommentReplyResponse $addCommentReply)
+  {
+    $this->addCommentReply = $addCommentReply;
+  }
+  /**
+   * @return AddCommentReplyResponse
+   */
+  public function getAddCommentReply()
+  {
+    return $this->addCommentReply;
+  }
+  /**
+   * A reply from adding a data source.
+   *
+   * @param AddDataSourceResponse $addDataSource
    */
   public function setAddDataSource(AddDataSourceResponse $addDataSource)
   {
@@ -109,7 +139,9 @@ class Response extends \Google\Model
     return $this->addDataSource;
   }
   /**
-   * @param AddDimensionGroupResponse
+   * A reply from adding a dimension group.
+   *
+   * @param AddDimensionGroupResponse $addDimensionGroup
    */
   public function setAddDimensionGroup(AddDimensionGroupResponse $addDimensionGroup)
   {
@@ -123,7 +155,9 @@ class Response extends \Google\Model
     return $this->addDimensionGroup;
   }
   /**
-   * @param AddFilterViewResponse
+   * A reply from adding a filter view.
+   *
+   * @param AddFilterViewResponse $addFilterView
    */
   public function setAddFilterView(AddFilterViewResponse $addFilterView)
   {
@@ -137,7 +171,9 @@ class Response extends \Google\Model
     return $this->addFilterView;
   }
   /**
-   * @param AddNamedRangeResponse
+   * A reply from adding a named range.
+   *
+   * @param AddNamedRangeResponse $addNamedRange
    */
   public function setAddNamedRange(AddNamedRangeResponse $addNamedRange)
   {
@@ -151,7 +187,9 @@ class Response extends \Google\Model
     return $this->addNamedRange;
   }
   /**
-   * @param AddProtectedRangeResponse
+   * A reply from adding a protected range.
+   *
+   * @param AddProtectedRangeResponse $addProtectedRange
    */
   public function setAddProtectedRange(AddProtectedRangeResponse $addProtectedRange)
   {
@@ -165,7 +203,9 @@ class Response extends \Google\Model
     return $this->addProtectedRange;
   }
   /**
-   * @param AddSheetResponse
+   * A reply from adding a sheet.
+   *
+   * @param AddSheetResponse $addSheet
    */
   public function setAddSheet(AddSheetResponse $addSheet)
   {
@@ -179,7 +219,9 @@ class Response extends \Google\Model
     return $this->addSheet;
   }
   /**
-   * @param AddSlicerResponse
+   * A reply from adding a slicer.
+   *
+   * @param AddSlicerResponse $addSlicer
    */
   public function setAddSlicer(AddSlicerResponse $addSlicer)
   {
@@ -193,7 +235,41 @@ class Response extends \Google\Model
     return $this->addSlicer;
   }
   /**
-   * @param CreateDeveloperMetadataResponse
+   * A reply from adding a table.
+   *
+   * @param AddTableResponse $addTable
+   */
+  public function setAddTable(AddTableResponse $addTable)
+  {
+    $this->addTable = $addTable;
+  }
+  /**
+   * @return AddTableResponse
+   */
+  public function getAddTable()
+  {
+    return $this->addTable;
+  }
+  /**
+   * A reply from cancelling data source object refreshes.
+   *
+   * @param CancelDataSourceRefreshResponse $cancelDataSourceRefresh
+   */
+  public function setCancelDataSourceRefresh(CancelDataSourceRefreshResponse $cancelDataSourceRefresh)
+  {
+    $this->cancelDataSourceRefresh = $cancelDataSourceRefresh;
+  }
+  /**
+   * @return CancelDataSourceRefreshResponse
+   */
+  public function getCancelDataSourceRefresh()
+  {
+    return $this->cancelDataSourceRefresh;
+  }
+  /**
+   * A reply from creating a developer metadata entry.
+   *
+   * @param CreateDeveloperMetadataResponse $createDeveloperMetadata
    */
   public function setCreateDeveloperMetadata(CreateDeveloperMetadataResponse $createDeveloperMetadata)
   {
@@ -207,7 +283,9 @@ class Response extends \Google\Model
     return $this->createDeveloperMetadata;
   }
   /**
-   * @param DeleteConditionalFormatRuleResponse
+   * A reply from deleting a conditional format rule.
+   *
+   * @param DeleteConditionalFormatRuleResponse $deleteConditionalFormatRule
    */
   public function setDeleteConditionalFormatRule(DeleteConditionalFormatRuleResponse $deleteConditionalFormatRule)
   {
@@ -221,7 +299,9 @@ class Response extends \Google\Model
     return $this->deleteConditionalFormatRule;
   }
   /**
-   * @param DeleteDeveloperMetadataResponse
+   * A reply from deleting a developer metadata entry.
+   *
+   * @param DeleteDeveloperMetadataResponse $deleteDeveloperMetadata
    */
   public function setDeleteDeveloperMetadata(DeleteDeveloperMetadataResponse $deleteDeveloperMetadata)
   {
@@ -235,7 +315,9 @@ class Response extends \Google\Model
     return $this->deleteDeveloperMetadata;
   }
   /**
-   * @param DeleteDimensionGroupResponse
+   * A reply from deleting a dimension group.
+   *
+   * @param DeleteDimensionGroupResponse $deleteDimensionGroup
    */
   public function setDeleteDimensionGroup(DeleteDimensionGroupResponse $deleteDimensionGroup)
   {
@@ -249,7 +331,9 @@ class Response extends \Google\Model
     return $this->deleteDimensionGroup;
   }
   /**
-   * @param DeleteDuplicatesResponse
+   * A reply from removing rows containing duplicate values.
+   *
+   * @param DeleteDuplicatesResponse $deleteDuplicates
    */
   public function setDeleteDuplicates(DeleteDuplicatesResponse $deleteDuplicates)
   {
@@ -263,7 +347,9 @@ class Response extends \Google\Model
     return $this->deleteDuplicates;
   }
   /**
-   * @param DuplicateFilterViewResponse
+   * A reply from duplicating a filter view.
+   *
+   * @param DuplicateFilterViewResponse $duplicateFilterView
    */
   public function setDuplicateFilterView(DuplicateFilterViewResponse $duplicateFilterView)
   {
@@ -277,7 +363,9 @@ class Response extends \Google\Model
     return $this->duplicateFilterView;
   }
   /**
-   * @param DuplicateSheetResponse
+   * A reply from duplicating a sheet.
+   *
+   * @param DuplicateSheetResponse $duplicateSheet
    */
   public function setDuplicateSheet(DuplicateSheetResponse $duplicateSheet)
   {
@@ -291,7 +379,9 @@ class Response extends \Google\Model
     return $this->duplicateSheet;
   }
   /**
-   * @param FindReplaceResponse
+   * A reply from doing a find/replace.
+   *
+   * @param FindReplaceResponse $findReplace
    */
   public function setFindReplace(FindReplaceResponse $findReplace)
   {
@@ -305,7 +395,25 @@ class Response extends \Google\Model
     return $this->findReplace;
   }
   /**
-   * @param RefreshDataSourceResponse
+   * The result of creating a comment.
+   *
+   * @param InsertCommentResponse $insertComment
+   */
+  public function setInsertComment(InsertCommentResponse $insertComment)
+  {
+    $this->insertComment = $insertComment;
+  }
+  /**
+   * @return InsertCommentResponse
+   */
+  public function getInsertComment()
+  {
+    return $this->insertComment;
+  }
+  /**
+   * A reply from refreshing data source objects.
+   *
+   * @param RefreshDataSourceResponse $refreshDataSource
    */
   public function setRefreshDataSource(RefreshDataSourceResponse $refreshDataSource)
   {
@@ -319,7 +427,9 @@ class Response extends \Google\Model
     return $this->refreshDataSource;
   }
   /**
-   * @param TrimWhitespaceResponse
+   * A reply from trimming whitespace.
+   *
+   * @param TrimWhitespaceResponse $trimWhitespace
    */
   public function setTrimWhitespace(TrimWhitespaceResponse $trimWhitespace)
   {
@@ -333,7 +443,9 @@ class Response extends \Google\Model
     return $this->trimWhitespace;
   }
   /**
-   * @param UpdateConditionalFormatRuleResponse
+   * A reply from updating a conditional format rule.
+   *
+   * @param UpdateConditionalFormatRuleResponse $updateConditionalFormatRule
    */
   public function setUpdateConditionalFormatRule(UpdateConditionalFormatRuleResponse $updateConditionalFormatRule)
   {
@@ -347,7 +459,9 @@ class Response extends \Google\Model
     return $this->updateConditionalFormatRule;
   }
   /**
-   * @param UpdateDataSourceResponse
+   * A reply from updating a data source.
+   *
+   * @param UpdateDataSourceResponse $updateDataSource
    */
   public function setUpdateDataSource(UpdateDataSourceResponse $updateDataSource)
   {
@@ -361,7 +475,9 @@ class Response extends \Google\Model
     return $this->updateDataSource;
   }
   /**
-   * @param UpdateDeveloperMetadataResponse
+   * A reply from updating a developer metadata entry.
+   *
+   * @param UpdateDeveloperMetadataResponse $updateDeveloperMetadata
    */
   public function setUpdateDeveloperMetadata(UpdateDeveloperMetadataResponse $updateDeveloperMetadata)
   {
@@ -375,7 +491,9 @@ class Response extends \Google\Model
     return $this->updateDeveloperMetadata;
   }
   /**
-   * @param UpdateEmbeddedObjectPositionResponse
+   * A reply from updating an embedded object's position.
+   *
+   * @param UpdateEmbeddedObjectPositionResponse $updateEmbeddedObjectPosition
    */
   public function setUpdateEmbeddedObjectPosition(UpdateEmbeddedObjectPositionResponse $updateEmbeddedObjectPosition)
   {

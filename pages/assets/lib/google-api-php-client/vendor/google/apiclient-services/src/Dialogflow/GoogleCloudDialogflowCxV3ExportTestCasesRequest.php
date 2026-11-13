@@ -19,6 +19,9 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3ExportTestCasesRequest extends \Google\Model
 {
+  public const DATA_FORMAT_DATA_FORMAT_UNSPECIFIED = 'DATA_FORMAT_UNSPECIFIED';
+  public const DATA_FORMAT_BLOB = 'BLOB';
+  public const DATA_FORMAT_JSON = 'JSON';
   /**
    * @var string
    */
@@ -33,21 +36,21 @@ class GoogleCloudDialogflowCxV3ExportTestCasesRequest extends \Google\Model
   public $gcsUri;
 
   /**
-   * @param string
+   * @param self::DATA_FORMAT_* $dataFormat
    */
   public function setDataFormat($dataFormat)
   {
     $this->dataFormat = $dataFormat;
   }
   /**
-   * @return string
+   * @return self::DATA_FORMAT_*
    */
   public function getDataFormat()
   {
     return $this->dataFormat;
   }
   /**
-   * @param string
+   * @param string $filter
    */
   public function setFilter($filter)
   {
@@ -61,7 +64,7 @@ class GoogleCloudDialogflowCxV3ExportTestCasesRequest extends \Google\Model
     return $this->filter;
   }
   /**
-   * @param string
+   * @param string $gcsUri
    */
   public function setGcsUri($gcsUri)
   {

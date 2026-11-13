@@ -54,6 +54,7 @@ class ProjectsReleases extends \Google\Service\Resource
    * @param Release $postBody
    * @param array $optParams Optional parameters.
    * @return Release
+   * @throws \Google\Service\Exception
    */
   public function create($name, Release $postBody, $optParams = [])
   {
@@ -68,6 +69,7 @@ class ProjectsReleases extends \Google\Service\Resource
    * Format: `projects/{project_id}/releases/{release_id}`
    * @param array $optParams Optional parameters.
    * @return FirebaserulesEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -82,6 +84,7 @@ class ProjectsReleases extends \Google\Service\Resource
    * `projects/{project_id}/releases/{release_id}`
    * @param array $optParams Optional parameters.
    * @return Release
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -97,9 +100,10 @@ class ProjectsReleases extends \Google\Service\Resource
    * `projects/{project_id}/releases/{release_id}`
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string executableVersion The requested runtime executable version.
-   * Defaults to FIREBASE_RULES_EXECUTABLE_V1.
+   * @opt_param string executableVersion Optional. The requested runtime
+   * executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1.
    * @return GetReleaseExecutableResponse
+   * @throws \Google\Service\Exception
    */
   public function getExecutable($name, $optParams = [])
   {
@@ -116,9 +120,9 @@ class ProjectsReleases extends \Google\Service\Resource
    * `projects/{project_id}`
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter `Release` filter. The list method supports filters
-   * with restrictions on the `Release.name`, and `Release.ruleset_name`. Example
-   * 1: A filter of 'name=prod*' might return `Release`s with names within
+   * @opt_param string filter Optional. `Release` filter. The list method supports
+   * filters with restrictions on the `Release.name`, and `Release.ruleset_name`.
+   * Example 1: A filter of 'name=prod*' might return `Release`s with names within
    * 'projects/foo' prefixed with 'prod': Name -> Ruleset Name: *
    * projects/foo/releases/prod -> projects/foo/rulesets/uuid1234 *
    * projects/foo/releases/prod/v1 -> projects/foo/rulesets/uuid1234 *
@@ -130,14 +134,15 @@ class ProjectsReleases extends \Google\Service\Resource
    * projects/foo/releases/prod/v1 -> projects/foo/rulesets/1234 In the examples,
    * the filter parameters refer to the search filters are relative to the
    * project. Fully qualified prefixed may also be used.
-   * @opt_param int pageSize Page size to load. Maximum of 100. Defaults to 10.
-   * Note: `page_size` is just a hint and the service may choose to load fewer
-   * than `page_size` results due to the size of the output. To traverse all of
-   * the releases, the caller should iterate until the `page_token` on the
+   * @opt_param int pageSize Optional. Page size to load. Maximum of 100. Defaults
+   * to 10. Note: `page_size` is just a hint and the service may choose to load
+   * fewer than `page_size` results due to the size of the output. To traverse all
+   * of the releases, the caller should iterate until the `page_token` on the
    * response is empty.
-   * @opt_param string pageToken Next page token for the next batch of `Release`
-   * instances.
+   * @opt_param string pageToken Optional. Next page token for the next batch of
+   * `Release` instances.
    * @return ListReleasesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsReleases($name, $optParams = [])
   {
@@ -155,6 +160,7 @@ class ProjectsReleases extends \Google\Service\Resource
    * @param UpdateReleaseRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Release
+   * @throws \Google\Service\Exception
    */
   public function patch($name, UpdateReleaseRequest $postBody, $optParams = [])
   {

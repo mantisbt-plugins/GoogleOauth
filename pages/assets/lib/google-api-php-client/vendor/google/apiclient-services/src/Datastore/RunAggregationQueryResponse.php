@@ -21,15 +21,23 @@ class RunAggregationQueryResponse extends \Google\Model
 {
   protected $batchType = AggregationResultBatch::class;
   protected $batchDataType = '';
+  protected $explainMetricsType = ExplainMetrics::class;
+  protected $explainMetricsDataType = '';
   protected $queryType = AggregationQuery::class;
   protected $queryDataType = '';
   /**
+   * The identifier of the transaction that was started as part of this
+   * RunAggregationQuery request. Set only when ReadOptions.new_transaction was
+   * set in RunAggregationQueryRequest.read_options.
+   *
    * @var string
    */
   public $transaction;
 
   /**
-   * @param AggregationResultBatch
+   * A batch of aggregation results. Always present.
+   *
+   * @param AggregationResultBatch $batch
    */
   public function setBatch(AggregationResultBatch $batch)
   {
@@ -43,7 +51,27 @@ class RunAggregationQueryResponse extends \Google\Model
     return $this->batch;
   }
   /**
-   * @param AggregationQuery
+   * Query explain metrics. This is only present when the
+   * RunAggregationQueryRequest.explain_options is provided, and it is sent only
+   * once with the last response in the stream.
+   *
+   * @param ExplainMetrics $explainMetrics
+   */
+  public function setExplainMetrics(ExplainMetrics $explainMetrics)
+  {
+    $this->explainMetrics = $explainMetrics;
+  }
+  /**
+   * @return ExplainMetrics
+   */
+  public function getExplainMetrics()
+  {
+    return $this->explainMetrics;
+  }
+  /**
+   * The parsed form of the `GqlQuery` from the request, if it was set.
+   *
+   * @param AggregationQuery $query
    */
   public function setQuery(AggregationQuery $query)
   {
@@ -57,7 +85,11 @@ class RunAggregationQueryResponse extends \Google\Model
     return $this->query;
   }
   /**
-   * @param string
+   * The identifier of the transaction that was started as part of this
+   * RunAggregationQuery request. Set only when ReadOptions.new_transaction was
+   * set in RunAggregationQueryRequest.read_options.
+   *
+   * @param string $transaction
    */
   public function setTransaction($transaction)
   {

@@ -19,6 +19,9 @@ namespace Google\Service\Dialogflow;
 
 class GoogleCloudDialogflowCxV3ExportAgentRequest extends \Google\Model
 {
+  public const DATA_FORMAT_DATA_FORMAT_UNSPECIFIED = 'DATA_FORMAT_UNSPECIFIED';
+  public const DATA_FORMAT_BLOB = 'BLOB';
+  public const DATA_FORMAT_JSON_PACKAGE = 'JSON_PACKAGE';
   /**
    * @var string
    */
@@ -31,9 +34,15 @@ class GoogleCloudDialogflowCxV3ExportAgentRequest extends \Google\Model
    * @var string
    */
   public $environment;
+  protected $gitDestinationType = GoogleCloudDialogflowCxV3ExportAgentRequestGitDestination::class;
+  protected $gitDestinationDataType = '';
+  /**
+   * @var bool
+   */
+  public $includeBigqueryExportSettings;
 
   /**
-   * @param string
+   * @param string $agentUri
    */
   public function setAgentUri($agentUri)
   {
@@ -47,21 +56,21 @@ class GoogleCloudDialogflowCxV3ExportAgentRequest extends \Google\Model
     return $this->agentUri;
   }
   /**
-   * @param string
+   * @param self::DATA_FORMAT_* $dataFormat
    */
   public function setDataFormat($dataFormat)
   {
     $this->dataFormat = $dataFormat;
   }
   /**
-   * @return string
+   * @return self::DATA_FORMAT_*
    */
   public function getDataFormat()
   {
     return $this->dataFormat;
   }
   /**
-   * @param string
+   * @param string $environment
    */
   public function setEnvironment($environment)
   {
@@ -73,6 +82,34 @@ class GoogleCloudDialogflowCxV3ExportAgentRequest extends \Google\Model
   public function getEnvironment()
   {
     return $this->environment;
+  }
+  /**
+   * @param GoogleCloudDialogflowCxV3ExportAgentRequestGitDestination $gitDestination
+   */
+  public function setGitDestination(GoogleCloudDialogflowCxV3ExportAgentRequestGitDestination $gitDestination)
+  {
+    $this->gitDestination = $gitDestination;
+  }
+  /**
+   * @return GoogleCloudDialogflowCxV3ExportAgentRequestGitDestination
+   */
+  public function getGitDestination()
+  {
+    return $this->gitDestination;
+  }
+  /**
+   * @param bool $includeBigqueryExportSettings
+   */
+  public function setIncludeBigqueryExportSettings($includeBigqueryExportSettings)
+  {
+    $this->includeBigqueryExportSettings = $includeBigqueryExportSettings;
+  }
+  /**
+   * @return bool
+   */
+  public function getIncludeBigqueryExportSettings()
+  {
+    return $this->includeBigqueryExportSettings;
   }
 }
 

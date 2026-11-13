@@ -18,6 +18,7 @@
 namespace Google\Service\BackupforGKE\Resource;
 
 use Google\Service\BackupforGKE\Backup;
+use Google\Service\BackupforGKE\GetBackupIndexDownloadUrlResponse;
 use Google\Service\BackupforGKE\GoogleLongrunningOperation;
 use Google\Service\BackupforGKE\ListBackupsResponse;
 use Google\Service\BackupforGKE\Policy;
@@ -43,12 +44,13 @@ class ProjectsLocationsBackupPlansBackups extends \Google\Service\Resource
    * @param Backup $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string backupId The client-provided short name for the Backup
-   * resource. This name must: - be between 1 and 63 characters long (inclusive) -
-   * consist of only lower-case ASCII letters, numbers, and dashes - start with a
-   * lower-case letter - end with a lower-case letter or number - be unique within
-   * the set of Backups in this BackupPlan
+   * @opt_param string backupId Optional. The client-provided short name for the
+   * Backup resource. This name must: - be between 1 and 63 characters long
+   * (inclusive) - consist of only lower-case ASCII letters, numbers, and dashes -
+   * start with a lower-case letter - end with a lower-case letter or number - be
+   * unique within the set of Backups in this BackupPlan
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Backup $postBody, $optParams = [])
   {
@@ -63,12 +65,13 @@ class ProjectsLocationsBackupPlansBackups extends \Google\Service\Resource
    * `projects/locations/backupPlans/backups`
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string etag If provided, this value must match the current value
-   * of the target Backup's etag field or the request is rejected.
-   * @opt_param bool force If set to true, any VolumeBackups below this Backup
-   * will also be deleted. Otherwise, the request will only succeed if the Backup
-   * has no VolumeBackups.
+   * @opt_param string etag Optional. If provided, this value must match the
+   * current value of the target Backup's etag field or the request is rejected.
+   * @opt_param bool force Optional. If set to true, any VolumeBackups below this
+   * Backup will also be deleted. Otherwise, the request will only succeed if the
+   * Backup has no VolumeBackups.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -83,12 +86,28 @@ class ProjectsLocationsBackupPlansBackups extends \Google\Service\Resource
    * `projects/locations/backupPlans/backups`
    * @param array $optParams Optional parameters.
    * @return Backup
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
     $params = ['name' => $name];
     $params = array_merge($params, $optParams);
     return $this->call('get', [$params], Backup::class);
+  }
+  /**
+   * Retrieve the link to the backupIndex. (backups.getBackupIndexDownloadUrl)
+   *
+   * @param string $backup Required. Full name of Backup resource. Format: project
+   * s/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}
+   * @param array $optParams Optional parameters.
+   * @return GetBackupIndexDownloadUrlResponse
+   * @throws \Google\Service\Exception
+   */
+  public function getBackupIndexDownloadUrl($backup, $optParams = [])
+  {
+    $params = ['backup' => $backup];
+    $params = array_merge($params, $optParams);
+    return $this->call('getBackupIndexDownloadUrl', [$params], GetBackupIndexDownloadUrlResponse::class);
   }
   /**
    * Gets the access control policy for a resource. Returns an empty policy if the
@@ -113,6 +132,7 @@ class ProjectsLocationsBackupPlansBackups extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -128,18 +148,23 @@ class ProjectsLocationsBackupPlansBackups extends \Google\Service\Resource
    * list. Format: `projects/locations/backupPlans`
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter Field match expression used to filter the results.
-   * @opt_param string orderBy Field by which to sort the results.
-   * @opt_param int pageSize The target number of results to return in a single
-   * response. If not specified, a default value will be chosen by the service.
-   * Note that the response may inclue a partial list and a caller should only
-   * rely on the response's next_page_token to determine if there are more
-   * instances left to be queried.
-   * @opt_param string pageToken The value of next_page_token received from a
-   * previous `ListBackups` call. Provide this to retrieve the subsequent page in
-   * a multi-page list of results. When paginating, all other parameters provided
-   * to `ListBackups` must match the call that provided the page token.
+   * @opt_param string filter Optional. Field match expression used to filter the
+   * results.
+   * @opt_param string orderBy Optional. Field by which to sort the results.
+   * @opt_param int pageSize Optional. The target number of results to return in a
+   * single response. If not specified, a default value will be chosen by the
+   * service. Note that the response may include a partial list and a caller
+   * should only rely on the response's next_page_token to determine if there are
+   * more instances left to be queried.
+   * @opt_param string pageToken Optional. The value of next_page_token received
+   * from a previous `ListBackups` call. Provide this to retrieve the subsequent
+   * page in a multi-page list of results. When paginating, all other parameters
+   * provided to `ListBackups` must match the call that provided the page token.
+   * @opt_param bool returnPartialSuccess Optional. If set to true, the response
+   * will return partial results when some regions are unreachable and the
+   * unreachable field will be populated.
    * @return ListBackupsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsBackupPlansBackups($parent, $optParams = [])
   {
@@ -150,19 +175,20 @@ class ProjectsLocationsBackupPlansBackups extends \Google\Service\Resource
   /**
    * Update a Backup. (backups.patch)
    *
-   * @param string $name Output only. The fully qualified name of the Backup.
-   * `projects/locations/backupPlans/backups`
+   * @param string $name Output only. Identifier. The fully qualified name of the
+   * Backup. `projects/locations/backupPlans/backups`
    * @param Backup $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string updateMask This is used to specify the fields to be
-   * overwritten in the Backup targeted for update. The values for each of these
-   * updated fields will be taken from the `backup_plan` provided with this
+   * @opt_param string updateMask Optional. This is used to specify the fields to
+   * be overwritten in the Backup targeted for update. The values for each of
+   * these updated fields will be taken from the `backup_plan` provided with this
    * request. Field names are relative to the root of the resource. If no
    * `update_mask` is provided, all fields in `backup` will be written to the
    * target Backup resource. Note that OUTPUT_ONLY and IMMUTABLE fields in
    * `backup` are ignored and are not used to update the target Backup.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Backup $postBody, $optParams = [])
   {
@@ -182,6 +208,7 @@ class ProjectsLocationsBackupPlansBackups extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -203,6 +230,7 @@ class ProjectsLocationsBackupPlansBackups extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

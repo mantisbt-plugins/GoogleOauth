@@ -37,7 +37,7 @@ class GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject extend
   public $name;
 
   /**
-   * @param string
+   * @param string $contentUrl
    */
   public function setContentUrl($contentUrl)
   {
@@ -51,7 +51,7 @@ class GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject extend
     return $this->contentUrl;
   }
   /**
-   * @param string
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -65,7 +65,7 @@ class GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject extend
     return $this->description;
   }
   /**
-   * @param GoogleCloudDialogflowV2IntentMessageImage
+   * @param GoogleCloudDialogflowV2IntentMessageImage $icon
    */
   public function setIcon(GoogleCloudDialogflowV2IntentMessageImage $icon)
   {
@@ -79,7 +79,7 @@ class GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject extend
     return $this->icon;
   }
   /**
-   * @param GoogleCloudDialogflowV2IntentMessageImage
+   * @param GoogleCloudDialogflowV2IntentMessageImage $largeImage
    */
   public function setLargeImage(GoogleCloudDialogflowV2IntentMessageImage $largeImage)
   {
@@ -93,7 +93,7 @@ class GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject extend
     return $this->largeImage;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {

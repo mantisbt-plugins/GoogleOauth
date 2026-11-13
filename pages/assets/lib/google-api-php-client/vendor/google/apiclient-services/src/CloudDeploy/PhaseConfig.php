@@ -20,25 +20,67 @@ namespace Google\Service\CloudDeploy;
 class PhaseConfig extends \Google\Collection
 {
   protected $collection_key = 'profiles';
+  protected $analysisType = Analysis::class;
+  protected $analysisDataType = '';
   /**
+   * Required. Percentage deployment for the phase.
+   *
    * @var int
    */
   public $percentage;
   /**
+   * Required. The ID to assign to the `Rollout` phase. This value must consist
+   * of lower-case letters, numbers, and hyphens, start with a letter and end
+   * with a letter or a number, and have a max length of 63 characters. In other
+   * words, it must match the following regex:
+   * `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+   *
    * @var string
    */
   public $phaseId;
+  protected $postdeployType = Postdeploy::class;
+  protected $postdeployDataType = '';
+  protected $predeployType = Predeploy::class;
+  protected $predeployDataType = '';
   /**
+   * Optional. Skaffold profiles to use when rendering the manifest for this
+   * phase. These are in addition to the profiles list specified in the
+   * `DeliveryPipeline` stage.
+   *
    * @var string[]
    */
   public $profiles;
   /**
+   * Optional. Whether to run verify tests after the deployment via `skaffold
+   * verify`.
+   *
    * @var bool
    */
   public $verify;
+  protected $verifyConfigType = Verify::class;
+  protected $verifyConfigDataType = '';
 
   /**
-   * @param int
+   * Optional. Configuration for the analysis job of this phase. If this is not
+   * configured, there will be no analysis job for this phase.
+   *
+   * @param Analysis $analysis
+   */
+  public function setAnalysis(Analysis $analysis)
+  {
+    $this->analysis = $analysis;
+  }
+  /**
+   * @return Analysis
+   */
+  public function getAnalysis()
+  {
+    return $this->analysis;
+  }
+  /**
+   * Required. Percentage deployment for the phase.
+   *
+   * @param int $percentage
    */
   public function setPercentage($percentage)
   {
@@ -52,7 +94,13 @@ class PhaseConfig extends \Google\Collection
     return $this->percentage;
   }
   /**
-   * @param string
+   * Required. The ID to assign to the `Rollout` phase. This value must consist
+   * of lower-case letters, numbers, and hyphens, start with a letter and end
+   * with a letter or a number, and have a max length of 63 characters. In other
+   * words, it must match the following regex:
+   * `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+   *
+   * @param string $phaseId
    */
   public function setPhaseId($phaseId)
   {
@@ -66,7 +114,45 @@ class PhaseConfig extends \Google\Collection
     return $this->phaseId;
   }
   /**
-   * @param string[]
+   * Optional. Configuration for the postdeploy job of this phase. If this is
+   * not configured, there will be no postdeploy job for this phase.
+   *
+   * @param Postdeploy $postdeploy
+   */
+  public function setPostdeploy(Postdeploy $postdeploy)
+  {
+    $this->postdeploy = $postdeploy;
+  }
+  /**
+   * @return Postdeploy
+   */
+  public function getPostdeploy()
+  {
+    return $this->postdeploy;
+  }
+  /**
+   * Optional. Configuration for the predeploy job of this phase. If this is not
+   * configured, there will be no predeploy job for this phase.
+   *
+   * @param Predeploy $predeploy
+   */
+  public function setPredeploy(Predeploy $predeploy)
+  {
+    $this->predeploy = $predeploy;
+  }
+  /**
+   * @return Predeploy
+   */
+  public function getPredeploy()
+  {
+    return $this->predeploy;
+  }
+  /**
+   * Optional. Skaffold profiles to use when rendering the manifest for this
+   * phase. These are in addition to the profiles list specified in the
+   * `DeliveryPipeline` stage.
+   *
+   * @param string[] $profiles
    */
   public function setProfiles($profiles)
   {
@@ -80,7 +166,10 @@ class PhaseConfig extends \Google\Collection
     return $this->profiles;
   }
   /**
-   * @param bool
+   * Optional. Whether to run verify tests after the deployment via `skaffold
+   * verify`.
+   *
+   * @param bool $verify
    */
   public function setVerify($verify)
   {
@@ -92,6 +181,23 @@ class PhaseConfig extends \Google\Collection
   public function getVerify()
   {
     return $this->verify;
+  }
+  /**
+   * Optional. Configuration for the verify job. Cannot be set if `verify` is
+   * set to true.
+   *
+   * @param Verify $verifyConfig
+   */
+  public function setVerifyConfig(Verify $verifyConfig)
+  {
+    $this->verifyConfig = $verifyConfig;
+  }
+  /**
+   * @return Verify
+   */
+  public function getVerifyConfig()
+  {
+    return $this->verifyConfig;
   }
 }
 

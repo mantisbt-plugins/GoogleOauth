@@ -22,11 +22,21 @@ class GoogleCloudRetailV2Condition extends \Google\Collection
   protected $collection_key = 'queryTerms';
   protected $activeTimeRangeType = GoogleCloudRetailV2ConditionTimeRange::class;
   protected $activeTimeRangeDataType = 'array';
+  /**
+   * Used to support browse uses cases. A list (up to 10 entries) of categories
+   * or departments. The format should be the same as UserEvent.page_categories;
+   *
+   * @var string[]
+   */
+  public $pageCategories;
   protected $queryTermsType = GoogleCloudRetailV2ConditionQueryTerm::class;
   protected $queryTermsDataType = 'array';
 
   /**
-   * @param GoogleCloudRetailV2ConditionTimeRange[]
+   * Range of time(s) specifying when Condition is active. Condition true if any
+   * time range matches.
+   *
+   * @param GoogleCloudRetailV2ConditionTimeRange[] $activeTimeRange
    */
   public function setActiveTimeRange($activeTimeRange)
   {
@@ -40,7 +50,28 @@ class GoogleCloudRetailV2Condition extends \Google\Collection
     return $this->activeTimeRange;
   }
   /**
-   * @param GoogleCloudRetailV2ConditionQueryTerm[]
+   * Used to support browse uses cases. A list (up to 10 entries) of categories
+   * or departments. The format should be the same as UserEvent.page_categories;
+   *
+   * @param string[] $pageCategories
+   */
+  public function setPageCategories($pageCategories)
+  {
+    $this->pageCategories = $pageCategories;
+  }
+  /**
+   * @return string[]
+   */
+  public function getPageCategories()
+  {
+    return $this->pageCategories;
+  }
+  /**
+   * A list (up to 10 entries) of terms to match the query on. If not specified,
+   * match all queries. If many query terms are specified, the condition is
+   * matched if any of the terms is a match (i.e. using the OR operator).
+   *
+   * @param GoogleCloudRetailV2ConditionQueryTerm[] $queryTerms
    */
   public function setQueryTerms($queryTerms)
   {

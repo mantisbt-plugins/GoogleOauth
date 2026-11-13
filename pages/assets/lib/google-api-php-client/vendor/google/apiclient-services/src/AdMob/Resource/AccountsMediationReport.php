@@ -31,7 +31,7 @@ use Google\Service\AdMob\GenerateMediationReportResponse;
 class AccountsMediationReport extends \Google\Service\Resource
 {
   /**
-   * Generates an AdMob mediation report based on the provided report
+   * Generates an AdMob Mediation report based on the provided report
    * specification. Returns result of a server-side streaming RPC. The result is
    * returned in a sequence of responses. (mediationReport.generate)
    *
@@ -40,6 +40,7 @@ class AccountsMediationReport extends \Google\Service\Resource
    * @param GenerateMediationReportRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GenerateMediationReportResponse
+   * @throws \Google\Service\Exception
    */
   public function generate($parent, GenerateMediationReportRequest $postBody, $optParams = [])
   {

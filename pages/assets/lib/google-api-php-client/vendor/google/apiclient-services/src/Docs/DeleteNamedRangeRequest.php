@@ -20,16 +20,26 @@ namespace Google\Service\Docs;
 class DeleteNamedRangeRequest extends \Google\Model
 {
   /**
+   * The name of the range(s) to delete. All named ranges with the given name
+   * will be deleted.
+   *
    * @var string
    */
   public $name;
   /**
+   * The ID of the named range to delete.
+   *
    * @var string
    */
   public $namedRangeId;
+  protected $tabsCriteriaType = TabsCriteria::class;
+  protected $tabsCriteriaDataType = '';
 
   /**
-   * @param string
+   * The name of the range(s) to delete. All named ranges with the given name
+   * will be deleted.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -43,7 +53,9 @@ class DeleteNamedRangeRequest extends \Google\Model
     return $this->name;
   }
   /**
-   * @param string
+   * The ID of the named range to delete.
+   *
+   * @param string $namedRangeId
    */
   public function setNamedRangeId($namedRangeId)
   {
@@ -55,6 +67,28 @@ class DeleteNamedRangeRequest extends \Google\Model
   public function getNamedRangeId()
   {
     return $this->namedRangeId;
+  }
+  /**
+   * Optional. The criteria used to specify which tab(s) the range deletion
+   * should occur in. When omitted, the range deletion is applied to all tabs.
+   * In a document containing a single tab: - If provided, must match the
+   * singular tab's ID. - If omitted, the range deletion applies to the singular
+   * tab. In a document containing multiple tabs: - If provided, the range
+   * deletion applies to the specified tabs. - If not provided, the range
+   * deletion applies to all tabs.
+   *
+   * @param TabsCriteria $tabsCriteria
+   */
+  public function setTabsCriteria(TabsCriteria $tabsCriteria)
+  {
+    $this->tabsCriteria = $tabsCriteria;
+  }
+  /**
+   * @return TabsCriteria
+   */
+  public function getTabsCriteria()
+  {
+    return $this->tabsCriteria;
   }
 }
 

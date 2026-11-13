@@ -50,6 +50,7 @@ class Monitoring extends \Google\Service
   public $folders_timeSeries;
   public $organizations_timeSeries;
   public $projects_alertPolicies;
+  public $projects_alerts;
   public $projects_collectdTimeSeries;
   public $projects_groups;
   public $projects_groups_members;
@@ -63,6 +64,7 @@ class Monitoring extends \Google\Service
   public $services;
   public $services_serviceLevelObjectives;
   public $uptimeCheckIps;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Monitoring service.
@@ -75,6 +77,7 @@ class Monitoring extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://monitoring.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://monitoring.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v3';
@@ -324,6 +327,52 @@ class Monitoring extends \Google\Service
           ]
         ]
     );
+    $this->projects_alerts = new Monitoring\Resource\ProjectsAlerts(
+        $this,
+        $this->serviceName,
+        'alerts',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v3/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v3/{+parent}/alerts',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->projects_collectdTimeSeries = new Monitoring\Resource\ProjectsCollectdTimeSeries(
         $this,
         $this->serviceName,
@@ -520,6 +569,10 @@ class Monitoring extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'activeOnly' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'filter' => [
                   'location' => 'query',

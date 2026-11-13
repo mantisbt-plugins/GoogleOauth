@@ -34,7 +34,7 @@ class GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig extends \Google\Collec
   public $testCases;
 
   /**
-   * @param bool
+   * @param bool $enableContinuousRun
    */
   public function setEnableContinuousRun($enableContinuousRun)
   {
@@ -48,7 +48,7 @@ class GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig extends \Google\Collec
     return $this->enableContinuousRun;
   }
   /**
-   * @param bool
+   * @param bool $enablePredeploymentRun
    */
   public function setEnablePredeploymentRun($enablePredeploymentRun)
   {
@@ -62,7 +62,7 @@ class GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig extends \Google\Collec
     return $this->enablePredeploymentRun;
   }
   /**
-   * @param string[]
+   * @param string[] $testCases
    */
   public function setTestCases($testCases)
   {

@@ -24,8 +24,9 @@ use Google\Client;
  *
  * <p>
  * The My Business Lodging API enables managing lodging business information on
- * Google. Note - If you have a quota of 0 after enabling the API, please
- * request for GBP API access.</p>
+ * Google. Note: If you have a quota of 0 after enabling the API, please request
+ * GBP API access at https://developers.google.com/my-
+ * business/content/prereqs#request-access.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -40,6 +41,7 @@ class MyBusinessLodging extends \Google\Service
 
   public $locations;
   public $locations_lodging;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the MyBusinessLodging service.
@@ -52,6 +54,7 @@ class MyBusinessLodging extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://mybusinesslodging.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://mybusinesslodging.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';

@@ -28,7 +28,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/gmail/api/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/gmail/api/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -93,6 +93,7 @@ class Gmail extends \Google\Service
   public $users_settings_sendAs;
   public $users_settings_sendAs_smimeInfo;
   public $users_threads;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Gmail service.
@@ -105,6 +106,7 @@ class Gmail extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://gmail.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://gmail.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -822,6 +824,10 @@ class Gmail extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'chainValidation' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],'disable' => [

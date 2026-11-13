@@ -24,7 +24,7 @@ use Google\Client;
  *
  * <p>
  * FCM send API that provides a cross-platform messaging solution to reliably
- * deliver messages at no cost.</p>
+ * deliver messages.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -43,6 +43,8 @@ class FirebaseCloudMessaging extends \Google\Service
       "https://www.googleapis.com/auth/firebase.messaging";
 
   public $projects_messages;
+  public $projects_registrations_topicSubscriptions;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the FirebaseCloudMessaging
@@ -56,6 +58,7 @@ class FirebaseCloudMessaging extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://fcm.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://fcm.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -75,6 +78,86 @@ class FirebaseCloudMessaging extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_registrations_topicSubscriptions = new FirebaseCloudMessaging\Resource\ProjectsRegistrationsTopicSubscriptions(
+        $this,
+        $this->serviceName,
+        'topicSubscriptions',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v1/{+parent}/topicSubscriptions',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'topicName' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/topicSubscriptions',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],

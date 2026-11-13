@@ -26,7 +26,7 @@ class TestIamPermissionsResponse extends \Google\Collection
   public $permissions;
 
   /**
-   * @param string[]
+   * @param string[] $permissions
    */
   public function setPermissions($permissions)
   {

@@ -21,44 +21,77 @@ class VideoPerformanceAd extends \Google\Collection
 {
   protected $collection_key = 'videos';
   /**
+   * Optional. The list of text assets shown on the call-to-action button. Must
+   * be set if headlines is set.
+   *
    * @var string[]
    */
   public $actionButtonLabels;
   protected $companionBannersType = ImageAsset::class;
   protected $companionBannersDataType = 'array';
   /**
+   * Optional. The custom parameters and accompanying values to add to the
+   * tracking URL.
+   *
    * @var string[]
    */
   public $customParameters;
   /**
+   * Optional. The list of descriptions shown on the call-to-action banner. Must
+   * be set unless the parent line item's lineItemType is
+   * `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this
+   * field cannot be set.
+   *
    * @var string[]
    */
   public $descriptions;
   /**
+   * Optional. The first piece after the domain in the display URL.
+   *
    * @var string
    */
   public $displayUrlBreadcrumb1;
   /**
+   * Optional. The second piece after the domain in the display URL. Can only be
+   * set if displayUrlBreadcrumb1 is also set.
+   *
    * @var string
    */
   public $displayUrlBreadcrumb2;
   /**
+   * Output only. The domain of the display URL.
+   *
    * @var string
    */
   public $domain;
   /**
+   * Required. The URL address of the webpage that people reach after they click
+   * the ad.
+   *
    * @var string
    */
   public $finalUrl;
   /**
+   * Optional. The list of headlines shown on the call-to-action banner.
+   *
    * @var string[]
    */
   public $headlines;
   /**
+   * Optional. The list of long headlines shown on the call-to-action banner.
+   * Must be set unless the parent line item's lineItemType is
+   * `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this
+   * field cannot be set.
+   *
    * @var string[]
    */
   public $longHeadlines;
   /**
+   * Output only. The URL address loaded in the background for tracking
+   * purposes. In v4 and earlier, this field represents the tracking URL
+   * specified by the user manually. This can be found at
+   * userSpecifiedTrackingUrl in v5.
+   *
    * @var string
    */
   public $trackingUrl;
@@ -66,7 +99,10 @@ class VideoPerformanceAd extends \Google\Collection
   protected $videosDataType = 'array';
 
   /**
-   * @param string[]
+   * Optional. The list of text assets shown on the call-to-action button. Must
+   * be set if headlines is set.
+   *
+   * @param string[] $actionButtonLabels
    */
   public function setActionButtonLabels($actionButtonLabels)
   {
@@ -80,7 +116,9 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->actionButtonLabels;
   }
   /**
-   * @param ImageAsset[]
+   * Optional. The list of companion banners used by this ad.
+   *
+   * @param ImageAsset[] $companionBanners
    */
   public function setCompanionBanners($companionBanners)
   {
@@ -94,7 +132,10 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->companionBanners;
   }
   /**
-   * @param string[]
+   * Optional. The custom parameters and accompanying values to add to the
+   * tracking URL.
+   *
+   * @param string[] $customParameters
    */
   public function setCustomParameters($customParameters)
   {
@@ -108,7 +149,12 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->customParameters;
   }
   /**
-   * @param string[]
+   * Optional. The list of descriptions shown on the call-to-action banner. Must
+   * be set unless the parent line item's lineItemType is
+   * `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this
+   * field cannot be set.
+   *
+   * @param string[] $descriptions
    */
   public function setDescriptions($descriptions)
   {
@@ -122,7 +168,9 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->descriptions;
   }
   /**
-   * @param string
+   * Optional. The first piece after the domain in the display URL.
+   *
+   * @param string $displayUrlBreadcrumb1
    */
   public function setDisplayUrlBreadcrumb1($displayUrlBreadcrumb1)
   {
@@ -136,7 +184,10 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->displayUrlBreadcrumb1;
   }
   /**
-   * @param string
+   * Optional. The second piece after the domain in the display URL. Can only be
+   * set if displayUrlBreadcrumb1 is also set.
+   *
+   * @param string $displayUrlBreadcrumb2
    */
   public function setDisplayUrlBreadcrumb2($displayUrlBreadcrumb2)
   {
@@ -150,7 +201,9 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->displayUrlBreadcrumb2;
   }
   /**
-   * @param string
+   * Output only. The domain of the display URL.
+   *
+   * @param string $domain
    */
   public function setDomain($domain)
   {
@@ -164,7 +217,10 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->domain;
   }
   /**
-   * @param string
+   * Required. The URL address of the webpage that people reach after they click
+   * the ad.
+   *
+   * @param string $finalUrl
    */
   public function setFinalUrl($finalUrl)
   {
@@ -178,7 +234,9 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->finalUrl;
   }
   /**
-   * @param string[]
+   * Optional. The list of headlines shown on the call-to-action banner.
+   *
+   * @param string[] $headlines
    */
   public function setHeadlines($headlines)
   {
@@ -192,7 +250,12 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->headlines;
   }
   /**
-   * @param string[]
+   * Optional. The list of long headlines shown on the call-to-action banner.
+   * Must be set unless the parent line item's lineItemType is
+   * `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE`, in which case this
+   * field cannot be set.
+   *
+   * @param string[] $longHeadlines
    */
   public function setLongHeadlines($longHeadlines)
   {
@@ -206,7 +269,12 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->longHeadlines;
   }
   /**
-   * @param string
+   * Output only. The URL address loaded in the background for tracking
+   * purposes. In v4 and earlier, this field represents the tracking URL
+   * specified by the user manually. This can be found at
+   * userSpecifiedTrackingUrl in v5.
+   *
+   * @param string $trackingUrl
    */
   public function setTrackingUrl($trackingUrl)
   {
@@ -220,7 +288,9 @@ class VideoPerformanceAd extends \Google\Collection
     return $this->trackingUrl;
   }
   /**
-   * @param YoutubeVideoDetails[]
+   * Required. The list of YouTube video assets used by this ad.
+   *
+   * @param YoutubeVideoDetails[] $videos
    */
   public function setVideos($videos)
   {

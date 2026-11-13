@@ -17,15 +17,22 @@
 
 namespace Google\Service\Integrations;
 
-class GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse extends \Google\Model
+class GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse extends \Google\Collection
 {
+  protected $collection_key = 'files';
   /**
+   * String representation of the requested file.
+   *
    * @var string
    */
   public $content;
+  protected $filesType = GoogleCloudIntegrationsV1alphaSerializedFile::class;
+  protected $filesDataType = 'array';
 
   /**
-   * @param string
+   * String representation of the requested file.
+   *
+   * @param string $content
    */
   public function setContent($content)
   {
@@ -37,6 +44,22 @@ class GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse extends \
   public function getContent()
   {
     return $this->content;
+  }
+  /**
+   * List containing String representation for multiple file with type.
+   *
+   * @param GoogleCloudIntegrationsV1alphaSerializedFile[] $files
+   */
+  public function setFiles($files)
+  {
+    $this->files = $files;
+  }
+  /**
+   * @return GoogleCloudIntegrationsV1alphaSerializedFile[]
+   */
+  public function getFiles()
+  {
+    return $this->files;
   }
 }
 

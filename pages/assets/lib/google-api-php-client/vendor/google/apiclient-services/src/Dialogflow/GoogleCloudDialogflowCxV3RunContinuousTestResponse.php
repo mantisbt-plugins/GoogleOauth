@@ -23,7 +23,7 @@ class GoogleCloudDialogflowCxV3RunContinuousTestResponse extends \Google\Model
   protected $continuousTestResultDataType = '';
 
   /**
-   * @param GoogleCloudDialogflowCxV3ContinuousTestResult
+   * @param GoogleCloudDialogflowCxV3ContinuousTestResult $continuousTestResult
    */
   public function setContinuousTestResult(GoogleCloudDialogflowCxV3ContinuousTestResult $continuousTestResult)
   {

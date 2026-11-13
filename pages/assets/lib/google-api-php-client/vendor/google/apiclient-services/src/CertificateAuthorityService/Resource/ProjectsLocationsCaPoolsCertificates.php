@@ -43,7 +43,7 @@ class ProjectsLocationsCaPoolsCertificates extends \Google\Service\Resource
    * @opt_param string certificateId Optional. It must be unique within a location
    * and match the regular expression `[a-zA-Z0-9_-]{1,63}`. This field is
    * required when using a CertificateAuthority in the Enterprise
-   * CertificateAuthority.Tier, but is optional and its value is ignored
+   * CertificateAuthority.tier, but is optional and its value is ignored
    * otherwise.
    * @opt_param string issuingCertificateAuthorityId Optional. The resource ID of
    * the CertificateAuthority that should issue the certificate. This optional
@@ -71,6 +71,7 @@ class ProjectsLocationsCaPoolsCertificates extends \Google\Service\Resource
    * resource will be persisted regardless of the CaPool's tier, and the returned
    * Certificate will not contain the pem_certificate field.
    * @return Certificate
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Certificate $postBody, $optParams = [])
   {
@@ -84,6 +85,7 @@ class ProjectsLocationsCaPoolsCertificates extends \Google\Service\Resource
    * @param string $name Required. The name of the Certificate to get.
    * @param array $optParams Optional parameters.
    * @return Certificate
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -94,8 +96,13 @@ class ProjectsLocationsCaPoolsCertificates extends \Google\Service\Resource
   /**
    * Lists Certificates. (certificates.listProjectsLocationsCaPoolsCertificates)
    *
-   * @param string $parent Required. The resource name of the location associated
-   * with the Certificates, in the format `projects/locations/caPools`.
+   * @param string $parent Required. The resource name of the parent associated
+   * with the Certificates, in the format `projects/locations/caPools`. The parent
+   * resource name can be in one of two forms: 1. **Specific CA Pool:** To list
+   * certificates within a single CA Pool: `projects/locations/caPools` 2. **All
+   * CA Pools in a Location:** To list certificates across *all* CA Pools in a
+   * given project and location, use the wildcard character (`-`) in place of the
+   * CA Pool ID. Example: `projects/locations/caPools/-`
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter Optional. Only include resources that match the
@@ -104,8 +111,8 @@ class ProjectsLocationsCaPoolsCertificates extends \Google\Service\Resource
    * authority-service/docs/sorting-filtering-certificates#filtering_support).
    * @opt_param string orderBy Optional. Specify how the results should be sorted.
    * For details on supported fields and syntax, see [Certificates Sorting
-   * documentation](https://cloud.google.com/certificate-authority-service/docs
-   * /sorting-filtering-certificates#sorting_support).
+   * documentation](https://cloud.google.com/certificate-authority-
+   * service/docs/sorting-filtering-certificates#sorting_support).
    * @opt_param int pageSize Optional. Limit on the number of Certificates to
    * include in the response. Further Certificates can subsequently be obtained by
    * including the ListCertificatesResponse.next_page_token in a subsequent
@@ -113,6 +120,7 @@ class ProjectsLocationsCaPoolsCertificates extends \Google\Service\Resource
    * @opt_param string pageToken Optional. Pagination token, returned earlier via
    * ListCertificatesResponse.next_page_token.
    * @return ListCertificatesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsCaPoolsCertificates($parent, $optParams = [])
   {
@@ -124,8 +132,8 @@ class ProjectsLocationsCaPoolsCertificates extends \Google\Service\Resource
    * Update a Certificate. Currently, the only field you can update is the labels
    * field. (certificates.patch)
    *
-   * @param string $name Output only. The resource name for this Certificate in
-   * the format `projects/locations/caPools/certificates`.
+   * @param string $name Identifier. The resource name for this Certificate in the
+   * format `projects/locations/caPools/certificates`.
    * @param Certificate $postBody
    * @param array $optParams Optional parameters.
    *
@@ -143,6 +151,7 @@ class ProjectsLocationsCaPoolsCertificates extends \Google\Service\Resource
    * @opt_param string updateMask Required. A list of fields to be updated in this
    * request.
    * @return Certificate
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Certificate $postBody, $optParams = [])
   {
@@ -158,6 +167,7 @@ class ProjectsLocationsCaPoolsCertificates extends \Google\Service\Resource
    * @param RevokeCertificateRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Certificate
+   * @throws \Google\Service\Exception
    */
   public function revoke($name, RevokeCertificateRequest $postBody, $optParams = [])
   {

@@ -21,26 +21,39 @@ class InAppProductListing extends \Google\Collection
 {
   protected $collection_key = 'benefits';
   /**
+   * Deprecated: Subscriptions are no longer supported in the InAppProducts API.
+   * Use the Subscriptions API instead.
+   *
+   * @deprecated
    * @var string[]
    */
   public $benefits;
   /**
+   * Description for the store listing.
+   *
    * @var string
    */
   public $description;
   /**
+   * Title for the store listing.
+   *
    * @var string
    */
   public $title;
 
   /**
-   * @param string[]
+   * Deprecated: Subscriptions are no longer supported in the InAppProducts API.
+   * Use the Subscriptions API instead.
+   *
+   * @deprecated
+   * @param string[] $benefits
    */
   public function setBenefits($benefits)
   {
     $this->benefits = $benefits;
   }
   /**
+   * @deprecated
    * @return string[]
    */
   public function getBenefits()
@@ -48,7 +61,9 @@ class InAppProductListing extends \Google\Collection
     return $this->benefits;
   }
   /**
-   * @param string
+   * Description for the store listing.
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -62,7 +77,9 @@ class InAppProductListing extends \Google\Collection
     return $this->description;
   }
   /**
-   * @param string
+   * Title for the store listing.
+   *
+   * @param string $title
    */
   public function setTitle($title)
   {

@@ -27,7 +27,7 @@ class GoogleCloudDialogflowCxV3beta1AudioInput extends \Google\Model
   protected $configDataType = '';
 
   /**
-   * @param string
+   * @param string $audio
    */
   public function setAudio($audio)
   {
@@ -41,7 +41,7 @@ class GoogleCloudDialogflowCxV3beta1AudioInput extends \Google\Model
     return $this->audio;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3beta1InputAudioConfig
+   * @param GoogleCloudDialogflowCxV3beta1InputAudioConfig $config
    */
   public function setConfig(GoogleCloudDialogflowCxV3beta1InputAudioConfig $config)
   {

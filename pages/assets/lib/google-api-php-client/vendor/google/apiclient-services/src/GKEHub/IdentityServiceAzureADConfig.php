@@ -20,28 +20,56 @@ namespace Google\Service\GKEHub;
 class IdentityServiceAzureADConfig extends \Google\Model
 {
   /**
+   * ID for the registered client application that makes authentication requests
+   * to the Azure AD identity provider.
+   *
    * @var string
    */
   public $clientId;
   /**
+   * Input only. Unencrypted AzureAD client secret will be passed to the GKE Hub
+   * CLH.
+   *
    * @var string
    */
   public $clientSecret;
   /**
+   * Output only. Encrypted AzureAD client secret.
+   *
    * @var string
    */
   public $encryptedClientSecret;
   /**
+   * Optional. Format of the AzureAD groups that the client wants for auth.
+   *
+   * @var string
+   */
+  public $groupFormat;
+  /**
+   * The redirect URL that kubectl uses for authorization.
+   *
    * @var string
    */
   public $kubectlRedirectUri;
   /**
+   * Kind of Azure AD account to be authenticated. Supported values are or for
+   * accounts belonging to a specific tenant.
+   *
    * @var string
    */
   public $tenant;
+  /**
+   * Optional. Claim in the AzureAD ID Token that holds the user details.
+   *
+   * @var string
+   */
+  public $userClaim;
 
   /**
-   * @param string
+   * ID for the registered client application that makes authentication requests
+   * to the Azure AD identity provider.
+   *
+   * @param string $clientId
    */
   public function setClientId($clientId)
   {
@@ -55,7 +83,10 @@ class IdentityServiceAzureADConfig extends \Google\Model
     return $this->clientId;
   }
   /**
-   * @param string
+   * Input only. Unencrypted AzureAD client secret will be passed to the GKE Hub
+   * CLH.
+   *
+   * @param string $clientSecret
    */
   public function setClientSecret($clientSecret)
   {
@@ -69,7 +100,9 @@ class IdentityServiceAzureADConfig extends \Google\Model
     return $this->clientSecret;
   }
   /**
-   * @param string
+   * Output only. Encrypted AzureAD client secret.
+   *
+   * @param string $encryptedClientSecret
    */
   public function setEncryptedClientSecret($encryptedClientSecret)
   {
@@ -83,7 +116,25 @@ class IdentityServiceAzureADConfig extends \Google\Model
     return $this->encryptedClientSecret;
   }
   /**
-   * @param string
+   * Optional. Format of the AzureAD groups that the client wants for auth.
+   *
+   * @param string $groupFormat
+   */
+  public function setGroupFormat($groupFormat)
+  {
+    $this->groupFormat = $groupFormat;
+  }
+  /**
+   * @return string
+   */
+  public function getGroupFormat()
+  {
+    return $this->groupFormat;
+  }
+  /**
+   * The redirect URL that kubectl uses for authorization.
+   *
+   * @param string $kubectlRedirectUri
    */
   public function setKubectlRedirectUri($kubectlRedirectUri)
   {
@@ -97,7 +148,10 @@ class IdentityServiceAzureADConfig extends \Google\Model
     return $this->kubectlRedirectUri;
   }
   /**
-   * @param string
+   * Kind of Azure AD account to be authenticated. Supported values are or for
+   * accounts belonging to a specific tenant.
+   *
+   * @param string $tenant
    */
   public function setTenant($tenant)
   {
@@ -109,6 +163,22 @@ class IdentityServiceAzureADConfig extends \Google\Model
   public function getTenant()
   {
     return $this->tenant;
+  }
+  /**
+   * Optional. Claim in the AzureAD ID Token that holds the user details.
+   *
+   * @param string $userClaim
+   */
+  public function setUserClaim($userClaim)
+  {
+    $this->userClaim = $userClaim;
+  }
+  /**
+   * @return string
+   */
+  public function getUserClaim()
+  {
+    return $this->userClaim;
   }
 }
 

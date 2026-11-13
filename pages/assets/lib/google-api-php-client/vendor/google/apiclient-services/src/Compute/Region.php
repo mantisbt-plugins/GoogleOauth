@@ -19,50 +19,77 @@ namespace Google\Service\Compute;
 
 class Region extends \Google\Collection
 {
+  public const STATUS_DOWN = 'DOWN';
+  public const STATUS_UP = 'UP';
   protected $collection_key = 'zones';
   /**
+   * [Output Only] Creation timestamp inRFC3339 text format.
+   *
    * @var string
    */
   public $creationTimestamp;
   protected $deprecatedType = DeprecationStatus::class;
   protected $deprecatedDataType = '';
   /**
+   * [Output Only] Textual description of the resource.
+   *
    * @var string
    */
   public $description;
   /**
+   * [Output Only] The unique identifier for the resource. This identifier is
+   * defined by the server.
+   *
    * @var string
    */
   public $id;
   /**
+   * Output only. [Output Only] Type of the resource. Always compute#region for
+   * regions.
+   *
    * @var string
    */
   public $kind;
   /**
+   * [Output Only] Name of the resource.
+   *
    * @var string
    */
   public $name;
+  protected $quotaStatusWarningType = RegionQuotaStatusWarning::class;
+  protected $quotaStatusWarningDataType = '';
   protected $quotasType = Quota::class;
   protected $quotasDataType = 'array';
   /**
+   * [Output Only] Server-defined URL for the resource.
+   *
    * @var string
    */
   public $selfLink;
   /**
+   * [Output Only] Status of the region, either UP orDOWN.
+   *
    * @var string
    */
   public $status;
   /**
+   * Output only. [Output Only] Reserved for future use.
+   *
    * @var bool
    */
   public $supportsPzs;
   /**
+   * [Output Only] A list of zones available in this region, in the form of
+   * resource URLs.
+   *
    * @var string[]
    */
   public $zones;
 
   /**
-   * @param string
+   * [Output Only] Creation timestamp inRFC3339 text format.
+   *
+   * @param string $creationTimestamp
    */
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -76,7 +103,9 @@ class Region extends \Google\Collection
     return $this->creationTimestamp;
   }
   /**
-   * @param DeprecationStatus
+   * [Output Only] The deprecation status associated with this region.
+   *
+   * @param DeprecationStatus $deprecated
    */
   public function setDeprecated(DeprecationStatus $deprecated)
   {
@@ -90,7 +119,9 @@ class Region extends \Google\Collection
     return $this->deprecated;
   }
   /**
-   * @param string
+   * [Output Only] Textual description of the resource.
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -104,7 +135,10 @@ class Region extends \Google\Collection
     return $this->description;
   }
   /**
-   * @param string
+   * [Output Only] The unique identifier for the resource. This identifier is
+   * defined by the server.
+   *
+   * @param string $id
    */
   public function setId($id)
   {
@@ -118,7 +152,10 @@ class Region extends \Google\Collection
     return $this->id;
   }
   /**
-   * @param string
+   * Output only. [Output Only] Type of the resource. Always compute#region for
+   * regions.
+   *
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -132,7 +169,9 @@ class Region extends \Google\Collection
     return $this->kind;
   }
   /**
-   * @param string
+   * [Output Only] Name of the resource.
+   *
+   * @param string $name
    */
   public function setName($name)
   {
@@ -146,7 +185,27 @@ class Region extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param Quota[]
+   * Output only. [Output Only] Warning of fetching the `quotas` field for this
+   * region. This field is populated only if fetching of the `quotas` field
+   * fails.
+   *
+   * @param RegionQuotaStatusWarning $quotaStatusWarning
+   */
+  public function setQuotaStatusWarning(RegionQuotaStatusWarning $quotaStatusWarning)
+  {
+    $this->quotaStatusWarning = $quotaStatusWarning;
+  }
+  /**
+   * @return RegionQuotaStatusWarning
+   */
+  public function getQuotaStatusWarning()
+  {
+    return $this->quotaStatusWarning;
+  }
+  /**
+   * [Output Only] Quotas assigned to this region.
+   *
+   * @param Quota[] $quotas
    */
   public function setQuotas($quotas)
   {
@@ -160,7 +219,9 @@ class Region extends \Google\Collection
     return $this->quotas;
   }
   /**
-   * @param string
+   * [Output Only] Server-defined URL for the resource.
+   *
+   * @param string $selfLink
    */
   public function setSelfLink($selfLink)
   {
@@ -174,21 +235,27 @@ class Region extends \Google\Collection
     return $this->selfLink;
   }
   /**
-   * @param string
+   * [Output Only] Status of the region, either UP orDOWN.
+   *
+   * Accepted values: DOWN, UP
+   *
+   * @param self::STATUS_* $status
    */
   public function setStatus($status)
   {
     $this->status = $status;
   }
   /**
-   * @return string
+   * @return self::STATUS_*
    */
   public function getStatus()
   {
     return $this->status;
   }
   /**
-   * @param bool
+   * Output only. [Output Only] Reserved for future use.
+   *
+   * @param bool $supportsPzs
    */
   public function setSupportsPzs($supportsPzs)
   {
@@ -202,7 +269,10 @@ class Region extends \Google\Collection
     return $this->supportsPzs;
   }
   /**
-   * @param string[]
+   * [Output Only] A list of zones available in this region, in the form of
+   * resource URLs.
+   *
+   * @param string[] $zones
    */
   public function setZones($zones)
   {

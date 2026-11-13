@@ -23,11 +23,15 @@ class MaintenanceWindow extends \Google\Model
   protected $dailyMaintenanceWindowDataType = '';
   protected $maintenanceExclusionsType = TimeWindow::class;
   protected $maintenanceExclusionsDataType = 'map';
+  protected $recurringMaintenanceWindowType = RecurringMaintenanceWindow::class;
+  protected $recurringMaintenanceWindowDataType = '';
   protected $recurringWindowType = RecurringTimeWindow::class;
   protected $recurringWindowDataType = '';
 
   /**
-   * @param DailyMaintenanceWindow
+   * DailyMaintenanceWindow specifies a daily maintenance operation window.
+   *
+   * @param DailyMaintenanceWindow $dailyMaintenanceWindow
    */
   public function setDailyMaintenanceWindow(DailyMaintenanceWindow $dailyMaintenanceWindow)
   {
@@ -41,7 +45,10 @@ class MaintenanceWindow extends \Google\Model
     return $this->dailyMaintenanceWindow;
   }
   /**
-   * @param TimeWindow[]
+   * Exceptions to maintenance window. Non-emergency maintenance should not
+   * occur in these windows.
+   *
+   * @param TimeWindow[] $maintenanceExclusions
    */
   public function setMaintenanceExclusions($maintenanceExclusions)
   {
@@ -55,7 +62,30 @@ class MaintenanceWindow extends \Google\Model
     return $this->maintenanceExclusions;
   }
   /**
-   * @param RecurringTimeWindow
+   * RecurringMaintenanceWindow specifies some number of recurring time periods
+   * for maintenance to occur. The time windows may be overlapping. If no
+   * maintenance windows are set, maintenance can occur at any time. Alternative
+   * to RecurringWindow, with renamed fields.
+   *
+   * @param RecurringMaintenanceWindow $recurringMaintenanceWindow
+   */
+  public function setRecurringMaintenanceWindow(RecurringMaintenanceWindow $recurringMaintenanceWindow)
+  {
+    $this->recurringMaintenanceWindow = $recurringMaintenanceWindow;
+  }
+  /**
+   * @return RecurringMaintenanceWindow
+   */
+  public function getRecurringMaintenanceWindow()
+  {
+    return $this->recurringMaintenanceWindow;
+  }
+  /**
+   * RecurringWindow specifies some number of recurring time periods for
+   * maintenance to occur. The time windows may be overlapping. If no
+   * maintenance windows are set, maintenance can occur at any time.
+   *
+   * @param RecurringTimeWindow $recurringWindow
    */
   public function setRecurringWindow(RecurringTimeWindow $recurringWindow)
   {

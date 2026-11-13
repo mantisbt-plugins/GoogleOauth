@@ -20,48 +20,51 @@ namespace Google\Service\MigrationCenterAPI;
 class BiosDetails extends \Google\Model
 {
   /**
-   * @var string
-   */
-  public $biosManufacturer;
-  /**
+   * BIOS name. This fields is deprecated. Please use the `id` field instead.
+   *
+   * @deprecated
    * @var string
    */
   public $biosName;
   /**
+   * BIOS ID.
+   *
    * @var string
    */
-  public $biosReleaseDate;
+  public $id;
   /**
+   * BIOS manufacturer.
+   *
    * @var string
    */
-  public $biosVersion;
+  public $manufacturer;
+  protected $releaseDateType = Date::class;
+  protected $releaseDateDataType = '';
   /**
+   * SMBIOS UUID.
+   *
    * @var string
    */
   public $smbiosUuid;
+  /**
+   * BIOS version.
+   *
+   * @var string
+   */
+  public $version;
 
   /**
-   * @param string
-   */
-  public function setBiosManufacturer($biosManufacturer)
-  {
-    $this->biosManufacturer = $biosManufacturer;
-  }
-  /**
-   * @return string
-   */
-  public function getBiosManufacturer()
-  {
-    return $this->biosManufacturer;
-  }
-  /**
-   * @param string
+   * BIOS name. This fields is deprecated. Please use the `id` field instead.
+   *
+   * @deprecated
+   * @param string $biosName
    */
   public function setBiosName($biosName)
   {
     $this->biosName = $biosName;
   }
   /**
+   * @deprecated
    * @return string
    */
   public function getBiosName()
@@ -69,35 +72,57 @@ class BiosDetails extends \Google\Model
     return $this->biosName;
   }
   /**
-   * @param string
+   * BIOS ID.
+   *
+   * @param string $id
    */
-  public function setBiosReleaseDate($biosReleaseDate)
+  public function setId($id)
   {
-    $this->biosReleaseDate = $biosReleaseDate;
+    $this->id = $id;
   }
   /**
    * @return string
    */
-  public function getBiosReleaseDate()
+  public function getId()
   {
-    return $this->biosReleaseDate;
+    return $this->id;
   }
   /**
-   * @param string
+   * BIOS manufacturer.
+   *
+   * @param string $manufacturer
    */
-  public function setBiosVersion($biosVersion)
+  public function setManufacturer($manufacturer)
   {
-    $this->biosVersion = $biosVersion;
+    $this->manufacturer = $manufacturer;
   }
   /**
    * @return string
    */
-  public function getBiosVersion()
+  public function getManufacturer()
   {
-    return $this->biosVersion;
+    return $this->manufacturer;
   }
   /**
-   * @param string
+   * BIOS release date.
+   *
+   * @param Date $releaseDate
+   */
+  public function setReleaseDate(Date $releaseDate)
+  {
+    $this->releaseDate = $releaseDate;
+  }
+  /**
+   * @return Date
+   */
+  public function getReleaseDate()
+  {
+    return $this->releaseDate;
+  }
+  /**
+   * SMBIOS UUID.
+   *
+   * @param string $smbiosUuid
    */
   public function setSmbiosUuid($smbiosUuid)
   {
@@ -109,6 +134,22 @@ class BiosDetails extends \Google\Model
   public function getSmbiosUuid()
   {
     return $this->smbiosUuid;
+  }
+  /**
+   * BIOS version.
+   *
+   * @param string $version
+   */
+  public function setVersion($version)
+  {
+    $this->version = $version;
+  }
+  /**
+   * @return string
+   */
+  public function getVersion()
+  {
+    return $this->version;
   }
 }
 

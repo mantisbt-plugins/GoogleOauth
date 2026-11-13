@@ -22,9 +22,17 @@ class GooglePrivacyDlpV2ImageLocation extends \Google\Collection
   protected $collection_key = 'boundingBoxes';
   protected $boundingBoxesType = GooglePrivacyDlpV2BoundingBox::class;
   protected $boundingBoxesDataType = 'array';
+  /**
+   * The 0-indexed page number or frame index for multi-page image formats.
+   *
+   * @var int
+   */
+  public $pageNumber;
 
   /**
-   * @param GooglePrivacyDlpV2BoundingBox[]
+   * Bounding boxes locating the pixels within the image containing the finding.
+   *
+   * @param GooglePrivacyDlpV2BoundingBox[] $boundingBoxes
    */
   public function setBoundingBoxes($boundingBoxes)
   {
@@ -36,6 +44,22 @@ class GooglePrivacyDlpV2ImageLocation extends \Google\Collection
   public function getBoundingBoxes()
   {
     return $this->boundingBoxes;
+  }
+  /**
+   * The 0-indexed page number or frame index for multi-page image formats.
+   *
+   * @param int $pageNumber
+   */
+  public function setPageNumber($pageNumber)
+  {
+    $this->pageNumber = $pageNumber;
+  }
+  /**
+   * @return int
+   */
+  public function getPageNumber()
+  {
+    return $this->pageNumber;
   }
 }
 

@@ -17,8 +17,34 @@
 
 namespace Google\Service\AdExchangeBuyerII;
 
-class CompleteSetupRequest extends \Google\Model
+class CompleteSetupRequest extends \Google\Collection
 {
+  protected $collection_key = 'externalDealIds';
+  /**
+   * The external deal ids of the deals to mark as setup completed. If empty,
+   * all the deals in the proposal will be marked as setup completed.
+   *
+   * @var string[]
+   */
+  public $externalDealIds;
+
+  /**
+   * The external deal ids of the deals to mark as setup completed. If empty,
+   * all the deals in the proposal will be marked as setup completed.
+   *
+   * @param string[] $externalDealIds
+   */
+  public function setExternalDealIds($externalDealIds)
+  {
+    $this->externalDealIds = $externalDealIds;
+  }
+  /**
+   * @return string[]
+   */
+  public function getExternalDealIds()
+  {
+    return $this->externalDealIds;
+  }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

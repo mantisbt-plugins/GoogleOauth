@@ -17,15 +17,34 @@
 
 namespace Google\Service\ServiceUsage;
 
-class RemoveEnableRulesResponse extends \Google\Model
+class RemoveEnableRulesResponse extends \Google\Collection
 {
+  protected $collection_key = 'removedValues';
   /**
+   * The parent consumer policy. It can be
+   * `projects/12345/consumerPolicies/default`, or
+   * `folders/12345/consumerPolicies/default`, or
+   * `organizations/12345/consumerPolicies/default`.
+   *
    * @var string
    */
   public $parent;
+  /**
+   * Deprecated: This field is no longer populated. Use GetConsumerPolicy to
+   * verify the remaining enabled values.
+   *
+   * @deprecated
+   * @var string[]
+   */
+  public $removedValues;
 
   /**
-   * @param string
+   * The parent consumer policy. It can be
+   * `projects/12345/consumerPolicies/default`, or
+   * `folders/12345/consumerPolicies/default`, or
+   * `organizations/12345/consumerPolicies/default`.
+   *
+   * @param string $parent
    */
   public function setParent($parent)
   {
@@ -37,6 +56,25 @@ class RemoveEnableRulesResponse extends \Google\Model
   public function getParent()
   {
     return $this->parent;
+  }
+  /**
+   * Deprecated: This field is no longer populated. Use GetConsumerPolicy to
+   * verify the remaining enabled values.
+   *
+   * @deprecated
+   * @param string[] $removedValues
+   */
+  public function setRemovedValues($removedValues)
+  {
+    $this->removedValues = $removedValues;
+  }
+  /**
+   * @deprecated
+   * @return string[]
+   */
+  public function getRemovedValues()
+  {
+    return $this->removedValues;
   }
 }
 

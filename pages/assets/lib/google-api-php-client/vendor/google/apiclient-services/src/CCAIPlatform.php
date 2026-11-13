@@ -41,6 +41,7 @@ class CCAIPlatform extends \Google\Service
   public $projects_locations;
   public $projects_locations_contactCenters;
   public $projects_locations_operations;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the CCAIPlatform service.
@@ -53,6 +54,7 @@ class CCAIPlatform extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://contactcenteraiplatform.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://contactcenteraiplatform.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1alpha1';
@@ -64,7 +66,17 @@ class CCAIPlatform extends \Google\Service
         'locations',
         [
           'methods' => [
-            'get' => [
+            'generateShifts' => [
+              'path' => 'v1alpha1/{+parent}:generateShifts',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
               'path' => 'v1alpha1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -82,6 +94,11 @@ class CCAIPlatform extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -262,6 +279,10 @@ class CCAIPlatform extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],

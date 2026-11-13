@@ -24,12 +24,22 @@ class EditCustomerMatchMembersRequest extends \Google\Model
   protected $addedMobileDeviceIdListType = MobileDeviceIdList::class;
   protected $addedMobileDeviceIdListDataType = '';
   /**
+   * Required. The ID of the owner advertiser of the updated Customer Match
+   * FirstAndThirdPartyAudience.
+   *
    * @var string
    */
   public $advertiserId;
+  protected $removedContactInfoListType = ContactInfoList::class;
+  protected $removedContactInfoListDataType = '';
+  protected $removedMobileDeviceIdListType = MobileDeviceIdList::class;
+  protected $removedMobileDeviceIdListDataType = '';
 
   /**
-   * @param ContactInfoList
+   * Input only. A list of contact information to define the members to be
+   * added.
+   *
+   * @param ContactInfoList $addedContactInfoList
    */
   public function setAddedContactInfoList(ContactInfoList $addedContactInfoList)
   {
@@ -43,7 +53,9 @@ class EditCustomerMatchMembersRequest extends \Google\Model
     return $this->addedContactInfoList;
   }
   /**
-   * @param MobileDeviceIdList
+   * Input only. A list of mobile device IDs to define the members to be added.
+   *
+   * @param MobileDeviceIdList $addedMobileDeviceIdList
    */
   public function setAddedMobileDeviceIdList(MobileDeviceIdList $addedMobileDeviceIdList)
   {
@@ -57,7 +69,10 @@ class EditCustomerMatchMembersRequest extends \Google\Model
     return $this->addedMobileDeviceIdList;
   }
   /**
-   * @param string
+   * Required. The ID of the owner advertiser of the updated Customer Match
+   * FirstAndThirdPartyAudience.
+   *
+   * @param string $advertiserId
    */
   public function setAdvertiserId($advertiserId)
   {
@@ -69,6 +84,40 @@ class EditCustomerMatchMembersRequest extends \Google\Model
   public function getAdvertiserId()
   {
     return $this->advertiserId;
+  }
+  /**
+   * Input only. A list of contact information to define the members to be
+   * removed.
+   *
+   * @param ContactInfoList $removedContactInfoList
+   */
+  public function setRemovedContactInfoList(ContactInfoList $removedContactInfoList)
+  {
+    $this->removedContactInfoList = $removedContactInfoList;
+  }
+  /**
+   * @return ContactInfoList
+   */
+  public function getRemovedContactInfoList()
+  {
+    return $this->removedContactInfoList;
+  }
+  /**
+   * Input only. A list of mobile device IDs to define the members to be
+   * removed.
+   *
+   * @param MobileDeviceIdList $removedMobileDeviceIdList
+   */
+  public function setRemovedMobileDeviceIdList(MobileDeviceIdList $removedMobileDeviceIdList)
+  {
+    $this->removedMobileDeviceIdList = $removedMobileDeviceIdList;
+  }
+  /**
+   * @return MobileDeviceIdList
+   */
+  public function getRemovedMobileDeviceIdList()
+  {
+    return $this->removedMobileDeviceIdList;
   }
 }
 

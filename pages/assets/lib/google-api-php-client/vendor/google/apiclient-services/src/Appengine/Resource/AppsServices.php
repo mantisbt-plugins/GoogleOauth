@@ -34,11 +34,12 @@ class AppsServices extends \Google\Service\Resource
   /**
    * Deletes the specified service and all enclosed versions. (services.delete)
    *
-   * @param string $appsId Part of `name`. Name of the resource requested.
-   * Example: apps/myapp/services/default.
+   * @param string $appsId Part of `name`. Required. Name of the resource
+   * requested. Example: apps/myapp/services/default.
    * @param string $servicesId Part of `name`. See documentation of `appsId`.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($appsId, $servicesId, $optParams = [])
   {
@@ -49,11 +50,12 @@ class AppsServices extends \Google\Service\Resource
   /**
    * Gets the current configuration of the specified service. (services.get)
    *
-   * @param string $appsId Part of `name`. Name of the resource requested.
-   * Example: apps/myapp/services/default.
+   * @param string $appsId Part of `name`. Required. Name of the resource
+   * requested. Example: apps/myapp/services/default.
    * @param string $servicesId Part of `name`. See documentation of `appsId`.
    * @param array $optParams Optional parameters.
    * @return Service
+   * @throws \Google\Service\Exception
    */
   public function get($appsId, $servicesId, $optParams = [])
   {
@@ -64,14 +66,15 @@ class AppsServices extends \Google\Service\Resource
   /**
    * Lists all the services in the application. (services.listAppsServices)
    *
-   * @param string $appsId Part of `parent`. Name of the parent Application
-   * resource. Example: apps/myapp.
+   * @param string $appsId Part of `parent`. Required. Name of the parent
+   * Application resource. Example: apps/myapp.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize Maximum results to return per page.
    * @opt_param string pageToken Continuation token for fetching the next page of
    * results.
    * @return ListServicesResponse
+   * @throws \Google\Service\Exception
    */
   public function listAppsServices($appsId, $optParams = [])
   {
@@ -82,8 +85,8 @@ class AppsServices extends \Google\Service\Resource
   /**
    * Updates the configuration of the specified service. (services.patch)
    *
-   * @param string $appsId Part of `name`. Name of the resource to update.
-   * Example: apps/myapp/services/default.
+   * @param string $appsId Part of `name`. Required. Name of the resource to
+   * update. Example: apps/myapp/services/default.
    * @param string $servicesId Part of `name`. See documentation of `appsId`.
    * @param Service $postBody
    * @param array $optParams Optional parameters.
@@ -105,6 +108,7 @@ class AppsServices extends \Google\Service\Resource
    * @opt_param string updateMask Required. Standard field mask for the set of
    * fields to be updated.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($appsId, $servicesId, Service $postBody, $optParams = [])
   {

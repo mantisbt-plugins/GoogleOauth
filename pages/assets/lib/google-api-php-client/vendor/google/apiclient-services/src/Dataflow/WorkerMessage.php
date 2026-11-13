@@ -19,11 +19,26 @@ namespace Google\Service\Dataflow;
 
 class WorkerMessage extends \Google\Model
 {
+  protected $dataSamplingReportType = DataSamplingReport::class;
+  protected $dataSamplingReportDataType = '';
   /**
+   * Labels are used to group WorkerMessages. For example, a worker_message
+   * about a particular container might have the labels: { "JOB_ID":
+   * "2015-04-22", "WORKER_ID": "wordcount-vm-2015…" "CONTAINER_TYPE": "worker",
+   * "CONTAINER_ID": "ac1234def"} Label tags typically correspond to Label enum
+   * values. However, for ease of development other strings can be used as tags.
+   * LABEL_UNSPECIFIED should not be used here.
+   *
    * @var string[]
    */
   public $labels;
+  protected $perWorkerMetricsType = PerWorkerMetrics::class;
+  protected $perWorkerMetricsDataType = '';
+  protected $streamingScalingReportType = StreamingScalingReport::class;
+  protected $streamingScalingReportDataType = '';
   /**
+   * The timestamp of the worker_message.
+   *
    * @var string
    */
   public $time;
@@ -41,7 +56,30 @@ class WorkerMessage extends \Google\Model
   protected $workerThreadScalingReportDataType = '';
 
   /**
-   * @param string[]
+   * Optional. Contains metrics related to go/dataflow-data-sampling-telemetry.
+   *
+   * @param DataSamplingReport $dataSamplingReport
+   */
+  public function setDataSamplingReport(DataSamplingReport $dataSamplingReport)
+  {
+    $this->dataSamplingReport = $dataSamplingReport;
+  }
+  /**
+   * @return DataSamplingReport
+   */
+  public function getDataSamplingReport()
+  {
+    return $this->dataSamplingReport;
+  }
+  /**
+   * Labels are used to group WorkerMessages. For example, a worker_message
+   * about a particular container might have the labels: { "JOB_ID":
+   * "2015-04-22", "WORKER_ID": "wordcount-vm-2015…" "CONTAINER_TYPE": "worker",
+   * "CONTAINER_ID": "ac1234def"} Label tags typically correspond to Label enum
+   * values. However, for ease of development other strings can be used as tags.
+   * LABEL_UNSPECIFIED should not be used here.
+   *
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -55,7 +93,41 @@ class WorkerMessage extends \Google\Model
     return $this->labels;
   }
   /**
-   * @param string
+   * System defined metrics for this worker.
+   *
+   * @param PerWorkerMetrics $perWorkerMetrics
+   */
+  public function setPerWorkerMetrics(PerWorkerMetrics $perWorkerMetrics)
+  {
+    $this->perWorkerMetrics = $perWorkerMetrics;
+  }
+  /**
+   * @return PerWorkerMetrics
+   */
+  public function getPerWorkerMetrics()
+  {
+    return $this->perWorkerMetrics;
+  }
+  /**
+   * Contains per-user worker telemetry used in streaming autoscaling.
+   *
+   * @param StreamingScalingReport $streamingScalingReport
+   */
+  public function setStreamingScalingReport(StreamingScalingReport $streamingScalingReport)
+  {
+    $this->streamingScalingReport = $streamingScalingReport;
+  }
+  /**
+   * @return StreamingScalingReport
+   */
+  public function getStreamingScalingReport()
+  {
+    return $this->streamingScalingReport;
+  }
+  /**
+   * The timestamp of the worker_message.
+   *
+   * @param string $time
    */
   public function setTime($time)
   {
@@ -69,7 +141,9 @@ class WorkerMessage extends \Google\Model
     return $this->time;
   }
   /**
-   * @param WorkerHealthReport
+   * The health of a worker.
+   *
+   * @param WorkerHealthReport $workerHealthReport
    */
   public function setWorkerHealthReport(WorkerHealthReport $workerHealthReport)
   {
@@ -83,7 +157,9 @@ class WorkerMessage extends \Google\Model
     return $this->workerHealthReport;
   }
   /**
-   * @param WorkerLifecycleEvent
+   * Record of worker lifecycle events.
+   *
+   * @param WorkerLifecycleEvent $workerLifecycleEvent
    */
   public function setWorkerLifecycleEvent(WorkerLifecycleEvent $workerLifecycleEvent)
   {
@@ -97,7 +173,9 @@ class WorkerMessage extends \Google\Model
     return $this->workerLifecycleEvent;
   }
   /**
-   * @param WorkerMessageCode
+   * A worker message code.
+   *
+   * @param WorkerMessageCode $workerMessageCode
    */
   public function setWorkerMessageCode(WorkerMessageCode $workerMessageCode)
   {
@@ -111,7 +189,9 @@ class WorkerMessage extends \Google\Model
     return $this->workerMessageCode;
   }
   /**
-   * @param ResourceUtilizationReport
+   * Resource metrics reported by workers.
+   *
+   * @param ResourceUtilizationReport $workerMetrics
    */
   public function setWorkerMetrics(ResourceUtilizationReport $workerMetrics)
   {
@@ -125,7 +205,9 @@ class WorkerMessage extends \Google\Model
     return $this->workerMetrics;
   }
   /**
-   * @param WorkerShutdownNotice
+   * Shutdown notice by workers.
+   *
+   * @param WorkerShutdownNotice $workerShutdownNotice
    */
   public function setWorkerShutdownNotice(WorkerShutdownNotice $workerShutdownNotice)
   {
@@ -139,7 +221,9 @@ class WorkerMessage extends \Google\Model
     return $this->workerShutdownNotice;
   }
   /**
-   * @param WorkerThreadScalingReport
+   * Thread scaling information reported by workers.
+   *
+   * @param WorkerThreadScalingReport $workerThreadScalingReport
    */
   public function setWorkerThreadScalingReport(WorkerThreadScalingReport $workerThreadScalingReport)
   {

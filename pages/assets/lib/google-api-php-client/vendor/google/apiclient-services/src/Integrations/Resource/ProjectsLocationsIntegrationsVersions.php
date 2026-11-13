@@ -18,12 +18,13 @@
 namespace Google\Service\Integrations\Resource;
 
 use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse;
+use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaDownloadJsonPackageResponse;
 use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaIntegrationVersion;
 use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse;
 use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaPublishIntegrationVersionRequest;
 use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse;
-use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaTakeoverEditLockRequest;
-use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse;
+use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaTestIntegrationsRequest;
+use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaTestIntegrationsResponse;
 use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest;
 use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest;
 use Google\Service\Integrations\GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse;
@@ -49,12 +50,15 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
    * @param GoogleCloudIntegrationsV1alphaIntegrationVersion $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param bool createSampleIntegrations Optional. Optional. Indicates if
+   * sample workflow should be created.
    * @opt_param bool newIntegration Set this flag to true, if draft version is to
    * be created for a brand new integration. False, if the request is for an
    * existing integration. For backward compatibility reasons, even if this flag
    * is set to `false` and no existing integration is found, a new draft
    * integration will still be created.
    * @return GoogleCloudIntegrationsV1alphaIntegrationVersion
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudIntegrationsV1alphaIntegrationVersion $postBody, $optParams = [])
   {
@@ -77,6 +81,7 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
    * t}/locations/{location}/integrations/{integration}/versions/{version}
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -93,7 +98,10 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string fileFormat File format for download request.
+   * @opt_param string files Optional. Integration related file to download like
+   * Integration Json, Config variable, testcase etc.
    * @return GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse
+   * @throws \Google\Service\Exception
    */
   public function download($name, $optParams = [])
   {
@@ -102,12 +110,34 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
     return $this->call('download', [$params], GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse::class);
   }
   /**
+   * Downloads an Integration version package like IntegrationVersion,Integration
+   * Config etc. Retrieves the IntegrationVersion package for a given
+   * `integration_id` and returns the response as a JSON.
+   * (versions.downloadJsonPackage)
+   *
+   * @param string $name Required. Integration version name Format: projects/{proj
+   * ect}/locations/{location}/integrations/{integration}/versions/{version}
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string files Optional. Integration related file to download like
+   * Integration Version, Config variable, testcase etc.
+   * @return GoogleCloudIntegrationsV1alphaDownloadJsonPackageResponse
+   * @throws \Google\Service\Exception
+   */
+  public function downloadJsonPackage($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('downloadJsonPackage', [$params], GoogleCloudIntegrationsV1alphaDownloadJsonPackageResponse::class);
+  }
+  /**
    * Get a integration in the specified project. (versions.get)
    *
    * @param string $name Required. The version to retrieve. Format: projects/{proj
    * ect}/locations/{location}/integrations/{integration}/versions/{version}
    * @param array $optParams Optional parameters.
    * @return GoogleCloudIntegrationsV1alphaIntegrationVersion
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -125,8 +155,7 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
    * Specifically, when parent equals: 1. projects//locations//integrations/,
    * Meaning: "List versions (with filter) for a particular integration". 2.
    * projects//locations//integrations/- Meaning: "List versions (with filter) for
-   * a client within a particular region". 3. projects//locations/-/integrations/-
-   * Meaning: "List versions (with filter) for a client".
+   * a client within a particular region".
    * @param array $optParams Optional parameters.
    *
    * @opt_param string fieldMask The field mask which specifies the particular
@@ -140,8 +169,8 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
    * cannot be performed on repeated fields like `task_config`.
    * @opt_param string orderBy The results would be returned in order you
    * specified here. Currently supported sort keys are: Descending sort order for
-   * "last_modified_time", "created_time", "snapshot_number" Ascending sort order
-   * for "name".
+   * "last\_modified\_time", "created\_time", and "snapshot\_number". Ascending
+   * sort order for `name`.
    * @opt_param int pageSize The maximum number of versions to return. The service
    * may return fewer than this value. If unspecified, at most 50 versions will be
    * returned. The maximum value is 1000; values above 1000 will be coerced to
@@ -151,6 +180,7 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
    * When paginating, all other parameters provided to `ListIntegrationVersions`
    * must match the call that provided the page token.
    * @return GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsIntegrationsVersions($parent, $optParams = [])
   {
@@ -169,6 +199,7 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
    * @opt_param string updateMask Field mask specifying the fields in the above
    * integration that have been modified and need to be updated.
    * @return GoogleCloudIntegrationsV1alphaIntegrationVersion
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudIntegrationsV1alphaIntegrationVersion $postBody, $optParams = [])
   {
@@ -189,6 +220,7 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
    * @param GoogleCloudIntegrationsV1alphaPublishIntegrationVersionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse
+   * @throws \Google\Service\Exception
    */
   public function publish($name, GoogleCloudIntegrationsV1alphaPublishIntegrationVersionRequest $postBody, $optParams = [])
   {
@@ -197,31 +229,19 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
     return $this->call('publish', [$params], GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse::class);
   }
   /**
-   * Clears the `locked_by` and `locked_at_timestamp`in the DRAFT version of this
-   * integration. It then performs the same action as the
-   * CreateDraftIntegrationVersion (i.e., copies the DRAFT version of the
-   * integration as a SNAPSHOT and then creates a new DRAFT version with the
-   * `locked_by` set to the `user_taking_over` and the `locked_at_timestamp` set
-   * to the current timestamp). Both the `locked_by` and `user_taking_over` are
-   * notified via email about the takeover. This RPC throws an exception if the
-   * integration is not in DRAFT status or if the `locked_by` and
-   * `locked_at_timestamp` fields are not set.The TakeoverEdit lock is treated the
-   * same as an edit of the integration, and hence shares ACLs with edit. Audit
-   * fields updated include last_modified_timestamp, last_modified_by.
-   * (versions.takeoverEditLock)
+   * Execute the integration in draft state (versions.test)
    *
-   * @param string $integrationVersion Required. The version to take over edit
-   * lock. Format: projects/{project}/locations/{location}/integrations/{integrati
-   * on}/versions/{version}
-   * @param GoogleCloudIntegrationsV1alphaTakeoverEditLockRequest $postBody
+   * @param string $name Output only. Auto-generated primary key.
+   * @param GoogleCloudIntegrationsV1alphaTestIntegrationsRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse
+   * @return GoogleCloudIntegrationsV1alphaTestIntegrationsResponse
+   * @throws \Google\Service\Exception
    */
-  public function takeoverEditLock($integrationVersion, GoogleCloudIntegrationsV1alphaTakeoverEditLockRequest $postBody, $optParams = [])
+  public function test($name, GoogleCloudIntegrationsV1alphaTestIntegrationsRequest $postBody, $optParams = [])
   {
-    $params = ['integrationVersion' => $integrationVersion, 'postBody' => $postBody];
+    $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
-    return $this->call('takeoverEditLock', [$params], GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse::class);
+    return $this->call('test', [$params], GoogleCloudIntegrationsV1alphaTestIntegrationsResponse::class);
   }
   /**
    * Sets the status of the ACTIVE integration to SNAPSHOT with a new tag
@@ -235,6 +255,7 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
    * @param GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleProtobufEmpty
+   * @throws \Google\Service\Exception
    */
   public function unpublish($name, GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest $postBody, $optParams = [])
   {
@@ -253,6 +274,7 @@ class ProjectsLocationsIntegrationsVersions extends \Google\Service\Resource
    * @param GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse
+   * @throws \Google\Service\Exception
    */
   public function upload($parent, GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest $postBody, $optParams = [])
   {

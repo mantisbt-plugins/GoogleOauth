@@ -22,36 +22,61 @@ class TableListTables extends \Google\Model
   protected $clusteringType = Clustering::class;
   protected $clusteringDataType = '';
   /**
+   * Output only. The time when this table was created, in milliseconds since
+   * the epoch.
+   *
    * @var string
    */
   public $creationTime;
   /**
+   * The time when this table expires, in milliseconds since the epoch. If not
+   * present, the table will persist indefinitely. Expired tables will be
+   * deleted and their storage reclaimed.
+   *
    * @var string
    */
   public $expirationTime;
   /**
+   * The user-friendly name for this table.
+   *
    * @var string
    */
   public $friendlyName;
   /**
+   * An opaque ID of the table.
+   *
    * @var string
    */
   public $id;
   /**
+   * The resource type.
+   *
    * @var string
    */
   public $kind;
   /**
+   * The labels associated with this table. You can use these to organize and
+   * group your tables.
+   *
    * @var string[]
    */
   public $labels;
   protected $rangePartitioningType = RangePartitioning::class;
   protected $rangePartitioningDataType = '';
+  /**
+   * Optional. If set to true, queries including this table must specify a
+   * partition filter. This filter is used for partition elimination.
+   *
+   * @var bool
+   */
+  public $requirePartitionFilter;
   protected $tableReferenceType = TableReference::class;
   protected $tableReferenceDataType = '';
   protected $timePartitioningType = TimePartitioning::class;
   protected $timePartitioningDataType = '';
   /**
+   * The type of table.
+   *
    * @var string
    */
   public $type;
@@ -59,7 +84,9 @@ class TableListTables extends \Google\Model
   protected $viewDataType = '';
 
   /**
-   * @param Clustering
+   * Clustering specification for this table, if configured.
+   *
+   * @param Clustering $clustering
    */
   public function setClustering(Clustering $clustering)
   {
@@ -73,7 +100,10 @@ class TableListTables extends \Google\Model
     return $this->clustering;
   }
   /**
-   * @param string
+   * Output only. The time when this table was created, in milliseconds since
+   * the epoch.
+   *
+   * @param string $creationTime
    */
   public function setCreationTime($creationTime)
   {
@@ -87,7 +117,11 @@ class TableListTables extends \Google\Model
     return $this->creationTime;
   }
   /**
-   * @param string
+   * The time when this table expires, in milliseconds since the epoch. If not
+   * present, the table will persist indefinitely. Expired tables will be
+   * deleted and their storage reclaimed.
+   *
+   * @param string $expirationTime
    */
   public function setExpirationTime($expirationTime)
   {
@@ -101,7 +135,9 @@ class TableListTables extends \Google\Model
     return $this->expirationTime;
   }
   /**
-   * @param string
+   * The user-friendly name for this table.
+   *
+   * @param string $friendlyName
    */
   public function setFriendlyName($friendlyName)
   {
@@ -115,7 +151,9 @@ class TableListTables extends \Google\Model
     return $this->friendlyName;
   }
   /**
-   * @param string
+   * An opaque ID of the table.
+   *
+   * @param string $id
    */
   public function setId($id)
   {
@@ -129,7 +167,9 @@ class TableListTables extends \Google\Model
     return $this->id;
   }
   /**
-   * @param string
+   * The resource type.
+   *
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -143,7 +183,10 @@ class TableListTables extends \Google\Model
     return $this->kind;
   }
   /**
-   * @param string[]
+   * The labels associated with this table. You can use these to organize and
+   * group your tables.
+   *
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -157,7 +200,9 @@ class TableListTables extends \Google\Model
     return $this->labels;
   }
   /**
-   * @param RangePartitioning
+   * The range partitioning for this table.
+   *
+   * @param RangePartitioning $rangePartitioning
    */
   public function setRangePartitioning(RangePartitioning $rangePartitioning)
   {
@@ -171,7 +216,26 @@ class TableListTables extends \Google\Model
     return $this->rangePartitioning;
   }
   /**
-   * @param TableReference
+   * Optional. If set to true, queries including this table must specify a
+   * partition filter. This filter is used for partition elimination.
+   *
+   * @param bool $requirePartitionFilter
+   */
+  public function setRequirePartitionFilter($requirePartitionFilter)
+  {
+    $this->requirePartitionFilter = $requirePartitionFilter;
+  }
+  /**
+   * @return bool
+   */
+  public function getRequirePartitionFilter()
+  {
+    return $this->requirePartitionFilter;
+  }
+  /**
+   * A reference uniquely identifying table.
+   *
+   * @param TableReference $tableReference
    */
   public function setTableReference(TableReference $tableReference)
   {
@@ -185,7 +249,9 @@ class TableListTables extends \Google\Model
     return $this->tableReference;
   }
   /**
-   * @param TimePartitioning
+   * The time-based partitioning for this table.
+   *
+   * @param TimePartitioning $timePartitioning
    */
   public function setTimePartitioning(TimePartitioning $timePartitioning)
   {
@@ -199,7 +265,9 @@ class TableListTables extends \Google\Model
     return $this->timePartitioning;
   }
   /**
-   * @param string
+   * The type of table.
+   *
+   * @param string $type
    */
   public function setType($type)
   {
@@ -213,7 +281,9 @@ class TableListTables extends \Google\Model
     return $this->type;
   }
   /**
-   * @param TableListTablesView
+   * Information about a logical view.
+   *
+   * @param TableListTablesView $view
    */
   public function setView(TableListTablesView $view)
   {

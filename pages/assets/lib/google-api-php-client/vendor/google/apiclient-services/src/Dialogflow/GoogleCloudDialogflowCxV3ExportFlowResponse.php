@@ -29,7 +29,7 @@ class GoogleCloudDialogflowCxV3ExportFlowResponse extends \Google\Model
   public $flowUri;
 
   /**
-   * @param string
+   * @param string $flowContent
    */
   public function setFlowContent($flowContent)
   {
@@ -43,7 +43,7 @@ class GoogleCloudDialogflowCxV3ExportFlowResponse extends \Google\Model
     return $this->flowContent;
   }
   /**
-   * @param string
+   * @param string $flowUri
    */
   public function setFlowUri($flowUri)
   {

@@ -64,6 +64,7 @@ class Bigquery extends \Google\Service
   public $rowAccessPolicies;
   public $tabledata;
   public $tables;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Bigquery service.
@@ -76,6 +77,7 @@ class Bigquery extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://bigquery.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://bigquery.UNIVERSE_DOMAIN/';
     $this->servicePath = 'bigquery/v2/';
     $this->batchPath = 'batch/bigquery/v2';
     $this->version = 'v2';
@@ -88,7 +90,7 @@ class Bigquery extends \Google\Service
         [
           'methods' => [
             'delete' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'projectId' => [
@@ -107,7 +109,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'projectId' => [
@@ -120,9 +122,17 @@ class Bigquery extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'accessPolicyVersion' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'datasetView' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
               ],
             ],'insert' => [
-              'path' => 'projects/{projectId}/datasets',
+              'path' => 'projects/{+projectId}/datasets',
               'httpMethod' => 'POST',
               'parameters' => [
                 'projectId' => [
@@ -130,9 +140,13 @@ class Bigquery extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'accessPolicyVersion' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
               ],
             ],'list' => [
-              'path' => 'projects/{projectId}/datasets',
+              'path' => 'projects/{+projectId}/datasets',
               'httpMethod' => 'GET',
               'parameters' => [
                 'projectId' => [
@@ -158,8 +172,31 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}',
               'httpMethod' => 'PATCH',
+              'parameters' => [
+                'projectId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'datasetId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'accessPolicyVersion' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'updateMode' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'undelete' => [
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}:undelete',
+              'httpMethod' => 'POST',
               'parameters' => [
                 'projectId' => [
                   'location' => 'path',
@@ -173,7 +210,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'update' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}',
               'httpMethod' => 'PUT',
               'parameters' => [
                 'projectId' => [
@@ -185,6 +222,14 @@ class Bigquery extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'accessPolicyVersion' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'updateMode' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],
@@ -198,7 +243,7 @@ class Bigquery extends \Google\Service
         [
           'methods' => [
             'cancel' => [
-              'path' => 'projects/{projectId}/jobs/{jobId}/cancel',
+              'path' => 'projects/{+projectId}/jobs/{+jobId}/cancel',
               'httpMethod' => 'POST',
               'parameters' => [
                 'projectId' => [
@@ -236,7 +281,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'projects/{projectId}/jobs/{jobId}',
+              'path' => 'projects/{+projectId}/jobs/{+jobId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'projectId' => [
@@ -255,7 +300,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'getQueryResults' => [
-              'path' => 'projects/{projectId}/queries/{jobId}',
+              'path' => 'projects/{+projectId}/queries/{+jobId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'projectId' => [
@@ -267,6 +312,14 @@ class Bigquery extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'formatOptions.timestampOutputFormat' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'formatOptions.useInt64Timestamp' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'location' => [
                   'location' => 'query',
@@ -290,7 +343,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'insert' => [
-              'path' => 'projects/{projectId}/jobs',
+              'path' => 'projects/{+projectId}/jobs',
               'httpMethod' => 'POST',
               'parameters' => [
                 'projectId' => [
@@ -300,7 +353,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'projects/{projectId}/jobs',
+              'path' => 'projects/{+projectId}/jobs',
               'httpMethod' => 'GET',
               'parameters' => [
                 'projectId' => [
@@ -343,7 +396,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'query' => [
-              'path' => 'projects/{projectId}/queries',
+              'path' => 'projects/{+projectId}/queries',
               'httpMethod' => 'POST',
               'parameters' => [
                 'projectId' => [
@@ -456,7 +509,7 @@ class Bigquery extends \Google\Service
         [
           'methods' => [
             'getServiceAccount' => [
-              'path' => 'projects/{projectId}/serviceAccount',
+              'path' => 'projects/{+projectId}/serviceAccount',
               'httpMethod' => 'GET',
               'parameters' => [
                 'projectId' => [
@@ -532,6 +585,16 @@ class Bigquery extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'getIamPolicy' => [
+              'path' => '{+resource}:getIamPolicy',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'insert' => [
               'path' => 'projects/{+projectId}/datasets/{+datasetId}/routines',
               'httpMethod' => 'POST',
@@ -578,6 +641,26 @@ class Bigquery extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'setIamPolicy' => [
+              'path' => '{+resource}:setIamPolicy',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'testIamPermissions' => [
+              'path' => '{+resource}:testIamPermissions',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'update' => [
               'path' => 'projects/{+projectId}/datasets/{+datasetId}/routines/{+routineId}',
               'httpMethod' => 'PUT',
@@ -608,11 +691,105 @@ class Bigquery extends \Google\Service
         'rowAccessPolicies',
         [
           'methods' => [
-            'getIamPolicy' => [
+            'batchDelete' => [
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies:batchDelete',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'projectId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'datasetId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'tableId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'projectId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'datasetId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'tableId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'policyId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'force' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
+            ],'get' => [
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'projectId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'datasetId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'tableId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'policyId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'getIamPolicy' => [
               'path' => '{+resource}:getIamPolicy',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'insert' => [
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'projectId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'datasetId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'tableId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -646,8 +823,8 @@ class Bigquery extends \Google\Service
                   'type' => 'string',
                 ],
               ],
-            ],'setIamPolicy' => [
-              'path' => '{+resource}:setIamPolicy',
+            ],'testIamPermissions' => [
+              'path' => '{+resource}:testIamPermissions',
               'httpMethod' => 'POST',
               'parameters' => [
                 'resource' => [
@@ -656,11 +833,26 @@ class Bigquery extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'testIamPermissions' => [
-              'path' => '{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
+            ],'update' => [
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}',
+              'httpMethod' => 'PUT',
               'parameters' => [
-                'resource' => [
+                'projectId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'datasetId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'tableId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'policyId' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -677,7 +869,7 @@ class Bigquery extends \Google\Service
         [
           'methods' => [
             'insertAll' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/insertAll',
               'httpMethod' => 'POST',
               'parameters' => [
                 'projectId' => [
@@ -697,7 +889,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/data',
               'httpMethod' => 'GET',
               'parameters' => [
                 'projectId' => [
@@ -714,6 +906,14 @@ class Bigquery extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'formatOptions.timestampOutputFormat' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'formatOptions.useInt64Timestamp' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'maxResults' => [
                   'location' => 'query',
@@ -743,7 +943,7 @@ class Bigquery extends \Google\Service
         [
           'methods' => [
             'delete' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'projectId' => [
@@ -763,7 +963,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'projectId' => [
@@ -801,7 +1001,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'insert' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}/tables',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables',
               'httpMethod' => 'POST',
               'parameters' => [
                 'projectId' => [
@@ -816,7 +1016,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}/tables',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables',
               'httpMethod' => 'GET',
               'parameters' => [
                 'projectId' => [
@@ -839,7 +1039,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'projectId' => [
@@ -883,7 +1083,7 @@ class Bigquery extends \Google\Service
                 ],
               ],
             ],'update' => [
-              'path' => 'projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
+              'path' => 'projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}',
               'httpMethod' => 'PUT',
               'parameters' => [
                 'projectId' => [

@@ -21,8 +21,11 @@ use Google\Service\AnalyticsHub\AnalyticshubEmpty;
 use Google\Service\AnalyticsHub\DataExchange;
 use Google\Service\AnalyticsHub\GetIamPolicyRequest;
 use Google\Service\AnalyticsHub\ListDataExchangesResponse;
+use Google\Service\AnalyticsHub\ListSharedResourceSubscriptionsResponse;
+use Google\Service\AnalyticsHub\Operation;
 use Google\Service\AnalyticsHub\Policy;
 use Google\Service\AnalyticsHub\SetIamPolicyRequest;
+use Google\Service\AnalyticsHub\SubscribeDataExchangeRequest;
 use Google\Service\AnalyticsHub\TestIamPermissionsRequest;
 use Google\Service\AnalyticsHub\TestIamPermissionsResponse;
 
@@ -40,15 +43,15 @@ class ProjectsLocationsDataExchanges extends \Google\Service\Resource
    * Creates a new data exchange. (dataExchanges.create)
    *
    * @param string $parent Required. The parent resource path of the data
-   * exchange. e.g. `projects/myproject/locations/US`.
+   * exchange. e.g. `projects/myproject/locations/us`.
    * @param DataExchange $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string dataExchangeId Required. The ID of the data exchange. Must
-   * contain only Unicode letters, numbers (0-9), underscores (_). Should not use
-   * characters that require URL-escaping, or characters outside of ASCII, spaces.
-   * Max length: 100 bytes.
+   * contain only Unicode letters, numbers (0-9), underscores (_). Max length: 100
+   * bytes.
    * @return DataExchange
+   * @throws \Google\Service\Exception
    */
   public function create($parent, DataExchange $postBody, $optParams = [])
   {
@@ -61,9 +64,10 @@ class ProjectsLocationsDataExchanges extends \Google\Service\Resource
    *
    * @param string $name Required. The full name of the data exchange resource
    * that you want to delete. For example,
-   * `projects/myproject/locations/US/dataExchanges/123`.
+   * `projects/myproject/locations/us/dataExchanges/123`.
    * @param array $optParams Optional parameters.
    * @return AnalyticshubEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -75,9 +79,10 @@ class ProjectsLocationsDataExchanges extends \Google\Service\Resource
    * Gets the details of a data exchange. (dataExchanges.get)
    *
    * @param string $name Required. The resource name of the data exchange. e.g.
-   * `projects/myproject/locations/US/dataExchanges/123`.
+   * `projects/myproject/locations/us/dataExchanges/123`.
    * @param array $optParams Optional parameters.
    * @return DataExchange
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -95,6 +100,7 @@ class ProjectsLocationsDataExchanges extends \Google\Service\Resource
    * @param GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, GetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -107,7 +113,7 @@ class ProjectsLocationsDataExchanges extends \Google\Service\Resource
    * (dataExchanges.listProjectsLocationsDataExchanges)
    *
    * @param string $parent Required. The parent resource path of the data
-   * exchanges. e.g. `projects/myproject/locations/US`.
+   * exchanges. e.g. `projects/myproject/locations/us`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize The maximum number of results to return in a single
@@ -116,6 +122,7 @@ class ProjectsLocationsDataExchanges extends \Google\Service\Resource
    * @opt_param string pageToken Page token, returned by a previous call, to
    * request the next page of results.
    * @return ListDataExchangesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsDataExchanges($parent, $optParams = [])
   {
@@ -124,10 +131,34 @@ class ProjectsLocationsDataExchanges extends \Google\Service\Resource
     return $this->call('list', [$params], ListDataExchangesResponse::class);
   }
   /**
+   * Lists all subscriptions on a given Data Exchange or Listing.
+   * (dataExchanges.listSubscriptions)
+   *
+   * @param string $resource Required. Resource name of the requested target. This
+   * resource may be either a Listing or a DataExchange. e.g.
+   * projects/123/locations/us/dataExchanges/456 OR e.g.
+   * projects/123/locations/us/dataExchanges/456/listings/789
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param bool includeDeletedSubscriptions If selected, includes deleted
+   * subscriptions in the response (up to 63 days after deletion).
+   * @opt_param int pageSize The maximum number of results to return in a single
+   * response page.
+   * @opt_param string pageToken Page token, returned by a previous call.
+   * @return ListSharedResourceSubscriptionsResponse
+   * @throws \Google\Service\Exception
+   */
+  public function listSubscriptions($resource, $optParams = [])
+  {
+    $params = ['resource' => $resource];
+    $params = array_merge($params, $optParams);
+    return $this->call('listSubscriptions', [$params], ListSharedResourceSubscriptionsResponse::class);
+  }
+  /**
    * Updates an existing data exchange. (dataExchanges.patch)
    *
    * @param string $name Output only. The resource name of the data exchange. e.g.
-   * `projects/myproject/locations/US/dataExchanges/123`.
+   * `projects/myproject/locations/us/dataExchanges/123`.
    * @param DataExchange $postBody
    * @param array $optParams Optional parameters.
    *
@@ -135,6 +166,7 @@ class ProjectsLocationsDataExchanges extends \Google\Service\Resource
    * update in the data exchange resource. The fields specified in the
    * `updateMask` are relative to the resource and are not a full request.
    * @return DataExchange
+   * @throws \Google\Service\Exception
    */
   public function patch($name, DataExchange $postBody, $optParams = [])
   {
@@ -152,12 +184,31 @@ class ProjectsLocationsDataExchanges extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
     $params = ['resource' => $resource, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('setIamPolicy', [$params], Policy::class);
+  }
+  /**
+   * Creates a Subscription to a Data Clean Room. This is a long-running operation
+   * as it will create one or more linked datasets. Throws a Bad Request error if
+   * the Data Exchange does not contain any listings. (dataExchanges.subscribe)
+   *
+   * @param string $name Required. Resource name of the Data Exchange. e.g.
+   * `projects/publisherproject/locations/us/dataExchanges/123`
+   * @param SubscribeDataExchangeRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function subscribe($name, SubscribeDataExchangeRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('subscribe', [$params], Operation::class);
   }
   /**
    * Returns the permissions that a caller has. (dataExchanges.testIamPermissions)
@@ -169,6 +220,7 @@ class ProjectsLocationsDataExchanges extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

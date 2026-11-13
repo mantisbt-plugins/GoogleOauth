@@ -25,7 +25,7 @@ class GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata extends 
   public $conversationDataset;
 
   /**
-   * @param string
+   * @param string $conversationDataset
    */
   public function setConversationDataset($conversationDataset)
   {

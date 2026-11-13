@@ -20,28 +20,67 @@ namespace Google\Service\CloudVideoIntelligence;
 class GoogleCloudVideointelligenceV1p2beta1WordInfo extends \Google\Model
 {
   /**
+   * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+   * indicates an estimated greater likelihood that the recognized words are
+   * correct. This field is set only for the top alternative. This field is not
+   * guaranteed to be accurate and users should not rely on it to be always
+   * provided. The default of 0.0 is a sentinel value indicating `confidence`
+   * was not set.
+   *
    * @var float
    */
   public $confidence;
   /**
+   * Time offset relative to the beginning of the audio, and corresponding to
+   * the end of the spoken word. This field is only set if
+   * `enable_word_time_offsets=true` and only in the top hypothesis. This is an
+   * experimental feature and the accuracy of the time offset can vary.
+   *
    * @var string
    */
   public $endTime;
   /**
+   * Output only. A distinct string value is assigned for every speaker within
+   * the audio. This field specifies which one of those speakers was detected to
+   * have spoken this word.
+   *
+   * @var string
+   */
+  public $speakerLabel;
+  /**
+   * Output only. A distinct integer value is assigned for every speaker within
+   * the audio. This field specifies which one of those speakers was detected to
+   * have spoken this word. Value ranges from 1 up to diarization_speaker_count,
+   * and is only set if speaker diarization is enabled.
+   *
    * @var int
    */
   public $speakerTag;
   /**
+   * Time offset relative to the beginning of the audio, and corresponding to
+   * the start of the spoken word. This field is only set if
+   * `enable_word_time_offsets=true` and only in the top hypothesis. This is an
+   * experimental feature and the accuracy of the time offset can vary.
+   *
    * @var string
    */
   public $startTime;
   /**
+   * The word corresponding to this set of information.
+   *
    * @var string
    */
   public $word;
 
   /**
-   * @param float
+   * Output only. The confidence estimate between 0.0 and 1.0. A higher number
+   * indicates an estimated greater likelihood that the recognized words are
+   * correct. This field is set only for the top alternative. This field is not
+   * guaranteed to be accurate and users should not rely on it to be always
+   * provided. The default of 0.0 is a sentinel value indicating `confidence`
+   * was not set.
+   *
+   * @param float $confidence
    */
   public function setConfidence($confidence)
   {
@@ -55,7 +94,12 @@ class GoogleCloudVideointelligenceV1p2beta1WordInfo extends \Google\Model
     return $this->confidence;
   }
   /**
-   * @param string
+   * Time offset relative to the beginning of the audio, and corresponding to
+   * the end of the spoken word. This field is only set if
+   * `enable_word_time_offsets=true` and only in the top hypothesis. This is an
+   * experimental feature and the accuracy of the time offset can vary.
+   *
+   * @param string $endTime
    */
   public function setEndTime($endTime)
   {
@@ -69,7 +113,30 @@ class GoogleCloudVideointelligenceV1p2beta1WordInfo extends \Google\Model
     return $this->endTime;
   }
   /**
-   * @param int
+   * Output only. A distinct string value is assigned for every speaker within
+   * the audio. This field specifies which one of those speakers was detected to
+   * have spoken this word.
+   *
+   * @param string $speakerLabel
+   */
+  public function setSpeakerLabel($speakerLabel)
+  {
+    $this->speakerLabel = $speakerLabel;
+  }
+  /**
+   * @return string
+   */
+  public function getSpeakerLabel()
+  {
+    return $this->speakerLabel;
+  }
+  /**
+   * Output only. A distinct integer value is assigned for every speaker within
+   * the audio. This field specifies which one of those speakers was detected to
+   * have spoken this word. Value ranges from 1 up to diarization_speaker_count,
+   * and is only set if speaker diarization is enabled.
+   *
+   * @param int $speakerTag
    */
   public function setSpeakerTag($speakerTag)
   {
@@ -83,7 +150,12 @@ class GoogleCloudVideointelligenceV1p2beta1WordInfo extends \Google\Model
     return $this->speakerTag;
   }
   /**
-   * @param string
+   * Time offset relative to the beginning of the audio, and corresponding to
+   * the start of the spoken word. This field is only set if
+   * `enable_word_time_offsets=true` and only in the top hypothesis. This is an
+   * experimental feature and the accuracy of the time offset can vary.
+   *
+   * @param string $startTime
    */
   public function setStartTime($startTime)
   {
@@ -97,7 +169,9 @@ class GoogleCloudVideointelligenceV1p2beta1WordInfo extends \Google\Model
     return $this->startTime;
   }
   /**
-   * @param string
+   * The word corresponding to this set of information.
+   *
+   * @param string $word
    */
   public function setWord($word)
   {

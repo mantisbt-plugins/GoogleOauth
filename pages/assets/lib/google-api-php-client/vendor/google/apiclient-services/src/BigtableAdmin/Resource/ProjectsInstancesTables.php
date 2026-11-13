@@ -57,6 +57,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param CheckConsistencyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return CheckConsistencyResponse
+   * @throws \Google\Service\Exception
    */
   public function checkConsistency($name, CheckConsistencyRequest $postBody, $optParams = [])
   {
@@ -75,6 +76,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param CreateTableRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Table
+   * @throws \Google\Service\Exception
    */
   public function create($parent, CreateTableRequest $postBody, $optParams = [])
   {
@@ -90,6 +92,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * `projects/{project}/instances/{instance}/tables/{table}`.
    * @param array $optParams Optional parameters.
    * @return BigtableadminEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -100,7 +103,10 @@ class ProjectsInstancesTables extends \Google\Service\Resource
   /**
    * Permanently drop/delete a row range from a specified table. The request can
    * specify whether to delete all rows in a table, or only those that match a
-   * particular prefix. (tables.dropRowRange)
+   * particular prefix. Note that row key prefixes used here are treated as
+   * service data. For more information about how service data is handled, see the
+   * [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-
+   * notice). (tables.dropRowRange)
    *
    * @param string $name Required. The unique name of the table on which to drop a
    * range of rows. Values are of the form
@@ -108,6 +114,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param DropRowRangeRequest $postBody
    * @param array $optParams Optional parameters.
    * @return BigtableadminEmpty
+   * @throws \Google\Service\Exception
    */
   public function dropRowRange($name, DropRowRangeRequest $postBody, $optParams = [])
   {
@@ -127,6 +134,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param GenerateConsistencyTokenRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GenerateConsistencyTokenResponse
+   * @throws \Google\Service\Exception
    */
   public function generateConsistencyToken($name, GenerateConsistencyTokenRequest $postBody, $optParams = [])
   {
@@ -144,6 +152,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @opt_param string view The view to be applied to the returned table's fields.
    * Defaults to `SCHEMA_VIEW` if unspecified.
    * @return Table
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -152,8 +161,9 @@ class ProjectsInstancesTables extends \Google\Service\Resource
     return $this->call('get', [$params], Table::class);
   }
   /**
-   * Gets the access control policy for a Table resource. Returns an empty policy
-   * if the resource exists but does not have a policy set. (tables.getIamPolicy)
+   * Gets the access control policy for a Bigtable resource. Returns an empty
+   * policy if the resource exists but does not have a policy set.
+   * (tables.getIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
    * requested. See [Resource
@@ -162,6 +172,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param GetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, GetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -190,6 +201,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * Only NAME_ONLY view (default), REPLICATION_VIEW and ENCRYPTION_VIEW are
    * supported.
    * @return ListTablesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsInstancesTables($parent, $optParams = [])
   {
@@ -209,6 +221,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param ModifyColumnFamiliesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Table
+   * @throws \Google\Service\Exception
    */
   public function modifyColumnFamilies($name, ModifyColumnFamiliesRequest $postBody, $optParams = [])
   {
@@ -225,15 +238,21 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param Table $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param bool ignoreWarnings Optional. If true, ignore safety checks when
+   * updating the table.
    * @opt_param string updateMask Required. The list of fields to update. A mask
    * specifying which fields (e.g. `change_stream_config`) in the `table` field
    * should be updated. This mask is relative to the `table` field, not to the
    * request message. The wildcard (*) path is currently not supported. Currently
    * UpdateTable is only supported for the following fields: *
    * `change_stream_config` * `change_stream_config.retention_period` *
-   * `deletion_protection` If `column_families` is set in `update_mask`, it will
-   * return an UNIMPLEMENTED error.
+   * `deletion_protection` * `automated_backup_policy` *
+   * `automated_backup_policy.retention_period` *
+   * `automated_backup_policy.frequency` * `automated_backup_policy.locations` *
+   * `row_key_schema` If `column_families` is set in `update_mask`, it will return
+   * an UNIMPLEMENTED error.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Table $postBody, $optParams = [])
   {
@@ -252,6 +271,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param RestoreTableRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function restore($parent, RestoreTableRequest $postBody, $optParams = [])
   {
@@ -260,7 +280,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
     return $this->call('restore', [$params], Operation::class);
   }
   /**
-   * Sets the access control policy on a Table resource. Replaces any existing
+   * Sets the access control policy on a Bigtable resource. Replaces any existing
    * policy. (tables.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
@@ -270,6 +290,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -278,7 +299,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
     return $this->call('setIamPolicy', [$params], Policy::class);
   }
   /**
-   * Returns permissions that the caller has on the specified table resource.
+   * Returns permissions that the caller has on the specified Bigtable resource.
    * (tables.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
@@ -288,6 +309,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {
@@ -304,6 +326,7 @@ class ProjectsInstancesTables extends \Google\Service\Resource
    * @param UndeleteTableRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function undelete($name, UndeleteTableRequest $postBody, $optParams = [])
   {

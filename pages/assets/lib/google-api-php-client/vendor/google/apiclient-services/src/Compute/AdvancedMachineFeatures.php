@@ -20,24 +20,68 @@ namespace Google\Service\Compute;
 class AdvancedMachineFeatures extends \Google\Model
 {
   /**
+   * Architecturally defined non-LLC events.
+   */
+  public const PERFORMANCE_MONITORING_UNIT_ARCHITECTURAL = 'ARCHITECTURAL';
+  /**
+   * Most documented core/L2 and LLC events.
+   */
+  public const PERFORMANCE_MONITORING_UNIT_ENHANCED = 'ENHANCED';
+  public const PERFORMANCE_MONITORING_UNIT_PERFORMANCE_MONITORING_UNIT_UNSPECIFIED = 'PERFORMANCE_MONITORING_UNIT_UNSPECIFIED';
+  /**
+   * Most documented core/L2 events.
+   */
+  public const PERFORMANCE_MONITORING_UNIT_STANDARD = 'STANDARD';
+  /**
+   * Whether to enable nested virtualization or not (default is false).
+   *
    * @var bool
    */
   public $enableNestedVirtualization;
   /**
+   * Whether to enable UEFI networking for instance creation.
+   *
    * @var bool
    */
   public $enableUefiNetworking;
   /**
+   * Type of Performance Monitoring Unit requested on instance.
+   *
+   * @var string
+   */
+  public $performanceMonitoringUnit;
+  /**
+   * The number of threads per physical core. To disable simultaneous
+   * multithreading (SMT) set this to 1. If unset, the maximum number of threads
+   * supported per core by the underlying processor is assumed.
+   *
    * @var int
    */
   public $threadsPerCore;
   /**
+   * Turbo frequency mode to use for the instance. Supported modes include: *
+   * ALL_CORE_MAX
+   *
+   * Using empty string or not setting this field will use the platform-specific
+   * default turbo mode.
+   *
+   * @var string
+   */
+  public $turboMode;
+  /**
+   * The number of physical cores to expose to an instance. Multiply by the
+   * number of threads per core to compute the total number of virtual CPUs to
+   * expose to the instance. If unset, the number of cores is inferred from the
+   * instance's nominal CPU count and the underlying platform's SMT width.
+   *
    * @var int
    */
   public $visibleCoreCount;
 
   /**
-   * @param bool
+   * Whether to enable nested virtualization or not (default is false).
+   *
+   * @param bool $enableNestedVirtualization
    */
   public function setEnableNestedVirtualization($enableNestedVirtualization)
   {
@@ -51,7 +95,9 @@ class AdvancedMachineFeatures extends \Google\Model
     return $this->enableNestedVirtualization;
   }
   /**
-   * @param bool
+   * Whether to enable UEFI networking for instance creation.
+   *
+   * @param bool $enableUefiNetworking
    */
   public function setEnableUefiNetworking($enableUefiNetworking)
   {
@@ -65,7 +111,30 @@ class AdvancedMachineFeatures extends \Google\Model
     return $this->enableUefiNetworking;
   }
   /**
-   * @param int
+   * Type of Performance Monitoring Unit requested on instance.
+   *
+   * Accepted values: ARCHITECTURAL, ENHANCED,
+   * PERFORMANCE_MONITORING_UNIT_UNSPECIFIED, STANDARD
+   *
+   * @param self::PERFORMANCE_MONITORING_UNIT_* $performanceMonitoringUnit
+   */
+  public function setPerformanceMonitoringUnit($performanceMonitoringUnit)
+  {
+    $this->performanceMonitoringUnit = $performanceMonitoringUnit;
+  }
+  /**
+   * @return self::PERFORMANCE_MONITORING_UNIT_*
+   */
+  public function getPerformanceMonitoringUnit()
+  {
+    return $this->performanceMonitoringUnit;
+  }
+  /**
+   * The number of threads per physical core. To disable simultaneous
+   * multithreading (SMT) set this to 1. If unset, the maximum number of threads
+   * supported per core by the underlying processor is assumed.
+   *
+   * @param int $threadsPerCore
    */
   public function setThreadsPerCore($threadsPerCore)
   {
@@ -79,7 +148,32 @@ class AdvancedMachineFeatures extends \Google\Model
     return $this->threadsPerCore;
   }
   /**
-   * @param int
+   * Turbo frequency mode to use for the instance. Supported modes include: *
+   * ALL_CORE_MAX
+   *
+   * Using empty string or not setting this field will use the platform-specific
+   * default turbo mode.
+   *
+   * @param string $turboMode
+   */
+  public function setTurboMode($turboMode)
+  {
+    $this->turboMode = $turboMode;
+  }
+  /**
+   * @return string
+   */
+  public function getTurboMode()
+  {
+    return $this->turboMode;
+  }
+  /**
+   * The number of physical cores to expose to an instance. Multiply by the
+   * number of threads per core to compute the total number of virtual CPUs to
+   * expose to the instance. If unset, the number of cores is inferred from the
+   * instance's nominal CPU count and the underlying platform's SMT width.
+   *
+   * @param int $visibleCoreCount
    */
   public function setVisibleCoreCount($visibleCoreCount)
   {

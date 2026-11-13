@@ -19,11 +19,31 @@ namespace Google\Service\MigrationCenterAPI;
 
 class Insight extends \Google\Model
 {
+  protected $genericInsightType = GenericInsight::class;
+  protected $genericInsightDataType = '';
   protected $migrationInsightType = MigrationInsight::class;
   protected $migrationInsightDataType = '';
 
   /**
-   * @param MigrationInsight
+   * Output only. A generic insight about an asset.
+   *
+   * @param GenericInsight $genericInsight
+   */
+  public function setGenericInsight(GenericInsight $genericInsight)
+  {
+    $this->genericInsight = $genericInsight;
+  }
+  /**
+   * @return GenericInsight
+   */
+  public function getGenericInsight()
+  {
+    return $this->genericInsight;
+  }
+  /**
+   * Output only. An insight about potential migrations for an asset.
+   *
+   * @param MigrationInsight $migrationInsight
    */
   public function setMigrationInsight(MigrationInsight $migrationInsight)
   {

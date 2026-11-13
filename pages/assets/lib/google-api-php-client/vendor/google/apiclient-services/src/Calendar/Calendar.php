@@ -19,39 +19,93 @@ namespace Google\Service\Calendar;
 
 class Calendar extends \Google\Model
 {
+  /**
+   * Whether this calendar automatically accepts invitations. Only valid for
+   * resource calendars.
+   *
+   * @var bool
+   */
+  public $autoAcceptInvitations;
   protected $conferencePropertiesType = ConferenceProperties::class;
   protected $conferencePropertiesDataType = '';
   /**
+   * The email of the owner of the calendar. Set only for secondary calendars.
+   * Read-only.
+   *
+   * @var string
+   */
+  public $dataOwner;
+  /**
+   * Description of the calendar. Optional.
+   *
    * @var string
    */
   public $description;
   /**
+   * ETag of the resource.
+   *
    * @var string
    */
   public $etag;
   /**
+   * Identifier of the calendar. To retrieve IDs call the calendarList.list()
+   * method.
+   *
    * @var string
    */
   public $id;
   /**
+   * Type of the resource ("calendar#calendar").
+   *
    * @var string
    */
   public $kind;
+  protected $labelPropertiesType = LabelProperties::class;
+  protected $labelPropertiesDataType = '';
   /**
+   * Geographic location of the calendar as free-form text. Optional.
+   *
    * @var string
    */
   public $location;
   /**
+   * Title of the calendar.
+   *
    * @var string
    */
   public $summary;
   /**
+   * The time zone of the calendar. (Formatted as an IANA Time Zone Database
+   * name, e.g. "Europe/Zurich".) Optional.
+   *
    * @var string
    */
   public $timeZone;
+  protected $workingHoursType = CalendarWorkingHours::class;
+  protected $workingHoursDataType = '';
 
   /**
-   * @param ConferenceProperties
+   * Whether this calendar automatically accepts invitations. Only valid for
+   * resource calendars.
+   *
+   * @param bool $autoAcceptInvitations
+   */
+  public function setAutoAcceptInvitations($autoAcceptInvitations)
+  {
+    $this->autoAcceptInvitations = $autoAcceptInvitations;
+  }
+  /**
+   * @return bool
+   */
+  public function getAutoAcceptInvitations()
+  {
+    return $this->autoAcceptInvitations;
+  }
+  /**
+   * Conferencing properties for this calendar, for example what types of
+   * conferences are allowed.
+   *
+   * @param ConferenceProperties $conferenceProperties
    */
   public function setConferenceProperties(ConferenceProperties $conferenceProperties)
   {
@@ -65,7 +119,26 @@ class Calendar extends \Google\Model
     return $this->conferenceProperties;
   }
   /**
-   * @param string
+   * The email of the owner of the calendar. Set only for secondary calendars.
+   * Read-only.
+   *
+   * @param string $dataOwner
+   */
+  public function setDataOwner($dataOwner)
+  {
+    $this->dataOwner = $dataOwner;
+  }
+  /**
+   * @return string
+   */
+  public function getDataOwner()
+  {
+    return $this->dataOwner;
+  }
+  /**
+   * Description of the calendar. Optional.
+   *
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -79,7 +152,9 @@ class Calendar extends \Google\Model
     return $this->description;
   }
   /**
-   * @param string
+   * ETag of the resource.
+   *
+   * @param string $etag
    */
   public function setEtag($etag)
   {
@@ -93,7 +168,10 @@ class Calendar extends \Google\Model
     return $this->etag;
   }
   /**
-   * @param string
+   * Identifier of the calendar. To retrieve IDs call the calendarList.list()
+   * method.
+   *
+   * @param string $id
    */
   public function setId($id)
   {
@@ -107,7 +185,9 @@ class Calendar extends \Google\Model
     return $this->id;
   }
   /**
-   * @param string
+   * Type of the resource ("calendar#calendar").
+   *
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -121,7 +201,27 @@ class Calendar extends \Google\Model
     return $this->kind;
   }
   /**
-   * @param string
+   * Label properties defined on this calendar. If specified, overwrites the
+   * existing label properties. If not specified, the label properties remain
+   * unchanged.
+   *
+   * @param LabelProperties $labelProperties
+   */
+  public function setLabelProperties(LabelProperties $labelProperties)
+  {
+    $this->labelProperties = $labelProperties;
+  }
+  /**
+   * @return LabelProperties
+   */
+  public function getLabelProperties()
+  {
+    return $this->labelProperties;
+  }
+  /**
+   * Geographic location of the calendar as free-form text. Optional.
+   *
+   * @param string $location
    */
   public function setLocation($location)
   {
@@ -135,7 +235,9 @@ class Calendar extends \Google\Model
     return $this->location;
   }
   /**
-   * @param string
+   * Title of the calendar.
+   *
+   * @param string $summary
    */
   public function setSummary($summary)
   {
@@ -149,7 +251,10 @@ class Calendar extends \Google\Model
     return $this->summary;
   }
   /**
-   * @param string
+   * The time zone of the calendar. (Formatted as an IANA Time Zone Database
+   * name, e.g. "Europe/Zurich".) Optional.
+   *
+   * @param string $timeZone
    */
   public function setTimeZone($timeZone)
   {
@@ -161,6 +266,28 @@ class Calendar extends \Google\Model
   public function getTimeZone()
   {
     return $this->timeZone;
+  }
+  /**
+   * Represents the information about the user's working hours. Only available
+   * for primary calendars of Google Workspace users. To update the working
+   * hours, the entire working hours object must be passed. If not specified (or
+   * passed as null or an empty object), the existing working hours remain
+   * unchanged. To disable working hours or clear the schedule, set
+   * workingHoursEnabled to false (and omit availableTimes or pass an empty
+   * list).
+   *
+   * @param CalendarWorkingHours $workingHours
+   */
+  public function setWorkingHours(CalendarWorkingHours $workingHours)
+  {
+    $this->workingHours = $workingHours;
+  }
+  /**
+   * @return CalendarWorkingHours
+   */
+  public function getWorkingHours()
+  {
+    return $this->workingHours;
   }
 }
 

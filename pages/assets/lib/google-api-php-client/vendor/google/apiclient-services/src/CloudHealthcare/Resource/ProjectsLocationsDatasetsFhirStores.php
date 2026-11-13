@@ -17,15 +17,21 @@
 
 namespace Google\Service\CloudHealthcare\Resource;
 
+use Google\Service\CloudHealthcare\ApplyAdminConsentsRequest;
+use Google\Service\CloudHealthcare\ApplyConsentsRequest;
+use Google\Service\CloudHealthcare\BulkDeleteResourcesRequest;
 use Google\Service\CloudHealthcare\DeidentifyFhirStoreRequest;
+use Google\Service\CloudHealthcare\ExplainDataAccessResponse;
 use Google\Service\CloudHealthcare\ExportResourcesRequest;
 use Google\Service\CloudHealthcare\FhirStore;
 use Google\Service\CloudHealthcare\FhirStoreMetrics;
 use Google\Service\CloudHealthcare\HealthcareEmpty;
+use Google\Service\CloudHealthcare\HttpBody;
 use Google\Service\CloudHealthcare\ImportResourcesRequest;
 use Google\Service\CloudHealthcare\ListFhirStoresResponse;
 use Google\Service\CloudHealthcare\Operation;
 use Google\Service\CloudHealthcare\Policy;
+use Google\Service\CloudHealthcare\RollbackFhirResourcesRequest;
 use Google\Service\CloudHealthcare\SetIamPolicyRequest;
 use Google\Service\CloudHealthcare\TestIamPermissionsRequest;
 use Google\Service\CloudHealthcare\TestIamPermissionsResponse;
@@ -41,15 +47,170 @@ use Google\Service\CloudHealthcare\TestIamPermissionsResponse;
 class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
 {
   /**
+   * Applies the admin Consent resources for the FHIR store and reindexes the
+   * underlying resources in the FHIR store according to the aggregate consents.
+   * This method also updates the `consent_config.enforced_admin_consents` field
+   * of the FhirStore unless `validate_only=true` in ApplyAdminConsentsRequest.
+   * Any admin Consent resource change after this operation execution (including
+   * deletion) requires you to call ApplyAdminConsents again for the change to
+   * take effect. This method returns an Operation that can be used to track the
+   * progress of the resources that were reindexed, by calling GetOperation. Upon
+   * completion, the ApplyAdminConsentsResponse additionally contains the number
+   * of resources that were reindexed. If at least one Consent resource contains
+   * an error or fails be be enforced for any reason, the method returns an error
+   * instead of an Operation. No resources will be reindexed and the
+   * `consent_config.enforced_admin_consents` field will be unchanged. To enforce
+   * a consent check for data access, `consent_config.access_enforced` must be set
+   * to true for the FhirStore. FHIR Consent is not supported in DSTU2 or R5.
+   * (fhirStores.applyAdminConsents)
+   *
+   * @param string $name Required. The name of the FHIR store to enforce, in the
+   * format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/f
+   * hirStores/{fhir_store_id}`.
+   * @param ApplyAdminConsentsRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function applyAdminConsents($name, ApplyAdminConsentsRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('applyAdminConsents', [$params], Operation::class);
+  }
+  /**
+   * Apply the Consent resources for the FHIR store and reindex the underlying
+   * resources in the FHIR store according to the aggregate consent. The aggregate
+   * consent of the patient in scope in this request replaces any previous call of
+   * this method. Any Consent resource change after this operation execution
+   * (including deletion) requires you to call ApplyConsents again to have effect.
+   * This method returns an Operation that can be used to track the progress of
+   * the consent resources that were processed by calling GetOperation. Upon
+   * completion, the ApplyConsentsResponse additionally contains the number of
+   * resources that was reindexed. Errors are logged to Cloud Logging (see
+   * [Viewing error logs in Cloud
+   * Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). To
+   * enforce consent check for data access, `consent_config.access_enforced` must
+   * be set to true for the FhirStore. FHIR Consent is not supported in DSTU2 or
+   * R5. (fhirStores.applyConsents)
+   *
+   * @param string $name Required. The name of the FHIR store to enforce, in the
+   * format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/f
+   * hirStores/{fhir_store_id}`.
+   * @param ApplyConsentsRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function applyConsents($name, ApplyConsentsRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('applyConsents', [$params], Operation::class);
+  }
+  /**
+   * Bulk exports a Group resource and resources in the member field, including
+   * related resources for each Patient member. The export for each Patient is
+   * identical to a GetPatientEverything request. Implements the FHIR
+   * implementation guide [$export group of
+   * patients](https://build.fhir.org/ig/HL7/bulk-data/export.html#endpoint---
+   * group-of-patients). The following headers must be set in the request: *
+   * `Accept`: specifies the format of the `OperationOutcome` response. Only
+   * `application/fhir+json` is supported. * `Prefer`: specifies whether the
+   * response is immediate or asynchronous. Must be to `respond-async` because
+   * only asynchronous responses are supported. Specify the destination for the
+   * server to write result files by setting the Cloud Storage location
+   * bulk_export_gcs_destination on the FHIR store. URI of an existing Cloud
+   * Storage directory where the server writes result files, in the format
+   * gs://{bucket-id}/{path/to/destination/dir}. If there is no trailing slash,
+   * the service appends one when composing the object path. The user is
+   * responsible for creating the Cloud Storage bucket referenced. Supports the
+   * following query parameters: * `_type`: string of comma-delimited FHIR
+   * resource types. If provided, only resources of the specified type(s) are
+   * exported. * `_since`: if provided, only resources updated after the specified
+   * time are exported. * `_outputFormat`: optional, specify ndjson to export data
+   * in NDJSON format. Exported file names use the format:
+   * {export_id}_{resource_type}.ndjson. * `organizeOutputBy`: resource type to
+   * organize the output by. Required and must be set to `Patient`. When
+   * specified, output files are organized by instances of the specified resource
+   * type, including the resource, referenced resources, and resources that
+   * contain references to that resource. On success, the `Content-Location`
+   * header of response is set to a URL that you can use to query the status of
+   * the export. The URL is in the format `projects/{project_id}/locations/{locati
+   * on_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/operations/{export_id
+   * }`. See get-fhir-operation-status for more information. Errors generated by
+   * the FHIR store contain a JSON-encoded `OperationOutcome` resource describing
+   * the reason for the error. (fhirStores.bulkExportGroup)
+   *
+   * @param string $name Required. Name of the Group resource that is exported, in
+   * format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/f
+   * hirStores/{fhir_store_id}/fhir/Group/{group_id}`.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string _since Optional. If provided, only resources updated after
+   * this time are exported. The time uses the format YYYY-MM-
+   * DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or
+   * `2017-01-01T00:00:00Z`. The time must be specified to the second and include
+   * a time zone.
+   * @opt_param string _type Optional. String of comma-delimited FHIR resource
+   * types. If provided, only resources of the specified resource type(s) are
+   * exported.
+   * @opt_param string organizeOutputBy Required. The FHIR resource type used to
+   * organize exported resources. Only supports "Patient". When organized by
+   * Patient resource, output files are grouped as follows: * Patient file(s)
+   * containing the Patient resources. Each Patient is sequentially followed by
+   * all resources the Patient references, and all resources that reference the
+   * Patient (equivalent to a GetPatientEverything request). * Individual files
+   * grouped by resource type for resources in the Group's member field and the
+   * Group resource itself. Resources may be duplicated across multiple Patients.
+   * For example, if two Patient resources reference the same Organization
+   * resource, it will appear twice, once after each Patient. The Group resource
+   * from the request does not appear in the Patient files.
+   * @opt_param string outputFormat Optional. Output format of the export. This
+   * field is optional and only `application/fhir+ndjson` is supported.
+   * @return HttpBody
+   * @throws \Google\Service\Exception
+   */
+  public function bulkExportGroup($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('bulk-export-group', [$params], HttpBody::class);
+  }
+  /**
+   * Bulk deletes the FHIR resources from the given FHIR store. This method
+   * returns an Operation that can be used to track the progress of the deletion
+   * by calling GetOperation. The success and secondary_success counters
+   * correspond to the deleted current version and historical versions,
+   * respectively. (fhirStores.bulkDelete)
+   *
+   * @param string $name Required. The name of the FHIR store to bulk delete
+   * resources from, in the format of `projects/{project_id}/locations/{location_i
+   * d}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+   * @param BulkDeleteResourcesRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function bulkDelete($name, BulkDeleteResourcesRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('bulkDelete', [$params], Operation::class);
+  }
+  /**
    * Creates a new FHIR store within the parent dataset. (fhirStores.create)
    *
-   * @param string $parent The name of the dataset this FHIR store belongs to.
+   * @param string $parent Required. The name of the dataset this FHIR store
+   * belongs to.
    * @param FhirStore $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string fhirStoreId The ID of the FHIR store that is being created.
-   * The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
+   * @opt_param string fhirStoreId Required. The ID of the FHIR store that is
+   * being created. The string must match the following regex:
+   * `[\p{L}\p{N}_\-\.]{1,256}`.
    * @return FhirStore
+   * @throws \Google\Service\Exception
    */
   public function create($parent, FhirStore $postBody, $optParams = [])
   {
@@ -66,12 +227,13 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
    * Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)).
    * (fhirStores.deidentify)
    *
-   * @param string $sourceStore Source FHIR store resource name. For example, `pro
-   * jects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{
-   * fhir_store_id}`.
+   * @param string $sourceStore Required. Source FHIR store resource name. For
+   * example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}
+   * /fhirStores/{fhir_store_id}`. R5 stores are not supported.
    * @param DeidentifyFhirStoreRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function deidentify($sourceStore, DeidentifyFhirStoreRequest $postBody, $optParams = [])
   {
@@ -83,9 +245,10 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
    * Deletes the specified FHIR store and removes all resources within it.
    * (fhirStores.delete)
    *
-   * @param string $name The resource name of the FHIR store to delete.
+   * @param string $name Required. The resource name of the FHIR store to delete.
    * @param array $optParams Optional parameters.
    * @return HealthcareEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -94,21 +257,49 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
     return $this->call('delete', [$params], HealthcareEmpty::class);
   }
   /**
+   * Explains all the permitted/denied actor, purpose and environment for a given
+   * resource. FHIR Consent is not supported in DSTU2 or R5.
+   * (fhirStores.explainDataAccess)
+   *
+   * @param string $name Required. The name of the FHIR store to enforce, in the
+   * format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/f
+   * hirStores/{fhir_store_id}`.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string resourceId Required. The ID (`{resourceType}/{id}`) of the
+   * resource to explain data access on.
+   * @return ExplainDataAccessResponse
+   * @throws \Google\Service\Exception
+   */
+  public function explainDataAccess($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('explainDataAccess', [$params], ExplainDataAccessResponse::class);
+  }
+  /**
    * Export resources from the FHIR store to the specified destination. This
    * method returns an Operation that can be used to track the status of the
-   * export by calling GetOperation. Immediate fatal errors appear in the error
-   * field, errors are also logged to Cloud Logging (see [Viewing error logs in
-   * Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)).
+   * export by calling GetOperation. To improve performance, it is recommended to
+   * make the `type` filter as specific as possible, including only the resource
+   * types that are absolutely needed. This minimizes the size of the initial
+   * dataset to be processed and is the most effective way to improve performance.
+   * While post-filters like `_since` are useful for refining results, they do not
+   * speed up the initial data retrieval phase, which is primarily governed by the
+   * `type` filter. Immediate fatal errors appear in the error field, errors are
+   * also logged to Cloud Logging (see [Viewing error logs in Cloud
+   * Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)).
    * Otherwise, when the operation finishes, a detailed response of type
    * ExportResourcesResponse is returned in the response field. The metadata field
    * type for this operation is OperationMetadata. (fhirStores.export)
    *
-   * @param string $name The name of the FHIR store to export resource from, in
-   * the format of `projects/{project_id}/locations/{location_id}/datasets/{datase
-   * t_id}/fhirStores/{fhir_store_id}`.
+   * @param string $name Required. The name of the FHIR store to export resource
+   * from, in the format of `projects/{project_id}/locations/{location_id}/dataset
+   * s/{dataset_id}/fhirStores/{fhir_store_id}`.
    * @param ExportResourcesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function export($name, ExportResourcesRequest $postBody, $optParams = [])
   {
@@ -119,9 +310,10 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
   /**
    * Gets the configuration of the specified FHIR store. (fhirStores.get)
    *
-   * @param string $name The resource name of the FHIR store to get.
+   * @param string $name Required. The resource name of the FHIR store to get.
    * @param array $optParams Optional parameters.
    * @return FhirStore
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -132,9 +324,11 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
   /**
    * Gets metrics associated with the FHIR store. (fhirStores.getFHIRStoreMetrics)
    *
-   * @param string $name The resource name of the FHIR store to get metrics for.
+   * @param string $name Required. The resource name of the FHIR store to get
+   * metrics for.
    * @param array $optParams Optional parameters.
    * @return FhirStoreMetrics
+   * @throws \Google\Service\Exception
    */
   public function getFHIRStoreMetrics($name, $optParams = [])
   {
@@ -165,6 +359,7 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -228,12 +423,13 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
    * ImportResourcesResponse is returned in the response field. The metadata field
    * type for this operation is OperationMetadata. (fhirStores.import)
    *
-   * @param string $name The name of the FHIR store to import FHIR resources to,
-   * in the format of `projects/{project_id}/locations/{location_id}/datasets/{dat
-   * aset_id}/fhirStores/{fhir_store_id}`.
+   * @param string $name Required. The name of the FHIR store to import FHIR
+   * resources to, in the format of `projects/{project_id}/locations/{location_id}
+   * /datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
    * @param ImportResourcesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function import($name, ImportResourcesRequest $postBody, $optParams = [])
   {
@@ -245,7 +441,7 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
    * Lists the FHIR stores in the given dataset.
    * (fhirStores.listProjectsLocationsDatasetsFhirStores)
    *
-   * @param string $parent Name of the dataset.
+   * @param string $parent Required. Name of the dataset.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter Restricts stores returned to those matching a
@@ -276,6 +472,7 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
    * @opt_param string pageToken The next_page_token value returned from the
    * previous List request, if any.
    * @return ListFhirStoresResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsDatasetsFhirStores($parent, $optParams = [])
   {
@@ -286,21 +483,49 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
   /**
    * Updates the configuration of the specified FHIR store. (fhirStores.patch)
    *
-   * @param string $name Output only. Resource name of the FHIR store, of the form
-   * `projects/{project_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
+   * @param string $name Output only. Identifier. Resource name of the FHIR store,
+   * of the form `projects/{project_id}/locations/{location}/datasets/{dataset_id}
+   * /fhirStores/{fhir_store_id}`.
    * @param FhirStore $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string updateMask The update mask applies to the resource. For the
-   * `FieldMask` definition, see https://developers.google.com/protocol-
+   * @opt_param string updateMask Required. The update mask applies to the
+   * resource. For the `FieldMask` definition, see
+   * https://developers.google.com/protocol-
    * buffers/docs/reference/google.protobuf#fieldmask
    * @return FhirStore
+   * @throws \Google\Service\Exception
    */
   public function patch($name, FhirStore $postBody, $optParams = [])
   {
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], FhirStore::class);
+  }
+  /**
+   * Rolls back resources from the FHIR store to the specified time. This method
+   * returns an Operation that can be used to track the status of the rollback by
+   * calling GetOperation. Immediate fatal errors appear in the error field,
+   * errors are also logged to Cloud Logging (see [Viewing error logs in Cloud
+   * Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)).
+   * Otherwise, when the operation finishes, a detailed response of type
+   * RollbackFhirResourcesResponse is returned in the response field. The metadata
+   * field type for this operation is OperationMetadata. (fhirStores.rollback)
+   *
+   * @param string $name Required. The name of the FHIR store to rollback, in the
+   * format of
+   * "projects/{project_id}/locations/{location_id}/datasets/{dataset_id}
+   * /fhirStores/{fhir_store_id}".
+   * @param RollbackFhirResourcesRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function rollback($name, RollbackFhirResourcesRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('rollback', [$params], Operation::class);
   }
   /**
    * Sets the access control policy on the specified resource. Replaces any
@@ -314,6 +539,7 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -336,6 +562,7 @@ class ProjectsLocationsDatasetsFhirStores extends \Google\Service\Resource
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

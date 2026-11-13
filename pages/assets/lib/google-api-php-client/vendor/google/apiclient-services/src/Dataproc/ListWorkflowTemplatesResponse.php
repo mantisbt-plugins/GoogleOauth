@@ -19,16 +19,32 @@ namespace Google\Service\Dataproc;
 
 class ListWorkflowTemplatesResponse extends \Google\Collection
 {
-  protected $collection_key = 'templates';
+  protected $collection_key = 'unreachable';
   /**
+   * Output only. This token is included in the response if there are more
+   * results to fetch. To fetch additional results, provide this value as the
+   * page_token in a subsequent ListWorkflowTemplatesRequest.
+   *
    * @var string
    */
   public $nextPageToken;
   protected $templatesType = WorkflowTemplate::class;
   protected $templatesDataType = 'array';
+  /**
+   * Output only. List of workflow templates that could not be included in the
+   * response. Attempting to get one of these resources may indicate why it was
+   * not included in the list response.
+   *
+   * @var string[]
+   */
+  public $unreachable;
 
   /**
-   * @param string
+   * Output only. This token is included in the response if there are more
+   * results to fetch. To fetch additional results, provide this value as the
+   * page_token in a subsequent ListWorkflowTemplatesRequest.
+   *
+   * @param string $nextPageToken
    */
   public function setNextPageToken($nextPageToken)
   {
@@ -42,7 +58,9 @@ class ListWorkflowTemplatesResponse extends \Google\Collection
     return $this->nextPageToken;
   }
   /**
-   * @param WorkflowTemplate[]
+   * Output only. WorkflowTemplates list.
+   *
+   * @param WorkflowTemplate[] $templates
    */
   public function setTemplates($templates)
   {
@@ -54,6 +72,24 @@ class ListWorkflowTemplatesResponse extends \Google\Collection
   public function getTemplates()
   {
     return $this->templates;
+  }
+  /**
+   * Output only. List of workflow templates that could not be included in the
+   * response. Attempting to get one of these resources may indicate why it was
+   * not included in the list response.
+   *
+   * @param string[] $unreachable
+   */
+  public function setUnreachable($unreachable)
+  {
+    $this->unreachable = $unreachable;
+  }
+  /**
+   * @return string[]
+   */
+  public function getUnreachable()
+  {
+    return $this->unreachable;
   }
 }
 

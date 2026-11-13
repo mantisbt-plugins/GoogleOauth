@@ -61,8 +61,10 @@ class IndexingDatasourcesItems extends \Google\Service\Resource
    * to the version of the currently indexed item. The maximum length for this
    * field is 1024 bytes. For information on how item version affects the deletion
    * process, refer to [Handle revisions after manual
-   * deletes](https://developers.google.com/cloud-search/docs/guides/operations).
+   * deletes](https://developers.google.com/workspace/cloud-
+   * search/docs/guides/operations).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -81,6 +83,7 @@ class IndexingDatasourcesItems extends \Google\Service\Resource
    * @param DeleteQueueItemsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function deleteQueueItems($name, DeleteQueueItemsRequest $postBody, $optParams = [])
   {
@@ -102,6 +105,7 @@ class IndexingDatasourcesItems extends \Google\Service\Resource
    * @opt_param bool debugOptions.enableDebugging If you are asked by Google to
    * help with debugging, set this field. Otherwise, ignore this field.
    * @return Item
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -122,6 +126,7 @@ class IndexingDatasourcesItems extends \Google\Service\Resource
    * @param IndexItemRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function index($name, IndexItemRequest $postBody, $optParams = [])
   {
@@ -155,6 +160,7 @@ class IndexingDatasourcesItems extends \Google\Service\Resource
    * @opt_param string pageToken The next_page_token value returned from a
    * previous List request, if any.
    * @return ListItemsResponse
+   * @throws \Google\Service\Exception
    */
   public function listIndexingDatasourcesItems($name, $optParams = [])
   {
@@ -179,6 +185,7 @@ class IndexingDatasourcesItems extends \Google\Service\Resource
    * @param PollItemsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return PollItemsResponse
+   * @throws \Google\Service\Exception
    */
   public function poll($name, PollItemsRequest $postBody, $optParams = [])
   {
@@ -197,6 +204,7 @@ class IndexingDatasourcesItems extends \Google\Service\Resource
    * @param PushItemRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Item
+   * @throws \Google\Service\Exception
    */
   public function push($name, PushItemRequest $postBody, $optParams = [])
   {
@@ -216,6 +224,7 @@ class IndexingDatasourcesItems extends \Google\Service\Resource
    * @param UnreserveItemsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function unreserve($name, UnreserveItemsRequest $postBody, $optParams = [])
   {
@@ -234,6 +243,7 @@ class IndexingDatasourcesItems extends \Google\Service\Resource
    * @param StartUploadItemRequest $postBody
    * @param array $optParams Optional parameters.
    * @return UploadItemRef
+   * @throws \Google\Service\Exception
    */
   public function upload($name, StartUploadItemRequest $postBody, $optParams = [])
   {

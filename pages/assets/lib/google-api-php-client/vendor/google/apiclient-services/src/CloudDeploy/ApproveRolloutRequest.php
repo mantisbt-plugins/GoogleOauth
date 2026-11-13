@@ -17,15 +17,27 @@
 
 namespace Google\Service\CloudDeploy;
 
-class ApproveRolloutRequest extends \Google\Model
+class ApproveRolloutRequest extends \Google\Collection
 {
+  protected $collection_key = 'overrideDeployPolicy';
   /**
+   * Required. True = approve; false = reject
+   *
    * @var bool
    */
   public $approved;
+  /**
+   * Optional. Deploy policies to override. Format is
+   * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
+   *
+   * @var string[]
+   */
+  public $overrideDeployPolicy;
 
   /**
-   * @param bool
+   * Required. True = approve; false = reject
+   *
+   * @param bool $approved
    */
   public function setApproved($approved)
   {
@@ -37,6 +49,23 @@ class ApproveRolloutRequest extends \Google\Model
   public function getApproved()
   {
     return $this->approved;
+  }
+  /**
+   * Optional. Deploy policies to override. Format is
+   * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
+   *
+   * @param string[] $overrideDeployPolicy
+   */
+  public function setOverrideDeployPolicy($overrideDeployPolicy)
+  {
+    $this->overrideDeployPolicy = $overrideDeployPolicy;
+  }
+  /**
+   * @return string[]
+   */
+  public function getOverrideDeployPolicy()
+  {
+    return $this->overrideDeployPolicy;
   }
 }
 

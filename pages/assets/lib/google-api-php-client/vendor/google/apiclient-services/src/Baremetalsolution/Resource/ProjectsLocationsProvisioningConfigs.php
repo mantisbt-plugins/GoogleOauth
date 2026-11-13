@@ -42,6 +42,7 @@ class ProjectsLocationsProvisioningConfigs extends \Google\Service\Resource
    * @opt_param string email Optional. Email provided to send a confirmation with
    * provisioning config to.
    * @return ProvisioningConfig
+   * @throws \Google\Service\Exception
    */
   public function create($parent, ProvisioningConfig $postBody, $optParams = [])
   {
@@ -55,6 +56,7 @@ class ProjectsLocationsProvisioningConfigs extends \Google\Service\Resource
    * @param string $name Required. Name of the ProvisioningConfig.
    * @param array $optParams Optional parameters.
    * @return ProvisioningConfig
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -74,6 +76,7 @@ class ProjectsLocationsProvisioningConfigs extends \Google\Service\Resource
    * provisioning config to.
    * @opt_param string updateMask Required. The list of fields to update.
    * @return ProvisioningConfig
+   * @throws \Google\Service\Exception
    */
   public function patch($name, ProvisioningConfig $postBody, $optParams = [])
   {
@@ -82,7 +85,7 @@ class ProjectsLocationsProvisioningConfigs extends \Google\Service\Resource
     return $this->call('patch', [$params], ProvisioningConfig::class);
   }
   /**
-   * Submit a provisiong configuration for a given project.
+   * Submit a provisioning configuration for a given project.
    * (provisioningConfigs.submit)
    *
    * @param string $parent Required. The parent project and location containing
@@ -90,6 +93,7 @@ class ProjectsLocationsProvisioningConfigs extends \Google\Service\Resource
    * @param SubmitProvisioningConfigRequest $postBody
    * @param array $optParams Optional parameters.
    * @return SubmitProvisioningConfigResponse
+   * @throws \Google\Service\Exception
    */
   public function submit($parent, SubmitProvisioningConfigRequest $postBody, $optParams = [])
   {

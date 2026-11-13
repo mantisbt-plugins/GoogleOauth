@@ -31,14 +31,16 @@ use Google\Service\Gmail\ListFiltersResponse;
 class UsersSettingsFilters extends \Google\Service\Resource
 {
   /**
-   * Creates a filter. Note: you can only create a maximum of 1,000 filters.
-   * (filters.create)
+   * Creates a filter. Note: you can only create a maximum of 1,000 filters. For
+   * more information, see [Manage Gmail filters](https://developers.google.com/wo
+   * rkspace/gmail/api/guides/filter_settings). (filters.create)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param Filter $postBody
    * @param array $optParams Optional parameters.
    * @return Filter
+   * @throws \Google\Service\Exception
    */
   public function create($userId, Filter $postBody, $optParams = [])
   {
@@ -47,12 +49,15 @@ class UsersSettingsFilters extends \Google\Service\Resource
     return $this->call('create', [$params], Filter::class);
   }
   /**
-   * Immediately and permanently deletes the specified filter. (filters.delete)
+   * Immediately and permanently deletes the specified filter. For more
+   * information, see [Manage Gmail filters](https://developers.google.com/workspa
+   * ce/gmail/api/guides/filter_settings). (filters.delete)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param string $id The ID of the filter to be deleted.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function delete($userId, $id, $optParams = [])
   {
@@ -61,13 +66,15 @@ class UsersSettingsFilters extends \Google\Service\Resource
     return $this->call('delete', [$params]);
   }
   /**
-   * Gets a filter. (filters.get)
+   * Gets a filter. For more information, see [Manage Gmail filters](https://devel
+   * opers.google.com/workspace/gmail/api/guides/filter_settings). (filters.get)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param string $id The ID of the filter to be fetched.
    * @param array $optParams Optional parameters.
    * @return Filter
+   * @throws \Google\Service\Exception
    */
   public function get($userId, $id, $optParams = [])
   {
@@ -76,12 +83,15 @@ class UsersSettingsFilters extends \Google\Service\Resource
     return $this->call('get', [$params], Filter::class);
   }
   /**
-   * Lists the message filters of a Gmail user. (filters.listUsersSettingsFilters)
+   * Lists the message filters of a Gmail user. For more information, see [Manage
+   * Gmail filters](https://developers.google.com/workspace/gmail/api/guides/filte
+   * r_settings). (filters.listUsersSettingsFilters)
    *
    * @param string $userId User's email address. The special value "me" can be
    * used to indicate the authenticated user.
    * @param array $optParams Optional parameters.
    * @return ListFiltersResponse
+   * @throws \Google\Service\Exception
    */
   public function listUsersSettingsFilters($userId, $optParams = [])
   {

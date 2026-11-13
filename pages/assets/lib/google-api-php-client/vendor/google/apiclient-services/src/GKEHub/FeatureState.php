@@ -19,60 +19,186 @@ namespace Google\Service\GKEHub;
 
 class FeatureState extends \Google\Model
 {
-  /**
-   * @var string
-   */
-  public $code;
-  /**
-   * @var string
-   */
-  public $description;
-  /**
-   * @var string
-   */
-  public $updateTime;
+  protected $appdevexperienceType = AppDevExperienceState::class;
+  protected $appdevexperienceDataType = '';
+  protected $clusterupgradeType = ClusterUpgradeState::class;
+  protected $clusterupgradeDataType = '';
+  protected $configmanagementType = ConfigManagementState::class;
+  protected $configmanagementDataType = '';
+  protected $identityserviceType = IdentityServiceState::class;
+  protected $identityserviceDataType = '';
+  protected $meteringType = MeteringState::class;
+  protected $meteringDataType = '';
+  protected $policycontrollerType = PolicyControllerState::class;
+  protected $policycontrollerDataType = '';
+  protected $rbacrolebindingactuationType = RBACRoleBindingActuationState::class;
+  protected $rbacrolebindingactuationDataType = '';
+  protected $servicemeshType = ServiceMeshState::class;
+  protected $servicemeshDataType = '';
+  protected $stateType = State::class;
+  protected $stateDataType = '';
+  protected $workloadidentityType = WorkloadIdentityState::class;
+  protected $workloadidentityDataType = '';
 
   /**
-   * @param string
+   * Appdevexperience specific state.
+   *
+   * @param AppDevExperienceState $appdevexperience
    */
-  public function setCode($code)
+  public function setAppdevexperience(AppDevExperienceState $appdevexperience)
   {
-    $this->code = $code;
+    $this->appdevexperience = $appdevexperience;
   }
   /**
-   * @return string
+   * @return AppDevExperienceState
    */
-  public function getCode()
+  public function getAppdevexperience()
   {
-    return $this->code;
+    return $this->appdevexperience;
   }
   /**
-   * @param string
+   * Cluster upgrade state.
+   *
+   * @param ClusterUpgradeState $clusterupgrade
    */
-  public function setDescription($description)
+  public function setClusterupgrade(ClusterUpgradeState $clusterupgrade)
   {
-    $this->description = $description;
+    $this->clusterupgrade = $clusterupgrade;
   }
   /**
-   * @return string
+   * @return ClusterUpgradeState
    */
-  public function getDescription()
+  public function getClusterupgrade()
   {
-    return $this->description;
+    return $this->clusterupgrade;
   }
   /**
-   * @param string
+   * Config Management state
+   *
+   * @param ConfigManagementState $configmanagement
    */
-  public function setUpdateTime($updateTime)
+  public function setConfigmanagement(ConfigManagementState $configmanagement)
   {
-    $this->updateTime = $updateTime;
+    $this->configmanagement = $configmanagement;
   }
   /**
-   * @return string
+   * @return ConfigManagementState
    */
-  public function getUpdateTime()
+  public function getConfigmanagement()
   {
-    return $this->updateTime;
+    return $this->configmanagement;
+  }
+  /**
+   * Identity service state
+   *
+   * @param IdentityServiceState $identityservice
+   */
+  public function setIdentityservice(IdentityServiceState $identityservice)
+  {
+    $this->identityservice = $identityservice;
+  }
+  /**
+   * @return IdentityServiceState
+   */
+  public function getIdentityservice()
+  {
+    return $this->identityservice;
+  }
+  /**
+   * Metering state
+   *
+   * @param MeteringState $metering
+   */
+  public function setMetering(MeteringState $metering)
+  {
+    $this->metering = $metering;
+  }
+  /**
+   * @return MeteringState
+   */
+  public function getMetering()
+  {
+    return $this->metering;
+  }
+  /**
+   * Policy Controller state
+   *
+   * @param PolicyControllerState $policycontroller
+   */
+  public function setPolicycontroller(PolicyControllerState $policycontroller)
+  {
+    $this->policycontroller = $policycontroller;
+  }
+  /**
+   * @return PolicyControllerState
+   */
+  public function getPolicycontroller()
+  {
+    return $this->policycontroller;
+  }
+  /**
+   * RBAC Role Binding Actuation state
+   *
+   * @param RBACRoleBindingActuationState $rbacrolebindingactuation
+   */
+  public function setRbacrolebindingactuation(RBACRoleBindingActuationState $rbacrolebindingactuation)
+  {
+    $this->rbacrolebindingactuation = $rbacrolebindingactuation;
+  }
+  /**
+   * @return RBACRoleBindingActuationState
+   */
+  public function getRbacrolebindingactuation()
+  {
+    return $this->rbacrolebindingactuation;
+  }
+  /**
+   * Service mesh state
+   *
+   * @param ServiceMeshState $servicemesh
+   */
+  public function setServicemesh(ServiceMeshState $servicemesh)
+  {
+    $this->servicemesh = $servicemesh;
+  }
+  /**
+   * @return ServiceMeshState
+   */
+  public function getServicemesh()
+  {
+    return $this->servicemesh;
+  }
+  /**
+   * The high-level state of this MembershipFeature.
+   *
+   * @param State $state
+   */
+  public function setState(State $state)
+  {
+    $this->state = $state;
+  }
+  /**
+   * @return State
+   */
+  public function getState()
+  {
+    return $this->state;
+  }
+  /**
+   * Workload Identity state
+   *
+   * @param WorkloadIdentityState $workloadidentity
+   */
+  public function setWorkloadidentity(WorkloadIdentityState $workloadidentity)
+  {
+    $this->workloadidentity = $workloadidentity;
+  }
+  /**
+   * @return WorkloadIdentityState
+   */
+  public function getWorkloadidentity()
+  {
+    return $this->workloadidentity;
   }
 }
 

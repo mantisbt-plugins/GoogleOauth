@@ -20,12 +20,46 @@ namespace Google\Service\Firebaseappcheck;
 class GoogleFirebaseAppcheckV1ExchangeRecaptchaV3TokenRequest extends \Google\Model
 {
   /**
+   * Specifies whether this attestation is for use in a *limited use* (`true`)
+   * or *session based* (`false`) context. To enable this attestation to be used
+   * with the *replay protection* feature, set this to `true`. The default value
+   * is `false`.
+   *
+   * @var bool
+   */
+  public $limitedUse;
+  /**
+   * Required. The reCAPTCHA token as returned by the [reCAPTCHA v3 JavaScript
+   * API](https://developers.google.com/recaptcha/docs/v3).
+   *
    * @var string
    */
   public $recaptchaV3Token;
 
   /**
-   * @param string
+   * Specifies whether this attestation is for use in a *limited use* (`true`)
+   * or *session based* (`false`) context. To enable this attestation to be used
+   * with the *replay protection* feature, set this to `true`. The default value
+   * is `false`.
+   *
+   * @param bool $limitedUse
+   */
+  public function setLimitedUse($limitedUse)
+  {
+    $this->limitedUse = $limitedUse;
+  }
+  /**
+   * @return bool
+   */
+  public function getLimitedUse()
+  {
+    return $this->limitedUse;
+  }
+  /**
+   * Required. The reCAPTCHA token as returned by the [reCAPTCHA v3 JavaScript
+   * API](https://developers.google.com/recaptcha/docs/v3).
+   *
+   * @param string $recaptchaV3Token
    */
   public function setRecaptchaV3Token($recaptchaV3Token)
   {

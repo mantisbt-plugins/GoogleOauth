@@ -19,6 +19,8 @@ namespace Google\Service\Slides;
 
 class Response extends \Google\Model
 {
+  protected $addCommentReplyType = AddCommentReplyResponse::class;
+  protected $addCommentReplyDataType = '';
   protected $createImageType = CreateImageResponse::class;
   protected $createImageDataType = '';
   protected $createLineType = CreateLineResponse::class;
@@ -37,6 +39,8 @@ class Response extends \Google\Model
   protected $duplicateObjectDataType = '';
   protected $groupObjectsType = GroupObjectsResponse::class;
   protected $groupObjectsDataType = '';
+  protected $insertCommentType = InsertCommentResponse::class;
+  protected $insertCommentDataType = '';
   protected $replaceAllShapesWithImageType = ReplaceAllShapesWithImageResponse::class;
   protected $replaceAllShapesWithImageDataType = '';
   protected $replaceAllShapesWithSheetsChartType = ReplaceAllShapesWithSheetsChartResponse::class;
@@ -45,7 +49,25 @@ class Response extends \Google\Model
   protected $replaceAllTextDataType = '';
 
   /**
-   * @param CreateImageResponse
+   * The result of creating a reply.
+   *
+   * @param AddCommentReplyResponse $addCommentReply
+   */
+  public function setAddCommentReply(AddCommentReplyResponse $addCommentReply)
+  {
+    $this->addCommentReply = $addCommentReply;
+  }
+  /**
+   * @return AddCommentReplyResponse
+   */
+  public function getAddCommentReply()
+  {
+    return $this->addCommentReply;
+  }
+  /**
+   * The result of creating an image.
+   *
+   * @param CreateImageResponse $createImage
    */
   public function setCreateImage(CreateImageResponse $createImage)
   {
@@ -59,7 +81,9 @@ class Response extends \Google\Model
     return $this->createImage;
   }
   /**
-   * @param CreateLineResponse
+   * The result of creating a line.
+   *
+   * @param CreateLineResponse $createLine
    */
   public function setCreateLine(CreateLineResponse $createLine)
   {
@@ -73,7 +97,9 @@ class Response extends \Google\Model
     return $this->createLine;
   }
   /**
-   * @param CreateShapeResponse
+   * The result of creating a shape.
+   *
+   * @param CreateShapeResponse $createShape
    */
   public function setCreateShape(CreateShapeResponse $createShape)
   {
@@ -87,7 +113,9 @@ class Response extends \Google\Model
     return $this->createShape;
   }
   /**
-   * @param CreateSheetsChartResponse
+   * The result of creating a Google Sheets chart.
+   *
+   * @param CreateSheetsChartResponse $createSheetsChart
    */
   public function setCreateSheetsChart(CreateSheetsChartResponse $createSheetsChart)
   {
@@ -101,7 +129,9 @@ class Response extends \Google\Model
     return $this->createSheetsChart;
   }
   /**
-   * @param CreateSlideResponse
+   * The result of creating a slide.
+   *
+   * @param CreateSlideResponse $createSlide
    */
   public function setCreateSlide(CreateSlideResponse $createSlide)
   {
@@ -115,7 +145,9 @@ class Response extends \Google\Model
     return $this->createSlide;
   }
   /**
-   * @param CreateTableResponse
+   * The result of creating a table.
+   *
+   * @param CreateTableResponse $createTable
    */
   public function setCreateTable(CreateTableResponse $createTable)
   {
@@ -129,7 +161,9 @@ class Response extends \Google\Model
     return $this->createTable;
   }
   /**
-   * @param CreateVideoResponse
+   * The result of creating a video.
+   *
+   * @param CreateVideoResponse $createVideo
    */
   public function setCreateVideo(CreateVideoResponse $createVideo)
   {
@@ -143,7 +177,9 @@ class Response extends \Google\Model
     return $this->createVideo;
   }
   /**
-   * @param DuplicateObjectResponse
+   * The result of duplicating an object.
+   *
+   * @param DuplicateObjectResponse $duplicateObject
    */
   public function setDuplicateObject(DuplicateObjectResponse $duplicateObject)
   {
@@ -157,7 +193,9 @@ class Response extends \Google\Model
     return $this->duplicateObject;
   }
   /**
-   * @param GroupObjectsResponse
+   * The result of grouping objects.
+   *
+   * @param GroupObjectsResponse $groupObjects
    */
   public function setGroupObjects(GroupObjectsResponse $groupObjects)
   {
@@ -171,7 +209,25 @@ class Response extends \Google\Model
     return $this->groupObjects;
   }
   /**
-   * @param ReplaceAllShapesWithImageResponse
+   * The result of creating a comment.
+   *
+   * @param InsertCommentResponse $insertComment
+   */
+  public function setInsertComment(InsertCommentResponse $insertComment)
+  {
+    $this->insertComment = $insertComment;
+  }
+  /**
+   * @return InsertCommentResponse
+   */
+  public function getInsertComment()
+  {
+    return $this->insertComment;
+  }
+  /**
+   * The result of replacing all shapes matching some criteria with an image.
+   *
+   * @param ReplaceAllShapesWithImageResponse $replaceAllShapesWithImage
    */
   public function setReplaceAllShapesWithImage(ReplaceAllShapesWithImageResponse $replaceAllShapesWithImage)
   {
@@ -185,7 +241,10 @@ class Response extends \Google\Model
     return $this->replaceAllShapesWithImage;
   }
   /**
-   * @param ReplaceAllShapesWithSheetsChartResponse
+   * The result of replacing all shapes matching some criteria with a Google
+   * Sheets chart.
+   *
+   * @param ReplaceAllShapesWithSheetsChartResponse $replaceAllShapesWithSheetsChart
    */
   public function setReplaceAllShapesWithSheetsChart(ReplaceAllShapesWithSheetsChartResponse $replaceAllShapesWithSheetsChart)
   {
@@ -199,7 +258,9 @@ class Response extends \Google\Model
     return $this->replaceAllShapesWithSheetsChart;
   }
   /**
-   * @param ReplaceAllTextResponse
+   * The result of replacing text.
+   *
+   * @param ReplaceAllTextResponse $replaceAllText
    */
   public function setReplaceAllText(ReplaceAllTextResponse $replaceAllText)
   {

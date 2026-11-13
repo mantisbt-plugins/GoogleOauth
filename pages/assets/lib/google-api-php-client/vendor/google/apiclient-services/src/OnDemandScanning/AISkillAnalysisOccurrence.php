@@ -1,0 +1,121 @@
+<?php
+/*
+ * Copyright 2014 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+namespace Google\Service\OnDemandScanning;
+
+class AISkillAnalysisOccurrence extends \Google\Collection
+{
+  /**
+   * Unspecified severity.
+   */
+  public const MAX_SEVERITY_SEVERITY_UNSPECIFIED = 'SEVERITY_UNSPECIFIED';
+  /**
+   * Critical severity.
+   */
+  public const MAX_SEVERITY_CRITICAL = 'CRITICAL';
+  /**
+   * High severity.
+   */
+  public const MAX_SEVERITY_HIGH = 'HIGH';
+  protected $collection_key = 'findings';
+  protected $findingsType = Finding::class;
+  protected $findingsDataType = 'array';
+  /**
+   * Maximum severity found among findings. Per scanner verdict details.
+   *
+   * @var string
+   */
+  public $maxSeverity;
+  protected $perScannerVerdictType = PerScannerVerdict::class;
+  protected $perScannerVerdictDataType = '';
+  /**
+   * Name of the skill that produced this analysis.
+   *
+   * @var string
+   */
+  public $skillName;
+
+  /**
+   * Findings produced by the analysis.
+   *
+   * @param Finding[] $findings
+   */
+  public function setFindings($findings)
+  {
+    $this->findings = $findings;
+  }
+  /**
+   * @return Finding[]
+   */
+  public function getFindings()
+  {
+    return $this->findings;
+  }
+  /**
+   * Maximum severity found among findings. Per scanner verdict details.
+   *
+   * Accepted values: SEVERITY_UNSPECIFIED, CRITICAL, HIGH
+   *
+   * @param self::MAX_SEVERITY_* $maxSeverity
+   */
+  public function setMaxSeverity($maxSeverity)
+  {
+    $this->maxSeverity = $maxSeverity;
+  }
+  /**
+   * @return self::MAX_SEVERITY_*
+   */
+  public function getMaxSeverity()
+  {
+    return $this->maxSeverity;
+  }
+  /**
+   * Per scanner verdict.
+   *
+   * @param PerScannerVerdict $perScannerVerdict
+   */
+  public function setPerScannerVerdict(PerScannerVerdict $perScannerVerdict)
+  {
+    $this->perScannerVerdict = $perScannerVerdict;
+  }
+  /**
+   * @return PerScannerVerdict
+   */
+  public function getPerScannerVerdict()
+  {
+    return $this->perScannerVerdict;
+  }
+  /**
+   * Name of the skill that produced this analysis.
+   *
+   * @param string $skillName
+   */
+  public function setSkillName($skillName)
+  {
+    $this->skillName = $skillName;
+  }
+  /**
+   * @return string
+   */
+  public function getSkillName()
+  {
+    return $this->skillName;
+  }
+}
+
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(AISkillAnalysisOccurrence::class, 'Google_Service_OnDemandScanning_AISkillAnalysisOccurrence');

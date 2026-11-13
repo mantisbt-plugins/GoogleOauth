@@ -34,12 +34,12 @@ class AccountsContainersWorkspacesBuiltInVariables extends \Google\Service\Resou
   /**
    * Creates one or more GTM Built-In Variables. (built_in_variables.create)
    *
-   * @param string $parent GTM Workspace's API relative path. Example:
-   * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+   * @param string $parent GTM Workspace's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string type The types of built-in variables to enable.
    * @return CreateBuiltInVariableResponse
+   * @throws \Google\Service\Exception
    */
   public function create($parent, $optParams = [])
   {
@@ -50,12 +50,11 @@ class AccountsContainersWorkspacesBuiltInVariables extends \Google\Service\Resou
   /**
    * Deletes one or more GTM Built-In Variables. (built_in_variables.delete)
    *
-   * @param string $path GTM BuiltInVariable's API relative path. Example: account
-   * s/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_v
-   * ariables
+   * @param string $path GTM BuiltInVariable's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string type The types of built-in variables to delete.
+   * @throws \Google\Service\Exception
    */
   public function delete($path, $optParams = [])
   {
@@ -67,13 +66,13 @@ class AccountsContainersWorkspacesBuiltInVariables extends \Google\Service\Resou
    * Lists all the enabled Built-In Variables of a GTM Container.
    * (built_in_variables.listAccountsContainersWorkspacesBuiltInVariables)
    *
-   * @param string $parent GTM Workspace's API relative path. Example:
-   * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
+   * @param string $parent GTM Workspace's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string pageToken Continuation token for fetching the next page of
    * results.
    * @return ListEnabledBuiltInVariablesResponse
+   * @throws \Google\Service\Exception
    */
   public function listAccountsContainersWorkspacesBuiltInVariables($parent, $optParams = [])
   {
@@ -85,13 +84,12 @@ class AccountsContainersWorkspacesBuiltInVariables extends \Google\Service\Resou
    * Reverts changes to a GTM Built-In Variables in a GTM Workspace.
    * (built_in_variables.revert)
    *
-   * @param string $path GTM BuiltInVariable's API relative path. Example: account
-   * s/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_v
-   * ariables
+   * @param string $path GTM BuiltInVariable's API relative path.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string type The type of built-in variable to revert.
    * @return RevertBuiltInVariableResponse
+   * @throws \Google\Service\Exception
    */
   public function revert($path, $optParams = [])
   {

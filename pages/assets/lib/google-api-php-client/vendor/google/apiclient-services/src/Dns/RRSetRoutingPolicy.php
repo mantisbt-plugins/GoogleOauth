@@ -22,6 +22,15 @@ class RRSetRoutingPolicy extends \Google\Model
   protected $geoType = RRSetRoutingPolicyGeoPolicy::class;
   protected $geoDataType = '';
   /**
+   * The fully qualified URL of the HealthCheck to use for this
+   * RRSetRoutingPolicy. Format this URL like `https://www.googleapis.com/comput
+   * e/v1/projects/{project}/global/healthChecks/{healthCheck}`.
+   * https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks
+   *
+   * @var string
+   */
+  public $healthCheck;
+  /**
    * @var string
    */
   public $kind;
@@ -31,7 +40,7 @@ class RRSetRoutingPolicy extends \Google\Model
   protected $wrrDataType = '';
 
   /**
-   * @param RRSetRoutingPolicyGeoPolicy
+   * @param RRSetRoutingPolicyGeoPolicy $geo
    */
   public function setGeo(RRSetRoutingPolicyGeoPolicy $geo)
   {
@@ -45,7 +54,26 @@ class RRSetRoutingPolicy extends \Google\Model
     return $this->geo;
   }
   /**
-   * @param string
+   * The fully qualified URL of the HealthCheck to use for this
+   * RRSetRoutingPolicy. Format this URL like `https://www.googleapis.com/comput
+   * e/v1/projects/{project}/global/healthChecks/{healthCheck}`.
+   * https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks
+   *
+   * @param string $healthCheck
+   */
+  public function setHealthCheck($healthCheck)
+  {
+    $this->healthCheck = $healthCheck;
+  }
+  /**
+   * @return string
+   */
+  public function getHealthCheck()
+  {
+    return $this->healthCheck;
+  }
+  /**
+   * @param string $kind
    */
   public function setKind($kind)
   {
@@ -59,7 +87,7 @@ class RRSetRoutingPolicy extends \Google\Model
     return $this->kind;
   }
   /**
-   * @param RRSetRoutingPolicyPrimaryBackupPolicy
+   * @param RRSetRoutingPolicyPrimaryBackupPolicy $primaryBackup
    */
   public function setPrimaryBackup(RRSetRoutingPolicyPrimaryBackupPolicy $primaryBackup)
   {
@@ -73,7 +101,7 @@ class RRSetRoutingPolicy extends \Google\Model
     return $this->primaryBackup;
   }
   /**
-   * @param RRSetRoutingPolicyWrrPolicy
+   * @param RRSetRoutingPolicyWrrPolicy $wrr
    */
   public function setWrr(RRSetRoutingPolicyWrrPolicy $wrr)
   {

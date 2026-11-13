@@ -40,6 +40,7 @@ class TransferJobs extends \Google\Service\Resource
    * @param TransferJob $postBody
    * @param array $optParams Optional parameters.
    * @return TransferJob
+   * @throws \Google\Service\Exception
    */
   public function create(TransferJob $postBody, $optParams = [])
   {
@@ -56,6 +57,7 @@ class TransferJobs extends \Google\Service\Resource
    * owns the job.
    * @param array $optParams Optional parameters.
    * @return StoragetransferEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($jobName, $projectId, $optParams = [])
   {
@@ -71,6 +73,7 @@ class TransferJobs extends \Google\Service\Resource
    * owns the job.
    * @param array $optParams Optional parameters.
    * @return TransferJob
+   * @throws \Google\Service\Exception
    */
   public function get($jobName, $projectId, $optParams = [])
   {
@@ -82,17 +85,24 @@ class TransferJobs extends \Google\Service\Resource
    * Lists transfer jobs. (transferJobs.listTransferJobs)
    *
    * @param string $filter Required. A list of query parameters specified as JSON
-   * text in the form of: `{"projectId":"my_project_id",
-   * "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...]}`
-   * Since `jobNames` and `jobStatuses` support multiple values, their values must
-   * be specified with array notation. `projectId` is required. `jobNames` and
-   * `jobStatuses` are optional. The valid values for `jobStatuses` are case-
-   * insensitive: ENABLED, DISABLED, and DELETED.
+   * text in the form of: ``` { "projectId":"my_project_id",
+   * "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...],
+   * "dataBackend":"QUERY_REPLICATION_CONFIGS", "sourceBucket":"source-bucket-
+   * name", "sinkBucket":"sink-bucket-name", } ``` The JSON formatting in the
+   * example is for display only; provide the query parameters without spaces or
+   * line breaks. * `projectId` is required. * Since `jobNames` and `jobStatuses`
+   * support multiple values, their values must be specified with array notation.
+   * `jobNames` and `jobStatuses` are optional. Valid values are case-insensitive:
+   * * ENABLED * DISABLED * DELETED * Specify
+   * `"dataBackend":"QUERY_REPLICATION_CONFIGS"` to return a list of cross-bucket
+   * replication jobs. * Limit the results to jobs from a particular bucket with
+   * `sourceBucket` and/or to a particular bucket with `sinkBucket`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize The list page size. The max allowed value is 256.
    * @opt_param string pageToken The list page token.
    * @return ListTransferJobsResponse
+   * @throws \Google\Service\Exception
    */
   public function listTransferJobs($filter, $optParams = [])
   {
@@ -110,6 +120,7 @@ class TransferJobs extends \Google\Service\Resource
    * @param UpdateTransferJobRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TransferJob
+   * @throws \Google\Service\Exception
    */
   public function patch($jobName, UpdateTransferJobRequest $postBody, $optParams = [])
   {
@@ -126,6 +137,7 @@ class TransferJobs extends \Google\Service\Resource
    * @param RunTransferJobRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function run($jobName, RunTransferJobRequest $postBody, $optParams = [])
   {

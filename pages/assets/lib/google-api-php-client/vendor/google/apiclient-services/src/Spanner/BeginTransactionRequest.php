@@ -19,13 +19,36 @@ namespace Google\Service\Spanner;
 
 class BeginTransactionRequest extends \Google\Model
 {
+  protected $mutationKeyType = Mutation::class;
+  protected $mutationKeyDataType = '';
   protected $optionsType = TransactionOptions::class;
   protected $optionsDataType = '';
   protected $requestOptionsType = RequestOptions::class;
   protected $requestOptionsDataType = '';
 
   /**
-   * @param TransactionOptions
+   * Optional. Required for read-write transactions on a multiplexed session
+   * that commit mutations but don't perform any reads or queries. You must
+   * randomly select one of the mutations from the mutation set and send it as a
+   * part of this request.
+   *
+   * @param Mutation $mutationKey
+   */
+  public function setMutationKey(Mutation $mutationKey)
+  {
+    $this->mutationKey = $mutationKey;
+  }
+  /**
+   * @return Mutation
+   */
+  public function getMutationKey()
+  {
+    return $this->mutationKey;
+  }
+  /**
+   * Required. Options for the new transaction.
+   *
+   * @param TransactionOptions $options
    */
   public function setOptions(TransactionOptions $options)
   {
@@ -39,7 +62,12 @@ class BeginTransactionRequest extends \Google\Model
     return $this->options;
   }
   /**
-   * @param RequestOptions
+   * Common options for this request. Priority is ignored for this request.
+   * Setting the priority in this `request_options` struct doesn't do anything.
+   * To set the priority for a transaction, set it on the reads and writes that
+   * are part of this transaction instead.
+   *
+   * @param RequestOptions $requestOptions
    */
   public function setRequestOptions(RequestOptions $requestOptions)
   {

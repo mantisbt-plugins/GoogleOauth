@@ -32,7 +32,7 @@ use Google\Service\CloudResourceManager\ListLiensResponse;
 class Liens extends \Google\Service\Resource
 {
   /**
-   * Create a Lien which applies to the resource denoted by the `parent` field.
+   * Creates a Lien which applies to the resource denoted by the `parent` field.
    * Callers of this method will require permission on the `parent` resource. For
    * example, applying to `projects/1234` requires permission
    * `resourcemanager.projects.updateLiens`. NOTE: Some resources may limit the
@@ -41,6 +41,7 @@ class Liens extends \Google\Service\Resource
    * @param Lien $postBody
    * @param array $optParams Optional parameters.
    * @return Lien
+   * @throws \Google\Service\Exception
    */
   public function create(Lien $postBody, $optParams = [])
   {
@@ -49,13 +50,14 @@ class Liens extends \Google\Service\Resource
     return $this->call('create', [$params], Lien::class);
   }
   /**
-   * Delete a Lien by `name`. Callers of this method will require permission on
+   * Deletes a Lien by `name`. Callers of this method will require permission on
    * the `parent` resource. For example, a Lien with a `parent` of `projects/1234`
    * requires permission `resourcemanager.projects.updateLiens`. (liens.delete)
    *
    * @param string $name Required. The name/identifier of the Lien to delete.
    * @param array $optParams Optional parameters.
    * @return CloudresourcemanagerEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -64,13 +66,14 @@ class Liens extends \Google\Service\Resource
     return $this->call('delete', [$params], CloudresourcemanagerEmpty::class);
   }
   /**
-   * Retrieve a Lien by `name`. Callers of this method will require permission on
+   * Retrieves a Lien by `name`. Callers of this method will require permission on
    * the `parent` resource. For example, a Lien with a `parent` of `projects/1234`
    * requires permission `resourcemanager.projects.get` (liens.get)
    *
    * @param string $name Required. The name/identifier of the Lien.
    * @param array $optParams Optional parameters.
    * @return Lien
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -79,7 +82,7 @@ class Liens extends \Google\Service\Resource
     return $this->call('get', [$params], Lien::class);
   }
   /**
-   * List all Liens applied to the `parent` resource. Callers of this method will
+   * Lists all Liens applied to the `parent` resource. Callers of this method will
    * require permission on the `parent` resource. For example, a Lien with a
    * `parent` of `projects/1234` requires permission
    * `resourcemanager.projects.get`. (liens.listLiens)
@@ -97,6 +100,7 @@ class Liens extends \Google\Service\Resource
    * parent depends on the meta api implementation. This field could be a project
    * or other sub project resources.
    * @return ListLiensResponse
+   * @throws \Google\Service\Exception
    */
   public function listLiens($optParams = [])
   {

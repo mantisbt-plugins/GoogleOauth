@@ -38,6 +38,7 @@ class Users extends \Google\Service\Resource
    * used to indicate the authenticated user.
    * @param array $optParams Optional parameters.
    * @return Profile
+   * @throws \Google\Service\Exception
    */
   public function getProfile($userId, $optParams = [])
   {
@@ -46,11 +47,15 @@ class Users extends \Google\Service\Resource
     return $this->call('getProfile', [$params], Profile::class);
   }
   /**
-   * Stop receiving push notifications for the given user mailbox. (users.stop)
+   * Turn off push notification delivery for the given user mailbox. For more
+   * information, see [Configure push notifications in Gmail
+   * API](https://developers.google.com/workspace/gmail/api/guides/push).
+   * (users.stop)
    *
    * @param string $userId The user's email address. The special value `me` can be
    * used to indicate the authenticated user.
    * @param array $optParams Optional parameters.
+   * @throws \Google\Service\Exception
    */
   public function stop($userId, $optParams = [])
   {
@@ -59,7 +64,9 @@ class Users extends \Google\Service\Resource
     return $this->call('stop', [$params]);
   }
   /**
-   * Set up or update a push notification watch on the given user mailbox.
+   * Set up or update a push notification watch on the given user mailbox. For
+   * more information, see [Configure push notifications in Gmail
+   * API](https://developers.google.com/workspace/gmail/api/guides/push).
    * (users.watch)
    *
    * @param string $userId The user's email address. The special value `me` can be
@@ -67,6 +74,7 @@ class Users extends \Google\Service\Resource
    * @param WatchRequest $postBody
    * @param array $optParams Optional parameters.
    * @return WatchResponse
+   * @throws \Google\Service\Exception
    */
   public function watch($userId, WatchRequest $postBody, $optParams = [])
   {

@@ -44,6 +44,7 @@ class ResourceRecordSets extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return ResourceRecordSet
+   * @throws \Google\Service\Exception
    */
   public function create($project, $managedZone, ResourceRecordSet $postBody, $optParams = [])
   {
@@ -65,6 +66,7 @@ class ResourceRecordSets extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return ResourceRecordSetsDeleteResponse
+   * @throws \Google\Service\Exception
    */
   public function delete($project, $managedZone, $name, $type, $optParams = [])
   {
@@ -87,6 +89,7 @@ class ResourceRecordSets extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return ResourceRecordSet
+   * @throws \Google\Service\Exception
    */
   public function get($project, $managedZone, $name, $type, $optParams = [])
   {
@@ -103,16 +106,28 @@ class ResourceRecordSets extends \Google\Service\Resource
    * request. Can be the managed zone name or ID.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string filter Specify a filter expression to view records that
+   * exactly match the specified domain. Both the `name` and `type` parameters are
+   * not supported and must be omitted when you use `filter`. Your `filter`
+   * expression must conform to AIP-160 and you must specify a domain in the
+   * `name` field. Optionally, you can include the `type` field to filter records
+   * by type. You can also include the `has_suffix` function to view records that
+   * match by domain suffix. Examples: * `name`="example.com." *
+   * `name`="example.com." AND type="A" * `name`=`has_suffix`("example.com.") *
+   * `name`=`has_suffix`("example.com.") AND type="A"
    * @opt_param int maxResults Optional. Maximum number of results to be returned.
    * If unspecified, the server decides how many results to return.
-   * @opt_param string name Restricts the list to return only records with this
-   * fully qualified domain name.
+   * @opt_param string name Specify a fully qualified domain name to view only
+   * those records. The `name` parameter is not supported and must be omitted when
+   * you use `filter`.
    * @opt_param string pageToken Optional. A tag returned by a previous list
    * request that was truncated. Use this parameter to continue a previous list
    * request.
-   * @opt_param string type Restricts the list to return only records of this
-   * type. If present, the "name" parameter must also be present.
+   * @opt_param string type Specify a record type to view only those records. You
+   * must also specify the `name` parameter. The `type` parameter is not supported
+   * and must be omitted when you use `filter`.
    * @return ResourceRecordSetsListResponse
+   * @throws \Google\Service\Exception
    */
   public function listResourceRecordSets($project, $managedZone, $optParams = [])
   {
@@ -136,6 +151,7 @@ class ResourceRecordSets extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return ResourceRecordSet
+   * @throws \Google\Service\Exception
    */
   public function patch($project, $managedZone, $name, $type, ResourceRecordSet $postBody, $optParams = [])
   {

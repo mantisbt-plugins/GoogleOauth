@@ -39,9 +39,18 @@ class NetworkManagement extends \Google\Service
   const CLOUD_PLATFORM =
       "https://www.googleapis.com/auth/cloud-platform";
 
+  public $organizations_locations;
+  public $organizations_locations_global_operations;
+  public $organizations_locations_vpcFlowLogsConfigs;
   public $projects_locations;
   public $projects_locations_global_connectivityTests;
   public $projects_locations_global_operations;
+  public $projects_locations_networkMonitoringProviders;
+  public $projects_locations_networkMonitoringProviders_monitoringPoints;
+  public $projects_locations_networkMonitoringProviders_networkPaths;
+  public $projects_locations_networkMonitoringProviders_webPaths;
+  public $projects_locations_vpcFlowLogsConfigs;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the NetworkManagement service.
@@ -54,11 +63,209 @@ class NetworkManagement extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://networkmanagement.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://networkmanagement.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'networkmanagement';
 
+    $this->organizations_locations = new NetworkManagement\Resource\OrganizationsLocations(
+        $this,
+        $this->serviceName,
+        'locations',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+name}/locations',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->organizations_locations_global_operations = new NetworkManagement\Resource\OrganizationsLocationsNetworkmanagementGlobalOperations(
+        $this,
+        $this->serviceName,
+        'operations',
+        [
+          'methods' => [
+            'cancel' => [
+              'path' => 'v1/{+name}:cancel',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+name}/operations',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->organizations_locations_vpcFlowLogsConfigs = new NetworkManagement\Resource\OrganizationsLocationsVpcFlowLogsConfigs(
+        $this,
+        $this->serviceName,
+        'vpcFlowLogsConfigs',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v1/{+parent}/vpcFlowLogsConfigs',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'vpcFlowLogsConfigId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/vpcFlowLogsConfigs',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->projects_locations = new NetworkManagement\Resource\ProjectsLocations(
         $this,
         $this->serviceName,
@@ -83,6 +290,11 @@ class NetworkManagement extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -283,6 +495,448 @@ class NetworkManagement extends \Google\Service
                   'type' => 'integer',
                 ],
                 'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_networkMonitoringProviders = new NetworkManagement\Resource\ProjectsLocationsNetworkMonitoringProviders(
+        $this,
+        $this->serviceName,
+        'networkMonitoringProviders',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v1/{+parent}/networkMonitoringProviders',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'networkMonitoringProviderId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'force' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
+            ],'generateMonitoringPointConfig' => [
+              'path' => 'v1/{+name}:generateMonitoringPointConfig',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'privateConnectivityEnabled' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
+            ],'generateProviderAccessToken' => [
+              'path' => 'v1/{+name}:generateProviderAccessToken',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'gcpAccessToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/networkMonitoringProviders',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_networkMonitoringProviders_monitoringPoints = new NetworkManagement\Resource\ProjectsLocationsNetworkMonitoringProvidersMonitoringPoints(
+        $this,
+        $this->serviceName,
+        'monitoringPoints',
+        [
+          'methods' => [
+            'downloadInstallScript' => [
+              'path' => 'v1/{+parent}/monitoringPoints:downloadInstallScript',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                '_password' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'cloudDeploymentType' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'hostname' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'monitoringPointType' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'ntpServerAddress' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'ntpServerSecondaryAddress' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'privateConnectivityEnabled' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+                'staticIpAddress.dnsServerAddress' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'staticIpAddress.dnsServerSecondaryAddress' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'staticIpAddress.domain' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'staticIpAddress.gatewayAddress' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'staticIpAddress.ipAddress' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'staticIpAddress.netmask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'timeZone.id' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'timeZone.version' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'useDhcp' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+              ],
+            ],'downloadRecreateInstallScript' => [
+              'path' => 'v1/{+name}:downloadRecreateInstallScript',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'hostname' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'downloadServerConnectConfig' => [
+              'path' => 'v1/{+parent}/monitoringPoints:downloadServerConnectConfig',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/monitoringPoints',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_networkMonitoringProviders_networkPaths = new NetworkManagement\Resource\ProjectsLocationsNetworkMonitoringProvidersNetworkPaths(
+        $this,
+        $this->serviceName,
+        'networkPaths',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/networkPaths',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_networkMonitoringProviders_webPaths = new NetworkManagement\Resource\ProjectsLocationsNetworkMonitoringProvidersWebPaths(
+        $this,
+        $this->serviceName,
+        'webPaths',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/webPaths',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_vpcFlowLogsConfigs = new NetworkManagement\Resource\ProjectsLocationsVpcFlowLogsConfigs(
+        $this,
+        $this->serviceName,
+        'vpcFlowLogsConfigs',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v1/{+parent}/vpcFlowLogsConfigs',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'vpcFlowLogsConfigId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/vpcFlowLogsConfigs',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'patch' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'queryOrgVpcFlowLogsConfigs' => [
+              'path' => 'v1/{+parent}/vpcFlowLogsConfigs:queryOrgVpcFlowLogsConfigs',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'showEffectiveFlowLogsConfigs' => [
+              'path' => 'v1/{+parent}/vpcFlowLogsConfigs:showEffectiveFlowLogsConfigs',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'resource' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],

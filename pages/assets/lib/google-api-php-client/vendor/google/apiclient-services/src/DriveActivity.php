@@ -27,7 +27,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/drive/activity/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/drive/activity/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -42,6 +42,7 @@ class DriveActivity extends \Google\Service
       "https://www.googleapis.com/auth/drive.activity.readonly";
 
   public $activity;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the DriveActivity service.
@@ -54,6 +55,7 @@ class DriveActivity extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://driveactivity.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://driveactivity.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';

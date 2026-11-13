@@ -20,32 +20,58 @@ namespace Google\Service\Datastream;
 class OracleProfile extends \Google\Model
 {
   /**
+   * Connection string attributes
+   *
    * @var string[]
    */
   public $connectionAttributes;
   /**
+   * Required. Database for the Oracle connection.
+   *
    * @var string
    */
   public $databaseService;
   /**
+   * Required. Hostname for the Oracle connection.
+   *
    * @var string
    */
   public $hostname;
+  protected $oracleAsmConfigType = OracleAsmConfig::class;
+  protected $oracleAsmConfigDataType = '';
+  protected $oracleSslConfigType = OracleSslConfig::class;
+  protected $oracleSslConfigDataType = '';
   /**
+   * Optional. Password for the Oracle connection. Mutually exclusive with the
+   * `secret_manager_stored_password` field.
+   *
    * @var string
    */
   public $password;
   /**
+   * Port for the Oracle connection, default value is 1521.
+   *
    * @var int
    */
   public $port;
   /**
+   * Optional. A reference to a Secret Manager resource name storing the Oracle
+   * connection password. Mutually exclusive with the `password` field.
+   *
+   * @var string
+   */
+  public $secretManagerStoredPassword;
+  /**
+   * Required. Username for the Oracle connection.
+   *
    * @var string
    */
   public $username;
 
   /**
-   * @param string[]
+   * Connection string attributes
+   *
+   * @param string[] $connectionAttributes
    */
   public function setConnectionAttributes($connectionAttributes)
   {
@@ -59,7 +85,9 @@ class OracleProfile extends \Google\Model
     return $this->connectionAttributes;
   }
   /**
-   * @param string
+   * Required. Database for the Oracle connection.
+   *
+   * @param string $databaseService
    */
   public function setDatabaseService($databaseService)
   {
@@ -73,7 +101,9 @@ class OracleProfile extends \Google\Model
     return $this->databaseService;
   }
   /**
-   * @param string
+   * Required. Hostname for the Oracle connection.
+   *
+   * @param string $hostname
    */
   public function setHostname($hostname)
   {
@@ -87,7 +117,42 @@ class OracleProfile extends \Google\Model
     return $this->hostname;
   }
   /**
-   * @param string
+   * Optional. Configuration for Oracle ASM connection.
+   *
+   * @param OracleAsmConfig $oracleAsmConfig
+   */
+  public function setOracleAsmConfig(OracleAsmConfig $oracleAsmConfig)
+  {
+    $this->oracleAsmConfig = $oracleAsmConfig;
+  }
+  /**
+   * @return OracleAsmConfig
+   */
+  public function getOracleAsmConfig()
+  {
+    return $this->oracleAsmConfig;
+  }
+  /**
+   * Optional. SSL configuration for the Oracle connection.
+   *
+   * @param OracleSslConfig $oracleSslConfig
+   */
+  public function setOracleSslConfig(OracleSslConfig $oracleSslConfig)
+  {
+    $this->oracleSslConfig = $oracleSslConfig;
+  }
+  /**
+   * @return OracleSslConfig
+   */
+  public function getOracleSslConfig()
+  {
+    return $this->oracleSslConfig;
+  }
+  /**
+   * Optional. Password for the Oracle connection. Mutually exclusive with the
+   * `secret_manager_stored_password` field.
+   *
+   * @param string $password
    */
   public function setPassword($password)
   {
@@ -101,7 +166,9 @@ class OracleProfile extends \Google\Model
     return $this->password;
   }
   /**
-   * @param int
+   * Port for the Oracle connection, default value is 1521.
+   *
+   * @param int $port
    */
   public function setPort($port)
   {
@@ -115,7 +182,26 @@ class OracleProfile extends \Google\Model
     return $this->port;
   }
   /**
-   * @param string
+   * Optional. A reference to a Secret Manager resource name storing the Oracle
+   * connection password. Mutually exclusive with the `password` field.
+   *
+   * @param string $secretManagerStoredPassword
+   */
+  public function setSecretManagerStoredPassword($secretManagerStoredPassword)
+  {
+    $this->secretManagerStoredPassword = $secretManagerStoredPassword;
+  }
+  /**
+   * @return string
+   */
+  public function getSecretManagerStoredPassword()
+  {
+    return $this->secretManagerStoredPassword;
+  }
+  /**
+   * Required. Username for the Oracle connection.
+   *
+   * @param string $username
    */
   public function setUsername($username)
   {

@@ -29,6 +29,10 @@ class GoogleCloudDialogflowCxV3Intent extends \Google\Collection
    */
   public $displayName;
   /**
+   * @var string
+   */
+  public $dtmfPattern;
+  /**
    * @var bool
    */
   public $isFallback;
@@ -50,7 +54,7 @@ class GoogleCloudDialogflowCxV3Intent extends \Google\Collection
   protected $trainingPhrasesDataType = 'array';
 
   /**
-   * @param string
+   * @param string $description
    */
   public function setDescription($description)
   {
@@ -64,7 +68,7 @@ class GoogleCloudDialogflowCxV3Intent extends \Google\Collection
     return $this->description;
   }
   /**
-   * @param string
+   * @param string $displayName
    */
   public function setDisplayName($displayName)
   {
@@ -78,7 +82,21 @@ class GoogleCloudDialogflowCxV3Intent extends \Google\Collection
     return $this->displayName;
   }
   /**
-   * @param bool
+   * @param string $dtmfPattern
+   */
+  public function setDtmfPattern($dtmfPattern)
+  {
+    $this->dtmfPattern = $dtmfPattern;
+  }
+  /**
+   * @return string
+   */
+  public function getDtmfPattern()
+  {
+    return $this->dtmfPattern;
+  }
+  /**
+   * @param bool $isFallback
    */
   public function setIsFallback($isFallback)
   {
@@ -92,7 +110,7 @@ class GoogleCloudDialogflowCxV3Intent extends \Google\Collection
     return $this->isFallback;
   }
   /**
-   * @param string[]
+   * @param string[] $labels
    */
   public function setLabels($labels)
   {
@@ -106,7 +124,7 @@ class GoogleCloudDialogflowCxV3Intent extends \Google\Collection
     return $this->labels;
   }
   /**
-   * @param string
+   * @param string $name
    */
   public function setName($name)
   {
@@ -120,7 +138,7 @@ class GoogleCloudDialogflowCxV3Intent extends \Google\Collection
     return $this->name;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3IntentParameter[]
+   * @param GoogleCloudDialogflowCxV3IntentParameter[] $parameters
    */
   public function setParameters($parameters)
   {
@@ -134,7 +152,7 @@ class GoogleCloudDialogflowCxV3Intent extends \Google\Collection
     return $this->parameters;
   }
   /**
-   * @param int
+   * @param int $priority
    */
   public function setPriority($priority)
   {
@@ -148,7 +166,7 @@ class GoogleCloudDialogflowCxV3Intent extends \Google\Collection
     return $this->priority;
   }
   /**
-   * @param GoogleCloudDialogflowCxV3IntentTrainingPhrase[]
+   * @param GoogleCloudDialogflowCxV3IntentTrainingPhrase[] $trainingPhrases
    */
   public function setTrainingPhrases($trainingPhrases)
   {

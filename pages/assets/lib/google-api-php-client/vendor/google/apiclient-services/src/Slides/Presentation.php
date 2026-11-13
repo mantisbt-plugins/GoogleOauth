@@ -19,10 +19,41 @@ namespace Google\Service\Slides;
 
 class Presentation extends \Google\Collection
 {
+  /**
+   * The CommentsViewMode is unspecified; COMMENTS_VIEW_MODE_OMITTED is applied.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_UNSPECIFIED = 'COMMENTS_VIEW_MODE_UNSPECIFIED';
+  /**
+   * The CommentsViewMode applied to the returned presentation depends on the
+   * user's current access level. If the user only has view access,
+   * COMMENTS_VIEW_MODE_OMITTED is applied. Otherwise,
+   * COMMENTS_VIEW_MODE_INCLUDED is applied.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS = 'COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS';
+  /**
+   * The returned presentation has comments omitted.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_OMITTED = 'COMMENTS_VIEW_MODE_OMITTED';
+  /**
+   * The returned presentation has comments included. Requests to retrieve a
+   * presentation using this mode will return a 403 error if the user does not
+   * have permission to view comments.
+   */
+  public const COMMENTS_VIEW_MODE_COMMENTS_VIEW_MODE_INCLUDED = 'COMMENTS_VIEW_MODE_INCLUDED';
   protected $collection_key = 'slides';
+  protected $commentsType = CommentThread::class;
+  protected $commentsDataType = 'array';
+  /**
+   * Output only. The comments view mode applied to the presentation.
+   *
+   * @var string
+   */
+  public $commentsViewMode;
   protected $layoutsType = Page::class;
   protected $layoutsDataType = 'array';
   /**
+   * The locale of the presentation, as an IETF BCP 47 language tag.
+   *
    * @var string
    */
   public $locale;
@@ -33,22 +64,77 @@ class Presentation extends \Google\Collection
   protected $pageSizeType = Size::class;
   protected $pageSizeDataType = '';
   /**
+   * The ID of the presentation.
+   *
    * @var string
    */
   public $presentationId;
   /**
+   * Output only. The revision ID of the presentation. Can be used in update
+   * requests to assert the presentation revision hasn't changed since the last
+   * read operation. Only populated if the user has edit access to the
+   * presentation. The revision ID is not a sequential number but a nebulous
+   * string. The format of the revision ID may change over time, so it should be
+   * treated opaquely. A returned revision ID is only guaranteed to be valid for
+   * 24 hours after it has been returned and cannot be shared across users. If
+   * the revision ID is unchanged between calls, then the presentation has not
+   * changed. Conversely, a changed ID (for the same presentation and user)
+   * usually means the presentation has been updated. However, a changed ID can
+   * also be due to internal factors such as ID format changes.
+   *
    * @var string
    */
   public $revisionId;
   protected $slidesType = Page::class;
   protected $slidesDataType = 'array';
   /**
+   * The title of the presentation.
+   *
    * @var string
    */
   public $title;
 
   /**
-   * @param Page[]
+   * Output only. The comment threads associated with the presentation.
+   *
+   * @param CommentThread[] $comments
+   */
+  public function setComments($comments)
+  {
+    $this->comments = $comments;
+  }
+  /**
+   * @return CommentThread[]
+   */
+  public function getComments()
+  {
+    return $this->comments;
+  }
+  /**
+   * Output only. The comments view mode applied to the presentation.
+   *
+   * Accepted values: COMMENTS_VIEW_MODE_UNSPECIFIED,
+   * COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, COMMENTS_VIEW_MODE_OMITTED,
+   * COMMENTS_VIEW_MODE_INCLUDED
+   *
+   * @param self::COMMENTS_VIEW_MODE_* $commentsViewMode
+   */
+  public function setCommentsViewMode($commentsViewMode)
+  {
+    $this->commentsViewMode = $commentsViewMode;
+  }
+  /**
+   * @return self::COMMENTS_VIEW_MODE_*
+   */
+  public function getCommentsViewMode()
+  {
+    return $this->commentsViewMode;
+  }
+  /**
+   * The layouts in the presentation. A layout is a template that determines how
+   * content is arranged and styled on the slides that inherit from that layout.
+   *
+   * @param Page[] $layouts
    */
   public function setLayouts($layouts)
   {
@@ -62,7 +148,9 @@ class Presentation extends \Google\Collection
     return $this->layouts;
   }
   /**
-   * @param string
+   * The locale of the presentation, as an IETF BCP 47 language tag.
+   *
+   * @param string $locale
    */
   public function setLocale($locale)
   {
@@ -76,7 +164,15 @@ class Presentation extends \Google\Collection
     return $this->locale;
   }
   /**
-   * @param Page[]
+   * The slide masters in the presentation. A slide master contains all common
+   * page elements and the common properties for a set of layouts. They serve
+   * three purposes: - Placeholder shapes on a master contain the default text
+   * styles and shape properties of all placeholder shapes on pages that use
+   * that master. - The master page properties define the common page properties
+   * inherited by its layouts. - Any other shapes on the master slide appear on
+   * all slides using that master, regardless of their layout.
+   *
+   * @param Page[] $masters
    */
   public function setMasters($masters)
   {
@@ -90,7 +186,16 @@ class Presentation extends \Google\Collection
     return $this->masters;
   }
   /**
-   * @param Page
+   * The notes master in the presentation. It serves three purposes: -
+   * Placeholder shapes on a notes master contain the default text styles and
+   * shape properties of all placeholder shapes on notes pages. Specifically, a
+   * `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a `BODY`
+   * placeholder shape contains the speaker notes. - The notes master page
+   * properties define the common page properties inherited by all notes pages.
+   * - Any other shapes on the notes master appear on all notes pages. The notes
+   * master is read-only.
+   *
+   * @param Page $notesMaster
    */
   public function setNotesMaster(Page $notesMaster)
   {
@@ -104,7 +209,9 @@ class Presentation extends \Google\Collection
     return $this->notesMaster;
   }
   /**
-   * @param Size
+   * The size of pages in the presentation.
+   *
+   * @param Size $pageSize
    */
   public function setPageSize(Size $pageSize)
   {
@@ -118,7 +225,9 @@ class Presentation extends \Google\Collection
     return $this->pageSize;
   }
   /**
-   * @param string
+   * The ID of the presentation.
+   *
+   * @param string $presentationId
    */
   public function setPresentationId($presentationId)
   {
@@ -132,7 +241,19 @@ class Presentation extends \Google\Collection
     return $this->presentationId;
   }
   /**
-   * @param string
+   * Output only. The revision ID of the presentation. Can be used in update
+   * requests to assert the presentation revision hasn't changed since the last
+   * read operation. Only populated if the user has edit access to the
+   * presentation. The revision ID is not a sequential number but a nebulous
+   * string. The format of the revision ID may change over time, so it should be
+   * treated opaquely. A returned revision ID is only guaranteed to be valid for
+   * 24 hours after it has been returned and cannot be shared across users. If
+   * the revision ID is unchanged between calls, then the presentation has not
+   * changed. Conversely, a changed ID (for the same presentation and user)
+   * usually means the presentation has been updated. However, a changed ID can
+   * also be due to internal factors such as ID format changes.
+   *
+   * @param string $revisionId
    */
   public function setRevisionId($revisionId)
   {
@@ -146,7 +267,10 @@ class Presentation extends \Google\Collection
     return $this->revisionId;
   }
   /**
-   * @param Page[]
+   * The slides in the presentation. A slide inherits properties from a slide
+   * layout.
+   *
+   * @param Page[] $slides
    */
   public function setSlides($slides)
   {
@@ -160,7 +284,9 @@ class Presentation extends \Google\Collection
     return $this->slides;
   }
   /**
-   * @param string
+   * The title of the presentation.
+   *
+   * @param string $title
    */
   public function setTitle($title)
   {

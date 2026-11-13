@@ -56,7 +56,7 @@ class SecurityCenterProperties extends \Google\Collection
   public $resourceType;
 
   /**
-   * @param Folder[]
+   * @param Folder[] $folders
    */
   public function setFolders($folders)
   {
@@ -70,7 +70,7 @@ class SecurityCenterProperties extends \Google\Collection
     return $this->folders;
   }
   /**
-   * @param string
+   * @param string $resourceDisplayName
    */
   public function setResourceDisplayName($resourceDisplayName)
   {
@@ -84,7 +84,7 @@ class SecurityCenterProperties extends \Google\Collection
     return $this->resourceDisplayName;
   }
   /**
-   * @param string
+   * @param string $resourceName
    */
   public function setResourceName($resourceName)
   {
@@ -98,7 +98,7 @@ class SecurityCenterProperties extends \Google\Collection
     return $this->resourceName;
   }
   /**
-   * @param string[]
+   * @param string[] $resourceOwners
    */
   public function setResourceOwners($resourceOwners)
   {
@@ -112,7 +112,7 @@ class SecurityCenterProperties extends \Google\Collection
     return $this->resourceOwners;
   }
   /**
-   * @param string
+   * @param string $resourceParent
    */
   public function setResourceParent($resourceParent)
   {
@@ -126,7 +126,7 @@ class SecurityCenterProperties extends \Google\Collection
     return $this->resourceParent;
   }
   /**
-   * @param string
+   * @param string $resourceParentDisplayName
    */
   public function setResourceParentDisplayName($resourceParentDisplayName)
   {
@@ -140,7 +140,7 @@ class SecurityCenterProperties extends \Google\Collection
     return $this->resourceParentDisplayName;
   }
   /**
-   * @param string
+   * @param string $resourceProject
    */
   public function setResourceProject($resourceProject)
   {
@@ -154,7 +154,7 @@ class SecurityCenterProperties extends \Google\Collection
     return $this->resourceProject;
   }
   /**
-   * @param string
+   * @param string $resourceProjectDisplayName
    */
   public function setResourceProjectDisplayName($resourceProjectDisplayName)
   {
@@ -168,7 +168,7 @@ class SecurityCenterProperties extends \Google\Collection
     return $this->resourceProjectDisplayName;
   }
   /**
-   * @param string
+   * @param string $resourceType
    */
   public function setResourceType($resourceType)
   {

@@ -17,22 +17,82 @@
 
 namespace Google\Service\Bigquery;
 
-class IterationResult extends \Google\Model
+class IterationResult extends \Google\Collection
 {
+  protected $collection_key = 'principalComponentInfos';
+  protected $arimaResultType = ArimaResult::class;
+  protected $arimaResultDataType = '';
+  protected $clusterInfosType = ClusterInfo::class;
+  protected $clusterInfosDataType = 'array';
   /**
+   * Time taken to run the iteration in milliseconds.
+   *
    * @var string
    */
   public $durationMs;
+  /**
+   * Loss computed on the eval data at the end of iteration.
+   *
+   * @var 
+   */
   public $evalLoss;
   /**
+   * Index of the iteration, 0 based.
+   *
    * @var int
    */
   public $index;
+  /**
+   * Learn rate used for this iteration.
+   *
+   * @var 
+   */
   public $learnRate;
+  protected $principalComponentInfosType = PrincipalComponentInfo::class;
+  protected $principalComponentInfosDataType = 'array';
+  /**
+   * Loss computed on the training data at the end of iteration.
+   *
+   * @var 
+   */
   public $trainingLoss;
 
   /**
-   * @param string
+   * Arima result.
+   *
+   * @param ArimaResult $arimaResult
+   */
+  public function setArimaResult(ArimaResult $arimaResult)
+  {
+    $this->arimaResult = $arimaResult;
+  }
+  /**
+   * @return ArimaResult
+   */
+  public function getArimaResult()
+  {
+    return $this->arimaResult;
+  }
+  /**
+   * Information about top clusters for clustering models.
+   *
+   * @param ClusterInfo[] $clusterInfos
+   */
+  public function setClusterInfos($clusterInfos)
+  {
+    $this->clusterInfos = $clusterInfos;
+  }
+  /**
+   * @return ClusterInfo[]
+   */
+  public function getClusterInfos()
+  {
+    return $this->clusterInfos;
+  }
+  /**
+   * Time taken to run the iteration in milliseconds.
+   *
+   * @param string $durationMs
    */
   public function setDurationMs($durationMs)
   {
@@ -54,7 +114,9 @@ class IterationResult extends \Google\Model
     return $this->evalLoss;
   }
   /**
-   * @param int
+   * Index of the iteration, 0 based.
+   *
+   * @param int $index
    */
   public function setIndex($index)
   {
@@ -74,6 +136,22 @@ class IterationResult extends \Google\Model
   public function getLearnRate()
   {
     return $this->learnRate;
+  }
+  /**
+   * The information of the principal components.
+   *
+   * @param PrincipalComponentInfo[] $principalComponentInfos
+   */
+  public function setPrincipalComponentInfos($principalComponentInfos)
+  {
+    $this->principalComponentInfos = $principalComponentInfos;
+  }
+  /**
+   * @return PrincipalComponentInfo[]
+   */
+  public function getPrincipalComponentInfos()
+  {
+    return $this->principalComponentInfos;
   }
   public function setTrainingLoss($trainingLoss)
   {
